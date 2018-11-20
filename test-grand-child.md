@@ -1,6 +1,6 @@
 ---
-title: Granchild of test
-parent: Child of test
+title: Granchild of Test
+parent: Child of Test
 grand_parent: Test
 nav_order: 1
 ---
