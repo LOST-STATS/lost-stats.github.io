@@ -9,6 +9,7 @@ nav_order: 1
 
 ## Robust standard errors
 
+### R 
 ```r
 library(estimatr)
 
