@@ -1,6 +1,6 @@
 ---
 title: observation-order
-parent: data_manipulation
+parent: data_manipulation/data_manipulation
 has_children: false
 nav_order: 1
 ---
