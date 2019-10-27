@@ -1,15 +1,15 @@
 ---
 title: Non-standard errors
-parent: OLS
+parent: Ordinary least squares
 grand_parent: Estimation
-nav_order: 1
+nav_order: 2
 ---
 
 # Non-standard errors
 
 ## Robust standard errors
 
-### R 
+### R
 ```r
 library(estimatr)
 

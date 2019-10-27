@@ -4,7 +4,7 @@ has_children: false
 nav_order: 1
 ---
 
-# HOW TO CONTRIBUTE
+# How to contribute
 
 1. [Get a GitHub account](https://github.com/join). You do not need to know Git to contribute to LOST, but you do need a GitHub account.
 2. Read the [Guide to Editing Wiki Content](https://help.github.com/en/articles/editing-wiki-content) which will show the syntax that is used on GitHub Wiki pages.
@@ -12,7 +12,32 @@ nav_order: 1
 4. Go to the [LOST Wiki](https://github.com/NickCH-K/LOST/wiki), find a page that needs to be expanded, and add more content. Or find one that doesn't exist but should (perhaps on the [Desired Nonexistent Pages list](https://github.com/NickCH-K/LOST/wiki/Desired-Nonexistent-Pages), and write it yourself!
 5. If you've created a new page, be sure to add it to one of the categories pages, which you can see on the sidebar, like [Estimation Techniques](https://github.com/NickCH-K/LOST/wiki/Estimation-Techniques). If you've written a Desired Nonexistent Page, be sure to remove it from the [list](https://github.com/NickCH-K/LOST/wiki/Desired-Nonexistent-Pages). Or, if your page links to some new nonexistent pages, add those to the list!
 
-# LOST WRITING GUIDE
+## Markdown
+
+LOST pages are written in Mardown. Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+
+```markdown
+Syntax highlighted code block
+
+# Header 1
+## Header 2
+### Header 3
+
+- Bulleted
+- List
+
+1. Numbered
+2. List
+
+**Bold** and _Italic_ and `Code` text
+
+[Link](url) and ![Image](src)
+```
+
+For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+
+
+## Lost writing guide
 
 A LOST page is intended to be a *set of instructions for performing a statistical technique*, where "statistical technique" is broadly defined as "the things you do in statistical software", which includes everything from loading data to estimating models to cleaning data to visualization to reproducible notebooks.
 
@@ -28,17 +53,17 @@ Things to remember while writing:
 - Be as clear as possible. You're writing a set of instructions, in effect. People should be able to follow them.
 - The technical ability of the reader may vary by page. People reading a LOST page about how to calculate a mean probably have little experience with their software and will need a lot of hand-holding. You can assume that people reading a LOST page about Markov-Chain Monte Carlo methods probably already have a fairly solid background.
 
-# CREATING A LOST PAGE
+## Creating a LOST page
 
 When starting a LOST page, you should copy the [New Page Template](https://github.com/NickCH-K/LOST/blob/master/NewPageTemplate). There are four main sections of a LOST page:
 
-## Introduction
+### Introduction
 
 This is an introduction to the technique. Most of the time this will be just a few sentences about what it is and does, and perhaps why it is used. However, in cases of more niche or complex material, there may be a reason to include more detailed information or general non-language-specific instructions here. In general, however, for more detailed explanations or discussions of statistical properties, you can always just link to an outside trusted source like Wikipedia or a (non-paywalled) academic paper.
 
 Math is not supported. Generally, you can refer to terms by simply putting them in bold. If an equation is necessary, create the equation as an image on [this page](https://www.codecogs.com/latex/eqneditor.php) and include the equation as an image.
 
-## Keep in Mind
+### Keep in Mind
 
 This is a list of details and reminders for people using the method, especially if they are not yet an expert at it or if the detail is not well-known. This may include:
 
@@ -48,7 +73,7 @@ This is a list of details and reminders for people using the method, especially 
 - Features of the technique that might surprise users or be unexpected.
 - Rules of thumb for use ("you will want to set the number of bootstrap samples to at least 1,000 (citation)")
 
-## Also Consider
+### Also Consider
 
 This is a list of *other* techniques that are commonly used *in addition to* this page's technique, or *as an alternative to* this page's technique. If not obvious, include a very brief explanation of why you might want to use that other technique in addition to/instead of the current one. Note that you can link to another LOST page even if that page doesn't exist yet. Maybe it will inspite someone to write it!
 
@@ -56,7 +81,7 @@ For example, pages about estimation techniques might list standard robustness te
 
 Or, they might list an alternative technique that might be used if a certain assumption fails ("This technique requires continuous variables. So if your data is discrete, use this other method.").
 
-## Implementations
+### Implementations
 
 Implementations contains multiple subsections, one for each statistical software environment/programming language that the technique can be implemented in.
 
@@ -77,7 +102,7 @@ How can you add these images? You can upload the images somewhere on the interne
 
 Please be sure to add alt text to images for sight-impaired users.
 
-# FREQUENTLY ASKED QUESTIONS
+## FREQUENTLY ASKED QUESTIONS
 
 - **What techniques are important enough to be their own page?** This is a little subjective, but if you're writing about X, which is a minor option/variant of Y, then you can just include it on the Y page. If X is a *different technique* or a variant of Y that is used in different circumstances or produces meaningfully different output, then give X its own page.
 - **How should I title my page?** The filename for a page is a little restricted - it can't be too long, and it doesn't allow special characters like / or (). So pick a single, concise description of the technique you're talking about. You can be more descriptive in the in-page title (the title on the first line with the H1/# heading), and when you include your page on one of the Category pages. So Ordinary Least Squares might be the filename, and Ordinary Least Squares (Linear Regression) might be the H1 heading and how you describe it on the Estimation page.
