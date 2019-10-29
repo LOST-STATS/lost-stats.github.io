@@ -27,7 +27,7 @@ When working with data that has case-identifier variables, like panel data, it's
 
 ## Also Consider
 
-- You can [[collapse a data set]] to switch from one observation level to another, coarser one.
+- You can [[collapse a data set]] to move from one observation level to another, coarser one.
 
 # Implementations
 
