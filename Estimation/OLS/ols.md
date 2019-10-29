@@ -1,5 +1,5 @@
 ---
-title: OLS
+title: Ordinary least squares
 parent: Estimation
 has_children: true
 nav_order: 1
