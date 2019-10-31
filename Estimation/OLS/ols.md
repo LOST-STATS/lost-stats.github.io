@@ -19,9 +19,9 @@ For more information about OLS, see [Wikipedia: Ordinary Least Squares](https://
 
 ## Also Consider
 
-- OLS standard errors assume that the model's error term is [IID](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables), which may not be true. Consider whether your analysis should use [[heteroskedasticity-robust standard errors|robust standard errors]] or [[cluster-robust standard errors|clustered standard errors]].
-- If your outcome variable is discrete or bounded, then OLS is by nature incorrectly specified. You may want to use [[probit|probit]] or [[logit|logit]] instead for a binary outcome variable, or [[ordered probit|ordered probit]] or [[ordered logit|ordered logit]] for an ordinal outcome variable.
-- If the goal of your analysis is predicting the outcome variable and you have a very long list of predictor variables, you may want to consider using a method that will select a subset of your predictors. A common way to do this is a penalized regression method like [[Lasso]].
+- OLS standard errors assume that the model's error term is [independently and identically distributed (IID)](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables), which may not be true. Consider whether your analysis should use [heteroskedasticity-robust standard errors](non-ses.html) or cluster-robust standard errors.
+- If your outcome variable is discrete or bounded, then OLS is by nature incorrectly specified. You may want to use probit or logit instead for a binary outcome variable, or ordered probit or ordered logit for an ordinal outcome variable.
+- If the goal of your analysis is predicting the outcome variable and you have a very long list of predictor variables, you may want to consider using a method that will select a subset of your predictors. A common way to do this is a penalized regression method like Lasso.
 
 # Implementations
 
@@ -44,7 +44,7 @@ data(mtcars)
 
 # Run OLS using the mtcars data, with mpg as the outcome variable
 # and cyl, hp, and wt as predictors
-olsmodel <- lm(mpg~cyl+hp+wt,data=mtcars)
+olsmodel <- lm(mpg ~ cyl + hp + wt, data = mtcars)
 
 # Look at the results
 summary(olsmodel)
@@ -87,14 +87,14 @@ ols mpg const headroom trunk weight
 
 ## Matlab
 
-```Matlab
+```matlab
 % Load auto data
 load('auto.mat')
 
 % Run OLS using the auto data, with mpg as the outcome variable
 % and headroom, trunk, and weight as predictors
 
-intercept = ones(length(headroom),1);
+intercept = ones(length(headroom), 1);
 X = [intercept headroom trunk weight];
-[b,bint,r,rint,stats] = regress(mpg,X);
+[b, bint, r, rint, stats] = regress(mpg, X);
 ```
