@@ -14,7 +14,7 @@ nav_order: 100
 
 ## Markdown
 
-LOST pages are written in Mardown. Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+LOST pages are written in Markdown. Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
 ```markdown
 Syntax highlighted code block
