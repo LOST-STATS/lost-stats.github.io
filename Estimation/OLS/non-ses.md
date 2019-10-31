@@ -13,5 +13,5 @@ nav_order: 2
 ```r
 library(estimatr)
 
-lm_robust(mpg ~ cyl + hp + wt, data=mtcars)
+lm_robust(mpg ~ cyl + hp + wt, data = mtcars)
 ```
