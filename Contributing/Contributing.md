@@ -128,7 +128,7 @@ Images can be added to Implementation sections if relevant, for example if you'r
 
 How can you add these images? You can upload the images somewhere on the internet that allows image linking, and include the image in your instructions with `![Image](src)`. Ideally, upload the image directly to the `Images/name-of-your-page/` subfolder of whatever directory you're working in, and link to the images there.
 
-Please be sure to add alt text to images for sight-impaired users.
+Please be sure to add alt text to images for sight-impaired users. Image filenames should make reference to the language used to make them, i.e. `python_scatterplot.png`.
 
 **Data**
 
