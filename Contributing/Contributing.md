@@ -74,6 +74,7 @@ nav_order: 1
 
 Make sure to fill in the `title` with a relevant and brief title. Also be sure to put the appropriate name for the `parent` - this will ensure that your page shows up in the appropriate spot in the navigation structure. Options for `parent` include:
 
+* Causal Identification
 * Data Manipulation
 * Estimation
 * Geo-Spatial
@@ -82,6 +83,8 @@ Make sure to fill in the `title` with a relevant and brief title. Also be sure t
 * Summary Statistics
 * Time Series
 * Other
+
+You can ignore `has_children` - that stays the same. `nav_order` determines the order in which the pages are displayed in the section. We are aiming for alphabetical order, so please try to select an appropriate order so things are alphabetical within category.
 
 ## Introduction
 
