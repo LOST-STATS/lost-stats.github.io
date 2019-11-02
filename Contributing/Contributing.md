@@ -108,6 +108,8 @@ For example, pages about estimation techniques might list standard robustness te
 
 Or, they might list an alternative technique that might be used if a certain assumption fails ("This technique requires continuous variables. So if your data is discrete, use this other method.").
 
+To link to other LOST pages (even if they don't exist yet - don't forget to add these to [Desired Nonexistent Pages](https://lost-stats.github.io/Desired_Nonexistent_Pages/desired_nonexistent_pages.html)!, use the Markdown `[Link name](url)` structure, where the URL is of the format `https://lost-stats.github.io/Category_Name/page_name.html`.
+
 ## Implementations
 
 Implementations contains multiple subsections, one for each statistical software environment/programming language that the technique can be implemented in. 
