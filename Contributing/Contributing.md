@@ -83,7 +83,7 @@ Make sure to fill in the `title` with a relevant and brief title. Also be sure t
 * Time Series
 * Other
 
-You can ignore `has_children` - that stays the same. `nav_order` determines the order in which the pages are displayed in the section. We are aiming for alphabetical order, so please try to select an appropriate order so things are alphabetical within category.
+You can ignore `has_children` - that stays the same. You can also ignore `nav_order` - leaving this at 1 for everything will put everything in alphabetical order. 
 
 ## Introduction
 

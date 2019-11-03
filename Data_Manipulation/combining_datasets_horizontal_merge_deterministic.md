@@ -1,6 +1,6 @@
 ---
 title: Combining Datasets: Horizontal Combination (Deterministic)
-parent: Combining Datasets Overview
+parent: Data Manipulation
 has_children:  false
 nav_order: 1
 ---

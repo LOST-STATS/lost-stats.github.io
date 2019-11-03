@@ -1,6 +1,6 @@
 ---
 title: Combining Datasets: Vertical Combination
-parent: Combining Datasets Overview
+parent: Data Manipulation
 has_children: false
 nav_order: 1
 ---
