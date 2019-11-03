@@ -1,5 +1,5 @@
 ---
-title: Combining Datasets: Vertical Combination
+title: Combining Datasets - Vertical Combination
 parent: Data Manipulation
 has_children: false
 nav_order: 1
