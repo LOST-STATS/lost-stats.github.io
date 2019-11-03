@@ -1,5 +1,5 @@
 ---
-title: Combining Datasets: Horizontal Combination (Deterministic)
+title: Combining Datasets - Horizontal Combination (Deterministic)
 parent: Data Manipulation
 has_children:  false
 nav_order: 1

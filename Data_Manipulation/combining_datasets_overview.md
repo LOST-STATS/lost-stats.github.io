@@ -1,7 +1,7 @@
 ---
 title: Combining Datasets Overview
 parent: Data Manipulation
-has_children: true
+has_children: false
 nav_order: 1
 ---
 
