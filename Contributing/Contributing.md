@@ -11,7 +11,7 @@ nav_order: 100
 3. Read the below LOST Writing Guide, which shows what a good LOST page looks like from top to bottom. Even if you are just adding another language to an existing page, be sure to read the Implementations section at the bottom.
 4. Explore LOST using the navigation bar on the left, find a page that needs to be expanded, and add more content. Or find one that doesn't exist but should (perhaps on the [Desired Nonexistent Pages list](https://lost-stats.github.io/Desired_Nonexistent_Pages/desired_nonexistent_pages.html), and write it yourself! Go to the [GitHub Repository](https://github.com/LOST-STATS/LOST-STATS.github.io) for LOST to find the appropriate file to edit or folder to create your new file in.
 5. If you are a "Contributor" to the project, you can make your edits and changes directly to the repository. If not, you will need to issue a [pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) to get your work on LOST. We will add you as a contributor after your first accepted pull request. If you don't know Git or how to do a pull request, please post in [Issues](https://github.com/LOST-STATS/LOST-STATS.github.io/issues) asking to be added as a contributor so you can edit LOST directly.
-6. If you've made a new page, make sure to put it in the appropriate folder and add Navigation Information at the top. If you've written a Desired Nonexistent Page, be sure to remove it from the [list](https://github.com/LOST-STATS/LOST-STATS.github.io/blob/master/Desired_Nonexistent_Pages/Desired_Nonexistent_Pages.md). Or, if your page links to some new nonexistent pages, add those to the list!
+6. If you've made a new page, make sure it's saved as a `.md` file, put it in the appropriate folder, and add Navigation Information at the top (see below). If you've written a Desired Nonexistent Page, be sure to remove it from the [list](https://github.com/LOST-STATS/LOST-STATS.github.io/blob/master/Desired_Nonexistent_Pages/Desired_Nonexistent_Pages.md). Or, if your page links to some new nonexistent pages, add those to the list! Also, try to see if other pages have attempted to link to the page you're working on, and update their links so they go to the right place.
 
 # LOST WRITING GUIDE
 
@@ -74,11 +74,10 @@ nav_order: 1
 
 Make sure to fill in the `title` with a relevant and brief title. Also be sure to put the appropriate name for the `parent` - this will ensure that your page shows up in the appropriate spot in the navigation structure. Options for `parent` include:
 
-* Causal Identification
 * Data Manipulation
-* Estimation
 * Geo-Spatial
 * Machine Learning
+* Model Estimation
 * Presentation
 * Summary Statistics
 * Time Series
@@ -137,7 +136,7 @@ Please be sure to add alt text to images for sight-impaired users. Image filenam
 # FREQUENTLY ASKED QUESTIONS
 
 - **What techniques are important enough to be their own page?** This is a little subjective, but if you're writing about X, which is a minor option/variant of Y, then you can just include it on the Y page. If X is a *different technique* or a variant of Y that is used in different circumstances or produces meaningfully different output, then give X its own page.
-- **How should I title my page?** Pick a single, concise description of the technique you're talking about. If there are multiple ways to refer to the technique you're doing, pick one. You can be more descriptive in the in-page title (the title on the first line with the H1/# heading). So Ordinary Least Squares might be the title, and Ordinary Least Squares (Linear Regression) might be the H1 heading and how you describe it on the Estimation page. 
+- **How should I title my page?** Pick a single, concise description of the technique you're talking about. If there are multiple ways to refer to the technique you're doing, pick one. You will also need to select a file name, which should be in lower_case_with_underscores.md and you might want to make a bit shorter. So Ordinary Least Squares (Linear Regression) might be the title and H1 heading, and ordinary_least_squares.md might be the file name.
 - **What languages can I include in Implementations?** Any language is valid as long as it's something people actually do statistical analysis in. Don't include something just because you *can* (I mean, you can technically do OLS in assembly but is that useful for anyone?), but because you think someone will find it useful.
 - **Should I include the output of my code?** For data visualization, yes! Just keep the images relatively small so they don't crowd the page. See the Implementations section above for how to add images. If your output is not visual, there's probably no need to include output unless you think that it is especially important for some technique.
 - **How can I discuss what I'm doing with other contributors?** Head to the [Issues](https://github.com/LOST-STATS/LOST-STATS.github.io/issues) page and find (or post) a thread with the title of the page you're talking about.

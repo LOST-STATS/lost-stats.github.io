@@ -1,7 +1,0 @@
----
-title: Summary Techniques
-has_children: true
-nav_order: 7
----
-
-# Summary Techniques
