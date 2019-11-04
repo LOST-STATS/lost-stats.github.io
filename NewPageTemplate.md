@@ -3,11 +3,20 @@ title: Title of page
 parent: Category
 has_children: false
 nav_order: 1
+mathjax: true ## Switch to false if this page has no equations or other math rendering.
 ---
 
 # Name of Page
 
 INTRODUCTION SECTION
+
+Remember that you can use inline math, e.g. $$x + y$$. In general, you should render variables in math mode ($$X$$, $$Y$$, etc.)
+
+You can also render math in display mode:
+
+$$
+\int_a^b f(x)dx
+$$
 
 ## Keep in Mind
 
@@ -15,8 +24,8 @@ INTRODUCTION SECTION
 
 ## Also Consider
 
-- LIST OF OTHER TECHNIQUES THAT WILL COMMONLY BE USED ALONGSIDE THIS PAGE'S TECHNIQUE 
-- (E.G. LINEAR REGRESSION LINKS TO ROBUST STANDARD ERRORS), 
+- LIST OF OTHER TECHNIQUES THAT WILL COMMONLY BE USED ALONGSIDE THIS PAGE'S TECHNIQUE
+- (E.G. LINEAR REGRESSION LINKS TO ROBUST STANDARD ERRORS),
 - OR INSTEAD OF THIS TECHNIQUE
 - (E.G. PIE CHART LINKS TO A BAR PLOT AS AN ALTERNATIVE)
 - WITH EXPLANATION
