@@ -54,7 +54,27 @@ Syntax highlighted code block
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-Math is supported through MathJax, which works much like LaTeX and can be started/ended with \$ symbols, or \$\$ symbols on their own line. For example, `$$x = \frac{1}{2}$$` is rendered as $$x = \frac{1}{2}$$.For more information about MathJax, see [here](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference).
+## Math
+
+Math is rendered with MathJax, which provides support for $\LaTeX$ math formatting. To use on a specific page, make sure that the [YAML](#navigation-information) at the top on the underlying Markdown (i.e. .md) file includes a line saying `mathjax: true`. This should already be the default on most existing pages, but it is worth emphasising. For example, here is a screenshot of the "Contributing.md" file that you are reading right now.
+
+![](mathjax_yaml.png)
+
+After that, equations and other math sections can be delimited with \$ symbols for inline math, and \$\$ symbols for display math (i.e. on its own line or in a distinct block). For example, `$x = \frac{1}{2}$` is rendered inline as $x = \frac{1}{2}$. In contrast,
+
+```
+$$
+y =  \beta_0 + \beta_1 x + \beta_2 x^2 + \epsilon
+$$
+
+```
+Is rendered as display math
+
+$$
+y =  \beta_0 + \beta_1 x + \beta_2 x^2 + \epsilon
+$$
+
+While we don't include such examples here, note that standard $\LaTeX$ math environments such as `\begin{equation} ... \end{equation}` (for numbered equations) and `\begin{align} ... \end{align}` (for aligned equation systems) are all supported. More information about MathJax, see [here](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference).
 
 # STRUCTURE OF A LOST PAGE
 
@@ -62,7 +82,7 @@ When starting a LOST page, you should copy the [New Page Template](https://githu
 
 ## Navigation Information
 
-Your page will begin with something like this:
+Your page will begin with what's known as YAML, i.e. something that looks like this:
 
 ```
 ---
@@ -70,10 +90,11 @@ title: Observation level
 parent: Data Manipulation
 has_children: false
 nav_order: 1
+mathjax: true
 ---
 ```
 
-Make sure to fill in the `title` with a relevant and brief title. Also be sure to put the appropriate name for the `parent` - this will ensure that your page shows up in the appropriate spot in the navigation structure. Options for `parent` include:
+You don't need to worry too much about YAML syntax (here's the [Wikipedia entry](https://en.wikipedia.org/wiki/YAML) for those interested). The important thing is that the YAML provides a set of very basic instructions for the website navigation and page structure. Make sure to fill in the `title` with a relevant and brief title. Also be sure to put the appropriate name for the `parent` - this will ensure that your page shows up in the appropriate spot in the navigation structure. Options for `parent` include:
 
 * Data Manipulation
 * Geo-Spatial
@@ -84,7 +105,7 @@ Make sure to fill in the `title` with a relevant and brief title. Also be sure t
 * Time Series
 * Other
 
-You can ignore `has_children` - that stays the same. You can also ignore `nav_order` - leaving this at 1 for everything will put everything in alphabetical order.
+For the most part, you should generally ignore `has_children`. (An exception is if you are creating a new section that *does* have new child pages, but then you are probably better off filing an issue with us to make sure this is done correctly.) You can also ignore `nav_order` &mdash; leaving this at 1 for everything will put everything in alphabetical order.
 
 ## Introduction
 
