@@ -56,25 +56,25 @@ For more details see [GitHub Flavored Markdown](https://guides.github.com/featur
 
 ## Math
 
-Math is rendered with MathJax, which provides support for $\LaTeX$ math formatting. To use on a specific page, make sure that the [YAML](#navigation-information) at the top on the underlying Markdown (i.e. .md) file includes a line saying `mathjax: true`. This should already be the default on most existing pages, but it is worth emphasising. For example, here is a screenshot of the "Contributing.md" file that you are reading right now.
+Math is rendered with MathJax, which provides support for $$\LaTeX$$ math formatting. To use on a specific page, make sure that the [YAML](#navigation-information) at the top on the underlying Markdown (i.e. .md) file includes a line saying `mathjax: true`. This should already be the default on most existing pages, but it is worth emphasising. For example, here is a screenshot of the "Contributing.md" file that you are reading right now.
 
 ![](mathjax_yaml.png)
 
-After that, equations and other math sections can be delimited with \$ symbols for inline math, and \$\$ symbols for display math (i.e. on its own line or in a distinct block). For example, `$x = \frac{1}{2}$` is rendered inline as $x = \frac{1}{2}$. In contrast,
+After that, equations and other math sections can be delimited with **two** dollar symbol pairs (i.e. \$\$...\$\$). For example, `$$x = \frac{1}{2}$$` is rendered inline as $$x = \frac{1}{2}$$. Similarly, we can render math in display mode (i.e. as a distinct block) by wrapping the dollar symbol pairs on separate lines. For example,
 
 ```
 $$
 y =  \beta_0 + \beta_1 x + \beta_2 x^2 + \epsilon
 $$
-
 ```
-Is rendered as display math
+
+is rendered as display math:
 
 $$
 y =  \beta_0 + \beta_1 x + \beta_2 x^2 + \epsilon
 $$
 
-While we don't include such examples here, note that standard $\LaTeX$ math environments such as `\begin{equation} ... \end{equation}` (for numbered equations) and `\begin{align} ... \end{align}` (for aligned equation systems) are all supported. More information about MathJax, see [here](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference).
+While we don't include such examples here, note that standard $$\LaTeX$$ math environments such as `\begin{equation} ... \end{equation}` (for numbered equations) and `\begin{align} ... \end{align}` (for aligned equation systems) are all supported. Just remember to wrap them between a pair of dollar symbols. More information about MathJax can be found [here](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference).
 
 # STRUCTURE OF A LOST PAGE
 
