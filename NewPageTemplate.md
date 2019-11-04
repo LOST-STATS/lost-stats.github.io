@@ -20,7 +20,7 @@ INTRODUCTION SECTION
 - OR INSTEAD OF THIS TECHNIQUE
 - (E.G. PIE CHART LINKS TO A BAR PLOT AS AN ALTERNATIVE)
 - WITH EXPLANATION
-- INCLUDE LINKS TO OTHER LOST PAGES WITH THE FORMAT [Description](https://lost-stats.github.io/Category/page_name.html)
+- INCLUDE LINKS TO OTHER LOST PAGES WITH THE FORMAT [Description](https://lost-stats.github.io/Category/page_name.html). Categories include Data_Manipulation, Geo-Spatial, Machine_Learning, Model_Estimation, Presentation, Summary_Statistics, Time_Series, and Other
 
 # Implementations
 
