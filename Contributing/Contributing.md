@@ -60,7 +60,7 @@ Math is rendered with MathJax, which provides support for $$\LaTeX$$ math format
 
 ![](mathjax_yaml.png)
 
-After that, equations and other math sections can be delimited with **two** dollar symbol pairs (i.e. \$\$...\$\$). For example, `$$x = \frac{1}{2}$$` is rendered inline as $$x = \frac{1}{2}$$. Similarly, we can render math in display mode (i.e. as a distinct block) by wrapping the dollar symbol pairs on separate lines. For example,
+After that, equations and other math sections can be delimited with two dollar symbol _pairs_. For example, `$$x = \frac{1}{2}$$` is rendered inline as $$x = \frac{1}{2}$$. Similarly, we can render math in display mode (i.e. as a distinct block) by wrapping the dollar symbol pairs on separate lines. For example,
 
 ```
 $$
@@ -94,7 +94,7 @@ mathjax: true
 ---
 ```
 
-You don't need to worry too much about YAML syntax (here's the [Wikipedia entry](https://en.wikipedia.org/wiki/YAML) for those interested). The important thing is that the YAML provides a set of very basic instructions for the website navigation and page structure. Make sure to fill in the `title` with a relevant and brief title. Also be sure to put the appropriate name for the `parent` - this will ensure that your page shows up in the appropriate spot in the navigation structure. Options for `parent` include:
+You don't need to worry too much about YAML syntax (here's the [Wikipedia entry](https://en.wikipedia.org/wiki/YAML) for those interested). The important thing is that the YAML provides a set of very basic instructions for the website navigation and page structure. Make sure to fill in the `title` with a relevant and brief title. Also be sure to put the appropriate name for the `parent` &mdash; this will ensure that your page shows up in the appropriate spot in the navigation structure. Options for `parent` include:
 
 * Data Manipulation
 * Geo-Spatial
@@ -129,7 +129,7 @@ For example, pages about estimation techniques might list standard robustness te
 
 Or, they might list an alternative technique that might be used if a certain assumption fails ("This technique requires continuous variables. So if your data is discrete, use this other method.").
 
-To link to other LOST pages (even if they don't exist yet - don't forget to add these to [Desired Nonexistent Pages](https://lost-stats.github.io/Desired_Nonexistent_Pages/desired_nonexistent_pages.html)!, use the Markdown `[Link name](url)` structure, where the URL is of the format `https://lost-stats.github.io/Category_Name/page_name.html`.
+To link to other LOST pages (even if they don't exist yet &mdash; don't forget to add these to [Desired Nonexistent Pages](https://lost-stats.github.io/Desired_Nonexistent_Pages/desired_nonexistent_pages.html)!, use the Markdown `[Link name](url)` structure, where the URL is of the format `https://lost-stats.github.io/Category_Name/page_name.html`.
 
 ## Implementations
 
