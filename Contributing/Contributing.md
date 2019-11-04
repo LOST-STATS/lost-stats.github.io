@@ -2,7 +2,6 @@
 title: Contributing
 has_children: false
 nav_order: 100
-mathjax: true
 ---
 
 # HOW TO CONTRIBUTE
@@ -54,21 +53,7 @@ Syntax highlighted code block
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-Math is supported through MathJax, which works much like LaTeX and can be started/ended with \$ symbols, or \$\$ symbols on their own line. For example,
-
-```
-$$
-y = \beta_0 + \beta_1 x
-$$
-```
-
-yields
-
-$$
-y = \beta_0 + \beta_1 x + \epsilon
-$$
-
-For more information about MathJax, see [here](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference).
+Math is supported through MathJax, which works much like LaTeX and can be started/ended with \$ symbols, or \$\$ symbols on their own line. For more information, see [here](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference).
 
 # STRUCTURE OF A LOST PAGE
 
@@ -98,11 +83,11 @@ Make sure to fill in the `title` with a relevant and brief title. Also be sure t
 * Time Series
 * Other
 
-You can ignore `has_children` - that stays the same. You can also ignore `nav_order` - leaving this at 1 for everything will put everything in alphabetical order.
+You can ignore `has_children` - that stays the same. You can also ignore `nav_order` - leaving this at 1 for everything will put everything in alphabetical order. 
 
 ## Introduction
 
-This is an introduction to the technique. Most of the time this will be just a few sentences about what it is and does, and perhaps why it is used. However, in cases of more niche or complex material, there may be a reason to include more detailed information or general non-language-specific instructions here. In general, however, for more detailed explanations or discussions of statistical properties, you can always just link to an outside trusted source like Wikipedia or a (non-paywalled) academic paper.
+This is an introduction to the technique. Most of the time this will be just a few sentences about what it is and does, and perhaps why it is used. However, in cases of more niche or complex material, there may be a reason to include more detailed information or general non-language-specific instructions here. In general, however, for more detailed explanations or discussions of statistical properties, you can always just link to an outside trusted source like Wikipedia or a (non-paywalled) academic paper. 
 
 ## Keep in Mind
 
@@ -126,7 +111,7 @@ To link to other LOST pages (even if they don't exist yet - don't forget to add 
 
 ## Implementations
 
-Implementations contains multiple subsections, one for each statistical software environment/programming language that the technique can be implemented in.
+Implementations contains multiple subsections, one for each statistical software environment/programming language that the technique can be implemented in. 
 
 - Implementations should be listed in **alphabetical order of software/language**. eViews, then Python, then R, then SAS, then Stata, etc.
 - For each language, include well-commented and **as-brief-as-reasonably-possible** example code that provides an example of performing the technique. Readers should be able to copy the code and have it run the technique from beginning to end, including steps like loading in data if necessary. See existing pages for examples.
@@ -134,11 +119,11 @@ Implementations contains multiple subsections, one for each statistical software
 - Avoid creating a long list of examples showing every variant or optional setting of the technique. Instead, focus on one main example, with variants included only if they are especially important. If you like, you can mention in comments additional useful options/settings the reader might want to look into and what they do.
 - If the technique requires that a package or library be installed, include the code for installing the package in a comment (or if you are using a language where libraries cannot be installed inside the code, include a comment directing the user to install the library).
 - If a given language has *multiple ways* of performing the same technique, ideally report only one "best" method, whatever that might be. If other methods are only different in trivial ways, then you can describe them as being alternatives, but avoid providing examples for them. If other methods are different in important ways, then include an example for each, with text explanations of what is different about them. If two contributors seriously disagree about which way is best, then they're probably different in some meaningful way so you can include both as long as you can explain what that difference is.
-- It is fine to add implementations for software that only has a graphical interface rather than code (such as Excel) using screenshots. Be sure to keep images well-cropped and small so they don't crowd the page. If your graphical instructions are necessarily very long, consider posting them as a blog post somewhere and just put a link to that post in Implementations.
+- It is fine to add implementations for software that only has a graphical interface rather than code (such as Excel) using screenshots. Be sure to keep images well-cropped and small so they don't crowd the page. If your graphical instructions are necessarily very long, consider posting them as a blog post somewhere and just put a link to that post in Implementations. 
 
 **Images**
 
-Images can be added to Implementation sections if relevant, for example if you're working with GUI-only software, or demonstrating the output of a data visualization technique.
+Images can be added to Implementation sections if relevant, for example if you're working with GUI-only software, or demonstrating the output of a data visualization technique. 
 
 How can you add these images? You can upload the images somewhere on the internet that allows image linking, and include the image in your instructions with `![Image](src)`. Ideally, upload the image directly to the `Images/name-of-your-page/` subfolder of whatever directory you're working in, and link to the images there.
 
@@ -146,7 +131,7 @@ Please be sure to add alt text to images for sight-impaired users. Image filenam
 
 **Data**
 
-*Ideally*, the same data set will be uploaded to LOST directly in a format accessible by many languages (like CSV) in the `Data/name-of-your-page/` subfolder of whatever directory you're wokring in, and then that data can be used for implementation in all languages on the page. This is not required, but is encouraged.
+*Ideally*, the same data set will be uploaded to LOST directly in a format accessible by many languages (like CSV) in the `Data/name-of-your-page/` subfolder of whatever directory you're wokring in, and then that data can be used for implementation in all languages on the page. This is not required, but is encouraged. 
 
 # FREQUENTLY ASKED QUESTIONS
 
