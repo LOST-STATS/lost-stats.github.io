@@ -12,3 +12,9 @@ aux_links:
 # allowing users to deep link to a particular heading on a page.
 # Supports true (default) or false/nil
 heading_anchors: true
+# Adding for mathjax support
+compress_html:
+  blanklines: true
+mathjax:
+  source: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML
+  config: 'MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } })'
