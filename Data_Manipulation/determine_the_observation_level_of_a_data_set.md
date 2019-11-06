@@ -2,6 +2,7 @@
 title: Determine the Observation Level of a Data Set
 parent: Data Manipulation
 has_children: false
+mathjax: true
 nav_order: 1
 ---
 
@@ -16,7 +17,7 @@ The *observation level* of a data set is the set of case-identifying variables w
 | 2 | 1 | 2 |
 | 2 | 2 | 4.5 |
 
-the variables **I** and **J** uniquely identify rows. The first row has **I** = 1 and **J = 1**, and there is no other row with that combination. We could also say that **X** uniquely identifies rows, but in this example **X** is not a case-identifying variable, it's actual data.
+the variables $$I$$ and $$J$$ uniquely identify rows. The first row has $$I = 1$$ and $$J = 1$$, and there is no other row with that combination. We could also say that $$X$$ uniquely identifies rows, but in this example $$X$$ is not a case-identifying variable, it's actual data.
 
 When working with data that has case-identifier variables, like panel data, it's generally a good idea to know what set of them makes up the observation level of a data set. Otherwise you might perform [merges](https://lost-stats.github.io/Data_Manipulation/combining_datasets_horizontal_combination_deterministic.html) or case-level calculations incorrectly.
 
