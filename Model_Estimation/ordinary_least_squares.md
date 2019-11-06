@@ -3,18 +3,19 @@ title: Ordinary Least Squares (Linear Regression)
 parent: Model Estimation
 has_children: false
 nav_order: 1
+mathjax: true
 ---
 
 # Ordinary Least Squares (Linear Regression)
 
-Ordinary Least Squares (OLS) is a statistical method that produces a best-fit line between some outcome variable $Y$ and any number of predictor variables $X_1, X_2, X_3, ...$. These predictor variables may also be called independent variables or right-hand-side variables.
+Ordinary Least Squares (OLS) is a statistical method that produces a best-fit line between some outcome variable $$Y$$ and any number of predictor variables $$X_1, X_2, X_3, ...$$. These predictor variables may also be called independent variables or right-hand-side variables.
 
 For more information about OLS, see [Wikipedia: Ordinary Least Squares](https://en.wikipedia.org/wiki/Ordinary_least_squares).
 
 ## Keep in Mind
 
 - OLS assumes that you have specified a true linear relationship.
-- OLS results are not guaranteed to have a causal interpretation. Just because OLS estimates a positive relationship between $X_1$ and $Y$ does not necessarily mean that an increase in $X1$ will cause $Y$ to increase.
+- OLS results are not guaranteed to have a causal interpretation. Just because OLS estimates a positive relationship between $$X_1$$ and $$Y$$ does not necessarily mean that an increase in $$X1$$ will cause $$Y$$ to increase.
 - OLS does *not* require that your variables follow a normal distribution. 
 
 ## Also Consider
@@ -66,11 +67,11 @@ print(ols.summary())
 
 ```r
 # Load Data
-data(mtcars)
+# data(mtcars) ## Optional: automatically loaded anyway
 
 # Run OLS using the mtcars data, with mpg as the outcome variable
 # and cyl, hp, and wt as predictors
-olsmodel <- lm(mpg~cyl+hp+wt,data=mtcars)
+olsmodel <- lm(mpg ~ cyl + hp + wt, data = mtcars)
 
 # Look at the results
 summary(olsmodel)
