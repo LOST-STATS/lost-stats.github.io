@@ -2,17 +2,18 @@
 title: Probit Model
 parent: Model Estimation
 has_children: false
+mathjax: true
 nav_order: 1
 ---
 
 # Probit Regressions
 
-A Probit regression is a statistical method for a best-fit line between a binary [0/1] outcome variable $Y$ and any number of independent variables. Probit regressions follow a [standard normal probability distribution](https://en.wikipedia.org/wiki/Normal_distribution) and the predicted values are bounded between 0 and 1. 
+A Probit regression is a statistical method for a best-fit line between a binary [0/1] outcome variable $$Y$$ and any number of independent variables. Probit regressions follow a [standard normal probability distribution](https://en.wikipedia.org/wiki/Normal_distribution) and the predicted values are bounded between 0 and 1. 
 
 For more information about Probit, see [Wikipedia: Probit](https://en.wikipedia.org/wiki/Probit_model).
 
 ## Keep in Mind
-- The beta coefficients from a probit model are maximum likelihood estimations. They are not the marginal effect, as you would see in an OLS estimation. So you cannot interpret the beta coefficient as a marginal effect of $X$ on $Y$.
+- The beta coefficients from a probit model are maximum likelihood estimations. They are not the marginal effect, as you would see in an OLS estimation. So you cannot interpret the beta coefficient as a marginal effect of $$X$$ on $$Y$$.
 - To obtain the marginal effect, you need to perform a post-estimation command to discover the marginal effect. In general, you can 'eye-ball' the marginal effect by dividing the probit beta coefficient by 2.5.
 
 # Implementations
