@@ -24,4 +24,4 @@ mathjax:
   source: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML
   config: 'MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } })'
 
-footer_content: "Testing that a footer will appear"
+footer_content: "Testing that a footer will appear and that variables work {{ page.url }}"
