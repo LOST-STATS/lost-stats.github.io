@@ -15,7 +15,7 @@ For more information about OLS, see [Wikipedia: Ordinary Least Squares](https://
 ## Keep in Mind
 
 - OLS assumes that you have specified a true linear relationship.
-- OLS results are not guaranteed to have a causal interpretation. Just because OLS estimates a positive relationship between $$X_1$$ and $$Y$$ does not necessarily mean that an increase in $$X1$$ will cause $$Y$$ to increase.
+- OLS results are not guaranteed to have a causal interpretation. Just because OLS estimates a positive relationship between $$X_1$$ and $$Y$$ does not necessarily mean that an increase in $$X_1$$ will cause $$Y$$ to increase.
 - OLS does *not* require that your variables follow a normal distribution. 
 
 ## Also Consider
