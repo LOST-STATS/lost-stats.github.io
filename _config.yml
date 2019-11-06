@@ -2,19 +2,26 @@ title: "LOST"
 remote_theme: pmarsceill/just-the-docs
 color_scheme: "nil"
 search_enabled: true
+
 # Enable support for hyphenated search words:
 search_tokenizer_separator: /[\s/]+/
+
 # Aux links for the upper right navigation
 aux_links:
   "LOST on GitHub":
     - "//github.com/LOST-STATS/LOST-STATS.github.io"
+
 # Heading anchor links appear on hover over h1-h6 tags in page content
 # allowing users to deep link to a particular heading on a page.
 # Supports true (default) or false/nil
 heading_anchors: true
+
 # Adding for mathjax support
 compress_html:
   blanklines: true
+
 mathjax:
   source: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML
   config: 'MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } })'
+
+footer_content: "Testing that a footer will appear"
