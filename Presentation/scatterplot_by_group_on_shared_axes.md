@@ -2,12 +2,13 @@
 title: Scatterplot by Group on Shared Axes
 parent: Presentation
 has_children: false
+mathjax: true
 nav_order: 1
 ---
 
 # Scatterplot by Group on Shared Axes
 
-[Scatterplot](https://lost-stats.github.io/Presentation/scatterplot.html)s are a standard data visualization tool that allows you to look at the relationship between two variables $X$ and $Y$. If you want to see how the relationship between $X$ and $Y$ might be different for Group A as opposed to Group B, then you might want to plot the scatterplot for both groups on the same set of axes, so you can compare them.
+[Scatterplot](https://lost-stats.github.io/Presentation/scatterplot.html)s are a standard data visualization tool that allows you to look at the relationship between two variables $$X$$ and $$Y$$. If you want to see how the relationship between $$X$$ and $$Y$$ might be different for Group A as opposed to Group B, then you might want to plot the scatterplot for both groups on the same set of axes, so you can compare them.
 
 ## Keep in Mind
 
