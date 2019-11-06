@@ -63,4 +63,3 @@ import type using filename
 ```
 
 where `type` can be `excel`, `spss`, `sas`, `haver`, or `dbase` (`import` can also be used to download data directly from sources like FRED).
-```
