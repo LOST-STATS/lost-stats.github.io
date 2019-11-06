@@ -10,12 +10,12 @@ nav_order: 1
 
 In many contexts, the effect of one variable on another might be allowed to vary. For example, the relationship between income and mortality is nonlinear, so the effect of an additional dollar of income on mortality is different for someone earning $20,000/year than for someone earning $100,000/year. Or maybe the relationship between income and mortality differs depending on how many years of education you have.
 
-A marginal effects plot displays the effect of $X$ on $Y$ for different values of $Z$ (or $X$). The plot will often include confidence intervals as well. The same code will often work if there's not an explicit interaction, but you are, for example, estimating a logit model where the effect of one variable changes with the values of the others.
+A marginal effects plot displays the effect of $$X$$ on $$Y$$ for different values of $$Z$$ (or $$X$$). The plot will often include confidence intervals as well. The same code will often work if there's not an explicit interaction, but you are, for example, estimating a logit model where the effect of one variable changes with the values of the others.
 
 ## Keep in Mind
 
-- Interactions often have poor statistical power, and you will generally need a lot of observations to tell if the effect of $X$ on $Y$ is different for two given different values of $Z$.
-- Make sure your graph has clearly labeled axes, so readers can tell whether your y-axis is the predicted value of $Y$ or the marginal effect of $X$ on $Y$.
+- Interactions often have poor statistical power, and you will generally need a lot of observations to tell if the effect of $X$ on $$Y$$ is different for two given different values of $$Z$$.
+- Make sure your graph has clearly labeled axes, so readers can tell whether your y-axis is the predicted value of $Y$ or the marginal effect of $$X$$ on $$Y$$.
 
 ## Also Consider
 
@@ -27,7 +27,7 @@ A marginal effects plot displays the effect of $X$ on $Y$ for different values o
 
 ## R
 
-The `interplot` package can plot the marginal effect of a variable $X$ (y-axis) against different values of some variable. If instead you want the predicted values of $Y$ on the y-axis, look at the `ggeffects` package.
+The `interplot` package can plot the marginal effect of a variable $$X$$ (y-axis) against different values of some variable. If instead you want the predicted values of $$Y$$ on the y-axis, look at the `ggeffects` package.
 
 ```r
 # Install relevant packages, if necessary:
