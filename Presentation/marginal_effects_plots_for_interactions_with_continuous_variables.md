@@ -2,6 +2,7 @@
 title: Marginal Effects Plots for Interactions with Continuous Variables
 parent: Presentation
 has_children: false
+mathjax: true
 nav_order: 1
 ---
 
