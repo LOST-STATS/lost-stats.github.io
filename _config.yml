@@ -25,3 +25,4 @@ mathjax:
   config: 'MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } })'
 
 edit_links: true
+
