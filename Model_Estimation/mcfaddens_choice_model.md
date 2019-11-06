@@ -2,6 +2,7 @@
 title: McFadden's Choice Model (Alternative-Specific Conditional Logit)
 parent: Model Estimation
 has_children: false
+mathjax: true
 nav_order: 1
 ---
 
@@ -17,10 +18,10 @@ For more information, see [Wikipedia: Discrete Choice](https://en.wikipedia.org/
 
 - Just like other regression methods, the McFadden model does not guarantee that the estimates will be causal. Similarly, while the McFadden model is designed so that the results can be interpreted in terms of a "random utility" function, making inferences about utility functions does require additional assumptions.
 - The standard McFadden model assumes that the choice follows the [Independence of Irrelevant Alternatives](https://en.wikipedia.org/wiki/Independence_of_irrelevant_alternatives#In_econometrics), which may be a strong assumption. There are variants of the McFadden model that relax this assumption.
-- If you are working with an estimation command that only allows alternative-specific predictors and not case-specific predictors, you can add them yourself by interacting the case-specific predictors with binary variables for the different alternatives. If $Income$ is your case-specific variable and your alternatives are "train", "bus", and "car", you'd add $Income \times (mode == "train")$, $Income \times (mode == "bus")$, and $Income \times (mode == "car")$ to your model. These are your case-specific predictors.
+- If you are working with an estimation command that only allows alternative-specific predictors and not case-specific predictors, you can add them yourself by interacting the case-specific predictors with binary variables for the different alternatives. If $$Income$$ is your case-specific variable and your alternatives are "train", "bus", and "car", you'd add $$Income \times (mode == "train")$$, $$Income \times (mode == "bus")$$, and $$Income \times (mode == "car")$$ to your model. These are your case-specific predictors.
 - Choice model regressions often have specific demands on how your data is structured. These vary across estimation commands and software packages. However, a common one is this (others will be pointed out in specific Implementations below): The data must contain a variable indicating the choice cases (i.e. you choose a car, that's one case, then I choose a car, that's a different case), a variable with the alternatives being chosen between, a binary variable equal to 1 for the alternative actually chosen (this should be 1 or `TRUE` exactly once within each choice case), and then variables that are case-specific or alternative-specific.
 
-In the below table, $I$ gives the choice case, $Alts$ gives the options, $Chose$ gives the choice, $X$ is a variable that varies at the alternative level, and $Y$ is a variable that varies at the case level.
+In the below table, $$I$$ gives the choice case, $$Alts$$ gives the options, $$Chose$$ gives the choice, $$X$$ is a variable that varies at the alternative level, and $$Y$$ is a variable that varies at the case level.
 
 |I|Alts|Chose|X|Y|
 |-|----|-----|-|-|
