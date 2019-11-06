@@ -2,12 +2,13 @@
 title: Heckman Correction Model
 parent: Model Estimation
 has_children: false
+mathjax: true
 nav_order: 1
 ---
 
 # Heckman Correction Model
 
-The Heckman correction for sample selection is a method designed to be used in cases where the model can only be run on a subsample of the data that is not randomly selected. For example, a regression using $Wage$ to predict $Hours Worked$ cannot include people who don't work, since we don't observe their wage. The Heckman model views this sample selection process as a form of omitted variable bias. So, it (1) explicitly models the process of selecting into the sample, (2) transforms the predicted probability of being in the sample, and (3) adds a correction term to the model.
+The Heckman correction for sample selection is a method designed to be used in cases where the model can only be run on a subsample of the data that is not randomly selected. For example, a regression using $$Wage$$ to predict $$Hours Worked$$ cannot include people who don't work, since we don't observe their wage. The Heckman model views this sample selection process as a form of omitted variable bias. So, it (1) explicitly models the process of selecting into the sample, (2) transforms the predicted probability of being in the sample, and (3) adds a correction term to the model.
 
 For more information, see [Wikipedia: Heckman correction](https://en.wikipedia.org/wiki/Heckman_correction).
 
