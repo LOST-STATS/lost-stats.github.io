@@ -8,7 +8,7 @@ nav_order: 11
 
 This is a manually-maintained list of pages that have been linked from elsewhere, or that it would be nice to have, but do not exist yet. Feel free to edit with your own wishes!
 
-If you create one of these pages (or have noticed a link turning from red to blue), please remove it from this list.
+If you create one of these pages, please remove it from this list.
 
 ## Causal Identification
 
