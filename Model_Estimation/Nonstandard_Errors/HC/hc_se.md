@@ -28,7 +28,7 @@ Many regression models assume homoskedasticity (i.e. constant variance of the er
 
 ## R
 
-The easiest way to obtain robust standard errors in R is with the **estimatr** package and its family of `lm_robust` functions. These will default to "HC2" errors, but users can specify a variety of other options. 
+The easiest way to obtain robust standard errors in R is with the **estimatr** package ([link](https://declaredesign.org/r/estimatr/)) and its family of `lm_robust` functions. These will default to "HC2" errors, but users can specify a variety of other options. 
 
 ```R
 # If necessary, install estimatr
@@ -43,7 +43,7 @@ m1 <- lm_robust(mpg ~ cyl + disp + hp, data = mtcars, se_type = "HC3")
 summary(m1)
 ```
 
-Alternately, users may consider the `vcovHC` function from the **sandwich** package, which is very flexible and supports a wide variety of generic regression objects. For inference (t-tests, etc.), use in conjunction with the `coeftest` function from the **lmtest** package.
+Alternately, users may consider the `vcovHC` function from the **sandwich** package ([link](https://cran.r-project.org/web/packages/sandwich/index.html)), which is very flexible and supports a wide variety of generic regression objects. For inference (t-tests, etc.), use in conjunction with the `coeftest` function from the **lmtest** package ([link](https://cran.r-project.org/web/packages/lmtest/index.html)).
 
 ```R
 # If necessary, install lmtest and sandwich
