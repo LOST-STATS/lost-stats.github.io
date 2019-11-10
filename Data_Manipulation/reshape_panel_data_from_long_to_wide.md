@@ -47,7 +47,7 @@ Reshaping is the method of converting wide-format data to long and [vice versa](
 
 ## R
 
-There are many ways to reshape in R, including base-R `reshape` and the deprecated `reshape2::melt` and `cast` and `tidyr::gather` and `spread`. We will be using the `tidyr` package function `pivot_wider`, which requires `tidyr` version 1.0.0 or later.
+There are many ways to reshape in R, including base-R `reshape` and the deprecated `reshape2::melt` and `cast` and `tidyr::gather` and `spread`. We will be using the **tidyr** package function `pivot_wider`, which requires **tidyr** version 1.0.0 or later.
 
 ```r
 # install.packages('tidyr')
@@ -97,7 +97,7 @@ reshape
 * will show the syntax for the function
 ```
 
-With especially large datasets, the [Gtools](https://gtools.readthedocs.io/en/latest/index.html) package provides a much faster version of reshape known as greshape. The syntax can function exactly the same, though they provide alternative syntax that you may find more intuitive. 
+With especially large datasets, the [**Gtools**](https://gtools.readthedocs.io/en/latest/index.html) package provides a much faster version of reshape known as greshape. The syntax can function exactly the same, though they provide alternative syntax that you may find more intuitive. 
 
 ```stata
 * First, we will create a toy dataset that is very large to demonstrate the speed gains 

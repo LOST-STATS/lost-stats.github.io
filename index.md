@@ -10,4 +10,10 @@ For each of those techniques, the LOST page will contain code for performing tha
 
 If you are interested in contributing to LOST, please see the [Contributing](https://lost-stats.github.io/Contributing/Contributing.html) page.
 
+<iframe width="560" height="315"
+src="https://www.youtube.com/embed/9zI812GiWxg" 
+frameborder="0" 
+allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+allowfullscreen></iframe>
+
 LOST was originated in 2019 by Nick Huntington-Klein and is maintained by volunteer contributors.

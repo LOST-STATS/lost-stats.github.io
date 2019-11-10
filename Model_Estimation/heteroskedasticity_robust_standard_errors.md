@@ -28,7 +28,7 @@ Many regression models assume homoskedasticity (the variance of the error term i
 
 ## R
 
-Robust standard errors for many different kinds of regression objects in R can be obtained using the `coeftest` function in the `lmtest` package combined with the `vcovHC` function in the `sandwich` package. Alternately, while it does not handle as many types of regressions, the `lm_robust` function in `estimatr` can provide robust standard errors much more easily.
+Robust standard errors for many different kinds of regression objects in R can be obtained using the `coeftest` function in the **lmtest** package combined with the `vcovHC` function in the **sandwich** package. Alternately, while it does not handle as many types of regressions, the `lm_robust` function in **estimatr** can provide robust standard errors much more easily.
 
 ```R
 # If necessary, install lmtest, sandwich, and estimatr

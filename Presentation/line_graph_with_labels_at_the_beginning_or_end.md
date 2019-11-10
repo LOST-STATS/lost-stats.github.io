@@ -63,7 +63,7 @@ This results in:
 
 ## Stata
 
-Unfortunately, performing this technique in Stata requires placing each `text()` label on the graph. However, this can  be automated with the use of a for loop to build the code using locals.
+Unfortunately, performing this technique in Stata requires placing each `text()` label on the graph. However, this can be automated with the use of a for loop to build the code using locals.
 
 ```stata
 * Load in Google Trends Nobel Search Data

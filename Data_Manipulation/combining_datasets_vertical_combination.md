@@ -16,7 +16,7 @@ When combining two datasets that collect the same information about different pe
 
 ## R
 
-There are several ways to vertically combine data sets in R, including `rbind`. We will use the `dplyr` function `bind_rows`, which allows the two data sets to combine even if they don't contain the exact same set of variables.
+There are several ways to vertically combine data sets in R, including `rbind`. We will use the **dplyr** package function `bind_rows`, which allows the two data sets to combine even if they don't contain the exact same set of variables.
 
 ```r
 # If necessary, install dplyr

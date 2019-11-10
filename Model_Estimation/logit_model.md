@@ -19,7 +19,7 @@ For more information about Logit, see [Wikipedia: Logit](https://en.wikipedia.or
 # Implementations
 
 ## R
-R can run a logit regression using the `glm()` function. However, to get marginal effects you will need to calculate them by hand or use a package. We will use the `mfx` package, although the `margins` package is another good option, which produces tidy model output.
+R can run a logit regression using the `glm()` function. However, to get marginal effects you will need to calculate them by hand or use a package. We will use the **mfx** package, although the **margins** package is another good option, which produces tidy model output.
 
 ```r
 # If necessary, install the mfx package

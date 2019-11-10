@@ -24,10 +24,11 @@ If you create one of these pages, please remove it from this list.
 * Aggregating Statistics
 * Collapse a Data Set
 
-## Estimation
+## Model Estimation
 
 * Generalized Method of Moments (GMM)
 * Bootstrap Standard Errors
+* Cluster Bootstrap Standard Errors
 * Treatment Effect Model
 * Endogenous Switching Model
 * Nonparametric Sample Selection Models

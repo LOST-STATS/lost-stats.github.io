@@ -47,7 +47,7 @@ This might be referred to as "long" choice data. "Wide" choice data is also comm
 
 ## R
 
-We will implement McFadden's choice model in R using the `mlogit` package, which can accept "wide" or "long" data in the `mlogit.data` function.
+We will implement McFadden's choice model in R using the **mlogit** package, which can accept "wide" or "long" data in the `mlogit.data` function.
 
 ```R
 # If necessary, install mlogit package

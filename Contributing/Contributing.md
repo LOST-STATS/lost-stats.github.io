@@ -5,6 +5,12 @@ nav_order: 100
 mathjax: true
 ---
 
+<iframe width="560" height="315"
+src="https://www.youtube.com/embed/zGQDlKQcPhg" 
+frameborder="0" 
+allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+allowfullscreen></iframe>
+
 # HOW TO CONTRIBUTE
 
 1. [Get a GitHub account](https://github.com/join). You do not need to know Git to contribute to LOST, but you do need a GitHub account.

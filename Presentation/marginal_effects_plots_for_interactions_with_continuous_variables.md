@@ -27,7 +27,7 @@ A marginal effects plot displays the effect of $$X$$ on $$Y$$ for different valu
 
 ## R
 
-The `interplot` package can plot the marginal effect of a variable $$X$$ (y-axis) against different values of some variable. If instead you want the predicted values of $$Y$$ on the y-axis, look at the `ggeffects` package.
+The **interplot** package can plot the marginal effect of a variable $$X$$ (y-axis) against different values of some variable. If instead you want the predicted values of $$Y$$ on the y-axis, look at the **ggeffects** package.
 
 ```r
 # Install relevant packages, if necessary:

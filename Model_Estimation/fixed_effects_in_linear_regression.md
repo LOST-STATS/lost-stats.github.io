@@ -27,7 +27,7 @@ For more information, see [Wikipedia: Fixed Effects Model](https://en.wikipedia.
 
 ## R
 
-We will demonstrate fixed effects using `felm` from the `lfe` package. You may also want to consider `lm_robust` from the `estimatr` package. The syntax for the latter is easier, but it is less efficient.
+We will demonstrate fixed effects using `felm` from the **lfe** package. You may also want to consider `lm_robust` from the **estimatr** package. The syntax for the latter is easier, but it is less efficient.
 
 `felm` uses the Method of Alternating Projections to "sweep out" the fixed effects and avoid estimating them directly.
 
@@ -37,7 +37,7 @@ We will demonstrate fixed effects using `felm` from the `lfe` package. You may a
 library(lfe)
 
 # Read in data from the College Scorecard
-df <- read.csv('https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv')
+df <- read.csv('https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv')
 # Calculate proportion of graduates working
 df$prop_working <- df$count_working/(df$count_working + df$count_not_working)
 
@@ -66,7 +66,7 @@ We will estimate fixed effects in two ways: using the built in `xtreg`, and `reg
 * ssc install reghdfe
 
 * Load in College Scorecard data
-import delimited "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv", clear
+import delimited "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv", clear
 
 * The missings are written as "NA", let's turn this numeric
 destring count_not_working count_working earnings_med, replace force

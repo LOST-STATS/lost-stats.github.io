@@ -97,7 +97,7 @@ duplicates tag latitude longitude, g(duplicated_data)
 by latitude longitude, sort: g number_of_duplicates_in_this_group = _N
 ```
 
-For especially large datasets the [Gtools](https://gtools.readthedocs.io/en/latest/index.html) version of the various duplicates commands, [gduplicates](https://gtools.readthedocs.io/en/latest/usage/gduplicates/index.html), is a great option
+For especially large datasets the [**Gtools**](https://gtools.readthedocs.io/en/latest/index.html) version of the various duplicates commands, [gduplicates](https://gtools.readthedocs.io/en/latest/usage/gduplicates/index.html), is a great option
 ```stata
 * Install gtools if necessary
 * ssc install gtools

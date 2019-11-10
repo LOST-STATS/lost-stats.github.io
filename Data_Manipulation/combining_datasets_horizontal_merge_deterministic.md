@@ -15,11 +15,15 @@ Because we expect such identifiers to be unique to an individual (unlike many na
 - For any number of reasons, one or both of the datasets may have more than one observation per unit or individual. That may be for a good reason -- such as havinng multiple test scores for the same student because they took exams at different points in time -- or it may be redundant information. Understanding the structure of your data is key before embarking on a deterministic merge. 
 - It is a good idea to have a clear sense of how much overlap you anticipate across your datasets. It is important to examine the results of your merge and see if it matches the amount the overlap you expected. Subtle differences in a matching variable (e.g. if leading zeroes are present in an ID variable for one variable but not another) can be a source of major headaches for your analysis if not caught early. If something looks weird in your results later in the project, trouble with a merge is a common cause. So check your merge results early and often. 
 
+# Also Consider
+
+- [Determine the observation level of a data set](https://lost-stats.github.io/Data_Manipulation/determine_the_observation_level_of_a_data_set.html).
+
 # Implementations
 
 ## R
 
-There are several ways to combine data sets horizontally in R, including base-R `merge` and several different approaches in the `data.table` package. We will be using the `join` functions in the `dplyr` package.
+There are several ways to combine data sets horizontally in R, including base-R `merge` and several different approaches in the **data.table** package. We will be using the `join` functions in the **dplyr** package.
 
 ```r
 # If necessary, install dplyr
@@ -35,13 +39,13 @@ DollarValue2018 <- data.frame(Currency = c("Euro", "Pound", "Yen", "Dollar"),
                               InDollars = c(1.104, 1.256, .00926, 1))
 ```
 
-Next we want to join together GDP2018 and DollarValue2018 so we can convert all the GDPs to dollars and compare them. There are three kinds of observations we could get - observations in GDP2018 but not DollarValue2018, observations in DollarValue2018 but not GDP2018, and observations in both. Use `help(join)` to pick the variant of `join` that keeps the observations we want. The "Yen" observation won't have a match, and we don't need to keep it. So let's do a `left_join` and list `GDP2018` first, so it keeps matched observations, plus any observations only in GDP2018.
+Next we want to join together `GDP2018` and `DollarValue2018` so we can convert all the GDPs to dollars and compare them. There are three kinds of observations we could get - observations in `GDP2018` but not `DollarValue2018`, observations in `DollarValue2018` but not `GDP2018`, and observations in both. Use `help(join)` to pick the variant of `join` that keeps the observations we want. The "Yen" observation won't have a match, and we don't need to keep it. So let's do a `left_join` and list `GDP2018` first, so it keeps matched observations, plus any observations only in `GDP2018`.
 
 ```r
 GDPandExchange <- left_join(GDP2018, DollarValue2018)
 ```
 
-The `join` function will automatically detect that the `Currency` variable is shared in both data sets and use it to join them. Generally, you will want to be sure that the set of variables you are joining by uniquely identifies observations in at least one of the data sets you are joining. If you're not sure whether that's true, see [[Determine the observation level of a data set]], or run `join` through the `safe_join` from the `pmdplyr` package.
+The `join` function will automatically detect that the `Currency` variable is shared in both data sets and use it to join them. Generally, you will want to be sure that the set of variables you are joining by uniquely identifies observations in at least one of the data sets you are joining. If you're not sure whether that's true, see [Determine the observation level of a data set](https://lost-stats.github.io/Data_Manipulation/determine_the_observation_level_of_a_data_set.html), or run `join` through the `safe_join` from the **pmdplyr** package.
 
 ## Stata 
 
