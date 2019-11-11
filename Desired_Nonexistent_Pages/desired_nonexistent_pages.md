@@ -8,6 +8,8 @@ nav_order: 11
 
 This is a manually-maintained list of pages that have been linked from elsewhere, or that it would be nice to have, but do not exist yet. Feel free to edit with your own wishes!
 
+**A page does not have to be listed here for you to add it!** These are just the things that we *thought of*. There's certainly plenty more in the world of statistical techniques to be added.
+
 If you create one of these pages, please remove it from this list.
 
 ## Causal Identification
