@@ -1,7 +1,7 @@
 ---
 title: Cluster-Robust Standard Errors
-parent: Model Estimation
-has_children: false
+parent: Nonstandard Errors
+grand_parent: Model Estimation ## Optional for indexing
 nav_order: 1
 ---
 
@@ -19,6 +19,8 @@ Data is considered to be clustered when there are subsamples within the data tha
 - [Cluster Bootstrap Standard Errors](https://lost-stats.github.io/Model_Estimation/cluster_bootstrap_standard_errors.html), which are another way of performing cluster-robust inference that will work even outside of a standard regression context.
 
 # Implementations
+
+**Note:** Clustering of standard errors is especially common in panel models, such as [linear fixed effects](https://lost-stats.github.io/Model_Estimation/fixed_effects_in_linear_regression.html). For this reason, software routines for these types of models typically offer built-in support for clustering. The LOST implementation examples for clustering of these models is similarly provided on the relevant page(s). In the below, we instead concentrate on providing implementation guidelines for clustering in general.
 
 ## R
 

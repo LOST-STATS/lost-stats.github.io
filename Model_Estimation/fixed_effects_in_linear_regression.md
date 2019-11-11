@@ -21,7 +21,7 @@ For more information, see [Wikipedia: Fixed Effects Model](https://en.wikipedia.
 ## Also Consider
 
 - [Random effects](https://lost-stats.github.io/Model_Estimation/random_effects.html)
-- You may want to consider [clustering your standard errors](https://lost-stats.github.io/Model_Estimation/cluster_robust_standard_errors.html) at the same level as your fixed effects.
+- You may want to consider [clustering your standard errors](https://lost-stats.github.io/Model_Estimation/Nonstandard_Errors/clustered_se.html) at the same level as (some or more of) your fixed effects.
 
 # Implementations
 
