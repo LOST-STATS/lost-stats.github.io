@@ -41,6 +41,9 @@ df[!, :prop_working] = df[!, :count_working] ./ (df[!, :count_working ] .+ df[!,
 
 using JuliaFixedEffects
 
+# Regress median earnings on the proportion of working graduates.
+# We'll control for institution name and year as our fixed effects.
+# We'll also cluster our standard errors by institution name.
 reg(df, @formula(earnings_med ~ prop_working + fe(inst_name) + fe(year)), Vcov.cluster(:inst_name))
 
 # Multithread example
