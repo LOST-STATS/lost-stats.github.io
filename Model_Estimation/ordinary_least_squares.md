@@ -40,7 +40,7 @@ ols mpg const headroom trunk weight
 
 ## Matlab
 
-```Matlab
+```matlab
 % Load auto data
 load('auto.mat')
 
