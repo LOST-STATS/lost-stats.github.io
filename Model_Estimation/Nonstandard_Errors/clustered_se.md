@@ -20,9 +20,15 @@ Data is considered to be clustered when there are subsamples within the data tha
 
 # Implementations
 
-**Note:** Clustering of standard errors is especially common in panel models, such as [linear fixed effects](https://lost-stats.github.io/Model_Estimation/fixed_effects_in_linear_regression.html). For this reason, software routines for these types of models typically offer built-in support for clustering. The LOST implementation examples for clustering of these models is similarly provided on the relevant page(s). In the below, we instead concentrate on providing implementation guidelines for clustering in general.
+**Note:** Clustering of standard errors is especially common in panel models, such as [linear fixed effects](https://lost-stats.github.io/Model_Estimation/fixed_effects_in_linear_regression.html). For this reason, software routines for these particular models typically offer built-in support for (multiway) clustering. The implementation pages for these models should be hyperlinked in the relevant places below. Here, we instead concentrate on providing implementation guidelines for clustering in general.
+
+## Julia
+
+For cluster-robust estimation of (high-dimensional) fixed effect models in Julia, see [here](https://lost-stats.github.io/Model_Estimation/fixed_effects_in_linear_regression.html#julia).
 
 ## R
+
+For cluster-robust estimation of (high-dimensional) fixed effect models in R, see [here](https://lost-stats.github.io/Model_Estimation/fixed_effects_in_linear_regression.html#r).
 
 Cluster-robust standard errors for many different kinds of regression objects in R can be obtained using the `coeftest` function in the **lmtest** package combined with the `vcovCL` function in the **sandwich** package. Alternately, while it does not handle as many types of regressions, the `lm_robust` function in **estimatr** can provide cluster-robust standard errors much more easily.
 
