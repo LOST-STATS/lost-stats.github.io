@@ -25,6 +25,32 @@ For more information, see [Wikipedia: Fixed Effects Model](https://en.wikipedia.
 
 # Implementations
 
+## Julia
+
+Julia provides support for estimating high-dimensional fixed effect models through the **FixedEffectModels.jl** package ([link](https://github.com/matthieugomez/FixedEffectModels.jl)). Similarly to **felm** (R) and **reghdfe** (Stata), the package uses the method of alternating projections to sweep out fixed effects. The Julia implementation is typically quite a bit faster than these other two methods, however. It also offers further performance gains via GPU computation for users with a working CUDA installation.
+
+```julia
+# If necessary, install JuliaFixedEffects.jl and some ancilliary packages for reading in the data
+# ] add JuliaFixedEffects, CSVFiles, DataFrames
+
+# Read in the example CSV and convert to a data frame
+using CSVFiles, DataFrames
+df = DataFrame(load("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv"))
+# Calculate proportion of graduates working
+df[!, :prop_working] = df[!, :count_working] ./ (df[!, :count_working ] .+ df[!, :count_not_working])
+
+using JuliaFixedEffects
+
+reg(df, @formula(earnings_med ~ prop_working + fe(inst_name) + fe(year)), Vcov.cluster(:inst_name))
+
+# Multithread example
+Threads.nthreads() ## See: https://docs.julialang.org/en/v1.2/manual/parallel-computing/#man-multithreading-1
+reg(df, @formula(earnings_med ~ prop_working + fe(inst_name) + fe(year)), Vcov.cluster(:inst_name), method = :lsmr_threads)
+
+# GPU example (requires working CUDA installation)
+reg(df, @formula(earnings_med ~ prop_working + fe(inst_name) + fe(year)), Vcov.cluster(:inst_name), method = :lsmr_gpu)
+```
+
 ## R
 
 We will demonstrate fixed effects using `felm` from the **lfe** package. You may also want to consider `lm_robust` from the **estimatr** package. The syntax for the latter is easier, but it is less efficient.
