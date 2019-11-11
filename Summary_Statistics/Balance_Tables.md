@@ -28,7 +28,7 @@ library("cobalt")
 data(mtcars)
 
 # Create Balance Table
-bal.tab(treat ~ foreign, data = mtcars)
+bal.tab(am ~ mpg + hp, data = mtcars)
 ```
 
 ## Stata
