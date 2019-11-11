@@ -56,9 +56,9 @@ reg(df, @formula(earnings_med ~ prop_working + fe(inst_name) + fe(year)), Vcov.c
 
 ## R
 
-We will demonstrate fixed effects using `felm` from the **lfe** package. You may also want to consider `lm_robust` from the **estimatr** package. The syntax for the latter is easier, but it is less efficient.
+There are numerous packages for estimating fixed effect models in R. We will limit our examples here to the two fastest implementations &mdash; `lfe::felm` and `fixest::feols` &mdash; both of which support high-dimensional fixed effects and standard error correction (multiway clustering, etc.).
 
-`felm` uses the Method of Alternating Projections to "sweep out" the fixed effects and avoid estimating them directly.
+We first demonstrate fixed effects in R using `felm` from the **lfe** package ([link](https://cran.r-project.org/web/packages/lfe/index.html)). `lfe::felm` uses the Method of Alternating Projections to "sweep out" the fixed effects and avoid estimating them directly. By default, this is automatically done in parallel, using all available cores on a user's machine to maximize performance. (It is also possible to change this behaviour.)
 
 ```r
 # If necessary, install lfe
@@ -72,19 +72,39 @@ df$prop_working <- df$count_working/(df$count_working + df$count_not_working)
 
 # A felm formula is constructed as:
 # outcome ~
-# covariates |
-# fixed effects |
-# instrumental variables specification | 
-# cluster variables for standard errors
+#   covariates |
+#   fixed effects |
+#   instrumental variables specification | 
+#   cluster variables for standard errors
 
 # Here let's regress earnings_med on prop_working
 # with institution name and year as our fixed effects
 # And clusters for institution name
-fe_model <- felm(earnings_med ~ prop_working | inst_name + year | 0 | inst_name, data = df)
+felm_model <- felm(earnings_med ~ prop_working | inst_name + year | 0 | inst_name, data = df)
 
 # Look at our results
-summary(fe_model)
+summary(felm_model)
 ```
+
+Next, we consider `feols` from the **fixest** package ([link](https://github.com/lrberge/fixest/wiki)). The syntax is very similar to  `lfe::felm` and again the estimation will be done in parallel by default. However, rather than the method of alternating projections, `fixest::feols` uses a concentrated maximum likelihood method to efficiently estimate models with an arbitrary number of fixed effects. Current benchmarks suggest that this can make it an order of magnitude faster for large problems. For the below example, we'll continue with the same College Scorecard dataset already loaded into memory. 
+
+```r
+# If necessary, install fixest
+# install.packages('fixest')
+library(fixest)
+
+# Run the same regression as before
+feols_model <- feols(earnings_med ~ prop_working | inst_name + year, data = df)
+
+# Look at our results
+# Standard errors are automatically clustered at the inst_name level
+summary(feols_model)
+# It is also possible to specify additional or different clustering of errors
+summary(feols_model, se = "twoway")
+summary(feols_model, cluster = c("inst_name", "year")) ## same as the above
+```
+
+As noted above, there are numerous other ways to implement fixed effect models in R. Users may also wish to look at the **plm**, **lme4**, and **estimatr** packages among others. For example, the latter's `estimatr::lm_robust` function provides syntax that may be more familar syntax to new R users who are coming over from Stata. Note, however, that it will be less efficient for complicated models.
 
 ## Stata
 
