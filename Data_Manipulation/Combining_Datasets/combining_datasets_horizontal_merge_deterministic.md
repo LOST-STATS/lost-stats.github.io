@@ -1,8 +1,9 @@
 ---
-title: Combining Datasets - Horizontal Combination (Deterministic)
-parent: Data Manipulation
+title: Horizontal Combination (Deterministic)
+grand_parent: Data Manipulation ## Optional for indexing
+parent: Combining Datasets
 has_children:  false
-nav_order: 1
+nav_order: 2
 ---
 
 # Combining Datasets: Horizontal Combination (Deterministic)

@@ -1,18 +1,13 @@
 ---
-title: Combining Datasets Overview
+title: Combining Datasets
 parent: Data Manipulation
-has_children: false
+has_children: true
 nav_order: 1
 ---
 
-# Guide to Different Combination Types: 
+# Combining Datasets Overview
 
-- [Vertical combination](https://lost-stats.github.io/Data_Manipulation/combining_datasets_vertical_combination.html)
-- [Horizontal Combination (Deterministic)](https://lost-stats.github.io/Data_Manipulation/combining_datasets_horizontal_combination_deterministic.html)
-
-# Different Ways to Combine Datasets
-
-There are two main ways to combine data: vertically and horizontally. That is, you can want to combine observations (adding new variables) or combine variables (adding new observations). This is perhaps easiest to show visually: 
+There are two main ways to combine data: [vertically](https://lost-stats.github.io/Data_Manipulation/combining_datasets_vertical_combination.html) and [horizontally](https://lost-stats.github.io/Data_Manipulation/combining_datasets_horizontal_combination.html). That is, you can want to combine observations (adding new variables) or combine variables (adding new observations). This is perhaps easiest to show visually: 
 
 <table>
 <tr><th> Individual Name Info </th><th> Individual Age Info </th></tr>
@@ -47,4 +42,3 @@ Alternatively, the below example has two datasets that collect the same informat
 |Donald Akliberti|B72197|34|
 
 These ways of combining data are referred to by different names across different programming languages, but will largely be referred to by one common set of terms (used by Stata and Python’s Pandas): merge for horizontal combination and append for for vertical combination. 
-

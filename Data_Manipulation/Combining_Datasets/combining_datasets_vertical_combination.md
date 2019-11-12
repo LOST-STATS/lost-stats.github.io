@@ -1,11 +1,13 @@
 ---
-title: Combining Datasets - Vertical Combination
-parent: Data Manipulation
-has_children: false
+title: Vertical Combination
+grand_parent: Data Manipulation ## Optional for indexing
+parent: Combining Datasets
+has_children:  false
 nav_order: 1
 ---
 
 # Combining Datasets: Vertical Combination
+
 When combining two datasets that collect the same information about different people, they get combined vertically because they have variables in common but different observations. The result of this combination will more rows than the original dataset because it contains all of the people that are present in each of the original datasets. Here we combine the files based on the name or position of the columns in the dataset. It is a "vertical" combination in the sense that one set of observations gets added to the bottom of the other set of observations. 
 
 # Keep in Mind 
