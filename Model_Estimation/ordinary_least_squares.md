@@ -31,7 +31,7 @@ For more information about OLS, see [Wikipedia: Ordinary Least Squares](https://
 
 ```gretl
 # Load auto data
-open auto.gdt
+open [auto.gdt](https://github.com/LOST-STATS/lost-stats.github.io/blob/master/Data/auto.gdt)
 
 # Run OLS using the auto data, with mpg as the outcome variable
 # and headroom, trunk, and weight as predictors
