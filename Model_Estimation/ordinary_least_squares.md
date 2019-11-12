@@ -37,6 +37,7 @@ open [auto.gdt](https://github.com/LOST-STATS/lost-stats.github.io/blob/master/D
 # and headroom, trunk, and weight as predictors
 ols mpg const headroom trunk weight
 ```
+[auto.gdt](https://github.com/LOST-STATS/lost-stats.github.io/blob/master/Data/auto.gdt)
 
 ## Matlab
 
