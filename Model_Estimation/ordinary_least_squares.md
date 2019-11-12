@@ -31,7 +31,7 @@ For more information about OLS, see [Wikipedia: Ordinary Least Squares](https://
 
 ```gretl
 # Load auto data
-open [Lasso](https://lost-stats.github.io/Machine_Learning/lasso.html) [auto.gdt](https://github.com/LOST-STATS/lost-stats.github.io/blob/master/Data/auto.gdt)
+open auto.gdt
 
 # Run OLS using the auto data, with mpg as the outcome variable
 # and headroom, trunk, and weight as predictors
