@@ -108,12 +108,9 @@ As noted above, there are numerous other ways to implement fixed effect models i
 
 ## Stata
 
-We will estimate fixed effects in two ways: using the built in `xtreg`, and `reghdfe`, which is more efficient and better handles multiple levels of fixed effects, but must be downloaded.
+We will estimate fixed effects using Stata in two ways. First, using the built in `xtreg` command. Second, using the **reghdfe** package ([link](http://scorreia.com/software/reghdfe/)), which is more efficient and better handles multiple levels of fixed effects (as well as multiway clustering), but must be downloaded from SSC first.
 
 ```stata
-* Install regdhfe if necessary
-* ssc install reghdfe
-
 * Load in College Scorecard data
 import delimited "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv", clear
 
@@ -134,6 +131,10 @@ xtset name_number
 * and also year (which we'll add manually with i.year)
 * and standard errors clustered by name_number
 xtreg earnings_med prop_working i.year, fe vce(cluster name_number)
+
+* Now, let's demonstrate the same regression with reghdfe.
+* Install the package first if necessary.
+* ssc install reghdfe
 
 * For reghdfe we don't need to xtset the data. Let's undo that
 xtset, clear
