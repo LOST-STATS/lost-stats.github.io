@@ -42,7 +42,7 @@ ols mpg const headroom trunk weight
 
 ```matlab
 % Load auto data
-load('auto.mat')
+load('https://github.com/LOST-STATS/lost-stats.github.io/blob/master/Data/auto.mat')
 
 % Run OLS using the auto data, with mpg as the outcome variable
 % and headroom, trunk, and weight as predictors
@@ -94,7 +94,7 @@ run;
 
 ```stata
 * Load auto data
-sysuse auto.dta
+sysuse https://github.com/LOST-STATS/lost-stats.github.io/blob/master/Data/auto.dta
 
 * Run OLS using the auto data, with mpg as the outcome variable
 * and headroom, trunk, and weight as predictors
