@@ -1,5 +1,5 @@
 ---
-title: Reshaping
+title: Reshaping Data
 parent: Data Manipulation
 has_children: true
 mathjax: false
