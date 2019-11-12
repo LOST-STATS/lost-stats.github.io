@@ -7,7 +7,7 @@ nav_order: 1
 
 # Combining Datasets Overview
 
-There are two main ways to combine data: [vertically](https://lost-stats.github.io/Data_Manipulation/combining_datasets_vertical_combination.html) and [horizontally](https://lost-stats.github.io/Data_Manipulation/combining_datasets_horizontal_combination.html). That is, you can want to combine observations (adding new variables) or combine variables (adding new observations). This is perhaps easiest to show visually: 
+There are two main ways to combine data: [vertically](https://lost-stats.github.io/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html) and [horizontally](hhttps://lost-stats.github.io/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html). That is, you can want to combine observations (adding new variables) or combine variables (adding new observations). This is perhaps easiest to show visually: 
 
 <table>
 <tr><th> Individual Name Info </th><th> Individual Age Info </th></tr>
