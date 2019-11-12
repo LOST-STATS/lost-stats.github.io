@@ -1,7 +1,8 @@
 ---
 title: Reshape Panel Data from Wide to Long
-parent: Data Manipulation
-has_children: false
+grand_parent: Data Manipulation ## Optional for indexing
+parent: Reshaping Data
+has_children:  false
 nav_order: 1
 ---
 
