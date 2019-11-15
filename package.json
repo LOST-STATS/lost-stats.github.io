@@ -1,0 +1,18 @@
+{
+  "name": "lost-stats",
+  "version": "1.0.0",
+  "description": "Library of Statistical Techniques",
+  "main": "index.js",
+  "scripts": {
+    "gulp": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "LOST Stats Group",
+  "license": "MIT",
+  "repository": "https://github.com/lost-stats/lost-stats.github.io",
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-gh-pages": "git+https://github.com/shinnn/gulp-gh-pages#v0.6.0-6",
+    "gulp-imagemin": "^5.0.3"
+  }
+}

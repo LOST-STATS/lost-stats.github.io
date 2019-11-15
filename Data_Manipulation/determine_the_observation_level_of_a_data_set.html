@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>Determine the Observation Level of a Data Set - LOST</title>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/just-the-docs.css">
+    <script type="text/javascript" src="/assets/js/vendor/lunr.min.js"></script>
+  <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Determine the Observation Level of a Data Set | LOST</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Determine the Observation Level of a Data Set" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:site_name" content="LOST" />
+<script type="application/ld+json">
+{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Data_Manipulation/determine_the_observation_level_of_a_data_set.html","headline":"Determine the Observation Level of a Data Set","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML">
+  </script>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="link" viewBox="0 0 16 16">
+      <title>Link</title>
+      <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+    </symbol>
+  </svg>
+  <div class="page-wrap">
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="" class="site-title lh-tight">
+  LOST
+</a>
+        <button class="menu-button fs-3 js-main-nav-trigger" data-text-toggle="Hide" type="button">Menu</button>
+      </div>
+      <div class="navigation main-nav js-main-nav">
+        <nav role="navigation" aria-label="Main navigation">
+  <ul class="navigation-list"><li class="navigation-list-item"><a href="/" class="navigation-list-link">Home</a></li><li class="navigation-list-item active"><a href="/Data/" class="navigation-list-link"></a></li><li class="navigation-list-item active"><a href="/Data_Manipulation/data_manipulation.html" class="navigation-list-link">Data Manipulation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="navigation-list-link">Combining Datasets</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="navigation-list-link">Vertical Combination</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="navigation-list-link">Horizontal Combination (Deterministic)</a>
+                          </li></ul></li><li class="navigation-list-item  active"><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="navigation-list-link active">Determine the Observation Level of a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Reshaping/reshape.html" class="navigation-list-link">Reshaping Data</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="navigation-list-link">Reshape Panel Data from Wide to Long</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="navigation-list-link">Reshape Panel Data from Long to Wide</a>
+                          </li></ul></li></ul></li><li class="navigation-list-item"><a href="/Geo-Spatial/Summary_Techniques.html" class="navigation-list-link">Geo-Spatial</a><ul class="navigation-list-child-list "></ul></li><li class="navigation-list-item"><a href="/Machine_Learning/Machine_Learning.html" class="navigation-list-link">Machine Learning</a><ul class="navigation-list-child-list "></ul></li><li class="navigation-list-item"><a href="/Model_Estimation/Estimation.html" class="navigation-list-link">Model Estimation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Model_Estimation/fixed_effects_in_linear_regression.html" class="navigation-list-link">Fixed Effects in Linear Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/heckman_correction_model.html" class="navigation-list-link">Heckman Correction Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/logit_model.html" class="navigation-list-link">Logit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/mcfaddens_choice_model.html" class="navigation-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/ordinary_least_squares.html" class="navigation-list-link">Ordinary Least Squares (Linear Regression)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/probit_model.html" class="navigation-list-link">Probit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/Nonstandard_Errors/nonstandard_erors.html" class="navigation-list-link">Nonstandard Errors</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/clustered_se.html" class="navigation-list-link">Cluster-Robust Standard Errors</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/hc_se.html" class="navigation-list-link">Heteroskedasticity-consistent standard errors</a>
+                          </li></ul></li></ul></li><li class="navigation-list-item"><a href="/Presentation/Presentation.html" class="navigation-list-link">Presentation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Presentation/line_graph_with_labels_at_the_beginning_or_end.html" class="navigation-list-link">Line Graph with Labels at the Beginning or End of Lines</a></li><li class="navigation-list-item "><a href="/Presentation/marginal_effects_plots_for_interactions_with_continuous_variables.html" class="navigation-list-link">Marginal Effects Plots for Interactions with Continuous Variables</a></li><li class="navigation-list-item "><a href="/Presentation/scatterplot_by_group_on_shared_axes.html" class="navigation-list-link">Scatterplot by Group on Shared Axes</a></li></ul></li><li class="navigation-list-item"><a href="/Summary_Statistics/Summary_Statistics.html" class="navigation-list-link">Summary Statistics</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Summary_Statistics/Balance_Tables.html" class="navigation-list-link">Balance Table</a></li></ul></li><li class="navigation-list-item"><a href="/Time_Series/Time_Series.html" class="navigation-list-link">Time Series</a><ul class="navigation-list-child-list "></ul></li><li class="navigation-list-item"><a href="/Other/Other.html" class="navigation-list-link">Other</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Other/import_a_foreign_data_file.html" class="navigation-list-link">Import a Foreign Data File</a></li></ul></li><li class="navigation-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="navigation-list-link">Desired Nonexistent Pages</a></li><li class="navigation-list-item"><a href="/Contributing/Contributing.html" class="navigation-list-link">Contributing</a></li></ul>
+</nav>
+      </div>
+      <footer class="site-footer">
+        <p class="text-small text-grey-dk-000 mb-4">This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.</p>
+      </footer>
+    </div>
+    <div class="main-content-wrap js-main-content" tabindex="0">
+      <div class="main-content">
+        <div class="page-header js-page-header">
+          <div class="search">
+            <div class="search-input-wrap">
+              <input type="text" class="js-search-input search-input" tabindex="0" placeholder="Search LOST" aria-label="Search LOST" autocomplete="off">
+              <svg width="14" height="14" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title><g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"/><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"/></g></svg>
+            </div>
+            <div class="js-search-results search-results-wrap"></div>
+          </div>
+            <ul class="list-style-none text-small aux-nav">
+                <li class="d-inline-block my-0"><a href="https://github.com/lost-stats/lost-stats.github.io/blob/master/Data_Manipulation/determine_the_observation_level_of_a_data_set.md">Edit this page on GitHub</a></li>
+            </ul>
+        </div>
+        <div class="page">
+              <nav class="breadcrumb-nav">
+                <ol class="breadcrumb-nav-list">
+                    <li class="breadcrumb-nav-list-item"><a href="/Data_Manipulation/data_manipulation.html">Data Manipulation</a></li>
+                  <li class="breadcrumb-nav-list-item"><span>Determine the Observation Level of a Data Set</span></li>
+                </ol>
+              </nav>
+          <div id="main-content" class="page-content" role="main">
+              <h1 id="determine-the-observation-level-of-a-data-set">
+          <a href="#determine-the-observation-level-of-a-data-set" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Determine the Observation Level of a Data Set
+      </h1>
+<p>The <em>observation level</em> of a data set is the set of case-identifying variables which, in combination, uniquely identify every row of the data set. For example, in the data set</p>
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>I</th>
+      <th>J</th>
+      <th>X</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3.5</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>2</td>
+      <td>4.5</td>
+    </tr>
+  </tbody>
+</table></div>
+<p>the variables <script type="math/tex">I</script> and <script type="math/tex">J</script> uniquely identify rows. The first row has <script type="math/tex">I = 1</script> and <script type="math/tex">J = 1</script>, and there is no other row with that combination. We could also say that <script type="math/tex">X</script> uniquely identifies rows, but in this example <script type="math/tex">X</script> is not a case-identifying variable, it’s actual data.</p>
+<p>When working with data that has case-identifier variables, like panel data, it’s generally a good idea to know what set of them makes up the observation level of a data set. Otherwise you might perform <a href="https://lost-stats.github.io/Data_Manipulation/combining_datasets_horizontal_combination_deterministic.html">merges</a> or case-level calculations incorrectly.</p>
+      <h2 id="keep-in-mind">
+          <a href="#keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Keep in Mind
+      </h2>
+<ul>
+  <li>As in the above example, it’s easy to uniquely identify rows using continuous data. But the goal is to figure out which <em>case-identifying</em> variables, like an individual’s ID code, or a country code, or a time code, uniquely identify rows. Make sure you only try these variables.</li>
+  <li>Even if you think you know what the observation level is, it’s good to check. Lots of data is poorly behaved!</li>
+</ul>
+      <h2 id="also-consider">
+          <a href="#also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Also Consider
+      </h2>
+<ul>
+  <li>You can <a href="https://lost-stats.github.io/Data_Manipulation/collapse_a_data_set.html">collapse a data set</a> to switch from one observation level to another, coarser one.</li>
+</ul>
+      <h1 id="implementations">
+          <a href="#implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Implementations
+      </h1>
+      <h2 id="r">
+          <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
+      </h2>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install dplyr</span><span class="w">
+</span><span class="c1"># install.packages('dplyr')</span><span class="w">
+</span><span class="c1"># We do not need dplyr to detect the observation level</span><span class="w">
+</span><span class="c1"># But we will use it to get data, and for our alternate approach</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Get data on storms from dplyr</span><span class="w">
+</span><span class="n">data</span><span class="p">(</span><span class="s2">"storms"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Each storm should be identified by</span><span class="w">
+</span><span class="c1"># name, year, month, day, and hour</span><span class="w">
+</span><span class="c1"># anyDuplicated will return 0 if there are no duplicate combinations of these</span><span class="w">
+</span><span class="n">anyDuplicated</span><span class="p">(</span><span class="n">storms</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="s1">'name'</span><span class="p">,</span><span class="s1">'year'</span><span class="p">,</span><span class="s1">'month'</span><span class="p">,</span><span class="s1">'day'</span><span class="p">,</span><span class="s1">'hour'</span><span class="p">)])</span><span class="w">
+
+</span><span class="c1"># We get 2292, telling us that row 2292 is a duplicate (and possibly others!)</span><span class="w">
+</span><span class="c1"># We can pick just the rows that are duplicates of other rows for inspection</span><span class="w">
+</span><span class="c1"># (note this won't get the first time that duplicate shows up, just the subsequent times)</span><span class="w">
+</span><span class="n">duplicated_rows</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">storms</span><span class="p">[</span><span class="n">duplicated</span><span class="p">(</span><span class="n">storms</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="s1">'name'</span><span class="p">,</span><span class="s1">'year'</span><span class="p">,</span><span class="s1">'month'</span><span class="p">,</span><span class="s1">'day'</span><span class="p">,</span><span class="s1">'hour'</span><span class="p">)]),]</span><span class="w">
+
+
+</span><span class="c1"># Alternately, we can use dplyr</span><span class="w">
+</span><span class="n">storms</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="p">,</span><span class="w"> </span><span class="n">hour</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="c1"># Add a variable with the number of times that particular combination shows up</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">number_duplicates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">())</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="c1"># Then take that variable out</span><span class="w">
+  </span><span class="n">pull</span><span class="p">(</span><span class="n">number_duplicates</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="c1"># And get the maximum of it</span><span class="w">
+  </span><span class="nf">max</span><span class="p">()</span><span class="w">
+</span><span class="c1"># If the result is 1, then we have found the observation level. If not, we have duplicates.</span><span class="w">
+
+</span><span class="c1"># We can pick out the rows that are duplicated for inspection </span><span class="w">
+</span><span class="c1"># by filtering on n(). This approach will give you every time the duplicate appears.</span><span class="w">
+</span><span class="n">duplicated_rows</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">storms</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="p">,</span><span class="w"> </span><span class="n">hour</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="c1"># Add a variable with the number of times that particular combination shows up</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">n</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+      <h2 id="stata">
+          <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
+      </h2><pre><code class="language-stata">* Load surface.dta, which contains temperature recordings in different locations
+sysuse surface.dta, clear
+
+* duplicates report followed by a variable list will show how many times 
+* each combination shows up.
+* I think there is one observation level for each location, so I'll check that
+duplicates report latitude longitude
+* If I am correct, then the only number in the "Copies" column will be 1.
+* But it looks like I was not correct.
+
+* duplicates tag will create a binary variable with 1 for all duplicates
+* so I can examine the problem more closely
+* (duplicates examples is another option)
+duplicates tag latitude longitude, g(duplicated_data)
+
+* If I want to know not just whether there are duplicates but how many
+* of each there are for when I look more closely, I can instead do
+by latitude longitude, sort: g number_of_duplicates_in_this_group = _N
+</code></pre>
+<p>For especially large datasets the <a href="https://gtools.readthedocs.io/en/latest/index.html"><strong>Gtools</strong></a> version of the various duplicates commands, <a href="https://gtools.readthedocs.io/en/latest/usage/gduplicates/index.html">gduplicates</a>, is a great option</p><pre><code class="language-stata">* Install gtools if necessary
+* ssc install gtools
+* Recreate the two duplicates tasks from above
+gduplicates report latitude longitude
+gduplicates tag latitude longitude, g(g_duplicated_data)
+</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

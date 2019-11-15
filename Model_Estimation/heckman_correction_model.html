@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>Heckman Correction Model - LOST</title>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/just-the-docs.css">
+    <script type="text/javascript" src="/assets/js/vendor/lunr.min.js"></script>
+  <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Heckman Correction Model | LOST</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Heckman Correction Model" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:site_name" content="LOST" />
+<script type="application/ld+json">
+{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Model_Estimation/heckman_correction_model.html","headline":"Heckman Correction Model","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML">
+  </script>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="link" viewBox="0 0 16 16">
+      <title>Link</title>
+      <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+    </symbol>
+  </svg>
+  <div class="page-wrap">
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="" class="site-title lh-tight">
+  LOST
+</a>
+        <button class="menu-button fs-3 js-main-nav-trigger" data-text-toggle="Hide" type="button">Menu</button>
+      </div>
+      <div class="navigation main-nav js-main-nav">
+        <nav role="navigation" aria-label="Main navigation">
+  <ul class="navigation-list"><li class="navigation-list-item"><a href="/" class="navigation-list-link">Home</a></li><li class="navigation-list-item active"><a href="/Data/" class="navigation-list-link"></a></li><li class="navigation-list-item"><a href="/Data_Manipulation/data_manipulation.html" class="navigation-list-link">Data Manipulation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="navigation-list-link">Combining Datasets</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="navigation-list-link">Vertical Combination</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="navigation-list-link">Horizontal Combination (Deterministic)</a>
+                          </li></ul></li><li class="navigation-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="navigation-list-link">Determine the Observation Level of a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Reshaping/reshape.html" class="navigation-list-link">Reshaping Data</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="navigation-list-link">Reshape Panel Data from Wide to Long</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="navigation-list-link">Reshape Panel Data from Long to Wide</a>
+                          </li></ul></li></ul></li><li class="navigation-list-item"><a href="/Geo-Spatial/Summary_Techniques.html" class="navigation-list-link">Geo-Spatial</a><ul class="navigation-list-child-list "></ul></li><li class="navigation-list-item"><a href="/Machine_Learning/Machine_Learning.html" class="navigation-list-link">Machine Learning</a><ul class="navigation-list-child-list "></ul></li><li class="navigation-list-item active"><a href="/Model_Estimation/Estimation.html" class="navigation-list-link">Model Estimation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Model_Estimation/fixed_effects_in_linear_regression.html" class="navigation-list-link">Fixed Effects in Linear Regression</a></li><li class="navigation-list-item  active"><a href="/Model_Estimation/heckman_correction_model.html" class="navigation-list-link active">Heckman Correction Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/logit_model.html" class="navigation-list-link">Logit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/mcfaddens_choice_model.html" class="navigation-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/ordinary_least_squares.html" class="navigation-list-link">Ordinary Least Squares (Linear Regression)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/probit_model.html" class="navigation-list-link">Probit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/Nonstandard_Errors/nonstandard_erors.html" class="navigation-list-link">Nonstandard Errors</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/clustered_se.html" class="navigation-list-link">Cluster-Robust Standard Errors</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/hc_se.html" class="navigation-list-link">Heteroskedasticity-consistent standard errors</a>
+                          </li></ul></li></ul></li><li class="navigation-list-item"><a href="/Presentation/Presentation.html" class="navigation-list-link">Presentation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Presentation/line_graph_with_labels_at_the_beginning_or_end.html" class="navigation-list-link">Line Graph with Labels at the Beginning or End of Lines</a></li><li class="navigation-list-item "><a href="/Presentation/marginal_effects_plots_for_interactions_with_continuous_variables.html" class="navigation-list-link">Marginal Effects Plots for Interactions with Continuous Variables</a></li><li class="navigation-list-item "><a href="/Presentation/scatterplot_by_group_on_shared_axes.html" class="navigation-list-link">Scatterplot by Group on Shared Axes</a></li></ul></li><li class="navigation-list-item"><a href="/Summary_Statistics/Summary_Statistics.html" class="navigation-list-link">Summary Statistics</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Summary_Statistics/Balance_Tables.html" class="navigation-list-link">Balance Table</a></li></ul></li><li class="navigation-list-item"><a href="/Time_Series/Time_Series.html" class="navigation-list-link">Time Series</a><ul class="navigation-list-child-list "></ul></li><li class="navigation-list-item"><a href="/Other/Other.html" class="navigation-list-link">Other</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Other/import_a_foreign_data_file.html" class="navigation-list-link">Import a Foreign Data File</a></li></ul></li><li class="navigation-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="navigation-list-link">Desired Nonexistent Pages</a></li><li class="navigation-list-item"><a href="/Contributing/Contributing.html" class="navigation-list-link">Contributing</a></li></ul>
+</nav>
+      </div>
+      <footer class="site-footer">
+        <p class="text-small text-grey-dk-000 mb-4">This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.</p>
+      </footer>
+    </div>
+    <div class="main-content-wrap js-main-content" tabindex="0">
+      <div class="main-content">
+        <div class="page-header js-page-header">
+          <div class="search">
+            <div class="search-input-wrap">
+              <input type="text" class="js-search-input search-input" tabindex="0" placeholder="Search LOST" aria-label="Search LOST" autocomplete="off">
+              <svg width="14" height="14" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title><g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"/><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"/></g></svg>
+            </div>
+            <div class="js-search-results search-results-wrap"></div>
+          </div>
+            <ul class="list-style-none text-small aux-nav">
+                <li class="d-inline-block my-0"><a href="https://github.com/lost-stats/lost-stats.github.io/blob/master/Model_Estimation/heckman_correction_model.md">Edit this page on GitHub</a></li>
+            </ul>
+        </div>
+        <div class="page">
+              <nav class="breadcrumb-nav">
+                <ol class="breadcrumb-nav-list">
+                    <li class="breadcrumb-nav-list-item"><a href="/Model_Estimation/Estimation.html">Model Estimation</a></li>
+                  <li class="breadcrumb-nav-list-item"><span>Heckman Correction Model</span></li>
+                </ol>
+              </nav>
+          <div id="main-content" class="page-content" role="main">
+              <h1 id="heckman-correction-model">
+          <a href="#heckman-correction-model" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Heckman Correction Model
+      </h1>
+<p>The Heckman correction for sample selection is a method designed to be used in cases where the model can only be run on a subsample of the data that is not randomly selected. For example, a regression using <script type="math/tex">Wage</script> to predict <script type="math/tex">Hours Worked</script> cannot include people who don’t work, since we don’t observe their wage. The Heckman model views this sample selection process as a form of omitted variable bias. So, it (1) explicitly models the process of selecting into the sample, (2) transforms the predicted probability of being in the sample, and (3) adds a correction term to the model.</p>
+<p>For more information, see <a href="https://en.wikipedia.org/wiki/Heckman_correction">Wikipedia: Heckman correction</a>.</p>
+      <h2 id="keep-in-mind">
+          <a href="#keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Keep in Mind
+      </h2>
+<ul>
+  <li>Conceptually, the Heckman model uses the regression covariates to predict selection, transforms the prediction, and then includes that transformation in the model. If there are no variables in the selection model that are excluded from the regression model, then the Heckman model is perfectly collinear, and is only statistically identified because the transformation is nonlinear (you may have heard the phrase “identified by nonlinearity” or “identified by the normality assumption”). That’s not ideal! You want to find an exclusion restriction - a variable that predicts selection, but does not belong in the final regression model - to avoid this collinearity.</li>
+</ul>
+      <h2 id="also-consider">
+          <a href="#also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Also Consider
+      </h2>
+<ul>
+  <li>There are many ways to estimate a Heckman model. Maximum likelihood approaches generally have better statistical properties, but two-stage models are computationally simpler. Often you can look in the options of your Heckman estimator command to select an estimation method.</li>
+  <li>If your goal is to estimate the effect of a binary treatment by modeling selection into treatment, consider a <a href="https://lost-stats.github.io/Model_Estimation/treatment_effect_model.html">Treatment Effect Model</a>, or an <a href="https://lost-stats.github.io/Model_Estimation/endogenous_switching_model.html">Endogenous Switching Model</a> which also allows predictors to work differently in different settings.</li>
+  <li>Standard Heckman models rely heavily on assumptions about the normality of error terms. You may want to consider <a href="https://lost-stats.github.io/Model_Estimation/nonparametric_sample_selecion_model.html">Nonparametric Sample Selection Models</a>.</li>
+</ul>
+      <h1 id="implementations">
+          <a href="#implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Implementations
+      </h1>
+      <h2 id="gretl">
+          <a href="#gretl" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Gretl
+      </h2>
+<p>See <a href="http://www.eco.uc3m.es/~ricmora/MICCUA/materials/S25T44_English_handout.pdf">here</a> for a demonstration.</p>
+      <h2 id="python">
+          <a href="#python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Python
+      </h2>
+<p>See <a href="https://rlhick.people.wm.edu/stories/econ_407_notes_heckman.html">here</a> for a demonstration.</p>
+      <h2 id="r">
+          <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
+      </h2>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="c1"># Install sampleSelection package if necessary</span><span class="w">
+</span><span class="c1"># install.packages('sampleSelection')</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">sampleSelection</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Get data from Mroz (1987, Econometrica)</span><span class="w">
+</span><span class="c1"># which has Panel Study of Income Dynamics data for married women</span><span class="w">
+</span><span class="n">data</span><span class="p">(</span><span class="s2">"Mroz87"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># First consider our selection model</span><span class="w">
+</span><span class="c1"># We only observe wages for labor force participants (lfp == 1)</span><span class="w">
+</span><span class="c1"># So we model that as a function of work experience (linear and squared), </span><span class="w">
+</span><span class="c1"># income from the rest of the family, education, and number of kids 5 or younger.</span><span class="w">
+</span><span class="c1"># lfp ~ exper + I(exper^2) + faminc + educ + kids5</span><span class="w">
+
+</span><span class="c1"># Then we model the regression of interest. We're interested in modeling</span><span class="w">
+</span><span class="c1"># wage as a function of work experience, education, and whether you're in a city</span><span class="w">
+</span><span class="c1"># Here, we don't include family income or number of kids, under the assumption that they</span><span class="w">
+</span><span class="c1"># do not belong in a wage model. These are our exclusion restrictions</span><span class="w">
+</span><span class="c1"># (note these particular exclusion restrictions might be a little dubious! But hey, this paper's from 1987.)</span><span class="w">
+</span><span class="c1"># wage ~ exper + I(exper^2) + educ + city</span><span class="w">
+
+</span><span class="c1"># Put them together in a selection() command</span><span class="w">
+</span><span class="n">heck_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">selection</span><span class="p">(</span><span class="n">lfp</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">exper</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">I</span><span class="p">(</span><span class="n">exper</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">faminc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">educ</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">kids5</span><span class="p">,</span><span class="w">
+                        </span><span class="n">wage</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">exper</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">I</span><span class="p">(</span><span class="n">exper</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">educ</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">city</span><span class="p">,</span><span class="w">
+                        </span><span class="n">Mroz87</span><span class="p">)</span><span class="w">
+
+</span><span class="n">summary</span><span class="p">(</span><span class="n">heck_model</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+      <h2 id="stata">
+          <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
+      </h2><pre><code class="language-stata">* Get data from Mroz (1987, Econometrica)
+* which has Panel Study of Income Dynamics data for married women
+* (data via the sampleSelection package in R)
+import delimited "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Estimation/Data/Heckman_Correction_Model/Mroz87.csv", clear
+
+* First, consider the regression of interest. 
+
+* First consider our selection model
+* We only observe wages for labor force participants (lfp == 1)
+* So we model that as a function of work experience (linear and squared), 
+* income from the rest of the family, education, and number of kids 5 or younger.
+* select(lfp = c.exper##c.exper faminc educ kids5)
+
+* Then we model the regression of interest. We're interested in modeling
+* wage as a function of work experience, education, and whether you're in a city
+* Here, we don't include family income or number of kids, under the assumption that they
+* do not belong in a wage model. These are our exclusion restrictions
+* (note these particular exclusion restrictions might be a little dubious! But hey, 1987.)
+* wage c.exper##c.exper educ city
+
+* Now we run our Heckman model!
+heckman wage c.exper##c.exper educ city, select(lfp = c.exper##c.exper faminc educ kids5)
+</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

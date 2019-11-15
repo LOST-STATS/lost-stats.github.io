@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>Contributing - LOST</title>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/just-the-docs.css">
+    <script type="text/javascript" src="/assets/js/vendor/lunr.min.js"></script>
+  <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Contributing | LOST</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Contributing" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:site_name" content="LOST" />
+<script type="application/ld+json">
+{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Contributing/Contributing.html","headline":"Contributing","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML">
+  </script>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="link" viewBox="0 0 16 16">
+      <title>Link</title>
+      <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+    </symbol>
+  </svg>
+  <div class="page-wrap">
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="" class="site-title lh-tight">
+  LOST
+</a>
+        <button class="menu-button fs-3 js-main-nav-trigger" data-text-toggle="Hide" type="button">Menu</button>
+      </div>
+      <div class="navigation main-nav js-main-nav">
+        <nav role="navigation" aria-label="Main navigation">
+  <ul class="navigation-list"><li class="navigation-list-item"><a href="/" class="navigation-list-link">Home</a></li><li class="navigation-list-item active"><a href="/Data/" class="navigation-list-link"></a></li><li class="navigation-list-item"><a href="/Data_Manipulation/data_manipulation.html" class="navigation-list-link">Data Manipulation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="navigation-list-link">Combining Datasets</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="navigation-list-link">Vertical Combination</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="navigation-list-link">Horizontal Combination (Deterministic)</a>
+                          </li></ul></li><li class="navigation-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="navigation-list-link">Determine the Observation Level of a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Reshaping/reshape.html" class="navigation-list-link">Reshaping Data</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="navigation-list-link">Reshape Panel Data from Wide to Long</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="navigation-list-link">Reshape Panel Data from Long to Wide</a>
+                          </li></ul></li></ul></li><li class="navigation-list-item"><a href="/Geo-Spatial/Summary_Techniques.html" class="navigation-list-link">Geo-Spatial</a><ul class="navigation-list-child-list "></ul></li><li class="navigation-list-item"><a href="/Machine_Learning/Machine_Learning.html" class="navigation-list-link">Machine Learning</a><ul class="navigation-list-child-list "></ul></li><li class="navigation-list-item"><a href="/Model_Estimation/Estimation.html" class="navigation-list-link">Model Estimation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Model_Estimation/fixed_effects_in_linear_regression.html" class="navigation-list-link">Fixed Effects in Linear Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/heckman_correction_model.html" class="navigation-list-link">Heckman Correction Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/logit_model.html" class="navigation-list-link">Logit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/mcfaddens_choice_model.html" class="navigation-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/ordinary_least_squares.html" class="navigation-list-link">Ordinary Least Squares (Linear Regression)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/probit_model.html" class="navigation-list-link">Probit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/Nonstandard_Errors/nonstandard_erors.html" class="navigation-list-link">Nonstandard Errors</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/clustered_se.html" class="navigation-list-link">Cluster-Robust Standard Errors</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/hc_se.html" class="navigation-list-link">Heteroskedasticity-consistent standard errors</a>
+                          </li></ul></li></ul></li><li class="navigation-list-item"><a href="/Presentation/Presentation.html" class="navigation-list-link">Presentation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Presentation/line_graph_with_labels_at_the_beginning_or_end.html" class="navigation-list-link">Line Graph with Labels at the Beginning or End of Lines</a></li><li class="navigation-list-item "><a href="/Presentation/marginal_effects_plots_for_interactions_with_continuous_variables.html" class="navigation-list-link">Marginal Effects Plots for Interactions with Continuous Variables</a></li><li class="navigation-list-item "><a href="/Presentation/scatterplot_by_group_on_shared_axes.html" class="navigation-list-link">Scatterplot by Group on Shared Axes</a></li></ul></li><li class="navigation-list-item"><a href="/Summary_Statistics/Summary_Statistics.html" class="navigation-list-link">Summary Statistics</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Summary_Statistics/Balance_Tables.html" class="navigation-list-link">Balance Table</a></li></ul></li><li class="navigation-list-item"><a href="/Time_Series/Time_Series.html" class="navigation-list-link">Time Series</a><ul class="navigation-list-child-list "></ul></li><li class="navigation-list-item"><a href="/Other/Other.html" class="navigation-list-link">Other</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Other/import_a_foreign_data_file.html" class="navigation-list-link">Import a Foreign Data File</a></li></ul></li><li class="navigation-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="navigation-list-link">Desired Nonexistent Pages</a></li><li class="navigation-list-item active"><a href="/Contributing/Contributing.html" class="navigation-list-link active">Contributing</a></li></ul>
+</nav>
+      </div>
+      <footer class="site-footer">
+        <p class="text-small text-grey-dk-000 mb-4">This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.</p>
+      </footer>
+    </div>
+    <div class="main-content-wrap js-main-content" tabindex="0">
+      <div class="main-content">
+        <div class="page-header js-page-header">
+          <div class="search">
+            <div class="search-input-wrap">
+              <input type="text" class="js-search-input search-input" tabindex="0" placeholder="Search LOST" aria-label="Search LOST" autocomplete="off">
+              <svg width="14" height="14" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title><g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"/><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"/></g></svg>
+            </div>
+            <div class="js-search-results search-results-wrap"></div>
+          </div>
+            <ul class="list-style-none text-small aux-nav">
+                <li class="d-inline-block my-0"><a href="https://github.com/lost-stats/lost-stats.github.io/blob/master/Contributing/Contributing.md">Edit this page on GitHub</a></li>
+            </ul>
+        </div>
+        <div class="page">
+          <div id="main-content" class="page-content" role="main">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/zGQDlKQcPhg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+      <h1 id="how-to-contribute">
+          <a href="#how-to-contribute" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> HOW TO CONTRIBUTE
+      </h1>
+<ol>
+  <li><a href="https://github.com/join">Get a GitHub account</a>. You do not need to know Git to contribute to LOST, but you do need a GitHub account.</li>
+  <li>Read the <a href="https://guides.github.com/features/mastering-markdown/">Guide to GitHub Markdown</a> which will show the syntax that is used on LOST pages.</li>
+  <li>Read the below LOST Writing Guide, which shows what a good LOST page looks like from top to bottom. Even if you are just adding another language to an existing page, be sure to read the Implementations section at the bottom.</li>
+  <li>Explore LOST using the navigation bar on the left, find a page that needs to be expanded, and add more content. Or find one that doesn’t exist but should (perhaps on the <a href="https://lost-stats.github.io/Desired_Nonexistent_Pages/desired_nonexistent_pages.html">Desired Nonexistent Pages list</a>, and write it yourself! Go to the <a href="https://github.com/LOST-STATS/LOST-STATS.github.io">GitHub Repository</a> for LOST to find the appropriate file to edit or folder to create your new file in.</li>
+  <li>If you are a “Contributor” to the project, you can make your edits and changes directly to the repository. If not, you will need to issue a <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request">pull request</a> to get your work on LOST. We will add you as a contributor after your first accepted pull request. If you don’t know Git or how to do a pull request, please post in <a href="https://github.com/LOST-STATS/LOST-STATS.github.io/issues">Issues</a> asking to be added as a contributor so you can edit LOST directly.</li>
+  <li>If you’ve made a new page, make sure it’s saved as a <code class="language-plaintext highlighter-rouge">.md</code> file, put it in the appropriate folder, and add Navigation Information at the top (see below). If you’ve written a Desired Nonexistent Page, be sure to remove it from the <a href="https://github.com/LOST-STATS/LOST-STATS.github.io/blob/master/Desired_Nonexistent_Pages/Desired_Nonexistent_Pages.md">list</a>. Or, if your page links to some new nonexistent pages, add those to the list! Also, try to see if other pages have attempted to link to the page you’re working on, and update their links so they go to the right place.</li>
+</ol>
+      <h1 id="lost-writing-guide">
+          <a href="#lost-writing-guide" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> LOST WRITING GUIDE
+      </h1>
+<p>A LOST page is intended to be a <em>set of instructions for performing a statistical technique</em>, where “statistical technique” is broadly defined as “the things you do in statistical software”, which includes everything from loading data to estimating models to cleaning data to visualization to reproducible notebooks.</p>
+<p>After someone reads a LOST page, they should have a decent idea of:</p>
+<ul>
+  <li>How to implement at least a basic version of what they want to do in the language/software they’re using</li>
+  <li>What common pitfalls there might be in what they’re doing</li>
+  <li>What are the pros and cons of meaningfully-different ways of doing the same thing, if relevant</li>
+  <li>Given what they’re doing, what else should they consider doing (for example, if they’re running a regression discontinuity design, you might suggest they also run a test for bunching on either side of the cutoff)</li>
+</ul>
+<p>Things to remember while writing:</p>
+<ul>
+  <li>Be as clear as possible. You’re writing a set of instructions, in effect. People should be able to follow them.</li>
+  <li>The technical ability of the reader may vary by page. People reading a LOST page about how to calculate a mean probably have little experience with their software and will need a lot of hand-holding. You can assume that people reading a LOST page about Markov-Chain Monte Carlo methods probably already have a fairly solid background.</li>
+</ul>
+      <h2 id="markdown">
+          <a href="#markdown" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Markdown
+      </h2>
+<p>LOST pages are written in Markdown. Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for</p>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Syntax highlighted code block
+
+<span class="gh"># Header 1</span>
+<span class="gu">## Header 2</span>
+<span class="gu">### Header 3</span>
+<span class="p">
+-</span> Bulleted
+<span class="p">-</span> List
+<span class="p">
+1.</span> Numbered
+<span class="p">2.</span> List
+
+<span class="gs">**Bold**</span> and _Italic_ and <span class="sb">`Code`</span> text
+
+<span class="p">[</span><span class="nv">Link</span><span class="p">](</span><span class="sx">url</span><span class="p">)</span> and !<span class="p">[</span><span class="nv">Image</span><span class="p">](</span><span class="sx">src</span><span class="p">)</span>
+</code></pre></div></div>
+<p>For more details see <a href="https://guides.github.com/features/mastering-markdown/">GitHub Flavored Markdown</a>.</p>
+      <h2 id="math">
+          <a href="#math" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Math
+      </h2>
+<p>Math is rendered with MathJax, which provides support for <script type="math/tex">\LaTeX</script> math formatting. To use on a specific page, make sure that the <a href="#navigation-information">YAML</a> at the top on the underlying Markdown (i.e. .md) file includes a line saying <code class="language-plaintext highlighter-rouge">mathjax: true</code>. This should already be the default on most existing pages, but it is worth emphasising. For example, here is a screenshot of the “Contributing.md” file that you are reading right now.</p>
+<p><img src="/Contributing/mathjax_yaml.png" alt="" /></p>
+<p>After that, equations and other math sections can be delimited with two dollar symbol <em>pairs</em>. For example, <code class="language-plaintext highlighter-rouge">$$x = \frac{1}{2}$$</code> is rendered inline as <script type="math/tex">x = \frac{1}{2}</script>. Similarly, we can render math in display mode (i.e. as a distinct block) by wrapping the dollar symbol pairs on separate lines. For example,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$$
+y =  \beta_0 + \beta_1 x + \beta_2 x^2 + \epsilon
+$$
+</code></pre></div></div>
+<p>is rendered as display math:</p>
+<script type="math/tex; mode=display">y =  \beta_0 + \beta_1 x + \beta_2 x^2 + \epsilon</script>
+<p>While we don’t include such examples here, note that standard <script type="math/tex">\LaTeX</script> math environments such as <code class="language-plaintext highlighter-rouge">\begin{equation} ... \end{equation}</code> (for numbered equations) and <code class="language-plaintext highlighter-rouge">\begin{align} ... \end{align}</code> (for aligned equation systems) are all supported. Just remember to wrap them between a pair of dollar symbols. More information about MathJax can be found <a href="https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">here</a>.</p>
+      <h1 id="structure-of-a-lost-page">
+          <a href="#structure-of-a-lost-page" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> STRUCTURE OF A LOST PAGE
+      </h1>
+<p>When starting a LOST page, you should copy the <a href="https://github.com/LOST-STATS/LOST-STATS.github.io/blob/master/NewPageTemplate.md">New Page Template</a>. There are four main sections of a LOST page:</p>
+      <h2 id="navigation-information">
+          <a href="#navigation-information" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Navigation Information
+      </h2>
+<p>Your page will begin with what’s known as YAML, i.e. something that looks like this:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+title: Observation level
+parent: Data Manipulation
+has_children: false
+nav_order: 1
+mathjax: true
+---
+</code></pre></div></div>
+<p>You don’t need to worry too much about YAML syntax (here’s the <a href="https://en.wikipedia.org/wiki/YAML">Wikipedia entry</a> for those interested). The important thing is that the YAML provides a set of very basic instructions for the website navigation and page structure. Make sure to fill in the <code class="language-plaintext highlighter-rouge">title</code> with a relevant and brief title. Also be sure to put the appropriate name for the <code class="language-plaintext highlighter-rouge">parent</code> — this will ensure that your page shows up in the appropriate spot in the navigation structure. Options for <code class="language-plaintext highlighter-rouge">parent</code> include:</p>
+<ul>
+  <li>Data Manipulation</li>
+  <li>Geo-Spatial</li>
+  <li>Machine Learning</li>
+  <li>Model Estimation</li>
+  <li>Presentation</li>
+  <li>Summary Statistics</li>
+  <li>Time Series</li>
+  <li>Other</li>
+</ul>
+<p>For the most part, you should generally ignore <code class="language-plaintext highlighter-rouge">has_children</code>. (An exception is if you are creating a new section that <em>does</em> have new child pages, but then you are probably better off filing an issue with us to make sure this is done correctly.) You can also ignore <code class="language-plaintext highlighter-rouge">nav_order</code> — leaving this at 1 for everything will put everything in alphabetical order.</p>
+      <h2 id="introduction">
+          <a href="#introduction" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Introduction
+      </h2>
+<p>This is an introduction to the technique. Most of the time this will be just a few sentences about what it is and does, and perhaps why it is used. However, in cases of more niche or complex material, there may be a reason to include more detailed information or general non-language-specific instructions here. In general, however, for more detailed explanations or discussions of statistical properties, you can always just link to an outside trusted source like Wikipedia or a (non-paywalled) academic paper.</p>
+      <h2 id="keep-in-mind">
+          <a href="#keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Keep in Mind
+      </h2>
+<p>This is a list of details and reminders for people using the method, especially if they are not yet an expert at it or if the detail is not well-known. This may include:</p>
+<ul>
+  <li>Important assumptions that an estimation method makes.</li>
+  <li>Notes about interpreting the results.</li>
+  <li>Settings where the technique <em>seems</em> like it might be a good idea, but actually isn’t.</li>
+  <li>Features of the technique that might surprise users or be unexpected.</li>
+  <li>Rules of thumb for use (“you will want to set the number of bootstrap samples to at least 1,000 (citation)”)</li>
+</ul>
+      <h2 id="also-consider">
+          <a href="#also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Also Consider
+      </h2>
+<p>This is a list of <em>other</em> techniques that are commonly used <em>in addition to</em> this page’s technique, or <em>as an alternative to</em> this page’s technique. If not obvious, include a very brief explanation of why you might want to use that other technique in addition to/instead of the current one. Note that you can link to another LOST page even if that page doesn’t exist yet. Maybe it will inspite someone to write it!</p>
+<p>For example, pages about estimation techniques might list standard robustness tests to be used in addition to the technique, or adjustments to standard errors they might want to use. A page about a data visualization technique might include a link to a page about setting color palettes to be used in addition.</p>
+<p>Or, they might list an alternative technique that might be used if a certain assumption fails (“This technique requires continuous variables. So if your data is discrete, use this other method.”).</p>
+<p>To link to other LOST pages (even if they don’t exist yet — don’t forget to add these to <a href="https://lost-stats.github.io/Desired_Nonexistent_Pages/desired_nonexistent_pages.html">Desired Nonexistent Pages</a>!, use the Markdown <code class="language-plaintext highlighter-rouge">[Link name](url)</code> structure, where the URL is of the format <code class="language-plaintext highlighter-rouge">https://lost-stats.github.io/Category_Name/page_name.html</code>.</p>
+      <h2 id="implementations">
+          <a href="#implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Implementations
+      </h2>
+<p>Implementations contains multiple subsections, one for each statistical software environment/programming language that the technique can be implemented in.</p>
+<ul>
+  <li>Implementations should be listed in <strong>alphabetical order of software/language</strong>. eViews, then Python, then R, then SAS, then Stata, etc.</li>
+  <li>For each language, include well-commented and <strong>as-brief-as-reasonably-possible</strong> example code that provides an example of performing the technique. Readers should be able to copy the code and have it run the technique from beginning to end, including steps like loading in data if necessary. See existing pages for examples.</li>
+  <li>If someone else on the internet has already written a clear, thorough, and general implementation example, then linking to it is perfectly fine! This includes StackOverflow/StackExchange answers, which you can link to using the <a href="https://meta.stackexchange.com/a/45598">share button</a>. Extremely long demonstrations for super-complex methods may be better left as links only (perhaps with a tiny example pulled out and put on LOST). If the example is short enough, though, including the example directly in the LOST page is preferable, with link attribution of the source, so readers don’t have to go elsewhere.</li>
+  <li>Avoid creating a long list of examples showing every variant or optional setting of the technique. Instead, focus on one main example, with variants included only if they are especially important. If you like, you can mention in comments additional useful options/settings the reader might want to look into and what they do.</li>
+  <li>If the technique requires that a package or library be installed, include the code for installing the package in a comment (or if you are using a language where libraries cannot be installed inside the code, include a comment directing the user to install the library).</li>
+  <li>If a given language has <em>multiple ways</em> of performing the same technique, ideally report only one “best” method, whatever that might be. If other methods are only different in trivial ways, then you can describe them as being alternatives, but avoid providing examples for them. If other methods are different in important ways, then include an example for each, with text explanations of what is different about them. If two contributors seriously disagree about which way is best, then they’re probably different in some meaningful way so you can include both as long as you can explain what that difference is.</li>
+  <li>It is fine to add implementations for software that only has a graphical interface rather than code (such as Excel) using screenshots. Be sure to keep images well-cropped and small so they don’t crowd the page. If your graphical instructions are necessarily very long, consider posting them as a blog post somewhere and just put a link to that post in Implementations.</li>
+</ul>
+<p><strong>Images</strong></p>
+<p>Images can be added to Implementation sections if relevant, for example if you’re working with GUI-only software, or demonstrating the output of a data visualization technique.</p>
+<p>How can you add these images? You can upload the images somewhere on the internet that allows image linking, and include the image in your instructions with <code class="language-plaintext highlighter-rouge">![Image](src)</code>. Ideally, upload the image directly to the <code class="language-plaintext highlighter-rouge">Images/name-of-your-page/</code> subfolder of whatever directory you’re working in, and link to the images there.</p>
+<p>Please be sure to add alt text to images for sight-impaired users. Image filenames should make reference to the language used to make them, i.e. <code class="language-plaintext highlighter-rouge">python_scatterplot.png</code>.</p>
+<p><strong>Data</strong></p>
+<p><em>Ideally</em>, the same data set will be uploaded to LOST directly in a format accessible by many languages (like CSV) in the <code class="language-plaintext highlighter-rouge">Data/name-of-your-page/</code> subfolder of whatever directory you’re wokring in, and then that data can be used for implementation in all languages on the page. This is not required, but is encouraged.</p>
+      <h1 id="frequently-asked-questions">
+          <a href="#frequently-asked-questions" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> FREQUENTLY ASKED QUESTIONS
+      </h1>
+<ul>
+  <li><strong>What techniques are important enough to be their own page?</strong> This is a little subjective, but if you’re writing about X, which is a minor option/variant of Y, then you can just include it on the Y page. If X is a <em>different technique</em> or a variant of Y that is used in different circumstances or produces meaningfully different output, then give X its own page.</li>
+  <li><strong>How should I title my page?</strong> Pick a single, concise description of the technique you’re talking about. If there are multiple ways to refer to the technique you’re doing, pick one. You will also need to select a file name, which should be in lower_case_with_underscores.md and you might want to make a bit shorter. So Ordinary Least Squares (Linear Regression) might be the title and H1 heading, and ordinary_least_squares.md might be the file name.</li>
+  <li><strong>What languages can I include in Implementations?</strong> Any language is valid as long as it’s something people actually do statistical analysis in. Don’t include something just because you <em>can</em> (I mean, you can technically do OLS in assembly but is that useful for anyone?), but because you think someone will find it useful.</li>
+  <li><strong>Should I include the output of my code?</strong> For data visualization, yes! Just keep the images relatively small so they don’t crowd the page. See the Implementations section above for how to add images. If your output is not visual, there’s probably no need to include output unless you think that it is especially important for some technique.</li>
+  <li><strong>How can I discuss what I’m doing with other contributors?</strong> Head to the <a href="https://github.com/LOST-STATS/LOST-STATS.github.io/issues">Issues</a> page and find (or post) a thread with the title of the page you’re talking about.</li>
+  <li><strong>How can I [add an image/link to another LOST page/add an external link/bold text] in the LOST wiki?</strong> See the Markdown section above.</li>
+  <li><strong>I want to contribute but I do not like all the rules and structure on this page. I don’t even want my FAQ entry to be a question. Just let me write what I want.</strong> If you have valuable knowledge about statistical techniques to share with people and are able to explain things clearly, I don’t want to stop you. So go for it. Maybe post something in <a href="https://github.com/LOST-STATS/LOST-STATS.github.io/issues">Issues</a> when you’re done and perhaps someone else will help make your page more consistent with the rest of the Wiki. I mean, it would be nicer if you did that yourself, but hey, we all have different strengths, right?</li>
+</ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
