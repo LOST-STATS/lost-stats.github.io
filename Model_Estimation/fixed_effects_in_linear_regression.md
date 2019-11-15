@@ -27,7 +27,7 @@ For more information, see [Wikipedia: Fixed Effects Model](https://en.wikipedia.
 
 ## Julia
 
-Julia provides support for estimating high-dimensional fixed effect models through the **FixedEffectModels.jl** package ([link](https://github.com/matthieugomez/FixedEffectModels.jl)). Similarly to **felm** (R) and **reghdfe** (Stata), the package uses the method of alternating projections to sweep out fixed effects. The Julia implementation is typically quite a bit faster than these other two methods, however. It also offers further performance gains via GPU computation for users with a working CUDA installation.
+Julia provides support for estimating high-dimensional fixed effect models through the **FixedEffectModels.jl** package ([link](https://github.com/matthieugomez/FixedEffectModels.jl)). Similarly to **felm** (R) and **reghdfe** (Stata), the package uses the method of alternating projections to sweep out fixed effects. However, the Julia implementation is typically quite a bit faster than these other two methods. It also offers further performance gains via GPU computation for users with a working CUDA installation (up to an order of magnitude faster for complicated problems).
 
 ```julia
 # If necessary, install JuliaFixedEffects.jl and some ancilliary packages for reading in the data
@@ -86,7 +86,7 @@ felm_model <- felm(earnings_med ~ prop_working | inst_name + year | 0 | inst_nam
 summary(felm_model)
 ```
 
-Next, we consider `feols` from the **fixest** package ([link](https://github.com/lrberge/fixest/wiki)). The syntax is very similar to  `lfe::felm` and again the estimation will be done in parallel by default. However, rather than the method of alternating projections, `fixest::feols` uses a concentrated maximum likelihood method to efficiently estimate models with an arbitrary number of fixed effects. Current benchmarks suggest that this can make it an order of magnitude faster for large problems. For the below example, we'll continue with the same College Scorecard dataset already loaded into memory. 
+Next, we consider `feols` from the **fixest** package ([link](https://github.com/lrberge/fixest/wiki)). The syntax is very similar to  `lfe::felm` and again the estimation will be done in parallel by default. However, rather than the method of alternating projections, `fixest::feols` uses a concentrated maximum likelihood method to efficiently estimate models with an arbitrary number of fixed effects. Current [benchmarks](https://github.com/lrberge/fixest/wiki#benchmarking) suggest that this can yield significant speed gains, especially for large problems. For the below example, we'll continue with the same College Scorecard dataset already loaded into memory. 
 
 ```r
 # If necessary, install fixest
