@@ -23,3 +23,14 @@ edit_links:
   text: Edit this page on GitHub
   base_url: https://github.com/lost-stats/lost-stats.github.io/blob/source
 
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  hand_wrap: false
+  gfm_quirks: paragraph_end
+  syntax_highligher: rouge
+  syntax_highligher_opts:
+    default_lang: plaintext
+
+highlighter: rouge
