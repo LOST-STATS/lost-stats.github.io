@@ -19,7 +19,7 @@
 <meta property="og:description" content="Source code for the Library of Statistical Techniques" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Model_Estimation/Nonstandard_Errors/hc_se.html","headline":"Heteroskedasticity-consistent standard errors","@context":"http://schema.org"}</script>
+{"headline":"Heteroskedasticity-consistent standard errors","description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Model_Estimation/Nonstandard_Errors/hc_se.html","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 </head>
 <body>
@@ -109,7 +109,7 @@
       <h2 id="r">
           <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
       </h2>
-<p>The easiest way to obtain robust standard errors in R is with the <strong>estimatr</strong> package (<a href="https://declaredesign.org/r/estimatr/">link</a>) and its family of <code class="language-plaintext highlighter-rouge">lm_robust</code> functions. These will default to “HC2” errors, but users can specify a variety of other options.</p>
+<p>The easiest way to obtain robust standard errors in R is with the <strong>estimatr</strong> package (<a href="https://declaredesign.org/r/estimatr/">link</a>) and its family of <code class="highlighter-rouge">lm_robust</code> functions. These will default to “HC2” errors, but users can specify a variety of other options.</p>
 <div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install estimatr</span><span class="w">
 </span><span class="c1"># install.packages(c('estimatr'))</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">estimatr</span><span class="p">)</span><span class="w">
@@ -121,7 +121,7 @@
 </span><span class="n">m1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lm_robust</span><span class="p">(</span><span class="n">mpg</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">cyl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">disp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">hp</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mtcars</span><span class="p">,</span><span class="w"> </span><span class="n">se_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"HC3"</span><span class="p">)</span><span class="w">
 </span><span class="n">summary</span><span class="p">(</span><span class="n">m1</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
-<p>Alternately, users may consider the <code class="language-plaintext highlighter-rouge">vcovHC</code> function from the <strong>sandwich</strong> package (<a href="https://cran.r-project.org/web/packages/sandwich/index.html">link</a>), which is very flexible and supports a wide variety of generic regression objects. For inference (t-tests, etc.), use in conjunction with the <code class="language-plaintext highlighter-rouge">coeftest</code> function from the <strong>lmtest</strong> package (<a href="https://cran.r-project.org/web/packages/lmtest/index.html">link</a>).</p>
+<p>Alternately, users may consider the <code class="highlighter-rouge">vcovHC</code> function from the <strong>sandwich</strong> package (<a href="https://cran.r-project.org/web/packages/sandwich/index.html">link</a>), which is very flexible and supports a wide variety of generic regression objects. For inference (t-tests, etc.), use in conjunction with the <code class="highlighter-rouge">coeftest</code> function from the <strong>lmtest</strong> package (<a href="https://cran.r-project.org/web/packages/lmtest/index.html">link</a>).</p>
 <div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install lmtest and sandwich</span><span class="w">
 </span><span class="c1"># install.packages(c('lmtest','sandwich'))</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">sandwich</span><span class="p">)</span><span class="w">
@@ -142,16 +142,17 @@
       <h2 id="stata">
           <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
       </h2>
-<p>Stata has robust standard errors built into most regression commands, and they generally work the same way for all commands.</p><pre><code class="language-stata">* Load in auto data
-sysuse auto.dta, clear
-
+<p>Stata has robust standard errors built into most regression commands, and they generally work the same way for all commands.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load in auto data
+</span><span class="err">sysuse</span> <span class="err">auto.dta,</span> <span class="err">clear
+</span><span class="c1">
 * Just add robust to the options of the regression
 * This will give you HC1
-regress price mpg gear_ratio foreign, robust
-
+</span><span class="err">regress</span> <span class="err">price</span> <span class="err">mpg</span> <span class="err">gear_ratio</span> <span class="err">foreign,</span> <span class="err">robust
+</span><span class="c1">
 * For other kinds of robust standard errors use vce()
-regress price mpg gear_ratio foreign, vce(hc3)
-</code></pre>
+</span><span class="err">regress</span> <span class="err">price</span> <span class="err">mpg</span> <span class="err">gear_ratio</span> <span class="err">foreign,</span> <span class="err">vce(hc3)
+</span></code></pre></div></div>
         </div>
       </div>
     </div>

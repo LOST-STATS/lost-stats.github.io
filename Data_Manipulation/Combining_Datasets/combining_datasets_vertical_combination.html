@@ -19,7 +19,7 @@
 <meta property="og:description" content="Source code for the Library of Statistical Techniques" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html","headline":"Vertical Combination","@context":"http://schema.org"}</script>
+{"headline":"Vertical Combination","description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 </head>
 <body>
@@ -98,7 +98,7 @@
       <h2 id="r">
           <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
       </h2>
-<p>There are several ways to vertically combine data sets in R, including <code class="language-plaintext highlighter-rouge">rbind</code>. We will use the <strong>dplyr</strong> package function <code class="language-plaintext highlighter-rouge">bind_rows</code>, which allows the two data sets to combine even if they don’t contain the exact same set of variables.</p>
+<p>There are several ways to vertically combine data sets in R, including <code class="highlighter-rouge">rbind</code>. We will use the <strong>dplyr</strong> package function <code class="highlighter-rouge">bind_rows</code>, which allows the two data sets to combine even if they don’t contain the exact same set of variables.</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install dplyr</span><span class="w">
 </span><span class="c1"># install.packages('dplyr')</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
@@ -115,24 +115,27 @@
 </span></code></pre></div></div>
       <h2 id="stata">
           <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
-      </h2><pre><code class="language-stata">* Load California Population data
-webuse http://www.stata-press.com/data/r14/capop.dta // Import data from the web 
+      </h2>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load California Population data
+</span><span class="err">webuse</span> <span class="err">http:</span><span class="c1">//www.stata-press.com/data/r14/capop.dta // Import data from the web </span><span class="err">
 
-append using http://www.stata-press.com/data/r14/ilpop.dta // Merge on Illinois population data from the web 
-</code></pre>
-<p>You can also append multiple datasets at once, by simple listing both datasets separated by a space:</p><pre><code class="language-stata">* Load California Population data
+append</span> <span class="err">using</span> <span class="err">http:</span><span class="c1">//www.stata-press.com/data/r14/ilpop.dta // Merge on Illinois population data from the web </span><span class="err">
+</span></code></pre></div></div>
+<p>You can also append multiple datasets at once, by simple listing both datasets separated by a space:</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load California Population data
 * Import data from the web 
-webuse http://www.stata-press.com/data/r14/capop.dta 
-
+</span><span class="err">webuse</span> <span class="err">http:</span><span class="c1">//www.stata-press.com/data/r14/capop.dta </span><span class="err">
+</span><span class="c1">
 * Merge on Illinois and Texas population data from the web 
-append using http://www.stata-press.com/data/r14/ilpop.dta http://www.stata-press.com/data/r14/txpop.dta 
-</code></pre>
-<p>Note that, if there are columns in one but not the other of the datasets, Stata will still append the two datasets, but observations from the dataset that did not contain those columns will have their values for that variable set to missing.</p><pre><code class="language-stata">* Load Even Number Data 
-webuse odd.dta, clear 
+</span><span class="err">append</span> <span class="err">using</span> <span class="err">http:</span><span class="c1">//www.stata-press.com/data/r14/ilpop.dta http://www.stata-press.com/data/r14/txpop.dta </span><span class="err">
+</span></code></pre></div></div>
+<p>Note that, if there are columns in one but not the other of the datasets, Stata will still append the two datasets, but observations from the dataset that did not contain those columns will have their values for that variable set to missing.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load Even Number Data 
+</span><span class="err">webuse</span> <span class="err">odd.dta,</span> <span class="err">clear</span> <span class="err">
 
-append using http://www.stata-press.com/data/r14/even.dta 
+append</span> <span class="err">using</span> <span class="err">http:</span><span class="c1">//www.stata-press.com/data/r14/even.dta </span><span class="err">
 
-</code></pre>
+</span></code></pre></div></div>
         </div>
       </div>
     </div>

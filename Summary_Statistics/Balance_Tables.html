@@ -19,7 +19,7 @@
 <meta property="og:description" content="Source code for the Library of Statistical Techniques" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Summary_Statistics/Balance_Tables.html","headline":"Balance Table","@context":"http://schema.org"}</script>
+{"headline":"Balance Table","description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Summary_Statistics/Balance_Tables.html","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 </head>
 <body>
@@ -109,16 +109,17 @@
 </span></code></pre></div></div>
       <h2 id="stata">
           <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
-      </h2><pre><code class="language-stata">* Import Dependency: 'ssc install table1' 
+      </h2>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Import Dependency: 'ssc install table1' 
 * Load Data
-sysuse auto, clear
-
+</span><span class="err">sysuse</span> <span class="err">auto,</span> <span class="err">clear
+</span><span class="c1">
 * Create Balance Table
 * You need to declare the kind of variable for each, as well as the variable by which you define treatment and control. 
 * Adding test gives the statistical difference between the two groups. The ending saves your output as an .xls file
-
-table1, by(foreign) vars(price conts \ mpg conts \ weight contn \ length conts) test saving(bal_tab.xls, replace)
-</code></pre>
+</span><span class="err">
+table1,</span> <span class="err">by(foreign)</span> <span class="err">vars(price</span> <span class="err">conts</span> <span class="err">\</span> <span class="err">mpg</span> <span class="err">conts</span> <span class="err">\</span> <span class="err">weight</span> <span class="err">contn</span> <span class="err">\</span> <span class="err">length</span> <span class="err">conts)</span> <span class="err">test</span> <span class="err">saving(bal_tab.xls,</span> <span class="err">replace)
+</span></code></pre></div></div>
       <h4 id="also-consider">
           <a href="#also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Also Consider
       </h4>

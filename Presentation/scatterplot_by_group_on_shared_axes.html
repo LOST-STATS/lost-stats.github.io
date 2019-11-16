@@ -19,7 +19,7 @@
 <meta property="og:description" content="Source code for the Library of Statistical Techniques" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Presentation/scatterplot_by_group_on_shared_axes.html","headline":"Scatterplot by Group on Shared Axes","@context":"http://schema.org"}</script>
+{"headline":"Scatterplot by Group on Shared Axes","description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Presentation/scatterplot_by_group_on_shared_axes.html","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
@@ -132,18 +132,19 @@
 <p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Images/Scatterplot-by-Groups-on-Shared-Axes/r_scatterplot_by_transmission.png" alt="Scatterplot of car weight against MPG, differentiated by transmission type, in R" /></p>
       <h2 id="stata">
           <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
-      </h2><pre><code class="language-stata">* Load auto data
-sysuse auto.dta
-
+      </h2>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load auto data
+</span><span class="err">sysuse</span> <span class="err">auto.dta
+</span><span class="c1">
 * Start a twoway command
 * Then, for each group, put its scatter command in ()
 * Using if to plot each group separately
 * And specifying mcolor or msymbol (etc.) to differentiate them
-twoway (scatter weight mpg if foreign == 0, mcolor(black)) (scatter weight mpg if foreign == 1, mcolor(blue))
-
+</span><span class="err">twoway</span> <span class="err">(scatter</span> <span class="err">weight</span> <span class="err">mpg</span> <span class="err">if</span> <span class="err">foreign</span> <span class="o">==</span> <span class="err">0,</span> <span class="err">mcolor(black))</span> <span class="err">(scatter</span> <span class="err">weight</span> <span class="err">mpg</span> <span class="err">if</span> <span class="err">foreign</span> <span class="o">==</span> <span class="err">1,</span> <span class="err">mcolor(blue))
+</span><span class="c1">
 * Add a legend option so you know what the colors mean
-twoway (scatter weight mpg if foreign == 0, mcolor(black)) (scatter weight mpg if foreign == 1, mcolor(blue)), legend(lab(1 Domestic) lab(2 Foreign)) xtitle("Weight") ytitle("MPG")
-</code></pre>
+</span><span class="err">twoway</span> <span class="err">(scatter</span> <span class="err">weight</span> <span class="err">mpg</span> <span class="err">if</span> <span class="err">foreign</span> <span class="o">==</span> <span class="err">0,</span> <span class="err">mcolor(black))</span> <span class="err">(scatter</span> <span class="err">weight</span> <span class="err">mpg</span> <span class="err">if</span> <span class="err">foreign</span> <span class="o">==</span> <span class="err">1,</span> <span class="err">mcolor(blue)),</span> <span class="err">legend(lab(1</span> <span class="err">Domestic)</span> <span class="err">lab(2</span> <span class="err">Foreign))</span> <span class="err">xtitle(</span><span class="s2">"Weight"</span><span class="err">)</span> <span class="err">ytitle(</span><span class="s2">"MPG"</span><span class="err">)
+</span></code></pre></div></div>
 <p>This results in:</p>
 <p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Images/Scatterplot-by-Groups-on-Shared-Axes/stata_scatterplot_by_group.png" alt="Scatterplot of car weight against MPG, differentiated by foreign, in Stata" /></p>
         </div>

@@ -19,7 +19,7 @@
 <meta property="og:description" content="Source code for the Library of Statistical Techniques" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Model_Estimation/Nonstandard_Errors/clustered_se.html","headline":"Cluster-Robust Standard Errors","@context":"http://schema.org"}</script>
+{"headline":"Cluster-Robust Standard Errors","description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Model_Estimation/Nonstandard_Errors/clustered_se.html","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 </head>
 <body>
@@ -110,7 +110,7 @@
           <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
       </h2>
 <p>For cluster-robust estimation of (high-dimensional) fixed effect models in R, see <a href="https://lost-stats.github.io/Model_Estimation/fixed_effects_in_linear_regression.html#r">here</a>.</p>
-<p>Cluster-robust standard errors for many different kinds of regression objects in R can be obtained using the <code class="language-plaintext highlighter-rouge">coeftest</code> function in the <strong>lmtest</strong> package combined with the <code class="language-plaintext highlighter-rouge">vcovCL</code> function in the <strong>sandwich</strong> package. Alternately, while it does not handle as many types of regressions, the <code class="language-plaintext highlighter-rouge">lm_robust</code> function in <strong>estimatr</strong> can provide cluster-robust standard errors much more easily.</p>
+<p>Cluster-robust standard errors for many different kinds of regression objects in R can be obtained using the <code class="highlighter-rouge">coeftest</code> function in the <strong>lmtest</strong> package combined with the <code class="highlighter-rouge">vcovCL</code> function in the <strong>sandwich</strong> package. Alternately, while it does not handle as many types of regressions, the <code class="highlighter-rouge">lm_robust</code> function in <strong>estimatr</strong> can provide cluster-robust standard errors much more easily.</p>
 <div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install lmtest, sandwich, and estimatr</span><span class="w">
 </span><span class="c1"># install.packages(c('lmtest','sandwich','estimatr'))</span><span class="w">
 
@@ -145,20 +145,21 @@
       <h2 id="stata">
           <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
       </h2>
-<p>Stata has clustered standard errors built into most regression commands, and they generally work the same way for all commands.</p><pre><code class="language-stata">* Load in College Scorecard data
-import delimited "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv", clear
-
+<p>Stata has clustered standard errors built into most regression commands, and they generally work the same way for all commands.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load in College Scorecard data
+</span><span class="err">import</span> <span class="err">delimited</span> <span class="s2">"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv"</span><span class="err">,</span> <span class="err">clear
+</span><span class="c1">
 * The missings are written as "NA", let's turn this numeric
-destring earnings_med repay_rate, replace force
-
+</span><span class="err">destring</span> <span class="err">earnings_med</span> <span class="err">repay_rate,</span> <span class="err">replace</span> <span class="err">force
+</span><span class="c1">
 * If we want to cluster on a variable or include it as a factor it must not be a string
-encode inst_name, g(inst_name_encoded)
-encode state_abbr, g(state_encoded)
-
+</span><span class="err">encode</span> <span class="err">inst_name,</span> <span class="err">g(inst_name_encoded)
+encode</span> <span class="err">state_abbr,</span> <span class="err">g(state_encoded)
+</span><span class="c1">
 * Just add vce(cluster) to the options of the regression
 * This will give you CR1
-regress repay_rate earnings_med i.state_encoded, vce(cluster inst_name_encoded)
-</code></pre>
+</span><span class="err">regress</span> <span class="err">repay_rate</span> <span class="err">earnings_med</span> <span class="err">i.state_encoded,</span> <span class="err">vce(cluster</span> <span class="err">inst_name_encoded)
+</span></code></pre></div></div>
         </div>
       </div>
     </div>

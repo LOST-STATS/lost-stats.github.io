@@ -19,7 +19,7 @@
 <meta property="og:description" content="Source code for the Library of Statistical Techniques" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Model_Estimation/fixed_effects_in_linear_regression.html","headline":"Fixed Effects in Linear Regression","@context":"http://schema.org"}</script>
+{"headline":"Fixed Effects in Linear Regression","description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Model_Estimation/fixed_effects_in_linear_regression.html","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
@@ -30,7 +30,7 @@
 </head>
 <body>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-    <symbol id="link" viewBox="0 0 16 16">
+    <symbol id="link" viewbox="0 0 16 16">
       <title>Link</title>
       <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
     </symbol>
@@ -45,19 +45,79 @@
       </div>
       <div class="navigation main-nav js-main-nav">
         <nav role="navigation" aria-label="Main navigation">
-  <ul class="navigation-list"><li class="navigation-list-item"><a href="/" class="navigation-list-link">Home</a></li><li class="navigation-list-item active"><a href="/Data/" class="navigation-list-link"></a></li><li class="navigation-list-item"><a href="/Data_Manipulation/data_manipulation.html" class="navigation-list-link">Data Manipulation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="navigation-list-link">Combining Datasets</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+  <ul class="navigation-list">
+<li class="navigation-list-item"><a href="/" class="navigation-list-link">Home</a></li>
+<li class="navigation-list-item active"><a href="/Data/" class="navigation-list-link"></a></li>
+<li class="navigation-list-item">
+<a href="/Data_Manipulation/data_manipulation.html" class="navigation-list-link">Data Manipulation</a><ul class="navigation-list-child-list ">
+<li class="navigation-list-item ">
+<a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="navigation-list-link">Combining Datasets</a><ul class="navigation-list-child-list">
+<li class="navigation-list-item ">
                             <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="navigation-list-link">Vertical Combination</a>
-                          </li><li class="navigation-list-item ">
+                          </li>
+<li class="navigation-list-item ">
                             <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="navigation-list-link">Horizontal Combination (Deterministic)</a>
-                          </li></ul></li><li class="navigation-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="navigation-list-link">Determine the Observation Level of a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Reshaping/reshape.html" class="navigation-list-link">Reshaping Data</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                          </li>
+</ul>
+</li>
+<li class="navigation-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="navigation-list-link">Determine the Observation Level of a Data Set</a></li>
+<li class="navigation-list-item ">
+<a href="/Data_Manipulation/Reshaping/reshape.html" class="navigation-list-link">Reshaping Data</a><ul class="navigation-list-child-list">
+<li class="navigation-list-item ">
                             <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="navigation-list-link">Reshape Panel Data from Wide to Long</a>
-                          </li><li class="navigation-list-item ">
+                          </li>
+<li class="navigation-list-item ">
                             <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="navigation-list-link">Reshape Panel Data from Long to Wide</a>
-                          </li></ul></li></ul></li><li class="navigation-list-item"><a href="/Geo-Spatial/Summary_Techniques.html" class="navigation-list-link">Geo-Spatial</a><ul class="navigation-list-child-list "></ul></li><li class="navigation-list-item"><a href="/Machine_Learning/Machine_Learning.html" class="navigation-list-link">Machine Learning</a><ul class="navigation-list-child-list "></ul></li><li class="navigation-list-item active"><a href="/Model_Estimation/Estimation.html" class="navigation-list-link">Model Estimation</a><ul class="navigation-list-child-list "><li class="navigation-list-item  active"><a href="/Model_Estimation/fixed_effects_in_linear_regression.html" class="navigation-list-link active">Fixed Effects in Linear Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/heckman_correction_model.html" class="navigation-list-link">Heckman Correction Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/logit_model.html" class="navigation-list-link">Logit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/mcfaddens_choice_model.html" class="navigation-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/ordinary_least_squares.html" class="navigation-list-link">Ordinary Least Squares (Linear Regression)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/probit_model.html" class="navigation-list-link">Probit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/Nonstandard_Errors/nonstandard_erors.html" class="navigation-list-link">Nonstandard Errors</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                          </li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="navigation-list-item">
+<a href="/Geo-Spatial/Summary_Techniques.html" class="navigation-list-link">Geo-Spatial</a><ul class="navigation-list-child-list "></ul>
+</li>
+<li class="navigation-list-item">
+<a href="/Machine_Learning/Machine_Learning.html" class="navigation-list-link">Machine Learning</a><ul class="navigation-list-child-list "></ul>
+</li>
+<li class="navigation-list-item active">
+<a href="/Model_Estimation/Estimation.html" class="navigation-list-link">Model Estimation</a><ul class="navigation-list-child-list ">
+<li class="navigation-list-item  active"><a href="/Model_Estimation/fixed_effects_in_linear_regression.html" class="navigation-list-link active">Fixed Effects in Linear Regression</a></li>
+<li class="navigation-list-item "><a href="/Model_Estimation/heckman_correction_model.html" class="navigation-list-link">Heckman Correction Model</a></li>
+<li class="navigation-list-item "><a href="/Model_Estimation/logit_model.html" class="navigation-list-link">Logit Model</a></li>
+<li class="navigation-list-item "><a href="/Model_Estimation/mcfaddens_choice_model.html" class="navigation-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a></li>
+<li class="navigation-list-item "><a href="/Model_Estimation/ordinary_least_squares.html" class="navigation-list-link">Ordinary Least Squares (Linear Regression)</a></li>
+<li class="navigation-list-item "><a href="/Model_Estimation/probit_model.html" class="navigation-list-link">Probit Model</a></li>
+<li class="navigation-list-item ">
+<a href="/Model_Estimation/Nonstandard_Errors/nonstandard_erors.html" class="navigation-list-link">Nonstandard Errors</a><ul class="navigation-list-child-list">
+<li class="navigation-list-item ">
                             <a href="/Model_Estimation/Nonstandard_Errors/clustered_se.html" class="navigation-list-link">Cluster-Robust Standard Errors</a>
-                          </li><li class="navigation-list-item ">
+                          </li>
+<li class="navigation-list-item ">
                             <a href="/Model_Estimation/Nonstandard_Errors/hc_se.html" class="navigation-list-link">Heteroskedasticity-consistent standard errors</a>
-                          </li></ul></li></ul></li><li class="navigation-list-item"><a href="/Presentation/Presentation.html" class="navigation-list-link">Presentation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Presentation/line_graph_with_labels_at_the_beginning_or_end.html" class="navigation-list-link">Line Graph with Labels at the Beginning or End of Lines</a></li><li class="navigation-list-item "><a href="/Presentation/marginal_effects_plots_for_interactions_with_continuous_variables.html" class="navigation-list-link">Marginal Effects Plots for Interactions with Continuous Variables</a></li><li class="navigation-list-item "><a href="/Presentation/scatterplot_by_group_on_shared_axes.html" class="navigation-list-link">Scatterplot by Group on Shared Axes</a></li></ul></li><li class="navigation-list-item"><a href="/Summary_Statistics/Summary_Statistics.html" class="navigation-list-link">Summary Statistics</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Summary_Statistics/Balance_Tables.html" class="navigation-list-link">Balance Table</a></li></ul></li><li class="navigation-list-item"><a href="/Time_Series/Time_Series.html" class="navigation-list-link">Time Series</a><ul class="navigation-list-child-list "></ul></li><li class="navigation-list-item"><a href="/Other/Other.html" class="navigation-list-link">Other</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Other/import_a_foreign_data_file.html" class="navigation-list-link">Import a Foreign Data File</a></li></ul></li><li class="navigation-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="navigation-list-link">Desired Nonexistent Pages</a></li><li class="navigation-list-item"><a href="/Contributing/Contributing.html" class="navigation-list-link">Contributing</a></li></ul>
+                          </li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="navigation-list-item">
+<a href="/Presentation/Presentation.html" class="navigation-list-link">Presentation</a><ul class="navigation-list-child-list ">
+<li class="navigation-list-item "><a href="/Presentation/line_graph_with_labels_at_the_beginning_or_end.html" class="navigation-list-link">Line Graph with Labels at the Beginning or End of Lines</a></li>
+<li class="navigation-list-item "><a href="/Presentation/marginal_effects_plots_for_interactions_with_continuous_variables.html" class="navigation-list-link">Marginal Effects Plots for Interactions with Continuous Variables</a></li>
+<li class="navigation-list-item "><a href="/Presentation/scatterplot_by_group_on_shared_axes.html" class="navigation-list-link">Scatterplot by Group on Shared Axes</a></li>
+</ul>
+</li>
+<li class="navigation-list-item">
+<a href="/Summary_Statistics/Summary_Statistics.html" class="navigation-list-link">Summary Statistics</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Summary_Statistics/Balance_Tables.html" class="navigation-list-link">Balance Table</a></li></ul>
+</li>
+<li class="navigation-list-item">
+<a href="/Time_Series/Time_Series.html" class="navigation-list-link">Time Series</a><ul class="navigation-list-child-list "></ul>
+</li>
+<li class="navigation-list-item">
+<a href="/Other/Other.html" class="navigation-list-link">Other</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Other/import_a_foreign_data_file.html" class="navigation-list-link">Import a Foreign Data File</a></li></ul>
+</li>
+<li class="navigation-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="navigation-list-link">Desired Nonexistent Pages</a></li>
+<li class="navigation-list-item"><a href="/Contributing/Contributing.html" class="navigation-list-link">Contributing</a></li>
+</ul>
 </nav>
       </div>
       <footer class="site-footer">
@@ -70,7 +130,8 @@
           <div class="search">
             <div class="search-input-wrap">
               <input type="text" class="js-search-input search-input" tabindex="0" placeholder="Search LOST" aria-label="Search LOST" autocomplete="off">
-              <svg width="14" height="14" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title><g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"/><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"/></g></svg>
+              <svg width="14" height="14" viewbox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title>
+<g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"></path><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"></path></g></svg>
             </div>
             <div class="js-search-results search-results-wrap"></div>
           </div>
@@ -87,12 +148,12 @@
               </nav>
           <div id="main-content" class="page-content" role="main">
               <h1 id="fixed-effects-in-linear-regression">
-          <a href="#fixed-effects-in-linear-regression" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Fixed Effects in Linear Regression
+          <a href="#fixed-effects-in-linear-regression" class="anchor-heading"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Fixed Effects in Linear Regression
       </h1>
 <p>Fixed effects is a statistical regression model in which the intercept of the regression model is allowed to vary freely across individuals or groups. It is often applied to panel data in order to control for any individual-specific attributes that do not vary across time.</p>
 <p>For more information, see <a href="https://en.wikipedia.org/wiki/Fixed_effects_model">Wikipedia: Fixed Effects Model</a>.</p>
       <h2 id="keep-in-mind">
-          <a href="#keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Keep in Mind
+          <a href="#keep-in-mind" class="anchor-heading"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Keep in Mind
       </h2>
 <ul>
   <li>To use individual-level fixed effects, you must observe the same person multiple times (panel data).</li>
@@ -100,17 +161,17 @@
   <li>If you are using fixed effects to estimate the causal effect of a variable <script type="math/tex">X</script>, individuals with more variance in <script type="math/tex">X</script> will be weighted more heavily (Gibbons, Serrano, &amp; Urbancic 2019, ungated copy <a href="http://gibbons.bio/docs/bfe.pdf">here</a>. You may want to consider weighting your regression by the inverse within-individual variance of <script type="math/tex">X</script>.</li>
 </ul>
       <h2 id="also-consider">
-          <a href="#also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Also Consider
+          <a href="#also-consider" class="anchor-heading"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Also Consider
       </h2>
 <ul>
   <li><a href="https://lost-stats.github.io/Model_Estimation/random_effects.html">Random effects</a></li>
   <li>You may want to consider <a href="https://lost-stats.github.io/Model_Estimation/Nonstandard_Errors/clustered_se.html">clustering your standard errors</a> at the same level as (some or more of) your fixed effects.</li>
 </ul>
       <h1 id="implementations">
-          <a href="#implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Implementations
+          <a href="#implementations" class="anchor-heading"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Implementations
       </h1>
       <h2 id="julia">
-          <a href="#julia" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Julia
+          <a href="#julia" class="anchor-heading"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Julia
       </h2>
 <p>Julia provides support for estimating high-dimensional fixed effect models through the <strong>FixedEffectModels.jl</strong> package (<a href="https://github.com/matthieugomez/FixedEffectModels.jl">link</a>). Similarly to <strong>felm</strong> (R) and <strong>reghdfe</strong> (Stata), the package uses the method of alternating projections to sweep out fixed effects. However, the Julia implementation is typically quite a bit faster than these other two methods. It also offers further performance gains via GPU computation for users with a working CUDA installation (up to an order of magnitude faster for complicated problems).</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># If necessary, install JuliaFixedEffects.jl and some ancilliary packages for reading in the data</span>
@@ -137,10 +198,10 @@
 <span class="n">reg</span><span class="x">(</span><span class="n">df</span><span class="x">,</span> <span class="nd">@formula</span><span class="x">(</span><span class="n">earnings_med</span> <span class="o">~</span> <span class="n">prop_working</span> <span class="o">+</span> <span class="n">fe</span><span class="x">(</span><span class="n">inst_name</span><span class="x">)</span> <span class="o">+</span> <span class="n">fe</span><span class="x">(</span><span class="n">year</span><span class="x">)),</span> <span class="n">Vcov</span><span class="o">.</span><span class="n">cluster</span><span class="x">(</span><span class="o">:</span><span class="n">inst_name</span><span class="x">),</span> <span class="n">method</span> <span class="o">=</span> <span class="o">:</span><span class="n">lsmr_gpu</span><span class="x">)</span>
 </code></pre></div></div>
       <h2 id="r">
-          <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
+          <a href="#r" class="anchor-heading"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
       </h2>
-<p>There are numerous packages for estimating fixed effect models in R. We will limit our examples here to the two fastest implementations — <code class="language-plaintext highlighter-rouge">lfe::felm</code> and <code class="language-plaintext highlighter-rouge">fixest::feols</code> — both of which support high-dimensional fixed effects and standard error correction (multiway clustering, etc.).</p>
-<p>We first demonstrate fixed effects in R using <code class="language-plaintext highlighter-rouge">felm</code> from the <strong>lfe</strong> package (<a href="https://cran.r-project.org/web/packages/lfe/index.html">link</a>). <code class="language-plaintext highlighter-rouge">lfe::felm</code> uses the Method of Alternating Projections to “sweep out” the fixed effects and avoid estimating them directly. By default, this is automatically done in parallel, using all available cores on a user’s machine to maximize performance. (It is also possible to change this behaviour.)</p>
+<p>There are numerous packages for estimating fixed effect models in R. We will limit our examples here to the two fastest implementations — <code class="highlighter-rouge">lfe::felm</code> and <code class="highlighter-rouge">fixest::feols</code> — both of which support high-dimensional fixed effects and standard error correction (multiway clustering, etc.).</p>
+<p>We first demonstrate fixed effects in R using <code class="highlighter-rouge">felm</code> from the <strong>lfe</strong> package (<a href="https://cran.r-project.org/web/packages/lfe/index.html">link</a>). <code class="highlighter-rouge">lfe::felm</code> uses the Method of Alternating Projections to “sweep out” the fixed effects and avoid estimating them directly. By default, this is automatically done in parallel, using all available cores on a user’s machine to maximize performance. (It is also possible to change this behaviour.)</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install lfe</span><span class="w">
 </span><span class="c1"># install.packages('lfe')</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">lfe</span><span class="p">)</span><span class="w">
@@ -165,7 +226,7 @@
 </span><span class="c1"># Look at our results</span><span class="w">
 </span><span class="n">summary</span><span class="p">(</span><span class="n">felm_model</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
-<p>Next, we consider <code class="language-plaintext highlighter-rouge">feols</code> from the <strong>fixest</strong> package (<a href="https://github.com/lrberge/fixest/wiki">link</a>). The syntax is very similar to  <code class="language-plaintext highlighter-rouge">lfe::felm</code> and again the estimation will be done in parallel by default. However, rather than the method of alternating projections, <code class="language-plaintext highlighter-rouge">fixest::feols</code> uses a concentrated maximum likelihood method to efficiently estimate models with an arbitrary number of fixed effects. Current <a href="https://github.com/lrberge/fixest/wiki#benchmarking">benchmarks</a> suggest that this can yield significant speed gains, especially for large problems. For the below example, we’ll continue with the same College Scorecard dataset already loaded into memory.</p>
+<p>Next, we consider <code class="highlighter-rouge">feols</code> from the <strong>fixest</strong> package (<a href="https://github.com/lrberge/fixest/wiki">link</a>). The syntax is very similar to  <code class="highlighter-rouge">lfe::felm</code> and again the estimation will be done in parallel by default. However, rather than the method of alternating projections, <code class="highlighter-rouge">fixest::feols</code> uses a concentrated maximum likelihood method to efficiently estimate models with an arbitrary number of fixed effects. Current <a href="https://github.com/lrberge/fixest/wiki#benchmarking">benchmarks</a> suggest that this can yield significant speed gains, especially for large problems. For the below example, we’ll continue with the same College Scorecard dataset already loaded into memory.</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install fixest</span><span class="w">
 </span><span class="c1"># install.packages('fixest')</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">fixest</span><span class="p">)</span><span class="w">
@@ -180,44 +241,45 @@
 </span><span class="n">summary</span><span class="p">(</span><span class="n">feols_model</span><span class="p">,</span><span class="w"> </span><span class="n">se</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"twoway"</span><span class="p">)</span><span class="w">
 </span><span class="n">summary</span><span class="p">(</span><span class="n">feols_model</span><span class="p">,</span><span class="w"> </span><span class="n">cluster</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"inst_name"</span><span class="p">,</span><span class="w"> </span><span class="s2">"year"</span><span class="p">))</span><span class="w"> </span><span class="c1">## same as the above</span><span class="w">
 </span></code></pre></div></div>
-<p>As noted above, there are numerous other ways to implement fixed effect models in R. Users may also wish to look at the <strong>plm</strong>, <strong>lme4</strong>, and <strong>estimatr</strong> packages among others. For example, the latter’s <code class="language-plaintext highlighter-rouge">estimatr::lm_robust</code> function provides syntax that may be more familar syntax to new R users who are coming over from Stata. Note, however, that it will be less efficient for complicated models.</p>
+<p>As noted above, there are numerous other ways to implement fixed effect models in R. Users may also wish to look at the <strong>plm</strong>, <strong>lme4</strong>, and <strong>estimatr</strong> packages among others. For example, the latter’s <code class="highlighter-rouge">estimatr::lm_robust</code> function provides syntax that may be more familar syntax to new R users who are coming over from Stata. Note, however, that it will be less efficient for complicated models.</p>
       <h2 id="stata">
-          <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
+          <a href="#stata" class="anchor-heading"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
       </h2>
-<p>We will estimate fixed effects using Stata in two ways. First, using the built in <code class="language-plaintext highlighter-rouge">xtreg</code> command. Second, using the <strong>reghdfe</strong> package (<a href="http://scorreia.com/software/reghdfe/">link</a>), which is more efficient and better handles multiple levels of fixed effects (as well as multiway clustering), but must be downloaded from SSC first.</p><pre><code class="language-stata">* Load in College Scorecard data
-import delimited "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv", clear
-
+<p>We will estimate fixed effects using Stata in two ways. First, using the built in <code class="highlighter-rouge">xtreg</code> command. Second, using the <strong>reghdfe</strong> package (<a href="http://scorreia.com/software/reghdfe/">link</a>), which is more efficient and better handles multiple levels of fixed effects (as well as multiway clustering), but must be downloaded from SSC first.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load in College Scorecard data
+</span><span class="err">import</span> <span class="err">delimited</span> <span class="s2">"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv"</span><span class="err">,</span> <span class="err">clear
+</span><span class="c1">
 * The missings are written as "NA", let's turn this numeric
-destring count_not_working count_working earnings_med, replace force
-* Calculate the proportion working
-g prop_working = count_working/(count_working + count_not_working)
-
+</span><span class="err">destring</span> <span class="err">count_not_working</span> <span class="err">count_working</span> <span class="err">earnings_med,</span> <span class="err">replace</span> <span class="err">force
+</span><span class="c1">* Calculate the proportion working
+</span><span class="err">g</span> <span class="err">prop_working</span> <span class="o">=</span> <span class="err">count_working</span><span class="o">/</span><span class="err">(count_working</span> <span class="o">+</span> <span class="err">count_not_working)
+</span><span class="c1">
 * xtset requires that the individual identifier be a numeric variable
-encode inst_name, g(name_number)
-
+</span><span class="err">encode</span> <span class="err">inst_name,</span> <span class="err">g(name_number)
+</span><span class="c1">
 * Set the data as panel data with xtset
-xtset name_number
-
+</span><span class="err">xtset</span> <span class="err">name_number
+</span><span class="c1">
 * Use xtreg with the "fe" option to run fixed effects
 * Regressing earnings_med on prop_working
 * with fixed effects for name_number (implied by fe)
 * and also year (which we'll add manually with i.year)
 * and standard errors clustered by name_number
-xtreg earnings_med prop_working i.year, fe vce(cluster name_number)
-
+</span><span class="err">xtreg</span> <span class="err">earnings_med</span> <span class="err">prop_working</span> <span class="err">i.year,</span> <span class="err">fe</span> <span class="err">vce(cluster</span> <span class="err">name_number)
+</span><span class="c1">
 * Now, let's demonstrate the same regression with reghdfe.
 * Install the package first if necessary.
 * ssc install reghdfe
 
 * For reghdfe we don't need to xtset the data. Let's undo that
-xtset, clear
-
+</span><span class="err">xtset,</span> <span class="err">clear
+</span><span class="c1">
 * We specify both sets of fixed effects in absorb()
-reghdfe earnings_med prop_working, absorb(name_number year) vce(cluster inst_name)
-</code></pre>
+</span><span class="err">reghdfe</span> <span class="err">earnings_med</span> <span class="err">prop_working,</span> <span class="err">absorb(name_number</span> <span class="err">year)</span> <span class="err">vce(cluster</span> <span class="err">inst_name)
+</span></code></pre></div></div>
         </div>
       </div>
     </div>
   </div>
-</body>
+</div></body>
 </html>

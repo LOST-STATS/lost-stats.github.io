@@ -19,7 +19,7 @@
 <meta property="og:description" content="Source code for the Library of Statistical Techniques" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Model_Estimation/probit_model.html","headline":"Probit Model","@context":"http://schema.org"}</script>
+{"headline":"Probit Model","description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Model_Estimation/probit_model.html","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
@@ -104,7 +104,7 @@
       <h2 id="r">
           <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
       </h2>
-<p>R can run a probit regression using the <code class="language-plaintext highlighter-rouge">glm()</code> function. However, to get marginal effects you will need to calculate them by hand or use a package. We will use the <strong>mfx</strong> package, although the <strong>margins</strong> package is another good option, which produces tidy model output.</p>
+<p>R can run a probit regression using the <code class="highlighter-rouge">glm()</code> function. However, to get marginal effects you will need to calculate them by hand or use a package. We will use the <strong>mfx</strong> package, although the <strong>margins</strong> package is another good option, which produces tidy model output.</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install the mfx package</span><span class="w">
 </span><span class="c1"># install.packages('mfx')</span><span class="w">
 </span><span class="c1"># mfx is only needed for the marginal effect, not the regression itself</span><span class="w">
@@ -129,15 +129,16 @@
 </span></code></pre></div></div>
       <h2 id="stata">
           <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
-      </h2><pre><code class="language-stata">* Load auto data
-sysuse auto.dta
-
+      </h2>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load auto data
+</span><span class="err">sysuse</span> <span class="err">auto.dta
+</span><span class="c1">
 * Probi Estimation
-probit foreign mpg weight headroom trunk
-
+</span><span class="err">probit</span> <span class="err">foreign</span> <span class="err">mpg</span> <span class="err">weight</span> <span class="err">headroom</span> <span class="err">trunk
+</span><span class="c1">
 * Recover the Marginal Effects (Beta Coefficient in OLS)
-margins, dydx(*)
-</code></pre>
+</span><span class="err">margins,</span> <span class="err">dydx(</span><span class="o">*</span><span class="err">)
+</span></code></pre></div></div>
       <h2 id="gretl">
           <a href="#gretl" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Gretl
       </h2><pre><code class="language-gretl"># Load auto data

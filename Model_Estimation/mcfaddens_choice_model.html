@@ -19,7 +19,7 @@
 <meta property="og:description" content="Source code for the Library of Statistical Techniques" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Model_Estimation/mcfaddens_choice_model.html","headline":"McFadden’s Choice Model (Alternative-Specific Conditional Logit)","@context":"http://schema.org"}</script>
+{"headline":"McFadden’s Choice Model (Alternative-Specific Conditional Logit)","description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Model_Estimation/mcfaddens_choice_model.html","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
@@ -99,7 +99,7 @@
   <li>Just like other regression methods, the McFadden model does not guarantee that the estimates will be causal. Similarly, while the McFadden model is designed so that the results can be interpreted in terms of a “random utility” function, making inferences about utility functions does require additional assumptions.</li>
   <li>The standard McFadden model assumes that the choice follows the <a href="https://en.wikipedia.org/wiki/Independence_of_irrelevant_alternatives#In_econometrics">Independence of Irrelevant Alternatives</a>, which may be a strong assumption. There are variants of the McFadden model that relax this assumption.</li>
   <li>If you are working with an estimation command that only allows alternative-specific predictors and not case-specific predictors, you can add them yourself by interacting the case-specific predictors with binary variables for the different alternatives. If <script type="math/tex">Income</script> is your case-specific variable and your alternatives are “train”, “bus”, and “car”, you’d add <script type="math/tex">Income \times (mode == "train")</script>, <script type="math/tex">Income \times (mode == "bus")</script>, and <script type="math/tex">Income \times (mode == "car")</script> to your model. These are your case-specific predictors.</li>
-  <li>Choice model regressions often have specific demands on how your data is structured. These vary across estimation commands and software packages. However, a common one is this (others will be pointed out in specific Implementations below): The data must contain a variable indicating the choice cases (i.e. you choose a car, that’s one case, then I choose a car, that’s a different case), a variable with the alternatives being chosen between, a binary variable equal to 1 for the alternative actually chosen (this should be 1 or <code class="language-plaintext highlighter-rouge">TRUE</code> exactly once within each choice case), and then variables that are case-specific or alternative-specific.</li>
+  <li>Choice model regressions often have specific demands on how your data is structured. These vary across estimation commands and software packages. However, a common one is this (others will be pointed out in specific Implementations below): The data must contain a variable indicating the choice cases (i.e. you choose a car, that’s one case, then I choose a car, that’s a different case), a variable with the alternatives being chosen between, a binary variable equal to 1 for the alternative actually chosen (this should be 1 or <code class="highlighter-rouge">TRUE</code> exactly once within each choice case), and then variables that are case-specific or alternative-specific.</li>
 </ul>
 <p>In the below table, <script type="math/tex">I</script> gives the choice case, <script type="math/tex">Alts</script> gives the options, <script type="math/tex">Chose</script> gives the choice, <script type="math/tex">X</script> is a variable that varies at the alternative level, and <script type="math/tex">Y</script> is a variable that varies at the case level.</p>
 <div class="table-wrapper"><table>
@@ -200,7 +200,7 @@
       <h2 id="r">
           <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
       </h2>
-<p>We will implement McFadden’s choice model in R using the <strong>mlogit</strong> package, which can accept “wide” or “long” data in the <code class="language-plaintext highlighter-rouge">mlogit.data</code> function.</p>
+<p>We will implement McFadden’s choice model in R using the <strong>mlogit</strong> package, which can accept “wide” or “long” data in the <code class="highlighter-rouge">mlogit.data</code> function.</p>
 <div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install mlogit package</span><span class="w">
 </span><span class="c1"># install.packages('mlogit')</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">mlogit</span><span class="p">)</span><span class="w">
@@ -242,26 +242,27 @@
       <h2 id="stata">
           <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
       </h2>
-<p>Stata has the McFadden model built in. We will estimate the model using the older <code class="language-plaintext highlighter-rouge">asclogit</code> command as well as the <code class="language-plaintext highlighter-rouge">cmclogit</code> command that comes with Stata 16. These commands require “long” choice data, as described in the Keep in Mind section.</p><pre><code class="language-stata">* Load in car choice data
-webuse carchoice
-
+<p>Stata has the McFadden model built in. We will estimate the model using the older <code class="highlighter-rouge">asclogit</code> command as well as the <code class="highlighter-rouge">cmclogit</code> command that comes with Stata 16. These commands require “long” choice data, as described in the Keep in Mind section.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load in car choice data
+</span><span class="err">webuse</span> <span class="err">carchoice
+</span><span class="c1">
 * To use asclogit, we "regress" our choice variable (purchase)
 * on any alternative-specific variables (dealers)
 * then we put our case ID variable consumerid in case()
 * and our variable specifying alternatives, car, in alternatives()
 * then finally we put any case-specific variables like gender and income, in casevars()
-asclogit purchase dealers, case(consumerid) alternatives(car) casevars(gender income)
-
+</span><span class="err">asclogit</span> <span class="err">purchase</span> <span class="err">dealers,</span> <span class="err">case(consumerid)</span> <span class="err">alternatives(car)</span> <span class="err">casevars(gender</span> <span class="err">income)
+</span><span class="c1">
 
 * To use cmclogit, we first declare our data to be choice data with cmset
 * specifying our case ID variable and then the set of alternatives
-cmset consumerid car
-
+</span><span class="err">cmset</span> <span class="err">consumerid</span> <span class="err">car
+</span><span class="c1">
 * Now that Stata knows the structure, we can omit those parts from the asclogit
 * specification, but the rest stays the same!
-cmclogit purchase dealers, casevars(gender income)
-</code></pre>
-<p>Why bother with the <code class="language-plaintext highlighter-rouge">cmclogit</code> version? <code class="language-plaintext highlighter-rouge">cmset</code> gives you a lot more information about your data, and makes it easy to transition between different choice model types, including those incorporating panel data (each person makes multiple choices).</p>
+</span><span class="err">cmclogit</span> <span class="err">purchase</span> <span class="err">dealers,</span> <span class="err">casevars(gender</span> <span class="err">income)
+</span></code></pre></div></div>
+<p>Why bother with the <code class="highlighter-rouge">cmclogit</code> version? <code class="highlighter-rouge">cmset</code> gives you a lot more information about your data, and makes it easy to transition between different choice model types, including those incorporating panel data (each person makes multiple choices).</p>
         </div>
       </div>
     </div>

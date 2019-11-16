@@ -19,7 +19,7 @@
 <meta property="og:description" content="Source code for the Library of Statistical Techniques" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Presentation/line_graph_with_labels_at_the_beginning_or_end.html","headline":"Line Graph with Labels at the Beginning or End of Lines","@context":"http://schema.org"}</script>
+{"headline":"Line Graph with Labels at the Beginning or End of Lines","description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Presentation/line_graph_with_labels_at_the_beginning_or_end.html","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 </head>
 <body>
@@ -141,44 +141,45 @@
       <h2 id="stata">
           <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
       </h2>
-<p>Unfortunately, performing this technique in Stata requires placing each <code class="language-plaintext highlighter-rouge">text()</code> label on the graph. However, this can be automated with the use of a for loop to build the code using locals.</p><pre><code class="language-stata">* Load in Google Trends Nobel Search Data
+<p>Unfortunately, performing this technique in Stata requires placing each <code class="highlighter-rouge">text()</code> label on the graph. However, this can be automated with the use of a for loop to build the code using locals.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load in Google Trends Nobel Search Data
 * Which contains the Google Trends global search popularity index for the four
 * research-based Nobel prizes over a month.
-import delimited "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Presentation/Data/Line_Graph_with_Labels_at_the_Beginning_or_End_of_Lines/Research_Nobel_Google_Trends.csv", clear
-
+</span><span class="err">import</span> <span class="err">delimited</span> <span class="s2">"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Presentation/Data/Line_Graph_with_Labels_at_the_Beginning_or_End_of_Lines/Research_Nobel_Google_Trends.csv"</span><span class="err">,</span> <span class="err">clear
+</span><span class="c1">
 * Convert the date variable to an actual date
 * (not necessary in all implementations)
-g ymddate = date(date, "YMD")
-* Format the new variable as a date so we see it properly on the x-axis
-format ymddate %td
-
+</span><span class="err">g</span> <span class="err">ymddate</span> <span class="o">=</span> <span class="err">date(date,</span> <span class="s2">"YMD"</span><span class="err">)
+</span><span class="c1">* Format the new variable as a date so we see it properly on the x-axis
+</span><span class="err">format</span> <span class="err">ymddate</span> <span class="err">%td
+</span><span class="c1">
 * Graph log(hits) for visibility
-g loghits = log(hits)
-
+</span><span class="err">g</span> <span class="err">loghits</span> <span class="o">=</span> <span class="err">log(hits)
+</span><span class="c1">
 * Get the different prize types to graph
-levelsof name, l(names)
-
+</span><span class="err">levelsof</span> <span class="err">name,</span> <span class="err">l(names)
+</span><span class="c1">
 * Figure out the last time period in the data set
-quietly summarize ymddate
-local lastday = r(max)
-
+</span><span class="err">quietly</span> <span class="err">summarize</span> <span class="err">ymddate
+local</span> <span class="err">lastday</span> <span class="o">=</span> <span class="err">r(max)
+</span><span class="c1">
 * Start constructing a local that contains all the line graphs to graph
-local lines
-* Start constructing a local that contains the text labels to add
-local textlabs
-* Loop through each one
-foreach n in `names' {
-	* Add in the line graph code
+</span><span class="err">local</span> <span class="err">lines
+</span><span class="c1">* Start constructing a local that contains the text labels to add
+</span><span class="err">local</span> <span class="err">textlabs
+</span><span class="c1">* Loop through each one
+</span><span class="err">foreach</span> <span class="err">n</span> <span class="err">in</span> <span class="p">`</span><span class="si">names</span><span class="p">'</span> <span class="err">{
+</span><span class="c1">	* Add in the line graph code
 	* by building on the local we already have (`lines') and adding a new twoway segment
-	local lines `lines' (line loghits ymddate if name == "`n'")
+</span>	<span class="err">local</span> <span class="err">lines</span> <span class="p">`</span><span class="si">lines' (line loghits ymddate if name == "`n</span><span class="p">'</span><span class="s2">")
 	
 	* Figure out the value this line hits on the last point on the graph
-	quietly summ loghits if name == "`n'" &amp; ymddate == `lastday'
-	* The text command takes the y-value (from the mean we just took)
+	quietly summ loghits if name == "</span><span class="p">`</span><span class="si">n'" &amp; ymddate == `lastday</span><span class="p">'</span><span class="err">
+</span><span class="c1">	* The text command takes the y-value (from the mean we just took)
 	* the x-value (the last day on the graph),
 	* and the text label (the name we are working with)
 	* Plus place(r) to put it to the RIGHT of that point
-	local textlabs `textlabs' text(`r(mean)' `lastday' "`n'", place(r))
+</span>	<span class="err">local</span> <span class="err">textlabs</span> <span class="p">`</span><span class="si">textlabs' text(`r(mean)' `lastday' "`n</span><span class="p">'</span><span class="s2">", place(r))
 }
 
 * Finally, graph our lines
@@ -188,8 +189,8 @@ foreach n in `names' {
 quietly summarize ymddate
 local start = r(min)
 local end = r(max) + 5
-twoway `lines', `textlabs' legend(off) xscale(range(`start' `end')) xtitle("Date") ytitle("Log of Google Trends Index")
-</code></pre>
+twoway `lines', `textlabs' legend(off) xscale(range(`start' `end')) xtitle("</span><span class="err">Date</span><span class="s2">") ytitle("</span><span class="err">Log</span> <span class="err">of</span> <span class="err">Google</span> <span class="err">Trends</span> <span class="err">Index</span><span class="s2">")
+</span></code></pre></div></div>
 <p>This results in:</p>
 <p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Images/Line_Graph_with_Labels_at_the_Beginning_or_End_of_Lines/stata_line_graph_with_labels.png" alt="Line Graph of Search Popularity for Research Nobels in Stata" /></p>
         </div>

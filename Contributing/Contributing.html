@@ -19,7 +19,7 @@
 <meta property="og:description" content="Source code for the Library of Statistical Techniques" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Contributing/Contributing.html","headline":"Contributing","@context":"http://schema.org"}</script>
+{"headline":"Contributing","description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Contributing/Contributing.html","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
@@ -90,7 +90,7 @@
   <li>Read the below LOST Writing Guide, which shows what a good LOST page looks like from top to bottom. Even if you are just adding another language to an existing page, be sure to read the Implementations section at the bottom.</li>
   <li>Explore LOST using the navigation bar on the left, find a page that needs to be expanded, and add more content. Or find one that doesn’t exist but should (perhaps on the <a href="https://lost-stats.github.io/Desired_Nonexistent_Pages/desired_nonexistent_pages.html">Desired Nonexistent Pages list</a>, and write it yourself! Go to the <a href="https://github.com/LOST-STATS/LOST-STATS.github.io">GitHub Repository</a> for LOST to find the appropriate file to edit or folder to create your new file in.</li>
   <li>If you are a “Contributor” to the project, you can make your edits and changes directly to the repository. If not, you will need to issue a <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request">pull request</a> to get your work on LOST. We will add you as a contributor after your first accepted pull request. If you don’t know Git or how to do a pull request, please post in <a href="https://github.com/LOST-STATS/LOST-STATS.github.io/issues">Issues</a> asking to be added as a contributor so you can edit LOST directly.</li>
-  <li>If you’ve made a new page, make sure it’s saved as a <code class="language-plaintext highlighter-rouge">.md</code> file, put it in the appropriate folder, and add Navigation Information at the top (see below). If you’ve written a Desired Nonexistent Page, be sure to remove it from the <a href="https://github.com/LOST-STATS/LOST-STATS.github.io/blob/master/Desired_Nonexistent_Pages/Desired_Nonexistent_Pages.md">list</a>. Or, if your page links to some new nonexistent pages, add those to the list! Also, try to see if other pages have attempted to link to the page you’re working on, and update their links so they go to the right place.</li>
+  <li>If you’ve made a new page, make sure it’s saved as a <code class="highlighter-rouge">.md</code> file, put it in the appropriate folder, and add Navigation Information at the top (see below). If you’ve written a Desired Nonexistent Page, be sure to remove it from the <a href="https://github.com/LOST-STATS/LOST-STATS.github.io/blob/master/Desired_Nonexistent_Pages/Desired_Nonexistent_Pages.md">list</a>. Or, if your page links to some new nonexistent pages, add those to the list! Also, try to see if other pages have attempted to link to the page you’re working on, and update their links so they go to the right place.</li>
 </ol>
       <h1 id="lost-writing-guide">
           <a href="#lost-writing-guide" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> LOST WRITING GUIDE
@@ -132,16 +132,16 @@
       <h2 id="math">
           <a href="#math" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Math
       </h2>
-<p>Math is rendered with MathJax, which provides support for <script type="math/tex">\LaTeX</script> math formatting. To use on a specific page, make sure that the <a href="#navigation-information">YAML</a> at the top on the underlying Markdown (i.e. .md) file includes a line saying <code class="language-plaintext highlighter-rouge">mathjax: true</code>. This should already be the default on most existing pages, but it is worth emphasising. For example, here is a screenshot of the “Contributing.md” file that you are reading right now.</p>
+<p>Math is rendered with MathJax, which provides support for <script type="math/tex">\LaTeX</script> math formatting. To use on a specific page, make sure that the <a href="#navigation-information">YAML</a> at the top on the underlying Markdown (i.e. .md) file includes a line saying <code class="highlighter-rouge">mathjax: true</code>. This should already be the default on most existing pages, but it is worth emphasising. For example, here is a screenshot of the “Contributing.md” file that you are reading right now.</p>
 <p><img src="/Contributing/mathjax_yaml.png" alt="" /></p>
-<p>After that, equations and other math sections can be delimited with two dollar symbol <em>pairs</em>. For example, <code class="language-plaintext highlighter-rouge">$$x = \frac{1}{2}$$</code> is rendered inline as <script type="math/tex">x = \frac{1}{2}</script>. Similarly, we can render math in display mode (i.e. as a distinct block) by wrapping the dollar symbol pairs on separate lines. For example,</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$$
+<p>After that, equations and other math sections can be delimited with two dollar symbol <em>pairs</em>. For example, <code class="highlighter-rouge">$$x = \frac{1}{2}$$</code> is rendered inline as <script type="math/tex">x = \frac{1}{2}</script>. Similarly, we can render math in display mode (i.e. as a distinct block) by wrapping the dollar symbol pairs on separate lines. For example,</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$$
 y =  \beta_0 + \beta_1 x + \beta_2 x^2 + \epsilon
 $$
 </code></pre></div></div>
 <p>is rendered as display math:</p>
 <script type="math/tex; mode=display">y =  \beta_0 + \beta_1 x + \beta_2 x^2 + \epsilon</script>
-<p>While we don’t include such examples here, note that standard <script type="math/tex">\LaTeX</script> math environments such as <code class="language-plaintext highlighter-rouge">\begin{equation} ... \end{equation}</code> (for numbered equations) and <code class="language-plaintext highlighter-rouge">\begin{align} ... \end{align}</code> (for aligned equation systems) are all supported. Just remember to wrap them between a pair of dollar symbols. More information about MathJax can be found <a href="https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">here</a>.</p>
+<p>While we don’t include such examples here, note that standard <script type="math/tex">\LaTeX</script> math environments such as <code class="highlighter-rouge">\begin{equation} ... \end{equation}</code> (for numbered equations) and <code class="highlighter-rouge">\begin{align} ... \end{align}</code> (for aligned equation systems) are all supported. Just remember to wrap them between a pair of dollar symbols. More information about MathJax can be found <a href="https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">here</a>.</p>
       <h1 id="structure-of-a-lost-page">
           <a href="#structure-of-a-lost-page" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> STRUCTURE OF A LOST PAGE
       </h1>
@@ -150,7 +150,7 @@ $$
           <a href="#navigation-information" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Navigation Information
       </h2>
 <p>Your page will begin with what’s known as YAML, i.e. something that looks like this:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
 title: Observation level
 parent: Data Manipulation
 has_children: false
@@ -158,7 +158,7 @@ nav_order: 1
 mathjax: true
 ---
 </code></pre></div></div>
-<p>You don’t need to worry too much about YAML syntax (here’s the <a href="https://en.wikipedia.org/wiki/YAML">Wikipedia entry</a> for those interested). The important thing is that the YAML provides a set of very basic instructions for the website navigation and page structure. Make sure to fill in the <code class="language-plaintext highlighter-rouge">title</code> with a relevant and brief title. Also be sure to put the appropriate name for the <code class="language-plaintext highlighter-rouge">parent</code> — this will ensure that your page shows up in the appropriate spot in the navigation structure. Options for <code class="language-plaintext highlighter-rouge">parent</code> include:</p>
+<p>You don’t need to worry too much about YAML syntax (here’s the <a href="https://en.wikipedia.org/wiki/YAML">Wikipedia entry</a> for those interested). The important thing is that the YAML provides a set of very basic instructions for the website navigation and page structure. Make sure to fill in the <code class="highlighter-rouge">title</code> with a relevant and brief title. Also be sure to put the appropriate name for the <code class="highlighter-rouge">parent</code> — this will ensure that your page shows up in the appropriate spot in the navigation structure. Options for <code class="highlighter-rouge">parent</code> include:</p>
 <ul>
   <li>Data Manipulation</li>
   <li>Geo-Spatial</li>
@@ -169,7 +169,7 @@ mathjax: true
   <li>Time Series</li>
   <li>Other</li>
 </ul>
-<p>For the most part, you should generally ignore <code class="language-plaintext highlighter-rouge">has_children</code>. (An exception is if you are creating a new section that <em>does</em> have new child pages, but then you are probably better off filing an issue with us to make sure this is done correctly.) You can also ignore <code class="language-plaintext highlighter-rouge">nav_order</code> — leaving this at 1 for everything will put everything in alphabetical order.</p>
+<p>For the most part, you should generally ignore <code class="highlighter-rouge">has_children</code>. (An exception is if you are creating a new section that <em>does</em> have new child pages, but then you are probably better off filing an issue with us to make sure this is done correctly.) You can also ignore <code class="highlighter-rouge">nav_order</code> — leaving this at 1 for everything will put everything in alphabetical order.</p>
       <h2 id="introduction">
           <a href="#introduction" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Introduction
       </h2>
@@ -191,7 +191,7 @@ mathjax: true
 <p>This is a list of <em>other</em> techniques that are commonly used <em>in addition to</em> this page’s technique, or <em>as an alternative to</em> this page’s technique. If not obvious, include a very brief explanation of why you might want to use that other technique in addition to/instead of the current one. Note that you can link to another LOST page even if that page doesn’t exist yet. Maybe it will inspite someone to write it!</p>
 <p>For example, pages about estimation techniques might list standard robustness tests to be used in addition to the technique, or adjustments to standard errors they might want to use. A page about a data visualization technique might include a link to a page about setting color palettes to be used in addition.</p>
 <p>Or, they might list an alternative technique that might be used if a certain assumption fails (“This technique requires continuous variables. So if your data is discrete, use this other method.”).</p>
-<p>To link to other LOST pages (even if they don’t exist yet — don’t forget to add these to <a href="https://lost-stats.github.io/Desired_Nonexistent_Pages/desired_nonexistent_pages.html">Desired Nonexistent Pages</a>!, use the Markdown <code class="language-plaintext highlighter-rouge">[Link name](url)</code> structure, where the URL is of the format <code class="language-plaintext highlighter-rouge">https://lost-stats.github.io/Category_Name/page_name.html</code>.</p>
+<p>To link to other LOST pages (even if they don’t exist yet — don’t forget to add these to <a href="https://lost-stats.github.io/Desired_Nonexistent_Pages/desired_nonexistent_pages.html">Desired Nonexistent Pages</a>!, use the Markdown <code class="highlighter-rouge">[Link name](url)</code> structure, where the URL is of the format <code class="highlighter-rouge">https://lost-stats.github.io/Category_Name/page_name.html</code>.</p>
       <h2 id="implementations">
           <a href="#implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Implementations
       </h2>
@@ -207,10 +207,10 @@ mathjax: true
 </ul>
 <p><strong>Images</strong></p>
 <p>Images can be added to Implementation sections if relevant, for example if you’re working with GUI-only software, or demonstrating the output of a data visualization technique.</p>
-<p>How can you add these images? You can upload the images somewhere on the internet that allows image linking, and include the image in your instructions with <code class="language-plaintext highlighter-rouge">![Image](src)</code>. Ideally, upload the image directly to the <code class="language-plaintext highlighter-rouge">Images/name-of-your-page/</code> subfolder of whatever directory you’re working in, and link to the images there.</p>
-<p>Please be sure to add alt text to images for sight-impaired users. Image filenames should make reference to the language used to make them, i.e. <code class="language-plaintext highlighter-rouge">python_scatterplot.png</code>.</p>
+<p>How can you add these images? You can upload the images somewhere on the internet that allows image linking, and include the image in your instructions with <code class="highlighter-rouge">![Image](src)</code>. Ideally, upload the image directly to the <code class="highlighter-rouge">Images/name-of-your-page/</code> subfolder of whatever directory you’re working in, and link to the images there.</p>
+<p>Please be sure to add alt text to images for sight-impaired users. Image filenames should make reference to the language used to make them, i.e. <code class="highlighter-rouge">python_scatterplot.png</code>.</p>
 <p><strong>Data</strong></p>
-<p><em>Ideally</em>, the same data set will be uploaded to LOST directly in a format accessible by many languages (like CSV) in the <code class="language-plaintext highlighter-rouge">Data/name-of-your-page/</code> subfolder of whatever directory you’re wokring in, and then that data can be used for implementation in all languages on the page. This is not required, but is encouraged.</p>
+<p><em>Ideally</em>, the same data set will be uploaded to LOST directly in a format accessible by many languages (like CSV) in the <code class="highlighter-rouge">Data/name-of-your-page/</code> subfolder of whatever directory you’re wokring in, and then that data can be used for implementation in all languages on the page. This is not required, but is encouraged.</p>
       <h1 id="frequently-asked-questions">
           <a href="#frequently-asked-questions" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> FREQUENTLY ASKED QUESTIONS
       </h1>

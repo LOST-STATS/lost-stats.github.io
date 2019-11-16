@@ -19,7 +19,7 @@
 <meta property="og:description" content="Source code for the Library of Statistical Techniques" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Model_Estimation/ordinary_least_squares.html","headline":"Ordinary Least Squares (Linear Regression)","@context":"http://schema.org"}</script>
+{"headline":"Ordinary Least Squares (Linear Regression)","description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Model_Estimation/ordinary_least_squares.html","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
@@ -169,13 +169,14 @@ ols mpg const headroom trunk weight
 </code></pre></div></div>
       <h2 id="stata">
           <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
-      </h2><pre><code class="language-stata">* Load auto data
-sysuse https://github.com/LOST-STATS/lost-stats.github.io/blob/master/Data/auto.dta
-
+      </h2>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load auto data
+</span><span class="err">sysuse</span> <span class="err">https:</span><span class="c1">//github.com/LOST-STATS/lost-stats.github.io/blob/master/Data/auto.dta</span><span class="err">
+</span><span class="c1">
 * Run OLS using the auto data, with mpg as the outcome variable
 * and headroom, trunk, and weight as predictors
-regress mpg headroom trunk weight
-</code></pre>
+</span><span class="err">regress</span> <span class="err">mpg</span> <span class="err">headroom</span> <span class="err">trunk</span> <span class="err">weight
+</span></code></pre></div></div>
         </div>
       </div>
     </div>

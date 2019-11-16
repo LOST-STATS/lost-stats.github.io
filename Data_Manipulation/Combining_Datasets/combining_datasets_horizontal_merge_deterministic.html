@@ -19,7 +19,7 @@
 <meta property="og:description" content="Source code for the Library of Statistical Techniques" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html","headline":"Horizontal Combination (Deterministic)","@context":"http://schema.org"}</script>
+{"headline":"Horizontal Combination (Deterministic)","description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 </head>
 <body>
@@ -105,7 +105,7 @@
       <h2 id="r">
           <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
       </h2>
-<p>There are several ways to combine data sets horizontally in R, including base-R <code class="language-plaintext highlighter-rouge">merge</code> and several different approaches in the <strong>data.table</strong> package. We will be using the <code class="language-plaintext highlighter-rouge">join</code> functions in the <strong>dplyr</strong> package.</p>
+<p>There are several ways to combine data sets horizontally in R, including base-R <code class="highlighter-rouge">merge</code> and several different approaches in the <strong>data.table</strong> package. We will be using the <code class="highlighter-rouge">join</code> functions in the <strong>dplyr</strong> package.</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install dplyr</span><span class="w">
 </span><span class="c1"># install.packages('dplyr')</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
@@ -118,10 +118,10 @@
 </span><span class="n">DollarValue2018</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">Currency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Euro"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Pound"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Yen"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Dollar"</span><span class="p">),</span><span class="w">
                               </span><span class="n">InDollars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1.104</span><span class="p">,</span><span class="w"> </span><span class="m">1.256</span><span class="p">,</span><span class="w"> </span><span class="m">.00926</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w">
 </span></code></pre></div></div>
-<p>Next we want to join together <code class="language-plaintext highlighter-rouge">GDP2018</code> and <code class="language-plaintext highlighter-rouge">DollarValue2018</code> so we can convert all the GDPs to dollars and compare them. There are three kinds of observations we could get - observations in <code class="language-plaintext highlighter-rouge">GDP2018</code> but not <code class="language-plaintext highlighter-rouge">DollarValue2018</code>, observations in <code class="language-plaintext highlighter-rouge">DollarValue2018</code> but not <code class="language-plaintext highlighter-rouge">GDP2018</code>, and observations in both. Use <code class="language-plaintext highlighter-rouge">help(join)</code> to pick the variant of <code class="language-plaintext highlighter-rouge">join</code> that keeps the observations we want. The “Yen” observation won’t have a match, and we don’t need to keep it. So let’s do a <code class="language-plaintext highlighter-rouge">left_join</code> and list <code class="language-plaintext highlighter-rouge">GDP2018</code> first, so it keeps matched observations, plus any observations only in <code class="language-plaintext highlighter-rouge">GDP2018</code>.</p>
+<p>Next we want to join together <code class="highlighter-rouge">GDP2018</code> and <code class="highlighter-rouge">DollarValue2018</code> so we can convert all the GDPs to dollars and compare them. There are three kinds of observations we could get - observations in <code class="highlighter-rouge">GDP2018</code> but not <code class="highlighter-rouge">DollarValue2018</code>, observations in <code class="highlighter-rouge">DollarValue2018</code> but not <code class="highlighter-rouge">GDP2018</code>, and observations in both. Use <code class="highlighter-rouge">help(join)</code> to pick the variant of <code class="highlighter-rouge">join</code> that keeps the observations we want. The “Yen” observation won’t have a match, and we don’t need to keep it. So let’s do a <code class="highlighter-rouge">left_join</code> and list <code class="highlighter-rouge">GDP2018</code> first, so it keeps matched observations, plus any observations only in <code class="highlighter-rouge">GDP2018</code>.</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">GDPandExchange</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">left_join</span><span class="p">(</span><span class="n">GDP2018</span><span class="p">,</span><span class="w"> </span><span class="n">DollarValue2018</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
-<p>The <code class="language-plaintext highlighter-rouge">join</code> function will automatically detect that the <code class="language-plaintext highlighter-rouge">Currency</code> variable is shared in both data sets and use it to join them. Generally, you will want to be sure that the set of variables you are joining by uniquely identifies observations in at least one of the data sets you are joining. If you’re not sure whether that’s true, see <a href="https://lost-stats.github.io/Data_Manipulation/determine_the_observation_level_of_a_data_set.html">Determine the observation level of a data set</a>, or run <code class="language-plaintext highlighter-rouge">join</code> through the <code class="language-plaintext highlighter-rouge">safe_join</code> from the <strong>pmdplyr</strong> package.</p>
+<p>The <code class="highlighter-rouge">join</code> function will automatically detect that the <code class="highlighter-rouge">Currency</code> variable is shared in both data sets and use it to join them. Generally, you will want to be sure that the set of variables you are joining by uniquely identifies observations in at least one of the data sets you are joining. If you’re not sure whether that’s true, see <a href="https://lost-stats.github.io/Data_Manipulation/determine_the_observation_level_of_a_data_set.html">Determine the observation level of a data set</a>, or run <code class="highlighter-rouge">join</code> through the <code class="highlighter-rouge">safe_join</code> from the <strong>pmdplyr</strong> package.</p>
       <h2 id="stata">
           <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
       </h2>
@@ -133,11 +133,12 @@
       <h4 id="1-to-1">
           <a href="#1-to-1" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> 1-to-1
       </h4>
-<p>A one-to-one merge expects there to be no more than one row in each dataset to have a	matched pair in the other dataset. If there is more than one observation with the same identifying variable(s) in either the master or using datasets when attempting to do a one-to-one merge, Stata will throw an error. (Note: you can check to see if there is more than one observation per identifying variable by using the “duplicates report” command, or the Gtools variant for especially large datasets, called “gduplicates report.”)</p><pre><code class="language-stata">*Import Data with Car Sizes and Merge it to Data on Car Prices using the ID variable “Make”
-webuse autosize.dta, clear 
-	
-merge 1:1 make using http://www.stata-press.com/data/r14/autoexpense.dta 
-</code></pre>
+<p>A one-to-one merge expects there to be no more than one row in each dataset to have a	matched pair in the other dataset. If there is more than one observation with the same identifying variable(s) in either the master or using datasets when attempting to do a one-to-one merge, Stata will throw an error. (Note: you can check to see if there is more than one observation per identifying variable by using the “duplicates report” command, or the Gtools variant for especially large datasets, called “gduplicates report.”)</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">*Import Data with Car Sizes and Merge it to Data on Car Prices using the ID variable “Make”
+</span><span class="err">webuse</span> <span class="err">autosize.dta,</span> <span class="err">clear</span> <span class="err">
+</span>	<span class="err">
+merge</span> <span class="err">1:1</span> <span class="err">make</span> <span class="err">using</span> <span class="err">http:</span><span class="c1">//www.stata-press.com/data/r14/autoexpense.dta </span><span class="err">
+</span></code></pre></div></div>
 <p>Note that the syntax specifies “make” as the identifying variable after the merge type (1:1) and before the using statement (thus why we call the data not in memory the “using” data. The result of this merge shows 5 successful matches and one observation from the master dataset that did not have a match.</p>
 <div class="table-wrapper"><table>
   <thead>
@@ -174,11 +175,12 @@ merge 1:1 make using http://www.stata-press.com/data/r14/autoexpense.dta
       <h4 id="many-to-1">
           <a href="#many-to-1" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Many-to-1
       </h4>
-<p>A many-to-one merge occurs when the master dataset contains multiple observations of the same unit or individual (say, multiple test scores for the same student), while the using dataset has only one observation per unit or individual (say, the age of each student). Here is the syntax for a many-to-1 merge.</p><pre><code class="language-stata">*Import Data with Car Sizes and Merge it to Data on Car Prices using the ID variable “Make”
-webuse sforce.dta, clear 
-	
-merge m:1 region using http://www.stata-press.com/data/r14/dollars.dta
-</code></pre>
+<p>A many-to-one merge occurs when the master dataset contains multiple observations of the same unit or individual (say, multiple test scores for the same student), while the using dataset has only one observation per unit or individual (say, the age of each student). Here is the syntax for a many-to-1 merge.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">*Import Data with Car Sizes and Merge it to Data on Car Prices using the ID variable “Make”
+</span><span class="err">webuse</span> <span class="err">sforce.dta,</span> <span class="err">clear</span> <span class="err">
+</span>	<span class="err">
+merge</span> <span class="err">m:1</span> <span class="err">region</span> <span class="err">using</span> <span class="err">http:</span><span class="c1">//www.stata-press.com/data/r14/dollars.dta</span><span class="err">
+</span></code></pre></div></div>
 <p>Note that in this case that the syntax changes from merge 1:1 to merge m:1 where m stands for many. In this case, the identifying variable is “region.”</p>
       <h4 id="1-to-many">
           <a href="#1-to-many" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> 1-to-Many
@@ -187,7 +189,7 @@ merge m:1 region using http://www.stata-press.com/data/r14/dollars.dta
       <h4 id="many-to-many">
           <a href="#many-to-many" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Many-to-Many
       </h4>
-<p>A many-to-many merge is intended for use when there are multiple observations for each combination of the set of merging variables in both master and using data. However, <code class="language-plaintext highlighter-rouge">merge m:m</code> has strange behavior that is effectively never what you want, and it is not recommended.</p>
+<p>A many-to-many merge is intended for use when there are multiple observations for each combination of the set of merging variables in both master and using data. However, <code class="highlighter-rouge">merge m:m</code> has strange behavior that is effectively never what you want, and it is not recommended.</p>
         </div>
       </div>
     </div>

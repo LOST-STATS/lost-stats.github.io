@@ -19,7 +19,7 @@
 <meta property="og:description" content="Source code for the Library of Statistical Techniques" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html","headline":"Reshape Panel Data from Long to Wide","@context":"http://schema.org"}</script>
+{"headline":"Reshape Panel Data from Long to Wide","description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 </head>
 <body>
@@ -185,7 +185,7 @@
       <h2 id="r">
           <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
       </h2>
-<p>There are many ways to reshape in R, including base-R <code class="language-plaintext highlighter-rouge">reshape</code> and the deprecated <code class="language-plaintext highlighter-rouge">reshape2::melt</code> and <code class="language-plaintext highlighter-rouge">cast</code> and <code class="language-plaintext highlighter-rouge">tidyr::gather</code> and <code class="language-plaintext highlighter-rouge">spread</code>. We will be using the <strong>tidyr</strong> package function <code class="language-plaintext highlighter-rouge">pivot_wider</code>, which requires <strong>tidyr</strong> version 1.0.0 or later.</p>
+<p>There are many ways to reshape in R, including base-R <code class="highlighter-rouge">reshape</code> and the deprecated <code class="highlighter-rouge">reshape2::melt</code> and <code class="highlighter-rouge">cast</code> and <code class="highlighter-rouge">tidyr::gather</code> and <code class="highlighter-rouge">spread</code>. We will be using the <strong>tidyr</strong> package function <code class="highlighter-rouge">pivot_wider</code>, which requires <strong>tidyr</strong> version 1.0.0 or later.</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># install.packages('tidyr')</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span><span class="w">
 
@@ -200,8 +200,8 @@
 </span></code></pre></div></div>
 <p>Now we think:</p>
 <ol>
-  <li>Think about the set of variables that contain the values we’re interested in reshaping. Here’s it’s <code class="language-plaintext highlighter-rouge">population</code>. This list of variable names will be our <code class="language-plaintext highlighter-rouge">values_from</code> argument.</li>
-  <li>Think about what we want the new variables to be called. The <code class="language-plaintext highlighter-rouge">variable</code> variable says which variable we’re looking at. So that will be our <code class="language-plaintext highlighter-rouge">names_from</code> argument. And we want to specify that each variable represents population in a given year (rather than some other variable, so we’ll add “pop_” as our <code class="language-plaintext highlighter-rouge">names_prefix</code>.</li>
+  <li>Think about the set of variables that contain the values we’re interested in reshaping. Here’s it’s <code class="highlighter-rouge">population</code>. This list of variable names will be our <code class="highlighter-rouge">values_from</code> argument.</li>
+  <li>Think about what we want the new variables to be called. The <code class="highlighter-rouge">variable</code> variable says which variable we’re looking at. So that will be our <code class="highlighter-rouge">names_from</code> argument. And we want to specify that each variable represents population in a given year (rather than some other variable, so we’ll add “pop_” as our <code class="highlighter-rouge">names_prefix</code>.</li>
 </ol>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pop_wide</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pivot_wider</span><span class="p">(</span><span class="n">population</span><span class="p">,</span><span class="w">
                                </span><span class="n">names_from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w">
@@ -210,58 +210,61 @@
 </span></code></pre></div></div>
       <h2 id="stata">
           <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
-      </h2><pre><code class="language-stata">* Load blood pressure data in long format, which contains
+      </h2>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load blood pressure data in long format, which contains
 * blood pressure both before and after a treatment for some patients
-sysuse bplong.dta
-</code></pre>
+</span><span class="err">sysuse</span> <span class="err">bplong.dta
+</span></code></pre></div></div>
 <p>The next steps involve thinking:</p>
 <ol>
-  <li>Think about the set of variables that identify individuals. Here it’s <code class="language-plaintext highlighter-rouge">patient</code>. This will go in <code class="language-plaintext highlighter-rouge">i()</code>, so we have <code class="language-plaintext highlighter-rouge">i(patient)</code>.</li>
-  <li>Think about the set of variables that vary across time. Here’s it’s <code class="language-plaintext highlighter-rouge">bp</code>. This will be one of our “stub”s.</li>
-  <li>Think about which variable separates the different time periods within individual. Here we have “when”, and this goes in <code class="language-plaintext highlighter-rouge">j()</code>, so we have <code class="language-plaintext highlighter-rouge">j(when)</code>.</li>
-</ol><pre><code class="language-stata">* Syntax is:
+  <li>Think about the set of variables that identify individuals. Here it’s <code class="highlighter-rouge">patient</code>. This will go in <code class="highlighter-rouge">i()</code>, so we have <code class="highlighter-rouge">i(patient)</code>.</li>
+  <li>Think about the set of variables that vary across time. Here’s it’s <code class="highlighter-rouge">bp</code>. This will be one of our “stub”s.</li>
+  <li>Think about which variable separates the different time periods within individual. Here we have “when”, and this goes in <code class="highlighter-rouge">j()</code>, so we have <code class="highlighter-rouge">j(when)</code>.</li>
+</ol>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Syntax is:
 * reshape wide stub, i(individualvars) j(newtimevar)
 * So we have
-reshape wide bp i(patient) j(when)
-* Note that simply typing 
-reshape
-* will show the syntax for the function
-</code></pre>
-<p>With especially large datasets, the <a href="https://gtools.readthedocs.io/en/latest/index.html"><strong>Gtools</strong></a> package provides a much faster version of reshape known as greshape. The syntax can function exactly the same, though they provide alternative syntax that you may find more intuitive.</p><pre><code class="language-stata">* First, we will create a toy dataset that is very large to demonstrate the speed gains 
+</span><span class="err">reshape</span> <span class="err">wide</span> <span class="err">bp</span> <span class="err">i(patient)</span> <span class="err">j(when)
+</span><span class="c1">* Note that simply typing 
+</span><span class="err">reshape
+</span><span class="c1">* will show the syntax for the function
+</span></code></pre></div></div>
+<p>With especially large datasets, the <a href="https://gtools.readthedocs.io/en/latest/index.html"><strong>Gtools</strong></a> package provides a much faster version of reshape known as greshape. The syntax can function exactly the same, though they provide alternative syntax that you may find more intuitive.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* First, we will create a toy dataset that is very large to demonstrate the speed gains 
 * If necessary, first install gtools:
 * ssc install gtools
 
 * Clear memory
-clear all 
-* Turn on return message to see command run time
-set rmsg on 
-* Set data size to 15 million observations
-set obs 15000000 
-* Create ten observations per person
-generate person_id = floor((_n-1)/10)
-* Number time periods from 1 to 10 for each person
-generate time_id = mod((_n-1), 10) + 1
-
+</span><span class="err">clear</span> <span class="err">all</span> <span class="err">
+</span><span class="c1">* Turn on return message to see command run time
+</span><span class="err">set</span> <span class="err">rmsg</span> <span class="err">on</span> <span class="err">
+</span><span class="c1">* Set data size to 15 million observations
+</span><span class="err">set</span> <span class="err">obs</span> <span class="err">15000000</span> <span class="err">
+</span><span class="c1">* Create ten observations per person
+</span><span class="err">generate</span> <span class="err">person_id</span> <span class="o">=</span> <span class="err">floor((_n</span><span class="o">-</span><span class="err">1)</span><span class="o">/</span><span class="err">10)
+</span><span class="c1">* Number time periods from 1 to 10 for each person
+</span><span class="err">generate</span> <span class="err">time_id</span> <span class="o">=</span> <span class="err">mod((_n</span><span class="o">-</span><span class="err">1),</span> <span class="err">10)</span> <span class="o">+</span> <span class="err">1
+</span><span class="c1">
 *Create an income in each period 
-generate income = round(rnormal(100, 20))
-
+</span><span class="err">generate</span> <span class="err">income</span> <span class="o">=</span> <span class="err">round(rnormal(100,</span> <span class="err">20))
+</span><span class="c1">
 * Demonstrate the comparative speed of these two Reshape approaches 
 	
 *The traditional reshape command
-preserve 
-reshape wide income, i(person_id) j(time_id) 
-restore 
-	
+</span><span class="err">preserve</span> <span class="err">
+reshape</span> <span class="err">wide</span> <span class="err">income,</span> <span class="err">i(person_id)</span> <span class="err">j(time_id)</span> <span class="err">
+restore</span> <span class="err">
+</span><span class="c1">	
 *The Gtools reshape command  
-preserve
-greshape wide income, i(person_id) j(time_id) 
-restore 
-	
+</span><span class="err">preserve
+greshape</span> <span class="err">wide</span> <span class="err">income,</span> <span class="err">i(person_id)</span> <span class="err">j(time_id)</span> <span class="err">
+restore</span> <span class="err">
+</span><span class="c1">	
 *The Gtools reshape command, alternative syntax
-preserve
-greshape wide income, by(person_id) keys(time_id)
-restore 
-</code></pre>
+</span><span class="err">preserve
+greshape</span> <span class="err">wide</span> <span class="err">income,</span> <span class="err">by(person_id)</span> <span class="err">keys(time_id)
+restore</span> <span class="err">
+</span></code></pre></div></div>
 <p>Note: there is much more guidance to the usage of greshape on the <a href="https://gtools.readthedocs.io/en/latest/usage/greshape/index.html">Gtools reshape page</a>.</p>
         </div>
       </div>

@@ -19,7 +19,7 @@
 <meta property="og:description" content="Source code for the Library of Statistical Techniques" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Presentation/marginal_effects_plots_for_interactions_with_continuous_variables.html","headline":"Marginal Effects Plots for Interactions with Continuous Variables","@context":"http://schema.org"}</script>
+{"headline":"Marginal Effects Plots for Interactions with Continuous Variables","description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Presentation/marginal_effects_plots_for_interactions_with_continuous_variables.html","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
@@ -145,24 +145,25 @@
       <h2 id="stata">
           <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
       </h2>
-<p>We will use the <code class="language-plaintext highlighter-rouge">marginsplot</code> command, which requires Stata 12 or higher.</p><pre><code class="language-stata">* Load in the National Longitudinal Survey of Youth - Women sample
-sysuse nlsw88.dta
-
+<p>We will use the <code class="highlighter-rouge">marginsplot</code> command, which requires Stata 12 or higher.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load in the National Longitudinal Survey of Youth - Women sample
+</span><span class="err">sysuse</span> <span class="err">nlsw88.dta
+</span><span class="c1">
 * Perform a regression with a nonlinear term
-regress wage c.tenure##c.tenure
-
+</span><span class="err">regress</span> <span class="err">wage</span> <span class="err">c.tenure##c.tenure
+</span><span class="c1">
 * Use margins to calculate the marginal effects
 * Put the variable we're interested in getting the effect of in dydx()
 * And the values we want to evaluate it at in at()
-margins, dydx(tenure) at(tenure = (0(1)26))
-* (If we had interacted with another variable, say age, we would specify similarly, 
+</span><span class="err">margins,</span> <span class="err">dydx(tenure)</span> <span class="err">at(tenure</span> <span class="o">=</span> <span class="err">(0(1)26))
+</span><span class="c1">* (If we had interacted with another variable, say age, we would specify similarly, 
 * with at(age = (start(count-by)end)))
 
 * Then, marginsplot
 * The recast() and recastci() options make the effect/CI show up as a line/area
 * Remove to get points/lines instead.
-marginsplot, xtitle("Tenure") ytitle("Marginal Effect of Tenure") recast(line) recastci(rarea)
-</code></pre>
+</span><span class="err">marginsplot,</span> <span class="err">xtitle(</span><span class="s2">"Tenure"</span><span class="err">)</span> <span class="err">ytitle(</span><span class="s2">"Marginal Effect of Tenure"</span><span class="err">)</span> <span class="err">recast(line)</span> <span class="err">recastci(rarea)
+</span></code></pre></div></div>
 <p>This results in:</p>
 <p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Images/Marginal-Effects-Plots-for-Interactions-with-Continuous-Variables/stata_marginal_effects_continuous_interaction.png" alt="Marginal effect of tenure varying over tenure, produced with Stata." /></p>
         </div>

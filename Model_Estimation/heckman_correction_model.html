@@ -19,7 +19,7 @@
 <meta property="og:description" content="Source code for the Library of Statistical Techniques" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Model_Estimation/heckman_correction_model.html","headline":"Heckman Correction Model","@context":"http://schema.org"}</script>
+{"headline":"Heckman Correction Model","description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Model_Estimation/heckman_correction_model.html","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
@@ -150,11 +150,12 @@
 </span></code></pre></div></div>
       <h2 id="stata">
           <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
-      </h2><pre><code class="language-stata">* Get data from Mroz (1987, Econometrica)
+      </h2>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Get data from Mroz (1987, Econometrica)
 * which has Panel Study of Income Dynamics data for married women
 * (data via the sampleSelection package in R)
-import delimited "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Estimation/Data/Heckman_Correction_Model/Mroz87.csv", clear
-
+</span><span class="err">import</span> <span class="err">delimited</span> <span class="s2">"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Estimation/Data/Heckman_Correction_Model/Mroz87.csv"</span><span class="err">,</span> <span class="err">clear
+</span><span class="c1">
 * First, consider the regression of interest. 
 
 * First consider our selection model
@@ -171,8 +172,8 @@ import delimited "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github
 * wage c.exper##c.exper educ city
 
 * Now we run our Heckman model!
-heckman wage c.exper##c.exper educ city, select(lfp = c.exper##c.exper faminc educ kids5)
-</code></pre>
+</span><span class="err">heckman</span> <span class="err">wage</span> <span class="err">c.exper##c.exper</span> <span class="err">educ</span> <span class="err">city,</span> <span class="err">select(lfp</span> <span class="o">=</span> <span class="err">c.exper##c.exper</span> <span class="err">faminc</span> <span class="err">educ</span> <span class="err">kids5)
+</span></code></pre></div></div>
         </div>
       </div>
     </div>
