@@ -10,7 +10,7 @@ jobs:
         - source
 
     docker:
-      - image: khwilson/ruby-node:2.4.4-10
+      - image: khwilson/ruby-node:2.6.4-10
 
     working_directory: ~/repo
 
