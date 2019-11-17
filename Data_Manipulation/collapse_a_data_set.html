@@ -4,22 +4,22 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <title>Determine the Observation Level of a Data Set - LOST</title>
+    <title>Collapse a Data Set - LOST</title>
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="/assets/css/just-the-docs.css">
     <script type="text/javascript" src="/assets/js/vendor/lunr.min.js"></script>
   <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Determine the Observation Level of a Data Set | LOST</title>
+<title>Collapse a Data Set | LOST</title>
 <meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="Determine the Observation Level of a Data Set" />
+<meta property="og:title" content="Collapse a Data Set" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Source code for the Library of Statistical Techniques" />
 <meta property="og:description" content="Source code for the Library of Statistical Techniques" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"headline":"Determine the Observation Level of a Data Set","description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Data_Manipulation/determine_the_observation_level_of_a_data_set.html","@context":"http://schema.org"}</script>
+{"headline":"Collapse a Data Set","description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Data_Manipulation/collapse_a_data_set.html","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
@@ -45,11 +45,11 @@
       </div>
       <div class="navigation main-nav js-main-nav">
         <nav role="navigation" aria-label="Main navigation">
-  <ul class="navigation-list"><li class="navigation-list-item"><a href="/" class="navigation-list-link">Home</a></li><li class="navigation-list-item active"><a href="/Data/" class="navigation-list-link"></a></li><li class="navigation-list-item active"><a href="/Data_Manipulation/data_manipulation.html" class="navigation-list-link">Data Manipulation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="navigation-list-link">Collapse a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="navigation-list-link">Combining Datasets</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+  <ul class="navigation-list"><li class="navigation-list-item"><a href="/" class="navigation-list-link">Home</a></li><li class="navigation-list-item active"><a href="/Data/" class="navigation-list-link"></a></li><li class="navigation-list-item active"><a href="/Data_Manipulation/data_manipulation.html" class="navigation-list-link">Data Manipulation</a><ul class="navigation-list-child-list "><li class="navigation-list-item  active"><a href="/Data_Manipulation/collapse_a_data_set.html" class="navigation-list-link active">Collapse a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="navigation-list-link">Combining Datasets</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
                             <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="navigation-list-link">Vertical Combination</a>
                           </li><li class="navigation-list-item ">
                             <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="navigation-list-link">Horizontal Combination (Deterministic)</a>
-                          </li></ul></li><li class="navigation-list-item  active"><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="navigation-list-link active">Determine the Observation Level of a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Reshaping/reshape.html" class="navigation-list-link">Reshaping Data</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                          </li></ul></li><li class="navigation-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="navigation-list-link">Determine the Observation Level of a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Reshaping/reshape.html" class="navigation-list-link">Reshaping Data</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
                             <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="navigation-list-link">Reshape Panel Data from Wide to Long</a>
                           </li><li class="navigation-list-item ">
                             <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="navigation-list-link">Reshape Panel Data from Long to Wide</a>
@@ -75,14 +75,14 @@
             <div class="js-search-results search-results-wrap"></div>
           </div>
             <ul class="list-style-none text-small aux-nav">
-                <li class="d-inline-block my-0"><a href="https://github.com/lost-stats/lost-stats.github.io/blob/source/Data_Manipulation/determine_the_observation_level_of_a_data_set.md">Edit this page on GitHub</a></li>
+                <li class="d-inline-block my-0"><a href="https://github.com/lost-stats/lost-stats.github.io/blob/source/Data_Manipulation/collapse_a_data_set.md">Edit this page on GitHub</a></li>
             </ul>
         </div>
         <div class="page">
               <nav class="breadcrumb-nav">
                 <ol class="breadcrumb-nav-list">
                     <li class="breadcrumb-nav-list-item"><a href="/Data_Manipulation/data_manipulation.html">Data Manipulation</a></li>
-                  <li class="breadcrumb-nav-list-item"><span>Determine the Observation Level of a Data Set</span></li>
+                  <li class="breadcrumb-nav-list-item"><span>Collapse a Data Set</span></li>
                 </ol>
               </nav>
           <div id="main-content" class="page-content" role="main">
@@ -122,19 +122,38 @@
   </tbody>
 </table></div>
 <p>the variables <script type="math/tex">I</script> and <script type="math/tex">J</script> uniquely identify rows. The first row has <script type="math/tex">I = 1</script> and <script type="math/tex">J = 1</script>, and there is no other row with that combination. We could also say that <script type="math/tex">X</script> uniquely identifies rows, but in this example <script type="math/tex">X</script> is not a case-identifying variable, it’s actual data.</p>
-<p>When working with data that has case-identifier variables, like panel data, it’s generally a good idea to know what set of them makes up the observation level of a data set. Otherwise you might perform <a href="https://lost-stats.github.io/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_combination_deterministic.html">merges</a> or case-level calculations incorrectly.</p>
+<p>It is common to want to <em>collapse</em> a data set from one level to another, coarser level. For example, perhaps instead of one row per combination of <script type="math/tex">I</script> and <script type="math/tex">J</script>, we simply want one row per <script type="math/tex">I</script>, perhaps with the average <script type="math/tex">X</script> across all <script type="math/tex">I</script> observations. This would result in:</p>
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>I</th>
+      <th>X</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>3.25</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>3.25</td>
+    </tr>
+  </tbody>
+</table></div>
+<p>This can be one useful way to produce <a href="https://lost-stats.github.io/Summary_Statistics/summary_statistics.html">summary statistics</a>, but can also be used to rid the data of unnecessary or unusable detail, or to change one data set to match the observation level of another.</p>
       <h2 id="keep-in-mind">
           <a href="#keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Keep in Mind
       </h2>
 <ul>
-  <li>As in the above example, it’s easy to uniquely identify rows using continuous data. But the goal is to figure out which <em>case-identifying</em> variables, like an individual’s ID code, or a country code, or a time code, uniquely identify rows. Make sure you only try these variables.</li>
-  <li>Even if you think you know what the observation level is, it’s good to check. Lots of data is poorly behaved!</li>
+  <li>Collapsing a data set almost by definition requires losing some information. Make sure that you actually want to lose this information, rather than, for example, doing a <a href="https://lost-stats.github.io/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html">horizontal merge</a>, which can match data sets with different observation levels without losing information.</li>
+  <li>Make sure that, for each variable you plan to retain in your new, collapsed data, you know the correct procedure that should be used to figure out the new, summarized value. Should the collapsed data for variable <script type="math/tex">X</script> use the mean of all the observations you started with? The median? The mode? The first value found in the data? Think through these decisions.</li>
 </ul>
       <h2 id="also-consider">
           <a href="#also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Also Consider
       </h2>
 <ul>
-  <li>You can <a href="https://lost-stats.github.io/Data_Manipulation/collapse_a_data_set.html">collapse a data set</a> to switch from one observation level to another, coarser one.</li>
+  <li>For more information about observation levels and how to determine what the current observation level is, see <a href="https://lost-stats.github.io/Data_Manipulation/determine_the_observation_level_of_a_data_set">determine the observation level of a data set</a>.</li>
 </ul>
       <h1 id="implementations">
           <a href="#implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Implementations
@@ -144,70 +163,43 @@
       </h2>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install dplyr</span><span class="w">
 </span><span class="c1"># install.packages('dplyr')</span><span class="w">
-</span><span class="c1"># We do not need dplyr to detect the observation level</span><span class="w">
-</span><span class="c1"># But we will use it to get data, and for our alternate approach</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
 
 </span><span class="c1"># Get data on storms from dplyr</span><span class="w">
 </span><span class="n">data</span><span class="p">(</span><span class="s2">"storms"</span><span class="p">)</span><span class="w">
 
-</span><span class="c1"># Each storm should be identified by</span><span class="w">
-</span><span class="c1"># name, year, month, day, and hour</span><span class="w">
-</span><span class="c1"># anyDuplicated will return 0 if there are no duplicate combinations of these</span><span class="w">
-</span><span class="n">anyDuplicated</span><span class="p">(</span><span class="n">storms</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="s1">'name'</span><span class="p">,</span><span class="s1">'year'</span><span class="p">,</span><span class="s1">'month'</span><span class="p">,</span><span class="s1">'day'</span><span class="p">,</span><span class="s1">'hour'</span><span class="p">)])</span><span class="w">
+</span><span class="c1"># We would like each storm to be identified by</span><span class="w">
+</span><span class="c1"># name, year, month, and day</span><span class="w">
+</span><span class="c1"># However, currently, they are also identified by hour,</span><span class="w">
+</span><span class="c1"># And even then there are sometimes multiple observations per hour</span><span class="w">
 
-</span><span class="c1"># We get 2292, telling us that row 2292 is a duplicate (and possibly others!)</span><span class="w">
-</span><span class="c1"># We can pick just the rows that are duplicates of other rows for inspection</span><span class="w">
-</span><span class="c1"># (note this won't get the first time that duplicate shows up, just the subsequent times)</span><span class="w">
-</span><span class="n">duplicated_rows</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">storms</span><span class="p">[</span><span class="n">duplicated</span><span class="p">(</span><span class="n">storms</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="s1">'name'</span><span class="p">,</span><span class="s1">'year'</span><span class="p">,</span><span class="s1">'month'</span><span class="p">,</span><span class="s1">'day'</span><span class="p">,</span><span class="s1">'hour'</span><span class="p">)]),]</span><span class="w">
-
-
-</span><span class="c1"># Alternately, we can use dplyr</span><span class="w">
-</span><span class="n">storms</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
-  </span><span class="n">group_by</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="p">,</span><span class="w"> </span><span class="n">hour</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
-  </span><span class="c1"># Add a variable with the number of times that particular combination shows up</span><span class="w">
-  </span><span class="n">mutate</span><span class="p">(</span><span class="n">number_duplicates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">())</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
-  </span><span class="c1"># Then take that variable out</span><span class="w">
-  </span><span class="n">pull</span><span class="p">(</span><span class="n">number_duplicates</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
-  </span><span class="c1"># And get the maximum of it</span><span class="w">
-  </span><span class="nf">max</span><span class="p">()</span><span class="w">
-</span><span class="c1"># If the result is 1, then we have found the observation level. If not, we have duplicates.</span><span class="w">
-
-</span><span class="c1"># We can pick out the rows that are duplicated for inspection </span><span class="w">
-</span><span class="c1"># by filtering on n(). This approach will give you every time the duplicate appears.</span><span class="w">
-</span><span class="n">duplicated_rows</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">storms</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
-  </span><span class="n">group_by</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="p">,</span><span class="w"> </span><span class="n">hour</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
-  </span><span class="c1"># Add a variable with the number of times that particular combination shows up</span><span class="w">
-  </span><span class="n">filter</span><span class="p">(</span><span class="n">n</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+</span><span class="c1"># To construct the collapsed data, we start with the original</span><span class="w">
+</span><span class="n">storms_collapsed</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">storms</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="c1"># group by the variables that make the new observation level</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="c1"># And use summarize() to pick the variables to keep, as well as</span><span class="w">
+  </span><span class="c1"># the functions we want to use to collapse each variable.</span><span class="w">
+  </span><span class="c1"># Let's get the mean wind and pressure, and the first category value</span><span class="w">
+  </span><span class="n">summarize</span><span class="p">(</span><span class="n">wind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">wind</span><span class="p">),</span><span class="w">
+            </span><span class="n">pressure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">pressure</span><span class="p">),</span><span class="w">
+            </span><span class="n">category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first</span><span class="p">(</span><span class="n">category</span><span class="p">))</span><span class="w">
+</span><span class="c1"># Note that if we wanted to collapse every variable in the data with the </span><span class="w">
+</span><span class="c1"># same function, we could instead use summarize_all()</span><span class="w">
 </span></code></pre></div></div>
       <h2 id="stata">
           <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
       </h2>
-<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load surface.dta, which contains temperature recordings in different locations
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">** Load surface.dta, which contains temperature recordings in different locations
 </span><span class="err">sysuse</span> <span class="err">surface.dta,</span> <span class="err">clear
 </span><span class="c1">
-* duplicates report followed by a variable list will show how many times 
-* each combination shows up.
-* I think there is one observation level for each location, so I'll check that
-</span><span class="err">duplicates</span> <span class="err">report</span> <span class="err">latitude</span> <span class="err">longitude
-</span><span class="c1">* If I am correct, then the only number in the "Copies" column will be 1.
-* But it looks like I was not correct.
+* Currently, there is one observation per latitude per longitude per date
+* I would like this to just be one observation per latitude/longitude
 
-* duplicates tag will create a binary variable with 1 for all duplicates
-* so I can examine the problem more closely
-* (duplicates examples is another option)
-</span><span class="err">duplicates</span> <span class="err">tag</span> <span class="err">latitude</span> <span class="err">longitude,</span> <span class="err">g(duplicated_data)
-</span><span class="c1">
-* If I want to know not just whether there are duplicates but how many
-* of each there are for when I look more closely, I can instead do
-</span><span class="err">by</span> <span class="err">latitude</span> <span class="err">longitude,</span> <span class="err">sort:</span> <span class="err">g</span> <span class="err">number_of_duplicates_in_this_group</span> <span class="o">=</span> <span class="err">_N
-</span></code></pre></div></div>
-<p>For especially large datasets the <a href="https://gtools.readthedocs.io/en/latest/index.html"><strong>Gtools</strong></a> version of the various duplicates commands, <a href="https://gtools.readthedocs.io/en/latest/usage/gduplicates/index.html">gduplicates</a>, is a great option</p>
-<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Install gtools if necessary
-* ssc install gtools
-* Recreate the two duplicates tasks from above
-</span><span class="err">gduplicates</span> <span class="err">report</span> <span class="err">latitude</span> <span class="err">longitude
-gduplicates</span> <span class="err">tag</span> <span class="err">latitude</span> <span class="err">longitude,</span> <span class="err">g(g_duplicated_data)
+* So I construct a collapse command.
+* I take my new target observation level and put it in by()
+* and then take each variable I'd like to keep around and tell
+* Stata what function to use to create the new collapsed value, here (mean)
+</span><span class="err">collapse</span> <span class="err">(mean)</span> <span class="err">temperature,</span> <span class="err">by(latitude</span> <span class="err">longitude)
 </span></code></pre></div></div>
         </div>
       </div>
