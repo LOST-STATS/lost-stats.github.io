@@ -32,7 +32,7 @@ In long format, there is one row per individual per time period:
 
 This format makes it easy to run models like [fixed effects](https://lost-stats.github.io/Model_Estimation/fixed_effects.html). 
 
-Reshaping is the method of converting wide-format data to long and [vice versa](https://lost-stats.github.io/Data_Manipulation/reshape_panel_data_from_wide_to_long.html).
+Reshaping is the method of converting wide-format data to long and [vice versa](https://lost-stats.github.io/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html).
 
 ## Keep in Mind
 
@@ -41,7 +41,7 @@ Reshaping is the method of converting wide-format data to long and [vice versa](
 
 ## Also Consider
 
-- To go in the other direction, [reshape from wide to long](https://lost-stats.github.io/Data_Manipulation/reshape_panel_data_from_wide_to_long.html).
+- To go in the other direction, [reshape from wide to long](https://lost-stats.github.io/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html).
 - [Determine the observation level of a data set](https://lost-stats.github.io/Data_Manipulation/determine_the_observation_level_of_a_data_set.html).
 
 # Implementations

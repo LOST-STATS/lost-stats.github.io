@@ -43,6 +43,7 @@ If you create one of these pages, please remove it from this list.
 * Mixed Logit
 * Nested Logit
 * Hierarchical Bayes Conditional Logit
+* Hierarchical Linear Models
 * Cluster-robust Standard Errors
 * Ordered Probit
 * Ordered Logit

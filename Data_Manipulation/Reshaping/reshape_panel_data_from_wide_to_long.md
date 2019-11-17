@@ -41,7 +41,7 @@ Reshaping is the method of converting wide-format data to long and [vice versa](
 
 ## Also Consider
 
-- To go in the other direction, [reshape from long to wide](https://lost-stats.github.io/Data_Manipulation/reshape_panel_data_from_long_to_wide.html).
+- To go in the other direction, [reshape from long to wide](https://lost-stats.github.io/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html).
 - [Determine the observation level of a data set](https://lost-stats.github.io/Data_Manipulation/determine_the_observation_level_of_a_data_set.html).
 
 # Implementations

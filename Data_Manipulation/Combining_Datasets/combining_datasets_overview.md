@@ -9,23 +9,18 @@ nav_order: 1
 
 There are two main ways to combine data: [vertically](https://lost-stats.github.io/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html) and [horizontally](hhttps://lost-stats.github.io/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html). That is, you can want to combine observations (adding new variables) or combine variables (adding new observations). This is perhaps easiest to show visually: 
 
-<table>
-<tr><th> Individual Name Info </th><th> Individual Age Info </th></tr>
-<tr><td>
-
+Individual Name Info
 |Name| ID |
 |--|--| 
 |John Smith|A63240|
 |Desiree Thomas|B78242|
 
-</td><td>
 
+Individual Age Info
 |ID | Age | 
 |--|--| 
 |B78242|22|
 |A63240|27|
-
-</td></tr> </table>
 
 In the case above, we would like to combine two datasets, the Individual Name Info and the Individual Date Info, that have different information about the same people, who are identified by the ID variable. The result from the merge would be to have a new dataset with more columns than the original datasets because it contains all of the information for each individual from both of the original datasets. Here we have to combine the files according to the ID variable, placing the information from observations with the same ID on the same row in the combined dataset. 
 
