@@ -6,7 +6,7 @@ mathjax: true
 nav_order: 1
 ---
 
-# Determine the Observation Level of a Data Set
+# Collapse a Data Set
 
 The *observation level* of a data set is the set of case-identifying variables which, in combination, uniquely identify every row of the data set. For example, in the data set
 
