@@ -28,6 +28,7 @@ If you create one of these pages, please remove it from this list.
 
 ## Model Estimation
 
+* Nonparametric regression
 * Generalized Method of Moments (GMM)
 * Bootstrap Standard Errors
 * Cluster Bootstrap Standard Errors
