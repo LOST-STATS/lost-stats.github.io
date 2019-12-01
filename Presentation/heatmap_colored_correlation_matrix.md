@@ -20,6 +20,10 @@ A correlation matrix shows the correlation between different variables in a matr
 
 # Implementations
 
+## Python
+
+See [this guide](https://towardsdatascience.com/better-heatmaps-and-correlation-matrix-plots-in-python-41445d0f2bec).
+
 ## R
 
 We will be creating our heatmap in two different ways. First, we will be using the **corrplot** package, which is tailor-made for the task and is very easy to use. Then, we will be using **ggplot2** with `geom_tile`, which requires *much* more preprocessing to use, but then provides access to the entirety of the **ggplot2** package for customization.
@@ -132,6 +136,10 @@ ggplot(C_Long,
 This results in:
 
 ![Heatmap Colored Correlation Matrix in R using ggplot2](https://lost-stats.github.io/Presentation/Images/Heatmap-Colored-Correlation-Matrix/heatmap_colored_correlation_matrix_ggplot2_r.png)
+
+## SAS
+
+See [this guide](https://blogs.sas.com/content/sasdummy/2013/06/12/correlations-matrix-heatmap-with-sas/).
 
 ## Stata
 
