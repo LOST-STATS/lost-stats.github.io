@@ -37,9 +37,6 @@
 <loc>/Data_Manipulation/collapse_a_data_set.html</loc>
 </url>
 <url>
-<loc>/Presentation/color_coded_correlation_matrix.html</loc>
-</url>
-<url>
 <loc>/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html</loc>
 </url>
 <url>
@@ -62,6 +59,9 @@
 </url>
 <url>
 <loc>/Model_Estimation/Nonstandard_Errors/hc_se.html</loc>
+</url>
+<url>
+<loc>/Presentation/heatmap_colored_correlation_matrix.html</loc>
 </url>
 <url>
 <loc>/Model_Estimation/heckman_correction_model.html</loc>
