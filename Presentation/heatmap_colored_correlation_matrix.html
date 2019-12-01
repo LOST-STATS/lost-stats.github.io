@@ -108,7 +108,61 @@
       <h2 id="python">
           <a href="#python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Python
       </h2>
-<p>See <a href="https://towardsdatascience.com/better-heatmaps-and-correlation-matrix-plots-in-python-41445d0f2bec">this guide</a>.</p>
+<p>We present two ways you can create a heatmap. First, the <a href="https://seaborn.pydata.org/"><strong>seaborn</strong></a> package has a great collection of premade plots, one of which is a heatmap we’ll use. The second we’ll only point you to, which is a “by hand” approach that will allow you more customization.</p>
+<p>For the by hand approach, see <a href="https://towardsdatascience.com/better-heatmaps-and-correlation-matrix-plots-in-python-41445d0f2bec">this guide</a>.</p>
+<p>For the seaborn approach, you will need to <code class="highlighter-rouge">pip install seaborn</code> or <code class="highlighter-rouge">conda install seaborn</code> before continuing. Once you’ve done that, the follow code will produce the below plot.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Ganked from https://seaborn.pydata.org/examples/many_pairwise_correlations.html
+# Assumes you have run `pip install numpy pandas matplotlib scikit-learn seaborn`
+</span>
+<span class="c1"># Standard imports
+</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># For this example we'll use Seaborn, which has some nice built in plots
+</span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+
+<span class="c1"># Grab a data set from scikit-learn
+</span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_california_housing</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">fetch_california_housing</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s">'data'</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s">'target'</span><span class="p">]],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">'feature_names'</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s">'target'</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Create the correlation matrix
+</span><span class="n">corr</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+
+<span class="c1"># Generate a mask for the upper triangle; True = do NOT show
+</span><span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="nb">bool</span><span class="p">)</span>
+<span class="n">mask</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">triu_indices_from</span><span class="p">(</span><span class="n">mask</span><span class="p">)]</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="c1"># Set up the matplotlib figure
+</span><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+
+<span class="c1"># Generate a custom diverging colormap
+</span><span class="n">cmap</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">diverging_palette</span><span class="p">(</span><span class="mi">220</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">as_cmap</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1"># Draw the heatmap with the mask and correct aspect ratio
+# More details at https://seaborn.pydata.org/generated/seaborn.heatmap.html
+</span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+    <span class="n">corr</span><span class="p">,</span>          <span class="c1"># The data to plot
+</span>    <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>     <span class="c1"># Mask some cells
+</span>    <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>     <span class="c1"># What colors to plot the heatmap as
+</span>    <span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>    <span class="c1"># Should the values be plotted in the cells?
+</span>    <span class="n">vmax</span><span class="o">=</span><span class="mf">.3</span><span class="p">,</span>       <span class="c1"># The maximum value of the legend. All higher vals will be same color
+</span>    <span class="n">vmin</span><span class="o">=-</span><span class="mf">.3</span><span class="p">,</span>      <span class="c1"># The minimum value of the legend. All lower vals will be same color
+</span>    <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>      <span class="c1"># The center value of the legend. With divergent cmap, where white is
+</span>    <span class="n">square</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>   <span class="c1"># Force cells to be square
+</span>    <span class="n">linewidths</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span> <span class="c1"># Width of lines that divide cells
+</span>    <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s">"shrink"</span><span class="p">:</span> <span class="mf">.5</span><span class="p">}</span>  <span class="c1"># Extra kwargs for the legend; in this case, shrink by 50%
+</span><span class="p">)</span>
+
+<span class="c1"># You can save this as a png with
+# f.savefig('heatmap_colored_correlation_matrix_seaborn_python.png')
+</span></code></pre></div></div>
+<p><img src="https://lost-stats.github.io/Presentation/Images/Heatmap-Colored-Correlation-Matrix/heatmap_colored_correlation_matrix_seaborn_python.png" alt="Heatmap Colored Correlation Matrix in Python using Seaborn" /></p>
       <h2 id="r">
           <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
       </h2>
