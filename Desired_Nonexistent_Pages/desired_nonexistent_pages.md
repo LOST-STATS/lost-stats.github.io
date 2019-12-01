@@ -81,6 +81,7 @@ If you create one of these pages, please remove it from this list.
 * Summary Statistics by Group
 * Summary Statistics Tables
 * Cross-Tabulations
+* Correlation Matrix
 
 ## Time Series
 
