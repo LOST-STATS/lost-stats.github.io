@@ -116,6 +116,38 @@
       <h1 id="implementations">
           <a href="#implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Implementations
       </h1>
+      <h2 id="python">
+          <a href="#python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Python
+      </h2>
+<p>Using the <a href="https://www.statsmodels.org/stable/index.html"><strong>statsmodels</strong></a> package, we can use a similar formulation as the <code class="highlighter-rouge">R</code> example below.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Standard imports
+</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="n">sms</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># Load the R mtcars dataset from a URL
+</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'https://raw.githubusercontent.com/LOST-STATS/lost-stats.github.io/source/Data/mtcars.csv'</span><span class="p">)</span>
+
+<span class="c1"># Include a linear, squared, and cubic term using the I() function.
+# N.B. Python uses ** for exponentiation (^ means bitwise xor)
+</span><span class="n">model1</span> <span class="o">=</span> <span class="n">sms</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s">'mpg ~ hp + I(hp**2) + I(hp**3) + cyl'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">model1</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+
+<span class="c1"># Include an interaction term and the variables by themselves using *
+# The interaction term is represented by hp:cyl
+</span><span class="n">model2</span> <span class="o">=</span> <span class="n">sms</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s">'mpg ~ hp * cyl'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">model2</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+
+<span class="c1"># Equivalently, you can request "all quadratic interaction terms" by doing
+</span><span class="n">model3</span> <span class="o">=</span> <span class="n">sms</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s">'mpg ~ (hp + cyl) ** 2'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">model3</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+
+<span class="c1"># Include only the interaction term and not the variables themselves with :
+# Hard to interpret! Occasionally useful though.
+</span><span class="n">model4</span> <span class="o">=</span> <span class="n">sms</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s">'mpg ~ hp : cyl'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">model4</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</code></pre></div></div>
       <h2 id="r">
           <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
       </h2>
