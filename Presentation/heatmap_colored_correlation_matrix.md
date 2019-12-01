@@ -61,7 +61,7 @@ This results in:
 ![Heatmap Colored Correlation Matrix in R using Corrplot](https://lost-stats.github.io/Presentation/Images/Heatmap-Colored-Correlation-Matrix/heatmap_colored_correlation_matrix_corrplot_R.png)
 
 
-Now we will make the graph using **ggplot2**. We will also make a little use of **dplyr** and **tidyr**, and so we'll load them all as a part of the **tidyverse**.
+Now we will make the graph using **ggplot2**. We will also make a little use of **dplyr** and **tidyr**, and so we'll load them all as a part of the **tidyverse**. This example makes use of [this guide](http://www.sthda.com/english/wiki/ggplot2-quick-correlation-matrix-heatmap-r-software-and-data-visualization). 
 
 ```r
 # Install the tidyverse if necessary
