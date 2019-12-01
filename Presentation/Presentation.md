@@ -4,4 +4,4 @@ has_children: true
 nav_order: 6
 ---
 
-# Summary Techniques
+# Presentation
