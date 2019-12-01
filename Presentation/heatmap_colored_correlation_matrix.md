@@ -131,7 +131,7 @@ ggplot(C_Long,
 ```
 This results in:
 
-![Heatmap Colored Correlation Matrix in R using ggplot2](https://lost-stats.github.io/Presentation/Images/Heatmap-Colored-Correlation-Matrix/heatmap_colored_correlation_matrix_ggplot2_R.png)
+![Heatmap Colored Correlation Matrix in R using ggplot2](https://lost-stats.github.io/Presentation/Images/Heatmap-Colored-Correlation-Matrix/heatmap_colored_correlation_matrix_ggplot2_r.png)
 
 ## Stata
 
