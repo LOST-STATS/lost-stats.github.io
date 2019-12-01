@@ -43,6 +43,40 @@ $$
 
 # Implementations
 
+## Python
+
+Using the [**statsmodels**](https://www.statsmodels.org/stable/index.html) package, we can use a similar formulation as the `R` example below.
+
+```python
+# Standard imports
+import numpy as np
+import pandas as pd
+import statsmodels.formula.api as sms
+from matplotlib import pyplot as plt
+
+# Load the R mtcars dataset from a URL
+df = pd.read_csv('https://raw.githubusercontent.com/LOST-STATS/lost-stats.github.io/source/Data/mtcars.csv')
+
+# Include a linear, squared, and cubic term using the I() function.
+# N.B. Python uses ** for exponentiation (^ means bitwise xor)
+model1 = sms.ols('mpg ~ hp + I(hp**2) + I(hp**3) + cyl', data=df)
+print(model1.fit().summary())
+
+# Include an interaction term and the variables by themselves using *
+# The interaction term is represented by hp:cyl
+model2 = sms.ols('mpg ~ hp * cyl', data=df)
+print(model2.fit().summary())
+
+# Equivalently, you can request "all quadratic interaction terms" by doing
+model3 = sms.ols('mpg ~ (hp + cyl) ** 2', data=df)
+print(model3.fit().summary())
+
+# Include only the interaction term and not the variables themselves with :
+# Hard to interpret! Occasionally useful though.
+model4 = sms.ols('mpg ~ hp : cyl', data=df)
+print(model4.fit().summary())
+```
+
 ## R
 
 ```r
