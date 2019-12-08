@@ -18,13 +18,13 @@ $$
 \min\sum_i(y_i - X_i\hat{\beta})^2
 $$
 
-Non-OLS regressions similarly select coefficients to minimize a similar objective function. Penalized regression adds a penalty term $$\lambda\left|\left|\beta\right|\right|_p$$ to that objective function, where $$\lambda$$ is a tuning parameter that determines how harshly to penalize coefficients, and $$\left|\left|\beta\right|\right|_p$$ is the $$p$$-norm of the coefficients, or $$\sum_j\left|\beta\right|^p$$.
+Non-OLS regressions similarly select coefficients to minimize a similar objective function. Penalized regression adds a penalty term $$\lambda\lVert\beta\rVert_p$$ to that objective function, where $$\lambda$$ is a tuning parameter that determines how harshly to penalize coefficients, and $$\lVert\beta\rVert_p$$ is the $$p$$-norm of the coefficients, or $$\sum_j\lvert\beta\rvert^p$$.
 
 $$
 \min\left(\sum_i(y_i - X_i\hat{\beta})^2 + \lambda\left\lVert\beta\right\rVert_p \right)
 $$
 
-Typically $p$ is set to 1 for LASSO regression (least absolute shrinkage and selection operator), which has the effect of tending to set coefficients to 0, i.e. model selection, or to 2 for Ridge Regression. Elastic net regression provides a weighted mix of LASSO and Ridge penalties, commonly referring to the weight as $$\alpha$$. 
+Typically $$p$$ is set to 1 for LASSO regression (least absolute shrinkage and selection operator), which has the effect of tending to set coefficients to 0, i.e. model selection, or to 2 for Ridge Regression. Elastic net regression provides a weighted mix of LASSO and Ridge penalties, commonly referring to the weight as $$\alpha$$. 
 
 ## Keep in Mind
 
