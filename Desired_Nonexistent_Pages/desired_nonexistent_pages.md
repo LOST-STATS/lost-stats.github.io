@@ -12,15 +12,6 @@ This is a manually-maintained list of pages that have been linked from elsewhere
 
 If you create one of these pages, please remove it from this list.
 
-## Causal Identification
-
-* Random Effects
-* Instrumental Variables (Two Stage Least Squares)
-* Differences in Differences
-* Regression Discontinuity Design
-* Propensity Score Matching
-* Event Study Estimation
-
 ## Data Manipulation
 
 * Aggregating Statistics
@@ -28,6 +19,12 @@ If you create one of these pages, please remove it from this list.
 
 ## Model Estimation
 
+* Random Effects
+* Instrumental Variables (Two Stage Least Squares)
+* Differences in Differences
+* Regression Discontinuity Design
+* Propensity Score Matching
+* Event Study Estimation
 * Nonparametric regression
 * Generalized Method of Moments (GMM)
 * Bootstrap Standard Errors
@@ -61,7 +58,6 @@ If you create one of these pages, please remove it from this list.
 ## Machine Learning 
 
 * A-B Testing
-* Lasso
 * Artificial Neural Networks
 * Random Forest
 * Decision Trees
