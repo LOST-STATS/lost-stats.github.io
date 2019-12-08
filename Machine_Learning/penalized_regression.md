@@ -18,7 +18,7 @@ $$
 \min\sum_i(y_i - X_i\hat{\beta})^2
 $$
 
-Non-OLS regressions similarly select coefficients to minimize a similar objective function. Penalized regression adds a penalty term $$\lambda\left|\left|\beta\right|\right|_p$$ to that objective function, where $$\lambda$$ is a tuning parameter that determines how harshly to penalize coefficients, and $$\left|\left|\beta\right|\right|_p$$ is the $$p$$-norm of the coefficients, or $$\sum_j|\beta|^p$$.
+Non-OLS regressions similarly select coefficients to minimize a similar objective function. Penalized regression adds a penalty term $$\lambda\left|\left|\beta\right|\right|_p$$ to that objective function, where $$\lambda$$ is a tuning parameter that determines how harshly to penalize coefficients, and $$\left|\left|\beta\right|\right|_p$$ is the $$p$$-norm of the coefficients, or $$\sum_j\left|\beta\right|^p$$.
 
 $$
 \min\left(\sum_i(y_i - X_i\hat{\beta})^2 + \lambda\left\lVert\beta\right\rVert_p \right)
