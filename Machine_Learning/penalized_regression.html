@@ -93,25 +93,9 @@
 <p>Penalized regression eases this problem by forcing the regression estimator to shrink its coefficients towards 0 in order to avoid the “penalty” term imposed on the coefficients. This process is closely related to the idea of Bayesian shrinkage, and indeed standard penalized regression results are equivalent to regression performed using <a href="https://amstat.tandfonline.com/doi/abs/10.1198/016214508000000337?casa_token=DE6O93Bz7uUAAAAA:Ff_MiPXvPH32NA2hnGtZtqb8grXEiEqF0fdO3B0p_a6wOaqRciCZ4ASwxn69gdOb93Lbt-HSyK1o4As">certain Bayesian priors</a>.</p>
 <p>Regular OLS selects coefficients <script type="math/tex">\hat{\beta}</script> to minimize the sum of squared errors:</p>
 <script type="math/tex; mode=display">\min\sum_i(y_i - X_i\hat{\beta})^2</script>
-<div class="table-wrapper"><table>
-  <tbody>
-    <tr>
-      <td>Non-OLS regressions similarly select coefficients to minimize a similar objective function. Penalized regression adds a penalty term $$\lambda\left</td>
-      <td>\left</td>
-      <td>\beta\right</td>
-      <td>\right</td>
-      <td>_p<script type="math/tex">to that objective function, where</script>\lambda<script type="math/tex">is a tuning parameter that determines how harshly to penalize coefficients, and</script>\left</td>
-      <td>\left</td>
-      <td>\beta\right</td>
-      <td>\right</td>
-      <td>_p<script type="math/tex">is the</script>p<script type="math/tex">-norm of the coefficients, or</script>\sum_j\left</td>
-      <td>\beta\right</td>
-      <td>^p$$.</td>
-    </tr>
-  </tbody>
-</table></div>
+<p>Non-OLS regressions similarly select coefficients to minimize a similar objective function. Penalized regression adds a penalty term <script type="math/tex">\lambda\lVert\beta\rVert_p</script> to that objective function, where <script type="math/tex">\lambda</script> is a tuning parameter that determines how harshly to penalize coefficients, and <script type="math/tex">\lVert\beta\rVert_p</script> is the <script type="math/tex">p</script>-norm of the coefficients, or <script type="math/tex">\sum_j\lvert\beta\rvert^p</script>.</p>
 <script type="math/tex; mode=display">\min\left(\sum_i(y_i - X_i\hat{\beta})^2 + \lambda\left\lVert\beta\right\rVert_p \right)</script>
-<p>Typically $p$ is set to 1 for LASSO regression (least absolute shrinkage and selection operator), which has the effect of tending to set coefficients to 0, i.e. model selection, or to 2 for Ridge Regression. Elastic net regression provides a weighted mix of LASSO and Ridge penalties, commonly referring to the weight as <script type="math/tex">\alpha</script>.</p>
+<p>Typically <script type="math/tex">p</script> is set to 1 for LASSO regression (least absolute shrinkage and selection operator), which has the effect of tending to set coefficients to 0, i.e. model selection, or to 2 for Ridge Regression. Elastic net regression provides a weighted mix of LASSO and Ridge penalties, commonly referring to the weight as <script type="math/tex">\alpha</script>.</p>
       <h2 id="keep-in-mind">
           <a href="#keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Keep in Mind
       </h2>
