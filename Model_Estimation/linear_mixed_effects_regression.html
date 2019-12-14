@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>Linear Mixed-Effects Regression - LOST</title>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/just-the-docs.css">
+    <script type="text/javascript" src="/assets/js/vendor/lunr.min.js"></script>
+  <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Linear Mixed-Effects Regression | LOST</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Linear Mixed-Effects Regression" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:site_name" content="LOST" />
+<script type="application/ld+json">
+{"description":"Source code for the Library of Statistical Techniques","headline":"Linear Mixed-Effects Regression","@type":"WebPage","url":"/Model_Estimation/linear_mixed_effects_regression.html","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML">
+  </script>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="link" viewBox="0 0 16 16">
+      <title>Link</title>
+      <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+    </symbol>
+  </svg>
+  <div class="page-wrap">
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="" class="site-title lh-tight">
+  LOST
+</a>
+        <button class="menu-button fs-3 js-main-nav-trigger" data-text-toggle="Hide" type="button">Menu</button>
+      </div>
+      <div class="navigation main-nav js-main-nav">
+        <nav role="navigation" aria-label="Main navigation">
+  <ul class="navigation-list"><li class="navigation-list-item"><a href="/" class="navigation-list-link">Home</a></li><li class="navigation-list-item active"><a href="/Data/" class="navigation-list-link"></a></li><li class="navigation-list-item"><a href="/Data_Manipulation/data_manipulation.html" class="navigation-list-link">Data Manipulation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="navigation-list-link">Collapse a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="navigation-list-link">Combining Datasets</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="navigation-list-link">Vertical Combination</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="navigation-list-link">Horizontal Combination (Deterministic)</a>
+                          </li></ul></li><li class="navigation-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="navigation-list-link">Determine the Observation Level of a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Reshaping/reshape.html" class="navigation-list-link">Reshaping Data</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="navigation-list-link">Reshape Panel Data from Wide to Long</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="navigation-list-link">Reshape Panel Data from Long to Wide</a>
+                          </li></ul></li></ul></li><li class="navigation-list-item"><a href="/Geo-Spatial/Summary_Techniques.html" class="navigation-list-link">Geo-Spatial</a><ul class="navigation-list-child-list "></ul></li><li class="navigation-list-item"><a href="/Machine_Learning/Machine_Learning.html" class="navigation-list-link">Machine Learning</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Machine_Learning/penalized_regression.html" class="navigation-list-link">Penalized Regression</a></li></ul></li><li class="navigation-list-item active"><a href="/Model_Estimation/Estimation.html" class="navigation-list-link">Model Estimation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Model_Estimation/fixed_effects_in_linear_regression.html" class="navigation-list-link">Fixed Effects in Linear Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/heckman_correction_model.html" class="navigation-list-link">Heckman Correction Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/interaction_terms_and_polynomials.html" class="navigation-list-link">Interaction Terms and Polynomials</a></li><li class="navigation-list-item  active"><a href="/Model_Estimation/linear_mixed_effects_regression.html" class="navigation-list-link active">Linear Mixed-Effects Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/logit_model.html" class="navigation-list-link">Logit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/mcfaddens_choice_model.html" class="navigation-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/ordinary_least_squares.html" class="navigation-list-link">Ordinary Least Squares (Linear Regression)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/probit_model.html" class="navigation-list-link">Probit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/Nonstandard_Errors/nonstandard_errors.html" class="navigation-list-link">Nonstandard Errors</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/clustered_se.html" class="navigation-list-link">Cluster-Robust Standard Errors</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/hc_se.html" class="navigation-list-link">Heteroskedasticity-consistent standard errors</a>
+                          </li></ul></li></ul></li><li class="navigation-list-item"><a href="/Presentation/Presentation.html" class="navigation-list-link">Presentation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Presentation/heatmap_colored_correlation_matrix.html" class="navigation-list-link">Heatmap Colored Correlation Matrix</a></li><li class="navigation-list-item "><a href="/Presentation/line_graph_with_labels_at_the_beginning_or_end.html" class="navigation-list-link">Line Graph with Labels at the Beginning or End of Lines</a></li><li class="navigation-list-item "><a href="/Presentation/marginal_effects_plots_for_interactions_with_continuous_variables.html" class="navigation-list-link">Marginal Effects Plots for Interactions with Continuous Variables</a></li><li class="navigation-list-item "><a href="/Presentation/scatterplot_by_group_on_shared_axes.html" class="navigation-list-link">Scatterplot by Group on Shared Axes</a></li></ul></li><li class="navigation-list-item"><a href="/Summary_Statistics/Summary_Statistics.html" class="navigation-list-link">Summary Statistics</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Summary_Statistics/Balance_Tables.html" class="navigation-list-link">Balance Table</a></li></ul></li><li class="navigation-list-item"><a href="/Time_Series/Time_Series.html" class="navigation-list-link">Time Series</a><ul class="navigation-list-child-list "></ul></li><li class="navigation-list-item"><a href="/Other/Other.html" class="navigation-list-link">Other</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Other/import_a_foreign_data_file.html" class="navigation-list-link">Import a Foreign Data File</a></li></ul></li><li class="navigation-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="navigation-list-link">Desired Nonexistent Pages</a></li><li class="navigation-list-item"><a href="/Contributing/Contributing.html" class="navigation-list-link">Contributing</a></li></ul>
+</nav>
+      </div>
+      <footer class="site-footer">
+        <p class="text-small text-grey-dk-000 mb-4">This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.</p>
+      </footer>
+    </div>
+    <div class="main-content-wrap js-main-content" tabindex="0">
+      <div class="main-content">
+        <div class="page-header js-page-header">
+          <div class="search">
+            <div class="search-input-wrap">
+              <input type="text" class="js-search-input search-input" tabindex="0" placeholder="Search LOST" aria-label="Search LOST" autocomplete="off">
+              <svg width="14" height="14" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title><g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"/><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"/></g></svg>
+            </div>
+            <div class="js-search-results search-results-wrap"></div>
+          </div>
+            <ul class="list-style-none text-small aux-nav">
+                <li class="d-inline-block my-0"><a href="https://github.com/lost-stats/lost-stats.github.io/blob/source/Model_Estimation/linear_mixed_effects_regression.md">Edit this page on GitHub</a></li>
+            </ul>
+        </div>
+        <div class="page">
+              <nav class="breadcrumb-nav">
+                <ol class="breadcrumb-nav-list">
+                    <li class="breadcrumb-nav-list-item"><a href="/Model_Estimation/Estimation.html">Model Estimation</a></li>
+                  <li class="breadcrumb-nav-list-item"><span>Linear Mixed-Effects Regression</span></li>
+                </ol>
+              </nav>
+          <div id="main-content" class="page-content" role="main">
+              <h1 id="linear-mixed-effects-regression">
+          <a href="#linear-mixed-effects-regression" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Linear Mixed-Effects Regression
+      </h1>
+<p>Mixed-effects regression goes by many names, including hierarchical linear model, random coefficient model, and random parameter models. In a mixed-effects regression, some of the parameters are “random effects” which are allowed to vary over the sample. Others are “fixed effects”, which are not. Note that this use of the term “fixed effects” is not the same as in <a href="https://lost-stats.github.io/Model_Estimation/fixed_effects_in_linear_regression.html">fixed effects regression</a>.</p>
+<p>For example, consider the model</p>
+<script type="math/tex; mode=display">y_{ij} = \beta_{0j} + \beta_{1j}X_{1ij} + \beta_{2}X_{2ij} + e_{ij}</script>
+<p>The intercept <script type="math/tex">\beta_{0j}</script> has a $j$ subscript and is allowed to vary over the sample at the <script type="math/tex">j</script> level, where <script type="math/tex">j</script> may indicate individual or group, depending on context. The slope on <script type="math/tex">X_{1ij}</script>, <script type="math/tex">\beta_{1j}</script>, is similarly allowed to vary over the sample. These are random effects. <script type="math/tex">\beta_{2}</script> is not allowed to vary over the sample and so is fixed.</p>
+<p>The random parameters have their own “level-two” equations, which may or may not include level-two covariates.</p>
+<script type="math/tex; mode=display">\beta_{0j} = \gamma_{00} + \gamma_{01}W_j + u_{0j}</script>
+<script type="math/tex; mode=display">\beta_{1j} = \gamma_{10} + u_{1j}</script>
+<p>For more information see <a href="https://en.wikipedia.org/wiki/Multilevel_model">Wikipedia</a>.</p>
+      <h2 id="keep-in-mind">
+          <a href="#keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Keep in Mind
+      </h2>
+<ul>
+  <li>The assumptions necessary to use a mixed-effects model in general are the same as for most linear models. However, in addition, mixed-effects models assume that the error terms at different levels are unrelated.</li>
+  <li>At the second level, statistical power depends on the number of different <script type="math/tex">j</script> values there are. Mixed-effects models may perform poorly if the coefficient is allowed to vary over only a few groups.</li>
+  <li>There’s no need to stop at two levels - the second-level coefficients can also be allowed to vary at a higher level.</li>
+</ul>
+      <h2 id="also-consider">
+          <a href="#also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Also Consider
+      </h2>
+<ul>
+  <li>There are many variations of mixed-effects models for working with non-linear data, see <a href="https://lost-stats.github.io/Model_Estimation/nonlinear_mixed_effects_models.html">nonlinear mixed-effects models</a>.</li>
+  <li>If the goal is making predictions within subgroups, you may want to consider <a href="https://lost-stats.github.io/Model_Estimation/multilevel_regression_with_poststratification.html">multi-level regression with poststratification</a>.</li>
+</ul>
+      <h1 id="implementations">
+          <a href="#implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Implementations
+      </h1>
+      <h2 id="r">
+          <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
+      </h2>
+<p>One common way to fit mixed-effects models in R is with the <code class="highlighter-rouge">lmer</code> function in the <strong>lme4</strong> package. To fit fully Bayesian models you may want to consider instead using STAN with the <strong>rstan</strong> package. See the <a href="https://lost-stats.github.io/Model_Estimation/multilevel_regression_with_poststratification.html">multi-level regression with poststratification</a> page for more information.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Install lme4 if necessary</span><span class="w">
+</span><span class="c1"># install.packages('lme4')</span><span class="w">
+
+</span><span class="c1"># Load up lme4</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">lme4</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Load up university instructor evaluations data from lme4</span><span class="w">
+</span><span class="n">data</span><span class="p">(</span><span class="n">InstEval</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># We'll be treating lecture age as a numeric variable</span><span class="w">
+</span><span class="n">InstEval</span><span class="o">$</span><span class="n">lectage</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">InstEval</span><span class="o">$</span><span class="n">lectage</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Let's look at the relationship between lecture ratings andhow long ago the lecture took place</span><span class="w">
+</span><span class="c1"># with a control for whether the lecture was a service lecture</span><span class="w">
+</span><span class="n">ols</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lm</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">lectage</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">service</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InstEval</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">ols</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Now we will use lmer to allow the intercept to vary at the department level</span><span class="w">
+</span><span class="n">me1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lmer</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">lectage</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">dept</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InstEval</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">me1</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Now we will allow the slope on lectage to vary at the department level</span><span class="w">
+</span><span class="n">me2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lmer</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">lectage</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="m">-1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lectage</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">dept</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InstEval</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">me2</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Now both the intercept and lectage slope will vary at the department level</span><span class="w">
+</span><span class="n">me3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lmer</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">lectage</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">lectage</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">dept</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InstEval</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">me3</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+      <h2 id="stata">
+          <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
+      </h2>
+<p>Stata has a family of functions based around the <code class="highlighter-rouge">mixed</code> command that can estimate mixed-effects models.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load NLS-W data
+</span><span class="err">sysuse</span> <span class="err">nlsw88.dta,</span> <span class="err">clear
+</span><span class="c1">
+* We are going to estimate the relationship between hourly wage and job tenure
+* with a contorl for marital status
+* Without mixed effects
+</span><span class="err">reg</span> <span class="err">wage</span> <span class="err">tenure</span> <span class="err">married
+</span><span class="c1">
+* Now we will allow the intercept to vary with occupation
+</span><span class="err">mixed</span> <span class="err">wage</span> <span class="err">tenure</span> <span class="err">married</span> <span class="o">||</span> <span class="err">occupation:</span> <span class="err">
+</span><span class="c1">
+* Next we will allow the slope on tenure to vary with occupation
+</span><span class="err">mixed</span> <span class="err">wage</span> <span class="err">tenure</span> <span class="err">married</span> <span class="o">||</span> <span class="err">occupation:</span> <span class="err">tenure,</span> <span class="err">nocons
+</span><span class="c1">
+* Now, both!
+</span><span class="err">mixed</span> <span class="err">wage</span> <span class="err">tenure</span> <span class="err">married</span> <span class="o">||</span> <span class="err">occupation:</span> <span class="err">tenure
+</span><span class="c1">
+* Finally we will allow the intercept and tenure slope to vary over both occupation
+* and age
+</span><span class="err">mixed</span> <span class="err">wage</span> <span class="err">tenure</span> <span class="err">married</span> <span class="o">||</span> <span class="err">occupation:</span> <span class="err">tenure</span> <span class="o">||</span> <span class="err">age:</span> <span class="err">tenure
+</span></code></pre></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
