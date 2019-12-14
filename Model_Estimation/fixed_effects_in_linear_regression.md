@@ -20,7 +20,7 @@ For more information, see [Wikipedia: Fixed Effects Model](https://en.wikipedia.
 
 ## Also Consider
 
-- [Random effects](https://lost-stats.github.io/Model_Estimation/random_effects.html)
+- Instead of fixed effects you may want to use random effects, which requires additional assumptions but is statistically more efficient and also allows the individual effect to be modeled using covariates. See [Linear Mixed-Effects Regression](https://lost-stats.github.io/Model_Estimation/linear_mixed_effects_regression.html)
 - You may want to consider [clustering your standard errors](https://lost-stats.github.io/Model_Estimation/Nonstandard_Errors/clustered_se.html) at the same level as (some or more of) your fixed effects.
 
 # Implementations
