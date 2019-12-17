@@ -253,28 +253,29 @@ estimates</span> <span class="err">store</span> <span class="err">weightandforei
 * replacing any table we've already made
 * and making an HTML table with style(html)
 * style(tex) also works, and the default is tab-delimited data for use in Excel.
-</span><span class="err">esttab</span> <span class="err">weightonly</span> <span class="err">weightandforeign</span> <span class="err">using</span> <span class="err">my_reg_output.html,</span> <span class="err">label</span> <span class="err">replace</span> <span class="err">style(html)
+* Note also the default is to display t-statistics in parentheses. If we want 
+* standard errors instead, we say so with se
+</span><span class="err">esttab</span> <span class="err">weightonly</span> <span class="err">weightandforeign</span> <span class="err">using</span> <span class="err">my_reg_output.html,</span> <span class="err">label</span> <span class="err">replace</span> <span class="err">style(html)</span> <span class="err">se
 </span></code></pre></div></div>
 <p>Which produces:</p>
-<div class="table-wrapper"><table>
-<tr>&lt;td colspan=3&gt;
-    <hr />&lt;/td&gt;</tr>
+<div class="table-wrapper"><table border="0" width="*">
+<tr><td colspan="3">
+    <hr /></td></tr>
 <tr><td>                    </td><td>         (1)              </td><td>         (2)              </td></tr>
 <tr><td>                    </td><td>Mileage (mpg)              </td><td>Mileage (mpg)              </td></tr>
-<tr>&lt;td colspan=3&gt;<hr />&lt;/td&gt;</tr>
+<tr><td colspan="3"><hr /></td></tr>
 <tr><td>Weight (lbs.)       </td><td>    -0.00601<sup>***</sup></td><td>    -0.00659<sup>***</sup></td></tr>
-<tr><td>                    </td><td>    (-11.60)              </td><td>    (-10.34)              </td></tr>
-<tr>&lt;td colspan=3&gt;&nbsp;&lt;/td&gt;</tr>
+<tr><td>                    </td><td>  (0.000518)              </td><td>  (0.000637)              </td></tr>
+<tr><td colspan="3">&nbsp;</td></tr>
 <tr><td>Car type            </td><td>                          </td><td>      -1.650              </td></tr>
-<tr><td>                    </td><td>                          </td><td>     (-1.53)              </td></tr>
-<tr>&lt;td colspan=3&gt;&nbsp;&lt;/td&gt;</tr>
+<tr><td>                    </td><td>                          </td><td>     (1.076)              </td></tr>
+<tr><td colspan="3">&nbsp;</td></tr>
 <tr><td>Constant            </td><td>       39.44<sup>***</sup></td><td>       41.68<sup>***</sup></td></tr>
-<tr><td>                    </td><td>     (24.44)              </td><td>     (19.25)              </td></tr>
-<tr>&lt;td colspan=3&gt;<hr />&lt;/td&gt;</tr>
+<tr><td>                    </td><td>     (1.614)              </td><td>     (2.166)              </td></tr>
+<tr><td colspan="3"><hr /></td></tr>
 <tr><td>Observations        </td><td>          74              </td><td>          74              </td></tr>
-<tr>&lt;td colspan=3&gt;<hr />&lt;/td&gt;</tr>
-<tr>&lt;td colspan=3&gt;<i>t</i> statistics in parentheses<br /><sup>*</sup> <i>p</i> &lt; 0.05, <sup>**</sup> <i>p</i> &lt; 0.01, <sup>***</sup> <i>p</i> &lt; 0.001
-&lt;/td&gt;</tr>
+<tr><td colspan="3"><hr /></td></tr>
+<tr><td colspan="3">Standard errors in parentheses<br /><sup>*</sup> <i>p</i> &lt; 0.05, <sup>**</sup> <i>p</i> &lt; 0.01, <sup>***</sup> <i>p</i> &lt; 0.001</td></tr>
 </table></div>
         </div>
       </div>
