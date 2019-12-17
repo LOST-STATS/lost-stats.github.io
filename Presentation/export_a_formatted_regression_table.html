@@ -134,11 +134,8 @@
           </span><span class="n">dep.var.labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Miles per Gallon'</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 <p>This produces:</p>
-<p>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;&lt;p&gt; &lt;/p&gt;&lt;table class="huxtable" style="border-collapse: collapse; margin-bottom: 2em; margin-top: 2em; width: 50%; margin-left: auto; margin-right: auto;  "&gt;</p>
-<col />
-<col />
-<col />
-<tr>
+<div class="table-wrapper"><table class="huxtable" style="border-collapse: collapse; margin-bottom: 2em; margin-top: 2em; width: 50%; margin-left: auto; margin-right: auto;  ">
+<col /><col /><col /><tr>
 <td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt; padding: 4pt 4pt 4pt 4pt;"></td>
 <td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">(1)</td>
 <td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">(2)</td>
@@ -186,8 +183,7 @@
 <tr>
 <td colspan="3" style="vertical-align: top; text-align: left; white-space: normal; padding: 4pt 4pt 4pt 4pt;"> *** p &lt; 0.001;  ** p &lt; 0.01;  * p &lt; 0.05.</td>
 </tr>
-<p>&lt;/table&gt;</p>
-<p>&lt;/body&gt;&lt;/html&gt;</p>
+</table></div>
 <p>Now we will do the same thing with <code class="highlighter-rouge">huxtable</code>, using mostly defaults.</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Install huxtable and magrittr if necessary
 # install.packages('huxtable', 'magrittr')
