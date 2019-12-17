@@ -18,6 +18,18 @@ For more information about Logit, see [Wikipedia: Logit](https://en.wikipedia.or
 
 # Implementations
 
+## Gretl
+
+```gretl
+# Load auto data
+open auto.gdt
+
+# Run logit using the auto data, with mpg as the outcome variable
+# and headroom, trunk, and weight as predictors
+logit mpg const headroom trunk weight
+```
+
+
 ## R
 R can run a logit regression using the `glm()` function. However, to get marginal effects you will need to calculate them by hand or use a package. We will use the **mfx** package, although the **margins** package is another good option, which produces tidy model output.
 
@@ -58,13 +70,3 @@ logit foreign mpg weight headroom trunk
 margins, dydx(*)
 ```
 
-## Gretl
-
-```gretl
-# Load auto data
-open auto.gdt
-
-# Run logit using the auto data, with mpg as the outcome variable
-# and headroom, trunk, and weight as predictors
-logit mpg const headroom trunk weight
-```

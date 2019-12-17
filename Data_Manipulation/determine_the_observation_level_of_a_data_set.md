@@ -47,6 +47,7 @@ data("storms")
 # Each storm should be identified by
 # name, year, month, day, and hour
 # anyDuplicated will return 0 if there are no duplicate combinations of these
+# so if we get 0, the variables in c() are our observation level.
 anyDuplicated(storms[,c('name','year','month','day','hour')])
 
 # We get 2292, telling us that row 2292 is a duplicate (and possibly others!)

@@ -44,7 +44,7 @@ webuse http://www.stata-press.com/data/r14/capop.dta // Import data from the web
 
 append using http://www.stata-press.com/data/r14/ilpop.dta // Merge on Illinois population data from the web 
 ```
-You can also append multiple datasets at once, by simple listing both datasets separated by a space: 
+You can also append multiple datasets at once, by simply listing both datasets separated by a space: 
 
 ```stata
 * Load California Population data

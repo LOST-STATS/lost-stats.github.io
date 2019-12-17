@@ -119,7 +119,10 @@ generate time_id = mod((_n-1), 10) + 1
 *Create an income in each period 
 generate income = round(rnormal(100, 20))
 
-* Demonstrate the comparative speed of these two Reshape approaches 
+* Demonstrate the comparative speed of these two reshape approaches. 
+* preserve and restore aren't a part of the reshape command;
+* they just store the current state of the data and then restore it,
+* so we can try our different reshape commands on the same data.
 	
 *The traditional reshape command
 preserve 
