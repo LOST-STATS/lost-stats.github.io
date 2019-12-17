@@ -97,7 +97,7 @@
 <ul>
   <li>Any good regression table exporting command should include an option to limit the number of significant digits in your result. You should almost always make use of this option. It is very rare that the seventh or eighth decimal place (commonly reported in statistics packages) is actually meaningful, and it makes it difficult to read your table.</li>
   <li>Variable names serve different purposes in statistical coding and in papers. Variable names in papers should be changed to be readable in the language of the paper. So for example, while employment may be recorded as <code class="highlighter-rouge">EMP_STAT</code> in your statistics package, you should rename it Employment for your paper. Most table exporting commands include options to perform this renaming. But if it doesn’t, you can always change it by hand after exporting.</li>
-  <li>If you use asterisks to indicate significance, be sure to check the significance levels that different numbers of asterisks indicate in the command you’re using, as standards for what significance levels the asterisks mean vary across fields (and so vary across commands as well). Most commands include an option to change the significance levels used.</li>
+  <li>If you use asterisks to indicate significance, be sure to check the significance levels that different numbers of asterisks indicate in the command you’re using, as standards for what significance levels the asterisks mean vary across fields (and so vary across commands as well). Most commands include an option to change the significance levels used. On that note, <em>always include a table note saying what the different asterisk indicators mean!</em> These commands should all include one by default - don’t take it out!</li>
 </ul>
       <h2 id="also-consider">
           <a href="#also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Also Consider
@@ -207,8 +207,9 @@ huxreg(lm1, lm2,
   # Let's make an HTML file
   quick_html(file = 'my_reg_output.html')
 </code></pre></div></div>
-<p>Which produces (note the different asterisks behavior which can be changed with <code class="highlighter-rouge">huxreg</code>’s <code class="highlighter-rouge">stars</code> option):</p>
-<div class="table-wrapper"><table style="text-align:center"><tr><td colspan="3" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="2"><em>Dependent variable:</em></td></tr>
+<p>Which produces (note the different asterisks behavior, which can be changed with <code class="highlighter-rouge">huxreg</code>’s <code class="highlighter-rouge">stars</code> option):</p>
+<div class="table-wrapper"><table style="text-align:center"><tr><td colspan="3" style="border-bottom: 1px solid black"></td></tr>
+<tr><td style="text-align:left"></td><td colspan="2"><em>Dependent variable:</em></td></tr>
 <tr><td></td><td colspan="2" style="border-bottom: 1px solid black"></td></tr>
 <tr><td style="text-align:left"></td><td colspan="2">Miles per Gallon</td></tr>
 <tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td></tr>
@@ -255,7 +256,7 @@ estimates</span> <span class="err">store</span> <span class="err">weightandforei
 </span><span class="err">esttab</span> <span class="err">weightonly</span> <span class="err">weightandforeign</span> <span class="err">using</span> <span class="err">my_reg_output.html,</span> <span class="err">label</span> <span class="err">replace</span> <span class="err">style(html)
 </span></code></pre></div></div>
 <p>Which produces:</p>
-<div class="table-wrapper"><table border="0" width="*">
+<div class="table-wrapper"><table>
 <tr>&lt;td colspan=3&gt;
     <hr />&lt;/td&gt;</tr>
 <tr><td>                    </td><td>         (1)              </td><td>         (2)              </td></tr>
