@@ -202,9 +202,7 @@ Which produces:
 <tr><td colspan=3><hr></td></tr>
 <tr><td>Observations        </td><td>          74              </td><td>          74              </td></tr>
 <tr><td colspan=3><hr></td></tr>
-<tr><td colspan=3>
-<i>t</i> statistics in parentheses
-<br /><sup>*</sup> <i>p</i> < 0.05, <sup>**</sup> <i>p</i> < 0.01, <sup>***</sup> <i>p</i> < 0.001
+<tr><td colspan=3><i>t</i> statistics in parentheses<br /><sup>*</sup> <i>p</i> < 0.05, <sup>**</sup> <i>p</i> < 0.01, <sup>***</sup> <i>p</i> < 0.001
 </td></tr>
 </table>
 
