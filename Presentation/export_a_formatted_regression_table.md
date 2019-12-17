@@ -16,7 +16,7 @@ Two (bad) options for including regression results in your paper include copying
 
 - Any good regression table exporting command should include an option to limit the number of significant digits in your result. You should almost always make use of this option. It is very rare that the seventh or eighth decimal place (commonly reported in statistics packages) is actually meaningful, and it makes it difficult to read your table.
 - Variable names serve different purposes in statistical coding and in papers. Variable names in papers should be changed to be readable in the language of the paper. So for example, while employment may be recorded as `EMP_STAT` in your statistics package, you should rename it Employment for your paper. Most table exporting commands include options to perform this renaming. But if it doesn't, you can always change it by hand after exporting.
-- If you use asterisks to indicate significance, be sure to check the significance levels that different numbers of asterisks indicate in the command you're using, as standards for what significance levels the asterisks mean vary across fields (and so vary across commands as well). Most commands include an option to change the significance levels used.
+- If you use asterisks to indicate significance, be sure to check the significance levels that different numbers of asterisks indicate in the command you're using, as standards for what significance levels the asterisks mean vary across fields (and so vary across commands as well). Most commands include an option to change the significance levels used. On that note, *always include a table note saying what the different asterisk indicators mean!* These commands should all include one by default - don't take it out!
 
 ## Also Consider
 
@@ -129,9 +129,10 @@ huxreg(lm1, lm2,
   # Let's make an HTML file
   quick_html(file = 'my_reg_output.html')
 ```
-Which produces (note the different asterisks behavior which can be changed with `huxreg`'s `stars` option):
+Which produces (note the different asterisks behavior, which can be changed with `huxreg`'s `stars` option):
 
-<table style="text-align:center"><tr><td colspan="3" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="2"><em>Dependent variable:</em></td></tr>
+<table style="text-align:center"><tr><td colspan="3" style="border-bottom: 1px solid black"></td></tr>
+<tr><td style="text-align:left"></td><td colspan="2"><em>Dependent variable:</em></td></tr>
 <tr><td></td><td colspan="2" style="border-bottom: 1px solid black"></td></tr>
 <tr><td style="text-align:left"></td><td colspan="2">Miles per Gallon</td></tr>
 <tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td></tr>
@@ -185,7 +186,7 @@ esttab weightonly weightandforeign using my_reg_output.html, label replace style
 
 Which produces:
 
-<table border="0" width="*">
+<table>
 <tr><td colspan=3><hr></td></tr>
 <tr><td>                    </td><td>         (1)              </td><td>         (2)              </td></tr>
 <tr><td>                    </td><td>Mileage (mpg)              </td><td>Mileage (mpg)              </td></tr>
