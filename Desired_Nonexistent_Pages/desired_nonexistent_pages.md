@@ -20,7 +20,7 @@ If you create one of these pages, please remove it from this list.
 ## Model Estimation
 
 * Random Effects
-* Instrumental Variables (Two Stage Least Squares)
+* Nonlinear Instrumental Variables Estimation
 * Differences in Differences
 * Regression Discontinuity Design
 * Propensity Score Matching
@@ -46,6 +46,7 @@ If you create one of these pages, please remove it from this list.
 * Cluster-robust Standard Errors
 * Ordered Probit
 * Ordered Logit
+* Joint F-tests
 
 ## Geo-Spatial
 
