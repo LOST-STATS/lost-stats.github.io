@@ -1,6 +1,6 @@
 ---
 title: Instrumental Variables
-parent: Category
+parent: Model Estimation
 has_children: false
 nav_order: 1
 mathjax: true ## Switch to false if this page has no equations or other math rendering.
