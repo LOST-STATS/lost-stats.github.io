@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>Instrumental Variables - LOST</title>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/just-the-docs.css">
+    <script type="text/javascript" src="/assets/js/vendor/lunr.min.js"></script>
+  <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Instrumental Variables | LOST</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Instrumental Variables" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:site_name" content="LOST" />
+<script type="application/ld+json">
+{"description":"Source code for the Library of Statistical Techniques","headline":"Instrumental Variables","@type":"WebPage","url":"/Model_Estimation/instrumental_variables.html","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML">
+  </script>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="link" viewBox="0 0 16 16">
+      <title>Link</title>
+      <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+    </symbol>
+  </svg>
+  <div class="page-wrap">
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="" class="site-title lh-tight">
+  LOST
+</a>
+        <button class="menu-button fs-3 js-main-nav-trigger" data-text-toggle="Hide" type="button">Menu</button>
+      </div>
+      <div class="navigation main-nav js-main-nav">
+        <nav role="navigation" aria-label="Main navigation">
+  <ul class="navigation-list"><li class="navigation-list-item"><a href="/" class="navigation-list-link">Home</a></li><li class="navigation-list-item active"><a href="/Data/" class="navigation-list-link"></a></li><li class="navigation-list-item"><a href="/Data_Manipulation/data_manipulation.html" class="navigation-list-link">Data Manipulation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="navigation-list-link">Collapse a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="navigation-list-link">Combining Datasets</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="navigation-list-link">Vertical Combination</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="navigation-list-link">Horizontal Combination (Deterministic)</a>
+                          </li></ul></li><li class="navigation-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="navigation-list-link">Determine the Observation Level of a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Reshaping/reshape.html" class="navigation-list-link">Reshaping Data</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="navigation-list-link">Reshape Panel Data from Wide to Long</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="navigation-list-link">Reshape Panel Data from Long to Wide</a>
+                          </li></ul></li></ul></li><li class="navigation-list-item"><a href="/Geo-Spatial/Summary_Techniques.html" class="navigation-list-link">Geo-Spatial</a><ul class="navigation-list-child-list "></ul></li><li class="navigation-list-item"><a href="/Machine_Learning/Machine_Learning.html" class="navigation-list-link">Machine Learning</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Machine_Learning/penalized_regression.html" class="navigation-list-link">Penalized Regression</a></li></ul></li><li class="navigation-list-item"><a href="/Model_Estimation/Estimation.html" class="navigation-list-link">Model Estimation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Model_Estimation/fixed_effects_in_linear_regression.html" class="navigation-list-link">Fixed Effects in Linear Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/heckman_correction_model.html" class="navigation-list-link">Heckman Correction Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/interaction_terms_and_polynomials.html" class="navigation-list-link">Interaction Terms and Polynomials</a></li><li class="navigation-list-item "><a href="/Model_Estimation/linear_mixed_effects_regression.html" class="navigation-list-link">Linear Mixed-Effects Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/logit_model.html" class="navigation-list-link">Logit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/mcfaddens_choice_model.html" class="navigation-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/ordinary_least_squares.html" class="navigation-list-link">Ordinary Least Squares (Linear Regression)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/probit_model.html" class="navigation-list-link">Probit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/Nonstandard_Errors/nonstandard_errors.html" class="navigation-list-link">Nonstandard Errors</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/clustered_se.html" class="navigation-list-link">Cluster-Robust Standard Errors</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/hc_se.html" class="navigation-list-link">Heteroskedasticity-consistent standard errors</a>
+                          </li></ul></li></ul></li><li class="navigation-list-item"><a href="/Presentation/Presentation.html" class="navigation-list-link">Presentation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Presentation/export_a_formatted_regression_table.html" class="navigation-list-link">Export a Formatted Regression Table</a></li><li class="navigation-list-item "><a href="/Presentation/heatmap_colored_correlation_matrix.html" class="navigation-list-link">Heatmap Colored Correlation Matrix</a></li><li class="navigation-list-item "><a href="/Presentation/line_graph_with_labels_at_the_beginning_or_end.html" class="navigation-list-link">Line Graph with Labels at the Beginning or End of Lines</a></li><li class="navigation-list-item "><a href="/Presentation/marginal_effects_plots_for_interactions_with_continuous_variables.html" class="navigation-list-link">Marginal Effects Plots for Interactions with Continuous Variables</a></li><li class="navigation-list-item "><a href="/Presentation/scatterplot_by_group_on_shared_axes.html" class="navigation-list-link">Scatterplot by Group on Shared Axes</a></li></ul></li><li class="navigation-list-item"><a href="/Summary_Statistics/Summary_Statistics.html" class="navigation-list-link">Summary Statistics</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Summary_Statistics/Balance_Tables.html" class="navigation-list-link">Balance Table</a></li></ul></li><li class="navigation-list-item"><a href="/Time_Series/Time_Series.html" class="navigation-list-link">Time Series</a><ul class="navigation-list-child-list "></ul></li><li class="navigation-list-item"><a href="/Other/Other.html" class="navigation-list-link">Other</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Other/import_a_foreign_data_file.html" class="navigation-list-link">Import a Foreign Data File</a></li></ul></li><li class="navigation-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="navigation-list-link">Desired Nonexistent Pages</a></li><li class="navigation-list-item"><a href="/Contributing/Contributing.html" class="navigation-list-link">Contributing</a></li></ul>
+</nav>
+      </div>
+      <footer class="site-footer">
+        <p class="text-small text-grey-dk-000 mb-4">This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.</p>
+      </footer>
+    </div>
+    <div class="main-content-wrap js-main-content" tabindex="0">
+      <div class="main-content">
+        <div class="page-header js-page-header">
+          <div class="search">
+            <div class="search-input-wrap">
+              <input type="text" class="js-search-input search-input" tabindex="0" placeholder="Search LOST" aria-label="Search LOST" autocomplete="off">
+              <svg width="14" height="14" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title><g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"/><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"/></g></svg>
+            </div>
+            <div class="js-search-results search-results-wrap"></div>
+          </div>
+            <ul class="list-style-none text-small aux-nav">
+                <li class="d-inline-block my-0"><a href="https://github.com/lost-stats/lost-stats.github.io/blob/source/Model_Estimation/instrumental_variables.md">Edit this page on GitHub</a></li>
+            </ul>
+        </div>
+        <div class="page">
+              <nav class="breadcrumb-nav">
+                <ol class="breadcrumb-nav-list">
+                    <li class="breadcrumb-nav-list-item"><a href="/Data/">Category</a></li>
+                  <li class="breadcrumb-nav-list-item"><span>Instrumental Variables</span></li>
+                </ol>
+              </nav>
+          <div id="main-content" class="page-content" role="main">
+              <h1 id="instrumental-variables">
+          <a href="#instrumental-variables" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Instrumental Variables
+      </h1>
+<p>In the regression model</p>
+<script type="math/tex; mode=display">Y = \beta_0 + \beta_1 X + \epsilon</script>
+<p>where <script type="math/tex">\epsilon</script> is an error term, the estimated <script type="math/tex">\hat{\beta}_1$ will not give the causal effect of</script>X<script type="math/tex">on</script>Y<script type="math/tex">if</script>X<script type="math/tex">is *endogenous* - that is, if</script>X<script type="math/tex">is related to</script>\epsilon$$ and so determined by forces <em>within the model</em> (endogenous).</p>
+<p>One way to recover the causal effect of <script type="math/tex">X</script> on <script type="math/tex">Y</script> is to use instrumental variables. If there exists a variable <script type="math/tex">Z</script> that is related to <script type="math/tex">X</script> but is completely unrelated to <script type="math/tex">\epsilon</script> (perhaps after adding some controls), then you can use instrumental variables estimation to isolate only the part of the variation in <script type="math/tex">X</script> that is explained by <script type="math/tex">Z</script>. Naturally, then, this part of the variation is unrelated to <script type="math/tex">\epsilon</script> because <script type="math/tex">Z</script> is unrelated to <script type="math/tex">\epsilon</script>, and you can get the causal effect of that part of <script type="math/tex">X</script>.</p>
+<p>For more information, see <a href="https://en.wikipedia.org/wiki/Instrumental_variables_estimation">Wikipedia: Instrumental variables estimation</a>.</p>
+      <h2 id="keep-in-mind">
+          <a href="#keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Keep in Mind
+      </h2>
+<ul>
+  <li>Technically, all the variables in the model except for the dependent variable and the endogenous variables are “instruments”, including controls. However, it is also common to refer to only the <em>excluded</em> instruments (i.e., variables that are only used to predict the endogenous variable, not the dependent variable) as instruments. This page will follow that convention.</li>
+  <li>For instrumental variables to work, it must be the case that the instrument is <strong>only</strong> related to the outcome variable <strong>through</strong> other variables already included in the model like the endogenous variables or the controls. This is called the “validity” assumption and it cannot be verified in the data, only theoretically. Give serious consideration as to whether validity applies to your instrument before using instrumental variables.</li>
+  <li>You can check for the <em>relevance</em> of your instrument, which is how strongly related it is to your endogenous variable. A rule of thumb is that an <a href="https://lost-stats.github.io/Model_Estimation/joint_f-test.html">joint F-test</a> of the instruments should be at least 10, but this is only a rule of thumb, and imprecise (see <a href="https://books.google.com/books?hl=en&amp;lr=&amp;id=sLXakrLDloEC&amp;oi=fnd&amp;pg=PA80&amp;ots=5hTdefAIvc&amp;sig=-rhr7Z7dK758nLn2wFzLlf1WxhU#v=onepage&amp;q&amp;f=false">Stock and Yogo 2005</a> for a more precise version of this test). In general, if the instruments are not very strong predictors of the endogenous variables, you should consider whether your analysis fits the assumptions necessary to run a weak-instrument-robust estimation method. See <a href="https://www.aeaweb.org/articles?id=10.1257/000282803321946912">Hahn &amp; Hausman 2003</a> for an overview.</li>
+  <li>Instrumental variables estimates a <em>local average treatment effect</em> - in other words, a weighted average of each individual observation’s treatment effect, where the weights are based on the strength of the effect of the instrument on the endogenous variable. Note both that this is not the same thing as an <em>average treatment effect</em>, which is an average of each individual’s treatment effect, which is usually what is desired, and also that if the instrumental variable has effects of different signs for different people (non-monotonicity), then the estimate isn’t really anything of interest. Be sure that monotonicity makes sense in your context before using instrumental variables.</li>
+  <li>Instrumental variables is a consistent estimator of a causal effect, but it is biased in finite samples. Be wary of using instrumental variables in small samples.</li>
+</ul>
+      <h2 id="also-consider">
+          <a href="#also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Also Consider
+      </h2>
+<ul>
+  <li>Instrumental variables methods generally rely on linearity assumptions, and if your dependent or endogenous variables are not continuous, their assumptions may not hold. Consider methods specially designed for <a href="https://lost-stats.github.io/Model_Estimation/nonlinear_instrumental_variables_estimation.html">nonlinear instrumental variables estimation</a>.</li>
+  <li>There are many ways to estimate instrumental variables, not just two stage least squares. Different estimators such as GMM or k-class limited-information maximum likelihood estimators perform better or worse depending on heterogeneous treatment effects, heteroskedasticity, and sample size. Many instrumental variables estimation commands allow for multiple different estimation methods, described below. Note that in the just-identified case (where the number of instruments is the same as the number of endogenous variables), several common estimators produce identical results.</li>
+</ul>
+      <h1 id="implementations">
+          <a href="#implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Implementations
+      </h1>
+      <h2 id="r">
+          <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
+      </h2>
+<p>There are several ways to run instrumental variables in R. Here we will cover two - <code class="highlighter-rouge">AER::ivreg()</code>, which is probably the most common, and <code class="highlighter-rouge">lfe::felm()</code>, which is more flexible and powerful. You may also want to consider looking at <code class="highlighter-rouge">estimatr::iv_robust</code>, which combines much of the flexibility of <code class="highlighter-rouge">lfe::felm()</code> with the simple syntax of <code class="highlighter-rouge">AER::ivreg()</code>, although it is not as powerful.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install both packages.</span><span class="w">
+</span><span class="c1"># install.packages(c('AER','lfe'))</span><span class="w">
+</span><span class="c1"># Load AER</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">AER</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Load the Cigarettes data from ivreg, following the example</span><span class="w">
+</span><span class="n">data</span><span class="p">(</span><span class="n">CigarettesSW</span><span class="p">)</span><span class="w">
+</span><span class="c1"># We will be using cigarette taxes as an instrument for cigarette prices</span><span class="w">
+</span><span class="c1"># to evaluate the effect of cigarette price on log number of packs smoked</span><span class="w">
+</span><span class="c1"># With income per capita as a control</span><span class="w">
+
+</span><span class="c1"># Adjust everything for inflation</span><span class="w">
+</span><span class="n">CigarettesSW</span><span class="o">$</span><span class="n">rprice</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">CigarettesSW</span><span class="o">$</span><span class="n">price</span><span class="o">/</span><span class="n">CigarettesSW</span><span class="o">$</span><span class="n">cpi</span><span class="w">
+</span><span class="n">CigarettesSW</span><span class="o">$</span><span class="n">rincome</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">CigarettesSW</span><span class="o">$</span><span class="n">income</span><span class="o">/</span><span class="n">CigarettesSW</span><span class="o">$</span><span class="n">population</span><span class="o">/</span><span class="n">CigarettesSW</span><span class="o">$</span><span class="n">cpi</span><span class="w">
+</span><span class="n">CigarettesSW</span><span class="o">$</span><span class="n">tdiff</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">CigarettesSW</span><span class="o">$</span><span class="n">taxs</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">CigarettesSW</span><span class="o">$</span><span class="n">tax</span><span class="p">)</span><span class="o">/</span><span class="n">CigarettesSW</span><span class="o">$</span><span class="n">cpi</span><span class="w">
+
+</span><span class="c1"># The regression formula takes the format</span><span class="w">
+</span><span class="c1"># dependent.variable ~ endogenous.variables + controls | instrumental.variables + controls</span><span class="w">
+</span><span class="n">ivmodel</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ivreg</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="n">packs</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">rprice</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">rincome</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">tdiff</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">rincome</span><span class="p">),</span><span class="w">
+                 </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CigarettesSW</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">ivmodel</span><span class="p">)</span><span class="w">
+
+
+</span><span class="c1"># Now we will run the same model with lfe::felm</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">lfe</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># The regression formula takes the format</span><span class="w">
+</span><span class="c1"># dependent vairable ~ </span><span class="w">
+</span><span class="c1">#    controls |</span><span class="w">
+</span><span class="c1">#    fixed.effects | </span><span class="w">
+</span><span class="c1">#    (endogenous.variables ~ instruments) |</span><span class="w">
+</span><span class="c1">#    clusters.for.standard.errors</span><span class="w">
+</span><span class="c1"># So if need be it is straightforward to adjust this example to account for</span><span class="w">
+</span><span class="c1"># fixed effects and clustering.</span><span class="w">
+</span><span class="c1"># Note the 0 indicating no fixed effects</span><span class="w">
+</span><span class="n">ivmodel2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">felm</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="n">packs</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">rincome</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="n">rprice</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">tdiff</span><span class="p">),</span><span class="w">
+                     </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CigarettesSW</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">ivmodel2</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># felm can also use several k-class estimation methods; see help(felm) for the full list.</span><span class="w">
+</span><span class="c1"># Let's run it with a limited-information maximum likelihood estimator with </span><span class="w">
+</span><span class="c1"># the fuller adjustment set to minimize squared error (4).</span><span class="w">
+</span><span class="n">ivmodel3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">felm</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="n">packs</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">rincome</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="n">rprice</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">tdiff</span><span class="p">),</span><span class="w">
+                 </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CigarettesSW</span><span class="p">,</span><span class="w"> </span><span class="n">kclass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'liml'</span><span class="p">,</span><span class="w"> </span><span class="n">fuller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">ivmodel3</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+      <h2 id="stata">
+          <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
+      </h2>
+<p>Instrumental variables estimation in Stata typically uses the built-in <code class="highlighter-rouge">ivregress</code> command. This command can be used to implement linear instrumental variables regression using two-stage least squares, GMM, or LIML</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Get Stock and Watson Cigarette data
+</span><span class="err">import</span> <span class="err">delimited</span> <span class="s2">"https://vincentarelbundock.github.io/Rdatasets/csv/Zelig/CigarettesSW.csv"</span><span class="err">,</span> <span class="err">clear
+</span><span class="c1">
+* Adjust everything for inflation
+</span><span class="err">g</span> <span class="err">rprice</span> <span class="o">=</span> <span class="err">price/cpi
+g</span> <span class="err">rincome</span> <span class="o">=</span> <span class="err">(income/population)/cpi
+g</span> <span class="err">tdiff</span> <span class="o">=</span> <span class="err">(taxs</span> <span class="o">-</span> <span class="err">tax)/cpi
+</span><span class="c1">
+* And take logs
+</span><span class="err">g</span> <span class="err">lpacks</span> <span class="o">=</span> <span class="err">ln(packs)
+g</span> <span class="err">lrincome</span> <span class="o">=</span> <span class="err">ln(rincome)
+g</span> <span class="err">lrprice</span> <span class="o">=</span> <span class="err">ln(rprice)
+</span><span class="c1">
+* The syntax for the regression is
+* name_of_estimator dependent_variable controls (endogenous_variable = instruments)
+* where name_of_estimator can be two stage least squares (2sls), 
+* limited information maximum likelihood (liml, note that ivregress doesn't support k-class estimators), 
+* or generalized method of moments (gmm)
+* Here we can run two stage least squares
+</span><span class="err">ivregress</span> <span class="err">2sls</span> <span class="err">lpacks</span> <span class="err">rincome</span> <span class="err">(lrprice</span> <span class="o">=</span> <span class="err">tdiff)
+</span><span class="c1">
+* Or gmm. 
+</span><span class="err">ivregress</span> <span class="err">gmm</span> <span class="err">lpacks</span> <span class="err">rincome</span> <span class="err">(lrprice</span> <span class="o">=</span> <span class="err">tdiff)
+</span></code></pre></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
