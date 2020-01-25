@@ -32,7 +32,6 @@ If you create one of these pages, please remove it from this list.
 * Treatment Effect Model
 * Endogenous Switching Model
 * Nonparametric Sample Selection Models
-* Heteroskedasticity-Robust Standard Errors
 * Jackknife Standard Errors
 * Tobit
 * Average Marginal Effects
@@ -43,7 +42,6 @@ If you create one of these pages, please remove it from this list.
 * Hierarchical Bayes Conditional Logit
 * Multilevel Regression with Poststratification
 * Nonlinear Mixed Effects Models
-* Cluster-robust Standard Errors
 * Ordered Probit
 * Ordered Logit
 * Joint F-tests
@@ -64,6 +62,7 @@ If you create one of these pages, please remove it from this list.
 * Random Forest
 * Decision Trees
 * Nearest Neighbors Matching
+* Boosted Regression
 
 ## Presentation
 
