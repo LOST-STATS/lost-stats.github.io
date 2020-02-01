@@ -50,7 +50,7 @@ data("storms")
 storms %>%
   select(year, wind, pressure, ts_diameter) %>%
   as.data.frame() %>%
-  stargazer(type = 'text')
+  stargazer(type = 'text')  
 ```
 
 ## Stata
