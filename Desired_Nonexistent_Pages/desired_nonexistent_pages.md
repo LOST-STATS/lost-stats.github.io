@@ -16,6 +16,7 @@ If you create one of these pages, please remove it from this list.
 
 * Aggregating Statistics
 * Collapse a Data Set
+* Creating dummy variables
 
 ## Model Estimation
 
@@ -72,11 +73,15 @@ If you create one of these pages, please remove it from this list.
 * Styling Scatterplots
 * Faceted Graphs
 * Marginal Effects Plots for Discrete Variables
+* Density plots
+* Histograms
+* Bar plots
+* Formatting graph legends
+* Graph themes
 
 ## Summary Statistics
 
 * Summary Statistics by Group
-* Summary Statistics Tables
 * Cross-Tabulations
 * Correlation Matrix
 
