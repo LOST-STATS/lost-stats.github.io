@@ -43,7 +43,14 @@ stargazer(mt_tosum, type = 'text')
 stargazer(mt_tosum, type = 'html', out = 'my_summary.html', median = TRUE)
 
 # Also note that stargazer does not accept tibbles.
-# Use as.data.frame() t
+# Use as.data.frame() to stargazer a tibble
+library(tidyverse)
+data("storms")
+
+storms %>%
+  select(year, wind, pressure, ts_diameter) %>%
+  as.data.frame() %>%
+  stargazer(type = 'text')
 ```
 
 ## Stata
