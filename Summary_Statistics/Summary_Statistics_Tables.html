@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>Summary Statistics Tables - LOST</title>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/just-the-docs.css">
+    <script type="text/javascript" src="/assets/js/vendor/lunr.min.js"></script>
+  <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Summary Statistics Tables | LOST</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Summary Statistics Tables" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:site_name" content="LOST" />
+<script type="application/ld+json">
+{"description":"Source code for the Library of Statistical Techniques","headline":"Summary Statistics Tables","@type":"WebPage","url":"/Summary_Statistics/Summary_Statistics_Tables.html","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML">
+  </script>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="link" viewBox="0 0 16 16">
+      <title>Link</title>
+      <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+    </symbol>
+  </svg>
+  <div class="page-wrap">
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="" class="site-title lh-tight">
+  LOST
+</a>
+        <button class="menu-button fs-3 js-main-nav-trigger" data-text-toggle="Hide" type="button">Menu</button>
+      </div>
+      <div class="navigation main-nav js-main-nav">
+        <nav role="navigation" aria-label="Main navigation">
+  <ul class="navigation-list"><li class="navigation-list-item"><a href="/" class="navigation-list-link">Home</a></li><li class="navigation-list-item active"><a href="/Data/" class="navigation-list-link"></a></li><li class="navigation-list-item"><a href="/Data_Manipulation/data_manipulation.html" class="navigation-list-link">Data Manipulation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="navigation-list-link">Collapse a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="navigation-list-link">Combining Datasets</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="navigation-list-link">Vertical Combination</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="navigation-list-link">Horizontal Combination (Deterministic)</a>
+                          </li></ul></li><li class="navigation-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="navigation-list-link">Determine the Observation Level of a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Reshaping/reshape.html" class="navigation-list-link">Reshaping Data</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="navigation-list-link">Reshape Panel Data from Wide to Long</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="navigation-list-link">Reshape Panel Data from Long to Wide</a>
+                          </li></ul></li></ul></li><li class="navigation-list-item"><a href="/Geo-Spatial/Summary_Techniques.html" class="navigation-list-link">Geo-Spatial</a><ul class="navigation-list-child-list "></ul></li><li class="navigation-list-item"><a href="/Machine_Learning/Machine_Learning.html" class="navigation-list-link">Machine Learning</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Machine_Learning/causal_forest.html" class="navigation-list-link">Causal Forest</a></li><li class="navigation-list-item "><a href="/Machine_Learning/penalized_regression.html" class="navigation-list-link">Penalized Regression</a></li></ul></li><li class="navigation-list-item"><a href="/Model_Estimation/Estimation.html" class="navigation-list-link">Model Estimation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Model_Estimation/fixed_effects_in_linear_regression.html" class="navigation-list-link">Fixed Effects in Linear Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/heckman_correction_model.html" class="navigation-list-link">Heckman Correction Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/instrumental_variables.html" class="navigation-list-link">Instrumental Variables</a></li><li class="navigation-list-item "><a href="/Model_Estimation/interaction_terms_and_polynomials.html" class="navigation-list-link">Interaction Terms and Polynomials</a></li><li class="navigation-list-item "><a href="/Model_Estimation/linear_mixed_effects_regression.html" class="navigation-list-link">Linear Mixed-Effects Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/logit_model.html" class="navigation-list-link">Logit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/mcfaddens_choice_model.html" class="navigation-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/ordinary_least_squares.html" class="navigation-list-link">Ordinary Least Squares (Linear Regression)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/probit_model.html" class="navigation-list-link">Probit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/Nonstandard_Errors/nonstandard_errors.html" class="navigation-list-link">Nonstandard Errors</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/clustered_se.html" class="navigation-list-link">Cluster-Robust Standard Errors</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/hc_se.html" class="navigation-list-link">Heteroskedasticity-consistent standard errors</a>
+                          </li></ul></li></ul></li><li class="navigation-list-item"><a href="/Presentation/Presentation.html" class="navigation-list-link">Presentation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Presentation/export_a_formatted_regression_table.html" class="navigation-list-link">Export a Formatted Regression Table</a></li><li class="navigation-list-item "><a href="/Presentation/heatmap_colored_correlation_matrix.html" class="navigation-list-link">Heatmap Colored Correlation Matrix</a></li><li class="navigation-list-item "><a href="/Presentation/line_graph_with_labels_at_the_beginning_or_end.html" class="navigation-list-link">Line Graph with Labels at the Beginning or End of Lines</a></li><li class="navigation-list-item "><a href="/Presentation/marginal_effects_plots_for_interactions_with_continuous_variables.html" class="navigation-list-link">Marginal Effects Plots for Interactions with Continuous Variables</a></li><li class="navigation-list-item "><a href="/Presentation/scatterplot_by_group_on_shared_axes.html" class="navigation-list-link">Scatterplot by Group on Shared Axes</a></li></ul></li><li class="navigation-list-item active"><a href="/Summary_Statistics/Summary_Statistics.html" class="navigation-list-link">Summary Statistics</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Summary_Statistics/Balance_Tables.html" class="navigation-list-link">Balance Table</a></li><li class="navigation-list-item  active"><a href="/Summary_Statistics/Summary_Statistics_Tables.html" class="navigation-list-link active">Summary Statistics Tables</a></li></ul></li><li class="navigation-list-item"><a href="/Time_Series/Time_Series.html" class="navigation-list-link">Time Series</a><ul class="navigation-list-child-list "></ul></li><li class="navigation-list-item"><a href="/Other/Other.html" class="navigation-list-link">Other</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Other/import_a_foreign_data_file.html" class="navigation-list-link">Import a Foreign Data File</a></li></ul></li><li class="navigation-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="navigation-list-link">Desired Nonexistent Pages</a></li><li class="navigation-list-item"><a href="/Contributing/Contributing.html" class="navigation-list-link">Contributing</a></li></ul>
+</nav>
+      </div>
+      <footer class="site-footer">
+        <p class="text-small text-grey-dk-000 mb-4">This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.</p>
+      </footer>
+    </div>
+    <div class="main-content-wrap js-main-content" tabindex="0">
+      <div class="main-content">
+        <div class="page-header js-page-header">
+          <div class="search">
+            <div class="search-input-wrap">
+              <input type="text" class="js-search-input search-input" tabindex="0" placeholder="Search LOST" aria-label="Search LOST" autocomplete="off">
+              <svg width="14" height="14" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title><g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"/><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"/></g></svg>
+            </div>
+            <div class="js-search-results search-results-wrap"></div>
+          </div>
+            <ul class="list-style-none text-small aux-nav">
+                <li class="d-inline-block my-0"><a href="https://github.com/lost-stats/lost-stats.github.io/blob/source/Summary_Statistics/Summary_Statistics_Tables.md">Edit this page on GitHub</a></li>
+            </ul>
+        </div>
+        <div class="page">
+              <nav class="breadcrumb-nav">
+                <ol class="breadcrumb-nav-list">
+                    <li class="breadcrumb-nav-list-item"><a href="/Summary_Statistics/Summary_Statistics.html">Summary Statistics</a></li>
+                  <li class="breadcrumb-nav-list-item"><span>Summary Statistics Tables</span></li>
+                </ol>
+              </nav>
+          <div id="main-content" class="page-content" role="main">
+              <h1 id="summary-statistics-tables">
+          <a href="#summary-statistics-tables" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Summary Statistics Tables
+      </h1>
+<p>Before looking at relationships between variables, it is generally a good idea to show a reader what the distributions of individual variables look like. A common way to do this, which allows you to show information about many variables at once, is a “Summary statistics table” or “descriptive statistics table” in which each row is one variable in your data, and the columns include things like number of observations, mean, median, standard deviation, and range.</p>
+      <h2 id="keep-in-mind">
+          <a href="#keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Keep in Mind
+      </h2>
+<ul>
+  <li>Make sure that you are using the appropriate summary measures for the variables that you have. For example, if you have a variable indicating the country someone is from coded as that country’s international calling code, don’t include it in a table that reports the mean - you’d get an answer but that answer wouldn’t make any sense.</li>
+  <li>If you have categorical variables, you can generally still incorporate them into a summary statistics table by <a href="https://lost-stats.github.io/Data_Manipulation/creating_dummies.html">turning them into binary “dummy” variables</a>.</li>
+</ul>
+      <h2 id="also-consider">
+          <a href="#also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Also Consider
+      </h2>
+<ul>
+  <li>Graphs can be more informative ways of showing the distribution of a variable, and you may want to show a graph of your variable’s distribution in addition to its inclusion on a summary statistics table. There are many ways to do this, but two common ones are <a href="https://lost-stats.github.io/Presentation/Density_Plots.html">density plots</a> or <a href="https://lost-stats.github.io/Presentation/Histograms.html">histograms</a> for continuous variables, or <a href="https://lost-stats.github.io/Presentation/Bar_Plots.html">bar plots</a> for categorical variables.</li>
+</ul>
+      <h1 id="implementations">
+          <a href="#implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Implementations
+      </h1>
+      <h2 id="r">
+          <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
+      </h2>
+<p>Probably the most straightforward and simplest way to do a summary statistics table in R is with the <strong>stargazer</strong> package, which also has many options for customization. There are also other options like <code class="highlighter-rouge">summary_table()</code> in <strong>qwraps2</strong> or <code class="highlighter-rouge">table1()</code> in <strong>table1</strong>, both of which have more cross-tabulation and categorical-variable functionality but require more work to set up. See <a href="https://thatdatatho.com/2018/08/20/easily-create-descriptive-summary-statistic-tables-r-studio/">this page</a> for a comparison of different packages other than <strong>stargazer</strong>.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary</span><span class="w">
+</span><span class="c1"># install.packages('stargazer')</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">stargazer</span><span class="p">)</span><span class="w">
+</span><span class="n">data</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Feed stargazer a data.frame with the variables you want summarized</span><span class="w">
+</span><span class="n">mt_tosum</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mtcars</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="s1">'mpg'</span><span class="p">,</span><span class="s1">'cyl'</span><span class="p">,</span><span class="s1">'disp'</span><span class="p">)]</span><span class="w">
+</span><span class="c1"># Type = 'text' to print the table to screen, or 'latex' or 'html' to get LaTeX or HTML tables</span><span class="w">
+</span><span class="n">stargazer</span><span class="p">(</span><span class="n">mt_tosum</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'text'</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># There are *many* options and customizations. For all of them, see</span><span class="w">
+</span><span class="c1"># help(stargazer)</span><span class="w">
+</span><span class="c1"># Some useful ones include out, which designates a file to send the table to</span><span class="w">
+</span><span class="c1"># (note that HTML tables can be copied straight into Word from an output file)</span><span class="w">
+</span><span class="n">stargazer</span><span class="p">(</span><span class="n">mt_tosum</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'html'</span><span class="p">,</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'my_summary.html'</span><span class="p">,</span><span class="w"> </span><span class="n">median</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Also note that stargazer does not accept tibbles.</span><span class="w">
+</span><span class="c1"># Use as.data.frame() t</span><span class="w">
+</span></code></pre></div></div>
+      <h2 id="stata">
+          <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
+      </h2>
+<p>The built-in Stata command <code class="highlighter-rouge">summarize</code> (which can be referred to in short as <code class="highlighter-rouge">su</code> or <code class="highlighter-rouge">summ</code>) easily creates summary statistics tables. However, while <code class="highlighter-rouge">summarize</code> is well-suited for viewing descriptive statistics on your own, it is not well-suited for making tables to publish in a paper, since it is difficult to limit the number of significant digits, and does not offer an easy way to export the table other than selecting the Stata output, selecting “Copy Table”, and pasting into a spreadsheet.</p>
+<p>For more flexible tables that can be easily exported, we will be using the highly flexible <strong>estout</strong> package. For more information on the many different options and specifications for <strong>estout</strong> summary tables, see <a href="http://repec.org/bocode/e/estout/estpost.html">this page</a>. We will also see how to use <code class="highlighter-rouge">outreg2</code> in the <strong>outreg2</strong> package, which is less flexible but is slightly less work to use for standard tables that are basically <code class="highlighter-rouge">summarize</code> but nicer-looking and output to a file.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* If necessary
+* ssc install estout
+* ssc install outreg2
+</span><span class="err">
+sysuse</span> <span class="err">auto.dta,</span> <span class="err">clear
+</span><span class="c1">
+* summarize will give us a table that is great for our own purposes, not so much for exporting
+</span><span class="err">summarize</span> <span class="err">price</span> <span class="err">mpg</span> <span class="err">rep78</span> <span class="err">i.foreign
+</span><span class="c1">
+* Instead using estpost summarize will give us an esttab-compatible table
+* Note that factor variables no longer work - we must make dummies by hand
+</span><span class="err">xi</span> <span class="err">i.foreign,</span> <span class="err">pre(f_)</span> <span class="err">noomit
+estpost</span> <span class="err">summarize</span> <span class="err">price</span> <span class="err">mpg</span> <span class="err">rep78</span> <span class="err">f_</span><span class="o">*</span><span class="err">
+</span><span class="c1">
+* We can then use esttab and cells() to pick columns
+* Now it's nicely formatted
+* The quotes around the statistics put all the statistics in one row 
+</span><span class="err">esttab,</span> <span class="err">cells(</span><span class="s2">"count mean sd min max"</span><span class="err">)
+</span><span class="c1">
+* If we want to limit the number of significant digits we must do this stat by stat
+* Using a standard format option (see help format)
+</span><span class="err">esttab,</span> <span class="err">cells(</span><span class="s2">"count mean(fmt(%9.2f)) sd(fmt(%9.2f)) min max"</span><span class="err">)
+</span><span class="c1">
+* And write out to file with "using"
+</span><span class="err">esttab</span> <span class="err">using</span> <span class="err">mytable.rtf,</span> <span class="err">cells(</span><span class="s2">"count mean(fmt(%9.2f)) sd(fmt(%9.2f)) min max"</span><span class="err">)</span> <span class="err">replace
+</span><span class="c1">
+
+* Or we can work with outreg2
+* First, limit the data to the variables we want to summarize
+</span><span class="err">preserve
+keep</span> <span class="err">price</span> <span class="err">mpg</span> <span class="err">rep78</span> <span class="err">f_</span><span class="o">*</span><span class="err">
+</span><span class="c1">
+* Then outreg2 with the sum(log) option to get summary statistics
+</span><span class="err">outreg2</span> <span class="err">using</span> <span class="err">myoutreg2table.doc,</span> <span class="err">word</span> <span class="err">sum(log)</span> <span class="err">replace
+</span><span class="c1">
+* Defaults are very similar to what you'd get with summarize, but you can do things like change
+* number of significant digits with dec(), or which stats are in there with eqkeep()
+</span><span class="err">outreg2</span> <span class="err">using</span> <span class="err">mysmalltable.doc,</span> <span class="err">word</span> <span class="err">sum(log)</span> <span class="err">eqkeep(N</span> <span class="err">mean)</span> <span class="err">dec(3)</span> <span class="err">replace
+
+restore
+</span></code></pre></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
