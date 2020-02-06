@@ -78,3 +78,50 @@ effects.hold <- predict(cf, X.hold)$predictions
 SEs <- sqrt(predict(cf, X.hold, estimate.variance = TRUE)$variance.estimates)
 ```
 
+# Stata
+
+The **MLRtime** package allows the `causal_forest` function in the R **grf** package to be run from inside of Stata. This does require that R be installed.
+
+```stata
+* If necessary, install MLRtime
+* net install MLRtime, from("https://raw.githubusercontent.com/NickCH-K/MLRtime/master/")
+* Then, before use, install R from R-project.org
+* and run the MLRtimesetup function
+* MLRtimesetup, go
+
+* Start a fresh R session
+rcall clear
+
+* Get crime data from North Carolina
+import delimited using "https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/Crime.csv", clear
+
+* Turn character variables numeric so we can use them
+encode region, g(regionn)
+encode smsa, g(smsan)
+drop region smsa
+
+* It's not, but let's pretend that "percentage of young males" pctymle is exogenous
+* and see how the effect of it on crmrte varies across the other measured covariates
+
+* Let's use training and holdout data by sending our holdout data to R with rcall
+g split = runiform() > .5
+preserve
+* Keep the predictors from the holding data, send it over, so later we can make an X matrix to predict with
+keep if split == 0
+keep year prbarr prbconv prbpris avgsen polpc density taxpc regionn smsan pctmin wcon
+* R needs that data pre-processed! So using the same variables as in the main model, process the variables
+fvrevar year prbarr prbconv prbpris avgsen polpc density taxpc i.regionn i.smsan pctmin wcon
+keep `r(varlist)'
+* Then send the data to R
+rcall: df.hold <- st.data()
+restore
+* Now go back to just the training data
+
+* Run causal_forest, storing the effect predictions for the training data in the "effects" variable
+* the SEs of those effects in effectSE
+* And the effects and SEs for the holdout data in matrices called effects_hold and effectSE_hold
+causal_forest crmrte pctymle year prbarr prbconv prbpris avgsen polpc density taxpc i.regionn i.smsan pctmin wcon, pred(effects) varreturn(effectSE = sqrt(predict(CF, X, estimate.variance = TRUE)@@variance.estimates)) return(effects_hold = predict(CF, as.matrix(df.hold))@@predictions; effectSE_hold = sqrt(predict(CF, as.matrix(df.hold), estimate.variance = TRUE)@@variance.estimates))
+
+* Look at the holdout effects predicted
+di "`r(effects_hold)'"
+```
