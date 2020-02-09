@@ -64,7 +64,7 @@ In all cases, the **tidyselect** helpers in the **dplyr** package can help you t
 # install.packages(c('purrr','ggplot2','dplyr'))
 # ggplot2 is only for the data
 data(midwest, package = 'ggplot2')
-# dplyr is for the tidyselect functions
+# dplyr is for the tidyselect functions, the pipe %>%, and select() to pick columns
 library(dplyr)
 
 # There are three sets of variables starting with "perc" - let's make sure they
@@ -86,6 +86,7 @@ midwest$rowsum_apply <- apply(
   sum)
 
 # Next, two ways with purrr:
+library(purrr)
 # First, using purrr::reduce, which is good for some functions like summing
 # Note that . is the data set being sent by %>%
 midwest <- midwest %>%
