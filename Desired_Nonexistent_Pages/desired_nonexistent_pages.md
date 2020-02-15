@@ -28,7 +28,6 @@ If you create one of these pages, please remove it from this list.
 * Event Study Estimation
 * Nonparametric regression
 * Generalized Method of Moments (GMM)
-* Bootstrap Standard Errors
 * Cluster Bootstrap Standard Errors
 * Treatment Effect Model
 * Endogenous Switching Model

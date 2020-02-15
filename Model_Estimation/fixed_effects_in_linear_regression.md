@@ -16,7 +16,7 @@ For more information, see [Wikipedia: Fixed Effects Model](https://en.wikipedia.
 
 - To use individual-level fixed effects, you must observe the same person multiple times (panel data).
 - In a linear regression context, fixed effects regression is relatively straightforward, and can be thought of as effectively adding a binary control variable for each individual, or subtracting the within-individual mean of each variable (the "within" estimator). However, you may want to apply fixed effects to other models like logit or probit. This is usually possible (depending on the model), but if you just add a set of binary controls or subtract within-individual means, it won't work very well. Instead, look for a command specifically designed to implement fixed effects for that model.
-- If you are using fixed effects to estimate the causal effect of a variable $$X$$, individuals with more variance in $$X$$ will be weighted more heavily (Gibbons, Serrano, & Urbancic 2019, ungated copy [here](http://gibbons.bio/docs/bfe.pdf). You may want to consider weighting your regression by the inverse within-individual variance of $$X$$.
+- If you are using fixed effects to estimate the causal effect of a variable $$X$$, individuals with more variance in $$X$$ will be weighted more heavily (Gibbons, Serrano, & Urbancic 2019, ungated copy [here](http://gibbons.bio/docs/bfe.pdf)). You may want to consider weighting your regression by the inverse within-individual variance of $$X$$.
 
 ## Also Consider
 
