@@ -98,6 +98,9 @@
 <li class="navigation-list-item ">
 <a href="/Model_Estimation/Nonstandard_Errors/nonstandard_errors.html" class="navigation-list-link">Nonstandard Errors</a><ul class="navigation-list-child-list">
 <li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/bootstrap_se.html" class="navigation-list-link">Bootstrap Standard Errors</a>
+                          </li>
+<li class="navigation-list-item ">
                             <a href="/Model_Estimation/Nonstandard_Errors/clustered_se.html" class="navigation-list-link">Cluster-Robust Standard Errors</a>
                           </li>
 <li class="navigation-list-item ">
@@ -171,7 +174,7 @@
 <ul>
   <li>To use individual-level fixed effects, you must observe the same person multiple times (panel data).</li>
   <li>In a linear regression context, fixed effects regression is relatively straightforward, and can be thought of as effectively adding a binary control variable for each individual, or subtracting the within-individual mean of each variable (the “within” estimator). However, you may want to apply fixed effects to other models like logit or probit. This is usually possible (depending on the model), but if you just add a set of binary controls or subtract within-individual means, it won’t work very well. Instead, look for a command specifically designed to implement fixed effects for that model.</li>
-  <li>If you are using fixed effects to estimate the causal effect of a variable <script type="math/tex">X</script>, individuals with more variance in <script type="math/tex">X</script> will be weighted more heavily (Gibbons, Serrano, &amp; Urbancic 2019, ungated copy <a href="http://gibbons.bio/docs/bfe.pdf">here</a>. You may want to consider weighting your regression by the inverse within-individual variance of <script type="math/tex">X</script>.</li>
+  <li>If you are using fixed effects to estimate the causal effect of a variable <script type="math/tex">X</script>, individuals with more variance in <script type="math/tex">X</script> will be weighted more heavily (Gibbons, Serrano, &amp; Urbancic 2019, ungated copy <a href="http://gibbons.bio/docs/bfe.pdf">here</a>). You may want to consider weighting your regression by the inverse within-individual variance of <script type="math/tex">X</script>.</li>
 </ul>
       <h2 id="also-consider">
           <a href="#also-consider" class="anchor-heading"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Also Consider
