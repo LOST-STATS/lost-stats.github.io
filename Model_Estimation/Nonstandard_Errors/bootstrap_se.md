@@ -85,4 +85,8 @@ reg mpg weight length, vce(bootstrap)
 * see help bootstrap to adjust options like number of samples
 * or strata
 reg mpg weight length, vce(bootstrap, reps(200))
+
+* If a command does not support vce(bootstrap), there's a good chance it will
+* work with a bootstrap: prefix, which works similarly
+bootstrap, reps(200): reg mpg weight length 
 ```
