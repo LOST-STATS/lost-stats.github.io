@@ -67,7 +67,7 @@ rdplot y x, c(0) p(2)
 
 ## R
 
-There are several packages in R designed for the estimation of RDD. Three prominent ones are **rdd**, **rddtools**, and **rdrobust**. See [this article](https://files.eric.ed.gov/fulltext/EJ1141190.pdf) for comparisons between them in terms of their strengths and weaknesses. The article, considering the verisons of the packages available in 2017, recommends **rddtools** for assumption and sensitivity checks, and **rdrobust** for bandwidth selection and treatment effect estimation. We will consider **rdrobust** here. See [the rddtools walkthrough](https://github.com/bquast/rddtools-article) for a detailed example of the use of **rddtools**.
+There are several packages in R designed for the estimation of RDD. Three prominent options are **rdd**, **rddtools**, and **rdrobust**. See [this article](https://files.eric.ed.gov/fulltext/EJ1141190.pdf) for comparisons between them in terms of their strengths and weaknesses. The article, considering the verisons of the packages available in 2017, recommends **rddtools** for assumption and sensitivity checks, and **rdrobust** for bandwidth selection and treatment effect estimation. We will consider **rdrobust** here. See [the rddtools walkthrough](https://github.com/bquast/rddtools-article) for a detailed example of the use of **rddtools**.
 
 ```r
 # If necessary
