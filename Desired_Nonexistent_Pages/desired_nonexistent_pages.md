@@ -23,7 +23,6 @@ If you create one of these pages, please remove it from this list.
 * Random Effects
 * Nonlinear Instrumental Variables Estimation
 * Differences in Differences
-* Regression Discontinuity Design
 * Propensity Score Matching
 * Event Study Estimation
 * Nonparametric regression
