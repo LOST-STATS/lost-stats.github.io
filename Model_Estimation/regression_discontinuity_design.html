@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>Regression Discontinuity Design - LOST</title>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/just-the-docs.css">
+    <script type="text/javascript" src="/assets/js/vendor/lunr.min.js"></script>
+  <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Regression Discontinuity Design | LOST</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Regression Discontinuity Design" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:site_name" content="LOST" />
+<script type="application/ld+json">
+{"description":"Source code for the Library of Statistical Techniques","headline":"Regression Discontinuity Design","@type":"WebPage","url":"/Model_Estimation/regression_discontinuity_design.html","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML">
+  </script>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="link" viewBox="0 0 16 16">
+      <title>Link</title>
+      <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+    </symbol>
+  </svg>
+  <div class="page-wrap">
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="" class="site-title lh-tight">
+  LOST
+</a>
+        <button class="menu-button fs-3 js-main-nav-trigger" data-text-toggle="Hide" type="button">Menu</button>
+      </div>
+      <div class="navigation main-nav js-main-nav">
+        <nav role="navigation" aria-label="Main navigation">
+  <ul class="navigation-list"><li class="navigation-list-item"><a href="/" class="navigation-list-link">Home</a></li><li class="navigation-list-item active"><a href="/Data/" class="navigation-list-link"></a></li><li class="navigation-list-item"><a href="/Data_Manipulation/data_manipulation.html" class="navigation-list-link">Data Manipulation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="navigation-list-link">Collapse a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="navigation-list-link">Combining Datasets</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="navigation-list-link">Vertical Combination</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="navigation-list-link">Horizontal Combination (Deterministic)</a>
+                          </li></ul></li><li class="navigation-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="navigation-list-link">Determine the Observation Level of a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Reshaping/reshape.html" class="navigation-list-link">Reshaping Data</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="navigation-list-link">Reshape Panel Data from Wide to Long</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="navigation-list-link">Reshape Panel Data from Long to Wide</a>
+                          </li></ul></li><li class="navigation-list-item "><a href="/Data_Manipulation/rowwise_calculations.html" class="navigation-list-link">Rowwise Calculations</a></li></ul></li><li class="navigation-list-item"><a href="/Geo-Spatial/Summary_Techniques.html" class="navigation-list-link">Geo-Spatial</a><ul class="navigation-list-child-list "></ul></li><li class="navigation-list-item"><a href="/Machine_Learning/Machine_Learning.html" class="navigation-list-link">Machine Learning</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Machine_Learning/causal_forest.html" class="navigation-list-link">Causal Forest</a></li><li class="navigation-list-item "><a href="/Machine_Learning/penalized_regression.html" class="navigation-list-link">Penalized Regression</a></li></ul></li><li class="navigation-list-item active"><a href="/Model_Estimation/Estimation.html" class="navigation-list-link">Model Estimation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Model_Estimation/fixed_effects_in_linear_regression.html" class="navigation-list-link">Fixed Effects in Linear Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/heckman_correction_model.html" class="navigation-list-link">Heckman Correction Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/instrumental_variables.html" class="navigation-list-link">Instrumental Variables</a></li><li class="navigation-list-item "><a href="/Model_Estimation/interaction_terms_and_polynomials.html" class="navigation-list-link">Interaction Terms and Polynomials</a></li><li class="navigation-list-item "><a href="/Model_Estimation/linear_mixed_effects_regression.html" class="navigation-list-link">Linear Mixed-Effects Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/logit_model.html" class="navigation-list-link">Logit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/mcfaddens_choice_model.html" class="navigation-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/ordinary_least_squares.html" class="navigation-list-link">Ordinary Least Squares (Linear Regression)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/probit_model.html" class="navigation-list-link">Probit Model</a></li><li class="navigation-list-item  active"><a href="/Model_Estimation/regression_discontinuity_design.html" class="navigation-list-link active">Regression Discontinuity Design</a></li><li class="navigation-list-item "><a href="/Model_Estimation/Nonstandard_Errors/nonstandard_errors.html" class="navigation-list-link">Nonstandard Errors</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/bootstrap_se.html" class="navigation-list-link">Bootstrap Standard Errors</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/clustered_se.html" class="navigation-list-link">Cluster-Robust Standard Errors</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/hc_se.html" class="navigation-list-link">Heteroskedasticity-consistent standard errors</a>
+                          </li></ul></li></ul></li><li class="navigation-list-item"><a href="/Presentation/Presentation.html" class="navigation-list-link">Presentation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Presentation/export_a_formatted_regression_table.html" class="navigation-list-link">Export a Formatted Regression Table</a></li><li class="navigation-list-item "><a href="/Presentation/heatmap_colored_correlation_matrix.html" class="navigation-list-link">Heatmap Colored Correlation Matrix</a></li><li class="navigation-list-item "><a href="/Presentation/line_graph_with_labels_at_the_beginning_or_end.html" class="navigation-list-link">Line Graph with Labels at the Beginning or End of Lines</a></li><li class="navigation-list-item "><a href="/Presentation/marginal_effects_plots_for_interactions_with_continuous_variables.html" class="navigation-list-link">Marginal Effects Plots for Interactions with Continuous Variables</a></li><li class="navigation-list-item "><a href="/Presentation/scatterplot_by_group_on_shared_axes.html" class="navigation-list-link">Scatterplot by Group on Shared Axes</a></li></ul></li><li class="navigation-list-item"><a href="/Summary_Statistics/Summary_Statistics.html" class="navigation-list-link">Summary Statistics</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Summary_Statistics/Balance_Tables.html" class="navigation-list-link">Balance Table</a></li><li class="navigation-list-item "><a href="/Summary_Statistics/Summary_Statistics_Tables.html" class="navigation-list-link">Summary Statistics Tables</a></li></ul></li><li class="navigation-list-item"><a href="/Time_Series/Time_Series.html" class="navigation-list-link">Time Series</a><ul class="navigation-list-child-list "></ul></li><li class="navigation-list-item"><a href="/Other/Other.html" class="navigation-list-link">Other</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Other/import_a_foreign_data_file.html" class="navigation-list-link">Import a Foreign Data File</a></li></ul></li><li class="navigation-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="navigation-list-link">Desired Nonexistent Pages</a></li><li class="navigation-list-item"><a href="/Contributing/Contributing.html" class="navigation-list-link">Contributing</a></li></ul>
+</nav>
+      </div>
+      <footer class="site-footer">
+        <p class="text-small text-grey-dk-000 mb-4">This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.</p>
+      </footer>
+    </div>
+    <div class="main-content-wrap js-main-content" tabindex="0">
+      <div class="main-content">
+        <div class="page-header js-page-header">
+          <div class="search">
+            <div class="search-input-wrap">
+              <input type="text" class="js-search-input search-input" tabindex="0" placeholder="Search LOST" aria-label="Search LOST" autocomplete="off">
+              <svg width="14" height="14" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title><g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"/><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"/></g></svg>
+            </div>
+            <div class="js-search-results search-results-wrap"></div>
+          </div>
+            <ul class="list-style-none text-small aux-nav">
+                <li class="d-inline-block my-0"><a href="https://github.com/lost-stats/lost-stats.github.io/blob/source/Model_Estimation/regression_discontinuity_design.md">Edit this page on GitHub</a></li>
+            </ul>
+        </div>
+        <div class="page">
+              <nav class="breadcrumb-nav">
+                <ol class="breadcrumb-nav-list">
+                    <li class="breadcrumb-nav-list-item"><a href="/Model_Estimation/Estimation.html">Model Estimation</a></li>
+                  <li class="breadcrumb-nav-list-item"><span>Regression Discontinuity Design</span></li>
+                </ol>
+              </nav>
+          <div id="main-content" class="page-content" role="main">
+              <h1 id="regression-discontinuity-design">
+          <a href="#regression-discontinuity-design" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Regression Discontinuity Design
+      </h1>
+<p>Regression discontinuity (RDD) is a research design for the purposes of causal inference. It can be used in cases where treatment is assigned based on a cutoff value of a “running variable”. For example, perhaps students in a school take a test in 8th grade. Students who score 30 or below are assigned to remedial classes, while students scoring above 30 stay in regular classes. Regression discontinuity could be applied to this setting with test score as a running variable and 30 as the cutoff to look at the effects of remedial classes.</p>
+<p>Regression discontinuity works by focusing on the cutoff. It makes an estimate of what the outcome is within a narrow bandwidth to the left of the cutoff, and also makes an estimate of what the outcome is to the right of the cutoff. Then it compares them to generate a treatment effect estimate.</p>
+<p>See <a href="https://en.wikipedia.org/wiki/Regression_discontinuity_design">Wikpedia: Regression Discontinuity Design</a> for more information.</p>
+<p>Regression discontinuity receives a lot of attention because it relies on what some consider to be plausible assumptions. If the running variable is finely measured and is not being manipulated, then one can argue that being just to the left or the right of a cutoff is effectively random (someone getting a 30 or 31 on the test can basically be down to bad luck on the day) and so this approach by itself can remove confounding from lots of factors.</p>
+      <h2 id="keep-in-mind">
+          <a href="#keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Keep in Mind
+      </h2>
+<ul>
+  <li>There are many, many options to choose when performing an RDD. Bandwidth selection procedure, polynomial terms, bias correction, etc. etc.. Please check the help file for your command of choice closely, and ensure you know what kind of analysis you’re about to run. Don’t assume the defaults are correct.</li>
+  <li>Regression discontinuity relies on the absence of <em>manipulation</em> of the running variable. In the test score example, if the teachers scoring the exam nudge a few students from 30 to 31 so they can avoid remedial classes, RDD doesn’t work any more.</li>
+  <li>Because the method relies on isolating a narrow bandwidth around the cutoff, RDD doesn’t work quite the same if the running variable is discrete and split into a small number of groups. You want a running variable with a lot of different values! See <a href="https://www.aeaweb.org/articles?id=10.1257/aer.20160945">Kolesár and Rothe (2018)</a> for more information.</li>
+  <li>In order to improve statistical performance, regression discontinuity designs often incorporate information from data points far away from the cutoff to improve the estimate of what the outcome is near the cutoff. This can be done nonparametrically, but is most often done by fitting a separate polynomial function for the running variable on either side of the cutoff. A temptation is to use a very high-order polynomial (say, <script type="math/tex">x, x^2, x^3, x^4</script> and <script type="math/tex">x^5</script>) to improve fit. However, in general a low-order polynomial is probably a better idea. See <a href="https://amstat.tandfonline.com/doi/abs/10.1080/07350015.2017.1366909">Gelman and Imbens 2019</a> for more information.</li>
+  <li>Regression discontinuity designs are very well-suited to graphical demonstrations of the method. Software packages designed for RDD specifically will almost always provide an easy method for creating these graphs, and it is rare that you will not want to do this. However, do keep in mind that graphs can sometimes obscure meaningfully large effects. See <a href="https://twitter.com/KiraboJackson/status/1074110061025419268">Kirabo Jackson</a> for an explanation.</li>
+  <li>Regression discontinuities can be <em>sharp</em>, where everyone to one side of the cutoff is treated and nobody on the other side is, or <em>fuzzy</em>, where the probability of treatment changes across the cutoff but assignment isn’t perfect. Most RDD packages can handle both. The intuition for both is similar, but the statistical properties of sharp designs are generally stronger. Fuzzy RDD can be thought of as similar to using an instrumental variables estimator in a case of imperfect random assignment in an experiment. Covariates are generally not necessary in a sharp RDD but may be advisable in a fuzzy one.</li>
+</ul>
+      <h2 id="also-consider">
+          <a href="#also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Also Consider
+      </h2>
+<ul>
+  <li>The <a href="https://lost-stats.github.io/Model_Estimation/regression_kink_design.html">Regression Kink Design</a> is an extension of RDD that looks for a change in <em>a relationship between the running variable and the outcome</em>, i.e. the slope, at the cutoff, rather than a change in the predicted outcome.</li>
+  <li>Regression discontinuity designs are often accompanied by placebo tests, where the same RDD is run again, but with a covariate or some other non-outcome measure used as the outcome. If the RDD shows a significant effect for the covariates, this suggests that balancing did not occur properly and there may be an issue with the RDD assumptions.</li>
+  <li>Part of performing an RDD is selecting a bandwidth around the cutoff to focus on. This can be done by context, but more commonly there are data-based methods for selecting a bandwidth Check your RDD command of choice to see what methods are available for selecting a bandwidth.</li>
+</ul>
+      <h1 id="implementations">
+          <a href="#implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Implementations
+      </h1>
+      <h2 id="stata">
+          <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
+      </h2>
+<p>A standard package for performing regression discontinuity in Stata is <strong>rdrobust</strong>, installable from <code class="highlighter-rouge">scc</code>.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* If necessary
+* ssc install rdrobust
+
+* Load RDD of house elections from the R package rddtools,
+* and originally from Lee (2008) https://www.sciencedirect.com/science/article/abs/pii/S0304407607001121
+</span><span class="err">import</span> <span class="err">delimited</span> <span class="s2">"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Estimation/Data/Regression_Discontinuity_Design/house.csv"</span><span class="err">,</span> <span class="err">clear
+</span><span class="c1">
+* x is "vote margin in the previous election" and y is "vote margin in this election"
+
+* If we want to specify options for bandwidth selection, we can run rdbwselect directly.
+* Otherwise, rdrobust will run it with default options by itself
+* c(0) indicates that treatment is assigned at 0 (i.e. someone gets more votes than the opponent)
+</span><span class="err">rdbwselect</span> <span class="err">y</span> <span class="err">x,</span> <span class="err">c(0)
+</span><span class="c1">
+* Run a sharp RDD with a second-order polynomial term
+</span><span class="err">rdrobust</span> <span class="err">y</span> <span class="err">x,</span> <span class="err">c(0)</span> <span class="err">p(2)
+</span><span class="c1">
+* Run a fuzzy RDD 
+* We don't have a fuzzy RDD in this data, but let's create one, where
+* probability of treatment jumps from 20% to 60% at the cutoff
+</span><span class="err">g</span> <span class="err">treatment</span> <span class="o">=</span> <span class="err">(runiform()</span> <span class="o">&lt;</span> <span class="err">.2)</span><span class="o">*</span><span class="err">(x</span> <span class="o">&lt;</span> <span class="err">0)</span> <span class="o">+</span> <span class="err">(runiform()</span> <span class="o">&lt;</span> <span class="err">.6)</span><span class="o">*</span><span class="err">(x</span> <span class="o">&gt;=</span> <span class="err">0)
+rdrobust</span> <span class="err">y</span> <span class="err">x,</span> <span class="err">c(0)</span> <span class="err">fuzzy(treatment)
+</span><span class="c1">
+* Generate a standard RDD plot with a polynomial of 2 (default is 4)
+</span><span class="err">rdplot</span> <span class="err">y</span> <span class="err">x,</span> <span class="err">c(0)</span> <span class="err">p(2)
+</span></code></pre></div></div>
+      <h2 id="r">
+          <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
+      </h2>
+<p>There are several packages in R designed for the estimation of RDD. Three prominent options are <strong>rdd</strong>, <strong>rddtools</strong>, and <strong>rdrobust</strong>. See <a href="https://files.eric.ed.gov/fulltext/EJ1141190.pdf">this article</a> for comparisons between them in terms of their strengths and weaknesses. The article, considering the verisons of the packages available in 2017, recommends <strong>rddtools</strong> for assumption and sensitivity checks, and <strong>rdrobust</strong> for bandwidth selection and treatment effect estimation. We will consider <strong>rdrobust</strong> here. See <a href="https://github.com/bquast/rddtools-article">the rddtools walkthrough</a> for a detailed example of the use of <strong>rddtools</strong>.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary</span><span class="w">
+</span><span class="c1"># install.packages('rdrobust')</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">rdrobust</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Load RDD of house elections from the R package rddtools,</span><span class="w">
+</span><span class="c1"># and originally from Lee (2008) https://www.sciencedirect.com/science/article/abs/pii/S0304407607001121</span><span class="w">
+</span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Estimation/Data/Regression_Discontinuity_Design/house.csv"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># x is "vote margin in the previous election" and y is "vote margin in this election"</span><span class="w">
+
+</span><span class="c1"># If we want to specify options for bandwidth selection, we can run rdbwselect directly.</span><span class="w">
+</span><span class="c1"># Otherwise, rdrobust will run it with default options by itself</span><span class="w">
+</span><span class="c1"># c(0) indicates that treatment is assigned at 0 (i.e. someone gets more votes than the opponent)</span><span class="w">
+</span><span class="n">bandwidth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rdbwselect</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="o">=</span><span class="m">0</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Run a sharp RDD with a second-order polynomial term</span><span class="w">
+</span><span class="n">rdd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rdrobust</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">x</span><span class="p">,</span><span class="w">
+                </span><span class="n">c</span><span class="o">=</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">=</span><span class="m">2</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">rdd</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Run a fuzzy RDD </span><span class="w">
+</span><span class="c1"># We don't have a fuzzy RDD in this data, but let's create one, where</span><span class="w">
+</span><span class="c1"># probability of treatment jumps from 20% to 60% at the cutoff</span><span class="w">
+</span><span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w">
+</span><span class="n">df</span><span class="o">$</span><span class="n">treatment</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">runif</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">.2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">runif</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">.6</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w">
+</span><span class="n">rddfuzzy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rdrobust</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">x</span><span class="p">,</span><span class="w">
+                     </span><span class="n">c</span><span class="o">=</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">fuzzy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">treatment</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">rddfuzzy</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Generate a standard RDD plot with a polynomial of 2 (default is 4)</span><span class="w">
+</span><span class="n">rdplot</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">x</span><span class="p">,</span><span class="w">
+       </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
