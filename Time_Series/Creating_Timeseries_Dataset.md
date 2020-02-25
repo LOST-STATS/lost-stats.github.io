@@ -43,81 +43,82 @@ nav_order: 1
 
 ## R
 
+STEP 1) Install necessary packages using pacman and pacman::p_load()
+
 ```r
-
-# 1) Install necessary packages using pacman and pacman::p_load()
-
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(here, readxl, tssible, tidyverse)
+```
 
 
-# 2) Import data to R. 
+STEP 2) Import data to R. 
 
+```r
 gdp <- read_excel("YOUR_WORKING_DIRECTORY_PATH/GDPC1.xls",
                   range = cell_rows(11:301), col_names = TRUE)
-
-## cf) The option "range = cell_rows(11:301), col_names = TRUE" is to select only necessary observations. 
+```
+- The option "range = cell_rows(11:301), col_names = TRUE" is to select only necessary observations. 
           
 
-# 3) Convert a date variable formats to quarter
+STEP 3) Convert a date variable formats to quarter
 
+```r
 gdp_ts <- as_tsibble(gdp,
                      index = observation_date,
                      regular = FALSE) %>% 
   index_by(date = ~ yearquarter(.))
-
-## By applying "yearmonth()" to the index variable (referred to as .), it creates new variable named 'date' with quarter interval which corresponds to the year-quarter for the original variable 'observation_date'.
-  
-## cf) Since the "tsibble"" handles regularly-spaced temporal data whereas our data (GDPC1) has irregular time interval, we set option "regular = FALSE".
 ```
+- By applying "yearmonth()" to the index variable (referred to as .), it creates new variable named 'date' with quarter interval which corresponds to the year-quarter for the original variable 'observation_date'.
+  
+- Since the "tsibble"" handles regularly-spaced temporal data whereas our data (GDPC1) has irregular time interval, we set option "regular = FALSE".
 
 - Now, we have a quarterly time-series dataset with the new variable *date*.
 
+- References for more information
+
+    1) If you want to learn how to build various types of time-series forecasting model, [**Forecasting: Principles and Practice**](https://otexts.com/fpp3/index.html) provides very useful information to deal with time-series data in R.
+
+    2) If you need more detail information on tssible, visit [tssible1](https://tsibble.tidyverts.org/) or [tissble2](https://rdrr.io/cran/tsibble/man/tsibble.html).
+
+    3) The fable packages provides a collection of commonly used univariate and nultivariate time-series forecasting models. For more information, visit [fable](https://fable.tidyverts.org/).
 
 
 ## Stata
 
+STEP 1) Import Data to Stata
+
 ```stata
-
-* 1) Import Data to Stata
-
 import excel "YOUR_WORKING_DIRECTORY_PATH\GDPC1.xls", sheet("FRED Graph") cellrange(A12:B301)
+```
+- The option "sheet("FRED GRAPH") cellrange(A12:B301)" is to select only necessary observations.
 
-** The option "sheet("FRED GRAPH") cellrange(A12:B301)" is to select only necessary observations.
 
+STEP 2) Generate the new date variable
 
-* 2) Generate the new date variable
-
+```stata
 generate date_index = tq(1947q1) + _n-1
-
-** The functions "tq()" converts a date variable for each of the above formats to an integer value (starting point of our data is 1947q1). 
-
-** "_n" is a Stata command giving an index of the observations running from one to the number of data points.
-
-
-* 3) Indexing the new variable format as quarter
-
-format date_index %tq
-
-** The command will format 'date_index' as a vector of quarterly dates which corresponds to our original date variable ("observation date").
-
-
-* 4) Conversing a variable into time-series data
-
-tsset date_index
-
-** Finally, you need to tell Stata that the data is time-series data with the variable 'date_index' indicating the date of each observation.
-
 ```
 
+- The functions "tq()" converts a date variable for each of the above formats to an integer value (starting point of our data is 1947q1). 
+
+- "_n" is a Stata command giving an index of the observations running from one to the number of data points.
+
+
+STEP 3) Indexing the new variable format as quarter
+
+```stata
+format date_index %tq
+```
+
+- The command will format 'date_index' as a vector of quarterly dates which corresponds to our original date variable ("observation date").
+
+
+STEP 4) Conversing a variable into time-series data
+
+```stata
+tsset date_index
+```
+
+- Finally, you need to tell Stata that the data is time-series data with the variable 'date_index' indicating the date of each observation.
+
 - Now, we have a quarterly Stata time-series dataset. Any data you add to this file in the future will be interpreted as time-series data.
-
-
-
-## Also Consider
-
-- If you want to learn how to build various types of time-series forecasting model, [**Forecasting: Principles and Practice**](https://otexts.com/fpp3/index.html) provides very useful information to deal with time-series data in R.
-
-- If you need more detail information on tssible, visit [tssible1](https://tsibble.tidyverts.org/) or [tissble2](https://rdrr.io/cran/tsibble/man/tsibble.html).
-
-- The fable packages provides a collection of commonly used univariate and nultivariate time-series forecasting models. For more information, visit [fable](https://fable.tidyverts.org/).
