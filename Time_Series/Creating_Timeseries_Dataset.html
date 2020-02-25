@@ -133,84 +133,75 @@
       <h2 id="r">
           <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
       </h2>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
-</span><span class="c1"># 1) Install necessary packages using pacman and pacman::p_load()</span><span class="w">
-
-</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">require</span><span class="p">(</span><span class="s2">"pacman"</span><span class="p">))</span><span class="w"> </span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"pacman"</span><span class="p">)</span><span class="w">
+<p>STEP 1) Install necessary packages using pacman and pacman::p_load()</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">require</span><span class="p">(</span><span class="s2">"pacman"</span><span class="p">))</span><span class="w"> </span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"pacman"</span><span class="p">)</span><span class="w">
 </span><span class="n">pacman</span><span class="o">::</span><span class="n">p_load</span><span class="p">(</span><span class="n">here</span><span class="p">,</span><span class="w"> </span><span class="n">readxl</span><span class="p">,</span><span class="w"> </span><span class="n">tssible</span><span class="p">,</span><span class="w"> </span><span class="n">tidyverse</span><span class="p">)</span><span class="w">
-
-
-</span><span class="c1"># 2) Import data to R. </span><span class="w">
-
-</span><span class="n">gdp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"YOUR_WORKING_DIRECTORY_PATH/GDPC1.xls"</span><span class="p">,</span><span class="w">
+</span></code></pre></div></div>
+<p>STEP 2) Import data to R.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gdp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"YOUR_WORKING_DIRECTORY_PATH/GDPC1.xls"</span><span class="p">,</span><span class="w">
                   </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cell_rows</span><span class="p">(</span><span class="m">11</span><span class="o">:</span><span class="m">301</span><span class="p">),</span><span class="w"> </span><span class="n">col_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
-
-</span><span class="c1">## cf) The option "range = cell_rows(11:301), col_names = TRUE" is to select only necessary observations. </span><span class="w">
-          
-
-</span><span class="c1"># 3) Convert a date variable formats to quarter</span><span class="w">
-
-</span><span class="n">gdp_ts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as_tsibble</span><span class="p">(</span><span class="n">gdp</span><span class="p">,</span><span class="w">
+</span></code></pre></div></div>
+<ul>
+  <li>The option “range = cell_rows(11:301), col_names = TRUE” is to select only necessary observations.</li>
+</ul>
+<p>STEP 3) Convert a date variable formats to quarter</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gdp_ts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as_tsibble</span><span class="p">(</span><span class="n">gdp</span><span class="p">,</span><span class="w">
                      </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">observation_date</span><span class="p">,</span><span class="w">
                      </span><span class="n">regular</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
   </span><span class="n">index_by</span><span class="p">(</span><span class="n">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">yearquarter</span><span class="p">(</span><span class="n">.</span><span class="p">))</span><span class="w">
-
-</span><span class="c1">## By applying "yearmonth()" to the index variable (referred to as .), it creates new variable named 'date' with quarter interval which corresponds to the year-quarter for the original variable 'observation_date'.</span><span class="w">
-  
-</span><span class="c1">## cf) Since the "tsibble"" handles regularly-spaced temporal data whereas our data (GDPC1) has irregular time interval, we set option "regular = FALSE".</span><span class="w">
 </span></code></pre></div></div>
 <ul>
-  <li>Now, we have a quarterly time-series dataset with the new variable <em>date</em>.</li>
+  <li>
+    <p>By applying “yearmonth()” to the index variable (referred to as .), it creates new variable named ‘date’ with quarter interval which corresponds to the year-quarter for the original variable ‘observation_date’.</p>
+  </li>
+  <li>
+    <p>Since the “tsibble”” handles regularly-spaced temporal data whereas our data (GDPC1) has irregular time interval, we set option “regular = FALSE”.</p>
+  </li>
+  <li>
+    <p>Now, we have a quarterly time-series dataset with the new variable <em>date</em>.</p>
+  </li>
+  <li>
+    <p>References for more information</p>
+    <p>1) If you want to learn how to build various types of time-series forecasting model, <a href="https://otexts.com/fpp3/index.html"><strong>Forecasting: Principles and Practice</strong></a> provides very useful information to deal with time-series data in R.</p>
+    <p>2) If you need more detail information on tssible, visit <a href="https://tsibble.tidyverts.org/">tssible1</a> or <a href="https://rdrr.io/cran/tsibble/man/tsibble.html">tissble2</a>.</p>
+    <p>3) The fable packages provides a collection of commonly used univariate and nultivariate time-series forecasting models. For more information, visit <a href="https://fable.tidyverts.org/">fable</a>.</p>
+  </li>
 </ul>
       <h2 id="stata-1">
           <a href="#stata-1" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
       </h2>
-<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">
-* 1) Import Data to Stata
-</span><span class="err">
-import</span> <span class="err">excel</span> <span class="s2">"YOUR_WORKING_DIRECTORY_PATH</span><span class="se">\G</span><span class="s2">DPC1.xls"</span><span class="err">,</span> <span class="err">sheet(</span><span class="s2">"FRED Graph"</span><span class="err">)</span> <span class="err">cellrange(A12:B301)
-</span><span class="c1">
-** The option "sheet("FRED GRAPH") cellrange(A12:B301)" is to select only necessary observations.
-
-
-* 2) Generate the new date variable
-</span><span class="err">
-generate</span> <span class="err">date_index</span> <span class="o">=</span> <span class="err">tq(1947q1)</span> <span class="o">+</span> <span class="err">_n</span><span class="o">-</span><span class="err">1
-</span><span class="c1">
-** The functions "tq()" converts a date variable for each of the above formats to an integer value (starting point of our data is 1947q1). 
-
-** "_n" is a Stata command giving an index of the observations running from one to the number of data points.
-
-
-* 3) Indexing the new variable format as quarter
-</span><span class="err">
-format</span> <span class="err">date_index</span> <span class="err">%tq
-</span><span class="c1">
-** The command will format 'date_index' as a vector of quarterly dates which corresponds to our original date variable ("observation date").
-
-
-* 4) Conversing a variable into time-series data
-</span><span class="err">
-tsset</span> <span class="err">date_index
-</span><span class="c1">
-** Finally, you need to tell Stata that the data is time-series data with the variable 'date_index' indicating the date of each observation.
-</span><span class="err">
+<p>STEP 1) Import Data to Stata</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">import</span> <span class="err">excel</span> <span class="s2">"YOUR_WORKING_DIRECTORY_PATH</span><span class="se">\G</span><span class="s2">DPC1.xls"</span><span class="err">,</span> <span class="err">sheet(</span><span class="s2">"FRED Graph"</span><span class="err">)</span> <span class="err">cellrange(A12:B301)
 </span></code></pre></div></div>
 <ul>
-  <li>Now, we have a quarterly Stata time-series dataset. Any data you add to this file in the future will be interpreted as time-series data.</li>
+  <li>The option “sheet(“FRED GRAPH”) cellrange(A12:B301)” is to select only necessary observations.</li>
 </ul>
-      <h2 id="also-consider">
-          <a href="#also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Also Consider
-      </h2>
+<p>STEP 2) Generate the new date variable</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">generate</span> <span class="err">date_index</span> <span class="o">=</span> <span class="err">tq(1947q1)</span> <span class="o">+</span> <span class="err">_n</span><span class="o">-</span><span class="err">1
+</span></code></pre></div></div>
 <ul>
   <li>
-    <p>If you want to learn how to build various types of time-series forecasting model, <a href="https://otexts.com/fpp3/index.html"><strong>Forecasting: Principles and Practice</strong></a> provides very useful information to deal with time-series data in R.</p>
+    <p>The functions “tq()” converts a date variable for each of the above formats to an integer value (starting point of our data is 1947q1).</p>
   </li>
   <li>
-    <p>If you need more detail information on tssible, visit <a href="https://tsibble.tidyverts.org/">tssible1</a> or <a href="https://rdrr.io/cran/tsibble/man/tsibble.html">tissble2</a>.</p>
+    <p>“_n” is a Stata command giving an index of the observations running from one to the number of data points.</p>
+  </li>
+</ul>
+<p>STEP 3) Indexing the new variable format as quarter</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">format</span> <span class="err">date_index</span> <span class="err">%tq
+</span></code></pre></div></div>
+<ul>
+  <li>The command will format ‘date_index’ as a vector of quarterly dates which corresponds to our original date variable (“observation date”).</li>
+</ul>
+<p>STEP 4) Conversing a variable into time-series data</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">tsset</span> <span class="err">date_index
+</span></code></pre></div></div>
+<ul>
+  <li>
+    <p>Finally, you need to tell Stata that the data is time-series data with the variable ‘date_index’ indicating the date of each observation.</p>
   </li>
   <li>
-    <p>The fable packages provides a collection of commonly used univariate and nultivariate time-series forecasting models. For more information, visit <a href="https://fable.tidyverts.org/">fable</a>.</p>
+    <p>Now, we have a quarterly Stata time-series dataset. Any data you add to this file in the future will be interpreted as time-series data.</p>
   </li>
 </ul>
 <div class="footnotes">
