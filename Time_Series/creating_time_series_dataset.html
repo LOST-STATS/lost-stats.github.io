@@ -141,7 +141,6 @@
 <p>STEP 1) Import Data to Stata</p>
 <div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">import</span> <span class="err">delimited</span> <span class="s2">"https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv"</span><span class="err">,</span> <span class="err">clear
 </span></code></pre></div></div>
-<p>The option <code class="highlighter-rouge">sheet("FRED GRAPH") cellrange(A11:B301)</code> is to select only necessary observations.</p>
 <p>STEP 2) Generate the new date variable</p>
 <div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">generate</span> <span class="err">date_index</span> <span class="o">=</span> <span class="err">tq(1947q1)</span> <span class="o">+</span> <span class="err">_n</span><span class="o">-</span><span class="err">1
 </span></code></pre></div></div>
