@@ -7,9 +7,6 @@
 <loc>/Contributing/Contributing.html</loc>
 </url>
 <url>
-<loc>/Time_Series/Creating_Timeseries_Dataset.html</loc>
-</url>
-<url>
 <loc>/Model_Estimation/Estimation.html</loc>
 </url>
 <url>
@@ -56,6 +53,9 @@
 </url>
 <url>
 <loc>/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html</loc>
+</url>
+<url>
+<loc>/Time_Series/creating_time_series_dataset.html</loc>
 </url>
 <url>
 <loc>/Data_Manipulation/data_manipulation.html</loc>
