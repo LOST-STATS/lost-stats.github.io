@@ -41,30 +41,31 @@ STEP 1) Install necessary packages using **pacman** and `pacman::p_load()`
 
 ```r
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(here, readxl, tssible, tidyverse)
+pacman::p_load(here, tssible, tidyverse)
 ```
 
 STEP 2) Import data into R. 
 
 ```r
-gdp <- read_excel("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Estimation/Time_Series/Data/GDPC1.xls",
-                  range = cell_rows(11:301), col_names = TRUE)
-```
+gdp <- read.csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv")
 
-The option `range = cell_rows(11:301), col_names = TRUE` is to select only necessary observations. 
+# read.csv() has read in our date variable as a factor. We need a date!
+gdp$DATE <- as.Date(gdp$DATE)
+# If it were a little less well-behaved than this, we could use the lubridate package to fix it.
+```
 
 STEP 3) Convert a date variable formats to quarter
 
 ```r
 gdp_ts <- as_tsibble(gdp,
-                     index = observation_date,
+                     index = DATE,
                      regular = FALSE) %>% 
-  index_by(date = ~ yearquarter(.))
+    index_by(qtr = ~ yearquarter(.))
 ```
 
-By applying `yearmonth()` to the index variable (referred to as `.`), it creates new variable named `'date'` with a quarter interval which corresponds to the year-quarter for the original variable `'observation_date'`.
+By applying `yearmonth()` to the index variable (referred to as `.`), it creates new variable named `qtr` with a quarter interval which corresponds to the year-quarter for the original variable `DATE`.
   
-Since the `tsibble` handles regularly-spaced temporal data whereas our data (`GDPC1`) has an irregular time interval, we set the option `regular = FALSE`.
+Since the `tsibble` handles regularly-spaced temporal data whereas our data (`GDPC1`) has an irregular time interval (since it's not the exact same number of days between quarters every time), we set the option `regular = FALSE`.
 
 Now, we have a quarterly time-series dataset with the new variable `date`.
 
@@ -80,7 +81,7 @@ References for more information:
 STEP 1) Import Data to Stata
 
 ```stata
-import excel "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Estimation/Time_Series/Data/GDPC1.xls", sheet("FRED Graph") cellrange(A11:B301) clear firstrow
+import delimited "https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv", clear
 ```
 The option `sheet("FRED GRAPH") cellrange(A11:B301)` is to select only necessary observations.
 
