@@ -75,7 +75,6 @@ STEP 1) Import Data to Stata
 ```stata
 import delimited "https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv", clear
 ```
-The option `sheet("FRED GRAPH") cellrange(A11:B301)` is to select only necessary observations.
 
 STEP 2) Generate the new date variable
 
