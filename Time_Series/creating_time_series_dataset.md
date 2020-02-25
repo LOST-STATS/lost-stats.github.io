@@ -16,17 +16,6 @@ Time-series estimators are, by definition, a function of the temporal ordering o
 
 - As an example, we will use data on U.S. **quarterly** real Gross Domestic Product (GDP). To get an Excel spreadsheet holding the GDP data, go to the Saint Louis Federal Reserve Bank [FRED](https://fred.stlouisfed.org) website.
 
-
-#### Stata
-
-- Stata’s time-series commands require the data to be sorted and indexed by time, using the tsset command, before they can be used.
-
-- The `tsset` is simply a way for you to tell Stata which variable in your dataset represents time. [^1]
-
-[^1]: [STATA TIME-SERIES REFERENCE MANUAL](https://www.stata.com/manuals13/ts.pdf)
-
-- By default, Stata interprets 0 as the first date a date variable can take in 1960, 1 as the second date in 1960, and vice versa (negative integers refer to dates prior to 1960).
-
 # Implementations
 
 ## R
@@ -37,11 +26,14 @@ The **tsibble** package extends the **tidyverse** to temporal data and built on 
 
 For more detail information for using **tsibble** such as _key_ and _index_, check the [tsibble page](https://tsibble.tidyverts.org) and the [Introduction to tsibble](https://tsibble.tidyverts.org/articles/intro-tsibble.html). 
 
-STEP 1) Install necessary packages using **pacman** and `pacman::p_load()`
+STEP 1) Load necessary packages
 
 ```r
-if (!require("pacman")) install.packages("pacman")
-pacman::p_load(here, tssible, tidyverse)
+# If necessary
+# install.packages(c('here','tsibble','tidyverse'))
+library(here)
+library(tsibble)
+library(tidyverse)
 ```
 
 STEP 2) Import data into R. 
