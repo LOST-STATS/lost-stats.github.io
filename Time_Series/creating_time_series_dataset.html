@@ -97,20 +97,6 @@
     <p>As an example, we will use data on U.S. <strong>quarterly</strong> real Gross Domestic Product (GDP). To get an Excel spreadsheet holding the GDP data, go to the Saint Louis Federal Reserve Bank <a href="https://fred.stlouisfed.org">FRED</a> website.</p>
   </li>
 </ul>
-      <h4 id="stata">
-          <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
-      </h4>
-<ul>
-  <li>
-    <p>Stata’s time-series commands require the data to be sorted and indexed by time, using the tsset command, before they can be used.</p>
-  </li>
-  <li>
-    <p>The <code class="highlighter-rouge">tsset</code> is simply a way for you to tell Stata which variable in your dataset represents time. <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></p>
-  </li>
-</ul>
-<ul>
-  <li>By default, Stata interprets 0 as the first date a date variable can take in 1960, 1 as the second date in 1960, and vice versa (negative integers refer to dates prior to 1960).</li>
-</ul>
       <h1 id="implementations">
           <a href="#implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Implementations
       </h1>
@@ -120,9 +106,12 @@
 <p>There are many different kinds of time series data set objects in R. Instead of R-based time series objects such as <code class="highlighter-rouge">ts</code>, <code class="highlighter-rouge">zoo</code> and <code class="highlighter-rouge">xts</code>, here we will use <strong>tsibble</strong>, will preserves time indices as the essential data column and makes heterogeneous data structures possible.</p>
 <p>The <strong>tsibble</strong> package extends the <strong>tidyverse</strong> to temporal data and built on top of the <code class="highlighter-rouge">tibble</code>, and so is a data- and model-oriented object.</p>
 <p>For more detail information for using <strong>tsibble</strong> such as <em>key</em> and <em>index</em>, check the <a href="https://tsibble.tidyverts.org">tsibble page</a> and the <a href="https://tsibble.tidyverts.org/articles/intro-tsibble.html">Introduction to tsibble</a>.</p>
-<p>STEP 1) Install necessary packages using <strong>pacman</strong> and <code class="highlighter-rouge">pacman::p_load()</code></p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">require</span><span class="p">(</span><span class="s2">"pacman"</span><span class="p">))</span><span class="w"> </span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"pacman"</span><span class="p">)</span><span class="w">
-</span><span class="n">pacman</span><span class="o">::</span><span class="n">p_load</span><span class="p">(</span><span class="n">here</span><span class="p">,</span><span class="w"> </span><span class="n">tssible</span><span class="p">,</span><span class="w"> </span><span class="n">tidyverse</span><span class="p">)</span><span class="w">
+<p>STEP 1) Load necessary packages</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary</span><span class="w">
+</span><span class="c1"># install.packages(c('here','tsibble','tidyverse'))</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">here</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">tsibble</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 <p>STEP 2) Import data into R.</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gdp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv"</span><span class="p">)</span><span class="w">
@@ -146,8 +135,8 @@
   <li>If you need more detail information on <strong>tssible</strong>, visit the <a href="https://tsibble.tidyverts.org/">tsibble page</a> or <a href="https://rdrr.io/cran/tsibble/man/tsibble.html">tsibble on RDRR.io</a>.</li>
   <li>The <strong>fable</strong> packages provides a collection of commonly used univariate and multivariate time-series forecasting models. For more information, visit <a href="https://fable.tidyverts.org/">fable</a>.</li>
 </ol>
-      <h2 id="stata-1">
-          <a href="#stata-1" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
+      <h2 id="stata">
+          <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
       </h2>
 <p>STEP 1) Import Data to Stata</p>
 <div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">import</span> <span class="err">delimited</span> <span class="s2">"https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv"</span><span class="err">,</span> <span class="err">clear
@@ -166,13 +155,6 @@
 <div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">tsset</span> <span class="err">date_index
 </span></code></pre></div></div>
 <p>Now, we have a quarterly Stata time-series dataset. Any data you add to this file in the future will be interpreted as time-series data.</p>
-<div class="footnotes">
-  <ol>
-    <li id="fn:1">
-      <p><a href="https://www.stata.com/manuals13/ts.pdf">STATA TIME-SERIES REFERENCE MANUAL</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
         </div>
       </div>
     </div>
