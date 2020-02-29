@@ -43,7 +43,7 @@ If you create one of these pages, please remove it from this list.
 * Nonlinear Mixed Effects Models
 * Ordered Probit
 * Ordered Logit
-* Joint F-tests
+* Nonlinear hypothesis tests
 
 ## Geo-Spatial
 
