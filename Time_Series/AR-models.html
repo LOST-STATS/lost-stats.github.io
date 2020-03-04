@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>Auto Regressive Models - LOST</title>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/just-the-docs.css">
+    <script type="text/javascript" src="/assets/js/vendor/lunr.min.js"></script>
+  <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Auto Regressive Models | LOST</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Auto Regressive Models" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:site_name" content="LOST" />
+<script type="application/ld+json">
+{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","headline":"Auto Regressive Models","url":"/Time_Series/AR-models.html","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML">
+  </script>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="link" viewBox="0 0 16 16">
+      <title>Link</title>
+      <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+    </symbol>
+  </svg>
+  <div class="page-wrap">
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="" class="site-title lh-tight">
+  LOST
+</a>
+        <button class="menu-button fs-3 js-main-nav-trigger" data-text-toggle="Hide" type="button">Menu</button>
+      </div>
+      <div class="navigation main-nav js-main-nav">
+        <nav role="navigation" aria-label="Main navigation">
+  <ul class="navigation-list"><li class="navigation-list-item"><a href="/" class="navigation-list-link">Home</a></li><li class="navigation-list-item active"><a href="/Data/" class="navigation-list-link"></a></li><li class="navigation-list-item"><a href="/Data_Manipulation/data_manipulation.html" class="navigation-list-link">Data Manipulation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="navigation-list-link">Collapse a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="navigation-list-link">Combining Datasets</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="navigation-list-link">Vertical Combination</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="navigation-list-link">Horizontal Combination (Deterministic)</a>
+                          </li></ul></li><li class="navigation-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="navigation-list-link">Determine the Observation Level of a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Reshaping/reshape.html" class="navigation-list-link">Reshaping Data</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="navigation-list-link">Reshape Panel Data from Wide to Long</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="navigation-list-link">Reshape Panel Data from Long to Wide</a>
+                          </li></ul></li><li class="navigation-list-item "><a href="/Data_Manipulation/rowwise_calculations.html" class="navigation-list-link">Rowwise Calculations</a></li></ul></li><li class="navigation-list-item"><a href="/Geo-Spatial/Summary_Techniques.html" class="navigation-list-link">Geo-Spatial</a><ul class="navigation-list-child-list "></ul></li><li class="navigation-list-item"><a href="/Machine_Learning/Machine_Learning.html" class="navigation-list-link">Machine Learning</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Machine_Learning/causal_forest.html" class="navigation-list-link">Causal Forest</a></li><li class="navigation-list-item "><a href="/Machine_Learning/penalized_regression.html" class="navigation-list-link">Penalized Regression</a></li></ul></li><li class="navigation-list-item"><a href="/Model_Estimation/Estimation.html" class="navigation-list-link">Model Estimation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Model_Estimation/fixed_effects_in_linear_regression.html" class="navigation-list-link">Fixed Effects in Linear Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/heckman_correction_model.html" class="navigation-list-link">Heckman Correction Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/instrumental_variables.html" class="navigation-list-link">Instrumental Variables</a></li><li class="navigation-list-item "><a href="/Model_Estimation/interaction_terms_and_polynomials.html" class="navigation-list-link">Interaction Terms and Polynomials</a></li><li class="navigation-list-item "><a href="/Model_Estimation/linear_hypothesis_tests.html" class="navigation-list-link">Linear Hypothesis Tests</a></li><li class="navigation-list-item "><a href="/Model_Estimation/linear_mixed_effects_regression.html" class="navigation-list-link">Linear Mixed-Effects Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/logit_model.html" class="navigation-list-link">Logit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/mcfaddens_choice_model.html" class="navigation-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/ordinary_least_squares.html" class="navigation-list-link">Ordinary Least Squares (Linear Regression)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/probit_model.html" class="navigation-list-link">Probit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/regression_discontinuity_design.html" class="navigation-list-link">Regression Discontinuity Design</a></li><li class="navigation-list-item "><a href="/Model_Estimation/Nonstandard_Errors/nonstandard_errors.html" class="navigation-list-link">Nonstandard Errors</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/bootstrap_se.html" class="navigation-list-link">Bootstrap Standard Errors</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/clustered_se.html" class="navigation-list-link">Cluster-Robust Standard Errors</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/hc_se.html" class="navigation-list-link">Heteroskedasticity-consistent standard errors</a>
+                          </li></ul></li></ul></li><li class="navigation-list-item"><a href="/Presentation/Presentation.html" class="navigation-list-link">Presentation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Presentation/export_a_formatted_regression_table.html" class="navigation-list-link">Export a Formatted Regression Table</a></li><li class="navigation-list-item "><a href="/Presentation/heatmap_colored_correlation_matrix.html" class="navigation-list-link">Heatmap Colored Correlation Matrix</a></li><li class="navigation-list-item "><a href="/Presentation/line_graph_with_labels_at_the_beginning_or_end.html" class="navigation-list-link">Line Graph with Labels at the Beginning or End of Lines</a></li><li class="navigation-list-item "><a href="/Presentation/marginal_effects_plots_for_interactions_with_continuous_variables.html" class="navigation-list-link">Marginal Effects Plots for Interactions with Continuous Variables</a></li><li class="navigation-list-item "><a href="/Presentation/scatterplot_by_group_on_shared_axes.html" class="navigation-list-link">Scatterplot by Group on Shared Axes</a></li><li class="navigation-list-item "><a href="/Presentation/styling_line_graphs.html" class="navigation-list-link">Styling Line Graphs</a></li></ul></li><li class="navigation-list-item"><a href="/Summary_Statistics/Summary_Statistics.html" class="navigation-list-link">Summary Statistics</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Summary_Statistics/Balance_Tables.html" class="navigation-list-link">Balance Table</a></li><li class="navigation-list-item "><a href="/Summary_Statistics/Summary_Statistics_Tables.html" class="navigation-list-link">Summary Statistics Tables</a></li></ul></li><li class="navigation-list-item active"><a href="/Time_Series/Time_Series.html" class="navigation-list-link">Time Series</a><ul class="navigation-list-child-list "><li class="navigation-list-item  active"><a href="/Time_Series/AR-models.html" class="navigation-list-link active">Auto Regressive Models</a></li><li class="navigation-list-item "><a href="/Time_Series/creating_time_series_dataset.html" class="navigation-list-link">Creating Time Series Dataset</a></li></ul></li><li class="navigation-list-item"><a href="/Other/Other.html" class="navigation-list-link">Other</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Other/import_a_foreign_data_file.html" class="navigation-list-link">Import a Foreign Data File</a></li></ul></li><li class="navigation-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="navigation-list-link">Desired Nonexistent Pages</a></li><li class="navigation-list-item"><a href="/Contributing/Contributing.html" class="navigation-list-link">Contributing</a></li></ul>
+</nav>
+      </div>
+      <footer class="site-footer">
+        <p class="text-small text-grey-dk-000 mb-4">This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.</p>
+      </footer>
+    </div>
+    <div class="main-content-wrap js-main-content" tabindex="0">
+      <div class="main-content">
+        <div class="page-header js-page-header">
+          <div class="search">
+            <div class="search-input-wrap">
+              <input type="text" class="js-search-input search-input" tabindex="0" placeholder="Search LOST" aria-label="Search LOST" autocomplete="off">
+              <svg width="14" height="14" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title><g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"/><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"/></g></svg>
+            </div>
+            <div class="js-search-results search-results-wrap"></div>
+          </div>
+            <ul class="list-style-none text-small aux-nav">
+                <li class="d-inline-block my-0"><a href="https://github.com/lost-stats/lost-stats.github.io/blob/source/Time_Series/AR-models.md">Edit this page on GitHub</a></li>
+            </ul>
+        </div>
+        <div class="page">
+              <nav class="breadcrumb-nav">
+                <ol class="breadcrumb-nav-list">
+                    <li class="breadcrumb-nav-list-item"><a href="/Time_Series/Time_Series.html">Time Series</a></li>
+                  <li class="breadcrumb-nav-list-item"><span>Auto Regressive Models</span></li>
+                </ol>
+              </nav>
+          <div id="main-content" class="page-content" role="main">
+              <h1 id="auto-regressive-models">
+          <a href="#auto-regressive-models" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Auto Regressive Models
+      </h1>
+<p>Auto Regressive models are fundamental to time series analysis. They are estimated via regressing a variable on one or more of its lagged values. That is, AR models take the form: <script type="math/tex">Y_t = c + \sum_{i = 1}^{p} \beta_i Y_{t-i} + \epsilon_t</script> Where we say p is the <em>order</em> of our auto regression. Their estimation in statistical software packages is generally straightforward.</p>
+<p>For additional information, see <a href="https://en.wikipedia.org/wiki/Autoregressive_model">Wikipedia: Autoregressive model</a>.</p>
+      <h2 id="keep-in-mind">
+          <a href="#keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Keep In Mind
+      </h2>
+<ul>
+  <li>An AR model can be univariate (scalar) or multivariate (vector). This may be important to implementing an AR model in your statisical package of choice.</li>
+  <li>Data should be properly formatted before estimation. If not, non-time series objects (e.g., a date column) may be interpereted by software as a time series variable, leading to erroneous output.</li>
+</ul>
+      <h1 id="implementations">
+          <a href="#implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Implementations
+      </h1>
+<p>Following the <a href="https://lost-stats.github.io/Time_Series/creating_time_series_dataset.html">instructions</a> for creating and formatting Time Series Data, we will use quaterly GDP data downloaded from <a href="https://fred.stlouisfed.org/series/GDPC1">FRED</a> as an example.</p>
+      <h2 id="r">
+          <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
+      </h2>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#load data</span><span class="w">
+</span><span class="n">gdp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">#estimation via ols: pay attention to the selection of the 'GDPC1' column. </span><span class="w">
+</span><span class="c1">#if the column is not specified, the function call also interprets the date column as a time series variable!</span><span class="w">
+</span><span class="n">ar_gdp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ar.ols</span><span class="p">(</span><span class="n">gdp</span><span class="o">$</span><span class="n">GDPC1</span><span class="p">)</span><span class="w">
+</span><span class="n">ar_gdp</span><span class="w">
+
+</span><span class="c1">#lag order is automatically selected by minimizing AIC </span><span class="w">
+</span><span class="c1">#disable this feature with the optional command 'aic = F'. Note: you will also likely wish to specify the argument 'order.max'.</span><span class="w">
+</span><span class="c1">#ar.ols() defaults to demeaning the data automatically. Also consider taking logs and first differencing for statistically meaningful results.</span><span class="w">
+</span></code></pre></div></div>
+      <h2 id="stata">
+          <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> STATA
+      </h2>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#load</span> <span class="err">data
+import</span> <span class="err">delimited</span> <span class="s2">"https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv"</span><span class="err">,</span> <span class="err">clear
+
+#Generate</span> <span class="err">the</span> <span class="err">new</span> <span class="err">date</span> <span class="err">variable
+#To</span> <span class="err">generalize</span> <span class="err">to</span> <span class="err">a</span> <span class="err">different</span> <span class="err">set</span> <span class="err">of</span> <span class="err">data,</span> <span class="err">replace</span> <span class="err">'1947q1'</span> <span class="err">with</span> <span class="err">your</span> <span class="err">own</span> <span class="err">series'</span> <span class="err">start</span> <span class="err">date.
+generate</span> <span class="err">date_index</span> <span class="o">=</span> <span class="err">tq(1947q1)</span> <span class="o">+</span> <span class="err">_n</span><span class="o">-</span><span class="err">1
+
+#Index</span> <span class="err">the</span> <span class="err">new</span> <span class="err">variable</span> <span class="err">format</span> <span class="err">as</span> <span class="err">quarter
+format</span> <span class="err">date_index</span> <span class="err">%tq
+
+#Convert</span> <span class="err">a</span> <span class="err">variable</span> <span class="err">into</span> <span class="err">time</span><span class="o">-</span><span class="err">series</span> <span class="err">data
+tsset</span> <span class="err">date_index
+
+#Specifiy</span> <span class="err">and</span> <span class="err">Run</span> <span class="err">AR</span> <span class="err">regression:</span> <span class="err">this</span> <span class="err">STATA</span> <span class="err">method</span> <span class="err">will</span> <span class="err">not</span> <span class="err">automatically</span> <span class="err">select</span> <span class="err">a</span> <span class="err">lag</span> <span class="err">order.
+#The</span> <span class="err">'L.'</span> <span class="err">operator</span> <span class="err">indicates</span> <span class="err">the</span> <span class="err">lagged</span> <span class="err">value</span> <span class="err">of</span> <span class="err">a</span> <span class="err">variable</span> <span class="err">in</span> <span class="err">STATA,</span> <span class="err">'L2.'</span> <span class="err">its</span> <span class="err">second</span> <span class="err">lag,</span> <span class="err">and</span> <span class="err">so</span> <span class="err">on.
+reg</span> <span class="err">gdpc1</span> <span class="err">L.gdpc1</span> <span class="err">L2.gdpc1
+#variables</span> <span class="err">are</span> <span class="err">not</span> <span class="err">demeaned</span> <span class="err">automatically</span> <span class="err">by</span> <span class="err">STATA.</span> <span class="err">Also</span> <span class="err">consider</span> <span class="err">taking</span> <span class="err">logs</span> <span class="err">and</span> <span class="err">first</span> <span class="err">differencing</span> <span class="err">for</span> <span class="err">statistically</span> <span class="err">meaningful</span> <span class="err">results.
+</span></code></pre></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
