@@ -40,21 +40,21 @@ ar_gdp
 ## STATA
 
 ```stata
-#load data
+*load data
 import delimited "https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv", clear
 
-#Generate the new date variable
-#To generalize to a different set of data, replace '1947q1' with your own series' start date.
+*Generate the new date variable
+*To generalize to a different set of data, replace '1947q1' with your own series' start date.
 generate date_index = tq(1947q1) + _n-1
 
-#Index the new variable format as quarter
+*Index the new variable format as quarter
 format date_index %tq
 
-#Convert a variable into time-series data
+*Convert a variable into time-series data
 tsset date_index
 
-#Specifiy and Run AR regression: this STATA method will not automatically select a lag order.
-#The 'L.' operator indicates the lagged value of a variable in STATA, 'L2.' its second lag, and so on.
+*Specifiy and Run AR regression: this STATA method will not automatically select a lag order.
+*The 'L.' operator indicates the lagged value of a variable in STATA, 'L2.' its second lag, and so on.
 reg gdpc1 L.gdpc1 L2.gdpc1
-#variables are not demeaned automatically by STATA. Also consider taking logs and first differencing for statistically meaningful results.
+*variables are not demeaned automatically by STATA. Also consider taking logs and first differencing for statistically meaningful results.
 ```
