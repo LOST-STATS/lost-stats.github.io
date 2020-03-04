@@ -88,7 +88,6 @@ If you create one of these pages, please remove it from this list.
 * Serial Correlation
 * Stationarity and Weak Dependence
 * Granger Causality
-* Auto-regressive Model
 * Moving Average Model
 * ARMA Model 
 * ARIMA Model 
