@@ -1,11 +1,9 @@
 ---
 title: "Geocoding"
-keep_md: yes
-mathjax: yes
+mathjax: true
 nav_order: 1
 parent: Geo-Spatial
 has_children: no
-output: github_document
 ---
 
 # Geocoding
@@ -71,6 +69,12 @@ This page will focus specifically on using Geocodio. [Geocodio's website](https:
 
 5. Finally Geocodio will geocode your addresses and return a downloadable csv file. The cost  and the time of this process depends on the size of your data. For example, 250,000 addresses can be geocoded for $123.75 and will take about an hour to process. For estimates of both cost and time click [here](https://www.geocod.io/pricing/)
 
+## Keep in Mind
+
+- Be attentive to **accruacy** and **accuracy type**. Just because something is spit out doesn't mean you should use/trust it
+- When you run **rgeocodio** commands in R it is accessing Geocodio's server so you need to consider pricing (2,500 free lookups per day)
+- One size doesn't necesarily fit all--tailor the geocode platform you choose to your project
+
 # Implementations
 
 ## rgeocodio (R + Geocodio)
@@ -84,22 +88,24 @@ rgeocodio uses an API that you can get from the geocodio website. To get an API 
 To save the API in your **Renvrion**:
 1. Open the **Renviron** by running `usethis::edit_r_environ()` 
 2. Once you are in the **Renviron** name and save the API you got from Geocodio. Maybe something like:
-```{r}
+```r
 #geocodio_API = 'your api`
 ```
 3. Save your **Renviron** and then restart your R session just to be sure that the API is saved.
 
 Now that you have your API saved in R you still need to authorize the API in your R session. Do so by running `gio_auth()`. 
-```{r rgeo_setup, include=FALSE, }
+```r
+# If necessary
+# install.packages(c('rgeocodio','readxl','tidyverse'))
+
 library(rgeocodio)
 gio_auth(force = F) 
 
 ```
-A quick note, `force` makes you se a new geocodio API key for the current environment. In general you will want to run `force=F`. 
+A quick note, `force` makes you set a new geocodio API key for the current environment. In general you will want to run `force=F`. 
 Lets try a regeocodio example. Say you want to get the coordinates of the White House. You could run:
-```{r}
+```r
 rgeocodio::gio_geocode('1600 Pennsylvania Ave NW, Washington DC 20500')
-
 ```
 
 Most of these variables are intuitive but I want to spend a few seconds on **accuracy** and **accuracy type** which we can learn more about [here](https://www.geocod.io/docs/#accuracy-score).
@@ -110,7 +116,7 @@ Most of these variables are intuitive but I want to spend a few seconds on **acc
 
 What if we want to geocode a bunch of addresses at once? To geocode multiple addresses at once we will use `gio_batch_geocode`. The data that we enter will need to be a *character vector of addresses*. 
 
-```{r}
+```r
 library(readxl)
 library(tidyverse)
 
@@ -121,7 +127,7 @@ gio_batch_geocode(addresses)
 
 You will notice that the output is a list with dataframes of the results embedded. There are a number of ways to extract the relevant data but one approach would be:
 
-```{r}
+```r
 addresses<- c('Yosemite National Park, California', '1600 Pennsylvania Ave NW, Washington DC 20500', '2975 Kincaide St Eugene, Oregon, 97405')
 
 extract_function<- function(addresses){
@@ -139,21 +145,19 @@ return(geocode_data)
 }
 
 extract_function(addresses)
-
-
-
 ```
+
 Reverse geocoding uses `gio_reverse` and `gio_batch_reverse`.
 
 For `gio_reverse` you submit a longitude-latitude pair:
 
-```{r}
+```r
 gio_reverse(38.89767, -77.03655)
 ```
 
 For `gio_batch_reverse` we will submit a vector of numeric entries ordered by c(longitude, latitude):
 
-```{r}
+```r
 #make a dataset 
 data<-data.frame(
   lat = c(35.9746000, 32.8793700, 33.8337100, 35.4171240),
@@ -162,25 +166,13 @@ data<-data.frame(
 
 gio_batch_reverse(data)
 ```
+
 Notice that the output gives us multiple accuracy types.
 
 What about geocoding the rest of the world, chico?
-```{r geo_intl}
+
+```r
 rgeocodio::gio_batch_geocode('523-303, 350 Mokdongdong-ro, Yangcheon-Gu, Seoul, South Korea 07987')
 ```
 
 *gasp* Geocodio only works, from my understanding, in the United States and Canada. We would need to use a different service like **Google's geocoder** to do the rest of the world.
-
-
-
-
-## Keep in Mind
-
-- Be attentive to **accruacy** and **accuracy type**. Just because something is spit out doesn't mean you should use/trust it
-- When you run rgeocodio commands in R it accessing Geocodio's server so you need to consider pricing (2,500 free lookups per day)
-- One size doesn't necesarily fit all--tailor the geocode platform you choose to your project
-
-
-
-
-
