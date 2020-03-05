@@ -1,0 +1,105 @@
+---
+title: "sf_intersection in R"
+mathjax: yes
+nav_order: 1
+output: github_document
+parent: Geo-spitial
+has_children: no
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Intergrating 0.01*0.01 resolution nc file to a municipality level shp file
+
+When we work with spatial econometrics anaylsis, it is quite often we need to deal with data in different format and at different scales. For example, I have nc data with global pm2.5 estimation with 0.01*0.01 resolution. But I want to see the pm2.5 estimation in municipal level. Then I need to integrate my nc file into my municipality shp file so that I can group by the data into municipal level and calculate the mean. Then, I can make a map of it.\
+
+In this example, I will use Brazil's pm2.5 estimation and its shp file in municipal level.
+
+
+```{r load the required packages}
+library(ncdf4)
+library(sp)
+library(raster)
+library(dplyr)
+library(sf)
+library(ggplot2)
+library(reprex)
+```
+
+## Keep in Mind
+1. Make sure to download sf package.\
+2. It doesn't have to be nc file to map into the shp file, any format that can read in and convert to a sf object works. But the data has to have geometry coordinates(longitude and latitude).
+
+
+##Implementation
+
+**R**
+
+*Step 1: Read in nc file as a dataframe*\
+
+```{r readin nc file}
+
+nc = here::here("Geo-Spatial/Data/GlobalGWRwUni_PM25_GL_201001_201012-RH35_Median_NoDust_NoSalt.nc")
+
+pm2010 = nc_open(nc)
+
+nc.brick = brick("Data/GlobalGWRwUni_PM25_GL_201001_201012-RH35_Median_NoDust_NoSalt.nc")
+
+dim(nc.brick)
+
+nc.df = as.data.frame(nc.brick[[1]], xy = T)
+
+head(nc.df)
+```
+
+*Step 2: Filter out a specifc country.*\
+
+Globle data is very big. Now I am gonna filter only Brazil out. Then remove the global data to free up the rams.\
+
+```{r filter Brazil}
+nc.brazil = nc.df %>% filter(x >= -73.59 & x <= 34.47 & y >= -33.45 & y <= 5.16)
+rm(nc.df)
+head(nc.brazil)
+```
+
+*Step 3: Change the dataframe to a sf object.*\
+
+```{r sf, echo=FALSE}
+pm25_sf = st_as_sf(nc.brazil, coords = c("x", "y"), crs = 4326, agr = "constant")
+rm(nc.brazil)
+head(pm25_sf)
+```
+
+*Step 4: Read in the Brazil shp file.*\
+
+```{r shp file}
+Brazil_map_2010 = st_read(here::here("Geo-Spatial/Data/geo2_br2010/geo2_br2010.shp"))
+head(Brazil_map_2010)
+```
+
+*Step 5: Intersect pm25 sf object with the shp file.*
+
+Now let's use a sample from pm25 data and intersect it with the shp file. Since the sf object is huge, I recommend run it on the google cloud engine for the whole country's geometry points.\
+
+```{r sf_intersection}
+pm25_sample = sample_n(pm25_sf, 1000, replace = FALSE)
+pm25_municipal_2010 = st_intersection(pm25_sample, Brazil_map_2010)
+head(pm25_municipal_2010)
+```
+
+*Step 6: Make a map for this 183 municipals.*\
+
+```{r map}
+pm25_municipal_2010 = pm25_municipal_2010 %>%
+  select(1,6)
+pm25_municipal_2010 = st_drop_geometry(pm25_municipal_2010)
+Brazil_pm25_2010 = left_join(Brazil_map_2010, pm25_municipal_2010)
+ggplot(Brazil_pm25_2010) +
+  geom_sf(aes(fill = -layer), alpha=0.8, lwd = 0, col="white") +
+  scale_fill_viridis_c(option = "viridis", name = "PM25") +
+  ggtitle("PM25 in municipals of Brazil")+
+  ggsn::blank()
+```
