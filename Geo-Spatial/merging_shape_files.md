@@ -21,9 +21,13 @@ In this page, I will use Brazil's pm2.5 estimation and its shp file in municipal
 
 ## R
 
+Unusually for LOST, the example data files cannot be accessed from the code directly. Please visit [this page](https://github.com/LOST-STATS/lost-stats.github.io/tree/source/Geo-Spatial/Data/Merging_Shape_Files) and download both files to your working directory before running this code.
+
+It is also **strongly recommended** that you find a high-powered computer or cloud service before attempting to run this code, as it requires a lot of memory.
+
 ```r
 # If necesary
-install.packages(c('ncdf4','sp','raster','dplyr','sf','ggplot2','reprex'))
+# install.packages(c('ncdf4','sp','raster','dplyr','sf','ggplot2','reprex','ggsn'))
 # Load packages
 library(ncdf4)
 library(sp)
@@ -34,9 +38,8 @@ library(ggplot2)
 library(reprex)
 
 ### Step 1: Read in nc file as a dataframe*
-nc = here::here("Geo-Spatial/Data/GlobalGWRwUni_PM25_GL_201001_201012-RH35_Median_NoDust_NoSalt.nc")
-pm2010 = nc_open(nc)
-nc.brick = brick("Geo-Spatial/DData/GlobalGWRwUni_PM25_GL_201001_201012-RH35_Median_NoDust_NoSalt.nc")
+pm2010 = nc_open("GlobalGWRwUni_PM25_GL_201001_201012-RH35_Median_NoDust_NoSalt.nc")
+nc.brick = brick("GlobalGWRwUni_PM25_GL_201001_201012-RH35_Median_NoDust_NoSalt.nc")
 # Check the dimensions
 dim(nc.brick)
 
@@ -57,7 +60,7 @@ rm(nc.brazil)
 head(pm25_sf)
 
 ### Step 4: Read in the Brazil shp file. we plan to merge to
-Brazil_map_2010 = st_read(here::here("Geo-Spatial/Data/geo2_br2010/geo2_br2010.shp"))
+Brazil_map_2010 = st_read("geo2_br2010.shp")
 head(Brazil_map_2010)
 
 ### Step 5: Intersect pm25 sf object with the shp file.*
