@@ -105,8 +105,10 @@
       <h2 id="r">
           <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
       </h2>
+<p>Unusually for LOST, the example data files cannot be accessed from the code directly. Please visit <a href="https://github.com/LOST-STATS/lost-stats.github.io/tree/source/Geo-Spatial/Data/Merging_Shape_Files">this page</a> and download both files to your working directory before running this code.</p>
+<p>It is also <strong>strongly recommended</strong> that you find a high-powered computer or cloud service before attempting to run this code, as it requires a lot of memory.</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necesary</span><span class="w">
-</span><span class="n">install.packages</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s1">'ncdf4'</span><span class="p">,</span><span class="s1">'sp'</span><span class="p">,</span><span class="s1">'raster'</span><span class="p">,</span><span class="s1">'dplyr'</span><span class="p">,</span><span class="s1">'sf'</span><span class="p">,</span><span class="s1">'ggplot2'</span><span class="p">,</span><span class="s1">'reprex'</span><span class="p">))</span><span class="w">
+</span><span class="c1"># install.packages(c('ncdf4','sp','raster','dplyr','sf','ggplot2','reprex','ggsn'))</span><span class="w">
 </span><span class="c1"># Load packages</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">ncdf4</span><span class="p">)</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span><span class="w">
@@ -117,9 +119,8 @@
 </span><span class="n">library</span><span class="p">(</span><span class="n">reprex</span><span class="p">)</span><span class="w">
 
 </span><span class="c1">### Step 1: Read in nc file as a dataframe*</span><span class="w">
-</span><span class="n">nc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">here</span><span class="o">::</span><span class="n">here</span><span class="p">(</span><span class="s2">"Geo-Spatial/Data/GlobalGWRwUni_PM25_GL_201001_201012-RH35_Median_NoDust_NoSalt.nc"</span><span class="p">)</span><span class="w">
-</span><span class="n">pm2010</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nc_open</span><span class="p">(</span><span class="n">nc</span><span class="p">)</span><span class="w">
-</span><span class="n">nc.brick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brick</span><span class="p">(</span><span class="s2">"Geo-Spatial/DData/GlobalGWRwUni_PM25_GL_201001_201012-RH35_Median_NoDust_NoSalt.nc"</span><span class="p">)</span><span class="w">
+</span><span class="n">pm2010</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nc_open</span><span class="p">(</span><span class="s2">"GlobalGWRwUni_PM25_GL_201001_201012-RH35_Median_NoDust_NoSalt.nc"</span><span class="p">)</span><span class="w">
+</span><span class="n">nc.brick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brick</span><span class="p">(</span><span class="s2">"GlobalGWRwUni_PM25_GL_201001_201012-RH35_Median_NoDust_NoSalt.nc"</span><span class="p">)</span><span class="w">
 </span><span class="c1"># Check the dimensions</span><span class="w">
 </span><span class="nf">dim</span><span class="p">(</span><span class="n">nc.brick</span><span class="p">)</span><span class="w">
 
@@ -140,7 +141,7 @@
 </span><span class="n">head</span><span class="p">(</span><span class="n">pm25_sf</span><span class="p">)</span><span class="w">
 
 </span><span class="c1">### Step 4: Read in the Brazil shp file. we plan to merge to</span><span class="w">
-</span><span class="n">Brazil_map_2010</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st_read</span><span class="p">(</span><span class="n">here</span><span class="o">::</span><span class="n">here</span><span class="p">(</span><span class="s2">"Geo-Spatial/Data/geo2_br2010/geo2_br2010.shp"</span><span class="p">))</span><span class="w">
+</span><span class="n">Brazil_map_2010</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st_read</span><span class="p">(</span><span class="s2">"geo2_br2010.shp"</span><span class="p">)</span><span class="w">
 </span><span class="n">head</span><span class="p">(</span><span class="n">Brazil_map_2010</span><span class="p">)</span><span class="w">
 
 </span><span class="c1">### Step 5: Intersect pm25 sf object with the shp file.*</span><span class="w">
