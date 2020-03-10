@@ -41,7 +41,7 @@ There are numerous packages to estimate ARMA models in R. For this tutorial, we 
 
 The `arima()` function does require that we specify the order of the model (ie, pick the values of $$p$$ and $$q$$). For an alternative function that will evaluate multiple models and select the best performing, see the `auto.arima` function available through the [**forecast** package](https://www.rdocumentation.org/packages/forecast/versions/8.11/topics/auto.arima). 
 
-```{r}
+```r
 ## Load and install time series packages
 if (!require("tsibble")) install.packages("tsibble")
 library(tsibble)
