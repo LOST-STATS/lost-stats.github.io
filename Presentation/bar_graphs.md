@@ -6,13 +6,7 @@ nav_order: 1
 mathjax: true
 ---
 
-```{r, echo = FALSE, warning=FALSE}
 
-library(pacman)
-
-p_load(tidyverse, knitr)
-
-```
 This is a brief tutorial on how to make bar graphs. It also provides a little information on how to stylize bar graphs to make them look better. There are a plethora of options to make a bar graph look like the visualization that you want it to. Lets dive in!
 
 
@@ -21,7 +15,7 @@ This is a brief tutorial on how to make bar graphs. It also provides a little in
 
 For the R demonstration, you need to call the 'tidyverse' package. Instructions to install and call the 'tidyverse' package are in the code chunk below
 
-```{r setup, echo = TRUE}
+```r 
 
 
 if (!require("pacman")) install.packages("pacman")
@@ -37,19 +31,22 @@ This tutorial will use a dataset that already exists in R, so no need to load an
 
 - Next we want to tell ggplot what we want to map. We use the mapping function to do this. We set mapping to the aesthetic function. (mapping = aes(x = species)) Within the aes function we want to specify what we want our x value to be, in this case species. Copy the code below to make your first bar graph!
 
-```{r graph_one, echo = TRUE, fig.align="center"}
+```r
 
 
-ggplot() +
-   geom_bar(data = starwars, mapping = aes(x = species)) 
+ ggplot() +
+    geom_bar(data = starwars, mapping = aes(x = species)) 
+ ```
+
+![r_bar_graph_1](C:\\Users\\Jake\\Desktop\\Skool\\Grant Class\\code_contribution\\lost-stats.github.io\\Presentation\\Images\\bar_plot_graphs\\r_bar_graph_1.png)
 
 
-```
+
 
 
 As you can see there are some issues, we can't tell what the individual species are on the x axis. We also might want to give our graph a title, maybe give it some color, etc. How do we do this? By adding additional functions to our graph!
 
-```{r Modifying our graph, echo=TRUE, fig.align="center"}
+
 
 ggplot(data = starwars) +
   geom_bar( mapping = aes(x = species), color = "black", fill = "blue") +
@@ -57,8 +54,11 @@ ggplot(data = starwars) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 
+![r_bar_graph_2](C:\\Users\\Jake\\Desktop\\Skool\\Grant Class\\code_contribution\\lost-stats.github.io\\Presentation\\Images\\bar_plot_graphs\\r_bar_graph_2.png)
 
-```
+
+
+
 
 This graph looks much more interpretable to me, though appearences are subjective. Let's look at what we did. First there are two additional parts to our mapping function, color and fill. The "color = " provides an outline color to the bars on the graph, while "fill = " provides the color within the bars. The x and y axis have been renamed, and the graph has been given a title. This was done using the labs() function in R. This function has additional options as well which you should explore. Finally we come to the theme() function in ggplot2. theme() has many options to customize any type of graph in R. For this basic tutorial, the x values (species) have been rotated so that they are legible compared to our first graph. Congratualtions, you have made your first bar graph in R!
 
@@ -74,11 +74,10 @@ This is fictionalized blood pressure data. In your variables column you should h
 
 and the following output should appear in another window.
 
-```{r stata graph, echo = FALSE, fig.align="center", out.width = "600px"}
 
-knitr::include_graphics("C:\\Users\\Jake\\Desktop\\Skool\\Grant Class\\code_contribution\\bar_graph_1.png")
+![bar_graph_1.png](C:\\Users\\Jake\\Desktop\\Skool\\Grant Class\\code_contribution\\lost-stats.github.io\\Presentation\\Images\\bar_plot_graphs\\bar_graph_1.png)
 
-```
+
 
 Congratulations, you've made your first bar chart in Stata! We can now visually see the make-up of our dataset by gender and age. We might want to change the axis labels or give this a title. To do so type the following in your command window:
 
@@ -86,11 +85,10 @@ Congratulations, you've made your first bar chart in Stata! We can now visually 
 
 and the following graph shoud appear
 
-```{r stata graph 2, echo= FALSE, fig.align="center", out.width = "600px"}
 
-knitr::include_graphics("C:\\Users\\Jake\\Desktop\\Skool\\Grant Class\\code_contribution\\bar_graph_2.png")
+![bar_graph_2](C:\\Users\\Jake\\Desktop\\Skool\\Grant Class\\code_contribution\\lost-stats.github.io\\Presentation\\Images\\bar_plot_graphs\\bar_graph_2.png)
 
-```
+
 
 Notice we gave our graph a title and capitalized the y axis. Lets add some color next. To do so type
 
@@ -98,10 +96,9 @@ Notice we gave our graph a title and capitalized the y axis. Lets add some color
 
 and the following graph should appear
 
-```{r stata graph 3, echo=FALSE, fig.align="center", out.width = "600px"}
 
-knitr::include_graphics("C:\\Users\\Jake\\Desktop\\Skool\\Grant Class\\code_contribution\\bar_graph_3.png")
+![bar_graph_3](C:\\Users\\Jake\\Desktop\\Skool\\Grant Class\\code_contribution\\lost-stats.github.io\\Presentation\\Images\\bar_plot_graphs\\bar_graph_3.png)
 
-```
+
 
 Our bars are now red with a blue outline. Pretty neat! There are many sources of Stata help on the internet and many different way to customize your bar graphs. There is an official [Stata support](stata.com/support/) page that can answer queries regarding Stata. 
