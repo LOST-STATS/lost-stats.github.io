@@ -121,34 +121,35 @@
           <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
       </h2>
 <p>There are numerous packages to estimate ARMA models in R. For this tutorial, we will use the <code class="highlighter-rouge">arima()</code> function, which comes preloaded into R from the <strong>stats</strong> package. For our purposes, it is sufficient to note that estimating an <script type="math/tex">ARIMA(p,0,q)</script> model is largely equivalent to estimating an <script type="math/tex">ARMA(p,q)</script>. For more information about estimating a true ARIMA process (where <script type="math/tex">d>0</script>), see the <em>Also Consider</em> section above. Additionally, the <strong>tsibble</strong> package can also be used to easily construct our quarterly log change in GDP variable.</p>
-<p>The <code class="highlighter-rouge">arima()</code> function does require that we specify the order of the model (ie, pick the values of <script type="math/tex">p</script> and <script type="math/tex">q</script>). For an alternative function that will evaluate multiple models and select the best performing, see the <code class="highlighter-rouge">auto.arima</code> function available through the <a href="https://www.rdocumentation.org/packages/forecast/versions/8.11/topics/auto.arima"><strong>forecast</strong> package</a>.</p><pre><code class="language-{r}">## Load and install time series packages
-if (!require("tsibble")) install.packages("tsibble")
-library(tsibble)
+<p>The <code class="highlighter-rouge">arima()</code> function does require that we specify the order of the model (ie, pick the values of <script type="math/tex">p</script> and <script type="math/tex">q</script>). For an alternative function that will evaluate multiple models and select the best performing, see the <code class="highlighter-rouge">auto.arima</code> function available through the <a href="https://www.rdocumentation.org/packages/forecast/versions/8.11/topics/auto.arima"><strong>forecast</strong> package</a>.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## Load and install time series packages</span><span class="w">
+</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">require</span><span class="p">(</span><span class="s2">"tsibble"</span><span class="p">))</span><span class="w"> </span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"tsibble"</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">tsibble</span><span class="p">)</span><span class="w">
 
 
-#load data
-gdp = read.csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv")
+</span><span class="c1">#load data</span><span class="w">
+</span><span class="n">gdp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv"</span><span class="p">)</span><span class="w">
 
-#set our data up as a time-series
-gdp$DATE &lt;- as.Date(gdp$DATE)
+</span><span class="c1">#set our data up as a time-series</span><span class="w">
+</span><span class="n">gdp</span><span class="o">$</span><span class="n">DATE</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.Date</span><span class="p">(</span><span class="n">gdp</span><span class="o">$</span><span class="n">DATE</span><span class="p">)</span><span class="w">
 
-gdp_ts &lt;- as_tsibble(gdp,
-                     index = DATE,
-                     regular = FALSE) %&gt;% 
-    index_by(qtr = ~ yearquarter(.))
+</span><span class="n">gdp_ts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as_tsibble</span><span class="p">(</span><span class="n">gdp</span><span class="p">,</span><span class="w">
+                     </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DATE</span><span class="p">,</span><span class="w">
+                     </span><span class="n">regular</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">index_by</span><span class="p">(</span><span class="n">qtr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">yearquarter</span><span class="p">(</span><span class="n">.</span><span class="p">))</span><span class="w">
 
-#construct our first difference of log gdp variable
-gdp_ts$lgdp=log(gdp_ts$GDPC1)
+</span><span class="c1">#construct our first difference of log gdp variable</span><span class="w">
+</span><span class="n">gdp_ts</span><span class="o">$</span><span class="n">lgdp</span><span class="o">=</span><span class="nf">log</span><span class="p">(</span><span class="n">gdp_ts</span><span class="o">$</span><span class="n">GDPC1</span><span class="p">)</span><span class="w">
 
-gdp_ts$ldiffgdp=difference(gdp_ts$lgdp, lag=1, difference=1)
+</span><span class="n">gdp_ts</span><span class="o">$</span><span class="n">ldiffgdp</span><span class="o">=</span><span class="n">difference</span><span class="p">(</span><span class="n">gdp_ts</span><span class="o">$</span><span class="n">lgdp</span><span class="p">,</span><span class="w"> </span><span class="n">lag</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">difference</span><span class="o">=</span><span class="m">1</span><span class="p">)</span><span class="w">
 
 
-#Estimate our ARMA(3,1)
-##Note that because we are modeling for the first difference of log GDP, we cannot use our first observation of 
-##log GDP to estimate our model.
-arma_gdp = arima(gdp_ts$lgdp[2:292], order=c(3,0,1))
-arma_gdp
-</code></pre>
+</span><span class="c1">#Estimate our ARMA(3,1)</span><span class="w">
+</span><span class="c1">##Note that because we are modeling for the first difference of log GDP, we cannot use our first observation of </span><span class="w">
+</span><span class="c1">##log GDP to estimate our model.</span><span class="w">
+</span><span class="n">arma_gdp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arima</span><span class="p">(</span><span class="n">gdp_ts</span><span class="o">$</span><span class="n">lgdp</span><span class="p">[</span><span class="m">2</span><span class="o">:</span><span class="m">292</span><span class="p">],</span><span class="w"> </span><span class="n">order</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">))</span><span class="w">
+</span><span class="n">arma_gdp</span><span class="w">
+</span></code></pre></div></div>
       <h2 id="stata">
           <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
       </h2>
