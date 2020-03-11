@@ -73,7 +73,6 @@ If you create one of these pages, please remove it from this list.
 * Marginal Effects Plots for Discrete Variables
 * Density plots
 * Histograms
-* Bar plots
 * Formatting graph legends
 * Graph themes
 
