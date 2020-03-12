@@ -1,14 +1,14 @@
 ---
-title: Auto Regressive Models
+title: AR Models
 parent: Time Series
 has_children: false
 mathjax: true
 nav_order: 1
 ---
 
-# Auto Regressive Models
+# Autoregressive (AR) Models
 
-Auto Regressive models are fundamental to time series analysis. They are estimated via regressing a variable on one or more of its lagged values. That is, AR models take the form: $$Y_t = c + \sum_{i = 1}^{p} \beta_i Y_{t-i} + \epsilon_t $$ Where we say p is the *order* of our auto regression. Their estimation in statistical software packages is generally straightforward.
+Autoregressive (AR) models are fundamental to time series analysis. They are estimated via regressing a variable on one or more of its lagged values. That is, AR models take the form: $$Y_t = c + \sum_{i = 1}^{p} \beta_i Y_{t-i} + \epsilon_t $$ Where we say p is the *order* of our auto regression. Their estimation in statistical software packages is generally straightforward.
 
 For additional information, see [Wikipedia: Autoregressive model](https://en.wikipedia.org/wiki/Autoregressive_model).
 
