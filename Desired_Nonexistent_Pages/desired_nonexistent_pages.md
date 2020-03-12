@@ -46,7 +46,6 @@ If you create one of these pages, please remove it from this list.
 
 ## Geo-Spatial
 
-* Geo-coding
 * Handling Raster Data
 * Handling Vector Data
 * Spatial Joins
@@ -87,7 +86,6 @@ If you create one of these pages, please remove it from this list.
 * Stationarity and Weak Dependence
 * Granger Causality
 * Moving Average Model
-* ARMA Model 
 * ARIMA Model 
 * ARIMAX Model
 * ARCH Model
