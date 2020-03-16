@@ -67,7 +67,6 @@ If you create one of these pages, please remove it from this list.
 * Styling Line Graphs
 * Scatterplot
 * Styling Scatterplots
-* Faceted Graphs
 * Marginal Effects Plots for Discrete Variables
 * Density plots
 * Histograms
