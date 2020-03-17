@@ -6,7 +6,7 @@ nav_order: 1
 mathjax: false
 ---
 
-# Introduction
+# Faceted Graphs
 
 When plotting relationship among variables of interest, one of the useful ways to create visual impact is by way of using facet, which subsets data with faceted variable and creates plots for each of the subset seperately. The result is a panel of subplots, with each subplot depicting the plot for same set of variables. This approach can be especially useful for panel datasets, with the panel variable acting as facet variable and each subplot depicting time series trend of variable of interest.
 
@@ -17,7 +17,7 @@ When plotting relationship among variables of interest, one of the useful ways t
 
 ## Also Consider
 
-- It is important to know the basic plotting techniques such as [Bar Graphs] (https://lost-stats.github.io/Presentation/bar_graphs.html), [Line Graphs] (https://lost-stats.github.io/Presnetation/line_graph_with_labels_at_the_beginning_or_end_of_lines.html) and [Scatterplot] (https://lost-stats.github.io/Presentation/scatterplot_by_group_on_shared_axes.html) before learning about faceted graphs as the facets are an addition to the underlying plot such as bar graph, line graph, scatterplot etc.
+- It is important to know the basic plotting techniques such as [Bar Graphs] (https://lost-stats.github.io/Presentation/bar_graphs.html), [Line Graphs] (https://lost-stats.github.io/Presnetation/line_graph_with_labels_at_the_beginning_or_end.html) and [Scatterplot] (https://lost-stats.github.io/Presentation/scatterplot_by_group_on_shared_axes.html) before learning about faceted graphs as the facets are an addition to the underlying plot such as bar graph, line graph, scatterplot etc.
 
 
 # Implementations
@@ -67,4 +67,4 @@ twoway (scatter mpg length), by(foreign)
 ```
 
 The code generates the following graph:
-[Faceted Graph by Origin of Car](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Images/Faceted_Graphs/stata_faceted_graph.png)
+![Faceted Graph by Origin of Car](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Images/Faceted_Graphs/stata_faceted_graph.png)
