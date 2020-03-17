@@ -82,8 +82,8 @@
                 </ol>
               </nav>
           <div id="main-content" class="page-content" role="main">
-              <h1 id="faceted-graphs">
-          <a href="#faceted-graphs" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Faceted Graphs
+              <h1 id="introduction">
+          <a href="#introduction" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Introduction
       </h1>
 <p>When plotting relationship among variables of interest, one of the useful ways to create visual impact is by way of using facet, which subsets data with faceted variable and creates plots for each of the subset seperately. The result is a panel of subplots, with each subplot depicting the plot for same set of variables. This approach can be especially useful for panel datasets, with the panel variable acting as facet variable and each subplot depicting time series trend of variable of interest.</p>
       <h2 id="keep-in-mind">
@@ -104,7 +104,7 @@
       <h2 id="r">
           <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
       </h2>
-<p>Implementation of faceted graph in R explained below is taken from the online book <a href="https://r4ds.had.co.nz/data-visualisation.html#facets">R for Data Science</a> by Hadley Wickham and Garett Grolemund. The book is also an excellent source for various data visualization techniques in R and learning R in general.</p>
+<p>Implementation of faceted graph in R explained below is taken from online book <a href="https://r4ds.had.co.nz/data-visualisation.html#facets">R for Data Science</a> by Hadley Wickham and Garett Grolemund. The book is also an excellent source for various data visualization techniques in R and learning R in general.</p>
 <p>We will use <strong>tidyverse</strong> package available in R for faceted graphs. <strong>Tidyverse</strong> is actually a meta-package which has various packages, and we will use <strong>ggplot2</strong> package for our purpose. This package has a data frame (it is like a table in R), called ‘mpg’ which contains observations collected by the US Environmental Protection Agency on 38 models of car.</p>
 <p>To create faceted graph, use <code class="highlighter-rouge">facet_wrap()</code> option in ggplot. The argument inside the bracket is <code class="highlighter-rouge">~</code> sign follwed by the categorical variable to be used to create subsets of data. Its use is illustrated in the code given below.</p>
 <div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Install package, if not already installed.</span><span class="w">
