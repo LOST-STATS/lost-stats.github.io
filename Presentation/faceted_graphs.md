@@ -6,7 +6,7 @@ nav_order: 1
 mathjax: false
 ---
 
-# Faceted Graphs
+# Introduction
 
 When plotting relationship among variables of interest, one of the useful ways to create visual impact is by way of using facet, which subsets data with faceted variable and creates plots for each of the subset seperately. The result is a panel of subplots, with each subplot depicting the plot for same set of variables. This approach can be especially useful for panel datasets, with the panel variable acting as facet variable and each subplot depicting time series trend of variable of interest.
 
@@ -24,7 +24,7 @@ When plotting relationship among variables of interest, one of the useful ways t
 
 ## R
 
-Implementation of faceted graph in R explained below is taken from the online book [R for Data Science](https://r4ds.had.co.nz/data-visualisation.html#facets) by Hadley Wickham and Garett Grolemund. The book is also an excellent source for various data visualization techniques in R and learning R in general.
+Implementation of faceted graph in R explained below is taken from online book [R for Data Science](https://r4ds.had.co.nz/data-visualisation.html#facets) by Hadley Wickham and Garett Grolemund. The book is also an excellent source for various data visualization techniques in R and learning R in general.
 
 We will use **tidyverse** package available in R for faceted graphs. **Tidyverse** is actually a meta-package which has various packages, and we will use **ggplot2** package for our purpose. This package has a data frame (it is like a table in R), called 'mpg' which contains observations collected by the US Environmental Protection Agency on 38 models of car.
 
