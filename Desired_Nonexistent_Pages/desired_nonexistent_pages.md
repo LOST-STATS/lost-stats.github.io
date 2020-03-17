@@ -64,7 +64,6 @@ If you create one of these pages, please remove it from this list.
 ## Presentation
 
 * Line Graph
-* Styling Line Graphs
 * Scatterplot
 * Styling Scatterplots
 * Marginal Effects Plots for Discrete Variables
