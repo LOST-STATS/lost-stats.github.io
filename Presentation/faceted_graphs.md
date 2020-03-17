@@ -17,7 +17,7 @@ When plotting relationship among variables of interest, one of the useful ways t
 
 ## Also Consider
 
-- It is important to know the basic plotting techniques such as [Bar Graphs](https://lost-stats.github.io/Presentation/bar_graphs.html), [Line Graphs](https://lost-stats.github.io/Presentation/line_graph.html) and [Scatterplot](https://lost-stats.github.io/Presentation/scatterplot_by_group_on_shared_axes.html) before learning about faceted graphs as the facets are an addition to the underlying plot such as bar graph, line graph, scatterplot etc.
+- It is important to know the basic plotting techniques such as [Bar Graphs](https://lost-stats.github.io/Presentation/bar_graphs.html), [Line Graphs](https://lost-stats.github.io/Presentation/line_graph_with_labels_at_the_beginning_or_end.html) and [Scatterplot](https://lost-stats.github.io/Presentation/scatterplot_by_group_on_shared_axes.html) before learning about faceted graphs as the facets are an addition to the underlying plot such as bar graph, line graph, scatterplot etc.
 
 
 # Implementations
