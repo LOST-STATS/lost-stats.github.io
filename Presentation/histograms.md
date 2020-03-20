@@ -40,7 +40,7 @@ incomes = data.frame( income = state.x77[,'Income'])
 
 # first using base R
 
-hist(income)
+hist(incomes$income)
 
 # now using ggplot
 
@@ -60,7 +60,7 @@ geom_histogram( aes( x = income ) ,
 
 ggplot( data = incomes ) + 
 geom_histogram( aes( x = income ) ,
-                binwidth = 200 )
+                binwidth = 500 )
 ```
 
 ## Stata
@@ -86,3 +86,5 @@ histogram mpg, bin(15) frequency
 hist mpg, width(2) frequency
 
 ```
+
+As with all software, the user can dig much deeper into these functions and learn how to tweak different options and/or present them in more unique ways. The outline above, however, will hopefully give the reader an appropriate starting-point from which to explore these many possibilities.
