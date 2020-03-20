@@ -8,7 +8,7 @@ nav_order: 1
   
 # Histograms
   
-*Histograms* are an indespensible tool of research across disciplines. They offer a helpful way to represent the distribution of a variable of interest. Specifically, their function is to record how frequently data values fall within pre-specified ranges caled "bins." Such visual representations can help researchers easily detect whether their data are distributed in a skewed or symmetric way, and can help detect outliers. 
+*Histograms* are an indespensible tool of research across disciplines. They offer a helpful way to represent the distribution of a variable of interest. Specifically, their function is to record how frequently data values fall within pre-specified ranges called "bins." Such visual representations can help researchers easily detect whether their data are distributed in a skewed or symmetric way, and can help detect outliers. 
 
 Despite being such a popular tool for scientific research, choosing the bin width (alternatively, number of bins) is ultimately a choice by the researcher. Histograms are intended to convey information about the variable, and choosing the "right" bin size to convey the information helpfully can be something of an art.
 
