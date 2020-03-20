@@ -15,7 +15,6 @@ If you create one of these pages, please remove it from this list.
 ## Data Manipulation
 
 * Aggregating Statistics
-* Collapse a Data Set
 * Creating dummy variables
 
 ## Model Estimation
