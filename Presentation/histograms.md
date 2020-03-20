@@ -30,7 +30,7 @@ When feeding data to visualise using a histogram, one will notice that both R an
 
 ## R
 
-Histograms can be represented using base R, or more elegantly with ggplot. R comes with a built-in dataset containing per-capita income in the US states for the year 1974, which we will be using.
+Histograms can be represented using base `R`, or more elegantly with `ggplot`. `R` comes with a built-in `states.x77` dataset containing per-capita income in the US states for the year 1974, which we will be using.
 
 ```r
 
