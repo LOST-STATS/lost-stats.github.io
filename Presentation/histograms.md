@@ -1,6 +1,6 @@
 ---
-title: Collapse a Data Set
-parent: Data Manipulation
+title: Histograms
+parent: Presentation
 has_children: false
 mathjax: true
 nav_order: 1
@@ -18,7 +18,7 @@ $$
 k = \frac{ \max x - \min x}{h}
 $$
 
-For this reason, statistical softwares such as R and Stata will often accept either custom bin width specifications, or number of bins.
+For this reason, statistical softwares such as R and Stata will often accept either custom bin width specifications, or a number of bins.
 
 ## Histogram vs. bar graph
 
@@ -74,6 +74,8 @@ To illustrate the basic histogram function in Stata we will use the "auto" datas
 webuse auto
 
 * histogram with default bin width
+* The frequency option puts a count of observations on the y-axis
+* rather than a proportion
 
 histogram mpg, frequency
 
@@ -86,5 +88,3 @@ histogram mpg, bin(15) frequency
 hist mpg, width(2) frequency
 
 ```
-
-As with all software, the user can dig much deeper into these functions and learn how to tweak different options and/or present them in more unique ways. The outline above, however, will hopefully give the reader an appropriate starting-point from which to explore these many possibilities.
