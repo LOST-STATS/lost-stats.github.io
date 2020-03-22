@@ -13,6 +13,7 @@
   "devDependencies": {
     "gulp": "^4.0.0",
     "gulp-gh-pages": "git+https://github.com/shinnn/gulp-gh-pages#v0.6.0-6",
-    "gulp-imagemin": "^5.0.3"
+    "gulp-imagemin": "^5.0.3",
+    "minimist": ">=1.2.2"
   }
 }

@@ -5,6 +5,9 @@ gem "rake"
 gem "jekyll", "3.8.5"
 #gem "github-pages", "202", group: :jekyll_plugins
 
+# Security recommendations per GitHub
+gem "nokogiri", ">= 1.10.8"
+
 group :jekyll_plugins do
   gem "liquid", "4.0.0"
   gem "rouge", "3.11.0"
