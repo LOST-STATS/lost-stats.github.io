@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>Create a Conda Package (Python) - LOST</title>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/just-the-docs.css">
+    <script type="text/javascript" src="/assets/js/vendor/lunr.min.js"></script>
+  <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Create a Conda Package (Python) | LOST</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Create a Conda Package (Python)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:site_name" content="LOST" />
+<script type="application/ld+json">
+{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Other/create_a_conda_package.html","headline":"Create a Conda Package (Python)","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="link" viewBox="0 0 16 16">
+      <title>Link</title>
+      <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+    </symbol>
+  </svg>
+  <div class="page-wrap">
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="" class="site-title lh-tight">
+  LOST
+</a>
+        <button class="menu-button fs-3 js-main-nav-trigger" data-text-toggle="Hide" type="button">Menu</button>
+      </div>
+      <div class="navigation main-nav js-main-nav">
+        <nav role="navigation" aria-label="Main navigation">
+  <ul class="navigation-list"><li class="navigation-list-item"><a href="/" class="navigation-list-link">Home</a></li><li class="navigation-list-item active"><a href="/Data/" class="navigation-list-link"></a></li><li class="navigation-list-item"><a href="/Data_Manipulation/data_manipulation.html" class="navigation-list-link">Data Manipulation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="navigation-list-link">Collapse a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="navigation-list-link">Combining Datasets</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="navigation-list-link">Vertical Combination</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="navigation-list-link">Horizontal Combination (Deterministic)</a>
+                          </li></ul></li><li class="navigation-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="navigation-list-link">Determine the Observation Level of a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Reshaping/reshape.html" class="navigation-list-link">Reshaping Data</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="navigation-list-link">Reshape Panel Data from Wide to Long</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="navigation-list-link">Reshape Panel Data from Long to Wide</a>
+                          </li></ul></li><li class="navigation-list-item "><a href="/Data_Manipulation/rowwise_calculations.html" class="navigation-list-link">Rowwise Calculations</a></li></ul></li><li class="navigation-list-item"><a href="/Geo-Spatial/Geo-spatial.html" class="navigation-list-link">Geo-Spatial</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Geo-Spatial/geocoding.html" class="navigation-list-link">Geocoding</a></li><li class="navigation-list-item "><a href="/Geo-Spatial/merging_shape_files.html" class="navigation-list-link">Merging Shape Files</a></li></ul></li><li class="navigation-list-item"><a href="/Machine_Learning/Machine_Learning.html" class="navigation-list-link">Machine Learning</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Machine_Learning/causal_forest.html" class="navigation-list-link">Causal Forest</a></li><li class="navigation-list-item "><a href="/Machine_Learning/penalized_regression.html" class="navigation-list-link">Penalized Regression</a></li></ul></li><li class="navigation-list-item"><a href="/Model_Estimation/Estimation.html" class="navigation-list-link">Model Estimation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Model_Estimation/fixed_effects_in_linear_regression.html" class="navigation-list-link">Fixed Effects in Linear Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/heckman_correction_model.html" class="navigation-list-link">Heckman Correction Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/instrumental_variables.html" class="navigation-list-link">Instrumental Variables</a></li><li class="navigation-list-item "><a href="/Model_Estimation/interaction_terms_and_polynomials.html" class="navigation-list-link">Interaction Terms and Polynomials</a></li><li class="navigation-list-item "><a href="/Model_Estimation/linear_hypothesis_tests.html" class="navigation-list-link">Linear Hypothesis Tests</a></li><li class="navigation-list-item "><a href="/Model_Estimation/linear_mixed_effects_regression.html" class="navigation-list-link">Linear Mixed-Effects Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/logit_model.html" class="navigation-list-link">Logit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/mcfaddens_choice_model.html" class="navigation-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/ordinary_least_squares.html" class="navigation-list-link">Ordinary Least Squares (Linear Regression)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/probit_model.html" class="navigation-list-link">Probit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/random_mixed_effects_estimation.html" class="navigation-list-link">Random/Mixed Effects in Linear Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/regression_discontinuity_design.html" class="navigation-list-link">Regression Discontinuity Design</a></li><li class="navigation-list-item "><a href="/Model_Estimation/Nonstandard_Errors/nonstandard_errors.html" class="navigation-list-link">Nonstandard Errors</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/bootstrap_se.html" class="navigation-list-link">Bootstrap Standard Errors</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/clustered_se.html" class="navigation-list-link">Cluster-Robust Standard Errors</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/hc_se.html" class="navigation-list-link">Heteroskedasticity-consistent standard errors</a>
+                          </li></ul></li></ul></li><li class="navigation-list-item"><a href="/Presentation/Presentation.html" class="navigation-list-link">Presentation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Presentation/bar_graphs.html" class="navigation-list-link">Bar Graphs</a></li><li class="navigation-list-item "><a href="/Presentation/export_a_formatted_regression_table.html" class="navigation-list-link">Export a Formatted Regression Table</a></li><li class="navigation-list-item "><a href="/Presentation/faceted_graphs.html" class="navigation-list-link">Faceted Graphs</a></li><li class="navigation-list-item "><a href="/Presentation/heatmap_colored_correlation_matrix.html" class="navigation-list-link">Heatmap Colored Correlation Matrix</a></li><li class="navigation-list-item "><a href="/Presentation/histograms.html" class="navigation-list-link">Histograms</a></li><li class="navigation-list-item "><a href="/Presentation/line_graph_with_labels_at_the_beginning_or_end.html" class="navigation-list-link">Line Graph with Labels at the Beginning or End of Lines</a></li><li class="navigation-list-item "><a href="/Presentation/marginal_effects_plots_for_interactions_with_continuous_variables.html" class="navigation-list-link">Marginal Effects Plots for Interactions with Continuous Variables</a></li><li class="navigation-list-item "><a href="/Presentation/scatterplot_by_group_on_shared_axes.html" class="navigation-list-link">Scatterplot by Group on Shared Axes</a></li><li class="navigation-list-item "><a href="/Presentation/styling_line_graphs.html" class="navigation-list-link">Styling Line Graphs</a></li></ul></li><li class="navigation-list-item"><a href="/Summary_Statistics/Summary_Statistics.html" class="navigation-list-link">Summary Statistics</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Summary_Statistics/Balance_Tables.html" class="navigation-list-link">Balance Table</a></li><li class="navigation-list-item "><a href="/Summary_Statistics/Summary_Statistics_Tables.html" class="navigation-list-link">Summary Statistics Tables</a></li></ul></li><li class="navigation-list-item"><a href="/Time_Series/Time_Series.html" class="navigation-list-link">Time Series</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Time_Series/AR-models.html" class="navigation-list-link">AR Models</a></li><li class="navigation-list-item "><a href="/Time_Series/ARMA-models.html" class="navigation-list-link">ARMA Models</a></li><li class="navigation-list-item "><a href="/Time_Series/creating_time_series_dataset.html" class="navigation-list-link">Creating Time Series Dataset</a></li></ul></li><li class="navigation-list-item active"><a href="/Other/Other.html" class="navigation-list-link">Other</a><ul class="navigation-list-child-list "><li class="navigation-list-item  active"><a href="/Other/create_a_conda_package.html" class="navigation-list-link active">Create a Conda Package (Python)</a></li><li class="navigation-list-item "><a href="/Other/import_a_foreign_data_file.html" class="navigation-list-link">Import a Foreign Data File</a></li></ul></li><li class="navigation-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="navigation-list-link">Desired Nonexistent Pages</a></li><li class="navigation-list-item"><a href="/Contributing/Contributing.html" class="navigation-list-link">Contributing</a></li></ul>
+</nav>
+      </div>
+      <footer class="site-footer">
+        <p class="text-small text-grey-dk-000 mb-4">This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.</p>
+      </footer>
+    </div>
+    <div class="main-content-wrap js-main-content" tabindex="0">
+      <div class="main-content">
+        <div class="page-header js-page-header">
+          <div class="search">
+            <div class="search-input-wrap">
+              <input type="text" class="js-search-input search-input" tabindex="0" placeholder="Search LOST" aria-label="Search LOST" autocomplete="off">
+              <svg width="14" height="14" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title><g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"/><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"/></g></svg>
+            </div>
+            <div class="js-search-results search-results-wrap"></div>
+          </div>
+            <ul class="list-style-none text-small aux-nav">
+                <li class="d-inline-block my-0"><a href="https://github.com/lost-stats/lost-stats.github.io/blob/source/Other/create_a_conda_package.md">Edit this page on GitHub</a></li>
+            </ul>
+        </div>
+        <div class="page">
+              <nav class="breadcrumb-nav">
+                <ol class="breadcrumb-nav-list">
+                    <li class="breadcrumb-nav-list-item"><a href="/Other/Other.html">Other</a></li>
+                  <li class="breadcrumb-nav-list-item"><span>Create a Conda Package (Python)</span></li>
+                </ol>
+              </nav>
+          <div id="main-content" class="page-content" role="main">
+              <h1 id="create-a-conda-package-python">
+          <a href="#create-a-conda-package-python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Create a Conda Package (Python)
+      </h1>
+<p><em>Warning</em> This is a page aimed at git experts at the moment. We welcome suggestions for pushing its difficulty down.</p>
+<p>Sometimes there are packages that are available in the Python ecosystem generally but which have not yet been incorporated into the <a href="https://conda-forge.org/">conda-forge</a> package repository for Anaconda. This page shows you the correct way to install that package into your environment in the interim and how to get that package added to the conda-forge repository.</p>
+      <h2 id="installing-the-package-locally">
+          <a href="#installing-the-package-locally" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Installing the package locally
+      </h2>
+<p>First, create a temporary directory where we’ll do all of our work. In the following snippet we call that directory <code class="highlighter-rouge">TMP_DIR</code>.</p>
+<p>Second, identify the package you’d like to install that is currently available via <code class="highlighter-rouge">pip</code>. In what follows, we’ll use <code class="highlighter-rouge">linearmodels</code> as an example.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">PACKAGE</span><span class="o">=</span>linearmodels
+<span class="nv">TMP_DIR</span><span class="o">=</span><span class="s2">"~/tmp/{PACKAGE}_build"</span>
+
+<span class="c"># Create the temporary directory</span>
+<span class="nb">mkdir</span> <span class="nt">-p</span> <span class="nv">$TMP_DIR</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="nv">$TMP_DIR</span>
+
+<span class="c"># Conda boilerplate</span>
+conda skeleton pypi <span class="nv">$PACKAGE</span>
+conda build <span class="nt">-c</span> conda-forge <span class="nv">$PACKAGE</span>
+
+<span class="c"># Install the package</span>
+conda <span class="nb">install</span> <span class="nt">--use-local</span> <span class="nt">-c</span> conda-forge linearmodels
+</code></pre></div></div>
+      <h2 id="setting-up-an-anaconda-feedstock-for-your-package">
+          <a href="#setting-up-an-anaconda-feedstock-for-your-package" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Setting up an Anaconda feedstock for your package
+      </h2>
+<p>The above solves the problem for you locally, but not for the broader community! In this section, we’ll describe generic instructions for creating an Anaconda <em>feedstock</em> for a Python 3 package. There are detailed instructions <a href="https://github.com/conda-forge/staged-recipes/">here</a>, but we found them a bit confusing for relatively simple packages.</p>
+<p>First, an overview of the steps:</p>
+<ol>
+  <li>Fork the <a href="https://github.com/conda-forge/staged-recipes/">conda-forge/staged-recipes</a> repo on GitHub.</li>
+  <li>Create the skeleton recipe for your package.</li>
+  <li>Edit the skeleton recipe.</li>
+  <li>Create a PR for your recipe.</li>
+  <li>Work with conda-forge maintainers until your recipe is merged.</li>
+</ol>
+      <h3 id="forking-the-conda-forgestaged-recipes-repo">
+          <a href="#forking-the-conda-forgestaged-recipes-repo" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Forking the conda-forge/staged-recipes repo
+      </h3>
+<p>On GitHub, go to <a href="https://github.com/conda-forge/staged-recipes/">conda-forge/staged-recipes</a> and fork the repository. If you already have a fork, I recommend <em>deleting</em> your fork and reforking. This repository is highly volatile.</p>
+      <h3 id="creating-the-skeleton-recipe">
+          <a href="#creating-the-skeleton-recipe" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Creating the skeleton recipe
+      </h3>
+<p>As above, we’ll assume you’re working with the <code class="highlighter-rouge">linearmodels</code> package. We’ll also assume you’re working in <code class="highlighter-rouge">REPO_DIR</code> as defined below. You’ll need to run the below scripts.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">REPO_DIR</span><span class="o">=</span>~/repo
+<span class="nv">GITHUB_USER</span><span class="o">=</span>khwilson
+<span class="nv">PACKAGE</span><span class="o">=</span>linearmodels
+<span class="nv">LOCAL_REPO_DIR</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">REPO_DIR</span><span class="k">}</span><span class="s2">/staged-recipes"</span>
+
+<span class="c"># Make sure your REPO_DIR exists</span>
+<span class="nb">mkdir</span> <span class="nt">-p</span> <span class="nv">$REPO_DIR</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="nv">$REPO_DIR</span>
+
+<span class="c"># Pull your fork</span>
+git clone <span class="s2">"https://github.com/</span><span class="k">${</span><span class="nv">GITHUB_USER</span><span class="k">}</span><span class="s2">/staged-recipes.git"</span>
+<span class="nb">cd</span> <span class="nv">$LOCAL_REPO_DIR</span>
+
+<span class="c"># Create the skeleton recipe</span>
+<span class="nb">cd</span> <span class="s2">"recipes"</span>
+conda skeleton pypi <span class="nv">$PACKAGE</span>
+</code></pre></div></div>
+<p>You should now see a file in “${PACKAGE}/meta.yaml”. This is your skeleton recipe.</p>
+      <h3 id="edit-the-recipe">
+          <a href="#edit-the-recipe" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Edit the recipe
+      </h3>
+<p>You’ll need to make several changes to the skeleton. These can be divided into:</p>
+<ol>
+  <li>Make the recipe py3k only.</li>
+  <li>If your recipe involves Cython, adding some build requirements.</li>
+  <li>Getting the license setup.</li>
+  <li>Other “about” metadata.</li>
+  <li>Add your name to the list of maintainers.</li>
+</ol>
+      <h4 id="make-the-recipe-py3k-only">
+          <a href="#make-the-recipe-py3k-only" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Make the recipe py3k only
+      </h4>
+<p>In the <code class="highlighter-rouge">build</code> section, add a key <code class="highlighter-rouge">skip: True  # [py2k]</code></p>
+      <h4 id="if-your-recipe-involves-cython">
+          <a href="#if-your-recipe-involves-cython" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> If your recipe involves Cython
+      </h4>
+<p>In the <code class="highlighter-rouge">requirements</code> section:</p>
+<ul>
+  <li>Add a <code class="highlighter-rouge">build</code> section that looks like this:
+```yaml
+build:
+    <ul>
+      <li></li>
+      <li>```</li>
+    </ul>
+  </li>
+  <li>In the <code class="highlighter-rouge">host</code> section, change the line involving <code class="highlighter-rouge">pip</code> to <code class="highlighter-rouge">pip &gt;=10</code>.</li>
+  <li>In the <code class="highlighter-rouge">run</code> section, remove any references to Cython and pip.</li>
+</ul>
+      <h4 id="getting-the-license-setup">
+          <a href="#getting-the-license-setup" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Getting the license setup
+      </h4>
+<p>This is probably the most annoying part. Find your packages online home. Copy the LICENSE file to your recipe’s directory. Then in the <code class="highlighter-rouge">about</code> section, add the line <code class="highlighter-rouge">license_file: NAME_OF_LICENSE_FILE</code>, where <code class="highlighter-rouge">NAME_OF_LICENSE_FILE</code> is the file you saved the license to.</p>
+<p>Also, you’ll need to describe the license by type. Sometimes, conda can figure
+this out for you. However, sometimes you’ll need to figure it out. To do so,
+you can typically dump large parts of the text into Google and it will tell you
+the name. In the worst case, you may need to physically search <a href="https://opensource.org/licenses/alphabetical">this
+page</a>. Once you’ve found the
+license, add <code class="highlighter-rouge">license: SPDX_SHORT_CODE</code> to the <code class="highlighter-rouge">about</code> block.</p>
+<p>N.B. You may also need to add a <code class="highlighter-rouge">license_family</code> to the <code class="highlighter-rouge">about</code> block. However, the errors should tell you how to do this. :-)</p>
+      <h4 id="other-about-metatdata">
+          <a href="#other-about-metatdata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Other <code class="highlighter-rouge">about</code> metatdata
+      </h4>
+<p>There are some other stubs in the <code class="highlighter-rouge">about</code> section that conda should have setup for you, specifically around docs. If you can find these online, then add them here.</p>
+      <h4 id="add-your-name-to-the-list-of-maintainers">
+          <a href="#add-your-name-to-the-list-of-maintainers" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Add your name to the list of maintainers
+      </h4>
+<p>Finally, at the bottom of the <code class="highlighter-rouge">meta.yaml</code> file, you will need a section that looks like:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">extra</span><span class="pi">:</span>
+  <span class="na">recipe-maintainers</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">khwilson</span>
+</code></pre></div></div>
+<p>Here you should obviously replace <code class="highlighter-rouge">khwilson</code> with your own GitHub username.</p>
+<p>This completes the main part of recipe editing.</p>
+      <h3 id="create-a-pr-for-your-recipe">
+          <a href="#create-a-pr-for-your-recipe" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Create a PR for your recipe
+      </h3>
+<p>Before creating a PR for your recipe, you probably want to test your recipe locally. To do so, you’ll need to have docker installed. Then run the following:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> <span class="nv">$LOCAL_REPO_DIR</span>
+
+<span class="c"># Remove extra recipes</span>
+<span class="nb">rm</span> <span class="nt">-rf</span> recipes/example recipes/spyrmsd
+</code></pre></div></div>
+<p>Then in the <code class="highlighter-rouge">.circleci/build_steps.sh</code> file, comment out the line that starts <code class="highlighter-rouge">git ls-tree --name-only master -- .</code>.</p>
+<p>Then you should be able to run <code class="highlighter-rouge">./.circleci/run_docker_build.sh</code>. You’ll probably see some errors which you’ll need to fix.</p>
+<p>Once these errors are sorted out, you can push your recipe to GitHub and create a PR. Make sure to name the PR something memorable, e.g., <code class="highlighter-rouge">Adding linearmodels recipe</code>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
