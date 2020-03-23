@@ -53,6 +53,36 @@ storms %>%
   stargazer(type = 'text')  
 ```
 
+But if you plan on maybe R Markdown instead of LaTeX formatting, there are a ton of summary statistic table packages for you to choose from. The package skimr is an excellent alternative to base::summary. skimr::skim takes different data types and outputs a summary statistic data frame. Numeric data gets miniature histograms and all types of data get information about the number of missing entries.
+
+```r
+# If necessary
+# install.packages('dplyr')
+# install.packages('skimr')
+library(dplyr)
+library(skimr)
+
+skim(starwars)
+
+#If you're wondering which columns have missing values, you can use skim() in a pipeline.
+starwars %>%
+  skim() %>%
+  dplyr::filter(n_missing > 0) %>%
+  dplyr::select(skim_variable, n_missing, complete_rate)
+  
+#You can analyze grouped data with skimr. You can also easily customize the output table using skim_with().
+my_skim <- skim_with(base = sfl(
+    n = length
+))
+starwars %>%
+    group_by(species) %>%
+    my_skim() %>%
+    dplyr::filter(skim_variable == "height" & n > 1)
+
+```
+
+Another alternative is summarytools::dfsummary. It's even more extended than skim(). dfsummary() can handle data in the forms of characters, factors, numerics, and dates, and outputs a data frame with statistics and graphs for all variables. That data frame can't be viewed from the console however, you'll open it in the viewer.
+
 ## Stata
 
 The built-in Stata command `summarize` (which can be referred to in short as `su` or `summ`) easily creates summary statistics tables. However, while `summarize` is well-suited for viewing descriptive statistics on your own, it is not well-suited for making tables to publish in a paper, since it is difficult to limit the number of significant digits, and does not offer an easy way to export the table other than selecting the Stata output, selecting "Copy Table", and pasting into a spreadsheet.
