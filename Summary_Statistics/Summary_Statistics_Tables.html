@@ -138,6 +138,32 @@
   </span><span class="n">as.data.frame</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="n">stargazer</span><span class="p">(</span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'text'</span><span class="p">)</span><span class="w">  
 </span></code></pre></div></div>
+<p>But if you plan on maybe R Markdown instead of LaTeX formatting, there are a ton of summary statistic table packages for you to choose from. The package skimr is an excellent alternative to base::summary. skimr::skim takes different data types and outputs a summary statistic data frame. Numeric data gets miniature histograms and all types of data get information about the number of missing entries.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary</span><span class="w">
+</span><span class="c1"># install.packages('dplyr')</span><span class="w">
+</span><span class="c1"># install.packages('skimr')</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">skimr</span><span class="p">)</span><span class="w">
+
+</span><span class="n">skim</span><span class="p">(</span><span class="n">starwars</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">#If you're wondering which columns have missing values, you can use skim() in a pipeline.</span><span class="w">
+</span><span class="n">starwars</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">skim</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">dplyr</span><span class="o">::</span><span class="n">filter</span><span class="p">(</span><span class="n">n_missing</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="n">skim_variable</span><span class="p">,</span><span class="w"> </span><span class="n">n_missing</span><span class="p">,</span><span class="w"> </span><span class="n">complete_rate</span><span class="p">)</span><span class="w">
+  
+</span><span class="c1">#You can analyze grouped data with skimr. You can also easily customize the output table using skim_with().</span><span class="w">
+</span><span class="n">my_skim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">skim_with</span><span class="p">(</span><span class="n">base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sfl</span><span class="p">(</span><span class="w">
+    </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="w">
+</span><span class="p">))</span><span class="w">
+</span><span class="n">starwars</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">group_by</span><span class="p">(</span><span class="n">species</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">my_skim</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">dplyr</span><span class="o">::</span><span class="n">filter</span><span class="p">(</span><span class="n">skim_variable</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"height"</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+
+</span></code></pre></div></div>
+<p>Another alternative is summarytools::dfsummary. It’s even more extended than skim(). dfsummary() can handle data in the forms of characters, factors, numerics, and dates, and outputs a data frame with statistics and graphs for all variables. That data frame can’t be viewed from the console however, you’ll open it in the viewer.</p>
       <h2 id="stata">
           <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
       </h2>
