@@ -19,6 +19,26 @@ Note: `model.matrix()` creates a separate dummy column for all values in the vec
 
 ## R
 
+### Categorical to Dummy
+
+As mentioned in the keep in mind section `model.matrix` can be used to transform categorical variables to columns of dummy variables. Try running the following code:
+
+```r
+# This line omits the first categorical value and 
+# includes an intercept term instead 
+# (see attr(,"assign"))
+model.matrix(~ iris$Species)
+
+# To retain the column of dummies for the first 
+# categorical value and remove the intercept 
+# term run this line instead 
+model.matrix(~ 0 + iris$Species)
+```
+
+In **STATA** the command for this is `xi i`. 
+
+### Other Dummies
+
 As I mentioned, creating a dummy variable doesn't have to be any different than creating any other variable. Below are several ways to create a new variable in R.
 
 ### dplyr::mutate
@@ -100,6 +120,19 @@ df$dummy = df$numbers%%2==1 *1
 There are many other methods one can use to create a dummy variable to add to some data. One could even create a vector of dummy variables and then merge that with an existing data set. That method is described in the article about horizontally combining data sets using functions like `join` and `merge`.
 
 ## MATLAB
+
+### Categorical to Dummy
+
+The equivalent of `model.matrix()` in MATLAB is `dummyvar` which creates columns of one-hot encoded dummies from categorical variables. The following example is taken from MathWorks documentation.
+
+```MATLAB
+Colors = {'Red';'Blue';'Green';'Red';'Green';'Blue'};
+Colors = categorical(Colors);
+
+D = dummyvar(Colors)
+```
+
+### Other Dummies
 
 In MATLAB you can store variables as columns in arrays. If you know you are going to add columns multiple times to the same array it is best practice to pre-allocate the final size of the array for computational efficiency. If you do this you can simply select the column you are designating for your dummy variable and story the dummys in that column.
 
