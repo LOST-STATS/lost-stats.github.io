@@ -5,9 +5,19 @@ has_children: false
 nav_order: 1
 ---
 
-Creating a dummy variable is just like creating any other variable but dummy variables can only take the value of 0 or 1. This gives us even more options in how we decide to add dummys. Below I walk through a few methods you can use to add dummy variables to your data.
+#Introduction
 
-## Creating a new variable
+Creating a dummy variable can be just like creating any other variable but dummy variables can only take the value of 0 or 1. This gives us even more options in how we decide to add dummys. Below I walk through a few methods you can use to add dummy variables to your data.
+
+## Keep in Mind
+
+Factor class vectors are automatically treated as dummies in regression models in R (Stata and SW languages have similar capabilities). In order to transform a categorical vector to a factor class you can simply use `as.factor()`. This means you don't have to create a different dummy vector for every value. If you are interested in looking behind the scenes you can use `model.matrix()` to see how R is creating dummies from these factor class variables.
+
+Note: `model.matrix()` creates a seperate dummy column for all values in the vector. This is called one-hot encoding and, if you aren't careful, can lead to the dummy variable trap. The dummy variable trap arises because of perfect multicolinearity between the intercept term and the dummy variables (which row-wise all add up to 1). So one of the columns needs to be dropped from the regression in order for it to run. Typically the first variable is the one which is dropped and effectively absorbed into the intercept term. If this happens then all the dummy estimates will be in reference to the dropped dummy. If you wish you can automatically drop the intercept term instead of a dummy by adding a 0 to your regression call i.e. `lm(formula = Sepal.Length ~ 0 + Species, data = iris)`.
+
+# Implementations
+
+## R
 
 As I mentioned, creating a dummy variable doesn't have to be any different than creating any other variable. Below are several ways to create a new variable in R.
 
@@ -85,7 +95,7 @@ df$dummy = df$numbers%%2==1 *1
 
 ```
 
-### Other methods
+### Also Consider
 
 There are many other methods one can use to create a dummy variable to add to some data. One could even create a vector of dummy variables and then merge that with an existing data set. That method is described in the article about horizontally combining data sets using functions like `join` and `merge`.
 
