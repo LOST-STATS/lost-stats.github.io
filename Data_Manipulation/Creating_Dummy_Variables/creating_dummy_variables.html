@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>Creating Dummy Variables - LOST</title>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/just-the-docs.css">
+    <script type="text/javascript" src="/assets/js/vendor/lunr.min.js"></script>
+  <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Creating Dummy Variables | LOST</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Creating Dummy Variables" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:site_name" content="LOST" />
+<script type="application/ld+json">
+{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Data_Manipulation/Creating_Dummy_Variables/creating_dummy_variables.html","headline":"Creating Dummy Variables","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="link" viewBox="0 0 16 16">
+      <title>Link</title>
+      <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+    </symbol>
+  </svg>
+  <div class="page-wrap">
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="" class="site-title lh-tight">
+  LOST
+</a>
+        <button class="menu-button fs-3 js-main-nav-trigger" data-text-toggle="Hide" type="button">Menu</button>
+      </div>
+      <div class="navigation main-nav js-main-nav">
+        <nav role="navigation" aria-label="Main navigation">
+  <ul class="navigation-list"><li class="navigation-list-item"><a href="/" class="navigation-list-link">Home</a></li><li class="navigation-list-item active"><a href="/Data/" class="navigation-list-link"></a></li><li class="navigation-list-item active"><a href="/Data_Manipulation/data_manipulation.html" class="navigation-list-link">Data Manipulation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="navigation-list-link">Collapse a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="navigation-list-link">Combining Datasets</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="navigation-list-link">Vertical Combination</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="navigation-list-link">Horizontal Combination (Deterministic)</a>
+                          </li></ul></li><li class="navigation-list-item  active"><a href="/Data_Manipulation/Creating_Dummy_Variables/creating_dummy_variables.html" class="navigation-list-link active">Creating Dummy Variables</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="navigation-list-link">Determine the Observation Level of a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Reshaping/reshape.html" class="navigation-list-link">Reshaping Data</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="navigation-list-link">Reshape Panel Data from Wide to Long</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="navigation-list-link">Reshape Panel Data from Long to Wide</a>
+                          </li></ul></li><li class="navigation-list-item "><a href="/Data_Manipulation/rowwise_calculations.html" class="navigation-list-link">Rowwise Calculations</a></li></ul></li><li class="navigation-list-item"><a href="/Geo-Spatial/Geo-spatial.html" class="navigation-list-link">Geo-Spatial</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Geo-Spatial/geocoding.html" class="navigation-list-link">Geocoding</a></li><li class="navigation-list-item "><a href="/Geo-Spatial/merging_shape_files.html" class="navigation-list-link">Merging Shape Files</a></li></ul></li><li class="navigation-list-item"><a href="/Machine_Learning/Machine_Learning.html" class="navigation-list-link">Machine Learning</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Machine_Learning/causal_forest.html" class="navigation-list-link">Causal Forest</a></li><li class="navigation-list-item "><a href="/Machine_Learning/penalized_regression.html" class="navigation-list-link">Penalized Regression</a></li></ul></li><li class="navigation-list-item"><a href="/Model_Estimation/Estimation.html" class="navigation-list-link">Model Estimation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Model_Estimation/fixed_effects_in_linear_regression.html" class="navigation-list-link">Fixed Effects in Linear Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/heckman_correction_model.html" class="navigation-list-link">Heckman Correction Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/instrumental_variables.html" class="navigation-list-link">Instrumental Variables</a></li><li class="navigation-list-item "><a href="/Model_Estimation/interaction_terms_and_polynomials.html" class="navigation-list-link">Interaction Terms and Polynomials</a></li><li class="navigation-list-item "><a href="/Model_Estimation/linear_hypothesis_tests.html" class="navigation-list-link">Linear Hypothesis Tests</a></li><li class="navigation-list-item "><a href="/Model_Estimation/linear_mixed_effects_regression.html" class="navigation-list-link">Linear Mixed-Effects Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/logit_model.html" class="navigation-list-link">Logit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/mcfaddens_choice_model.html" class="navigation-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/ordinary_least_squares.html" class="navigation-list-link">Ordinary Least Squares (Linear Regression)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/probit_model.html" class="navigation-list-link">Probit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/random_mixed_effects_estimation.html" class="navigation-list-link">Random/Mixed Effects in Linear Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/regression_discontinuity_design.html" class="navigation-list-link">Regression Discontinuity Design</a></li><li class="navigation-list-item "><a href="/Model_Estimation/Nonstandard_Errors/nonstandard_errors.html" class="navigation-list-link">Nonstandard Errors</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/bootstrap_se.html" class="navigation-list-link">Bootstrap Standard Errors</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/clustered_se.html" class="navigation-list-link">Cluster-Robust Standard Errors</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/hc_se.html" class="navigation-list-link">Heteroskedasticity-consistent standard errors</a>
+                          </li></ul></li></ul></li><li class="navigation-list-item"><a href="/Presentation/Presentation.html" class="navigation-list-link">Presentation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Presentation/bar_graphs.html" class="navigation-list-link">Bar Graphs</a></li><li class="navigation-list-item "><a href="/Presentation/export_a_formatted_regression_table.html" class="navigation-list-link">Export a Formatted Regression Table</a></li><li class="navigation-list-item "><a href="/Presentation/faceted_graphs.html" class="navigation-list-link">Faceted Graphs</a></li><li class="navigation-list-item "><a href="/Presentation/heatmap_colored_correlation_matrix.html" class="navigation-list-link">Heatmap Colored Correlation Matrix</a></li><li class="navigation-list-item "><a href="/Presentation/histograms.html" class="navigation-list-link">Histograms</a></li><li class="navigation-list-item "><a href="/Presentation/line_graph_with_labels_at_the_beginning_or_end.html" class="navigation-list-link">Line Graph with Labels at the Beginning or End of Lines</a></li><li class="navigation-list-item "><a href="/Presentation/marginal_effects_plots_for_interactions_with_continuous_variables.html" class="navigation-list-link">Marginal Effects Plots for Interactions with Continuous Variables</a></li><li class="navigation-list-item "><a href="/Presentation/scatterplot_by_group_on_shared_axes.html" class="navigation-list-link">Scatterplot by Group on Shared Axes</a></li><li class="navigation-list-item "><a href="/Presentation/styling_line_graphs.html" class="navigation-list-link">Styling Line Graphs</a></li></ul></li><li class="navigation-list-item"><a href="/Summary_Statistics/Summary_Statistics.html" class="navigation-list-link">Summary Statistics</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Summary_Statistics/Balance_Tables.html" class="navigation-list-link">Balance Table</a></li><li class="navigation-list-item "><a href="/Summary_Statistics/Summary_Statistics_Tables.html" class="navigation-list-link">Summary Statistics Tables</a></li></ul></li><li class="navigation-list-item"><a href="/Time_Series/Time_Series.html" class="navigation-list-link">Time Series</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Time_Series/AR-models.html" class="navigation-list-link">AR Models</a></li><li class="navigation-list-item "><a href="/Time_Series/ARMA-models.html" class="navigation-list-link">ARMA Models</a></li><li class="navigation-list-item "><a href="/Time_Series/creating_time_series_dataset.html" class="navigation-list-link">Creating Time Series Dataset</a></li></ul></li><li class="navigation-list-item"><a href="/Other/Other.html" class="navigation-list-link">Other</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Other/create_a_conda_package.html" class="navigation-list-link">Create a Conda Package (Python)</a></li><li class="navigation-list-item "><a href="/Other/import_a_foreign_data_file.html" class="navigation-list-link">Import a Foreign Data File</a></li></ul></li><li class="navigation-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="navigation-list-link">Desired Nonexistent Pages</a></li><li class="navigation-list-item"><a href="/Contributing/Contributing.html" class="navigation-list-link">Contributing</a></li></ul>
+</nav>
+      </div>
+      <footer class="site-footer">
+        <p class="text-small text-grey-dk-000 mb-4">This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.</p>
+      </footer>
+    </div>
+    <div class="main-content-wrap js-main-content" tabindex="0">
+      <div class="main-content">
+        <div class="page-header js-page-header">
+          <div class="search">
+            <div class="search-input-wrap">
+              <input type="text" class="js-search-input search-input" tabindex="0" placeholder="Search LOST" aria-label="Search LOST" autocomplete="off">
+              <svg width="14" height="14" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title><g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"/><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"/></g></svg>
+            </div>
+            <div class="js-search-results search-results-wrap"></div>
+          </div>
+            <ul class="list-style-none text-small aux-nav">
+                <li class="d-inline-block my-0"><a href="https://github.com/lost-stats/lost-stats.github.io/blob/source/Data_Manipulation/Creating_Dummy_Variables/creating_dummy_variables.md">Edit this page on GitHub</a></li>
+            </ul>
+        </div>
+        <div class="page">
+              <nav class="breadcrumb-nav">
+                <ol class="breadcrumb-nav-list">
+                    <li class="breadcrumb-nav-list-item"><a href="/Data_Manipulation/data_manipulation.html">Data Manipulation</a></li>
+                  <li class="breadcrumb-nav-list-item"><span>Creating Dummy Variables</span></li>
+                </ol>
+              </nav>
+          <div id="main-content" class="page-content" role="main">
+              <p>#Introduction</p>
+<p>Creating a dummy variable can be just like creating any other variable but dummy variables can only take the value of 0 or 1 (or false or true). This gives us even more options in how we decide to add dummies. Dummy variables are often used as a way of including categorical variables in a model.</p>
+      <h2 id="keep-in-mind">
+          <a href="#keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Keep in Mind
+      </h2>
+<p>Factor class vectors are automatically treated as dummies in regression models in R (Stata and SW languages have similar capabilities). In order to transform a categorical vector to a factor class you can simply use <code class="highlighter-rouge">factor()</code> on the variable in regression in R, or <code class="highlighter-rouge">i.</code> in Stata. This means you don’t have to create a different dummy vector for every value. If you are interested in looking behind the scenes you can use <code class="highlighter-rouge">model.matrix()</code> to see how R is creating dummies from these factor class variables.</p>
+<p>Note: <code class="highlighter-rouge">model.matrix()</code> creates a separate dummy column for all values in the vector. This is called one-hot encoding and, if you aren’t careful, can lead to the dummy variable trap if an intercept is also included in the regression. The dummy variable trap arises because of perfect multicollinearity between the intercept term and the dummy variables (which row-wise all add up to 1). So one of the columns needs to be dropped from the regression in order for it to run. Typically, the first variable is the one which is dropped and effectively absorbed into the intercept term. If this happens then all the dummy estimates will be in reference to the dropped dummy.</p>
+      <h1 id="implementations">
+          <a href="#implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Implementations
+      </h1>
+      <h2 id="r">
+          <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
+      </h2>
+<p>Turning a categorical varible into a set of dummies</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># To retain the column of dummies for the first </span><span class="w">
+</span><span class="c1"># categorical value we remove the intercept</span><span class="w">
+</span><span class="n">model.matrix</span><span class="p">(</span><span class="o">~</span><span class="m">-1</span><span class="o">+</span><span class="n">Species</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">iris</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Then we can add the dummies to the original data</span><span class="w">
+</span><span class="n">iris</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cbind</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">model.matrix</span><span class="p">(</span><span class="o">~</span><span class="m">-1</span><span class="o">+</span><span class="n">Species</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">iris</span><span class="p">))</span><span class="w">
+
+</span><span class="c1"># Of course, in a regression we can skip this process</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">lm</span><span class="p">(</span><span class="n">Sepal.Length</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Petal.Length</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Species</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iris</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+<p>If you are only creating one dummy at a time rather than a set from a factor variable, creating a dummy variable doesn’t have to be any different than creating any other variable. Below are several ways to create a new variable in R.</p>
+      <h3 id="dplyrmutate">
+          <a href="#dplyrmutate" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> dplyr::mutate
+      </h3>
+<p>Let’s say that we want our dummy to indicate if variable_1 &gt; variable_2. To do this we can use <code class="highlighter-rouge">mutate</code>:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install dplyr</span><span class="w">
+</span><span class="c1"># install.packages('dplyr')</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+
+</span><span class="n">data</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># The below takes existing data (iris) and adds</span><span class="w">
+</span><span class="c1"># a new variable (Long.Petal) based on existing variables</span><span class="w">
+</span><span class="c1"># (Petal.Length and Petal.Width) and saves the result as</span><span class="w">
+</span><span class="c1"># mutated_data.</span><span class="w">
+</span><span class="c1"># Note: new variables do not have to be based on old</span><span class="w">
+</span><span class="c1"># variables</span><span class="w">
+</span><span class="n">mutated_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iris</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">Long.Petal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Petal.Length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">Petal.Width</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p>This will create a new column of logical (<code class="highlighter-rouge">TRUE</code>/<code class="highlighter-rouge">FALSE</code>) variables. This works just fine for most uses of dummy variables. However if you need the variables to be 1s and 0s you can now take</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mutated_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mutated_data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">mutate</span><span class="p">(</span><span class="n">Long.Petal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Long.Petal</span><span class="o">*</span><span class="m">1</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p>You could also nest that operation inside the original creation of new_dummy like so:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mutated_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iris</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">Long.Petal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Petal.Length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">Petal.Width</span><span class="p">)</span><span class="o">*</span><span class="m">1</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+      <h3 id="base-r">
+          <a href="#base-r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Base R
+      </h3>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#the following creates a 5 x 2 data frame</span><span class="w">
+</span><span class="nb">letters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"a"</span><span class="p">,</span><span class="s2">"b"</span><span class="p">,</span><span class="s2">"c"</span><span class="p">,</span><span class="w"> </span><span class="s2">"d"</span><span class="p">,</span><span class="w"> </span><span class="s2">"e"</span><span class="p">)</span><span class="w">
+</span><span class="n">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">)</span><span class="w">
+</span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="nb">letters</span><span class="p">,</span><span class="n">numbers</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p>Now I’ll show several different ways to create a dummy indicating if the numbers variable is odd.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span><span class="o">$</span><span class="n">dummy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">numbers</span><span class="o">%%</span><span class="m">2</span><span class="w">
+
+</span><span class="n">df</span><span class="o">$</span><span class="n">dummy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">numbers</span><span class="o">%%</span><span class="m">2</span><span class="o">==</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">)</span><span class="w">
+
+</span><span class="n">df</span><span class="o">$</span><span class="n">dummy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">numbers</span><span class="o">%%</span><span class="m">2</span><span class="o">==</span><span class="m">1</span><span class="w">
+
+</span><span class="c1"># the last one created a logical outcome to convert to numerical we can either</span><span class="w">
+
+</span><span class="n">df</span><span class="o">$</span><span class="n">dummy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">dummy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">1</span><span class="w">
+
+</span><span class="c1"># or</span><span class="w">
+
+</span><span class="n">df</span><span class="o">$</span><span class="n">dummy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">numbers</span><span class="o">%%</span><span class="m">2</span><span class="o">==</span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="m">1</span><span class="w">
+
+</span></code></pre></div></div>
+      <h2 id="matlab">
+          <a href="#matlab" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> MATLAB
+      </h2>
+      <h3 id="categorical-to-dummy">
+          <a href="#categorical-to-dummy" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Categorical to Dummy
+      </h3>
+<p>The equivalent of <code class="highlighter-rouge">model.matrix()</code> in MATLAB is <code class="highlighter-rouge">dummyvar</code> which creates columns of one-hot encoded dummies from categorical variables. The following example is taken from MathWorks documentation.</p><pre><code class="language-MATLAB">Colors = {'Red';'Blue';'Green';'Red';'Green';'Blue'};
+Colors = categorical(Colors);
+
+D = dummyvar(Colors)
+</code></pre>
+      <h3 id="other-dummies">
+          <a href="#other-dummies" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Other Dummies
+      </h3>
+<p>In MATLAB you can store variables as columns in arrays. If you know you are going to add columns multiple times to the same array it is best practice to pre-allocate the final size of the array for computational efficiency. If you do this you can simply select the column you are designating for your dummy variable and story the dummys in that column.</p><pre><code class="language-MATLAB">arr = [1,2,3;5,2,6;1,8,3];
+dum = sum(data(:,:),2) &lt;10;
+data = horzcat(arr,dum);
+</code></pre>
+<p>In the above script I make a 3 by 3 array, then create a 3 x 1 array of dummy variables indicating if the sum of the rows are less than 10. Then I horizontally concatenate the arrays together. I should note that in MATLAB logicals are automatically stored as 1s and 0s instead of T/F like in R.</p>
+      <h2 id="stata">
+          <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
+      </h2>
+<p>In Stata, if we have a categorical variable stored as a number, we can use <code class="highlighter-rouge">i.</code> to turn it into a set of dummies, or include it directly in a regression.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">sysuse</span> <span class="err">auto.dta,</span> <span class="err">clear
+</span><span class="c1">
+* Let's get the brand of the car
+</span><span class="err">g</span> <span class="err">brand</span> <span class="o">=</span> <span class="err">word(make,1)
+</span><span class="c1">
+* Turn it into a numerically coded categorical
+</span><span class="err">encode</span> <span class="err">brand,</span> <span class="err">g(brand_n)
+</span><span class="c1">
+* include in a regression
+</span><span class="err">regress</span> <span class="err">mpg</span> <span class="err">weight</span> <span class="err">i.brand_n
+</span><span class="c1">
+* Or create a set of dummies
+* specifying the prefix so it's easy to refer to
+* Note this actually does not require 
+* numeric encoding
+</span><span class="err">xi</span> <span class="err">i.brand,</span> <span class="err">pre(b_)
+
+regress</span> <span class="err">mpg</span> <span class="err">weight</span> <span class="err">b_</span><span class="o">*</span><span class="err">
+</span><span class="c1">
+
+* Create a logical variable
+</span><span class="err">gen</span> <span class="err">highmpg</span> <span class="o">=</span> <span class="err">mpg</span> <span class="o">&gt;</span> <span class="err">30
+</span></code></pre></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
