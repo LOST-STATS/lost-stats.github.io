@@ -12,7 +12,9 @@ In the regression model
 
 $$ Y = \beta_0 + \beta_1 X + \epsilon $$
 
-where $$\epsilon$$ is an error term, the estimated $$\hat{\beta}_1$$ will not give the causal effect of $$X$$ on $$Y$$ if $$X$$ is *endogenous* - that is, if $$X$$ is related to $$\epsilon$$ and so determined by forces *within the model* (endogenous). 
+where $$\epsilon$$ is an error term, the estimated $$\hat{\beta}_1$$ will not give the causal effect of $$X$$ on $$Y$$ if $$X$$ is *endogenous* - that is, if $$X$$ is related to $$\epsilon$$ and so determined by forces *within the model* (endogenous).
+
+**I made an edit!**
 
 One way to recover the causal effect of $$X$$ on $$Y$$ is to use instrumental variables. If there exists a variable $$Z$$ that is related to $$X$$ but is completely unrelated to $$\epsilon$$ (perhaps after adding some controls), then you can use instrumental variables estimation to isolate only the part of the variation in $$X$$ that is explained by $$Z$$. Naturally, then, this part of the variation is unrelated to $$\epsilon$$ because $$Z$$ is unrelated to $$\epsilon$$, and you can get the causal effect of that part of $$X$$.
 
