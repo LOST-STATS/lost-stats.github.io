@@ -1,5 +1,5 @@
 ---
-title: Title of page
+title: Random Forest
 parent: Category
 has_children: false
 nav_order: 1
