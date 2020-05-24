@@ -64,25 +64,20 @@ y_test<-y[-index]
 #Train the model
 
 ```
-regr <- randomForest(x = X_train, y = y_train , maxnodes = 10, ntree = 10)
+iris_rf <- randomForest(x = X_train, y = y_train , maxnodes = 10, ntree = 10)
+print(iris_rf)
 ```
 
 #Make predictions
 
 ```
-predictions <- predict(regr, X_test)
+predictions <- predict(iris_rf, X_test)
 
 result <- X_test
 result['Species'] <- y_test
-result['prediction']<-  predictions
+result['Prediction']<-  predictions
 
 head(result)
-```
-
-#Train the model
-
-```
-regr <- randomForest(x = X_train, y = y_train , maxnodes = 10, ntree = 10)
 ```
 
 #Check the classification accuracy (number of correct predictions out of total datapoints used to test the prediction)
@@ -98,7 +93,7 @@ print(sum(predictions==y_test)/length(y_test))
 
 Use iris features (sepal length and width, petal length and width) to predict iris species
 
-#Import required libraries
+#Import libraries
 
 ```
 import numpy as np
