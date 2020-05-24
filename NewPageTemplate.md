@@ -32,16 +32,73 @@ Commented code demonstrating the technique
 
 ## Python
 
-There are two ways to perform this technique in language/software 2.
+Use iris features (sepal length and width, petal length and width) to predict iris species
 
-First, explanation of what is different about the first way:
+#Import required libraries
 
-```identifier for language type, see this page: https://github.com/jmm/gfm-lang-ids/wiki/GitHub-Flavored-Markdown-%28GFM%29-language-IDs
-Commented code demonstrating the technique
+```
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+%matplotlib inline
+import seaborn as sns
+sns.set()
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score,confusion_matrix
+
+'imports ready for use'
 ```
 
-Second, explanation of what is different about the second way:
+#Read data
 
-```identifier for language type, see this page: https://github.com/jmm/gfm-lang-ids/wiki/GitHub-Flavored-Markdown-%28GFM%29-language-IDs
-Commented code demonstrating the technique
+```
+file='Iris.csv'
+iris = pd.read_csv(file)
+iris.head(5)
+```
+
+#Check whether there are missing values to deal with
+
+```
+iris.info()
+```
+
+#Prepare data for training 
+
+```
+X=iris[['SepalLengthCm','SepalWidthCm','PetalLengthCm','PetalWidthCm']]
+y=iris[['Species']]
+```
+
+#Split data into training and test set
+
+```
+X_train,X_test,y_train,y_test=train_test_split (X,y,test_size=0.3,random_state=1996)
+X_train.shape,X_test.shape,y_train.shape,y_test.shape
+```
+
+#Creating model using random forest
+
+```
+Model=RandomForestClassifier(max_depth=2)
+Model.fit(X_train,y_train)
+```
+
+#Predict values for test data
+
+```
+y_pred=Model.predict(X_test)
+```
+
+#Evaluate model prediction
+
+```
+print("Accuracy is:”,accuracy_score(y_pred, y_test)*100,”%")
+```
+
+#Predict what type of iris it is 
+
+```
+Model.predict([[3,4,5,2]])
 ```
