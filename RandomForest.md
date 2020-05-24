@@ -26,9 +26,73 @@ If you are not familiar with decision tree, please go to the decision tree page 
 
 ## R
 
-```identifier for language type, see this page: https://github.com/jmm/gfm-lang-ids/wiki/GitHub-Flavored-Markdown-%28GFM%29-language-IDs
-Commented code demonstrating the technique
+We'll be using a built-in dataset in R, called "Iris". There are five variables in this dataset, including species, petal width and length as well as sepal length and width. 
+
+#Load packages
+
 ```
+library(pacman)
+pacman::p_load(tidyverse, rvest, dplyr, caret, randomForest, Metrics,
+               readr)
+```
+
+#Read data in R
+
+```
+data(iris)
+iris
+```
+
+#Create features and target
+
+```
+X <- iris %>%
+  select(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width)
+y <- iris$Species
+```
+
+#Split data into training and test sets
+
+```
+index <- createDataPartition(y, p=0.75, list=FALSE)
+X_train <- X[ index, ]
+X_test <- X[-index, ]
+y_train <- y[index]
+y_test<-y[-index]
+```
+
+#Train the model
+
+```
+regr <- randomForest(x = X_train, y = y_train , maxnodes = 10, ntree = 10)
+```
+
+#Make predictions
+
+```
+predictions <- predict(regr, X_test)
+
+result <- X_test
+result['Species'] <- y_test
+result['prediction']<-  predictions
+
+head(result)
+```
+
+#Train the model
+
+```
+regr <- randomForest(x = X_train, y = y_train , maxnodes = 10, ntree = 10)
+```
+
+#Check the classification accuracy (number of correct predictions out of total datapoints used to test the prediction)
+
+```
+print(sum(predictions==y_test))
+print(length(y_test))
+print(sum(predictions==y_test)/length(y_test))
+```
+
 
 ## Python
 
