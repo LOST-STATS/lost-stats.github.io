@@ -61,7 +61,7 @@ fig_1 <- ggplot(iris, aes(species, petal_length, fill=species)) +
   scale_y_continuous("Petal Length (cm)", breaks= seq(0,30, by=.5))+
   labs(title = "Iris Petal Length Box Plot", x = "Species")
 
-print(fig_1)
+fig_1
 
 ```
 ![Base Box Plot]()
