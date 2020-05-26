@@ -90,9 +90,11 @@ In the `build` section, add a key `skip: True  # [py2k]`
 In the `requirements` section:
 * Add a `build` section that looks like this:
 ```yaml
+{% raw %}
 build:
   - {{ compiler('c') }}
   - {{ compiler('cxx') }}
+{% endraw %}
 ```
 * In the `host` section, change the line involving `pip` to `pip >=10`.
 * In the `run` section, remove any references to Cython and pip.
