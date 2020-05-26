@@ -1,9 +1,9 @@
 ---
-title: Formatting graph legends
-parent: Presentation
-has_children: false
+title: "Formatting graph legends"
+mathjax: yes
 nav_order: 1
-mathjax: true ## Switch to false if this page has no equations or other math rendering.
+parent: Presentation
+has_children: no
 ---
 
 # Formatting graph legends
@@ -64,7 +64,7 @@ fig_1 <- ggplot(iris, aes(species, petal_length, fill=species)) +
 fig_1
 
 ```
-![Base Box Plot]()
+
 
 # Some basics 
 ## *Changing the legend title and changing the fonts*
