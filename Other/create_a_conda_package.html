@@ -163,38 +163,41 @@ conda skeleton pypi <span class="nv">$PACKAGE</span>
 <p>In the <code class="highlighter-rouge">requirements</code> section:</p>
 <ul>
   <li>Add a <code class="highlighter-rouge">build</code> section that looks like this:
-```yaml
-build:
-    <ul>
-      <li></li>
-      <li>```</li>
-    </ul>
-  </li>
-  <li>In the <code class="highlighter-rouge">host</code> section, change the line involving <code class="highlighter-rouge">pip</code> to <code class="highlighter-rouge">pip &gt;=10</code>.</li>
-  <li>In the <code class="highlighter-rouge">run</code> section, remove any references to Cython and pip.</li>
+```yaml</li>
 </ul>
-      <h4 id="getting-the-license-setup">
-          <a href="#getting-the-license-setup" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Getting the license setup
-      </h4>
-<p>This is probably the most annoying part. Find your packages online home. Copy the LICENSE file to your recipe’s directory. Then in the <code class="highlighter-rouge">about</code> section, add the line <code class="highlighter-rouge">license_file: NAME_OF_LICENSE_FILE</code>, where <code class="highlighter-rouge">NAME_OF_LICENSE_FILE</code> is the file you saved the license to.</p>
-<p>Also, you’ll need to describe the license by type. Sometimes, conda can figure
-this out for you. However, sometimes you’ll need to figure it out. To do so,
+<p>build:</p>
+<ul>
+  <li>{{ compiler(‘c’) }}</li>
+  <li>{{ compiler(‘cxx’) }}</li>
+</ul>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* In the `host` section, change the line involving `pip` to `pip &gt;=10`.
+* In the `run` section, remove any references to Cython and pip.
+
+#### Getting the license setup
+
+This is probably the most annoying part. Find your packages online home. Copy the LICENSE file to your recipe's directory. Then in the `about` section, add the line `license_file: NAME_OF_LICENSE_FILE`, where `NAME_OF_LICENSE_FILE` is the file you saved the license to.
+
+Also, you'll need to describe the license by type. Sometimes, conda can figure
+this out for you. However, sometimes you'll need to figure it out. To do so,
 you can typically dump large parts of the text into Google and it will tell you
-the name. In the worst case, you may need to physically search <a href="https://opensource.org/licenses/alphabetical">this
-page</a>. Once you’ve found the
-license, add <code class="highlighter-rouge">license: SPDX_SHORT_CODE</code> to the <code class="highlighter-rouge">about</code> block.</p>
-<p>N.B. You may also need to add a <code class="highlighter-rouge">license_family</code> to the <code class="highlighter-rouge">about</code> block. However, the errors should tell you how to do this. :-)</p>
-      <h4 id="other-about-metatdata">
-          <a href="#other-about-metatdata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Other <code class="highlighter-rouge">about</code> metatdata
-      </h4>
-<p>There are some other stubs in the <code class="highlighter-rouge">about</code> section that conda should have setup for you, specifically around docs. If you can find these online, then add them here.</p>
-      <h4 id="add-your-name-to-the-list-of-maintainers">
-          <a href="#add-your-name-to-the-list-of-maintainers" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Add your name to the list of maintainers
-      </h4>
-<p>Finally, at the bottom of the <code class="highlighter-rouge">meta.yaml</code> file, you will need a section that looks like:</p>
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">extra</span><span class="pi">:</span>
-  <span class="na">recipe-maintainers</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">khwilson</span>
+the name. In the worst case, you may need to physically search [this
+page](https://opensource.org/licenses/alphabetical). Once you've found the
+license, add `license: SPDX_SHORT_CODE` to the `about` block.
+
+N.B. You may also need to add a `license_family` to the `about` block. However, the errors should tell you how to do this. :-)
+
+#### Other `about` metatdata
+
+There are some other stubs in the `about` section that conda should have setup for you, specifically around docs. If you can find these online, then add them here.
+
+#### Add your name to the list of maintainers
+
+Finally, at the bottom of the `meta.yaml` file, you will need a section that looks like:
+
+```yaml
+extra:
+  recipe-maintainers:
+    - khwilson
 </code></pre></div></div>
 <p>Here you should obviously replace <code class="highlighter-rouge">khwilson</code> with your own GitHub username.</p>
 <p>This completes the main part of recipe editing.</p>
