@@ -36,31 +36,100 @@ Before finalizing your legend the graph itself should be completed. Deciding whi
 Some of the graphical implementations this page contains include are;
 [Bar Graphs](https://lost-stats.github.io/Presentation/bar_graphs.html), [Histograms](https://lost-stats.github.io/Presentation/histograms.html), and [Scatterplot by Group on Shared Axes](https://lost-stats.github.io/Presentation/scatterplot_by_group_on_shared_axes.html). 
 
-Check out this link for a brief description of the relationships shown for different graph types [this blog post](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4078179/). 
+Check out [this article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4078179/) for a brief description of the relationships shown for different graph types . 
 
 
 # Implementations
 
 ## R
 
+For this first example we will be using the _**Iris**_ dataset that is preloaded within R to create a base graph so that we can work with the legend on its own. 
 
+```R
 
-## NAME OF LANGUAGE/SOFTWARE 2 WHICH HAS MULTIPLE APPROACHES
+#load necessary packages
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(dplyr,ggplot2, janitor)
 
-There are two ways to perform this technique in language/software 2.
+#load in dataset
+data(iris)
+iris <- clean_names(iris)
 
-First, explanation of what is different about the first way:
+#creating the base graph (box plot)
+fig_1 <- ggplot(iris, aes(species, petal_length, fill=species)) + 
+  geom_boxplot()+
+  scale_y_continuous("Petal Length (cm)", breaks= seq(0,30, by=.5))+
+  labs(title = "Iris Petal Length Box Plot", x = "Species")
 
-```identifier for language type, see this page: https://github.com/jmm/gfm-lang-ids/wiki/GitHub-Flavored-Markdown-%28GFM%29-language-IDs
-Commented code demonstrating the technique
+print(fig_1)
+
 ```
 
-Second, explanation of what is different about the second way:
+# Some basics 
+## *Changing the legend title and changing the fonts*
+Making the graph visually appealing is as important as making sure the information is conveyed clearly and concisely. By  changing the legend title from the default could help explain your results better. 
 
-```identifier for language type, see this page: https://github.com/jmm/gfm-lang-ids/wiki/GitHub-Flavored-Markdown-%28GFM%29-language-IDs
-Commented code demonstrating the technique
+```R
+
+#Changing the name of the legend
+fig_1 + labs(fill = "Iris Species")
+
+#Font Options
+  #this command will control the legend title
+fig_1 + theme(legend.title = element_text(colour="dark green", size=10, 
+                                      face="italic"))
+                                      
+  #While this command will affect the options within the legend
+fig_1 + theme(legend.text = element_text(colour="dark green", size=10, 
+                                      face="italic"))                                    
+
+#side note: you can change the color, size and face for the other text option within the figure. (ie: title and axis)
+
+```
+
+## *Changing legend location*
+The legend locations default is to be located to the right hand side of the graph. It can be moved around the graph or within the figure itself. 
+
+```R
+
+#Changing legend position
+  ##For this option you can use either desctiptive values such as; “left”,“top”, “right”, “bottom”, “none” 
+fig_1 + theme(legend.position="bottom")
+
+  ##Or a numeric vector that gives x and y cordinates for the position
+fig_1 + theme(legend.position = c(0.4, 0.9),
+          legend.direction = "horizontal")  
+
+```
+# *Changing the order of the legend options*
+While in this example the order of the variables has no hold, there could be times where the listed order of the objects could be important to the visual depiction. 
+
+```R
+
+#This moves the objects within the graph
+fig_1 + scale_x_discrete(limits=c("virginica", "setosa", "versicolor"))
+
+#This section is controling the order the objects appear in the legend
+iris$species <- factor(iris$species, levels = c("virginica", "setosa", "versicolor"))
+  #you will have to re-run the fig_1 code from earlier for this to work
+
+```
+
+# *Removing the legend*
+There are few instances where you would remove the whole legend but there are sometimes where the legend title is repeating the information found in the title of the figure itself.
+
+```R
+
+#Removing the just the title
+fig_1 + theme(legend.title = element_blank())
+
+#
+Removing the whole legend
+fig_1 + scale_color_discrete(name="Iris Species",
+        labels = c("Virginica", "Versicolor", "Setosa"))
+        
 ```
 
 For an in-depth description for achademic publications or scientific wrtitings I would check out [this blog post](https://www.biosciencewriters.com/Tips-for-Writing-Outstanding-Scientific-Figure-Legends.aspx) written by Michelle S., Ph.D. 
 
-
+This example focused on using ggplot  but there are many other pachages that can be used within R for creating figures. Plotly is a free and open-source graphing library for R and [this article](https://plotly.com/r/legend/) gives an in depth analysis of the package. 
