@@ -31,7 +31,7 @@ Graphs and charts are an instrumental way to explain and visualize your data and
 
 ## Also Consider
 
-Before finalizing your legend the graph itself should be completed. Deciding which type of graph is best suited for your data is a whole topic in itself. For information on choosing and creating different types of graphs, you can explore the Presentation tab located on the LOST website. [Presentation](https://lost-stats.github.io/Presentation/Presentation.html#presentation) 
+Before finalizing your legend the graph itself should be completed. Deciding which type of graph is best suited for your data is a whole topic in itself. For information on choosing and creating different types of graphs, you can explore the [Presentation](https://lost-stats.github.io/Presentation/Presentation.html#presentation) tab located on the LOST website. 
 
 Some of the graphical implementations this page contains include are;
 [Bar Graphs](https://lost-stats.github.io/Presentation/bar_graphs.html), [Histograms](https://lost-stats.github.io/Presentation/histograms.html), and [Scatterplot by Group on Shared Axes](https://lost-stats.github.io/Presentation/scatterplot_by_group_on_shared_axes.html). 
@@ -64,6 +64,7 @@ fig_1 <- ggplot(iris, aes(species, petal_length, fill=species)) +
 print(fig_1)
 
 ```
+![Base Box Plot]()
 
 # Some basics 
 ## *Changing the legend title and changing the fonts*
