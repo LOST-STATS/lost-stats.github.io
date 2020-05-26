@@ -54,14 +54,12 @@ If you create one of these pages, please remove it from this list.
 
 * A-B Testing
 * Artificial Neural Networks
-* Random Forest
 * Decision Trees
 * Nearest Neighbors Matching
 * Boosted Regression
 
 ## Presentation
 
-* Line Graph
 * Scatterplot
 * Styling Scatterplots
 * Marginal Effects Plots for Discrete Variables
