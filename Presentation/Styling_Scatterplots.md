@@ -136,7 +136,7 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
   scale_color_viridis(discrete=TRUE,option = "D")  ## There are more options to choose
 ```
 
-![Image of color_RColorBrewer](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-7-1.png)
+![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-7-1.png)
 
 ![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-7-2.png)
 
@@ -196,7 +196,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
 
 #### <span style="color:orange"> **Create by your own** </span>
 
-  * If you do not themes that `ggplot2` and `ggthemes` packages have, don't worry. You can always create your own style for your themes. Check [here] (https://www.datanovia.com/en/blog/ggplot-themes-gallery/) to desgin your own unique style.
+  * If you do not like themes that `ggplot2` and `ggthemes` packages have, don't worry. You can always create your own style for your themes. Check [here](https://www.datanovia.com/en/blog/ggplot-themes-gallery/) to desgin your own unique style.
 
 ### Step 4: Playing with labs
 
