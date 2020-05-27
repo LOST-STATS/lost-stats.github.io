@@ -136,7 +136,7 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
   scale_color_viridis(discrete=TRUE,option = "D")  ## There are more options to choose
 ```
 
-This first graph is using `RColorBrewer` package. and the second graph is using `viridis` package.
+This first graph is using `RColorBrewer` package,and the second graph is using `viridis` package.
 
 
 ![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-7-1.png)
