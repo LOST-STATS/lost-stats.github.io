@@ -66,7 +66,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
                  alpha=Species)) + 
     geom_point(size =4, color="seagreen") 
 ```
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-10-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-3-1.png)
 
 
 #### <span style="color:orange"> **Shape** </span>
@@ -82,7 +82,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
     geom_point(size = 4,color="orange") 
 ```
 
-![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-4-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-4-1.png)
 
 
 #### <span style="color:orange"> **Size** </span>
