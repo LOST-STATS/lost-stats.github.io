@@ -3,6 +3,7 @@ title: Styling Scatterplots
 parent: Presentation
 has_children: false
 nav_order: 1
+
 mathjax: true ## Switch to false if this page has no equations or other math rendering.
 ---
 
@@ -35,6 +36,8 @@ Let's start with the basic scatterplot. Say we want to check the relationship be
 * Step2: tell which variable to show on x and y axis 
 * Step3: add a `geom_point()` in order to show the points
 
+
+
 If you have questions about what `ggplot` and `aes` do, check [Here](https://lost-stats.github.io/Presentation/bar_graphs.html) for more help.
 
 ```{r}
@@ -44,6 +47,9 @@ ggplot(data = iris, aes(
   ## Make it a scatterplot with geom_point()
   geom_point()
 ```
+
+![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-2-1.png)
+
 
 ### Step 2: Map a variable to marker feature
 
@@ -60,7 +66,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
                  alpha=Species)) + 
     geom_point(size =4, color="seagreen") 
 ```
-
+![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-3-1.png)
 
 
 #### <span style="color:orange"> **Shape** </span>
@@ -76,6 +82,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
     geom_point(size = 4,color="orange") 
 ```
 
+![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-4-1.png)
 
 
 #### <span style="color:orange"> **Size** </span>
@@ -90,10 +97,11 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
     geom_point(shape = 18, color = "#FC4E07") 
 ```
 
+![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-5-1.png)
 
 #### <span style="color:orange"> **Color** </span>
 
-  * Last but not least, if we want to the marker `color` depends on the variable `Species` in the `iris` dataset, we can do the following:
+  * Last but not least, let's `color` these points depends on the variable `Species` in the `iris` dataset.
 
 ```{r}
 ## First, we need to make sure that 'Species' is a factor variable 
@@ -109,7 +117,7 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width,
                         color=Species))+
   geom_point()
 ```
-
+![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-6-1.png)
 
  * ##### *Note*
 
@@ -128,6 +136,9 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
   scale_color_viridis(discrete=TRUE,option = "D")  ## There are more options to choose
 ```
 
+![Image of color_RColorBrewer](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-7-1.png)
+
+![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-7-2.png)
 
 #### <span style="color:orange"> **Put all the options together** </span>
 
@@ -144,7 +155,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   scale_color_viridis(discrete=TRUE,option = "D") 
 ```
 
-
+![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-8-1.png)
 
 ### Step 3: Find the comfortable themes
 
@@ -163,6 +174,9 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   theme_minimal(base_size = 12)
 ```
 
+![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-9-1.png)
+
+
 
 #### <span style="color:orange"> **Themes from `ggpthemes` package** </span>
 
@@ -177,7 +191,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   ## Using the theme_tufte()
   theme_tufte()
 ```
-
+![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-10-1.png)
 
 
 #### <span style="color:orange"> **Create by your own** </span>
@@ -211,6 +225,8 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   )
 ```
 
+![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-11-1.png)
+
 
 #### <span style="color:orange"> **Postion and Appearance** </span>
 
@@ -237,6 +253,9 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
          plot.subtitle = element_text(color = "grey40",size = 10, face = 'italic')
          )
 ```
+
+![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-12-1.png)
+
 
 ### Step 5: See some patterns
 
@@ -267,6 +286,8 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   geom_smooth(method = 'lm',se=FALSE)
 ```
 
+![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-13-1.png)
+
 
 #### <span style="color:orange"> **Other Trends** </span>
 
@@ -292,6 +313,8 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
          plot.subtitle = element_text(color = "grey40",size = 10, face = 'italic')) +
   geom_smooth(se=FALSE)
 ```
+
+![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-15-1.png)
 
   
 ## Keep in Mind
