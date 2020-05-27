@@ -14,11 +14,12 @@ For both regression and classification trees, it is important to optimize the nu
 For regression trees, the decision to split along a continuum of values is often made by minimizing the residual sum of squares:
 
 $$
-minimize \sum(y-prediciton)^2
+minimize \sum(y-prediction)^2
 $$
+
 This should be highly reminiscent of ordinary least squares. Where this differs is in the number of splits created, the binary nature of the splits, and its nonlinear nature.
 
-The methodology behind classificiation is very similar, except the splits are decided by minmimzing purity, such as the Gini index:
+The methodology behind classificiation is very similar, except the splits are decided by minimizing purity, such as the Gini index:
 
 $$
 G= 1 - \sum_{i = 1}^{C} (p_{i})^2 
@@ -37,7 +38,7 @@ The goal here is to create regions with as of classifications as possible, as su
 # Implementations
 
 ## R
-```{}
+```r
 # Load packages
 # install.packages("pacman") ## already installed
 library(pacman)
