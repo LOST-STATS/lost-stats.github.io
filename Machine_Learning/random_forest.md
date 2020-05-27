@@ -17,7 +17,7 @@ Random forest is one of the most popular and powerful machine learning algorithm
 
 ## Also Consider
 
-If you are not familiar with decision tree, please go to the decision tree page first as decision trees are building blocks of random forests.
+- If you are not familiar with decision tree, please go to the [decision tree page](https://lost-stats.github.io/Machine_Learning/decision_trees.html) first as decision trees are building blocks of random forests.
 
 # Implementations
 
