@@ -92,9 +92,9 @@
 <p>A decision tree “grows” by creating a cutoff point (often called a split) at a single point in the data that maximizes accuracy. The tree’s prediction is then based on the mean of the region that results from the input data.</p>
 <p>For both regression and classification trees, it is important to optimize the number of splits that we allow the tree to make. If there is no limit, the trees would be able to create as many splits as the data will allow. This would mean the tree could perfectly “predict” every value from the training dataset, but would perform terribly out of sample (i.e., overfit the data). As such, it is important to keep a reasonable limit on the number of splits. This is achieved by creating a penalty that the algorithm has to pay in order to perform another split. If the increase in accuracy is worth more than the penalty, it will make the split.</p>
 <p>For regression trees, the decision to split along a continuum of values is often made by minimizing the residual sum of squares:</p>
-<p><script type="math/tex">minimize \sum(y-prediciton)^2</script>
-This should be highly reminiscent of ordinary least squares. Where this differs is in the number of splits created, the binary nature of the splits, and its nonlinear nature.</p>
-<p>The methodology behind classificiation is very similar, except the splits are decided by minmimzing purity, such as the Gini index:</p>
+<script type="math/tex; mode=display">minimize \sum(y-prediction)^2</script>
+<p>This should be highly reminiscent of ordinary least squares. Where this differs is in the number of splits created, the binary nature of the splits, and its nonlinear nature.</p>
+<p>The methodology behind classificiation is very similar, except the splits are decided by minimizing purity, such as the Gini index:</p>
 <script type="math/tex; mode=display">G= 1 - \sum_{i = 1}^{C} (p_{i})^2</script>
 <p>The goal here is to create regions with as of classifications as possible, as such, a smaller Gini index implies a more pure region.</p>
       <h2 id="keep-in-mind">
@@ -115,65 +115,66 @@ This should be highly reminiscent of ordinary least squares. Where this differs 
       </h1>
       <h2 id="r">
           <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
-      </h2><pre><code class="language-{}"># Load packages
-# install.packages("pacman") ## already installed
-library(pacman)
-p_load(rpart,rpart.plot,caret,rattle)
-# We will utilize data regarding passengers on their survival. We have multiple pieces of information on every passenger, including passenger age, sex, cabin number, and class. 
+      </h2>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Load packages</span><span class="w">
+</span><span class="c1"># install.packages("pacman") ## already installed</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">pacman</span><span class="p">)</span><span class="w">
+</span><span class="n">p_load</span><span class="p">(</span><span class="n">rpart</span><span class="p">,</span><span class="n">rpart.plot</span><span class="p">,</span><span class="n">caret</span><span class="p">,</span><span class="n">rattle</span><span class="p">)</span><span class="w">
+</span><span class="c1"># We will utilize data regarding passengers on their survival. We have multiple pieces of information on every passenger, including passenger age, sex, cabin number, and class. </span><span class="w">
 
-# Our goal is to build a decision tree that can predict whether or not passengers survived the wreck, making it a classification tree. These same methodologies can be used and applied to a regression tree framework.
+</span><span class="c1"># Our goal is to build a decision tree that can predict whether or not passengers survived the wreck, making it a classification tree. These same methodologies can be used and applied to a regression tree framework.</span><span class="w">
 
-# Read in the data
-titanic &lt;- read.csv("https://raw.githubusercontent.com/Evanmj7/Decision-Trees/master/titanic.csv")
+</span><span class="c1"># Read in the data</span><span class="w">
+</span><span class="n">titanic</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"https://raw.githubusercontent.com/Evanmj7/Decision-Trees/master/titanic.csv"</span><span class="p">)</span><span class="w">
 
-# Set a seed for reproducability
-set.seed(1234)
+</span><span class="c1"># Set a seed for reproducability</span><span class="w">
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">1234</span><span class="p">)</span><span class="w">
 
-# The data is clean for the most part, but some variables have been read in as factors instead of numeric variables, so we can fix that with the following code.
-titanic$age &lt;- as.numeric(titanic$age)
-titanic$fare &lt;- as.numeric(titanic$fare)
+</span><span class="c1"># The data is clean for the most part, but some variables have been read in as factors instead of numeric variables, so we can fix that with the following code.</span><span class="w">
+</span><span class="n">titanic</span><span class="o">$</span><span class="n">age</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">titanic</span><span class="o">$</span><span class="n">age</span><span class="p">)</span><span class="w">
+</span><span class="n">titanic</span><span class="o">$</span><span class="n">fare</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">titanic</span><span class="o">$</span><span class="n">fare</span><span class="p">)</span><span class="w">
 
-# As with all machine learning methodologies, we want to create a test and a training dataset
+</span><span class="c1"># As with all machine learning methodologies, we want to create a test and a training dataset</span><span class="w">
 
-# Take a random sample of the data, here we have chosen to use 75% for training and 25% for validation
-samp_size &lt;- floor(0.75*nrow(titanic))
-train_index &lt;- sample(seq_len(nrow(titanic)),size=samp_size,replace=FALSE)
+</span><span class="c1"># Take a random sample of the data, here we have chosen to use 75% for training and 25% for validation</span><span class="w">
+</span><span class="n">samp_size</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">floor</span><span class="p">(</span><span class="m">0.75</span><span class="o">*</span><span class="n">nrow</span><span class="p">(</span><span class="n">titanic</span><span class="p">))</span><span class="w">
+</span><span class="n">train_index</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sample</span><span class="p">(</span><span class="nf">seq_len</span><span class="p">(</span><span class="n">nrow</span><span class="p">(</span><span class="n">titanic</span><span class="p">)),</span><span class="n">size</span><span class="o">=</span><span class="n">samp_size</span><span class="p">,</span><span class="n">replace</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
 
-train &lt;- titanic[train_index, ]
-test &lt;- titanic[-train_index, ]
+</span><span class="n">train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">titanic</span><span class="p">[</span><span class="n">train_index</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="n">test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">titanic</span><span class="p">[</span><span class="o">-</span><span class="n">train_index</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
 
-# Now that we have our test and train datasets, we can build our trees. Here, we will use the package "rpart". Other packages, such as "ranger" are also viable options.
+</span><span class="c1"># Now that we have our test and train datasets, we can build our trees. Here, we will use the package "rpart". Other packages, such as "ranger" are also viable options.</span><span class="w">
 
-# Here we can pick some variables we think would be good, the tree will decide which ones are best. Some data we have isn't useful, such as an individual's name or the random ID we assigned passengers, so there is no need to include them.
+</span><span class="c1"># Here we can pick some variables we think would be good, the tree will decide which ones are best. Some data we have isn't useful, such as an individual's name or the random ID we assigned passengers, so there is no need to include them.</span><span class="w">
 
-basic_tree &lt;- rpart(
-  survived ~ pclass + sex + age + fare + embarked, # our formula
-  data=train,
-  method = "class", # tell the model we are doing classification
-  minsplit=2, # set a minimum number of splits
-  cp=.02 # set an optional penalty rate. It is often useful to try out many different ones, use the caret package to test many at once
-)
+</span><span class="n">basic_tree</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rpart</span><span class="p">(</span><span class="w">
+  </span><span class="n">survived</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">pclass</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fare</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">embarked</span><span class="p">,</span><span class="w"> </span><span class="c1"># our formula</span><span class="w">
+  </span><span class="n">data</span><span class="o">=</span><span class="n">train</span><span class="p">,</span><span class="w">
+  </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"class"</span><span class="p">,</span><span class="w"> </span><span class="c1"># tell the model we are doing classification</span><span class="w">
+  </span><span class="n">minsplit</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="c1"># set a minimum number of splits</span><span class="w">
+  </span><span class="n">cp</span><span class="o">=</span><span class="m">.02</span><span class="w"> </span><span class="c1"># set an optional penalty rate. It is often useful to try out many different ones, use the caret package to test many at once</span><span class="w">
+</span><span class="p">)</span><span class="w">
 
-basic_tree
+</span><span class="n">basic_tree</span><span class="w">
 
-# plot it using the packages we loaded above
-fancyRpartPlot(basic_tree,caption="Basic Decision Tree")
+</span><span class="c1"># plot it using the packages we loaded above</span><span class="w">
+</span><span class="n">fancyRpartPlot</span><span class="p">(</span><span class="n">basic_tree</span><span class="p">,</span><span class="n">caption</span><span class="o">=</span><span class="s2">"Basic Decision Tree"</span><span class="p">)</span><span class="w">
 
-# This plot gives a very intuitive visual representation on what is going on behind the scenes.
+</span><span class="c1"># This plot gives a very intuitive visual representation on what is going on behind the scenes.</span><span class="w">
 
-# Now we should predict using the test data we left out!
-predictions &lt;- predict(basic_tree,newdata=test,type="class")
+</span><span class="c1"># Now we should predict using the test data we left out!</span><span class="w">
+</span><span class="n">predictions</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">basic_tree</span><span class="p">,</span><span class="n">newdata</span><span class="o">=</span><span class="n">test</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s2">"class"</span><span class="p">)</span><span class="w">
 
-# Make the numeric responses as well as the variables that we are testing on into factors
-predictions &lt;- as.factor(predictions)
-test$survived &lt;- as.factor(test$survived)
+</span><span class="c1"># Make the numeric responses as well as the variables that we are testing on into factors</span><span class="w">
+</span><span class="n">predictions</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.factor</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span><span class="w">
+</span><span class="n">test</span><span class="o">$</span><span class="n">survived</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.factor</span><span class="p">(</span><span class="n">test</span><span class="o">$</span><span class="n">survived</span><span class="p">)</span><span class="w">
 
-# Create a confusion matrix which tells us how well we did.
-confusionMatrix(predictions,test$survived)
+</span><span class="c1"># Create a confusion matrix which tells us how well we did.</span><span class="w">
+</span><span class="n">confusionMatrix</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span><span class="n">test</span><span class="o">$</span><span class="n">survived</span><span class="p">)</span><span class="w">
 
-# This particular model got ~80% accuracy. This varies each time if you do not set a seed. Much better than a coin toss, but not great. With some additional tuning a decision tree can be much more accurate! Try it for yourself by changing the factors that go into the prediction and the penalty rates.
+</span><span class="c1"># This particular model got ~80% accuracy. This varies each time if you do not set a seed. Much better than a coin toss, but not great. With some additional tuning a decision tree can be much more accurate! Try it for yourself by changing the factors that go into the prediction and the penalty rates.</span><span class="w">
 
-</code></pre>
+</span></code></pre></div></div>
         </div>
       </div>
     </div>
