@@ -1,6 +1,6 @@
 ---
-title: "Decision Trees"
-parent: "Machine Learning"
+title: Decision Trees
+parent: Machine Learning
 has_children: false
 nav_order: 1
 mathjax: true ## Switch to false if this page has no equations or other math rendering.
@@ -9,7 +9,7 @@ Decision trees are among the most common and useful machine learning methodologi
 
 A decision tree "grows" by creating a cutoff point (often called a split) at a single point in the data that maximizes accuracy. The tree's prediction is then based on the mean of the region that results from the input data.
 
-For both regression and classification trees, it is important to optimize the number of splits that we allow the tree to make. If there is no limit, the trees would be able to create as many splits as the data will allow. This would mean the tree could perfectly "predict" every value from the training dataset, but would perform terribly out of sample. As such, it is important to keep a reasonable limit on the number of splits. This is achieved by creating a penalty that the algorithm has to pay in order to perform another split. If the increase in accuracy is worth more than the penalty, it will make the split.
+For both regression and classification trees, it is important to optimize the number of splits that we allow the tree to make. If there is no limit, the trees would be able to create as many splits as the data will allow. This would mean the tree could perfectly "predict" every value from the training dataset, but would perform terribly out of sample (i.e., overfit the data). As such, it is important to keep a reasonable limit on the number of splits. This is achieved by creating a penalty that the algorithm has to pay in order to perform another split. If the increase in accuracy is worth more than the penalty, it will make the split.
 
 For regression trees, the decision to split along a continuum of values is often made by minimizing the residual sum of squares:
 
