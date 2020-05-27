@@ -97,7 +97,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
     geom_point(shape = 18, color = "#FC4E07") 
 ```
 
-![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-5-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-5-1.png)
 
 #### <span style="color:orange"> **Color** </span>
 
@@ -117,7 +117,7 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width,
                         color=Species))+
   geom_point()
 ```
-![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-6-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-6-1.png)
 
  * ##### *Note*
 
@@ -136,9 +136,12 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
   scale_color_viridis(discrete=TRUE,option = "D")  ## There are more options to choose
 ```
 
-![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-7-1.png)
+This first graph is using `RColorBrewer` package. and the second graph is using `viridis` package.
 
-![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-7-2.png)
+
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-7-1.png)
+
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-7-2.png)
 
 #### <span style="color:orange"> **Put all the options together** </span>
 
@@ -155,7 +158,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   scale_color_viridis(discrete=TRUE,option = "D") 
 ```
 
-![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-8-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-8-1.png)
 
 ### Step 3: Find the comfortable themes
 
@@ -174,7 +177,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   theme_minimal(base_size = 12)
 ```
 
-![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-9-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-9-1.png)
 
 
 
@@ -191,7 +194,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   ## Using the theme_tufte()
   theme_tufte()
 ```
-![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-10-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-10-1.png)
 
 
 #### <span style="color:orange"> **Create by your own** </span>
@@ -225,7 +228,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   )
 ```
 
-![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-11-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-11-1.png)
 
 
 #### <span style="color:orange"> **Postion and Appearance** </span>
@@ -254,7 +257,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
          )
 ```
 
-![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-12-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-12-1.png)
 
 
 ### Step 5: See some patterns
@@ -286,7 +289,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   geom_smooth(method = 'lm',se=FALSE)
 ```
 
-![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-13-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-13-1.png)
 
 
 #### <span style="color:orange"> **Other Trends** </span>
@@ -314,7 +317,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   geom_smooth(se=FALSE)
 ```
 
-![](/Users/faithshao/lost-stats.github.io/Presentation/Images/Styling _Scatterplots/figure_gfm/unnamed-chunk-15-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-14-1.png)
 
   
 ## Keep in Mind
