@@ -148,10 +148,10 @@ We can create a line graph in Stata using the `twoway` function with the `line` 
 import delimited "https://vincentarelbundock.github.io/Rdatasets/csv/datasets/Orange.csv", clear
 
 * Let's just graph the first tree using if Tree == 1
-* We specify the x-axis variable age first followed by the y-axis variable circumference
+* We specify the y-axis variable circumference first followed by the x-axis variable age
 * We can add axis labels with xtitle and ytitle
 * And specify a color with lcolor (for line color)
-twoway line age circumference if tree == 1, xtitle("Age (days since 12/31/1968)") ytitle("Circumference") lcolor(red)
+twoway line circumference age if tree == 1, xtitle("Age (days since 12/31/1968)") ytitle("Circumference") lcolor(red)
 ```
 
 The result is:
@@ -165,7 +165,7 @@ We can also include all the trees on the same line graph:
 * We can specify each line separately using ()
 * Use legend() so we know which line is which
 * Or label the lines directly using https://lost-stats.github.io/Presentation/line_graph_with_labels_at_the_beginning_or_end.html
-twoway (line age circumference if tree == 1) (line age circumference if tree == 2) (line age circumference if tree == 3) (line age circumference if tree == 4) (line age circumference if tree == 5), xtitle("Age (days since 12/31/1968)") ytitle("Circumference") legend(lab(1 "Tree 1") lab(2 "Tree 2") lab(3 "Tree 3") lab(4 "Tree 4") lab(5 "Tree 5"))
+twoway (line circumference age if tree == 1) (line circumference age if tree == 2) (line circumference age if tree == 3) (line circumference age if tree == 4) (line circumference age if tree == 5), xtitle("Age (days since 12/31/1968)") ytitle("Circumference") legend(lab(1 "Tree 1") lab(2 "Tree 2") lab(3 "Tree 3") lab(4 "Tree 4") lab(5 "Tree 5"))
 ```
 
 The result is:
