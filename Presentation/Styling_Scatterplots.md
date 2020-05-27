@@ -201,7 +201,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
 
   * If you do not like themes that `ggplot2` and `ggthemes` packages have, don't worry. You can always create your own style for your themes. Check [here](https://www.datanovia.com/en/blog/ggplot-themes-gallery/) to desgin your own unique style.
 
-### Step 4: Playing with labs
+### Step 4: Play with labels
 
 It is time to label all the useful information to make the plot be clear to your audiences. 
 
@@ -260,7 +260,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
 ![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-12-1.png)
 
 
-### Step 5: See some patterns
+### Step 5: Show some patterns
 
 After done with step 4, you should end with a very neat and unquie plot. Let's end up with this tutorial by checking whether there are some specific patterns in our dataset. 
 
