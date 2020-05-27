@@ -13,9 +13,6 @@
 <loc>/Contributing/Contributing.html</loc>
 </url>
 <url>
-<loc>/Machine_Learning/Decision_Trees.html</loc>
-</url>
-<url>
 <loc>/Model_Estimation/Estimation.html</loc>
 </url>
 <url>
@@ -77,6 +74,9 @@
 </url>
 <url>
 <loc>/Data_Manipulation/data_manipulation.html</loc>
+</url>
+<url>
+<loc>/Machine_Learning/decision_trees.html</loc>
 </url>
 <url>
 <loc>/Desired_Nonexistent_Pages/desired_nonexistent_pages.html</loc>
