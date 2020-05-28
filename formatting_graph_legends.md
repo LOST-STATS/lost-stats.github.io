@@ -1,5 +1,6 @@
 ---
-title: "Formatting graph legends"
+title: Formatting Graph Legends
+parent: Presentation
 mathjax: yes
 nav_order: 1
 parent: Presentation
