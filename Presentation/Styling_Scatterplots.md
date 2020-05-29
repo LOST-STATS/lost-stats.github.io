@@ -48,7 +48,7 @@ ggplot(data = iris, aes(
   geom_point()
 ```
 
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-2-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/basic_plot.png)
 
 
 ### Step 2: Map a variable to marker feature
