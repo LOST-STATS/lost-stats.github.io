@@ -19,26 +19,25 @@ A scatterplot is a useful and straightforward way to visualize the relationship 
 For this R demonstration, we will introduce how to use **ggplot2** package to create nice scatterplots. 
 
 * Before we create the scatterplots, we need to make sure that we install and library all the packages we need.
-Using the function `p_load` in the **pacman** package is able to allow us to install and library all the packages we need at once time. 
+Using the function `p_load()` in the **pacman** package is able to allow us to install and library all the packages we need at once time. 
 
 ```{r,message=FALSE}
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(ggplot2,viridis,dplyr, RColorBrewer,tidyverse,ggthemes,ggpubr)
 ```
 
-* We will use a dataset that already exists in R. Therefore, you don't need to load any new data into your R global environment. The dataset that we are going to use is called `iris`. The `iris` dataset contains four measurements in centimeters for 150 flowers representing 3 species of iris. The 3 species are Iris setosa, versicolor, and virginica. If you want to know more about the `iris` dataset, check `?iris` or see [Kaggle: Iris Flower Dataset](https://www.kaggle.com/arshid/iris-flower-dataset).
+* We will use a dataset that already exists in R. Therefore, you don't need to load any new data into your R global environment and clean the dataset. The dataset that we are going to use is called `iris`. The `iris` dataset contains four measurements in centimeters for 150 flowers representing 3 species of iris. The 3 species are Iris setosa, versicolor, and virginica. If you want to know more about the `iris` dataset, check `?iris` or see [Kaggle: Iris Flower Dataset](https://www.kaggle.com/arshid/iris-flower-dataset).
 
 ### Step 1: Basic Scatterplot
 
-Let's start with the basic scatterplot. Say we want to check the relationship between Sepal width and Sepal length of the iris species. There are a few steps to construct a scatterplot:
+Let's start with the basic scatterplot. Say we want to check the relationship between Sepal width and Sepal length of the iris species. There are a few steps to construct the scatterplot:
 
 * Step1: specify the dataset that we want to visualize
 * Step2: tell which variable to show on x and y axis 
 * Step3: add a `geom_point()` in order to show the points
 
 
-
-If you have questions about what `ggplot` and `aes` do, check [Here](https://lost-stats.github.io/Presentation/bar_graphs.html) for more help.
+If you have questions about how to use `ggplot` and `aes`, check [Here](https://lost-stats.github.io/Presentation/bar_graphs.html) for more help.
 
 ```{r}
 ggplot(data = iris, aes(
@@ -66,7 +65,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
                  alpha=Species)) + 
     geom_point(size =4, color="seagreen") 
 ```
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-3-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/transparency.png)
 
 
 #### <span style="color:orange"> **Shape** </span>
@@ -82,7 +81,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
     geom_point(size = 4,color="orange") 
 ```
 
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-4-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/shape.png)
 
 
 #### <span style="color:orange"> **Size** </span>
@@ -97,7 +96,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
     geom_point(shape = 18, color = "#FC4E07") 
 ```
 
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-5-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/size.png)
 
 #### <span style="color:orange"> **Color** </span>
 
@@ -117,7 +116,7 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width,
                         color=Species))+
   geom_point()
 ```
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-6-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/color.png)
 
  * ##### *Note*
 
@@ -139,9 +138,9 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
 This first graph is using `RColorBrewer` package,and the second graph is using `viridis` package.
 
 
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-7-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/color_RColorBrewer.png)
 
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-7-2.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/color_viridis.png)
 
 #### <span style="color:orange"> **Put all the options together** </span>
 
@@ -158,7 +157,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   scale_color_viridis(discrete=TRUE,option = "D") 
 ```
 
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-8-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/together.png)
 
 ### Step 3: Find the comfortable themes
 
@@ -177,8 +176,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   theme_minimal(base_size = 12)
 ```
 
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-9-1.png)
-
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/theme_1.png)
 
 
 #### <span style="color:orange"> **Themes from `ggpthemes` package** </span>
@@ -194,7 +192,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   ## Using the theme_tufte()
   theme_tufte()
 ```
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-10-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/theme_2.png)
 
 
 #### <span style="color:orange"> **Create by your own** </span>
@@ -228,7 +226,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   )
 ```
 
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-11-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/label_1.png)
 
 
 #### <span style="color:orange"> **Postion and Appearance** </span>
@@ -257,7 +255,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
          )
 ```
 
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-12-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/label_2.png)
 
 
 ### Step 5: Show some patterns
@@ -286,10 +284,10 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   theme (plot.title = element_text(color = "black", size = 14, face = "bold"),
          plot.subtitle = element_text(color = "grey40",size = 10, face = 'italic')) +
   ## Where linear trend + confidence interval come in
-  geom_smooth(method = 'lm',se=FALSE)
+  geom_smooth(method = 'lm',se=TRUE)
 ```
 
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-13-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/linear_trend.png)
 
 
 #### <span style="color:orange"> **Other Trends** </span>
@@ -314,10 +312,14 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
         plot.subtitle = element_text(hjust = 0.5))+
   theme (plot.title = element_text(color = "black", size = 14, face = "bold"),
          plot.subtitle = element_text(color = "grey40",size = 10, face = 'italic')) +
+  ## Don't want to show the confidence interval
   geom_smooth(se=FALSE)
 ```
 
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/unnamed-chunk-14-1.png)
+![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/other_trend.png)
+
+
+#### Congratulation!!! You just make your own style of scatterplots if you are following all the steps above and try to play around the different options. 
 
   
 ## Keep in Mind
