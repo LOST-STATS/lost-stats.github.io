@@ -149,9 +149,7 @@ pacman::p_load(ggplot2,viridis,dplyr, RColorBrewer,tidyverse,ggthemes,ggpubr)
       <h4 id="-transparency-">
           <a href="#-transparency-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Transparency</strong> </span>
       </h4>
-<ul>
-  <li>We can distinguish the <code class="highlighter-rouge">Species</code> by <code class="highlighter-rouge">transparency</code>.</li>
-</ul><pre><code class="language-{r,warning=FALSE}">ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
+<p>We can distinguish the <code class="highlighter-rouge">Species</code> by <code class="highlighter-rouge">alpha</code> (transparency).</p><pre><code class="language-{r,warning=FALSE}">ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
                  ## Where transparency comes in
                  alpha=Species)) + 
     geom_point(size =4, color="seagreen") 
@@ -160,10 +158,7 @@ pacman::p_load(ggplot2,viridis,dplyr, RColorBrewer,tidyverse,ggthemes,ggpubr)
       <h4 id="-shape-">
           <a href="#-shape-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Shape</strong> </span>
       </h4>
-<ul>
-  <li><code class="highlighter-rouge">Shape</code> is also a common way to help us to see relationship between two variables within different groups.</li>
-  <li>Additionally, you can always change the shape of the points. Check <a href="https://www.datanovia.com/en/blog/ggplot-point-shapes-best-tips/">here</a> for more ideas.</li>
-</ul><pre><code class="language-{r}">ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
+<p><code class="highlighter-rouge">shape</code> is also a common way to help us to see relationship between two variables within different groups. Additionally, you can always change the shape of the points. Check <a href="https://www.datanovia.com/en/blog/ggplot-point-shapes-best-tips/">here</a> for more ideas.</p><pre><code class="language-{r}">ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
                  ## Where shape comes in
                  shape=Species)) + 
     geom_point(size = 4,color="orange") 
@@ -172,10 +167,7 @@ pacman::p_load(ggplot2,viridis,dplyr, RColorBrewer,tidyverse,ggthemes,ggpubr)
       <h4 id="-size-">
           <a href="#-size-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Size</strong> </span>
       </h4>
-<ul>
-  <li>Furthermore, <code class="highlighter-rouge">size</code> is a great option that we can take a look at as well.</li>
-  <li>However, note that <code class="highlighter-rouge">size</code> will work better with continuous variables.</li>
-</ul><pre><code class="language-{r,warning=FALSE}">ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
+<p><code class="highlighter-rouge">size</code> is a great option that we can take a look at as well. However, note that <code class="highlighter-rouge">size</code> will work better with continuous variables.</p><pre><code class="language-{r,warning=FALSE}">ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
                  ## Where size comes in 
                  size=Species)) + 
     geom_point(shape = 18, color = "#FC4E07") 
@@ -184,9 +176,7 @@ pacman::p_load(ggplot2,viridis,dplyr, RColorBrewer,tidyverse,ggthemes,ggpubr)
       <h4 id="-color-">
           <a href="#-color-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Color</strong> </span>
       </h4>
-<ul>
-  <li>Last but not least, let’s <code class="highlighter-rouge">color</code> these points depends on the variable <code class="highlighter-rouge">Species</code> in the <code class="highlighter-rouge">iris</code> dataset.</li>
-</ul><pre><code class="language-{r}">## First, we need to make sure that 'Species' is a factor variable 
+<p>Last but not least, let’s <code class="highlighter-rouge">color</code> these points depends on the variable <code class="highlighter-rouge">Species</code> in the <code class="highlighter-rouge">iris</code> dataset.</p><pre><code class="language-{r}">## First, we need to make sure that 'Species' is a factor variable 
 ## class(iris$Species)
 
 ## Since 'Species' is already a factor variable, we do not need to do conversion 
@@ -242,12 +232,10 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
   theme_minimal(base_size = 12)
 </code></pre>
 <p><img src="/Presentation/Images/Styling_Scatterplots/R_theme_1.png" alt="" /></p>
-      <h4 id="-themes-from-ggpthemes-package-">
-          <a href="#-themes-from-ggpthemes-package-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Themes from <code class="highlighter-rouge">ggpthemes</code> package</strong> </span>
+      <h4 id="-themes-from-the-ggthemes-package-">
+          <a href="#-themes-from-the-ggthemes-package-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Themes from the <code class="highlighter-rouge">ggthemes</code> package</strong> </span>
       </h4>
-<ul>
-  <li><code class="highlighter-rouge">ggthemes</code> package is also worth to check out for working any plots (maps,time-series data, and any other plots) that you are working on. <code class="highlighter-rouge">theme_gdocs()</code>, <code class="highlighter-rouge">theme_tufte()</code>, and <code class="highlighter-rouge">theme_calc()</code> all work very well. See <a href="https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/">here</a> to get more cool themes.</li>
-</ul><pre><code class="language-{r}">ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
+<p><code class="highlighter-rouge">ggthemes</code> package is also worth to check out for working any plots (maps,time-series data, and any other plots) that you are working on. <code class="highlighter-rouge">theme_gdocs()</code>, <code class="highlighter-rouge">theme_tufte()</code>, and <code class="highlighter-rouge">theme_calc()</code> all work very well. See <a href="https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/">here</a> to get more cool themes.</p><pre><code class="language-{r}">ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
                  col=Species,
                  shape=Species)) + 
   geom_point(size=3) +
@@ -259,9 +247,7 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
       <h4 id="-create-by-your-own-">
           <a href="#-create-by-your-own-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Create by your own</strong> </span>
       </h4>
-<ul>
-  <li>If you do not like themes that <strong>ggplot2</strong> and <code class="highlighter-rouge">ggthemes</code> packages have, don’t worry. You can always create your own style for your themes. Check <a href="https://www.datanovia.com/en/blog/ggplot-themes-gallery/">here</a> to desgin your own unique style.</li>
-</ul>
+<p>If you do not like themes that <strong>ggplot2</strong> and <code class="highlighter-rouge">ggthemes</code> packages have, don’t worry. You can always create your own style for your themes. Check <a href="https://www.datanovia.com/en/blog/ggplot-themes-gallery/">here</a> to desgin your own unique style.</p>
       <h3 id="step-4-play-with-labels">
           <a href="#step-4-play-with-labels" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Step 4: Play with labels
       </h3>
@@ -269,9 +255,7 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
       <h4 id="-basic-labelling-">
           <a href="#-basic-labelling-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Basic Labelling</strong> </span>
       </h4>
-<ul>
-  <li>Both <code class="highlighter-rouge">labs()</code> and <code class="highlighter-rouge">ggtitle()</code> are great tools to deal with labelling information. In the following code, we provide the example how to use <code class="highlighter-rouge">labs()</code> to label the all the things that we need. Take a look <a href="https://www.r-graph-gallery.com/289-control-ggplot2-title.html">here</a> if you want to learn how to use <code class="highlighter-rouge">ggtitle()</code>.</li>
-</ul><pre><code class="language-{r}">ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
+<p>Both <code class="highlighter-rouge">labs()</code> and <code class="highlighter-rouge">ggtitle()</code> are great tools to deal with labelling information. In the following code, we provide the example how to use <code class="highlighter-rouge">labs()</code> to label the all the things that we need. Take a look <a href="https://www.r-graph-gallery.com/289-control-ggplot2-title.html">here</a> if you want to learn how to use <code class="highlighter-rouge">ggtitle()</code>.</p><pre><code class="language-{r}">ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
                  col=Species,
                  shape=Species)) + 
   geom_point(size=3) +
@@ -291,9 +275,7 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
       <h4 id="-postion-and-appearance-">
           <a href="#-postion-and-appearance-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Postion and Appearance</strong> </span>
       </h4>
-<ul>
-  <li>After the basic labelling, we want to make them nicer by playing around the postion and appearance (text size, color and faces).</li>
-</ul><pre><code class="language-{r}">ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
+<p>After the basic labelling, we want to make them nicer by playing around the postion and appearance (text size, color and faces).</p><pre><code class="language-{r}">ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
                  col=Species,
                  shape=Species)) + 
   geom_point(size=3) +
