@@ -140,7 +140,7 @@ pacman::p_load(ggplot2,viridis,dplyr, RColorBrewer,tidyverse,ggthemes,ggpubr)
   ## Make it a scatterplot with geom_point()
   geom_point()
 </code></pre>
-<p><img src="Images/Styling_Scatterplots/basic_plot.png" alt="Basic Scatterplot" /></p>
+<p><img src="/Presentation/Images/Styling_Scatterplots/R_basic_plot.png" alt="Basic Scatterplot" /></p>
       <h3 id="step-2-map-a-variable-to-marker-feature">
           <a href="#step-2-map-a-variable-to-marker-feature" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Step 2: Map a variable to marker feature
       </h3>
@@ -156,7 +156,7 @@ pacman::p_load(ggplot2,viridis,dplyr, RColorBrewer,tidyverse,ggthemes,ggpubr)
                  alpha=Species)) + 
     geom_point(size =4, color="seagreen") 
 </code></pre>
-<p><img src="Images/Styling_Scatterplots/transparency.png" alt="Scatterplot with Transparency" /></p>
+<p><img src="/Presentation/Images/Styling_Scatterplots/R_transparency.png" alt="Scatterplot with Transparency" /></p>
       <h4 id="-shape-">
           <a href="#-shape-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Shape</strong> </span>
       </h4>
@@ -168,7 +168,7 @@ pacman::p_load(ggplot2,viridis,dplyr, RColorBrewer,tidyverse,ggthemes,ggpubr)
                  shape=Species)) + 
     geom_point(size = 4,color="orange") 
 </code></pre>
-<p><img src="Images/Styling_Scatterplots/shape.png" alt="Scatterplot with Different Shapes" /></p>
+<p><img src="/Presentation/Images/Styling_Scatterplots/R_shape.png" alt="Scatterplot with Different Shapes" /></p>
       <h4 id="-size-">
           <a href="#-size-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Size</strong> </span>
       </h4>
@@ -180,7 +180,7 @@ pacman::p_load(ggplot2,viridis,dplyr, RColorBrewer,tidyverse,ggthemes,ggpubr)
                  size=Species)) + 
     geom_point(shape = 18, color = "#FC4E07") 
 </code></pre>
-<p><img src="Images/Styling_Scatterplots/size.png" alt="Scatterplot With Different Sizes" /></p>
+<p><img src="/Presentation/Images/Styling_Scatterplots/R_size.png" alt="Scatterplot With Different Sizes" /></p>
       <h4 id="-color-">
           <a href="#-color-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Color</strong> </span>
       </h4>
@@ -199,7 +199,7 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width,
                         color=Species))+
   geom_point()
 </code></pre>
-<p><img src="Images/Styling_Scatterplots/color.png" alt="Scatterplot with different colors" /></p>
+<p><img src="/Presentation/Images/Styling_Scatterplots/R_color.png" alt="Scatterplot with different colors" /></p>
 <ul>
   <li>
       <h5 id="note">
@@ -221,8 +221,8 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
   scale_color_viridis(discrete=TRUE,option = "D")  ## There are more options to choose
 </code></pre>
 <p>This first graph is using <code class="highlighter-rouge">RColorBrewer</code> package,and the second graph is using <code class="highlighter-rouge">viridis</code> package.</p>
-<p><img src="Images/Styling_Scatterplots/color_RColorBrewer.png" alt="Colors set by RColorBrewer" /></p>
-<p><img src="Images/Styling_Scatterplots/color_viridis.png" alt="Colors set by viridis" /></p>
+<p><img src="/Presentation/Images/Styling_Scatterplots/R_color_RColorBrewer.png" alt="Colors set by RColorBrewer" /></p>
+<p><img src="/Presentation/Images/Styling_Scatterplots/R_color_viridis.png" alt="Colors set by viridis" /></p>
       <h4 id="-put-all-the-options-together-">
           <a href="#-put-all-the-options-together-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Put all the options together</strong> </span>
       </h4>
@@ -241,7 +241,7 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
   scale_color_viridis(discrete=TRUE,option = "D") +
   theme_minimal(base_size = 12)
 </code></pre>
-<p><img src="Images/Styling_Scatterplots/theme_1.png" alt="" /></p>
+<p><img src="/Presentation/Images/Styling_Scatterplots/R_theme_1.png" alt="" /></p>
       <h4 id="-themes-from-ggpthemes-package-">
           <a href="#-themes-from-ggpthemes-package-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Themes from <code class="highlighter-rouge">ggpthemes</code> package</strong> </span>
       </h4>
@@ -255,7 +255,7 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
   ## Using the theme_tufte()
   theme_tufte()
 </code></pre>
-<p><img src="Images/Styling_Scatterplots/theme_2.png" alt="" /></p>
+<p><img src="/Presentation/Images/Styling_Scatterplots/R_theme_2.png" alt="" /></p>
       <h4 id="-create-by-your-own-">
           <a href="#-create-by-your-own-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Create by your own</strong> </span>
       </h4>
@@ -287,7 +287,7 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
     subtitle = " plot within different Iris Species"
   )
 </code></pre>
-<p><img src="Images/Styling_Scatterplots/label_1.png" alt="Scatterplot with Axis Lables" /></p>
+<p><img src="/Presentation/Images/Styling_Scatterplots/R_label_1.png" alt="Scatterplot with Axis Lables" /></p>
       <h4 id="-postion-and-appearance-">
           <a href="#-postion-and-appearance-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Postion and Appearance</strong> </span>
       </h4>
@@ -313,7 +313,7 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
          plot.subtitle = element_text(color = "grey40",size = 10, face = 'italic')
          )
 </code></pre>
-<p><img src="Images/Styling_Scatterplots/label_2.png" alt="Scatterplot with Elements Moved" /></p>
+<p><img src="/Presentation/Images/Styling_Scatterplots/R_label_2.png" alt="Scatterplot with Elements Moved" /></p>
       <h3 id="step-5-show-some-patterns">
           <a href="#step-5-show-some-patterns" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Step 5: Show some patterns
       </h3>
@@ -340,7 +340,7 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
   ## Where linear trend + confidence interval come in
   geom_smooth(method = 'lm',se=TRUE)
 </code></pre>
-<p><img src="Images/Styling_Scatterplots/linear_trend.png" alt="Scatterplot with Linear Trend" /></p>
+<p><img src="/Presentation/Images/Styling_Scatterplots/R_linear_trend.png" alt="Scatterplot with Linear Trend" /></p>
       <h4 id="congratulations-you-just-make-your-own-style-of-scatterplots-if-you-are-following-all-the-steps-above-and-try-to-play-around-the-different-options">
           <a href="#congratulations-you-just-make-your-own-style-of-scatterplots-if-you-are-following-all-the-steps-above-and-try-to-play-around-the-different-options" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Congratulations!!! You just make your own style of scatterplots if you are following all the steps above and try to play around the different options.
       </h4>
