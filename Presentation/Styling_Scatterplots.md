@@ -61,7 +61,7 @@ ggplot(data = iris, aes(
   geom_point()
 ```
 
-![Basic Scatterplot](Images/Styling_Scatterplots/basic_plot.png)
+![Basic Scatterplot](Images/Styling_Scatterplots/R_basic_plot.png)
 
 
 ### Step 2: Map a variable to marker feature
@@ -73,7 +73,7 @@ Notice that attributes set *outside* of `aes()` apply to *all* points (like `siz
 
 #### <span style="color:orange"> **Transparency** </span>
 
-  * We can distinguish the `Species` by `transparency`. 
+  We can distinguish the `Species` by `alpha` (transparency). 
 
 ```{r,warning=FALSE}
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
@@ -81,13 +81,12 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
                  alpha=Species)) + 
     geom_point(size =4, color="seagreen") 
 ```
-![Scatterplot with Transparency](Images/Styling_Scatterplots/transparency.png)
+![Scatterplot with Transparency](Images/Styling_Scatterplots/R_transparency.png)
 
 
 #### <span style="color:orange"> **Shape** </span>
 
-  * `Shape` is also a common way to help us to see relationship between two variables within different groups.
-  * Additionally, you can always change the shape of the points. Check [here](https://www.datanovia.com/en/blog/ggplot-point-shapes-best-tips/) for more ideas. 
+`shape` is also a common way to help us to see relationship between two variables within different groups. Additionally, you can always change the shape of the points. Check [here](https://www.datanovia.com/en/blog/ggplot-point-shapes-best-tips/) for more ideas. 
 
   
 ```{r}
@@ -97,13 +96,12 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
     geom_point(size = 4,color="orange") 
 ```
 
-![Scatterplot with Different Shapes](Images/Styling_Scatterplots/shape.png)
+![Scatterplot with Different Shapes](Images/Styling_Scatterplots/R_shape.png)
 
 
 #### <span style="color:orange"> **Size** </span>
 
-  * Furthermore, `size` is a great option that we can take a look at as well. 
-  * However, note that `size` will work better with continuous variables.
+ `size` is a great option that we can take a look at as well. However, note that `size` will work better with continuous variables.
 
 ```{r,warning=FALSE}
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
@@ -112,11 +110,11 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
     geom_point(shape = 18, color = "#FC4E07") 
 ```
 
-![Scatterplot With Different Sizes](Images/Styling_Scatterplots/size.png)
+![Scatterplot With Different Sizes](Images/Styling_Scatterplots/R_size.png)
 
 #### <span style="color:orange"> **Color** </span>
 
-  * Last but not least, let's `color` these points depends on the variable `Species` in the `iris` dataset.
+Last but not least, let's `color` these points depends on the variable `Species` in the `iris` dataset.
 
 ```{r}
 ## First, we need to make sure that 'Species' is a factor variable 
@@ -132,7 +130,7 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width,
                         color=Species))+
   geom_point()
 ```
-![Scatterplot with different colors](Images/Styling_Scatterplots/color.png)
+![Scatterplot with different colors](Images/Styling_Scatterplots/R_color.png)
 
  * ##### *Note*
 
@@ -154,9 +152,9 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
 This first graph is using `RColorBrewer` package,and the second graph is using `viridis` package.
 
 
-![Colors set by RColorBrewer](Images/Styling_Scatterplots/color_RColorBrewer.png)
+![Colors set by RColorBrewer](Images/Styling_Scatterplots/R_color_RColorBrewer.png)
 
-![Colors set by viridis](Images/Styling_Scatterplots/color_viridis.png)
+![Colors set by viridis](Images/Styling_Scatterplots/R_color_viridis.png)
 
 #### <span style="color:orange"> **Put all the options together** </span>
 
@@ -179,12 +177,12 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   theme_minimal(base_size = 12)
 ```
 
-![](Images/Styling_Scatterplots/theme_1.png)
+![](Images/Styling_Scatterplots/R_theme_1.png)
 
 
-#### <span style="color:orange"> **Themes from `ggpthemes` package** </span>
+#### <span style="color:orange"> **Themes from the `ggthemes` package** </span>
 
-  * `ggthemes` package is also worth to check out for working any plots (maps,time-series data, and any other plots) that you are working on. `theme_gdocs()`, `theme_tufte()`, and `theme_calc()` all work very well. See [here](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/) to get more cool themes. 
+`ggthemes` package is also worth to check out for working any plots (maps,time-series data, and any other plots) that you are working on. `theme_gdocs()`, `theme_tufte()`, and `theme_calc()` all work very well. See [here](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/) to get more cool themes. 
 
 ```{r}
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
@@ -195,12 +193,12 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   ## Using the theme_tufte()
   theme_tufte()
 ```
-![](Images/Styling_Scatterplots/theme_2.png)
+![](Images/Styling_Scatterplots/R_theme_2.png)
 
 
 #### <span style="color:orange"> **Create by your own** </span>
 
-  * If you do not like themes that **ggplot2** and `ggthemes` packages have, don't worry. You can always create your own style for your themes. Check [here](https://www.datanovia.com/en/blog/ggplot-themes-gallery/) to desgin your own unique style.
+If you do not like themes that **ggplot2** and `ggthemes` packages have, don't worry. You can always create your own style for your themes. Check [here](https://www.datanovia.com/en/blog/ggplot-themes-gallery/) to desgin your own unique style.
 
 ### Step 4: Play with labels
 
@@ -208,7 +206,7 @@ It is time to label all the useful information to make the plot be clear to your
 
 #### <span style="color:orange"> **Basic Labelling** </span>
 
-  * Both `labs()` and `ggtitle()` are great tools to deal with labelling information. In the following code, we provide the example how to use `labs()` to label the all the things that we need. Take a look [here](https://www.r-graph-gallery.com/289-control-ggplot2-title.html) if you want to learn how to use `ggtitle()`.
+Both `labs()` and `ggtitle()` are great tools to deal with labelling information. In the following code, we provide the example how to use `labs()` to label the all the things that we need. Take a look [here](https://www.r-graph-gallery.com/289-control-ggplot2-title.html) if you want to learn how to use `ggtitle()`.
   
 
 ```{r}
@@ -229,12 +227,12 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   )
 ```
 
-![Scatterplot with Axis Lables](Images/Styling_Scatterplots/label_1.png)
+![Scatterplot with Axis Lables](Images/Styling_Scatterplots/R_label_1.png)
 
 
 #### <span style="color:orange"> **Postion and Appearance** </span>
 
-  * After the basic labelling, we want to make them nicer by playing around the postion and appearance (text size, color and faces).
+After the basic labelling, we want to make them nicer by playing around the postion and appearance (text size, color and faces).
   
 ```{r}
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
@@ -258,7 +256,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
          )
 ```
 
-![Scatterplot with Elements Moved](Images/Styling_Scatterplots/label_2.png)
+![Scatterplot with Elements Moved](Images/Styling_Scatterplots/R_label_2.png)
 
 
 ### Step 5: Show some patterns
@@ -290,6 +288,6 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   geom_smooth(method = 'lm',se=TRUE)
 ```
 
-![Scatterplot with Linear Trend](Images/Styling_Scatterplots/linear_trend.png)
+![Scatterplot with Linear Trend](Images/Styling_Scatterplots/R_linear_trend.png)
 
 #### Congratulations!!! You just make your own style of scatterplots if you are following all the steps above and try to play around the different options. 
