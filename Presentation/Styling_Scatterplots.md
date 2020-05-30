@@ -3,13 +3,29 @@ title: Styling Scatterplots
 parent: Presentation
 has_children: false
 nav_order: 1
-
 mathjax: true ## Switch to false if this page has no equations or other math rendering.
 ---
 
 # Introduction
 
 A scatterplot is a useful and straightforward way to visualize the relationship between two variables,eventually revealing a correlation. It is often used to make initial diagnoses before any other statistical analyses are conducted.This tutorial will not only teach you how to make scatterplots, but also explore the ways to help you design your own styling scatterplots.
+
+
+## Keep in Mind
+
+
+- **REMEMBER** always clean your dataset before you try to make scatterplots since in the real world, the dataset is always messier than the `iris` dataset used below. 
+- Scatterplots may not work well if the variables that you are interested in are discrete, or if there are a large number of data points.
+- **Be more careful** if you have **Date** (which is time-series data) as your x-variable, **Date** can be very tricky in many ways.
+
+## Also Consider
+
+- If one of your variables is discrete, then instead of scatterplots, you may want to check how to make bar graphs [here](https://lost-stats.github.io/Presentation/bar_graphs.html).
+
+Specifically in R:
+- Formatting graph legends is important for styling scatterplots. So check [here](https://www.r-graph-gallery.com/239-custom-layout-legend-ggplot2.html) if you want to work with graph legends. 
+- If you are working with time series visualization with **ggplot2** package, see [here](https://www.r-graph-gallery.com/279-plotting-time-series-with-ggplot2.html) for more help. 
+- Check [here](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf) for more data visualization with **ggplot2** package.
 
 
 # Implementations
@@ -25,8 +41,6 @@ Using the function `p_load()` in the **pacman** package is able to allow us to i
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(ggplot2,viridis,dplyr, RColorBrewer,tidyverse,ggthemes,ggpubr)
 ```
-
-* We will use a dataset that already exists in R. Therefore, you don't need to load any new data into your R global environment and clean the dataset. The dataset that we are going to use is called `iris`. The `iris` dataset contains four measurements in centimeters for 150 flowers representing 3 species of iris. The 3 species are Iris setosa, versicolor, and virginica. If you want to know more about the `iris` dataset, check `?iris` or see [Kaggle: Iris Flower Dataset](https://www.kaggle.com/arshid/iris-flower-dataset).
 
 ### Step 1: Basic Scatterplot
 
@@ -47,12 +61,14 @@ ggplot(data = iris, aes(
   geom_point()
 ```
 
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/basic_plot.png)
+![Basic Scatterplot](Images/Styling_Scatterplots/basic_plot.png)
 
 
 ### Step 2: Map a variable to marker feature
 
 One of the most powerful and magic abilities of the *ggplot2* package is to map a variable to marker features. 
+
+Notice that attributes set *outside* of `aes()` apply to *all* points (like `size=4` here), while attributes set *inside* of `aes()` set the attribute separately for the values of the variable.
 
 
 #### <span style="color:orange"> **Transparency** </span>
@@ -65,7 +81,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
                  alpha=Species)) + 
     geom_point(size =4, color="seagreen") 
 ```
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/transparency.png)
+![Scatterplot with Transparency](Images/Styling_Scatterplots/transparency.png)
 
 
 #### <span style="color:orange"> **Shape** </span>
@@ -81,7 +97,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
     geom_point(size = 4,color="orange") 
 ```
 
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/shape.png)
+![Scatterplot with Different Shapes](Images/Styling_Scatterplots/shape.png)
 
 
 #### <span style="color:orange"> **Size** </span>
@@ -96,7 +112,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
     geom_point(shape = 18, color = "#FC4E07") 
 ```
 
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/size.png)
+![Scatterplot With Different Sizes](Images/Styling_Scatterplots/size.png)
 
 #### <span style="color:orange"> **Color** </span>
 
@@ -116,7 +132,7 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width,
                         color=Species))+
   geom_point()
 ```
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/color.png)
+![Scatterplot with different colors](Images/Styling_Scatterplots/color.png)
 
  * ##### *Note*
 
@@ -138,34 +154,21 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
 This first graph is using `RColorBrewer` package,and the second graph is using `viridis` package.
 
 
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/color_RColorBrewer.png)
+![Colors set by RColorBrewer](Images/Styling_Scatterplots/color_RColorBrewer.png)
 
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/color_viridis.png)
+![Colors set by viridis](Images/Styling_Scatterplots/color_viridis.png)
 
 #### <span style="color:orange"> **Put all the options together** </span>
 
-  * Of course, we can always mix `color`,`transparency`,`shape` and `size` together to get prettier plot.
-  * Personally, mixing more than two can make your graph a little bit messy, choosing to mix two seems to be a nice choice. However, do whatever you perfer to be your style!!!
-  
-```{r}
-## Here, what I choose to do is to mix color and shape. 
-ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
-                 col=Species,
-                 shape=Species)) + 
-  geom_point(size = 3) +
-  ## Using viridis package here
-  scale_color_viridis(discrete=TRUE,option = "D") 
-```
-
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/together.png)
+Of course, we can always mix `color`,`transparency`,`shape` and `size` together to get prettier plot. Simply set more than one of them in `aes()`!
 
 ### Step 3: Find the comfortable themes
 
 The next step that we can do is to figure out what the most fittable themes to match all the hard work we have done above. 
 
-#### <span style="color:orange"> **Themes from `ggplot2` package** </span>
+#### <span style="color:orange"> **Themes from **ggplot2** package** </span>
   
-  * In fact, ``ggplot2` package has many cool themes available alreay such as `theme_classic()`, `theme_minimal()` and `theme_bw()`. Another famous theme is the dark theme: `theme_dark()`. Let's check out some of them. 
+In fact, **ggplot2** package has many cool themes available alreay such as `theme_classic()`, `theme_minimal()` and `theme_bw()`. Another famous theme is the dark theme: `theme_dark()`. Let's check out some of them. 
   
 ```{r}
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
@@ -176,7 +179,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   theme_minimal(base_size = 12)
 ```
 
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/theme_1.png)
+![](Images/Styling_Scatterplots/theme_1.png)
 
 
 #### <span style="color:orange"> **Themes from `ggpthemes` package** </span>
@@ -192,12 +195,12 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   ## Using the theme_tufte()
   theme_tufte()
 ```
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/theme_2.png)
+![](Images/Styling_Scatterplots/theme_2.png)
 
 
 #### <span style="color:orange"> **Create by your own** </span>
 
-  * If you do not like themes that `ggplot2` and `ggthemes` packages have, don't worry. You can always create your own style for your themes. Check [here](https://www.datanovia.com/en/blog/ggplot-themes-gallery/) to desgin your own unique style.
+  * If you do not like themes that **ggplot2** and `ggthemes` packages have, don't worry. You can always create your own style for your themes. Check [here](https://www.datanovia.com/en/blog/ggplot-themes-gallery/) to desgin your own unique style.
 
 ### Step 4: Play with labels
 
@@ -219,14 +222,14 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   labs(
     ## Tell people what x and y variables are
     x="Sepal Length",
-    y="Speal Width",
+    y="Sepal Width",
     ## Title of the plot
     title = "Sepal length vs. Sepal width",
     subtitle = " plot within different Iris Species"
   )
 ```
 
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/label_1.png)
+![Scatterplot with Axis Lables](Images/Styling_Scatterplots/label_1.png)
 
 
 #### <span style="color:orange"> **Postion and Appearance** </span>
@@ -241,7 +244,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   scale_color_viridis(discrete=TRUE,option = "D") +
   labs(
     x="Sepal Length",
-    y="Speal Width",
+    y="Sepal Width",
     title = "Sepal length vs. Sepal width",
     subtitle = "plot within different Iris Species"
   )+
@@ -255,7 +258,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
          )
 ```
 
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/label_2.png)
+![Scatterplot with Elements Moved](Images/Styling_Scatterplots/label_2.png)
 
 
 ### Step 5: Show some patterns
@@ -264,7 +267,7 @@ After done with step 4, you should end with a very neat and unquie plot. Let's e
 
 #### <span style="color:orange"> **Linear Trend** </span>
 
-  * According to the plot, it seems like there exists a linear relationship betwee sepal length and sepal width. Thus, let's add a linear trend to our scattplot to help readers see the pattern more directly using `geom_smooth()`. 
+ According to the plot, it seems like there exists a linear relationship between sepal length and sepal width. Thus, let's add a linear trend to our scattplot to help readers see the pattern more directly using `geom_smooth()`. Note that the `method` argument in `geom_smooth()` allows to apply different smoothing method like glm, loess and more. See the [doc](https://ggplot2.tidyverse.org/reference/geom_smooth.html) for more.
   
 ```{r,message=FALSE}
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
@@ -274,7 +277,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   scale_color_viridis(discrete=TRUE,option = "D") +
   labs(
     x="Sepal Length",
-    y="Speal Width",
+    y="Sepal Width",
     title = "Sepal length vs. Sepal width",
     subtitle = "plot within different Iris Species"
   )+
@@ -287,52 +290,6 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   geom_smooth(method = 'lm',se=TRUE)
 ```
 
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/linear_trend.png)
+![Scatterplot with Linear Trend](Images/Styling_Scatterplots/linear_trend.png)
 
-
-#### <span style="color:orange"> **Other Trends** </span>
-
-* There are many trends that your data can be suggested.Note that the `method` argument in `geom_smooth()` allows to apply different smoothing method like glm, loess and more. See the [doc](https://ggplot2.tidyverse.org/reference/geom_smooth.html) for more.
-
-  * For example, if we want to specify the best trends by the given data, we can leave the `method` argument empty. 
-```{r,message=FALSE}
-ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
-                 col=Species,
-                 shape=Species)) + 
-  geom_point(size=3) +
-  scale_color_viridis(discrete=TRUE,option = "D") +
-  labs(
-    x="Sepal Length",
-    y="Speal Width",
-    title = "Sepal length vs. Sepal width",
-    subtitle = "plot within different Iris Species"
-  )+
-  theme_minimal(base_size = 12) +
-  theme(plot.title = element_text(hjust = 0.5),
-        plot.subtitle = element_text(hjust = 0.5))+
-  theme (plot.title = element_text(color = "black", size = 14, face = "bold"),
-         plot.subtitle = element_text(color = "grey40",size = 10, face = 'italic')) +
-  ## Don't want to show the confidence interval
-  geom_smooth(se=FALSE)
-```
-
-![](https://github.com/FeiyiShao/lost-stats.github.io/blob/source/Presentation/Images/Styling%20_Scatterplots/figure_gfm/other_trend.png)
-
-
-#### Congratulation!!! You just make your own style of scatterplots if you are following all the steps above and try to play around the different options. 
-
-  
-## Keep in Mind
-
-
-- **REMEMBER** always clean your dataset before you try to make scatterplots since in the real world, the dataset is always messier than the `iris` dataset. 
-- Scatterplots may not work well if the variables that you are interested in are discrete, or if there are a large number of data points.
-- **Be more careful** if you have **Date** (which is time-series data) as your x-variable, **Date** can be very tricky in many ways.
-- **Google** and `help` function are always your good friends if you have problems on your codes. 
-
-## Also Consider
-
-- Formatting graph legends is important for styling scatterplots. So check [here](https://www.r-graph-gallery.com/239-custom-layout-legend-ggplot2.html) if you want to work with graph legends. 
-- If you have one of your variables is discrete, instead of scatterplots, you may want to check how to make bar graphs [here](https://lost-stats.github.io/Presentation/bar_graphs.html).
-- If you are working with time series visualization with `ggplot2` package, see [here](https://www.r-graph-gallery.com/279-plotting-time-series-with-ggplot2.html) for more help. 
-- Check [here](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf) for more data visualization with `ggplot2` package.
+#### Congratulations!!! You just make your own style of scatterplots if you are following all the steps above and try to play around the different options. 
