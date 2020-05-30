@@ -7,29 +7,31 @@ mathjax: true ## Switch to false if this page has no equations or other math ren
 ---
 
 
-# INTRODUCTION
+## INTRODUCTION
 
 Overarching goal: think about how information on the time dimension helps us address selection problem in causal inference.
+
 The causal inference with cross-sectional data is fundamentally tricky.
 
 1. People, firms, etcare different from one another in lots of ways.
 2. Can only get a clean comparison when you have a (quasi-)experimental setup, such as an experiment or an Regression discontinuity.
 
+## KEEP IN MIND
 
 Key insight of data with time dimension: Rather than comparing "i" to "j", compare i in t to i in (t−1).
 
 1. "i"serves as a control for itself.
 2. "i" am much more similar to myself yesterday than "i" am to "j".
 
+## ALSO CONSIDER 
 We want to estimate
 Suppose in t = 0 (“Pre-period”),  t = 1 (“Post-period”), we can estimate 𝜏=Post-Pre
 which is Y(post)-Y(pre)= Y(t=1)-Y(t=0)=𝜏 (D(t=1)-D(t=0)  ).
 
-In this case, we need to discover the difference.
 
 
 
-# IMPLEMENTSTIONS
+## IMPLEMENTSTIONS
 
 In this case, we need to discover whether legalize marijuana could change the murder rate. After the year of 2014, we measure the difference of murder rate between legalize marijuana murder states and fully illegal to use of marijuana states. 
 
