@@ -30,7 +30,6 @@ which is Y(post)-Y(pre)= Y(t=1)-Y(t=0)=𝜏 (D(t=1)-D(t=0)  ).
 
 
 
-
 ## IMPLEMENTSTIONS
 
 In this case, we need to discover whether legalize marijuana could change the murder rate. After the year of 2014, we measure the difference of murder rate between legalize marijuana murder states and fully illegal to use of marijuana states. 
@@ -74,7 +73,7 @@ DiD%>% filter(treat==0&year>=2010)%>%group_by(after)%>%summarize(control_mean=me
 
 reg<-lm(murder~treater+treatafter+after,data=DiD)
 ```
-## Final Step:
+## Step 5:
 Finally, we use treatment mean minus the control mean to measure the impact of legalize marijuana on murder rate. It shows after legalization, the murder rate dropped by 0.3%.
 ```{r}
 (4.52-4.15)-(4.85-4.18)
