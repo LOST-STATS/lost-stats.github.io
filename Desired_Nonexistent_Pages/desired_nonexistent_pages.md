@@ -61,7 +61,6 @@ If you create one of these pages, please remove it from this list.
 ## Presentation
 
 * Scatterplot
-* Styling Scatterplots
 * Marginal Effects Plots for Discrete Variables
 * Density plots
 * Histograms
