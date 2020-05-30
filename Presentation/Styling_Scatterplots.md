@@ -61,7 +61,7 @@ ggplot(data = iris, aes(
   geom_point()
 ```
 
-![Basic Scatterplot](Images/Styling_Scatterplots/basic_plot.png)
+![Basic Scatterplot](Images/Styling_Scatterplots/R_basic_plot.png)
 
 
 ### Step 2: Map a variable to marker feature
@@ -81,7 +81,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
                  alpha=Species)) + 
     geom_point(size =4, color="seagreen") 
 ```
-![Scatterplot with Transparency](Images/Styling_Scatterplots/transparency.png)
+![Scatterplot with Transparency](Images/Styling_Scatterplots/R_transparency.png)
 
 
 #### <span style="color:orange"> **Shape** </span>
@@ -97,7 +97,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
     geom_point(size = 4,color="orange") 
 ```
 
-![Scatterplot with Different Shapes](Images/Styling_Scatterplots/shape.png)
+![Scatterplot with Different Shapes](Images/Styling_Scatterplots/R_shape.png)
 
 
 #### <span style="color:orange"> **Size** </span>
@@ -112,7 +112,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
     geom_point(shape = 18, color = "#FC4E07") 
 ```
 
-![Scatterplot With Different Sizes](Images/Styling_Scatterplots/size.png)
+![Scatterplot With Different Sizes](Images/Styling_Scatterplots/R_size.png)
 
 #### <span style="color:orange"> **Color** </span>
 
@@ -132,7 +132,7 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width,
                         color=Species))+
   geom_point()
 ```
-![Scatterplot with different colors](Images/Styling_Scatterplots/color.png)
+![Scatterplot with different colors](Images/Styling_Scatterplots/R_color.png)
 
  * ##### *Note*
 
@@ -154,9 +154,9 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
 This first graph is using `RColorBrewer` package,and the second graph is using `viridis` package.
 
 
-![Colors set by RColorBrewer](Images/Styling_Scatterplots/color_RColorBrewer.png)
+![Colors set by RColorBrewer](Images/Styling_Scatterplots/R_color_RColorBrewer.png)
 
-![Colors set by viridis](Images/Styling_Scatterplots/color_viridis.png)
+![Colors set by viridis](Images/Styling_Scatterplots/R_color_viridis.png)
 
 #### <span style="color:orange"> **Put all the options together** </span>
 
@@ -179,7 +179,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   theme_minimal(base_size = 12)
 ```
 
-![](Images/Styling_Scatterplots/theme_1.png)
+![](Images/Styling_Scatterplots/R_theme_1.png)
 
 
 #### <span style="color:orange"> **Themes from `ggpthemes` package** </span>
@@ -195,7 +195,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   ## Using the theme_tufte()
   theme_tufte()
 ```
-![](Images/Styling_Scatterplots/theme_2.png)
+![](Images/Styling_Scatterplots/R_theme_2.png)
 
 
 #### <span style="color:orange"> **Create by your own** </span>
@@ -229,7 +229,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   )
 ```
 
-![Scatterplot with Axis Lables](Images/Styling_Scatterplots/label_1.png)
+![Scatterplot with Axis Lables](Images/Styling_Scatterplots/R_label_1.png)
 
 
 #### <span style="color:orange"> **Postion and Appearance** </span>
@@ -258,7 +258,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
          )
 ```
 
-![Scatterplot with Elements Moved](Images/Styling_Scatterplots/label_2.png)
+![Scatterplot with Elements Moved](Images/Styling_Scatterplots/R_label_2.png)
 
 
 ### Step 5: Show some patterns
@@ -290,6 +290,6 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   geom_smooth(method = 'lm',se=TRUE)
 ```
 
-![Scatterplot with Linear Trend](Images/Styling_Scatterplots/linear_trend.png)
+![Scatterplot with Linear Trend](Images/Styling_Scatterplots/R_linear_trend.png)
 
 #### Congratulations!!! You just make your own style of scatterplots if you are following all the steps above and try to play around the different options. 
