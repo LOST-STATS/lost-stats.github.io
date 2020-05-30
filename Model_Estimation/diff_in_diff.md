@@ -5,6 +5,8 @@ has_children: false
 nav_order: 1
 mathjax: true ## Switch to false if this page has no equations or other math rendering.
 ---
+
+
 # INTRODUCTION
 
 Overarching goal: think about how information on the time dimension helps us address selection problem in causal inference.
@@ -23,8 +25,7 @@ We want to estimate
 Suppose in t = 0 (“Pre-period”),  t = 1 (“Post-period”), we can estimate 𝜏=Post-Pre
 which is Y(post)-Y(pre)= Y(t=1)-Y(t=0)=𝜏 (D(t=1)-D(t=0)  ).
 
-In this case, we need to find the difference.
-
+In this case, we need to discover the difference.
 
 
 
