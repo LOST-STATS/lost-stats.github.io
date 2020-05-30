@@ -73,7 +73,7 @@ Notice that attributes set *outside* of `aes()` apply to *all* points (like `siz
 
 #### <span style="color:orange"> **Transparency** </span>
 
-  * We can distinguish the `Species` by `transparency`. 
+  We can distinguish the `Species` by `alpha` (transparency). 
 
 ```{r,warning=FALSE}
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
@@ -86,8 +86,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
 
 #### <span style="color:orange"> **Shape** </span>
 
-  * `Shape` is also a common way to help us to see relationship between two variables within different groups.
-  * Additionally, you can always change the shape of the points. Check [here](https://www.datanovia.com/en/blog/ggplot-point-shapes-best-tips/) for more ideas. 
+`shape` is also a common way to help us to see relationship between two variables within different groups. Additionally, you can always change the shape of the points. Check [here](https://www.datanovia.com/en/blog/ggplot-point-shapes-best-tips/) for more ideas. 
 
   
 ```{r}
@@ -102,8 +101,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
 
 #### <span style="color:orange"> **Size** </span>
 
-  * Furthermore, `size` is a great option that we can take a look at as well. 
-  * However, note that `size` will work better with continuous variables.
+ `size` is a great option that we can take a look at as well. However, note that `size` will work better with continuous variables.
 
 ```{r,warning=FALSE}
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
@@ -116,7 +114,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
 
 #### <span style="color:orange"> **Color** </span>
 
-  * Last but not least, let's `color` these points depends on the variable `Species` in the `iris` dataset.
+Last but not least, let's `color` these points depends on the variable `Species` in the `iris` dataset.
 
 ```{r}
 ## First, we need to make sure that 'Species' is a factor variable 
@@ -182,9 +180,9 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
 ![](Images/Styling_Scatterplots/R_theme_1.png)
 
 
-#### <span style="color:orange"> **Themes from `ggpthemes` package** </span>
+#### <span style="color:orange"> **Themes from the `ggthemes` package** </span>
 
-  * `ggthemes` package is also worth to check out for working any plots (maps,time-series data, and any other plots) that you are working on. `theme_gdocs()`, `theme_tufte()`, and `theme_calc()` all work very well. See [here](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/) to get more cool themes. 
+`ggthemes` package is also worth to check out for working any plots (maps,time-series data, and any other plots) that you are working on. `theme_gdocs()`, `theme_tufte()`, and `theme_calc()` all work very well. See [here](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/) to get more cool themes. 
 
 ```{r}
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
@@ -200,7 +198,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
 
 #### <span style="color:orange"> **Create by your own** </span>
 
-  * If you do not like themes that **ggplot2** and `ggthemes` packages have, don't worry. You can always create your own style for your themes. Check [here](https://www.datanovia.com/en/blog/ggplot-themes-gallery/) to desgin your own unique style.
+If you do not like themes that **ggplot2** and `ggthemes` packages have, don't worry. You can always create your own style for your themes. Check [here](https://www.datanovia.com/en/blog/ggplot-themes-gallery/) to desgin your own unique style.
 
 ### Step 4: Play with labels
 
@@ -208,7 +206,7 @@ It is time to label all the useful information to make the plot be clear to your
 
 #### <span style="color:orange"> **Basic Labelling** </span>
 
-  * Both `labs()` and `ggtitle()` are great tools to deal with labelling information. In the following code, we provide the example how to use `labs()` to label the all the things that we need. Take a look [here](https://www.r-graph-gallery.com/289-control-ggplot2-title.html) if you want to learn how to use `ggtitle()`.
+Both `labs()` and `ggtitle()` are great tools to deal with labelling information. In the following code, we provide the example how to use `labs()` to label the all the things that we need. Take a look [here](https://www.r-graph-gallery.com/289-control-ggplot2-title.html) if you want to learn how to use `ggtitle()`.
   
 
 ```{r}
@@ -234,7 +232,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
 
 #### <span style="color:orange"> **Postion and Appearance** </span>
 
-  * After the basic labelling, we want to make them nicer by playing around the postion and appearance (text size, color and faces).
+After the basic labelling, we want to make them nicer by playing around the postion and appearance (text size, color and faces).
   
 ```{r}
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
