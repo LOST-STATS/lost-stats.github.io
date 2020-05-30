@@ -60,7 +60,7 @@ mt<-mt+labs(title="Murder and Time", x="year", y="murder")
 mt<-mt+geom_line(aes(colour=treat,group=treat))
 mt
 ```
-！[]()
+![Diff-in-Diff](https://github.com/zuzhangjin/lost-stats.github.io/blob/source/Model_Estimation/Images/dif%20in%20dif.jpg)
 
 ## Step 4:
 * We need to measure the impact of impact of legalize marijuana which is 𝜏=Post-Pre Y(t=1)-Y(t=0)=𝜏 (D(t=1)-D(t=0))  .
