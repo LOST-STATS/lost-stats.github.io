@@ -54,7 +54,6 @@ If you create one of these pages, please remove it from this list.
 
 * A-B Testing
 * Artificial Neural Networks
-* Decision Trees
 * Nearest Neighbors Matching
 * Boosted Regression
 
@@ -64,7 +63,6 @@ If you create one of these pages, please remove it from this list.
 * Marginal Effects Plots for Discrete Variables
 * Density plots
 * Histograms
-* Formatting graph legends
 * Graph themes
 
 ## Summary Statistics
