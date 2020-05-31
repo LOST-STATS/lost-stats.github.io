@@ -114,93 +114,104 @@ For more information on graphs see other articles such as: bar graphs, scatter p
       <h1 id="graphs-legends-in-r">
           <a href="#graphs-legends-in-r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Graphs legends in R
       </h1>
-<p>Here are some of the packages that will be used in this section:</p><pre><code class="language-{r}">if (!require("pacman")) install.packages("pacman")
-pacman::p_load(ggplot2)
-</code></pre>
-<p>The dataset used in this article will be the <strong><em>mtcars</em></strong> dataset as it comes with base R. The functions here are <code class="highlighter-rouge">ggplot</code> and <code class="highlighter-rouge">geom_point</code> from the <strong><em>ggplot2</em></strong> package. <code class="highlighter-rouge">geom_point</code> creates a scatterplot while in <code class="highlighter-rouge">ggplot</code> we will assign the axis and the legend. More specifically, in <code class="highlighter-rouge">aes()</code> we color the point depending on the number of cylinders.</p><pre><code class="language-{r}">fig1 &lt;- ggplot(mtcars, aes(wt, mpg, colour = factor(cyl))) +
-       geom_point()
-fig1
-</code></pre>
-<p>Now we can add another layor by giving each type of transition a different shape through shape in <code class="highlighter-rouge">aes()</code>. Additionally, you can augment the labels for both colour and shape with <code class="highlighter-rouge">labs()</code>.</p><pre><code class="language-{r}">fig2 &lt;- ggplot(mtcars, aes(wt, mpg, colour = factor(cyl), shape = factor(am) )) +
-  geom_point()
+<p>Here are some of the packages that will be used in this section:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">require</span><span class="p">(</span><span class="s2">"pacman"</span><span class="p">))</span><span class="w"> </span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"pacman"</span><span class="p">)</span><span class="w">
+</span><span class="n">pacman</span><span class="o">::</span><span class="n">p_load</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p>The dataset used in this article will be the <strong><em>mtcars</em></strong> dataset as it comes with base R. The functions here are <code class="highlighter-rouge">ggplot</code> and <code class="highlighter-rouge">geom_point</code> from the <strong><em>ggplot2</em></strong> package. <code class="highlighter-rouge">geom_point</code> creates a scatterplot while in <code class="highlighter-rouge">ggplot</code> we will assign the axis and the legend. More specifically, in <code class="highlighter-rouge">aes()</code> we color the point depending on the number of cylinders.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">wt</span><span class="p">,</span><span class="w"> </span><span class="n">mpg</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">cyl</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">geom_point</span><span class="p">()</span><span class="w">
+</span><span class="n">fig1</span><span class="w">
+</span></code></pre></div></div>
+<p>Now we can add another layor by giving each type of transition a different shape through shape in <code class="highlighter-rouge">aes()</code>. Additionally, you can augment the labels for both colour and shape with <code class="highlighter-rouge">labs()</code>.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">wt</span><span class="p">,</span><span class="w"> </span><span class="n">mpg</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">cyl</span><span class="p">),</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">am</span><span class="p">)</span><span class="w"> </span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">()</span><span class="w">
   
-fig2 + labs(colour= "Number of Cylinders", shape = "Transmission Type")
+</span><span class="n">fig2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">labs</span><span class="p">(</span><span class="n">colour</span><span class="o">=</span><span class="w"> </span><span class="s2">"Number of Cylinders"</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Transmission Type"</span><span class="p">)</span><span class="w">
 
-</code></pre>
-<p>To change the legend position use the <code class="highlighter-rouge">theme()</code> modifier in ggplot. From there you can choose top, right, bottom, left, or none (removes the legend). To put the legends inside the plot create column vector of size 2 (the first value refers to the x coordinate. while the second refers to the y) where both elements are between 0 and 1. To ensure that the whole legends is within the graph use the <code class="highlighter-rouge">legend.justification</code> to set the corner where you want the legend.</p><pre><code class="language-{r}">fig2 + 
-    theme(
-    legend.position = c(.95, .95),
-    legend.justification = c("right", "top")
-    )
+</span></code></pre></div></div>
+<p>To change the legend position use the <code class="highlighter-rouge">theme()</code> modifier in ggplot. From there you can choose top, right, bottom, left, or none (removes the legend). To put the legends inside the plot create column vector of size 2 (the first value refers to the x coordinate. while the second refers to the y) where both elements are between 0 and 1. To ensure that the whole legends is within the graph use the <code class="highlighter-rouge">legend.justification</code> to set the corner where you want the legend.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig2</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">theme</span><span class="p">(</span><span class="w">
+    </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">.95</span><span class="p">,</span><span class="w"> </span><span class="m">.95</span><span class="p">),</span><span class="w">
+    </span><span class="n">legend.justification</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"right"</span><span class="p">,</span><span class="w"> </span><span class="s2">"top"</span><span class="p">)</span><span class="w">
+    </span><span class="p">)</span><span class="w">
   
-</code></pre>
+</span></code></pre></div></div>
 <p>There are other cool things you can do to the legend to better customize the visual experience by adding more to the <strong><em>theme</em></strong> modifier such as:</p>
 <ul>
   <li>Changing the margin size with <code class="highlighter-rouge">legend.box.margin</code></li>
   <li>The color of the box around the legend with <code class="highlighter-rouge">legend.box.background</code></li>
   <li>Changing the font size and color with <code class="highlighter-rouge">legend.text</code></li>
   <li>Changing the boxes of the legend key with <code class="highlighter-rouge">legend.key</code>
-    <pre><code class="language-{r}">fig3 &lt;- fig2 +
-theme(
-  legend.box.background = element_rect(color="red", size=2),
-  legend.box.margin = margin(116, 6, 6, 6),
-  legend.key = element_rect(fill = "white", colour = "black"),
-  legend.text = element_text(size = 8, colour = "red")
-)
-fig3
-</code></pre>
+    <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fig2</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">theme</span><span class="p">(</span><span class="w">
+  </span><span class="n">legend.box.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">),</span><span class="w">
+  </span><span class="n">legend.box.margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">margin</span><span class="p">(</span><span class="m">116</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">),</span><span class="w">
+  </span><span class="n">legend.key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">),</span><span class="w">
+  </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">)</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span><span class="n">fig3</span><span class="w">
+</span></code></pre></div>    </div>
   </li>
 </ul>
 <p><img src="/Presentation/Images/Formatting_Graph_Legends/R_modified_legend.png" alt="Modified Legend" /></p>
-<p>Sometimes you may want to remove a legend for the sake of graph readability or to reduce clutter. You can remove a legend by changing its position to “none” within the <code class="highlighter-rouge">theme</code> modifier.</p><pre><code class="language-{r}">fig4 &lt;- fig2 +
-       theme(legend.postion="none")
-fig4
-</code></pre>
-<p>You can alternately remove legends (or components of legends) with <code class="highlighter-rouge">guides</code></p><pre><code class="language-{r}"># Here we've removed the color legend, but the shape legend is still there.
-fig5 &lt;- fig2 +
-       guides(color = FALSE)
-fig5
-# This removes both
-fig6 &lt;- fig2 +
-       guides(color = FALSE, shape = FALSE)
-fig6
-</code></pre>
+<p>Sometimes you may want to remove a legend for the sake of graph readability or to reduce clutter. You can remove a legend by changing its position to “none” within the <code class="highlighter-rouge">theme</code> modifier.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fig2</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme</span><span class="p">(</span><span class="n">legend.postion</span><span class="o">=</span><span class="s2">"none"</span><span class="p">)</span><span class="w">
+</span><span class="n">fig4</span><span class="w">
+</span></code></pre></div></div>
+<p>You can alternately remove legends (or components of legends) with <code class="highlighter-rouge">guides</code></p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Here we've removed the color legend, but the shape legend is still there.</span><span class="w">
+</span><span class="n">fig5</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fig2</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">guides</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span><span class="n">fig5</span><span class="w">
+</span><span class="c1"># This removes both</span><span class="w">
+</span><span class="n">fig6</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fig2</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">guides</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span><span class="n">fig6</span><span class="w">
+</span></code></pre></div></div>
       <h1 id="legend-formatting-in-stata">
           <a href="#legend-formatting-in-stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Legend Formatting in Stata
       </h1>
-<p>In Stata the legend is automatically added when you create a graph with multiple lines. However there may be instances where you would still prefer to have a legend on a single line graph or possibly no legend on your graph in general. For those times just add <code class="highlighter-rouge">legend(on)</code> or <code class="highlighter-rouge">legend(off)</code>.</p><pre><code class="language-{stata}">* Let's use the US Life Expectancy data that comes with Stata
-sysuse uslifeexp.dta, clear
-line le year, legend(on)
-</code></pre>
-<p>Labelling legends is also straight forward, within the legend function add <code class="highlighter-rouge">label(n "line title")</code> to augment the titles, where ‘n’ is the nth group.</p><pre><code class="language-{stata}">line le_m le_f year, legend(label(1 "Males") label(2 "Females"))
+<p>In Stata the legend is automatically added when you create a graph with multiple lines. However there may be instances where you would still prefer to have a legend on a single line graph or possibly no legend on your graph in general. For those times just add <code class="highlighter-rouge">legend(on)</code> or <code class="highlighter-rouge">legend(off)</code>.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Let's use the US Life Expectancy data that comes with Stata
+</span><span class="err">sysuse</span> <span class="err">uslifeexp.dta,</span> <span class="err">clear
+line</span> <span class="err">le</span> <span class="err">year,</span> <span class="err">legend(on)
+</span></code></pre></div></div>
+<p>Labelling legends is also straight forward, within the legend function add <code class="highlighter-rouge">label(n "line title")</code> to augment the titles, where ‘n’ is the nth group.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">line</span> <span class="err">le_m</span> <span class="err">le_f</span> <span class="err">year,</span> <span class="err">legend(label(1</span> <span class="s2">"Males"</span><span class="err">)</span> <span class="err">label(2</span> <span class="s2">"Females"</span><span class="err">))
 
-</code></pre>
+</span></code></pre></div></div>
 <p><img src="/Presentation/Images/Formatting_Graph_Legends/stata_labeled_legend.png" alt="Now With Labels" /></p>
-<p>Legend position can be changed with the <code class="highlighter-rouge">position()</code>, <code class="highlighter-rouge">col()</code>, and <code class="highlighter-rouge">ring()</code> modifiers in the <code class="highlighter-rouge">legend()</code> function. Here <code class="highlighter-rouge">position</code> refers to where the legend is placed with respect to the center of the graph using clock directions (i.e. 6 is 6 o’clock or below and 3 is 3 o’clock or right). <code class="highlighter-rouge">col()</code> is the number of columns the legend will take up, usually you just want to set the to be 1 to prevent the graph and legend fighting over space. <code class="highlighter-rouge">ring()</code> refers to the distance away from the center of the graph.</p><pre><code class="language-{}">line le_m le_f year, legend(pos(3) col(1) lab(1 "Males") lab(2 "Females") stack)
+<p>Legend position can be changed with the <code class="highlighter-rouge">position()</code>, <code class="highlighter-rouge">col()</code>, and <code class="highlighter-rouge">ring()</code> modifiers in the <code class="highlighter-rouge">legend()</code> function. Here <code class="highlighter-rouge">position</code> refers to where the legend is placed with respect to the center of the graph using clock directions (i.e. 6 is 6 o’clock or below and 3 is 3 o’clock or right). <code class="highlighter-rouge">col()</code> is the number of columns the legend will take up, usually you just want to set the to be 1 to prevent the graph and legend fighting over space. <code class="highlighter-rouge">ring()</code> refers to the distance away from the center of the graph.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">line</span> <span class="err">le_m</span> <span class="err">le_f</span> <span class="err">year,</span> <span class="err">legend(pos(3)</span> <span class="err">col(1)</span> <span class="err">lab(1</span> <span class="s2">"Males"</span><span class="err">)</span> <span class="err">lab(2</span> <span class="s2">"Females"</span><span class="err">)</span> <span class="err">stack)
 
-</code></pre>
+</span></code></pre></div></div>
 <p><img src="/Presentation/Images/Formatting_Graph_Legends/stata_moved_legend.png" alt="Changing the Legend Position" /></p>
-<p>Then you can add some color to the legend with region() and a title with subtitle():</p><pre><code class="language-{}">line le_m le_f year, legend(pos(5) ring(0) col(1) lab(1 "Males") lab(2 "Females") region(fcolor(gs15))) legend(subtitle("Legend"))
-</code></pre>
+<p>Then you can add some color to the legend with region() and a title with subtitle():</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">line</span> <span class="err">le_m</span> <span class="err">le_f</span> <span class="err">year,</span> <span class="err">legend(pos(5)</span> <span class="err">ring(0)</span> <span class="err">col(1)</span> <span class="err">lab(1</span> <span class="s2">"Males"</span><span class="err">)</span> <span class="err">lab(2</span> <span class="s2">"Females"</span><span class="err">)</span> <span class="err">region(fcolor(gs15)))</span> <span class="err">legend(subtitle(</span><span class="s2">"Legend"</span><span class="err">))
+</span></code></pre></div></div>
 <p><img src="/Presentation/Images/Formatting_Graph_Legends/stata_moved_legend_2.png" alt="Final Product" /></p>
-<p>In the case where you are dealing with a two-way or a combination of graphs, augmenting the legend is exactly like above only now you must specify the line which you want to augment. Take this example from the stata manual on two-way graphs:</p><pre><code class="language-{}">line le_wm year, yaxis(1 2) xaxis(1 2) ///
-	|| line le_bm year ///
-	|| line diff year ///
-	|| lfit diff year ///
-	||, ///
-	ylabel(0(5)20, axis(2) gmin angle(horizontal)) ///
-	ylabel(0 20(10)80, gmax angle(horizontal)) ///
-	ytitle("", axis(2)) ///
-	xlabel(1918, axis(2)) xtitle("", axis(2)) ///
-	ylabel(, axis(2) grid) ///
-	ytitle("Life expectancy at birth (years)") ///
-	title("White and black life expectancy") ///
-	subtitle("USA, 1900-1999") ///
-	note("Source: National Vital Statistics, Vol 50, No. 6" ///
-	"(1918 dip caused by 1918 Influenza Pandemic)") ///
-	legend(label(1 "White males") label(2 "Black males")) ///
-	legend(col(1) pos(3))
-</code></pre>
+<p>In the case where you are dealing with a two-way or a combination of graphs, augmenting the legend is exactly like above only now you must specify the line which you want to augment. Take this example from the stata manual on two-way graphs:</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">line</span> <span class="err">le_wm</span> <span class="err">year,</span> <span class="err">yaxis(1</span> <span class="err">2)</span> <span class="err">xaxis(1</span> <span class="err">2)</span> <span class="c1">///</span><span class="err">
+</span>	<span class="o">||</span> <span class="err">line</span> <span class="err">le_bm</span> <span class="err">year</span> <span class="c1">///</span><span class="err">
+</span>	<span class="o">||</span> <span class="err">line</span> <span class="err">diff</span> <span class="err">year</span> <span class="c1">///</span><span class="err">
+</span>	<span class="o">||</span> <span class="err">lfit</span> <span class="err">diff</span> <span class="err">year</span> <span class="c1">///</span><span class="err">
+</span>	<span class="o">||</span><span class="err">,</span> <span class="c1">///</span><span class="err">
+</span>	<span class="err">ylabel(0(5)20,</span> <span class="err">axis(2)</span> <span class="err">gmin</span> <span class="err">angle(horizontal))</span> <span class="c1">///</span><span class="err">
+</span>	<span class="err">ylabel(0</span> <span class="err">20(10)80,</span> <span class="err">gmax</span> <span class="err">angle(horizontal))</span> <span class="c1">///</span><span class="err">
+</span>	<span class="err">ytitle(</span><span class="s2">""</span><span class="err">,</span> <span class="err">axis(2))</span> <span class="c1">///</span><span class="err">
+</span>	<span class="err">xlabel(1918,</span> <span class="err">axis(2))</span> <span class="err">xtitle(</span><span class="s2">""</span><span class="err">,</span> <span class="err">axis(2))</span> <span class="c1">///</span><span class="err">
+</span>	<span class="err">ylabel(,</span> <span class="err">axis(2)</span> <span class="err">grid)</span> <span class="c1">///</span><span class="err">
+</span>	<span class="err">ytitle(</span><span class="s2">"Life expectancy at birth (years)"</span><span class="err">)</span> <span class="c1">///</span><span class="err">
+</span>	<span class="err">title(</span><span class="s2">"White and black life expectancy"</span><span class="err">)</span> <span class="c1">///</span><span class="err">
+</span>	<span class="err">subtitle(</span><span class="s2">"USA, 1900-1999"</span><span class="err">)</span> <span class="c1">///</span><span class="err">
+</span>	<span class="err">note(</span><span class="s2">"Source: National Vital Statistics, Vol 50, No. 6"</span> <span class="c1">///</span><span class="err">
+</span>	<span class="s2">"(1918 dip caused by 1918 Influenza Pandemic)"</span><span class="err">)</span> <span class="c1">///</span><span class="err">
+</span>	<span class="err">legend(label(1</span> <span class="s2">"White males"</span><span class="err">)</span> <span class="err">label(2</span> <span class="s2">"Black males"</span><span class="err">))</span> <span class="c1">///</span><span class="err">
+</span>	<span class="err">legend(col(1)</span> <span class="err">pos(3))
+</span></code></pre></div></div>
 <p><img src="/Presentation/Images/Formatting_Graph_Legends/stata_full_graph.png" alt="Two-way Example" /></p>
 <p><strong><em>Notice</em></strong> within the <code class="highlighter-rouge">label()</code> command nested within <code class="highlighter-rouge">legend()</code> you must specify which part of the graph  you’re labeling first (the number denotes its order i.e. the first graph is 1) then the new label with a space between both items. Here they change the legend label for the first 2 lines.
 In regards to legend positioning, the same rules discussed above apply.</p>
