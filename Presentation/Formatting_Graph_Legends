@@ -103,3 +103,34 @@ region(fcolor(gs15)))
 legend(subtitle("Legend"))
 ```
 ![Final Product](lost-stats.github.io/Presentation/Images/Formatting_Legends_image/form_graph1.png)
+
+In the case where you are dealing with a two-way or a combination of graphs, augmenting the legend is exactly like above only now you must specify the line which you want to augment. Take this example from the stata manual on two-way graphs:
+
+```{}
+line le_wm year, yaxis(1 2) xaxis(1 2)
+|| line le_bm year
+|| line diff year
+|| lfit diff year
+||,
+ylabel(0(5)20, axis(2) gmin angle(horizontal))
+ylabel(0 20(10)80, gmax angle(horizontal))
+ytitle("", axis(2))
+xlabel(1918, axis(2)) xtitle("", axis(2))
+ylabel(, axis(2) grid)
+ytitle("Life expectancy at birth (years)")
+title("White and black life expectancy")
+subtitle("USA, 1900-1999")
+note("Source: National Vital Statistics, Vol 50, No. 6"
+"(1918 dip caused by 1918 Influenza Pandemic)")
+legend(label(1 "White males") label(2 "Black males"))
+legend(col(1) pos(3))
+```
+
+![Two-way Example](lost-stats.github.io/Presentation/Images/Formatting_Legends_image/form_graph5.png)
+
+***Notice*** within the label() command nested within legend() you must specify which graph first (the number denotes its order i.e. the first graph is 1) then the new label with a space between both items. Here they change the legend label for the first 2 lines.
+In regards to legend positioning, the same rules discussed above apply.
+
+#Sources
+Stata's manual on two-way graphs: https://www.stata.com/manuals13/g-2graphtwowayline.pdf
+Stata's manual on legends: https://www.stata.com/manuals13/g-3legend_options.pdf
