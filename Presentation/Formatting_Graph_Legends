@@ -9,12 +9,12 @@ mathjax: true
 Graph legends are an important part of data representation, as they enable the reader to better under stand the figure infront of them while not cluttering the figure itself. Legends can often be seen next to graphs describing some of aspect of a graph.
 For more information on graphs see other articles such as: bar graphs, scatter plots and histograms.
 
-# GRaphs legends in R
+# Graphs legends in R
 
 Here are some of the packages that will be used in this section:
 ```{r}
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(tidyverse, broom, knitr, ggplot2)
+pacman::p_load(ggplot2)
 ```
 
 The dataset used in this article will be the ***mtcars*** dataset as it comes with base R. The functions here is the ggplot and geom_pointfrom the ***ggplot2*** package. Geom_point creates a scatter plot while  in ggplot we will efin the axis and the legend. More Specifically in aes() we color the point depending on the number of cylinders.
