@@ -26,14 +26,14 @@ For more information on graphs see other articles such as: bar graphs, scatter p
 # Graphs legends in R
 
 Here are some of the packages that will be used in this section:
-```{r}
+```r
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(ggplot2)
 ```
 
 The dataset used in this article will be the ***mtcars*** dataset as it comes with base R. The functions here are `ggplot` and `geom_point` from the ***ggplot2*** package. `geom_point` creates a scatterplot while in `ggplot` we will assign the axis and the legend. More specifically, in `aes()` we color the point depending on the number of cylinders.
 
-```{r}
+```r
 fig1 <- ggplot(mtcars, aes(wt, mpg, colour = factor(cyl))) +
        geom_point()
 fig1
@@ -41,7 +41,7 @@ fig1
 
 Now we can add another layor by giving each type of transition a different shape through shape in `aes()`. Additionally, you can augment the labels for both colour and shape with `labs()`.
 
-```{r}
+```r
 fig2 <- ggplot(mtcars, aes(wt, mpg, colour = factor(cyl), shape = factor(am) )) +
   geom_point()
   
@@ -51,7 +51,7 @@ fig2 + labs(colour= "Number of Cylinders", shape = "Transmission Type")
 
 To change the legend position use the `theme()` modifier in ggplot. From there you can choose top, right, bottom, left, or none (removes the legend). To put the legends inside the plot create column vector of size 2 (the first value refers to the x coordinate. while the second refers to the y) where both elements are between 0 and 1. To ensure that the whole legends is within the graph use the `legend.justification` to set the corner where you want the legend.
 
-```{r}
+```r
 fig2 + 
     theme(
     legend.position = c(.95, .95),
@@ -65,7 +65,7 @@ There are other cool things you can do to the legend to better customize the vis
 * The color of the box around the legend with `legend.box.background`
 * Changing the font size and color with `legend.text`
 * Changing the boxes of the legend key with `legend.key`
-```{r}
+```r
 fig3 <- fig2 +
   theme(
     legend.box.background = element_rect(color="red", size=2),
@@ -79,7 +79,7 @@ fig3
 ![Modified Legend](Images/Formatting_Graph_Legends/R_modified_legend.png)
 
 Sometimes you may want to remove a legend for the sake of graph readability or to reduce clutter. You can remove a legend by changing its position to "none" within the `theme` modifier.
-```{r}
+```r
 fig4 <- fig2 +
        theme(legend.postion="none")
 fig4
@@ -87,7 +87,7 @@ fig4
 
 You can alternately remove legends (or components of legends) with `guides`
 
-```{r}
+```r
 # Here we've removed the color legend, but the shape legend is still there.
 fig5 <- fig2 +
        guides(color = FALSE)
@@ -103,7 +103,7 @@ fig6
 
 In Stata the legend is automatically added when you create a graph with multiple lines. However there may be instances where you would still prefer to have a legend on a single line graph or possibly no legend on your graph in general. For those times just add `legend(on)` or `legend(off)`. 
 
-```{stata}
+```stata
 * Let's use the US Life Expectancy data that comes with Stata
 sysuse uslifeexp.dta, clear
 line le year, legend(on)
@@ -111,7 +111,7 @@ line le year, legend(on)
 
 Labelling legends is also straight forward, within the legend function add `label(n "line title")` to augment the titles, where 'n' is the nth group.
 
-```{stata}
+```stata
 line le_m le_f year, legend(label(1 "Males") label(2 "Females"))
 
 ```
@@ -119,7 +119,7 @@ line le_m le_f year, legend(label(1 "Males") label(2 "Females"))
 
 Legend position can be changed with the `position()`, `col()`, and `ring()` modifiers in the `legend()` function. Here `position` refers to where the legend is placed with respect to the center of the graph using clock directions (i.e. 6 is 6 o'clock or below and 3 is 3 o'clock or right). `col()` is the number of columns the legend will take up, usually you just want to set the to be 1 to prevent the graph and legend fighting over space. `ring()` refers to the distance away from the center of the graph.
 
-```{}
+```stata
 line le_m le_f year, legend(pos(3) col(1) lab(1 "Males") lab(2 "Females") stack)
 
 ```
@@ -127,14 +127,14 @@ line le_m le_f year, legend(pos(3) col(1) lab(1 "Males") lab(2 "Females") stack)
 
 Then you can add some color to the legend with region() and a title with subtitle():
 
-```{}
+```stata
 line le_m le_f year, legend(pos(5) ring(0) col(1) lab(1 "Males") lab(2 "Females") region(fcolor(gs15))) legend(subtitle("Legend"))
 ```
 ![Final Product](Images/Formatting_Graph_Legends/stata_moved_legend_2.png)
 
 In the case where you are dealing with a two-way or a combination of graphs, augmenting the legend is exactly like above only now you must specify the line which you want to augment. Take this example from the stata manual on two-way graphs:
 
-```{}
+```stata
 line le_wm year, yaxis(1 2) xaxis(1 2) ///
 	|| line le_bm year ///
 	|| line diff year ///
