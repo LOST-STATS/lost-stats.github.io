@@ -62,6 +62,13 @@ fig3 <- fig2 +
 fig3
 ```
 
+Sometimes you may want to remove a legend for the sake of graph readability or to reduce clutter. You can remove a legend by changing its position to "none" within the ***theme*** modifier.
+```{r}
+fig4 <- fig2 +
+       theme(legend.postion="none")
+fig4
+```
+
 # Legend Formatting in Stata
 
 In stata the legend is automatically added when you create a graph with multiple lines. However there may be instances where you would still prefer to have a legend on a single line graph or possibly no legend on your graph in general. For those times just add legend(on) or legend(off). 
