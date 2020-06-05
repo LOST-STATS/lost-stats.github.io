@@ -46,7 +46,6 @@ If you create one of these pages, please remove it from this list.
 
 * Handling Raster Data
 * Handling Vector Data
-* Spatial Joins
 * Spatial Regression Model
 
 
