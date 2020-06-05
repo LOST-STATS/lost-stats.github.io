@@ -259,8 +259,9 @@ isd_or_co_pts <- st_join(isd_history, left = FALSE, or_co)
 **Also note that st_join is the default function that joins any type of intersection.  You can be more precise our particular about your conditions with the other spatial joins:**
 
 **st_within only joins elements that are completely within the defined area**
+
 **st_equal only joins elements that are spatially equal.  Meaning that A is within B and B is within A.**
 
-**You can use these to pair down your selections and joins to specific relationships.**
+**You can use these to pare down your selections and joins to specific relationships.**
 
-**Good luck with your geospatial anaylsis!**
+**Good luck with your geospatial analysis!**
