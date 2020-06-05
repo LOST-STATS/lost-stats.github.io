@@ -42,9 +42,9 @@ library(USAboundaries)
 library(GSODR)
 ```
 
-**We will work with polygon data from the USA boundaries initially, then move on to climate data point data via the [Global Surface Summary of the Day (gsodr)](https://www.rdocumentation.org/packages/GSODR/versions/2.0.0/topics/GSODR) package and join them together.
+- We will work with polygon data from the USA boundaries initially, then move on to climate data point data via the [Global Surface Summary of the Day (gsodr)](https://www.rdocumentation.org/packages/GSODR/versions/2.0.0/topics/GSODR) package and join them together.
 
-We start with the boundaries of the United States to get desirable polygons to work with for our analysis.  To pay homage to the states of my alma maters, we will do some analysis with Oregon, Ohio, and Michigan.**
+- We start with the boundaries of the United States to get desirable polygons to work with for our analysis.  To pay homage to the states of my alma maters, we will do some analysis with Oregon, Ohio, and Michigan.
 
 ```r
 #Selecting the United States Boundaries, but omitting Alaska, Hawaii, and Puerto Rico for it to be scaled better
@@ -215,6 +215,8 @@ title("Counties in Candidate States with GSOD Climate Stations")
 
 
 **We see how we can filter out polygons from attributes or intersecting relationships with points, but what if we want to merge data from the points into the polygon or vice versa?**
+
+**We will use the data set for Oregon for the join example.**
 
 **Notice in our point dataset that there are no county names.  Only station/city names.**  
 
