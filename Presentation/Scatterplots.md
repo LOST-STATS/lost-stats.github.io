@@ -2,7 +2,9 @@
 title: "Scatterplots"
 mathjax: yes
 nav_order: 1
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 parent: Presentation
 has_children: no
 ---
@@ -47,7 +49,7 @@ ggplot(data = mtcars,aes(x=wt,y=mpg)) +
 #create points on the plot for each observation
   geom_point()
 ```
-![Basic Scatterplot](Images/Scatterplots/Basic_Scatterplot.png)
+![Basic Scatterplot](Images/Scatterplots/basic_scatterplot.png)
 
 It is important to remember to include the + after each line when creating a plot using `ggplot()`. This + tells R that the lines of code belong together and omitting it will lead to our plot not having important parts.
 
@@ -63,7 +65,7 @@ ggplot(data = mtcars, aes(x = wt, y = mpg)) +
   labs(x = "Weight", y = "Miles Per Gallon",
        title = "Car MPG by Weight")
 ```
-![Scatterplot with Title and Axis Labels](Images/Scatterplots/Scatterplot_Labels.png)
+![Scatterplot with Title and Axis Labels](Images/Scatterplots/scatter_titles.png)
 
 That is starting to look better, but our graph could still use a little variety to it. Next, we will learn how to change the size and color of our plot points.
 
@@ -79,21 +81,21 @@ ggplot(data = mtcars, aes(x =wt, y = mpg)) +
   labs(x = "Weight", y = "Miles Per Gallon",
        title = "Car MPG by Weight")
 ```
-![Scatterplot with Large Blue Points](Images/Scatterplots/Size4Blue.png)
+![Scatterplot with Large Blue Points](Images/Scatterplots/scatter_size_color.png)
 
-Finally, lets label our points. We can do this by adding a new element to our plot, `geom_text()`. For this example we will label the points on our plot with their horse power. This will allow us to see how horsepower is related to weight and miles-per-gallon. We are also going to set the size of our points to 0.5 to avoid cluttering the scatterplot too much.
+Finally, lets label our points. We can do this by adding a new element to our plot, `geom_text()`. For this example we will label the points on our plot with their horse power. This will allow us to see how horsepower is related to weight and miles-per-gallon. We are also going to set the size of our points to 0.5 to avoid cluttering the scatterplot too much. Just like we can change the color of our points, we can change the color of the labels we put on them. We'll make them red in this example, but feel free to choose another color.
 
 ```r
 #assign our dataset and variables of interest
 ggplot(data = mtcars, aes(x =wt, y = mpg)) +
   #create points and tell ggplot we want them to be size 0.5 and blue
-  geom_point(size = 0.5, color = blue) +
+  geom_point(size = 0.5, color = 'blue') +
   #add the labels for our points
-  geom_text(label = mtcars$hp)
+  geom_text(label = mtcars$hp, color = 'red')
   #don't forget the labels
   labs(x = "Weight", y = "Miles Per Gallon",
        title = "Car MPG by Weight")
 ```
-![Scatterplot with Labels Points](Images/Scatterplots/Labels.png)
+![Scatterplot with Labels Points](Images/Scatterplots/scatter_labels.png)
 
 Congrats!!! You're well on your way to becoming a scatterplot master! Don't forget to check out the LOST page on [styling scatterplots](https://lost-stats.github.io/Presentation/Styling_Scatterplots.html) if you would like to learn more.
