@@ -49,9 +49,9 @@ Secondly, we create the indicator variable called `after` to indicate whether it
 If the year is after 2014 **and** the state decided to legalize marijuana, the indicator variable "treatafter" is "1" .
 
 ```{r}
-DiD <- mutate(DiD, after= DiD$year >= 2014,1,0)
-DiD <- mutate(DiD, treat = DiD$year>=2010 & DiD$year<=2013)
-DiD <- mutate(DiD, treatafter = after*treat)
+DiD <- mutate(DiD, after = year >= 2014,
+                   treat = year>=2010 & year<=2013) %>%
+       mutate(treatafter = after*treat)
 ```
 
 Step 3:
@@ -74,7 +74,7 @@ Step 4:
 We need to measure the impact of impact of legalize marijuana. If we include `treat`, `after`, and `treatafter` in a regression, the coefficient on `treatafter` can be interpreted as "how much bigger was the before-after difference for the treated group?" which is the DiD estimate. 
 
 ```{r}
-reg<-lm(murder~treater+treatafter+after,data=DiD)
+reg<-lm(murder ~ treat+treatafter+after, data = DiD)
 summary(reg)
 ```
 
