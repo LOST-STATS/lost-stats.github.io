@@ -95,7 +95,7 @@ plot(or$geometry, add=T, col="gray50", border="black")
 plot(or_co$geometry, add=T, border="green", col=NA)
 plot(or_box, add=T, border="yellow", col=NA, lwd=2)
 ```
-![](https://raw.githubusercontent.com/lvought/lost-stats.github.io/source/Geo-Spatial/Images/join_image_1.png)
+![](Images/spatial_joins/join_image_1.png)
 
 **Ohio highlighted**
 
@@ -105,7 +105,7 @@ plot(oh$geometry, add=T, col="gray50", border="black")
 plot(oh_co$geometry, add=T, border="yellow", col=NA)
 plot(oh_box, add=T, border="blue", col=NA, lwd=2)
 ```
-![](https://github.com/lvought/lost-stats.github.io/blob/source/Geo-Spatial/Images/join_image_2.png?raw=true)
+![](Images/spatial_joins/join_image_2.png)
 
 **Michigan highlighted**
 
@@ -115,7 +115,7 @@ plot(mi$geometry, add=T, col="gray50", border="black")
 plot(mi_co$geometry, add=T, border="gray", col=NA)
 plot(mi_box, add=T, border="green", col=NA, lwd=2)
 ```
-![](https://github.com/lvought/lost-stats.github.io/blob/source/Geo-Spatial/Images/join_image_3.png?raw=true)
+![](Images/spatial_joins/join_image_3.png)
 
 **All three highlighted at once.**
 
@@ -131,7 +131,7 @@ plot(or$geometry, add=T, col="gray50", border="black")
 plot(or_co$geometry, add=T, border="green", col=NA)
 plot(or_box, add=T, border="yellow", col=NA, lwd=2)
 ```
-![](https://github.com/lvought/lost-stats.github.io/blob/source/Geo-Spatial/Images/join_image_4.png?raw=true)
+![](Images/spatial_joins/join_image_4.png)
 
 **Now that there are polygons established and identified, we can add in some point data to join to our currently existing polygon data and do some analysis with it.  To do this we will use the Global Surface Summary of the Day (gsodr) package for climate data.**
 
@@ -164,7 +164,7 @@ plot(isd_history_or$geometry, add=T, pch=21, bg="#FDE725FF", cex=0.7, col="black
 title("Oregon GSOD Climate Stations")
 ```
 
-![](https://github.com/lvought/lost-stats.github.io/blob/source/Geo-Spatial/Images/join_image_5.png?raw=true)
+![](Images/spatial_joins/join_image_5.png)
 
 
 **Ohio**
@@ -176,7 +176,7 @@ plot(isd_history_oh$geometry, add=T, pch=21, bg="black", cex=0.7, col="black")
 title("Ohio GSOD Climate Stations")
 ```
 
-![](https://github.com/lvought/lost-stats.github.io/blob/source/Geo-Spatial/Images/join_image_6.png?raw=true)
+![](Images/spatial_joins/join_image_6.png)
 
 **Michigan**
 
@@ -186,7 +186,7 @@ plot(mi$geometry, col=alpha("green", 0.5), border="blue", lwd=1.5, add=TRUE)
 plot(isd_history_mi$geometry, add=T, pch=21, bg="white", cex=0.7, col="black")
 title("Michigan GSOD Climate Stations")
 ```
-![](https://github.com/lvought/lost-stats.github.io/blob/source/Geo-Spatial/Images/join_image_7.png?raw=true)
+![](Images/spatial_joins/join_image_7.png)
 
 # Now, for the magic:
 
@@ -200,7 +200,7 @@ plot(or_co_isd_poly$geometry, col=alpha("green",0.7))
 title("Oregon Counties with GSOD Climate Stations")
 ```
 
-![](https://github.com/lvought/lost-stats.github.io/blob/source/Geo-Spatial/Images/join_image_8.png?raw=true)
+![](Images/spatial_joins/join_image_8.png)
 
 **Now for all of our three candidate states:**
 
@@ -211,7 +211,7 @@ plot(cand_co_isd_poly$geometry, col=alpha("blue",0.7))
 title("Counties in Candidate States with GSOD Climate Stations")
 ```
 
-![](https://github.com/lvought/lost-stats.github.io/blob/source/Geo-Spatial/Images/join_image_9.png?raw=true)
+![](Images/spatial_joins/join_image_9.png)
 
 
 **We see how we can filter out polygons from attributes or intersecting relationships with points, but what if we want to merge data from the points into the polygon or vice versa?**
@@ -220,7 +220,7 @@ title("Counties in Candidate States with GSOD Climate Stations")
 
 **Notice in our point dataset that there are no county names.  Only station/city names.**  
 
-![](https://github.com/lvought/lost-stats.github.io/blob/source/Geo-Spatial/Images/join_image_10.png?raw=true)
+![](Images/spatial_joins/join_image_10.png)
 
 
 **Let us join the county polygons with the climate station points and add the county names to the station data.  We do this using the st_join function, which comes from the sf package.**
@@ -240,7 +240,7 @@ plot(or_co$geometry, border="gray", col=NA, add=T)
 **You now have successfully joined the county name data into your new point data set!  Those points in the plot now contain the county information for data analysis purposes.**
 
 
-![](https://github.com/lvought/lost-stats.github.io/blob/source/Geo-Spatial/Images/join_image_11.png?raw=true)
+![](Images/spatial_joins/join_image_11.png)
 
 
 
@@ -254,7 +254,7 @@ isd_or_co_pts <- st_join(isd_history, left = FALSE, or_co)
 
 **You add all attributes from the polygon into the point data frame!**
 
-![](https://github.com/lvought/lost-stats.github.io/blob/source/Geo-Spatial/Images/join_image_12.png?raw=true)
+![](Images/spatial_joins/join_image_12.png)
 
 **Also note that st_join is the default function that joins any type of intersection.  You can be more precise our particular about your conditions with the other spatial joins:**
 
