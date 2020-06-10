@@ -127,7 +127,7 @@ summary(trainclean)
 ```
 
 
-### step 4 explain the name 
+### step4 explain the name 
 gbm needs the three standard parameters of boosted trees—plus one more:
 . n.trees , the number of trees
 . interaction.depth , trees' depth (max. splits from top)
@@ -136,7 +136,7 @@ gbm needs the three standard parameters of boosted trees—plus one more:
 
 ### step5 boosted
 
-# Train the random forest
+## Train the random forest
 ```
 carinsurance_boost = train(
 factor(CarInsurance)~.,
