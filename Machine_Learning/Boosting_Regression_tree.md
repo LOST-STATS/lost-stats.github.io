@@ -67,7 +67,7 @@ total <- rbind(train ,test)
 gg_miss_upset(total)
 ```
 
-### STEP1: choose the variable string and  the non-integer variable ,change it to character
+### step1: choose the variable string and  the non-integer variable ,change it to character
 
 ```
 variable=total%>%mutate(Job=as.character(total$Job),
@@ -110,7 +110,7 @@ total_df$Communication[is.na(total_df$Communication)]<-"cellular"
 total_df$LastContactMonth[is.na(total_df$LastContactMonth)]<-"may"
 ```
 
-### STEP2:Take care the missing the value use the scale center and medianimpute method
+### step2:Take care the missing the value use the scale center and medianimpute method
 
 ```
 clean_new <- preProcess(
@@ -119,7 +119,7 @@ clean_new <- preProcess(
 )%>% predict(total_df)
 ```
 
-##step3:divdie the total data into two part , train and test data
+### step3:divdie the total data into two part , train and test data
 ```
 trainclean<- head(clean_new, 3200) %>% as.data.frame()
 testclean<- tail(clean_new, 800) %>% as.data.frame()
@@ -134,7 +134,7 @@ gbm needs the three standard parameters of boosted trees—plus one more:
 . shrinkage , the learning rate
 . n.minobsinnode , minimum observations in a terminal node
 
-##step5 boosted
+### step5 boosted
 
 # Train the random forest
 ```
