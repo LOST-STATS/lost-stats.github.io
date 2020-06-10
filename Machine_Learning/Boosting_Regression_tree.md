@@ -67,7 +67,7 @@ total <- rbind(train ,test)
 gg_miss_upset(total)
 ```
 
-## STEP1: choose the variable string and  the non-integer variable ,change it to character
+### STEP1: choose the variable string and  the non-integer variable ,change it to character
 
 ```
 variable=total%>%mutate(Job=as.character(total$Job),
@@ -127,7 +127,7 @@ summary(trainclean)
 ```
 
 
-## step 4 explain the name 
+### step 4 explain the name 
 gbm needs the three standard parameters of boosted trees—plus one more:
 . n.trees , the number of trees
 . interaction.depth , trees' depth (max. splits from top)
