@@ -1,3 +1,5 @@
+
+
 Graph Themes
 ============
 
@@ -18,12 +20,12 @@ Keep in Mind
 -   A title is used to elucidate the general relationship and/or results
     being displayed.
 
-1.  Axis Labels
+2.  Axis Labels
 
 -   Axis labels define the variables used in our graph; it is often
     preferred to include units of these measurements as well.
 
-1.  Legends (depending on data)
+3.  Legends (depending on data)
 
 -   Particularly when dealing with multiple observations on one graph,
     legends are paramount to interpretation. See more on legend
@@ -69,7 +71,7 @@ idea of what our unedited graph will look like. Let’s observe *chick
 
     fig1
 
-![](graph_themes_files/figure-markdown_strict/unnamed-chunk-3-1.png)
+![](Images/graph_themes/fig1.jpg)
 
 Without a title, axis labels and units of measurement it is impossible
 for an outsider to understand what this graph represents. What is this
