@@ -21,7 +21,7 @@ Keep in Mind
 1.  Axis Labels
 
 -   Axis labels define the variables used in our graph; it is often
-    preffered to include units of these measurements as well.
+    preferred to include units of these measurements as well.
 
 1.  Legends (depending on data)
 
@@ -101,7 +101,7 @@ even visually observe any trends in diet. Let’s now add a legend.
 
     fig4 = ggplot(data = chick_weight, aes(x=Time, y=weight, color = Diet)) + geom_point(alpha = 0.6) + labs(x="Number of Days since Birth", y= "Weight (in grams)", title = "Chick Growth Relative to Diet")
 
-    #We can use assign an 'alpha' to each point so that points stacked ontop of each other are more readable.
+    #We can assign an 'alpha' to each point so that points stacked on top of each other are more readable.
 
     fig4
 
@@ -115,9 +115,9 @@ chicks.
 
     sub_chick_weight = chick_weight[chick_weight$Chick == 1 | chick_weight$Chick == 28 | chick_weight$Chick == 34 | chick_weight$Chick == 22 | chick_weight$Chick == 45 | chick_weight$Chick == 9,]
 
-    fig4 = ggplot(data = sub_chick_weight, aes(x=Time, y=weight, color = Diet)) + geom_point(alpha = 0.6) + labs(x="Number of Days since Birth", y= "Weight (in grams)", title = "Chick Growth Relative to Diet")
+    fig5 = ggplot(data = sub_chick_weight, aes(x=Time, y=weight, color = Diet)) + geom_point(alpha = 0.6) + labs(x="Number of Days since Birth", y= "Weight (in grams)", title = "Chick Growth Relative to Diet")
 
-    fig4
+    fig5
 
 ![](graph_themes_files/figure-markdown_strict/unnamed-chunk-7-1.png)
 
@@ -130,13 +130,13 @@ larger scale. Let’s assign a *size* characteristic to our mapping.
 
     #Typically, you want to assign size to the variable with less values than color so that your graph is more readable. We switch diet to size and use chick as our color.
 
-    fig5 = ggplot(data = sub_chick_weight, aes(x=Time, y=weight, size = Diet, color = Chick)) + geom_point(alpha = 0.6) + labs(x="Number of Days since Birth", y= "Weight (in grams)", title = "Chick Growth Relative to Diet") + scale_size_discrete()
+    fig6 = ggplot(data = sub_chick_weight, aes(x=Time, y=weight, size = Diet, color = Chick)) + geom_point(alpha = 0.6) + labs(x="Number of Days since Birth", y= "Weight (in grams)", title = "Chick Growth Relative to Diet") + scale_size_discrete()
 
     ## Warning: Using size for a discrete variable is not advised.
 
     #We are using scale_size_discrete() because the variable we assigned to our size component is a discrete factor, not a continuous variable.
 
-    fig5
+    fig6
 
 ![](graph_themes_files/figure-markdown_strict/unnamed-chunk-8-1.png)
 
@@ -158,9 +158,9 @@ add some color to our points, accessing our
 
     #To change color of a simple point, we add the color option to geom_point().
 
-    fig6 = ggplot(data = swiss, aes(x=Education, y=Infant.Mortality)) + geom_point(color = "dodgerblue",alpha = 0.6) + labs(x="Population with Education past Primary School (in %)", y= "Births with Lifespan Less than One Year (in %)", title = "Mortality Rate Relative to Education (in %)")
+    fig7 = ggplot(data = swiss, aes(x=Education, y=Infant.Mortality)) + geom_point(color = "dodgerblue",alpha = 0.6) + labs(x="Population with Education past Primary School (in %)", y= "Births with Lifespan Less than One Year (in %)", title = "Mortality Rate Relative to Education (in %)")
 
-    fig6
+    fig7
 
 ![](graph_themes_files/figure-markdown_strict/unnamed-chunk-9-1.png)
 
@@ -169,9 +169,9 @@ agriculture as an occupation had an effect on infant mortality rates. We
 can use the size component of our mapping instead of plotting the points
 on top of each other.
 
-    fig7 = ggplot(data = swiss, aes(x=Education, y=Infant.Mortality, size = Agriculture)) + geom_point(color = "dodgerblue",alpha = 0.6) + labs(x="Population with Education past Primary School (in %)", y= "Births with Lifespan Less than One Year (in %)", title = "Mortality Rate Relative to Education (in %)")
+    fig8 = ggplot(data = swiss, aes(x=Education, y=Infant.Mortality, size = Agriculture)) + geom_point(color = "dodgerblue",alpha = 0.6) + labs(x="Population with Education past Primary School (in %)", y= "Births with Lifespan Less than One Year (in %)", title = "Mortality Rate Relative to Education (in %)")
 
-    fig7
+    fig8
 
 ![](graph_themes_files/figure-markdown_strict/unnamed-chunk-10-1.png)
 
@@ -185,26 +185,26 @@ Hrbrthemes
 Now let’s take a look at what the *hrbrthemes* package has to offer.
 We’ve gone over the essentials and some coloring/sizing, but
 *hrbrthemes* is a nice tool to make the overall theme of the graph more
-appealing and professional. Say we are happy with fig5 but we want to
+appealing and professional. Say we are happy with fig6 but we want to
 make it prettier. By calling *hrbrthemes* we can choose from a variety
 of pre-downloaded themes with previously constructed options.
 
     #Modern Roboto-Condensed
-    fig8 = fig5 + hrbrthemes::theme_modern_rc()  
-
-    fig8
-
-![](graph_themes_files/figure-markdown_strict/unnamed-chunk-11-1.png)
-
-    fig9 = fig5 + hrbrthemes::theme_ipsum_es()  
+    fig9 = fig6 + hrbrthemes::theme_modern_rc()  
 
     fig9
 
-![](graph_themes_files/figure-markdown_strict/unnamed-chunk-12-1.png)
+![](graph_themes_files/figure-markdown_strict/unnamed-chunk-11-1.png)
 
-    fig10 = fig5 + hrbrthemes::theme_tinyhand() 
+    fig10 = fig6 + hrbrthemes::theme_ipsum_es()  
 
     fig10
+
+![](graph_themes_files/figure-markdown_strict/unnamed-chunk-12-1.png)
+
+    fig11 = fig6 + hrbrthemes::theme_tinyhand() 
+
+    fig11
 
 ![](graph_themes_files/figure-markdown_strict/unnamed-chunk-13-1.png)
 
