@@ -90,7 +90,7 @@ Let’s add our **essentials**.
 
     fig2
 
-![](graph_themes_files/figure-markdown_strict/unnamed-chunk-4-1.png)
+![](Images/graph_themes/fig2.jpg)
 
 Although our graph is still very basic, it is now at least
 interpretable. Let’s quickly look at a case where adding a legend would
@@ -101,7 +101,7 @@ level ranging from 1 to 4).
 
     fig3
 
-![](graph_themes_files/figure-markdown_strict/unnamed-chunk-5-1.png)
+![](Images/graph_themes/fig3.jpg)
 
 Although we have added a title and axis labels, we are still left with a
 useless graph. Which point indicates which diet? It is impossible to
@@ -113,7 +113,7 @@ even visually observe any trends in diet. Let’s now add a legend.
 
     fig4
 
-![](graph_themes_files/figure-markdown_strict/unnamed-chunk-6-1.png)
+![](Images/graph_themes/fig4.jpg)
 
 The data is still somewhat messy, due to clumping of data points, but we
 can now see which diet chicks had at each point in time. Let’s observe
@@ -127,7 +127,7 @@ chicks.
 
     fig5
 
-![](graph_themes_files/figure-markdown_strict/unnamed-chunk-7-1.png)
+![](Images/graph_themes/fig5.jpg)
 
 This isn’t awful, but it would be nice to know which chick respective to
 each diet was actually being recorded. In this example it is fairly easy
@@ -146,7 +146,7 @@ larger scale. Let’s assign a *size* characteristic to our mapping.
 
     fig6
 
-![](graph_themes_files/figure-markdown_strict/unnamed-chunk-8-1.png)
+![](Images/graph_themes/fig6.jpg)
 
 Earlier, it may have proven difficult to determine which chick that was
 fed *diet 1* showed the larger growth after roughly 10 days… By using
@@ -170,7 +170,7 @@ add some color to our points, accessing our
 
     fig7
 
-![](graph_themes_files/figure-markdown_strict/unnamed-chunk-9-1.png)
+![](Images/graph_themes/fig7.jpg)
 
 This is fine, but let’s say we believed the percent of males in
 agriculture as an occupation had an effect on infant mortality rates. We
@@ -181,7 +181,7 @@ on top of each other.
 
     fig8
 
-![](graph_themes_files/figure-markdown_strict/unnamed-chunk-10-1.png)
+![](Images/graph_themes/fig8.jpg)
 
 Clearly in this case it is too difficult to determine if agricultural
 occupation has an effect on mortality rates, but it is nice to have the
@@ -202,19 +202,19 @@ of pre-downloaded themes with previously constructed options.
 
     fig9
 
-![](graph_themes_files/figure-markdown_strict/unnamed-chunk-11-1.png)
+![](Images/graph_themes/fig9.jpg)
 
     fig10 = fig6 + hrbrthemes::theme_ipsum_es()  
 
     fig10
 
-![](graph_themes_files/figure-markdown_strict/unnamed-chunk-12-1.png)
+![](Images/graph_themes/fig10.jpg)
 
     fig11 = fig6 + hrbrthemes::theme_tinyhand() 
 
     fig11
 
-![](graph_themes_files/figure-markdown_strict/unnamed-chunk-13-1.png)
+![](Images/graph_themes/fig11.jpg)
 
 These themes have set fonts, grid structures, axis colors and dozens of
 more features to simplify the process on our end. By combing the
