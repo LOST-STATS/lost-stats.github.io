@@ -214,4 +214,4 @@ knowledge we built in the first section of our implementation with
 *hrbrthemes*, we are a big leap forward in producing beautiful graphs
 and designs!
 
-Congratulations and good luck with your presntations!
+Congratulations and good luck with your presentations!
