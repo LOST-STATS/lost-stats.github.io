@@ -1,4 +1,10 @@
-
+---
+title: Graph Themes
+parent: Presentation
+has_children: false
+nav_order: 1
+mathjax: true
+---
 
 Graph Themes
 ============
