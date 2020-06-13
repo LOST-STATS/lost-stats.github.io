@@ -17,35 +17,46 @@ Boosting is a numerical optimization technique for minimizing the loss function 
 
 g(x)=f0(x)+f1(x)+f2(x)+...
 where the final classifier g is the sum of simple base classifiers fi. For boosted trees model, each base classifier is a simple decision tree. This broad technique of using multiple models to obtain better predictive performance is called model ensembling.
+
 - Check [here]source from: https://turi.com/learn/userguide/supervised-learning/boosted_trees_regression.html) for more help.
 
 ## Also Consider
 
 Random forest in R , decesion tree in R
+
 -You have many options for training random forests in R.
 E.g., party , Rborist , ranger , randomForest .
+
 -caret offers access to each of these packages via train .
 E.g., method = "rf" or method = "ranger"
+
 -Random forests improve upon bagged trees by decorrelating the trees.
-In order to decorrelate its trees, a random forest only considers a random
-subset of predictors when making each split (for each tree)
+
+In order to decorrelate its trees, a random forest only considers a random subset of predictors when making each split (for each tree)
 
 # Implementations
 
 ## R
 
 For R user , boosted trees via "gbm" package
+
 -Boosting allows trees to pass on information to each other.
+
 We add each new tree to our model (and update our residuals).
+
 Trees are typically small—slowly improving where it struggles.
 
 ## How to boosted
 
 Boosting has three tuning parameters.
+
 1.The number of trees B.(important to prevent overfitting)
+
 2.The shrinkage parameter lambda.(controls boosting's learning rate
 (often 0.01 or 0.001).)
+
 3.The number of splits in each tree.(trees' complexity).
+
 data from:https://www.kaggle.com/kondla/carinsurance
 
 ```
