@@ -7,7 +7,7 @@ mathjax: true ## Switch to false if this page has no equations or other math ren
 ---
 
 
-##INTRODUCTION SECTION
+## INTRODUCTION SECTION
 
   Boosting is a numerical optimization technique for minimizing the loss function by adding, at each step, a new tree that best reduces (steps down the gradient of) the loss function. For BRT, the first regression tree is the one that, for the selected tree size, maximally reduces the loss function.
 
