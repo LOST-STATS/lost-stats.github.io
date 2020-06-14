@@ -18,7 +18,7 @@ The Boosted Trees Model is a type of additive model that makes predictions by co
 
 $$ g(x) = f_0(x)+f_1(x)+f_2(x)+... $$
 
-where the final classifier $g$ is the sum of simple base classifiers $f_i$. For the boosted trees model, each base classifier is a simple decision tree. This broad technique of using multiple models to obtain better predictive performance is called model ensembling.
+where the final classifier $$g$$ is the sum of simple base classifiers $$f_i$$. For the boosted trees model, each base classifier is a simple decision tree. This broad technique of using multiple models to obtain better predictive performance is called model ensembling.
 
 Random forests improve upon bagged trees by decorrelating the trees. In order to decorrelate its trees, a random forest only considers a random subset of predictors when making each split (for each tree). This is compared to boosted trees, which can pass information from one to the other. We add each new tree to our model (and update our residuals). Trees are typically small—slowly improving where it struggles.
 
@@ -27,7 +27,6 @@ Random forests improve upon bagged trees by decorrelating the trees. In order to
 ## Also Consider
 
 - There are non-boosted approaches to decision trees, which can be found at [Decision Trees](https://lost-stats.github.io/Machine_Learning/decision_trees.html) and [Random Forest](https://lost-stats.github.io/Machine_Learning/random_forest.html).
--
 
 # Implementations
 
