@@ -48,12 +48,12 @@ data from:https://www.kaggle.com/kondla/carinsurance
 # Load necessary packages and set the seed
 library(pacman)
 p_load(tidyverse,janitor, caret, glmnet, magrittr, 
-       dummies,janitor,rpart.plot,e1071,dplyr,caTools,naniar,
-       forcats,ggplot2,MASS,reshape, pROC,ROCR,readr, gbm)
+       dummies, janitor, rpart.plot, e1071, dplyr, caTools, naniar,
+       forcats, ggplot2, MASS,creshape, pROC,ROCR,readr, gbm)
 set.seed(101) 
 
 # Load in data
-carInsurance_train <- read_csv("carInsurance_train.csv")
+carInsurance_train <- read_csv("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Machine_Learning/Data/carInsurance_train.csv")
 summary(carInsurance_train)
 
 # Produce a training and a testing subset of the data
