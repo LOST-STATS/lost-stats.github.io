@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>Boosted Regression Trees - LOST</title>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/just-the-docs.css">
+    <script type="text/javascript" src="/assets/js/vendor/lunr.min.js"></script>
+  <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Boosted Regression Trees | LOST</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Boosted Regression Trees" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:site_name" content="LOST" />
+<script type="application/ld+json">
+{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Machine_Learning/boosted_regression_trees.html","headline":"Boosted Regression Trees","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML">
+  </script>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="link" viewBox="0 0 16 16">
+      <title>Link</title>
+      <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+    </symbol>
+  </svg>
+  <div class="page-wrap">
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="" class="site-title lh-tight">
+  LOST
+</a>
+        <button class="menu-button fs-3 js-main-nav-trigger" data-text-toggle="Hide" type="button">Menu</button>
+      </div>
+      <div class="navigation main-nav js-main-nav">
+        <nav role="navigation" aria-label="Main navigation">
+  <ul class="navigation-list"><li class="navigation-list-item"><a href="/" class="navigation-list-link">Home</a></li><li class="navigation-list-item active"><a href="/Data/" class="navigation-list-link"></a></li><li class="navigation-list-item"><a href="/Data_Manipulation/data_manipulation.html" class="navigation-list-link">Data Manipulation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="navigation-list-link">Collapse a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="navigation-list-link">Combining Datasets</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="navigation-list-link">Vertical Combination</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="navigation-list-link">Horizontal Combination (Deterministic)</a>
+                          </li></ul></li><li class="navigation-list-item "><a href="/Data_Manipulation/Creating_Dummy_Variables/creating_dummy_variables.html" class="navigation-list-link">Creating Dummy Variables</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="navigation-list-link">Determine the Observation Level of a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Reshaping/reshape.html" class="navigation-list-link">Reshaping Data</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="navigation-list-link">Reshape Panel Data from Wide to Long</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="navigation-list-link">Reshape Panel Data from Long to Wide</a>
+                          </li></ul></li><li class="navigation-list-item "><a href="/Data_Manipulation/rowwise_calculations.html" class="navigation-list-link">Rowwise Calculations</a></li></ul></li><li class="navigation-list-item"><a href="/Geo-Spatial/Geo-spatial.html" class="navigation-list-link">Geo-Spatial</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Geo-Spatial/geocoding.html" class="navigation-list-link">Geocoding</a></li><li class="navigation-list-item "><a href="/Geo-Spatial/merging_shape_files.html" class="navigation-list-link">Merging Shape Files</a></li><li class="navigation-list-item "><a href="/Geo-Spatial/spatial_joins.html" class="navigation-list-link">Spatial Joins</a></li></ul></li><li class="navigation-list-item active"><a href="/Machine_Learning/Machine_Learning.html" class="navigation-list-link">Machine Learning</a><ul class="navigation-list-child-list "><li class="navigation-list-item  active"><a href="/Machine_Learning/boosted_regression_trees.html" class="navigation-list-link active">Boosted Regression Trees</a></li><li class="navigation-list-item "><a href="/Machine_Learning/causal_forest.html" class="navigation-list-link">Causal Forest</a></li><li class="navigation-list-item "><a href="/Machine_Learning/decision_trees.html" class="navigation-list-link">Decision Trees</a></li><li class="navigation-list-item "><a href="/Machine_Learning/penalized_regression.html" class="navigation-list-link">Penalized Regression</a></li><li class="navigation-list-item "><a href="/Machine_Learning/random_forest.html" class="navigation-list-link">Random Forest</a></li></ul></li><li class="navigation-list-item"><a href="/Model_Estimation/Estimation.html" class="navigation-list-link">Model Estimation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Model_Estimation/fixed_effects_in_linear_regression.html" class="navigation-list-link">Fixed Effects in Linear Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/heckman_correction_model.html" class="navigation-list-link">Heckman Correction Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/instrumental_variables.html" class="navigation-list-link">Instrumental Variables</a></li><li class="navigation-list-item "><a href="/Model_Estimation/interaction_terms_and_polynomials.html" class="navigation-list-link">Interaction Terms and Polynomials</a></li><li class="navigation-list-item "><a href="/Model_Estimation/linear_hypothesis_tests.html" class="navigation-list-link">Linear Hypothesis Tests</a></li><li class="navigation-list-item "><a href="/Model_Estimation/linear_mixed_effects_regression.html" class="navigation-list-link">Linear Mixed-Effects Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/logit_model.html" class="navigation-list-link">Logit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/mcfaddens_choice_model.html" class="navigation-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/ordinary_least_squares.html" class="navigation-list-link">Ordinary Least Squares (Linear Regression)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/probit_model.html" class="navigation-list-link">Probit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/random_mixed_effects_estimation.html" class="navigation-list-link">Random/Mixed Effects in Linear Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/regression_discontinuity_design.html" class="navigation-list-link">Regression Discontinuity Design</a></li><li class="navigation-list-item "><a href="/Model_Estimation/Nonstandard_Errors/nonstandard_errors.html" class="navigation-list-link">Nonstandard Errors</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/bootstrap_se.html" class="navigation-list-link">Bootstrap Standard Errors</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/clustered_se.html" class="navigation-list-link">Cluster-Robust Standard Errors</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/hc_se.html" class="navigation-list-link">Heteroskedasticity-consistent standard errors</a>
+                          </li></ul></li></ul></li><li class="navigation-list-item"><a href="/Presentation/Presentation.html" class="navigation-list-link">Presentation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Presentation/formatting_graph_legends.html" class="navigation-list-link">Formatting Graph Legends</a></li><li class="navigation-list-item "><a href="/Presentation/Scatterplots.html" class="navigation-list-link">Scatterplots</a></li><li class="navigation-list-item "><a href="/Presentation/Styling_Scatterplots.html" class="navigation-list-link">Styling Scatterplots</a></li><li class="navigation-list-item "><a href="/Presentation/bar_graphs.html" class="navigation-list-link">Bar Graphs</a></li><li class="navigation-list-item "><a href="/Presentation/export_a_formatted_regression_table.html" class="navigation-list-link">Export a Formatted Regression Table</a></li><li class="navigation-list-item "><a href="/Presentation/faceted_graphs.html" class="navigation-list-link">Faceted Graphs</a></li><li class="navigation-list-item "><a href="/Presentation/heatmap_colored_correlation_matrix.html" class="navigation-list-link">Heatmap Colored Correlation Matrix</a></li><li class="navigation-list-item "><a href="/Presentation/histograms.html" class="navigation-list-link">Histograms</a></li><li class="navigation-list-item "><a href="/Presentation/line_graph_with_labels_at_the_beginning_or_end.html" class="navigation-list-link">Line Graph with Labels at the Beginning or End of Lines</a></li><li class="navigation-list-item "><a href="/Presentation/line_graphs.html" class="navigation-list-link">Line Graphs</a></li><li class="navigation-list-item "><a href="/Presentation/marginal_effects_plots_for_interactions_with_continuous_variables.html" class="navigation-list-link">Marginal Effects Plots for Interactions with Continuous Variables</a></li><li class="navigation-list-item "><a href="/Presentation/scatterplot_by_group_on_shared_axes.html" class="navigation-list-link">Scatterplot by Group on Shared Axes</a></li><li class="navigation-list-item "><a href="/Presentation/styling_line_graphs.html" class="navigation-list-link">Styling Line Graphs</a></li></ul></li><li class="navigation-list-item"><a href="/Summary_Statistics/Summary_Statistics.html" class="navigation-list-link">Summary Statistics</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Summary_Statistics/Balance_Tables.html" class="navigation-list-link">Balance Table</a></li><li class="navigation-list-item "><a href="/Summary_Statistics/Summary_Statistics_Tables.html" class="navigation-list-link">Summary Statistics Tables</a></li></ul></li><li class="navigation-list-item"><a href="/Time_Series/Time_Series.html" class="navigation-list-link">Time Series</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Time_Series/AR-models.html" class="navigation-list-link">AR Models</a></li><li class="navigation-list-item "><a href="/Time_Series/ARMA-models.html" class="navigation-list-link">ARMA Models</a></li><li class="navigation-list-item "><a href="/Time_Series/creating_time_series_dataset.html" class="navigation-list-link">Creating Time Series Dataset</a></li></ul></li><li class="navigation-list-item"><a href="/Other/Other.html" class="navigation-list-link">Other</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Other/create_a_conda_package.html" class="navigation-list-link">Create a Conda Package (Python)</a></li><li class="navigation-list-item "><a href="/Other/get_a_list_of_files.html" class="navigation-list-link">Get a List of Files</a></li><li class="navigation-list-item "><a href="/Other/import_a_foreign_data_file.html" class="navigation-list-link">Import a Foreign Data File</a></li></ul></li><li class="navigation-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="navigation-list-link">Desired Nonexistent Pages</a></li><li class="navigation-list-item"><a href="/Contributing/Contributing.html" class="navigation-list-link">Contributing</a></li></ul>
+</nav>
+      </div>
+      <footer class="site-footer">
+        <p class="text-small text-grey-dk-000 mb-4">This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.</p>
+      </footer>
+    </div>
+    <div class="main-content-wrap js-main-content" tabindex="0">
+      <div class="main-content">
+        <div class="page-header js-page-header">
+          <div class="search">
+            <div class="search-input-wrap">
+              <input type="text" class="js-search-input search-input" tabindex="0" placeholder="Search LOST" aria-label="Search LOST" autocomplete="off">
+              <svg width="14" height="14" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title><g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"/><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"/></g></svg>
+            </div>
+            <div class="js-search-results search-results-wrap"></div>
+          </div>
+            <ul class="list-style-none text-small aux-nav">
+                <li class="d-inline-block my-0"><a href="https://github.com/lost-stats/lost-stats.github.io/blob/source/Machine_Learning/boosted_regression_trees.md">Edit this page on GitHub</a></li>
+            </ul>
+        </div>
+        <div class="page">
+              <nav class="breadcrumb-nav">
+                <ol class="breadcrumb-nav-list">
+                    <li class="breadcrumb-nav-list-item"><a href="/Machine_Learning/Machine_Learning.html">Machine Learning</a></li>
+                  <li class="breadcrumb-nav-list-item"><span>Boosted Regression Trees</span></li>
+                </ol>
+              </nav>
+          <div id="main-content" class="page-content" role="main">
+              <h2 id="introduction">
+          <a href="#introduction" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Introduction
+      </h2>
+<p>Boosting is a numerical optimization technique for minimizing the loss function by adding, at each step, a new tree that best reduces (steps down the gradient of) the loss function. For Boosted Regression Trees (BRT), the first regression tree is the one that, for the selected tree size, maximally reduces the loss function.</p>
+      <h2 id="keep-in-mind">
+          <a href="#keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Keep in Mind
+      </h2>
+<p>The Boosted Trees Model is a type of additive model that makes predictions by combining decisions from a sequence of base models. More formally we can write this class of models as:</p>
+<script type="math/tex; mode=display">g(x) = f_0(x)+f_1(x)+f_2(x)+...</script>
+<p>where the final classifier $g$ is the sum of simple base classifiers $f_i$. For the boosted trees model, each base classifier is a simple decision tree. This broad technique of using multiple models to obtain better predictive performance is called model ensembling.</p>
+<p>Random forests improve upon bagged trees by decorrelating the trees. In order to decorrelate its trees, a random forest only considers a random subset of predictors when making each split (for each tree). This is compared to boosted trees, which can pass information from one to the other. We add each new tree to our model (and update our residuals). Trees are typically small—slowly improving where it struggles.</p>
+<ul>
+  <li>Check <a href="https://turi.com/learn/userguide/supervised-learning/boosted_trees_regression.html">here</a> for more help.</li>
+</ul>
+      <h2 id="also-consider">
+          <a href="#also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Also Consider
+      </h2>
+<ul>
+  <li>
+      <h2 id="there-are-non-boosted-approaches-to-decision-trees-which-can-be-found-at-decision-trees-and-random-forest">
+          <a href="#there-are-non-boosted-approaches-to-decision-trees-which-can-be-found-at-decision-trees-and-random-forest" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> There are non-boosted approaches to decision trees, which can be found at <a href="https://lost-stats.github.io/Machine_Learning/decision_trees.html">Decision Trees</a> and <a href="https://lost-stats.github.io/Machine_Learning/random_forest.html">Random Forest</a>.
+      </h2>
+  </li>
+</ul>
+      <h1 id="implementations">
+          <a href="#implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Implementations
+      </h1>
+      <h2 id="r">
+          <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
+      </h2>
+<p>Boosted trees can be produced using the <strong>gbm</strong> package</p>
+<p>Boosting has three tuning parameters.</p>
+<ol>
+  <li>The number of trees <code class="highlighter-rouge">B</code> (important to prevent overfitting)</li>
+  <li>The shrinkage parameter <code class="highlighter-rouge">lambda</code> (controls boosting’s learning rate
+    <ul>
+      <li>often 0.01 or 0.001)</li>
+    </ul>
+  </li>
+  <li>The number of splits in each tree (the tree’s complexity)</li>
+</ol>
+<p>data from:https://www.kaggle.com/kondla/carinsurance</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Load necessary packages and set the seed</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">pacman</span><span class="p">)</span><span class="w">
+</span><span class="n">p_load</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">,</span><span class="n">janitor</span><span class="p">,</span><span class="w"> </span><span class="n">caret</span><span class="p">,</span><span class="w"> </span><span class="n">glmnet</span><span class="p">,</span><span class="w"> </span><span class="n">magrittr</span><span class="p">,</span><span class="w"> 
+       </span><span class="n">dummies</span><span class="p">,</span><span class="w"> </span><span class="n">janitor</span><span class="p">,</span><span class="w"> </span><span class="n">rpart.plot</span><span class="p">,</span><span class="w"> </span><span class="n">e1071</span><span class="p">,</span><span class="w"> </span><span class="n">dplyr</span><span class="p">,</span><span class="w"> </span><span class="n">caTools</span><span class="p">,</span><span class="w"> </span><span class="n">naniar</span><span class="p">,</span><span class="w">
+       </span><span class="n">forcats</span><span class="p">,</span><span class="w"> </span><span class="n">ggplot2</span><span class="p">,</span><span class="w"> </span><span class="n">MASS</span><span class="p">,</span><span class="n">creshape</span><span class="p">,</span><span class="w"> </span><span class="n">pROC</span><span class="p">,</span><span class="n">ROCR</span><span class="p">,</span><span class="n">readr</span><span class="p">,</span><span class="w"> </span><span class="n">gbm</span><span class="p">)</span><span class="w">
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">101</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Load in data</span><span class="w">
+</span><span class="n">carInsurance_train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Machine_Learning/Data/carInsurance_train.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">carInsurance_train</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Produce a training and a testing subset of the data</span><span class="w">
+</span><span class="n">sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sample.split</span><span class="p">(</span><span class="n">carInsurance_train</span><span class="o">$</span><span class="n">Id</span><span class="p">,</span><span class="w"> </span><span class="n">SplitRatio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">.8</span><span class="p">)</span><span class="w">
+</span><span class="n">train</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">subset</span><span class="p">(</span><span class="n">carInsurance_train</span><span class="p">,</span><span class="w"> </span><span class="n">sample</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">test</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">subset</span><span class="p">(</span><span class="n">carInsurance_train</span><span class="p">,</span><span class="w"> </span><span class="n">sample</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span><span class="n">total</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">train</span><span class="w"> </span><span class="p">,</span><span class="n">test</span><span class="p">)</span><span class="w">
+</span><span class="n">gg_miss_upset</span><span class="p">(</span><span class="n">total</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p>Step 1: Produce dummies as appropriate</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">total</span><span class="o">$</span><span class="n">CallStart</span><span class="o">&lt;-</span><span class="nf">as.character</span><span class="p">(</span><span class="n">total</span><span class="o">$</span><span class="n">CallStart</span><span class="p">)</span><span class="w">
+
+</span><span class="n">total</span><span class="o">$</span><span class="n">CallStart</span><span class="o">&lt;-</span><span class="n">strptime</span><span class="p">(</span><span class="n">total</span><span class="o">$</span><span class="n">CallStart</span><span class="p">,</span><span class="n">format</span><span class="o">=</span><span class="s2">" %H:%M:%S"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">total</span><span class="o">$</span><span class="n">CallEnd</span><span class="o">&lt;-</span><span class="nf">as.character</span><span class="p">(</span><span class="n">total</span><span class="o">$</span><span class="n">CallEnd</span><span class="p">)</span><span class="w">
+
+</span><span class="n">total</span><span class="o">$</span><span class="n">CallEnd</span><span class="o">&lt;-</span><span class="n">strptime</span><span class="p">(</span><span class="n">total</span><span class="o">$</span><span class="n">CallEnd</span><span class="p">,</span><span class="n">format</span><span class="o">=</span><span class="s2">" %H:%M:%S"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">total</span><span class="o">$</span><span class="n">averagetimecall</span><span class="o">&lt;-</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">as.POSIXct</span><span class="p">(</span><span class="n">total</span><span class="o">$</span><span class="n">CallEnd</span><span class="p">)</span><span class="o">-</span><span class="n">as.POSIXct</span><span class="p">(</span><span class="n">total</span><span class="o">$</span><span class="n">CallStart</span><span class="p">),</span><span class="n">units</span><span class="o">=</span><span class="s2">"secs"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">time</span><span class="o">&lt;-</span><span class="n">mean</span><span class="p">(</span><span class="n">total</span><span class="o">$</span><span class="n">averagetimecall</span><span class="p">,</span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p>Produce dummy variables as appropriate</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">total_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dummy.data.frame</span><span class="p">(</span><span class="n">total</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+                                </span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="o">-</span><span class="n">CallStart</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">CallEnd</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">Id</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">Outcome</span><span class="p">))</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">total_df</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p>Fill in missing values</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">total_df</span><span class="o">$</span><span class="n">Job</span><span class="p">[</span><span class="nf">is.na</span><span class="p">(</span><span class="n">total_df</span><span class="o">$</span><span class="n">Job</span><span class="p">)]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"management"</span><span class="w">
+</span><span class="n">total_df</span><span class="o">$</span><span class="n">Education</span><span class="w"> </span><span class="p">[</span><span class="nf">is.na</span><span class="p">(</span><span class="n">total_df</span><span class="o">$</span><span class="n">Education</span><span class="p">)]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"secondary"</span><span class="w">
+</span><span class="n">total_df</span><span class="o">$</span><span class="n">Marital</span><span class="p">[</span><span class="nf">is.na</span><span class="p">(</span><span class="n">total_df</span><span class="o">$</span><span class="n">Marital</span><span class="p">)]</span><span class="w"> </span><span class="o">&lt;-</span><span class="s2">"married"</span><span class="w">
+</span><span class="n">total_df</span><span class="o">$</span><span class="n">Communication</span><span class="p">[</span><span class="nf">is.na</span><span class="p">(</span><span class="n">total_df</span><span class="o">$</span><span class="n">Communication</span><span class="p">)]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"cellular"</span><span class="w">
+</span><span class="n">total_df</span><span class="o">$</span><span class="n">LastContactMonth</span><span class="p">[</span><span class="nf">is.na</span><span class="p">(</span><span class="n">total_df</span><span class="o">$</span><span class="n">LastContactMonth</span><span class="p">)]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"may"</span><span class="w">
+</span></code></pre></div></div>
+<p>Step 2: Preprocess data with median imputation and a central scaling</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">clean_new</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">preProcess</span><span class="p">(</span><span class="w">
+  </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">total_df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="o">-</span><span class="n">CarInsurance</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">as.matrix</span><span class="p">(),</span><span class="w">
+  </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'medianImpute'</span><span class="p">)</span><span class="w">
+</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">total_df</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p>Step 3: Divide the data into testing and training data</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">trainclean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">head</span><span class="p">(</span><span class="n">clean_new</span><span class="p">,</span><span class="w"> </span><span class="m">3200</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">()</span><span class="w">
+</span><span class="n">testclean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tail</span><span class="p">(</span><span class="n">clean_new</span><span class="p">,</span><span class="w"> </span><span class="m">800</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">()</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">trainclean</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p>Step 4: Parameters</p>
+<p><strong>gbm</strong> needs the three standard parameters of boosted trees—plus one more:</p>
+<ul>
+  <li><code class="highlighter-rouge">n.trees</code>, the number of trees</li>
+  <li><code class="highlighter-rouge">interaction.depth</code>, trees’ depth (max. splits from top)</li>
+  <li><code class="highlighter-rouge">shrinkage</code>, the learning rate</li>
+  <li><code class="highlighter-rouge">n.minobsinnode</code>, minimum observations in a terminal node</li>
+</ul>
+<p>Step 5: Train the boosted regression tree</p>
+<p>Notice that <code class="highlighter-rouge">trControl</code> is being set to select parameters using five-fold cross-validation (<code class="highlighter-rouge">"cv"</code>).</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">carinsurance_boost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train</span><span class="p">(</span><span class="w">
+  </span><span class="n">factor</span><span class="p">(</span><span class="n">CarInsurance</span><span class="p">)</span><span class="o">~</span><span class="n">.</span><span class="p">,</span><span class="w">
+  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trainclean</span><span class="p">,</span><span class="w">
+  </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gbm"</span><span class="p">,</span><span class="w">
+  </span><span class="n">trControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trainControl</span><span class="p">(</span><span class="w">
+    </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"cv"</span><span class="p">,</span><span class="w">
+    </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="w">
+  </span><span class="p">),</span><span class="w">
+  </span><span class="n">tuneGrid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">expand.grid</span><span class="p">(</span><span class="w">
+    </span><span class="s2">"n.trees"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seq</span><span class="p">(</span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">25</span><span class="p">),</span><span class="w">
+    </span><span class="s2">"interaction.depth"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"shrinkage"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="m">0.001</span><span class="p">),</span><span class="w">
+    </span><span class="s2">"n.minobsinnode"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">)</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
