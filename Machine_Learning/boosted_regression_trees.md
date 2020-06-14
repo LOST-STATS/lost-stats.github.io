@@ -52,7 +52,7 @@ p_load(tidyverse,janitor, caret, glmnet, magrittr,
 set.seed(101) 
 
 # Load in data
-carInsurance_train <- read_csv("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Machine_Learning/Data/carInsurance_train.csv")
+carInsurance_train <- read_csv("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Machine_Learning/Data/boosted_regression_trees/carInsurance_train.csv")
 summary(carInsurance_train)
 
 # Produce a training and a testing subset of the data

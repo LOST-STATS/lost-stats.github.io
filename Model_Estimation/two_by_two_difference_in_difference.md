@@ -1,6 +1,6 @@
 ---
 title: 2x2 Difference in Difference 
-parent: Category
+parent: Model Estimation
 has_children: false
 nav_order: 1
 mathjax: true ## Switch to false if this page has no equations or other math rendering.
@@ -39,19 +39,21 @@ library(readr)
 library(tidyverse)
 library(broom)
 library(here)
-DiD <- read_csv(here("Data/DiD_crime.csv"))
+DiD <- read_csv(here("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Two_by_Two_Difference_in_Difference/did_crime.csv"))
 ```
 
 Step 2:
 
-Secondly, we create the indicator variable called `after` to indicate whether it is after the year of 2014 (1), or between 2010-2013 (0). The variable `treat` indicates that the state legalizes marijuana in 2014. Notice that `treat = 1` in these states even before 2014.
+Notice that the data has already been collapsed to the treated-year level. That is, there is one observation of the murder rate for each year for the treated states (all averaged together), and one observation of the murder rate for each year for the untreated states (all averaged together).
+
+We create the indicator variable called `after` to indicate whether it is in the treated period of being after the year of 2014 (1), or the before period of between 2000-2013 (0). The variable `treat` indicates that the state legalizes marijuana in 2014. Notice that `treat = 1` in these states even before 2014.
 
 If the year is after 2014 **and** the state decided to legalize marijuana, the indicator variable "treatafter" is "1" .
 
 ```{r}
-DiD <- mutate(DiD, after = year >= 2014,
-                   treat = year>=2010 & year<=2013) %>%
-       mutate(treatafter = after*treat)
+DiD <- DiD %>% 
+		mutate(after = year >= 2014) %>%
+        mutate(treatafter = after*treat)
 ```
 
 Step 3:
@@ -59,7 +61,7 @@ Step 3:
 Then we need to plot the graph to visualize the impact of legalize marijuana on murder rate by using `ggplot`.
 
 ```{r}
-mt <-ggplot(DiD,aes(x=year, y=murder, color = treat)) +
+mt <- ggplot(DiD,aes(x=year, y=murder, color = treat)) +
         geom_point(size=3)+geom_line() + 
         geom_vline(xintercept=2014,lty=4) + 
         labs(title="Murder and Time", x="Year", y="Murder Rate")
