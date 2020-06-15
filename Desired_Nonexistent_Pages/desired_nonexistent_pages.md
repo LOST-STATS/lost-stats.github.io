@@ -19,7 +19,7 @@ If you create one of these pages, please remove it from this list.
 ## Model Estimation
 
 * Nonlinear Instrumental Variables Estimation
-* Differences in Differences
+* Differences in Differences with treatment rollout (use updated methods!)
 * Propensity Score Matching
 * Event Study Estimation
 * Nonparametric regression
@@ -54,12 +54,10 @@ If you create one of these pages, please remove it from this list.
 * A-B Testing
 * Artificial Neural Networks
 * Nearest Neighbors Matching
-* Boosted Regression
 
 ## Presentation
 
 * Marginal Effects Plots for Discrete Variables
-* Density plots
 * Histograms
 * Graph themes
 
