@@ -26,7 +26,7 @@ Difference-in-difference makes use of a treatment that was applied to one group 
 - This page discusses "2x2" difference-in-difference design, meaning there are two groups, and treatment occurs at a single point in time. Many difference-in-difference applications instead use many groups, and treatments that are implemented at different times (a "rollout" design). Traditionally these models have been estimated using fixed effects for group and time period, i.e. ["two-way" fixed effects](https://lost-stats.github.io/Model_Estimation/fixed_effects_in_linear_regression.html). However, this approach with difference-in-difference can heavily bias results if treatment effects differ across groups, and alternate estimators are preferred. See [Goodman-Bacon 2018](https://www.nber.org/papers/w25018) and [Callaway and Sant'anna 2019](https://papers.ssrn.com/sol3/Papers.cfm?abstract_id=3148250).
 
 
-# IMPLEMENTSTIONS
+# IMPLEMENTATIONS
 
 ## R
 
