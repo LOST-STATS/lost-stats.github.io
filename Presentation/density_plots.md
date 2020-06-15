@@ -1,5 +1,5 @@
 ---
-title: "Denisty Plots"
+title: "Density Plots"
 parent: Presentation
 has_children: false
 nav_order: 1
@@ -81,4 +81,4 @@ ggplot(data=diamonds, aes(x=price,fill=cut)) +
                  alpha=.3)
 ```
 ![multiple](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Images/density_plot/5.png)
-:)
+:
