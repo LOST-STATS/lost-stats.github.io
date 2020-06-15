@@ -19,7 +19,7 @@ Difference-in-difference makes use of a treatment that was applied to one group 
 ## KEEP IN MIND
 
 - For Difference-in-differences to work, *parallel trends* must hold. That is, *nothing else should be changing the gap between treated and control states at the same time as the treatment*. While it is not a formal test of parallel trends, researchers often look at whether the gap between treated and control states is constant in pre-treatment years.
-- Suppose in $t = 0$ ("Pre-period"),  and $t = 1$ ("Post-period"). We want to estimate $\tau = Post - Pre$, or $Y(post)-Y(pre)= Y(t=1)-Y(t=0)=\tau$.
+- Suppose in $$t = 0$$ ("Pre-period"),  and $$t = 1$$ ("Post-period"). We want to estimate $$\tau = Post - Pre$$, or $$Y(post)-Y(pre)= Y(t=1)-Y(t=0)=\tau$$.
 
 ## ALSO CONSIDER 
 
