@@ -144,7 +144,7 @@
         </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Murder and Time"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="s2">"Year"</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="s2">"Murder Rate"</span><span class="p">)</span><span class="w">
 </span><span class="n">mt</span><span class="w">
 </span></code></pre></div></div>
-<p><img src="https://github.com/zuzhangjin/lost-stats.github.io/blob/source/Model_Estimation/Images/dif%20in%20dif.jpg" alt="Diff-in-Diff" /></p>
+<p><img src="https://github.com/LOST-STATS/lost-stats.github.io/blob/source/Model_Estimation/Images/Two_by_Two_Difference_in_Difference/difindif.jpg" alt="Diff-in-Diff" /></p>
 <p>It looks like, before the legalization occurred, murder rates in treated and untreated states were very similar, lending plausibility to the parallel trends assumption.</p>
 <p>Step 4:</p>
 <p>We need to measure the impact of impact of legalize marijuana. If we include <code class="highlighter-rouge">treat</code>, <code class="highlighter-rouge">after</code>, and <code class="highlighter-rouge">treatafter</code> in a regression, the coefficient on <code class="highlighter-rouge">treatafter</code> can be interpreted as “how much bigger was the before-after difference for the treated group?” which is the DiD estimate.</p>
