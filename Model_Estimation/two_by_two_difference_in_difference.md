@@ -35,11 +35,11 @@ In this case, we need to discover whether legalized marijuana could change the m
 Step 1:
 * First of all, we need to load Data and Package, we call this data set "DiD".
 ```r
-library(readr)
 library(tidyverse)
 library(broom)
 library(here)
-DiD <- read_csv(here("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Two_by_Two_Difference_in_Difference/did_crime.csv"))
+library(readxl)
+DiD <- read_excel("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Two_by_Two_Difference_in_Difference/did_crime.xlsx"))
 ```
 
 Step 2:
