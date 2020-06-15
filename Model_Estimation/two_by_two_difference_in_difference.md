@@ -67,7 +67,7 @@ mt <- ggplot(DiD,aes(x=year, y=murder, color = treat)) +
         labs(title="Murder and Time", x="Year", y="Murder Rate")
 mt
 ```
-![Diff-in-Diff](https://github.com/LOST-STATS/lost-stats.github.io/blob/source/Model_Estimation/Images/Two_by_Two_Difference_in_Difference/difindif.jpg)
+![Diff-in-Diff](Images/Two_by_Two_Difference_in_Difference/difindif.jpg)
 
 It looks like, before the legalization occurred, murder rates in treated and untreated states were very similar, lending plausibility to the parallel trends assumption.
 
