@@ -34,7 +34,7 @@ In this case, we need to discover whether legalized marijuana could change the m
 
 Step 1:
 * First of all, we need to load Data and Package, we call this data set "DiD".
-```{r}
+```r
 library(readr)
 library(tidyverse)
 library(broom)
@@ -50,7 +50,7 @@ We create the indicator variable called `after` to indicate whether it is in the
 
 If the year is after 2014 **and** the state decided to legalize marijuana, the indicator variable "treatafter" is "1" .
 
-```{r}
+```r
 DiD <- DiD %>% 
 		mutate(after = year >= 2014) %>%
         mutate(treatafter = after*treat)
@@ -60,7 +60,7 @@ Step 3:
 
 Then we need to plot the graph to visualize the impact of legalize marijuana on murder rate by using `ggplot`.
 
-```{r}
+```r
 mt <- ggplot(DiD,aes(x=year, y=murder, color = treat)) +
         geom_point(size=3)+geom_line() + 
         geom_vline(xintercept=2014,lty=4) + 
@@ -75,7 +75,7 @@ Step 4:
 
 We need to measure the impact of impact of legalize marijuana. If we include `treat`, `after`, and `treatafter` in a regression, the coefficient on `treatafter` can be interpreted as "how much bigger was the before-after difference for the treated group?" which is the DiD estimate. 
 
-```{r}
+```r
 reg<-lm(murder ~ treat+treatafter+after, data = DiD)
 summary(reg)
 ```
