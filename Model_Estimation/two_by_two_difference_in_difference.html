@@ -102,7 +102,7 @@
       </h2>
 <ul>
   <li>For Difference-in-differences to work, <em>parallel trends</em> must hold. That is, <em>nothing else should be changing the gap between treated and control states at the same time as the treatment</em>. While it is not a formal test of parallel trends, researchers often look at whether the gap between treated and control states is constant in pre-treatment years.</li>
-  <li>Suppose in $t = 0$ (“Pre-period”),  and $t = 1$ (“Post-period”). We want to estimate $\tau = Post - Pre$, or $Y(post)-Y(pre)= Y(t=1)-Y(t=0)=\tau$.</li>
+  <li>Suppose in <script type="math/tex">t = 0</script> (“Pre-period”),  and <script type="math/tex">t = 1</script> (“Post-period”). We want to estimate <script type="math/tex">\tau = Post - Pre</script>, or <script type="math/tex">Y(post)-Y(pre)= Y(t=1)-Y(t=0)=\tau</script>.</li>
 </ul>
       <h2 id="also-consider">
           <a href="#also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> ALSO CONSIDER
@@ -110,8 +110,8 @@
 <ul>
   <li>This page discusses “2x2” difference-in-difference design, meaning there are two groups, and treatment occurs at a single point in time. Many difference-in-difference applications instead use many groups, and treatments that are implemented at different times (a “rollout” design). Traditionally these models have been estimated using fixed effects for group and time period, i.e. <a href="https://lost-stats.github.io/Model_Estimation/fixed_effects_in_linear_regression.html">“two-way” fixed effects</a>. However, this approach with difference-in-difference can heavily bias results if treatment effects differ across groups, and alternate estimators are preferred. See <a href="https://www.nber.org/papers/w25018">Goodman-Bacon 2018</a> and <a href="https://papers.ssrn.com/sol3/Papers.cfm?abstract_id=3148250">Callaway and Sant’anna 2019</a>.</li>
 </ul>
-      <h1 id="implementstions">
-          <a href="#implementstions" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> IMPLEMENTSTIONS
+      <h1 id="implementations">
+          <a href="#implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> IMPLEMENTATIONS
       </h1>
       <h2 id="r">
           <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
@@ -120,34 +120,37 @@
 <p>Step 1:</p>
 <ul>
   <li>First of all, we need to load Data and Package, we call this data set “DiD”.
-    <pre><code class="language-{r}">library(readr)
-library(tidyverse)
-library(broom)
-library(here)
-DiD &lt;- read_csv(here("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Two_by_Two_Difference_in_Difference/did_crime.csv"))
-</code></pre>
+    <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">readr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">broom</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">here</span><span class="p">)</span><span class="w">
+</span><span class="n">DiD</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_csv</span><span class="p">(</span><span class="n">here</span><span class="p">(</span><span class="s2">"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Two_by_Two_Difference_in_Difference/did_crime.csv"</span><span class="p">))</span><span class="w">
+</span></code></pre></div>    </div>
   </li>
 </ul>
 <p>Step 2:</p>
 <p>Notice that the data has already been collapsed to the treated-year level. That is, there is one observation of the murder rate for each year for the treated states (all averaged together), and one observation of the murder rate for each year for the untreated states (all averaged together).</p>
 <p>We create the indicator variable called <code class="highlighter-rouge">after</code> to indicate whether it is in the treated period of being after the year of 2014 (1), or the before period of between 2000-2013 (0). The variable <code class="highlighter-rouge">treat</code> indicates that the state legalizes marijuana in 2014. Notice that <code class="highlighter-rouge">treat = 1</code> in these states even before 2014.</p>
-<p>If the year is after 2014 <strong>and</strong> the state decided to legalize marijuana, the indicator variable “treatafter” is “1” .</p><pre><code class="language-{r}">DiD &lt;- DiD %&gt;% 
-		mutate(after = year &gt;= 2014) %&gt;%
-        mutate(treatafter = after*treat)
-</code></pre>
+<p>If the year is after 2014 <strong>and</strong> the state decided to legalize marijuana, the indicator variable “treatafter” is “1” .</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">DiD</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">DiD</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+		</span><span class="n">mutate</span><span class="p">(</span><span class="n">after</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">2014</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+        </span><span class="n">mutate</span><span class="p">(</span><span class="n">treatafter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">after</span><span class="o">*</span><span class="n">treat</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
 <p>Step 3:</p>
-<p>Then we need to plot the graph to visualize the impact of legalize marijuana on murder rate by using <code class="highlighter-rouge">ggplot</code>.</p><pre><code class="language-{r}">mt &lt;- ggplot(DiD,aes(x=year, y=murder, color = treat)) +
-        geom_point(size=3)+geom_line() + 
-        geom_vline(xintercept=2014,lty=4) + 
-        labs(title="Murder and Time", x="Year", y="Murder Rate")
-mt
-</code></pre>
+<p>Then we need to plot the graph to visualize the impact of legalize marijuana on murder rate by using <code class="highlighter-rouge">ggplot</code>.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mt</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">DiD</span><span class="p">,</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">murder</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">treat</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+        </span><span class="n">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">3</span><span class="p">)</span><span class="o">+</span><span class="n">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+        </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="o">=</span><span class="m">2014</span><span class="p">,</span><span class="n">lty</span><span class="o">=</span><span class="m">4</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+        </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Murder and Time"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="s2">"Year"</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="s2">"Murder Rate"</span><span class="p">)</span><span class="w">
+</span><span class="n">mt</span><span class="w">
+</span></code></pre></div></div>
 <p><img src="https://github.com/zuzhangjin/lost-stats.github.io/blob/source/Model_Estimation/Images/dif%20in%20dif.jpg" alt="Diff-in-Diff" /></p>
 <p>It looks like, before the legalization occurred, murder rates in treated and untreated states were very similar, lending plausibility to the parallel trends assumption.</p>
 <p>Step 4:</p>
-<p>We need to measure the impact of impact of legalize marijuana. If we include <code class="highlighter-rouge">treat</code>, <code class="highlighter-rouge">after</code>, and <code class="highlighter-rouge">treatafter</code> in a regression, the coefficient on <code class="highlighter-rouge">treatafter</code> can be interpreted as “how much bigger was the before-after difference for the treated group?” which is the DiD estimate.</p><pre><code class="language-{r}">reg&lt;-lm(murder ~ treat+treatafter+after, data = DiD)
-summary(reg)
-</code></pre>
+<p>We need to measure the impact of impact of legalize marijuana. If we include <code class="highlighter-rouge">treat</code>, <code class="highlighter-rouge">after</code>, and <code class="highlighter-rouge">treatafter</code> in a regression, the coefficient on <code class="highlighter-rouge">treatafter</code> can be interpreted as “how much bigger was the before-after difference for the treated group?” which is the DiD estimate.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">reg</span><span class="o">&lt;-</span><span class="n">lm</span><span class="p">(</span><span class="n">murder</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">treat</span><span class="o">+</span><span class="n">treatafter</span><span class="o">+</span><span class="n">after</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DiD</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
 <p>After legalization, the murder rate dropped by 0.3% more in treated than untreated states, suggesting that legalization reduced the murder rate.</p>
         </div>
       </div>
