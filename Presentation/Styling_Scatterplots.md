@@ -37,7 +37,7 @@ For this R demonstration, we will introduce how to use **ggplot2** package to cr
 * Before we create the scatterplots, we need to make sure that we install and library all the packages we need.
 Using the function `p_load()` in the **pacman** package is able to allow us to install and library all the packages we need at once time. 
 
-```{r,message=FALSE}
+```r
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(ggplot2,viridis,dplyr, RColorBrewer,tidyverse,ggthemes,ggpubr)
 ```
@@ -53,7 +53,7 @@ Let's start with the basic scatterplot. Say we want to check the relationship be
 
 If you have questions about how to use `ggplot` and `aes`, check [Here](https://lost-stats.github.io/Presentation/bar_graphs.html) for more help.
 
-```{r}
+```r
 ggplot(data = iris, aes(
   ## Put Sepal.Length on the x-axis, Sepal.Width on the y-axis
   x=Sepal.Length, y=Sepal.Width))+
@@ -75,7 +75,7 @@ Notice that attributes set *outside* of `aes()` apply to *all* points (like `siz
 
   We can distinguish the `Species` by `alpha` (transparency). 
 
-```{r,warning=FALSE}
+```r
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
                  ## Where transparency comes in
                  alpha=Species)) + 
@@ -89,7 +89,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
 `shape` is also a common way to help us to see relationship between two variables within different groups. Additionally, you can always change the shape of the points. Check [here](https://www.datanovia.com/en/blog/ggplot-point-shapes-best-tips/) for more ideas. 
 
   
-```{r}
+```r
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
                  ## Where shape comes in
                  shape=Species)) + 
@@ -103,7 +103,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
 
  `size` is a great option that we can take a look at as well. However, note that `size` will work better with continuous variables.
 
-```{r,warning=FALSE}
+```r
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
                  ## Where size comes in 
                  size=Species)) + 
@@ -116,7 +116,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
 
 Last but not least, let's `color` these points depends on the variable `Species` in the `iris` dataset.
 
-```{r}
+```r
 ## First, we need to make sure that 'Species' is a factor variable 
 ## class(iris$Species)
 
@@ -137,7 +137,7 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width,
     * If you do not like the default colors in the ggplot2, there are a couple of ways to change that.The **RColorBrewer**package will definitely help. If you want to know more about **RColorBrewer** package,see [here](https://ggplot2.tidyverse.org/reference/scale_brewer.html). Additionally,the **viridis** package is also very helpful to change the default colors. For more information of the **viridis** package, check [here](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html).
     * If you do not like all the options that the  **RColorBrewer** and **viridis** packages provide, see [here](http://www.sthda.com/english/wiki/ggplot2-colors-how-to-change-colors-automatically-and-manually) to work with color in the **ggplot2** package.
 
-```{r}
+```r
 ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
   geom_point()+
   ## Where RColorBrewer package comes in
@@ -168,7 +168,7 @@ The next step that we can do is to figure out what the most fittable themes to m
   
 In fact, **ggplot2** package has many cool themes available alreay such as `theme_classic()`, `theme_minimal()` and `theme_bw()`. Another famous theme is the dark theme: `theme_dark()`. Let's check out some of them. 
   
-```{r}
+```r
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
                  col=Species,
                  shape=Species)) + 
@@ -184,7 +184,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
 
 `ggthemes` package is also worth to check out for working any plots (maps,time-series data, and any other plots) that you are working on. `theme_gdocs()`, `theme_tufte()`, and `theme_calc()` all work very well. See [here](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/) to get more cool themes. 
 
-```{r}
+```r
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
                  col=Species,
                  shape=Species)) + 
@@ -209,7 +209,7 @@ It is time to label all the useful information to make the plot be clear to your
 Both `labs()` and `ggtitle()` are great tools to deal with labelling information. In the following code, we provide the example how to use `labs()` to label the all the things that we need. Take a look [here](https://www.r-graph-gallery.com/289-control-ggplot2-title.html) if you want to learn how to use `ggtitle()`.
   
 
-```{r}
+```r
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
                  col=Species,
                  shape=Species)) + 
@@ -234,7 +234,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
 
 After the basic labelling, we want to make them nicer by playing around the postion and appearance (text size, color and faces).
   
-```{r}
+```r
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
                  col=Species,
                  shape=Species)) + 
@@ -267,7 +267,7 @@ After done with step 4, you should end with a very neat and unquie plot. Let's e
 
  According to the plot, it seems like there exists a linear relationship between sepal length and sepal width. Thus, let's add a linear trend to our scattplot to help readers see the pattern more directly using `geom_smooth()`. Note that the `method` argument in `geom_smooth()` allows to apply different smoothing method like glm, loess and more. See the [doc](https://ggplot2.tidyverse.org/reference/geom_smooth.html) for more.
   
-```{r,message=FALSE}
+```r
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
                  col=Species,
                  shape=Species)) + 
