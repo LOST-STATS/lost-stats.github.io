@@ -122,9 +122,10 @@
 <ul>
   <li>Before we create the scatterplots, we need to make sure that we install and library all the packages we need.
 Using the function <code class="highlighter-rouge">p_load()</code> in the <strong>pacman</strong> package is able to allow us to install and library all the packages we need at once time.</li>
-</ul><pre><code class="language-{r,message=FALSE}">if (!require("pacman")) install.packages("pacman")
-pacman::p_load(ggplot2,viridis,dplyr, RColorBrewer,tidyverse,ggthemes,ggpubr)
-</code></pre>
+</ul>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">require</span><span class="p">(</span><span class="s2">"pacman"</span><span class="p">))</span><span class="w"> </span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"pacman"</span><span class="p">)</span><span class="w">
+</span><span class="n">pacman</span><span class="o">::</span><span class="n">p_load</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">,</span><span class="n">viridis</span><span class="p">,</span><span class="n">dplyr</span><span class="p">,</span><span class="w"> </span><span class="n">RColorBrewer</span><span class="p">,</span><span class="n">tidyverse</span><span class="p">,</span><span class="n">ggthemes</span><span class="p">,</span><span class="n">ggpubr</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
       <h3 id="step-1-basic-scatterplot">
           <a href="#step-1-basic-scatterplot" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Step 1: Basic Scatterplot
       </h3>
@@ -134,12 +135,13 @@ pacman::p_load(ggplot2,viridis,dplyr, RColorBrewer,tidyverse,ggthemes,ggpubr)
   <li>Step2: tell which variable to show on x and y axis</li>
   <li>Step3: add a <code class="highlighter-rouge">geom_point()</code> in order to show the points</li>
 </ul>
-<p>If you have questions about how to use <code class="highlighter-rouge">ggplot</code> and <code class="highlighter-rouge">aes</code>, check <a href="https://lost-stats.github.io/Presentation/bar_graphs.html">Here</a> for more help.</p><pre><code class="language-{r}">ggplot(data = iris, aes(
-  ## Put Sepal.Length on the x-axis, Sepal.Width on the y-axis
-  x=Sepal.Length, y=Sepal.Width))+
-  ## Make it a scatterplot with geom_point()
-  geom_point()
-</code></pre>
+<p>If you have questions about how to use <code class="highlighter-rouge">ggplot</code> and <code class="highlighter-rouge">aes</code>, check <a href="https://lost-stats.github.io/Presentation/bar_graphs.html">Here</a> for more help.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="w">
+  </span><span class="c1">## Put Sepal.Length on the x-axis, Sepal.Width on the y-axis</span><span class="w">
+  </span><span class="n">x</span><span class="o">=</span><span class="n">Sepal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">Sepal.Width</span><span class="p">))</span><span class="o">+</span><span class="w">
+  </span><span class="c1">## Make it a scatterplot with geom_point()</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
 <p><img src="/Presentation/Images/Styling_Scatterplots/R_basic_plot.png" alt="Basic Scatterplot" /></p>
       <h3 id="step-2-map-a-variable-to-marker-feature">
           <a href="#step-2-map-a-variable-to-marker-feature" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Step 2: Map a variable to marker feature
@@ -149,46 +151,50 @@ pacman::p_load(ggplot2,viridis,dplyr, RColorBrewer,tidyverse,ggthemes,ggpubr)
       <h4 id="-transparency-">
           <a href="#-transparency-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Transparency</strong> </span>
       </h4>
-<p>We can distinguish the <code class="highlighter-rouge">Species</code> by <code class="highlighter-rouge">alpha</code> (transparency).</p><pre><code class="language-{r,warning=FALSE}">ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
-                 ## Where transparency comes in
-                 alpha=Species)) + 
-    geom_point(size =4, color="seagreen") 
-</code></pre>
+<p>We can distinguish the <code class="highlighter-rouge">Species</code> by <code class="highlighter-rouge">alpha</code> (transparency).</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Sepal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">Sepal.Width</span><span class="p">,</span><span class="w"> 
+                 </span><span class="c1">## Where transparency comes in</span><span class="w">
+                 </span><span class="n">alpha</span><span class="o">=</span><span class="n">Species</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">geom_point</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="s2">"seagreen"</span><span class="p">)</span><span class="w"> 
+</span></code></pre></div></div>
 <p><img src="/Presentation/Images/Styling_Scatterplots/R_transparency.png" alt="Scatterplot with Transparency" /></p>
       <h4 id="-shape-">
           <a href="#-shape-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Shape</strong> </span>
       </h4>
-<p><code class="highlighter-rouge">shape</code> is also a common way to help us to see relationship between two variables within different groups. Additionally, you can always change the shape of the points. Check <a href="https://www.datanovia.com/en/blog/ggplot-point-shapes-best-tips/">here</a> for more ideas.</p><pre><code class="language-{r}">ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
-                 ## Where shape comes in
-                 shape=Species)) + 
-    geom_point(size = 4,color="orange") 
-</code></pre>
+<p><code class="highlighter-rouge">shape</code> is also a common way to help us to see relationship between two variables within different groups. Additionally, you can always change the shape of the points. Check <a href="https://www.datanovia.com/en/blog/ggplot-point-shapes-best-tips/">here</a> for more ideas.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Sepal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">Sepal.Width</span><span class="p">,</span><span class="w"> 
+                 </span><span class="c1">## Where shape comes in</span><span class="w">
+                 </span><span class="n">shape</span><span class="o">=</span><span class="n">Species</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">geom_point</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">"orange"</span><span class="p">)</span><span class="w"> 
+</span></code></pre></div></div>
 <p><img src="/Presentation/Images/Styling_Scatterplots/R_shape.png" alt="Scatterplot with Different Shapes" /></p>
       <h4 id="-size-">
           <a href="#-size-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Size</strong> </span>
       </h4>
-<p><code class="highlighter-rouge">size</code> is a great option that we can take a look at as well. However, note that <code class="highlighter-rouge">size</code> will work better with continuous variables.</p><pre><code class="language-{r,warning=FALSE}">ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
-                 ## Where size comes in 
-                 size=Species)) + 
-    geom_point(shape = 18, color = "#FC4E07") 
-</code></pre>
+<p><code class="highlighter-rouge">size</code> is a great option that we can take a look at as well. However, note that <code class="highlighter-rouge">size</code> will work better with continuous variables.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Sepal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">Sepal.Width</span><span class="p">,</span><span class="w"> 
+                 </span><span class="c1">## Where size comes in </span><span class="w">
+                 </span><span class="n">size</span><span class="o">=</span><span class="n">Species</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">geom_point</span><span class="p">(</span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#FC4E07"</span><span class="p">)</span><span class="w"> 
+</span></code></pre></div></div>
 <p><img src="/Presentation/Images/Styling_Scatterplots/R_size.png" alt="Scatterplot With Different Sizes" /></p>
       <h4 id="-color-">
           <a href="#-color-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Color</strong> </span>
       </h4>
-<p>Last but not least, let’s <code class="highlighter-rouge">color</code> these points depends on the variable <code class="highlighter-rouge">Species</code> in the <code class="highlighter-rouge">iris</code> dataset.</p><pre><code class="language-{r}">## First, we need to make sure that 'Species' is a factor variable 
-## class(iris$Species)
+<p>Last but not least, let’s <code class="highlighter-rouge">color</code> these points depends on the variable <code class="highlighter-rouge">Species</code> in the <code class="highlighter-rouge">iris</code> dataset.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## First, we need to make sure that 'Species' is a factor variable </span><span class="w">
+</span><span class="c1">## class(iris$Species)</span><span class="w">
 
-## Since 'Species' is already a factor variable, we do not need to do conversion 
-## However, in case 'Species' is not a factor variable, we can solve this question using as.factor() function, like below
-## iris$Species &lt;- as.factor(iris$Species)
+</span><span class="c1">## Since 'Species' is already a factor variable, we do not need to do conversion </span><span class="w">
+</span><span class="c1">## However, in case 'Species' is not a factor variable, we can solve this question using as.factor() function, like below</span><span class="w">
+</span><span class="c1">## iris$Species &lt;- as.factor(iris$Species)</span><span class="w">
 
-## Then, we are ready to plot 
-ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, 
-                        ## distinguish the species by color
-                        color=Species))+
-  geom_point()
-</code></pre>
+</span><span class="c1">## Then, we are ready to plot </span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Sepal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">Sepal.Width</span><span class="p">,</span><span class="w"> 
+                        </span><span class="c1">## distinguish the species by color</span><span class="w">
+                        </span><span class="n">color</span><span class="o">=</span><span class="n">Species</span><span class="p">))</span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
 <p><img src="/Presentation/Images/Styling_Scatterplots/R_color.png" alt="Scatterplot with different colors" /></p>
 <ul>
   <li>
@@ -200,16 +206,17 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width,
       <li>If you do not like all the options that the  <strong>RColorBrewer</strong> and <strong>viridis</strong> packages provide, see <a href="http://www.sthda.com/english/wiki/ggplot2-colors-how-to-change-colors-automatically-and-manually">here</a> to work with color in the <strong>ggplot2</strong> package.</li>
     </ul>
   </li>
-</ul><pre><code class="language-{r}">ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
-  geom_point()+
-  ## Where RColorBrewer package comes in
-  scale_colour_brewer(palette = "Set1") ## There are more options available for palette
+</ul>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Sepal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">Sepal.Width</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="n">Species</span><span class="p">))</span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">()</span><span class="o">+</span><span class="w">
+  </span><span class="c1">## Where RColorBrewer package comes in</span><span class="w">
+  </span><span class="n">scale_colour_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w"> </span><span class="c1">## There are more options available for palette</span><span class="w">
 
-ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
-  geom_point()+
-  ## Where viridis package comes in
-  scale_color_viridis(discrete=TRUE,option = "D")  ## There are more options to choose
-</code></pre>
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Sepal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">Sepal.Width</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="n">Species</span><span class="p">))</span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">()</span><span class="o">+</span><span class="w">
+  </span><span class="c1">## Where viridis package comes in</span><span class="w">
+  </span><span class="n">scale_color_viridis</span><span class="p">(</span><span class="n">discrete</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="n">option</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"D"</span><span class="p">)</span><span class="w">  </span><span class="c1">## There are more options to choose</span><span class="w">
+</span></code></pre></div></div>
 <p>This first graph is using <code class="highlighter-rouge">RColorBrewer</code> package,and the second graph is using <code class="highlighter-rouge">viridis</code> package.</p>
 <p><img src="/Presentation/Images/Styling_Scatterplots/R_color_RColorBrewer.png" alt="Colors set by RColorBrewer" /></p>
 <p><img src="/Presentation/Images/Styling_Scatterplots/R_color_viridis.png" alt="Colors set by viridis" /></p>
@@ -224,25 +231,27 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
       <h4 id="-themes-from-ggplot2-package-">
           <a href="#-themes-from-ggplot2-package-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Themes from **ggplot2</strong> package** </span>
       </h4>
-<p>In fact, <strong>ggplot2</strong> package has many cool themes available alreay such as <code class="highlighter-rouge">theme_classic()</code>, <code class="highlighter-rouge">theme_minimal()</code> and <code class="highlighter-rouge">theme_bw()</code>. Another famous theme is the dark theme: <code class="highlighter-rouge">theme_dark()</code>. Let’s check out some of them.</p><pre><code class="language-{r}">ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
-                 col=Species,
-                 shape=Species)) + 
-  geom_point(size=3) +
-  scale_color_viridis(discrete=TRUE,option = "D") +
-  theme_minimal(base_size = 12)
-</code></pre>
+<p>In fact, <strong>ggplot2</strong> package has many cool themes available alreay such as <code class="highlighter-rouge">theme_classic()</code>, <code class="highlighter-rouge">theme_minimal()</code> and <code class="highlighter-rouge">theme_bw()</code>. Another famous theme is the dark theme: <code class="highlighter-rouge">theme_dark()</code>. Let’s check out some of them.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Sepal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">Sepal.Width</span><span class="p">,</span><span class="w"> 
+                 </span><span class="n">col</span><span class="o">=</span><span class="n">Species</span><span class="p">,</span><span class="w">
+                 </span><span class="n">shape</span><span class="o">=</span><span class="n">Species</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_color_viridis</span><span class="p">(</span><span class="n">discrete</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="n">option</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"D"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_minimal</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
 <p><img src="/Presentation/Images/Styling_Scatterplots/R_theme_1.png" alt="" /></p>
       <h4 id="-themes-from-the-ggthemes-package-">
           <a href="#-themes-from-the-ggthemes-package-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Themes from the <code class="highlighter-rouge">ggthemes</code> package</strong> </span>
       </h4>
-<p><code class="highlighter-rouge">ggthemes</code> package is also worth to check out for working any plots (maps,time-series data, and any other plots) that you are working on. <code class="highlighter-rouge">theme_gdocs()</code>, <code class="highlighter-rouge">theme_tufte()</code>, and <code class="highlighter-rouge">theme_calc()</code> all work very well. See <a href="https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/">here</a> to get more cool themes.</p><pre><code class="language-{r}">ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
-                 col=Species,
-                 shape=Species)) + 
-  geom_point(size=3) +
-  scale_color_viridis(discrete=TRUE,option = "D") +
-  ## Using the theme_tufte()
-  theme_tufte()
-</code></pre>
+<p><code class="highlighter-rouge">ggthemes</code> package is also worth to check out for working any plots (maps,time-series data, and any other plots) that you are working on. <code class="highlighter-rouge">theme_gdocs()</code>, <code class="highlighter-rouge">theme_tufte()</code>, and <code class="highlighter-rouge">theme_calc()</code> all work very well. See <a href="https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/">here</a> to get more cool themes.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Sepal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">Sepal.Width</span><span class="p">,</span><span class="w"> 
+                 </span><span class="n">col</span><span class="o">=</span><span class="n">Species</span><span class="p">,</span><span class="w">
+                 </span><span class="n">shape</span><span class="o">=</span><span class="n">Species</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_color_viridis</span><span class="p">(</span><span class="n">discrete</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="n">option</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"D"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="c1">## Using the theme_tufte()</span><span class="w">
+  </span><span class="n">theme_tufte</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
 <p><img src="/Presentation/Images/Styling_Scatterplots/R_theme_2.png" alt="" /></p>
       <h4 id="-create-by-your-own-">
           <a href="#-create-by-your-own-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Create by your own</strong> </span>
@@ -255,46 +264,48 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
       <h4 id="-basic-labelling-">
           <a href="#-basic-labelling-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Basic Labelling</strong> </span>
       </h4>
-<p>Both <code class="highlighter-rouge">labs()</code> and <code class="highlighter-rouge">ggtitle()</code> are great tools to deal with labelling information. In the following code, we provide the example how to use <code class="highlighter-rouge">labs()</code> to label the all the things that we need. Take a look <a href="https://www.r-graph-gallery.com/289-control-ggplot2-title.html">here</a> if you want to learn how to use <code class="highlighter-rouge">ggtitle()</code>.</p><pre><code class="language-{r}">ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
-                 col=Species,
-                 shape=Species)) + 
-  geom_point(size=3) +
-  scale_color_viridis(discrete=TRUE,option = "D") +
-  theme_minimal(base_size = 12)+
-  ## Where the labelling comes in 
-  labs(
-    ## Tell people what x and y variables are
-    x="Sepal Length",
-    y="Sepal Width",
-    ## Title of the plot
-    title = "Sepal length vs. Sepal width",
-    subtitle = " plot within different Iris Species"
-  )
-</code></pre>
+<p>Both <code class="highlighter-rouge">labs()</code> and <code class="highlighter-rouge">ggtitle()</code> are great tools to deal with labelling information. In the following code, we provide the example how to use <code class="highlighter-rouge">labs()</code> to label the all the things that we need. Take a look <a href="https://www.r-graph-gallery.com/289-control-ggplot2-title.html">here</a> if you want to learn how to use <code class="highlighter-rouge">ggtitle()</code>.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Sepal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">Sepal.Width</span><span class="p">,</span><span class="w"> 
+                 </span><span class="n">col</span><span class="o">=</span><span class="n">Species</span><span class="p">,</span><span class="w">
+                 </span><span class="n">shape</span><span class="o">=</span><span class="n">Species</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_color_viridis</span><span class="p">(</span><span class="n">discrete</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="n">option</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"D"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_minimal</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">)</span><span class="o">+</span><span class="w">
+  </span><span class="c1">## Where the labelling comes in </span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="w">
+    </span><span class="c1">## Tell people what x and y variables are</span><span class="w">
+    </span><span class="n">x</span><span class="o">=</span><span class="s2">"Sepal Length"</span><span class="p">,</span><span class="w">
+    </span><span class="n">y</span><span class="o">=</span><span class="s2">"Sepal Width"</span><span class="p">,</span><span class="w">
+    </span><span class="c1">## Title of the plot</span><span class="w">
+    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Sepal length vs. Sepal width"</span><span class="p">,</span><span class="w">
+    </span><span class="n">subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">" plot within different Iris Species"</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
 <p><img src="/Presentation/Images/Styling_Scatterplots/R_label_1.png" alt="Scatterplot with Axis Lables" /></p>
       <h4 id="-postion-and-appearance-">
           <a href="#-postion-and-appearance-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Postion and Appearance</strong> </span>
       </h4>
-<p>After the basic labelling, we want to make them nicer by playing around the postion and appearance (text size, color and faces).</p><pre><code class="language-{r}">ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
-                 col=Species,
-                 shape=Species)) + 
-  geom_point(size=3) +
-  scale_color_viridis(discrete=TRUE,option = "D") +
-  labs(
-    x="Sepal Length",
-    y="Sepal Width",
-    title = "Sepal length vs. Sepal width",
-    subtitle = "plot within different Iris Species"
-  )+
-  theme_minimal(base_size = 12) +
-  ## Change the title and subtitle position to the center 
-  theme(plot.title = element_text(hjust = 0.5),
-        plot.subtitle = element_text(hjust = 0.5))+
-  ## Change the appearance of the title and subtitle
-  theme (plot.title = element_text(color = "black", size = 14, face = "bold"),
-         plot.subtitle = element_text(color = "grey40",size = 10, face = 'italic')
-         )
-</code></pre>
+<p>After the basic labelling, we want to make them nicer by playing around the postion and appearance (text size, color and faces).</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Sepal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">Sepal.Width</span><span class="p">,</span><span class="w"> 
+                 </span><span class="n">col</span><span class="o">=</span><span class="n">Species</span><span class="p">,</span><span class="w">
+                 </span><span class="n">shape</span><span class="o">=</span><span class="n">Species</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_color_viridis</span><span class="p">(</span><span class="n">discrete</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="n">option</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"D"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="w">
+    </span><span class="n">x</span><span class="o">=</span><span class="s2">"Sepal Length"</span><span class="p">,</span><span class="w">
+    </span><span class="n">y</span><span class="o">=</span><span class="s2">"Sepal Width"</span><span class="p">,</span><span class="w">
+    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Sepal length vs. Sepal width"</span><span class="p">,</span><span class="w">
+    </span><span class="n">subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"plot within different Iris Species"</span><span class="w">
+  </span><span class="p">)</span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_minimal</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="c1">## Change the title and subtitle position to the center </span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w">
+        </span><span class="n">plot.subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">))</span><span class="o">+</span><span class="w">
+  </span><span class="c1">## Change the appearance of the title and subtitle</span><span class="w">
+  </span><span class="n">theme</span><span class="w"> </span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bold"</span><span class="p">),</span><span class="w">
+         </span><span class="n">plot.subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey40"</span><span class="p">,</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'italic'</span><span class="p">)</span><span class="w">
+         </span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
 <p><img src="/Presentation/Images/Styling_Scatterplots/R_label_2.png" alt="Scatterplot with Elements Moved" /></p>
       <h3 id="step-5-show-some-patterns">
           <a href="#step-5-show-some-patterns" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Step 5: Show some patterns
@@ -303,25 +314,26 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
       <h4 id="-linear-trend-">
           <a href="#-linear-trend-" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> <span style="color:orange"> <strong>Linear Trend</strong> </span>
       </h4>
-<p>According to the plot, it seems like there exists a linear relationship between sepal length and sepal width. Thus, let’s add a linear trend to our scattplot to help readers see the pattern more directly using <code class="highlighter-rouge">geom_smooth()</code>. Note that the <code class="highlighter-rouge">method</code> argument in <code class="highlighter-rouge">geom_smooth()</code> allows to apply different smoothing method like glm, loess and more. See the <a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">doc</a> for more.</p><pre><code class="language-{r,message=FALSE}">ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, 
-                 col=Species,
-                 shape=Species)) + 
-  geom_point(size=3) +
-  scale_color_viridis(discrete=TRUE,option = "D") +
-  labs(
-    x="Sepal Length",
-    y="Sepal Width",
-    title = "Sepal length vs. Sepal width",
-    subtitle = "plot within different Iris Species"
-  )+
-  theme_minimal(base_size = 12) +
-  theme(plot.title = element_text(hjust = 0.5),
-        plot.subtitle = element_text(hjust = 0.5))+
-  theme (plot.title = element_text(color = "black", size = 14, face = "bold"),
-         plot.subtitle = element_text(color = "grey40",size = 10, face = 'italic')) +
-  ## Where linear trend + confidence interval come in
-  geom_smooth(method = 'lm',se=TRUE)
-</code></pre>
+<p>According to the plot, it seems like there exists a linear relationship between sepal length and sepal width. Thus, let’s add a linear trend to our scattplot to help readers see the pattern more directly using <code class="highlighter-rouge">geom_smooth()</code>. Note that the <code class="highlighter-rouge">method</code> argument in <code class="highlighter-rouge">geom_smooth()</code> allows to apply different smoothing method like glm, loess and more. See the <a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">doc</a> for more.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Sepal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">Sepal.Width</span><span class="p">,</span><span class="w"> 
+                 </span><span class="n">col</span><span class="o">=</span><span class="n">Species</span><span class="p">,</span><span class="w">
+                 </span><span class="n">shape</span><span class="o">=</span><span class="n">Species</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_color_viridis</span><span class="p">(</span><span class="n">discrete</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="n">option</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"D"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="w">
+    </span><span class="n">x</span><span class="o">=</span><span class="s2">"Sepal Length"</span><span class="p">,</span><span class="w">
+    </span><span class="n">y</span><span class="o">=</span><span class="s2">"Sepal Width"</span><span class="p">,</span><span class="w">
+    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Sepal length vs. Sepal width"</span><span class="p">,</span><span class="w">
+    </span><span class="n">subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"plot within different Iris Species"</span><span class="w">
+  </span><span class="p">)</span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_minimal</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w">
+        </span><span class="n">plot.subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">))</span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="w"> </span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bold"</span><span class="p">),</span><span class="w">
+         </span><span class="n">plot.subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey40"</span><span class="p">,</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'italic'</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="c1">## Where linear trend + confidence interval come in</span><span class="w">
+  </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'lm'</span><span class="p">,</span><span class="n">se</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
 <p><img src="/Presentation/Images/Styling_Scatterplots/R_linear_trend.png" alt="Scatterplot with Linear Trend" /></p>
       <h4 id="congratulations-you-just-make-your-own-style-of-scatterplots-if-you-are-following-all-the-steps-above-and-try-to-play-around-the-different-options">
           <a href="#congratulations-you-just-make-your-own-style-of-scatterplots-if-you-are-following-all-the-steps-above-and-try-to-play-around-the-different-options" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Congratulations!!! You just make your own style of scatterplots if you are following all the steps above and try to play around the different options.
