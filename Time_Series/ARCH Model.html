@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>ARCH Model - LOST</title>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/just-the-docs.css">
+    <script type="text/javascript" src="/assets/js/vendor/lunr.min.js"></script>
+  <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>ARCH Model | LOST</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="ARCH Model" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:description" content="Source code for the Library of Statistical Techniques" />
+<meta property="og:site_name" content="LOST" />
+<script type="application/ld+json">
+{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Time_Series/ARCH%20Model.html","headline":"ARCH Model","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML">
+  </script>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="link" viewBox="0 0 16 16">
+      <title>Link</title>
+      <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+    </symbol>
+  </svg>
+  <div class="page-wrap">
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="" class="site-title lh-tight">
+  LOST
+</a>
+        <button class="menu-button fs-3 js-main-nav-trigger" data-text-toggle="Hide" type="button">Menu</button>
+      </div>
+      <div class="navigation main-nav js-main-nav">
+        <nav role="navigation" aria-label="Main navigation">
+  <ul class="navigation-list"><li class="navigation-list-item"><a href="/" class="navigation-list-link">Home</a></li><li class="navigation-list-item active"><a href="/Data/" class="navigation-list-link"></a></li><li class="navigation-list-item"><a href="/Data_Manipulation/data_manipulation.html" class="navigation-list-link">Data Manipulation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="navigation-list-link">Collapse a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="navigation-list-link">Combining Datasets</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="navigation-list-link">Vertical Combination</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="navigation-list-link">Horizontal Combination (Deterministic)</a>
+                          </li></ul></li><li class="navigation-list-item "><a href="/Data_Manipulation/Creating_Dummy_Variables/creating_dummy_variables.html" class="navigation-list-link">Creating Dummy Variables</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="navigation-list-link">Determine the Observation Level of a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Reshaping/reshape.html" class="navigation-list-link">Reshaping Data</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="navigation-list-link">Reshape Panel Data from Wide to Long</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="navigation-list-link">Reshape Panel Data from Long to Wide</a>
+                          </li></ul></li><li class="navigation-list-item "><a href="/Data_Manipulation/rowwise_calculations.html" class="navigation-list-link">Rowwise Calculations</a></li></ul></li><li class="navigation-list-item"><a href="/Geo-Spatial/Geo-spatial.html" class="navigation-list-link">Geo-Spatial</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Geo-Spatial/geocoding.html" class="navigation-list-link">Geocoding</a></li><li class="navigation-list-item "><a href="/Geo-Spatial/merging_shape_files.html" class="navigation-list-link">Merging Shape Files</a></li><li class="navigation-list-item "><a href="/Geo-Spatial/spatial_joins.html" class="navigation-list-link">Spatial Joins</a></li></ul></li><li class="navigation-list-item"><a href="/Machine_Learning/Machine_Learning.html" class="navigation-list-link">Machine Learning</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Machine_Learning/boosted_regression_trees.html" class="navigation-list-link">Boosted Regression Trees</a></li><li class="navigation-list-item "><a href="/Machine_Learning/causal_forest.html" class="navigation-list-link">Causal Forest</a></li><li class="navigation-list-item "><a href="/Machine_Learning/decision_trees.html" class="navigation-list-link">Decision Trees</a></li><li class="navigation-list-item "><a href="/Machine_Learning/penalized_regression.html" class="navigation-list-link">Penalized Regression</a></li><li class="navigation-list-item "><a href="/Machine_Learning/random_forest.html" class="navigation-list-link">Random Forest</a></li></ul></li><li class="navigation-list-item"><a href="/Model_Estimation/Estimation.html" class="navigation-list-link">Model Estimation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Model_Estimation/fixed_effects_in_linear_regression.html" class="navigation-list-link">Fixed Effects in Linear Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/heckman_correction_model.html" class="navigation-list-link">Heckman Correction Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/instrumental_variables.html" class="navigation-list-link">Instrumental Variables</a></li><li class="navigation-list-item "><a href="/Model_Estimation/interaction_terms_and_polynomials.html" class="navigation-list-link">Interaction Terms and Polynomials</a></li><li class="navigation-list-item "><a href="/Model_Estimation/linear_hypothesis_tests.html" class="navigation-list-link">Linear Hypothesis Tests</a></li><li class="navigation-list-item "><a href="/Model_Estimation/linear_mixed_effects_regression.html" class="navigation-list-link">Linear Mixed-Effects Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/logit_model.html" class="navigation-list-link">Logit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/mcfaddens_choice_model.html" class="navigation-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/ordinary_least_squares.html" class="navigation-list-link">Ordinary Least Squares (Linear Regression)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/probit_model.html" class="navigation-list-link">Probit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/random_mixed_effects_estimation.html" class="navigation-list-link">Random/Mixed Effects in Linear Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/regression_discontinuity_design.html" class="navigation-list-link">Regression Discontinuity Design</a></li><li class="navigation-list-item "><a href="/Model_Estimation/two_by_two_difference_in_difference.html" class="navigation-list-link">2x2 Difference in Difference</a></li><li class="navigation-list-item "><a href="/Model_Estimation/Nonstandard_Errors/nonstandard_errors.html" class="navigation-list-link">Nonstandard Errors</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/bootstrap_se.html" class="navigation-list-link">Bootstrap Standard Errors</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/clustered_se.html" class="navigation-list-link">Cluster-Robust Standard Errors</a>
+                          </li><li class="navigation-list-item ">
+                            <a href="/Model_Estimation/Nonstandard_Errors/hc_se.html" class="navigation-list-link">Heteroskedasticity-consistent standard errors</a>
+                          </li></ul></li></ul></li><li class="navigation-list-item"><a href="/Presentation/Presentation.html" class="navigation-list-link">Presentation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Presentation/formatting_graph_legends.html" class="navigation-list-link">Formatting Graph Legends</a></li><li class="navigation-list-item "><a href="/Presentation/Scatterplots.html" class="navigation-list-link">Scatterplots</a></li><li class="navigation-list-item "><a href="/Presentation/Styling_Scatterplots.html" class="navigation-list-link">Styling Scatterplots</a></li><li class="navigation-list-item "><a href="/Presentation/bar_graphs.html" class="navigation-list-link">Bar Graphs</a></li><li class="navigation-list-item "><a href="/Presentation/density_plots.html" class="navigation-list-link">Density Plots</a></li><li class="navigation-list-item "><a href="/Presentation/export_a_formatted_regression_table.html" class="navigation-list-link">Export a Formatted Regression Table</a></li><li class="navigation-list-item "><a href="/Presentation/faceted_graphs.html" class="navigation-list-link">Faceted Graphs</a></li><li class="navigation-list-item "><a href="/Presentation/heatmap_colored_correlation_matrix.html" class="navigation-list-link">Heatmap Colored Correlation Matrix</a></li><li class="navigation-list-item "><a href="/Presentation/histograms.html" class="navigation-list-link">Histograms</a></li><li class="navigation-list-item "><a href="/Presentation/line_graph_with_labels_at_the_beginning_or_end.html" class="navigation-list-link">Line Graph with Labels at the Beginning or End of Lines</a></li><li class="navigation-list-item "><a href="/Presentation/line_graphs.html" class="navigation-list-link">Line Graphs</a></li><li class="navigation-list-item "><a href="/Presentation/marginal_effects_plots_for_interactions_with_continuous_variables.html" class="navigation-list-link">Marginal Effects Plots for Interactions with Continuous Variables</a></li><li class="navigation-list-item "><a href="/Presentation/scatterplot_by_group_on_shared_axes.html" class="navigation-list-link">Scatterplot by Group on Shared Axes</a></li><li class="navigation-list-item "><a href="/Presentation/styling_line_graphs.html" class="navigation-list-link">Styling Line Graphs</a></li></ul></li><li class="navigation-list-item"><a href="/Summary_Statistics/Summary_Statistics.html" class="navigation-list-link">Summary Statistics</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Summary_Statistics/Balance_Tables.html" class="navigation-list-link">Balance Table</a></li><li class="navigation-list-item "><a href="/Summary_Statistics/Summary_Statistics_Tables.html" class="navigation-list-link">Summary Statistics Tables</a></li></ul></li><li class="navigation-list-item active"><a href="/Time_Series/Time_Series.html" class="navigation-list-link">Time Series</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Time_Series/AR-models.html" class="navigation-list-link">AR Models</a></li><li class="navigation-list-item  active"><a href="/Time_Series/ARCH%20Model.html" class="navigation-list-link active">ARCH Model</a></li><li class="navigation-list-item "><a href="/Time_Series/ARMA-models.html" class="navigation-list-link">ARMA Models</a></li><li class="navigation-list-item "><a href="/Time_Series/GARCH%20Model.html" class="navigation-list-link">GARCH Model</a></li><li class="navigation-list-item "><a href="/Time_Series/creating_time_series_dataset.html" class="navigation-list-link">Creating Time Series Dataset</a></li></ul></li><li class="navigation-list-item"><a href="/Other/Other.html" class="navigation-list-link">Other</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Other/create_a_conda_package.html" class="navigation-list-link">Create a Conda Package (Python)</a></li><li class="navigation-list-item "><a href="/Other/get_a_list_of_files.html" class="navigation-list-link">Get a List of Files</a></li><li class="navigation-list-item "><a href="/Other/import_a_foreign_data_file.html" class="navigation-list-link">Import a Foreign Data File</a></li></ul></li><li class="navigation-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="navigation-list-link">Desired Nonexistent Pages</a></li><li class="navigation-list-item"><a href="/Contributing/Contributing.html" class="navigation-list-link">Contributing</a></li></ul>
+</nav>
+      </div>
+      <footer class="site-footer">
+        <p class="text-small text-grey-dk-000 mb-4">This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.</p>
+      </footer>
+    </div>
+    <div class="main-content-wrap js-main-content" tabindex="0">
+      <div class="main-content">
+        <div class="page-header js-page-header">
+          <div class="search">
+            <div class="search-input-wrap">
+              <input type="text" class="js-search-input search-input" tabindex="0" placeholder="Search LOST" aria-label="Search LOST" autocomplete="off">
+              <svg width="14" height="14" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title><g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"/><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"/></g></svg>
+            </div>
+            <div class="js-search-results search-results-wrap"></div>
+          </div>
+            <ul class="list-style-none text-small aux-nav">
+                <li class="d-inline-block my-0"><a href="https://github.com/lost-stats/lost-stats.github.io/blob/source/Time_Series/ARCH%20Model.md">Edit this page on GitHub</a></li>
+            </ul>
+        </div>
+        <div class="page">
+              <nav class="breadcrumb-nav">
+                <ol class="breadcrumb-nav-list">
+                    <li class="breadcrumb-nav-list-item"><a href="/Time_Series/Time_Series.html">Time Series</a></li>
+                  <li class="breadcrumb-nav-list-item"><span>ARCH Model</span></li>
+                </ol>
+              </nav>
+          <div id="main-content" class="page-content" role="main">
+              <h1 id="autoregressive-conditional-heteroscedasticity-arch-model">
+          <a href="#autoregressive-conditional-heteroscedasticity-arch-model" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Autoregressive Conditional Heteroscedasticity (ARCH) model
+      </h1>
+<p>The autoregressive conditional heteroscedasticity (ARCH) model is a statistical model for time series data that models the variance of the current error as a function of the actual sizes of the previous time periods’ errors. The ARCH model is appropriate when the error variance in a time series follows an autoregressive (AR) model.</p>
+<p>An ARCH(q) process can be written as $y_{t} = a_{0} + \sum_{i=1}^{q}y_{t-q}+\epislon_{t}$ where $\epsilon_{t}$ denote the error terms. These $\epsilon_{t}$ are split into a stochastic piece $z_{t}$ and a time-dependent standard deviation $\sigma_{t}$ characterizing the typical size of the terms so that $\epsilon_{t}=\sigma_{t}z_{t}$.
+The random variable $z_{t}$ is a strong white noise process. The series $\sigma_{t}^{2}$ is modeled by
+<script type="math/tex">\sigma_{t}^{2} = \alpha_{0} + \alpha_{1}\epsilon_{t-1}^{2} + \dots + \alpha_{q}\epsilon_{t-1}^{2} = \alpha_{0} + \sum_{i=1}^{q}\alpha_{i}\epsilon_{t-i}^{2}</script> where $\alpha_{0} &gt; 0$ and $\alpha_{i} \ geq 0$, $i &gt; 0$.</p>
+<p>An ARCH(q) model can be estimated using ordinary least squares. This procedure is as follows:</p>
+<ol>
+  <li>
+    <p>Estimate the best fitting autoregressive model AR(q) <script type="math/tex">y_{t}=a_{0}+a_{1}y_{t-1}+\dots +a_{q}y_{t-q}+\epsilon_{t} =a_{0}+\sum_{i=1}^{q}a_{i}y_{t-i}+\epsilon_{t}</script>.</p>
+  </li>
+  <li>
+    <p>Obtain the squares of the error $\hat{\epsilon}^{2}$ and regress them on a constant and q lagged values:
+<script type="math/tex">\hat{\epsilon}^{2}=\hat {\alpha}_{0}+\sum_{i=1}^{q}\hat{\alpha}_{i}\hat{\epsilon}_{t-i}^{2}</script>
+where q is the length of ARCH lags.</p>
+  </li>
+  <li>
+    <p>Null Hypothesis: $\alpha_{i}=0$ for all $i=1,\dots ,q$. Alternative hypothesis : At least one of the estimated $\alpha_{i}$ coefficients must be significant. Under the null hypothesis of no ARCH errors, the test statistic $T’R²$ follows $\chi^{2}$ distribution with q degrees of freedom, where $T’$ is the number of equations in the model which fits the residuals vs the lags (i.e. $T’=T-q$). If $T’R²$ is greater than the Chi-square table value, we reject the null hypothesis and conclude there is an ARCH effect, otherwise we do not reject the null hypothesis.</p>
+  </li>
+</ol>
+<p>For additional information, see <a href="https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity#ARCH(q)_model_specification">Wikipedia: Autoregressive conditional heteroskedasticity</a>.</p>
+      <h2 id="keep-in-mind">
+          <a href="#keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Keep in Mind
+      </h2>
+<ul>
+  <li>Data should be properly formatted for estimation as a time-series. See <a href="https://lost-stats.github.io/Time_Series/creating_time_series_dataset.html">creating a time series data set</a>. If not, you may fail to execute  or receive erroneous output.</li>
+  <li>ARCH can be used to model time-varying conditional variance.</li>
+</ul>
+      <h2 id="also-consider">
+          <a href="#also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Also Consider
+      </h2>
+<ul>
+  <li>ARCH models can be univariate (scalar) or multivariate (vector).</li>
+  <li>ARCH models are commonly employed in modeling financial time series that exhibit time-varying volatility and volatility clustering, i.e. periods of swings interspersed with periods of relative calm.</li>
+  <li>If an autoregressive moving average (ARMA) model is assumed for the error variance, the model is a generalized autoregressive conditional heteroskedasticity (GARCH) model. For more information on GARCH models, see <a href="https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity#GARCH">Wikipedia: GARCH</a>. For information about estimating an GARCH models, see <a href="https://lost-stats.github.io/Time_Series/GARCH-models.html">LOST: GARCH models</a>.</li>
+</ul>
+      <h1 id="implementations">
+          <a href="#implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Implementations
+      </h1>
+      <h2 id="python">
+          <a href="#python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Python
+      </h2>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">gauss</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">seed</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<span class="kn">from</span> <span class="nn">arch</span> <span class="kn">import</span> <span class="n">arch_model</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="c1"># seed the process
+</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Simulating a ARCH(1) process
+</span><span class="n">a0</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">a1</span> <span class="o">=</span> <span class="mf">.5</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">)):</span>
+    <span class="n">Y</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">a0</span> <span class="o">+</span> <span class="n">a1</span><span class="o">*</span><span class="n">Y</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="c1"># fit model
+</span><span class="n">model</span> <span class="o">=</span> <span class="n">arch_model</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">vol</span> <span class="o">=</span> <span class="s">"ARCH"</span><span class="p">,</span> <span class="n">rescale</span> <span class="o">=</span> <span class="s">"FALSE"</span><span class="p">)</span>
+<span class="n">model_fit</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">model_fit</span><span class="o">.</span><span class="n">summary</span><span class="p">)</span>
+</code></pre></div></div>
+      <h2 id="r">
+          <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
+      </h2>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># setup</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">fGarch</span><span class="p">)</span><span class="w">
+</span><span class="c1"># seed pseudorandom number generator</span><span class="w">
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span><span class="w">
+</span><span class="c1"># Simulating a ARCH(1) process</span><span class="w">
+</span><span class="n">e</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NULL</span><span class="w">
+</span><span class="n">obs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1000</span><span class="w">
+</span><span class="n">e</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="m">1</span><span class="p">)</span><span class="w">
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">2</span><span class="o">:</span><span class="n">obs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="m">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="m">1+0.5</span><span class="o">*</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="m">-1</span><span class="p">])</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="o">^</span><span class="m">0.5</span><span class="p">}</span><span class="w">
+</span><span class="c1"># fit the model</span><span class="w">
+</span><span class="n">arch.fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">garchFit</span><span class="p">(</span><span class="o">~</span><span class="n">garch</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="n">trace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">F</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">arch.fit</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+      <h2 id="stata">
+          <a href="#stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Stata
+      </h2>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* seed pseudorandom number generator
+</span><span class="err">set</span> <span class="err">seed</span> <span class="err">1
+</span><span class="c1">* Simulating a ARCH(1) process
+</span><span class="err">set</span> <span class="err">obs</span> <span class="err">1000
+gen</span> <span class="err">time</span><span class="o">=</span><span class="err">_n
+tsset</span> <span class="err">time
+gen</span> <span class="err">e</span><span class="o">=</span><span class="err">.
+replace</span> <span class="err">e</span><span class="o">=</span><span class="err">rnormal()</span> <span class="err">if</span> <span class="err">time</span><span class="o">==</span><span class="err">1
+replace</span> <span class="err">e</span><span class="o">=</span><span class="err">rnormal()</span><span class="o">*</span><span class="err">(1</span> <span class="o">+</span> <span class="err">.5</span><span class="o">*</span><span class="err">(e[_n</span><span class="o">-</span><span class="err">1])</span><span class="o">^</span><span class="err">2)</span><span class="o">^</span><span class="err">.5</span> <span class="err">if</span> <span class="err">time</span><span class="o">&gt;=</span><span class="err">2</span> <span class="o">&amp;</span> <span class="err">time</span><span class="o">&lt;=</span><span class="err">2000
+</span><span class="c1">* Estimate arch parameters.. 
+</span><span class="err">arch</span> <span class="err">e,</span> <span class="err">arch(1)
+</span></code></pre></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
