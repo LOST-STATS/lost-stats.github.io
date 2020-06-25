@@ -104,6 +104,22 @@
       <h1 id="implementations">
           <a href="#implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Implementations
       </h1>
+      <h2 id="python">
+          <a href="#python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Python
+      </h2>
+<p>There are three main ways to join datasets horizontally in python using the <code class="highlighter-rouge">merge</code> function in <strong>pandas</strong>: one-to-one joins (e.g. two DataFrames joined on unique indexes), many-to-one joins (e.g. joining a unique index to one or more columns in a different DataFrame), and many-to-many joins (joining columns on columns). The column(s) to use as keys for the merge are specified with the <code class="highlighter-rouge">on=</code> keyword argument. The merges are different depending on if the merge is <code class="highlighter-rouge">inner</code> (use only those keys in both DataFrames), <code class="highlighter-rouge">outer</code> (use the cartesian product of all keys), <code class="highlighter-rouge">left</code> (use only keys in the left DataFrame), or <code class="highlighter-rouge">right</code> (use only keys in the right DataFrame). Outer joins will include entries for all possible combinations of columns. Further details can be found in the <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/merging.html#brief-primer-on-merge-methods-relational-algebra"><strong>pandas</strong> documentation</a>.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="n">gdp_2018</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s">'country'</span><span class="p">:</span> <span class="p">[</span><span class="s">'UK'</span><span class="p">,</span> <span class="s">'USA'</span><span class="p">,</span> <span class="s">'France'</span><span class="p">],</span>
+                         <span class="s">'currency'</span><span class="p">:</span> <span class="p">[</span><span class="s">'GBP'</span><span class="p">,</span> <span class="s">'USD'</span><span class="p">,</span> <span class="s">'EUR'</span><span class="p">],</span>
+                         <span class="s">'gdp_trillions'</span><span class="p">:</span> <span class="p">[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">20.58</span><span class="p">,</span> <span class="mf">2.78</span><span class="p">]})</span>
+
+<span class="n">dollar_value_2018</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s">'currency'</span><span class="p">:</span> <span class="p">[</span><span class="s">'EUR'</span><span class="p">,</span> <span class="s">'GBP'</span><span class="p">,</span> <span class="s">'YEN'</span><span class="p">,</span> <span class="s">'USD'</span><span class="p">],</span>
+                                  <span class="s">'in_dollars'</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.104</span><span class="p">,</span> <span class="mf">1.256</span><span class="p">,</span> <span class="mf">.00926</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
+
+<span class="c1"># Perform a left merge, which discards 'YEN'
+</span><span class="n">GDPandExchange</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">gdp_2018</span><span class="p">,</span> <span class="n">dollar_value_2018</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s">'left'</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s">'currency'</span><span class="p">)</span>
+</code></pre></div></div>
       <h2 id="r">
           <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
       </h2>
