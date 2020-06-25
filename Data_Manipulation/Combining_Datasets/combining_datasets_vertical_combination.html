@@ -97,6 +97,20 @@
       <h1 id="implementations">
           <a href="#implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Implementations
       </h1>
+      <h2 id="python">
+          <a href="#python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Python
+      </h2>
+<p><code class="highlighter-rouge">pandas</code> is by far the most widely-used library for data manipulation in python. The <code class="highlighter-rouge">concat</code> function concatenates datasets vertically and combines datasets even if they don’t contain the exact same set of variables. It’s also possible to concatenate dataframes horizontally by passing the function the keyword argument <code class="highlighter-rouge">axis=1</code>.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="c1"># Load California Population data from the internet
+</span><span class="n">df_ca</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_stata</span><span class="p">(</span><span class="s">'http://www.stata-press.com/data/r14/capop.dta'</span><span class="p">)</span>
+<span class="n">df_il</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_stata</span><span class="p">(</span><span class="s">'http://www.stata-press.com/data/r14/ilpop.dta'</span><span class="p">)</span>
+
+<span class="c1"># Concatenate a list of the dataframes (works on any number of dataframes)
+</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_ca</span><span class="p">,</span> <span class="n">df_il</span><span class="p">])</span>
+
+</code></pre></div></div>
       <h2 id="r">
           <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
       </h2>
