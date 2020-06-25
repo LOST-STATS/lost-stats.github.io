@@ -5,7 +5,7 @@ has_children: false
 nav_order: 1
 ---
 
-#Introduction
+# Introduction
 
 Creating a dummy variable can be just like creating any other variable but dummy variables can only take the value of 0 or 1 (or false or true). This gives us even more options in how we decide to add dummies. Dummy variables are often used as a way of including categorical variables in a model.
 
@@ -17,9 +17,24 @@ Note: `model.matrix()` creates a separate dummy column for all values in the vec
 
 # Implementations
 
+## Python
+
+Several python libraries have functions to turn categorical variables into dummies, including **pandas**, **scikit-learn** (where it is called `OneHotEncoder`), and **statsmodels** (where it is called `categorical`). This example uses **pandas** `get_dummies` function.
+
+```python
+import pandas as pd
+
+# Create a dataframe
+df = pd.DataFrame({'colors': ['red', 'green', 'blue', 'red', 'blue'], 
+                   'numbers': [5, 13, 1, 7, 5]})
+
+# Replace the colors column with a dummy column for each color
+df = pd.get_dummies(df, columns=['colors'])
+```
+
 ## R
 
-Turning a categorical varible into a set of dummies
+Turning a categorical variable into a set of dummies
 
 ```r
 data(iris)
