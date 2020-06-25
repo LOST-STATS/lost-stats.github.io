@@ -104,6 +104,19 @@
           <a href="#implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Implementations
       </h1>
 <p>Note that, because these code examples necessarily refer to files on disk, they might not run properly if copied and pasted. But they can be used as templates.</p>
+      <h2 id="python">
+          <a href="#python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Python
+      </h2>
+<p>The <code class="highlighter-rouge">glob</code> module finds all pathnames matching a specified pattern and stores them in a list.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="c1"># Retrieve all csvs in the working directory
+</span><span class="n">list_of_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s">'*.csv'</span><span class="p">)</span>
+
+<span class="c1"># Retrieve all csvs in the working directory and all sub-directories
+</span><span class="n">list_of_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s">'**/*.csv'</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
       <h2 id="r">
           <a href="#r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> R
       </h2>
