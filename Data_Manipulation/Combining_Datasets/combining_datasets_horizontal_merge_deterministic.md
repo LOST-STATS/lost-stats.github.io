@@ -22,6 +22,24 @@ Because we expect such identifiers to be unique to an individual (unlike many na
 
 # Implementations
 
+## Python
+
+There are three main ways to join datasets horizontally in python using the `merge` function in **pandas**: one-to-one joins (e.g. two DataFrames joined on unique indexes), many-to-one joins (e.g. joining a unique index to one or more columns in a different DataFrame), and many-to-many joins (joining columns on columns). The column(s) to use as keys for the merge are specified with the `on=` keyword argument. The merges are different depending on if the merge is `inner` (use only those keys in both DataFrames), `outer` (use the cartesian product of all keys), `left` (use only keys in the left DataFrame), or `right` (use only keys in the right DataFrame). Outer joins will include entries for all possible combinations of columns. Further details can be found in the [**pandas** documentation](https://pandas.pydata.org/pandas-docs/stable/user_guide/merging.html#brief-primer-on-merge-methods-relational-algebra).
+
+```python
+import pandas as pd
+
+gdp_2018 = pd.DataFrame({'country': ['UK', 'USA', 'France'],
+                         'currency': ['GBP', 'USD', 'EUR'],
+                         'gdp_trillions': [2.1, 20.58, 2.78]})
+
+dollar_value_2018 = pd.DataFrame({'currency': ['EUR', 'GBP', 'YEN', 'USD'],
+                                  'in_dollars': [1.104, 1.256, .00926, 1]})
+
+# Perform a left merge, which discards 'YEN'
+GDPandExchange = pd.merge(gdp_2018, dollar_value_2018, how='left', on='currency')
+```
+
 ## R
 
 There are several ways to combine data sets horizontally in R, including base-R `merge` and several different approaches in the **data.table** package. We will be using the `join` functions in the **dplyr** package.
