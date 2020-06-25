@@ -12,11 +12,11 @@ Economic theory usually suggests other variables that could help to forecast the
 
 In particular, the method for indicating when one variable possibly causes a response in another is called the **Granger Causality Test**. But be careful and do not get confused with the name. The test does not strictly mean that we have estimated the causal effect of one variable on another. It means that the signal of the first one is a useful predictor of the second. 
 
-> A variable X is said to Granger cause another variable Y, if Y can be better predicted from the past of X and Y together than the past of Y alone, other relevant information being used in the prediction (Pierce, 1977). 
+A variable $X$ is said to Granger cause another variable $Y$ if $Y$ can be better predicted from the past of $X$ and $Y$ together than the past of $Y$ alone, other relevant information being used in the prediction (Pierce, 1977). 
 
 # Keep in Mind
 
-1. Check that both series are stationary. If necessary transform the data via logs `log()` or differences `diff()`.
+1. Check that both series are stationary. If necessary, transform the data via logarithms or differences.
 
 2. Estimate the model with lags enough to ensure white noise residuals. 
 
@@ -38,13 +38,13 @@ $$
 * $Y_t$ helps to predict $X_t$ if $\theta_j^{\ast} \neq 0$ for some j
 
 
-4. Use F test to determine significance of the new variables. Consider the following ADL model:  
+4. Use an F test to determine significance of the new variables. Consider the following ADL model:  
 
 $$
 H_0: \theta_j^{\ast} =0  \quad \text{for all} \quad j = 1,\dots, r \quad \text{by means of F-test}.
 $$
 
-* Interpretation: $X$ is **Granger causal** for $Y$ if it helps to predict $Y$, whereas $Y$ does not help to predict $X$
+* Interpretation: $X$ **Granger causes** $Y$ if it helps to predict $Y$, whereas $Y$ does not help to predict $X$
 
 
 
@@ -131,9 +131,7 @@ ggplot(graphdata, aes(x = time, y = value, group=variable)) +
   theme(text = element_text(size = 15)) 
 ```
 
-![](/R_adl.png)<!-- -->
-
-> Conclusion
+![](/Images/Granger_Causality/R_adl.png)<!-- -->
 
 * It seems that both series are stationary (later is check with the ADF test) and,
 * Disturbances in variable X are visible after periods in Y (as expected).
@@ -150,15 +148,12 @@ adf.test(X, k=3)
 adf.test(na.omit(Y), k=3) #na.omit() to delete the first 2 periods of lag
 ```
 
-> Conclusion
-
 * With a p-value of 0.01 and 0.01 for series X, and Y, we assure that both are stationary. 
-
 * No transformation needed for the series. 
 
 ### Granger Test 
 
-#### Note: `grangertest()` only perform tests for Granger causality in bivariate series.
+#### Note: `grangertest()` only performs tests for Granger causality in bivariate series.
 
 #### Step 1. $(Y\sim X)$
 
@@ -196,9 +191,6 @@ grangertest(X ~ Y, order = 2, data = data)
 ## 1    192                 
 ## 2    194 -2 1.2028 0.3026
 ```
-
-
-> Conclusion 
 
 * We see that the effect of lags of number of X is highly significant, and conclude that X predicts the future of Y.
 
