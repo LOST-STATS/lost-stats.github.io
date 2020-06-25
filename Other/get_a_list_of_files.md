@@ -21,6 +21,20 @@ For example, perhaps you have one data file per month, and want to compile them 
 
 Note that, because these code examples necessarily refer to files on disk, they might not run properly if copied and pasted. But they can be used as templates.
 
+## Python
+The `glob` module finds all pathnames matching a specified pattern and stores them in a list. 
+
+```python
+
+import glob
+
+# Retrieve all csvs in the working directory
+list_of_files = glob.glob('*.csv')
+
+# Retrieve all csvs in the working directory and all sub-directories
+list_of_files = glob.glob('**/*.csv', recursive=True)
+```
+
 ## R
 
 The `list.files()` function can produce a list of files that can be looped over.
