@@ -131,7 +131,7 @@ ggplot(graphdata, aes(x = time, y = value, group=variable)) +
   theme(text = element_text(size = 15)) 
 ```
 
-![](/Images/Granger_Causality/R_adl.png)<!-- -->
+![Auto-distributed lag graph](/Images/Granger_Causality/R_adl.png)<!-- -->
 
 * It seems that both series are stationary (later is check with the ADF test) and,
 * Disturbances in variable X are visible after periods in Y (as expected).
