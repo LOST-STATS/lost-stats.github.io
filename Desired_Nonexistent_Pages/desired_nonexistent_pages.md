@@ -41,6 +41,7 @@ If you create one of these pages, please remove it from this list.
 * Ordered Probit
 * Ordered Logit
 * Nonlinear hypothesis tests
+* Synethic Control Method
 
 ## Geo-Spatial
 
