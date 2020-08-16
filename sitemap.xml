@@ -43,7 +43,7 @@
 <loc>/Presentation/Scatterplots.html</loc>
 </url>
 <url>
-<loc>/Model_Estimation/Statistical_Inference.html</loc>
+<loc>/Model_Estimation/Statistical_Inference/Statistical_Inference.html</loc>
 </url>
 <url>
 <loc>/Presentation/Styling_Scatterplots.html</loc>
@@ -67,13 +67,13 @@
 <loc>/Machine_Learning/boosted_regression_trees.html</loc>
 </url>
 <url>
-<loc>/Model_Estimation/Nonstandard_Errors/bootstrap_se.html</loc>
+<loc>/Model_Estimation/Statistical_Inference/Nonstandard_Errors/bootstrap_se.html</loc>
 </url>
 <url>
 <loc>/Machine_Learning/causal_forest.html</loc>
 </url>
 <url>
-<loc>/Model_Estimation/Nonstandard_Errors/clustered_se.html</loc>
+<loc>/Model_Estimation/Statistical_Inference/Nonstandard_Errors/clustered_se.html</loc>
 </url>
 <url>
 <loc>/Data_Manipulation/collapse_a_data_set.html</loc>
@@ -130,7 +130,7 @@
 <loc>/Other/get_a_list_of_files.html</loc>
 </url>
 <url>
-<loc>/Model_Estimation/Nonstandard_Errors/hc_se.html</loc>
+<loc>/Model_Estimation/Statistical_Inference/Nonstandard_Errors/hc_se.html</loc>
 </url>
 <url>
 <loc>/Presentation/heatmap_colored_correlation_matrix.html</loc>
@@ -175,7 +175,7 @@
 <loc>/Geo-Spatial/merging_shape_files.html</loc>
 </url>
 <url>
-<loc>/Model_Estimation/Nonstandard_Errors/Statistical_Inference/nonstandard_errors.html</loc>
+<loc>/Model_Estimation/Statistical_Inference/Nonstandard_Errors/nonstandard_errors.html</loc>
 </url>
 <url>
 <loc>/Model_Estimation/ordinary_least_squares.html</loc>
