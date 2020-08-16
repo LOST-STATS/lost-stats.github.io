@@ -1,7 +1,7 @@
 ---
 title: Heteroskedasticity-consistent standard errors
 parent: Nonstandard Errors
-grand_parent: Model Estimation ## Optional for indexing
+grand_parent: Statistical Inference ## Optional for indexing
 nav_order: 1
 ---
 
