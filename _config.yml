@@ -1,5 +1,5 @@
 title: "LOST"
-remote_theme: lost-stats/just-the-docs
+theme: just-the-docs
 color_scheme: "nil"
 search_enabled: true
 
@@ -11,6 +11,18 @@ search_tokenizer_separator: /[\s/]+/
 # Supports true (default) or false/nil
 heading_anchors: true
 
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-optional-front-matter
+  - jemoji
+  - jekyll-default-layout
+  - jekyll-feed
+  - jekyll-redirect-from
+  - "jekyll-mentions"
+  - jekyll-relative-links
+  - jekyll-titles-from-headings
+
 # Adding for mathjax support
 compress_html:
   blanklines: true
@@ -19,18 +31,23 @@ mathjax:
   source: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML
   config: 'MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } })'
 
-edit_links:
-  text: Edit this page on GitHub
-  base_url: https://github.com/lost-stats/lost-stats.github.io/blob/source
-
 markdown: kramdown
 
 kramdown:
   input: GFM
   hand_wrap: false
-  gfm_quirks: paragraph_end
   syntax_highligher: rouge
   syntax_highligher_opts:
     default_lang: plaintext
 
 highlighter: rouge
+
+gh_edit_link: true # show or hide edit this page link
+gh_edit_link_text: "Edit this page on GitHub."
+gh_edit_repository: "https://github.com/lost-stats/lost-stats.github.io"
+gh_edit_branch: "source" # the branch that your docs is served from
+gh_edit_view_mode: "edit" # "tree" or "edit" if you want the user to jump into the editor immediately
+
+#optional_front_matter:
+#  enabled: true
+#  remove_originals: true

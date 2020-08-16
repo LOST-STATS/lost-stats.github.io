@@ -13,9 +13,9 @@ In short, LOST is a Rosetta Stone for statistical software.
 If you are interested in contributing to LOST, please see the [Contributing](https://lost-stats.github.io/Contributing/Contributing.html) page.
 
 <iframe width="560" height="315"
-src="https://www.youtube.com/embed/9zI812GiWxg" 
-frameborder="0" 
-allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+src="https://www.youtube.com/embed/9zI812GiWxg"
+frameborder="0"
+allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen></iframe>
 
 LOST was originated in 2019 by Nick Huntington-Klein and is maintained by volunteer contributors. The project's GitHub page is [here](https://github.com/LOST-STATS/lost-stats.github.io).

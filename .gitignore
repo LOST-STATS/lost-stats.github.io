@@ -1,7 +1,17 @@
+# Jekyll cruft
 _site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
 .publish/
+
+# Node cruft
 node_modules/
+
+# R cruft
 .Rproj.user
+.Rhistory
+*.Rproj
+
+# Mac cruft
+.DS_Store
