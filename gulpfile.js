@@ -9,11 +9,6 @@ const image = () => {
       .pipe(gulp.dest('_site/images'))
 }
 
-const circleci = () => {
-  return gulp.src('.circleci/*')
-    .pipe(gulp.dest('_site/.circleci'))
-}
-
 const pushGHSource = () => cp.spawn('git', ['push', 'origin', 'source'], { stdio: 'inherit' })
 
 const pushGHPages = () => {
@@ -23,13 +18,15 @@ const pushGHPages = () => {
 
 const build = () => cp.spawn('bundle', ['exec', 'jekyll', 'build'], { stdio: 'inherit' })
 
-const deploy = gulp.series(build, image, circleci, pushGHSource, pushGHPages)
+const ghActionsBuild = gulp.series(build, image)
+
+const deploy = gulp.series(build, image, pushGHSource, pushGHPages)
 
 module.exports = {
-  circleci,
   image,
   pushGHSource,
   pushGHPages,
   build,
+  ghActionsBuild,
   deploy
 }

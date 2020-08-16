@@ -4,22 +4,19 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <title>Contributing - LOST</title>
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="/assets/css/just-the-docs.css">
+  <link rel="stylesheet" href="/assets/css/just-the-docs-default.css">
     <script type="text/javascript" src="/assets/js/vendor/lunr.min.js"></script>
   <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Begin Jekyll SEO tag v2.5.0 -->
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Contributing | LOST</title>
-<meta name="generator" content="Jekyll v3.8.5" />
+<meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="Contributing" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Source code for the Library of Statistical Techniques" />
-<meta property="og:description" content="Source code for the Library of Statistical Techniques" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"description":"Source code for the Library of Statistical Techniques","@type":"WebPage","url":"/Contributing/Contributing.html","headline":"Contributing","@context":"http://schema.org"}</script>
+{"@type":"WebPage","headline":"Contributing","url":"/Contributing/Contributing.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
@@ -30,61 +27,80 @@
 </head>
 <body>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-    <symbol id="link" viewBox="0 0 16 16">
+    <symbol id="svg-link" viewBox="0 0 24 24">
       <title>Link</title>
-      <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+    </symbol>
+    <symbol id="svg-search" viewBox="0 0 24 24">
+      <title>Search</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </symbol>
+    <symbol id="svg-menu" viewBox="0 0 24 24">
+      <title>Menu</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+        <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </symbol>
+    <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+      <title>Expand</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </symbol>
+    <symbol id="svg-doc" viewBox="0 0 24 24">
+      <title>Document</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+      </svg>
     </symbol>
   </svg>
-  <div class="page-wrap">
-    <div class="side-bar">
-      <div class="site-header">
-        <a href="" class="site-title lh-tight">
+  <div class="side-bar">
+    <div class="site-header">
+      <a href="/" class="site-title lh-tight">
   LOST
 </a>
-        <button class="menu-button fs-3 js-main-nav-trigger" data-text-toggle="Hide" type="button">Menu</button>
-      </div>
-      <div class="navigation main-nav js-main-nav">
-        <nav role="navigation" aria-label="Main navigation">
-  <ul class="navigation-list"><li class="navigation-list-item"><a href="/" class="navigation-list-link">Home</a></li><li class="navigation-list-item active"><a href="/Data/" class="navigation-list-link"></a></li><li class="navigation-list-item"><a href="/Data_Manipulation/data_manipulation.html" class="navigation-list-link">Data Manipulation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="navigation-list-link">Collapse a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="navigation-list-link">Combining Datasets</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
-                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="navigation-list-link">Vertical Combination</a>
-                          </li><li class="navigation-list-item ">
-                            <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="navigation-list-link">Horizontal Combination (Deterministic)</a>
-                          </li></ul></li><li class="navigation-list-item "><a href="/Data_Manipulation/Creating_Dummy_Variables/creating_dummy_variables.html" class="navigation-list-link">Creating Dummy Variables</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="navigation-list-link">Determine the Observation Level of a Data Set</a></li><li class="navigation-list-item "><a href="/Data_Manipulation/Reshaping/reshape.html" class="navigation-list-link">Reshaping Data</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
-                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="navigation-list-link">Reshape Panel Data from Wide to Long</a>
-                          </li><li class="navigation-list-item ">
-                            <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="navigation-list-link">Reshape Panel Data from Long to Wide</a>
-                          </li></ul></li><li class="navigation-list-item "><a href="/Data_Manipulation/rowwise_calculations.html" class="navigation-list-link">Rowwise Calculations</a></li></ul></li><li class="navigation-list-item"><a href="/Geo-Spatial/Geo-spatial.html" class="navigation-list-link">Geo-Spatial</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Geo-Spatial/geocoding.html" class="navigation-list-link">Geocoding</a></li><li class="navigation-list-item "><a href="/Geo-Spatial/merging_shape_files.html" class="navigation-list-link">Merging Shape Files</a></li><li class="navigation-list-item "><a href="/Geo-Spatial/spatial_joins.html" class="navigation-list-link">Spatial Joins</a></li></ul></li><li class="navigation-list-item"><a href="/Machine_Learning/Machine_Learning.html" class="navigation-list-link">Machine Learning</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Machine_Learning/artificial_neural_network.html" class="navigation-list-link">Artificial Neural Network</a></li><li class="navigation-list-item "><a href="/Machine_Learning/boosted_regression_trees.html" class="navigation-list-link">Boosted Regression Trees</a></li><li class="navigation-list-item "><a href="/Machine_Learning/causal_forest.html" class="navigation-list-link">Causal Forest</a></li><li class="navigation-list-item "><a href="/Machine_Learning/decision_trees.html" class="navigation-list-link">Decision Trees</a></li><li class="navigation-list-item "><a href="/Machine_Learning/penalized_regression.html" class="navigation-list-link">Penalized Regression</a></li><li class="navigation-list-item "><a href="/Machine_Learning/random_forest.html" class="navigation-list-link">Random Forest</a></li></ul></li><li class="navigation-list-item"><a href="/Model_Estimation/Estimation.html" class="navigation-list-link">Model Estimation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Model_Estimation/fixed_effects_in_linear_regression.html" class="navigation-list-link">Fixed Effects in Linear Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/heckman_correction_model.html" class="navigation-list-link">Heckman Correction Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/instrumental_variables.html" class="navigation-list-link">Instrumental Variables</a></li><li class="navigation-list-item "><a href="/Model_Estimation/interaction_terms_and_polynomials.html" class="navigation-list-link">Interaction Terms and Polynomials</a></li><li class="navigation-list-item "><a href="/Model_Estimation/linear_hypothesis_tests.html" class="navigation-list-link">Linear Hypothesis Tests</a></li><li class="navigation-list-item "><a href="/Model_Estimation/linear_mixed_effects_regression.html" class="navigation-list-link">Linear Mixed-Effects Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/logit_model.html" class="navigation-list-link">Logit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/mcfaddens_choice_model.html" class="navigation-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/ordinary_least_squares.html" class="navigation-list-link">Ordinary Least Squares (Linear Regression)</a></li><li class="navigation-list-item "><a href="/Model_Estimation/probit_model.html" class="navigation-list-link">Probit Model</a></li><li class="navigation-list-item "><a href="/Model_Estimation/random_mixed_effects_estimation.html" class="navigation-list-link">Random/Mixed Effects in Linear Regression</a></li><li class="navigation-list-item "><a href="/Model_Estimation/regression_discontinuity_design.html" class="navigation-list-link">Regression Discontinuity Design</a></li><li class="navigation-list-item "><a href="/Model_Estimation/two_by_two_difference_in_difference.html" class="navigation-list-link">2x2 Difference in Difference</a></li><li class="navigation-list-item "><a href="/Model_Estimation/Nonstandard_Errors/nonstandard_errors.html" class="navigation-list-link">Nonstandard Errors</a><ul class="navigation-list-child-list"><li class="navigation-list-item ">
-                            <a href="/Model_Estimation/Nonstandard_Errors/bootstrap_se.html" class="navigation-list-link">Bootstrap Standard Errors</a>
-                          </li><li class="navigation-list-item ">
-                            <a href="/Model_Estimation/Nonstandard_Errors/clustered_se.html" class="navigation-list-link">Cluster-Robust Standard Errors</a>
-                          </li><li class="navigation-list-item ">
-                            <a href="/Model_Estimation/Nonstandard_Errors/hc_se.html" class="navigation-list-link">Heteroskedasticity-consistent standard errors</a>
-                          </li></ul></li></ul></li><li class="navigation-list-item"><a href="/Presentation/Presentation.html" class="navigation-list-link">Presentation</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Presentation/formatting_graph_legends.html" class="navigation-list-link">Formatting Graph Legends</a></li><li class="navigation-list-item "><a href="/Presentation/Scatterplots.html" class="navigation-list-link">Scatterplots</a></li><li class="navigation-list-item "><a href="/Presentation/Styling_Scatterplots.html" class="navigation-list-link">Styling Scatterplots</a></li><li class="navigation-list-item "><a href="/Presentation/bar_graphs.html" class="navigation-list-link">Bar Graphs</a></li><li class="navigation-list-item "><a href="/Presentation/density_plots.html" class="navigation-list-link">Density Plots</a></li><li class="navigation-list-item "><a href="/Presentation/export_a_formatted_regression_table.html" class="navigation-list-link">Export a Formatted Regression Table</a></li><li class="navigation-list-item "><a href="/Presentation/faceted_graphs.html" class="navigation-list-link">Faceted Graphs</a></li><li class="navigation-list-item "><a href="/Presentation/heatmap_colored_correlation_matrix.html" class="navigation-list-link">Heatmap Colored Correlation Matrix</a></li><li class="navigation-list-item "><a href="/Presentation/histograms.html" class="navigation-list-link">Histograms</a></li><li class="navigation-list-item "><a href="/Presentation/line_graph_with_labels_at_the_beginning_or_end.html" class="navigation-list-link">Line Graph with Labels at the Beginning or End of Lines</a></li><li class="navigation-list-item "><a href="/Presentation/line_graphs.html" class="navigation-list-link">Line Graphs</a></li><li class="navigation-list-item "><a href="/Presentation/marginal_effects_plots_for_interactions_with_continuous_variables.html" class="navigation-list-link">Marginal Effects Plots for Interactions with Continuous Variables</a></li><li class="navigation-list-item "><a href="/Presentation/scatterplot_by_group_on_shared_axes.html" class="navigation-list-link">Scatterplot by Group on Shared Axes</a></li><li class="navigation-list-item "><a href="/Presentation/styling_line_graphs.html" class="navigation-list-link">Styling Line Graphs</a></li></ul></li><li class="navigation-list-item"><a href="/Summary_Statistics/Summary_Statistics.html" class="navigation-list-link">Summary Statistics</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Summary_Statistics/Balance_Tables.html" class="navigation-list-link">Balance Table</a></li><li class="navigation-list-item "><a href="/Summary_Statistics/Summary_Statistics_Tables.html" class="navigation-list-link">Summary Statistics Tables</a></li></ul></li><li class="navigation-list-item"><a href="/Time_Series/Time_Series.html" class="navigation-list-link">Time Series</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Time_Series/AR-models.html" class="navigation-list-link">AR Models</a></li><li class="navigation-list-item "><a href="/Time_Series/ARCH_Model.html" class="navigation-list-link">ARCH Model</a></li><li class="navigation-list-item "><a href="/Time_Series/ARMA-models.html" class="navigation-list-link">ARMA Models</a></li><li class="navigation-list-item "><a href="/Time_Series/GARCH_Model.html" class="navigation-list-link">GARCH Model</a></li><li class="navigation-list-item "><a href="/Time_Series/Granger_Causality.html" class="navigation-list-link">Granger Causality</a></li><li class="navigation-list-item "><a href="/Time_Series/creating_time_series_dataset.html" class="navigation-list-link">Creating Time Series Dataset</a></li></ul></li><li class="navigation-list-item"><a href="/Other/Other.html" class="navigation-list-link">Other</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/Other/create_a_conda_package.html" class="navigation-list-link">Create a Conda Package (Python)</a></li><li class="navigation-list-item "><a href="/Other/get_a_list_of_files.html" class="navigation-list-link">Get a List of Files</a></li><li class="navigation-list-item "><a href="/Other/import_a_foreign_data_file.html" class="navigation-list-link">Import a Foreign Data File</a></li></ul></li><li class="navigation-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="navigation-list-link">Desired Nonexistent Pages</a></li><li class="navigation-list-item active"><a href="/Contributing/Contributing.html" class="navigation-list-link active">Contributing</a></li></ul>
-</nav>
-      </div>
-      <footer class="site-footer">
-        <p class="text-small text-grey-dk-000 mb-4">This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.</p>
-      </footer>
+      <a href="#" id="menu-button" class="site-button">
+        <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+      </a>
     </div>
-    <div class="main-content-wrap js-main-content" tabindex="0">
-      <div class="main-content">
-        <div class="page-header js-page-header">
-          <div class="search">
-            <div class="search-input-wrap">
-              <input type="text" class="js-search-input search-input" tabindex="0" placeholder="Search LOST" aria-label="Search LOST" autocomplete="off">
-              <svg width="14" height="14" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title><g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"/><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"/></g></svg>
-            </div>
-            <div class="js-search-results search-results-wrap"></div>
+    <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
+      <ul class="nav-list"><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/data_manipulation.html" class="nav-list-link">Data Manipulation</a><ul class="nav-list "><li class="nav-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="nav-list-link">Collapse a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="nav-list-link">Combining Datasets</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="nav-list-link">Vertical Combination</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="nav-list-link">Horizontal Combination (Deterministic)</a>
+                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/Creating_Dummy_Variables/creating_dummy_variables.html" class="nav-list-link">Creating Dummy Variables</a></li><li class="nav-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="nav-list-link">Determine the Observation Level of a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Reshaping/reshape.html" class="nav-list-link">Reshaping Data</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="nav-list-link">Reshape Panel Data from Wide to Long</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="nav-list-link">Reshape Panel Data from Long to Wide</a>
+                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/rowwise_calculations.html" class="nav-list-link">Rowwise Calculations</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Geo-Spatial/Geo-spatial.html" class="nav-list-link">Geo-Spatial</a><ul class="nav-list "><li class="nav-list-item "><a href="/Geo-Spatial/geocoding.html" class="nav-list-link">Geocoding</a></li><li class="nav-list-item "><a href="/Geo-Spatial/merging_shape_files.html" class="nav-list-link">Merging Shape Files</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_joins.html" class="nav-list-link">Spatial Joins</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Machine_Learning/Machine_Learning.html" class="nav-list-link">Machine Learning</a><ul class="nav-list "><li class="nav-list-item "><a href="/Machine_Learning/artificial_neural_network.html" class="nav-list-link">Artificial Neural Network</a></li><li class="nav-list-item "><a href="/Machine_Learning/boosted_regression_trees.html" class="nav-list-link">Boosted Regression Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/causal_forest.html" class="nav-list-link">Causal Forest</a></li><li class="nav-list-item "><a href="/Machine_Learning/decision_trees.html" class="nav-list-link">Decision Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/penalized_regression.html" class="nav-list-link">Penalized Regression</a></li><li class="nav-list-item "><a href="/Machine_Learning/random_forest.html" class="nav-list-link">Random Forest</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Estimation.html" class="nav-list-link">Model Estimation</a><ul class="nav-list "><li class="nav-list-item "><a href="/Model_Estimation/fixed_effects_in_linear_regression.html" class="nav-list-link">Fixed Effects in Linear Regression</a></li><li class="nav-list-item "><a href="/Model_Estimation/heckman_correction_model.html" class="nav-list-link">Heckman Correction Model</a></li><li class="nav-list-item "><a href="/Model_Estimation/instrumental_variables.html" class="nav-list-link">Instrumental Variables</a></li><li class="nav-list-item "><a href="/Model_Estimation/interaction_terms_and_polynomials.html" class="nav-list-link">Interaction Terms and Polynomials</a></li><li class="nav-list-item "><a href="/Model_Estimation/linear_hypothesis_tests.html" class="nav-list-link">Linear Hypothesis Tests</a></li><li class="nav-list-item "><a href="/Model_Estimation/linear_mixed_effects_regression.html" class="nav-list-link">Linear Mixed-Effects Regression</a></li><li class="nav-list-item "><a href="/Model_Estimation/logit_model.html" class="nav-list-link">Logit Model</a></li><li class="nav-list-item "><a href="/Model_Estimation/mcfaddens_choice_model.html" class="nav-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a></li><li class="nav-list-item "><a href="/Model_Estimation/ordinary_least_squares.html" class="nav-list-link">Ordinary Least Squares (Linear Regression)</a></li><li class="nav-list-item "><a href="/Model_Estimation/probit_model.html" class="nav-list-link">Probit Model</a></li><li class="nav-list-item "><a href="/Model_Estimation/random_mixed_effects_estimation.html" class="nav-list-link">Random/Mixed Effects in Linear Regression</a></li><li class="nav-list-item "><a href="/Model_Estimation/regression_discontinuity_design.html" class="nav-list-link">Regression Discontinuity Design</a></li><li class="nav-list-item "><a href="/Model_Estimation/two_by_two_difference_in_difference.html" class="nav-list-link">2x2 Difference in Difference</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Nonstandard_Errors/nonstandard_errors.html" class="nav-list-link">Nonstandard Errors</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Nonstandard_Errors/clustered_se.html" class="nav-list-link">Cluster-Robust Standard Errors</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Nonstandard_Errors/hc_se.html" class="nav-list-link">Heteroskedasticity-consistent standard errors</a>
+                      </li></ul></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Presentation.html" class="nav-list-link">Presentation</a><ul class="nav-list "><li class="nav-list-item "><a href="/Presentation/Scatterplots.html" class="nav-list-link">Scatterplots</a></li><li class="nav-list-item "><a href="/Presentation/Styling_Scatterplots.html" class="nav-list-link">Styling Scatterplots</a></li><li class="nav-list-item "><a href="/Presentation/bar_graphs.html" class="nav-list-link">Bar Graphs</a></li><li class="nav-list-item "><a href="/Presentation/density_plots.html" class="nav-list-link">Density Plots</a></li><li class="nav-list-item "><a href="/Presentation/export_a_formatted_regression_table.html" class="nav-list-link">Export a Formatted Regression Table</a></li><li class="nav-list-item "><a href="/Presentation/faceted_graphs.html" class="nav-list-link">Faceted Graphs</a></li><li class="nav-list-item "><a href="/Presentation/heatmap_colored_correlation_matrix.html" class="nav-list-link">Heatmap Colored Correlation Matrix</a></li><li class="nav-list-item "><a href="/Presentation/histograms.html" class="nav-list-link">Histograms</a></li><li class="nav-list-item "><a href="/Presentation/line_graph_with_labels_at_the_beginning_or_end.html" class="nav-list-link">Line Graph with Labels at the Beginning or End of Lines</a></li><li class="nav-list-item "><a href="/Presentation/line_graphs.html" class="nav-list-link">Line Graphs</a></li><li class="nav-list-item "><a href="/Presentation/marginal_effects_plots_for_interactions_with_continuous_variables.html" class="nav-list-link">Marginal Effects Plots for Interactions with Continuous Variables</a></li><li class="nav-list-item "><a href="/Presentation/scatterplot_by_group_on_shared_axes.html" class="nav-list-link">Scatterplot by Group on Shared Axes</a></li><li class="nav-list-item "><a href="/Presentation/styling_line_graphs.html" class="nav-list-link">Styling Line Graphs</a></li><li class="nav-list-item "><a href="/Presentation/formatting_graph_legends.html" class="nav-list-link">Formatting Graph Legends</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Summary_Statistics/Summary_Statistics.html" class="nav-list-link">Summary Statistics</a><ul class="nav-list "><li class="nav-list-item "><a href="/Summary_Statistics/Balance_Tables.html" class="nav-list-link">Balance Table</a></li><li class="nav-list-item "><a href="/Summary_Statistics/Summary_Statistics_Tables.html" class="nav-list-link">Summary Statistics Tables</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Time_Series/Time_Series.html" class="nav-list-link">Time Series</a><ul class="nav-list "><li class="nav-list-item "><a href="/Time_Series/AR-models.html" class="nav-list-link">AR Models</a></li><li class="nav-list-item "><a href="/Time_Series/ARCH_Model.html" class="nav-list-link">ARCH Model</a></li><li class="nav-list-item "><a href="/Time_Series/ARMA-models.html" class="nav-list-link">ARMA Models</a></li><li class="nav-list-item "><a href="/Time_Series/GARCH_Model.html" class="nav-list-link">GARCH Model</a></li><li class="nav-list-item "><a href="/Time_Series/Granger_Causality.html" class="nav-list-link">Granger Causality</a></li><li class="nav-list-item "><a href="/Time_Series/creating_time_series_dataset.html" class="nav-list-link">Creating Time Series Dataset</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Other/Other.html" class="nav-list-link">Other</a><ul class="nav-list "><li class="nav-list-item "><a href="/Other/create_a_conda_package.html" class="nav-list-link">Create a Conda Package (Python)</a></li><li class="nav-list-item "><a href="/Other/get_a_list_of_files.html" class="nav-list-link">Get a List of Files</a></li><li class="nav-list-item "><a href="/Other/import_a_foreign_data_file.html" class="nav-list-link">Import a Foreign Data File</a></li></ul></li><li class="nav-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="nav-list-link">Desired Nonexistent Pages</a></li><li class="nav-list-item active"><a href="/Contributing/Contributing.html" class="nav-list-link active">Contributing</a></li><li class="nav-list-item"><a href="/" class="nav-list-link">Home</a></li></ul>
+    </nav>
+    <footer class="site-footer">
+      This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+    </footer>
+  </div>
+  <div class="main" id="top">
+    <div id="main-header" class="main-header">
+        <div class="search">
+          <div class="search-input-wrap">
+            <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search LOST" aria-label="Search LOST" autocomplete="off">
+            <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
           </div>
-            <ul class="list-style-none text-small aux-nav">
-                <li class="d-inline-block my-0"><a href="https://github.com/lost-stats/lost-stats.github.io/blob/source/Contributing/Contributing.md">Edit this page on GitHub</a></li>
-            </ul>
+          <div id="search-results" class="search-results"></div>
         </div>
-        <div class="page">
-          <div id="main-content" class="page-content" role="main">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/zGQDlKQcPhg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+    </div>
+    <div id="main-content-wrap" class="main-content-wrap">
+      <div id="main-content" class="main-content" role="main">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/zGQDlKQcPhg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
       <h1 id="how-to-contribute">
-          <a href="#how-to-contribute" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> HOW TO CONTRIBUTE
+          <a href="#how-to-contribute" aria-labelledby="how-to-contribute" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> HOW TO CONTRIBUTE
       </h1>
 <ol>
   <li><a href="https://github.com/join">Get a GitHub account</a>. You do not need to know Git to contribute to LOST, but you do need a GitHub account.</li>
@@ -92,10 +108,10 @@
   <li>Read the below LOST Writing Guide, which shows what a good LOST page looks like from top to bottom. Even if you are just adding another language to an existing page, be sure to read the Implementations section at the bottom.</li>
   <li>Explore LOST using the navigation bar on the left, find a page that needs to be expanded, and add more content. Or find one that doesn’t exist but should (perhaps on the <a href="https://lost-stats.github.io/Desired_Nonexistent_Pages/desired_nonexistent_pages.html">Desired Nonexistent Pages list</a>, and write it yourself! Go to the <a href="https://github.com/LOST-STATS/LOST-STATS.github.io">GitHub Repository</a> for LOST to find the appropriate file to edit or folder to create your new file in.</li>
   <li>If you are a “Contributor” to the project, you can make your edits and changes directly to the repository. If not, you will need to issue a <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request">pull request</a> to get your work on LOST. We will add you as a contributor after your first accepted pull request. If you don’t know Git or how to do a pull request, please post in <a href="https://github.com/LOST-STATS/LOST-STATS.github.io/issues">Issues</a> asking to be added as a contributor so you can edit LOST directly.</li>
-  <li>If you’ve made a new page, make sure it’s saved as a <code class="highlighter-rouge">.md</code> file, put it in the appropriate folder, and add Navigation Information at the top (see below). If you’ve written a Desired Nonexistent Page, be sure to remove it from the <a href="https://github.com/LOST-STATS/LOST-STATS.github.io/blob/master/Desired_Nonexistent_Pages/Desired_Nonexistent_Pages.md">list</a>. Or, if your page links to some new nonexistent pages, add those to the list! Also, try to see if other pages have attempted to link to the page you’re working on, and update their links so they go to the right place.</li>
+  <li>If you’ve made a new page, make sure it’s saved as a <code class="language-plaintext highlighter-rouge">.md</code> file, put it in the appropriate folder, and add Navigation Information at the top (see below). If you’ve written a Desired Nonexistent Page, be sure to remove it from the <a href="https://github.com/LOST-STATS/LOST-STATS.github.io/blob/master/Desired_Nonexistent_Pages/Desired_Nonexistent_Pages.md">list</a>. Or, if your page links to some new nonexistent pages, add those to the list! Also, try to see if other pages have attempted to link to the page you’re working on, and update their links so they go to the right place.</li>
 </ol>
       <h1 id="lost-writing-guide">
-          <a href="#lost-writing-guide" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> LOST WRITING GUIDE
+          <a href="#lost-writing-guide" aria-labelledby="lost-writing-guide" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> LOST WRITING GUIDE
       </h1>
 <p>A LOST page is intended to be a <em>set of instructions for performing a statistical technique</em>, where “statistical technique” is broadly defined as “the things you do in statistical software”, which includes everything from loading data to estimating models to cleaning data to visualization to reproducible notebooks.</p>
 <p>After someone reads a LOST page, they should have a decent idea of:</p>
@@ -111,7 +127,7 @@
   <li>The technical ability of the reader may vary by page. People reading a LOST page about how to calculate a mean probably have little experience with their software and will need a lot of hand-holding. You can assume that people reading a LOST page about Markov-Chain Monte Carlo methods probably already have a fairly solid background.</li>
 </ul>
       <h2 id="markdown">
-          <a href="#markdown" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Markdown
+          <a href="#markdown" aria-labelledby="markdown" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Markdown
       </h2>
 <p>LOST pages are written in Markdown. Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for</p>
 <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Syntax highlighted code block
@@ -132,27 +148,27 @@
 </code></pre></div></div>
 <p>For more details see <a href="https://guides.github.com/features/mastering-markdown/">GitHub Flavored Markdown</a>.</p>
       <h2 id="math">
-          <a href="#math" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Math
+          <a href="#math" aria-labelledby="math" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Math
       </h2>
-<p>Math is rendered with MathJax, which provides support for <script type="math/tex">\LaTeX</script> math formatting. To use on a specific page, make sure that the <a href="#navigation-information">YAML</a> at the top on the underlying Markdown (i.e. .md) file includes a line saying <code class="highlighter-rouge">mathjax: true</code>. This should already be the default on most existing pages, but it is worth emphasising. For example, here is a screenshot of the “Contributing.md” file that you are reading right now.</p>
+<p>Math is rendered with MathJax, which provides support for \(\LaTeX\) math formatting. To use on a specific page, make sure that the <a href="#navigation-information">YAML</a> at the top on the underlying Markdown (i.e. .md) file includes a line saying <code class="language-plaintext highlighter-rouge">mathjax: true</code>. This should already be the default on most existing pages, but it is worth emphasising. For example, here is a screenshot of the “Contributing.md” file that you are reading right now.</p>
 <p><img src="/Contributing/mathjax_yaml.png" alt="" /></p>
-<p>After that, equations and other math sections can be delimited with two dollar symbol <em>pairs</em>. For example, <code class="highlighter-rouge">$$x = \frac{1}{2}$$</code> is rendered inline as <script type="math/tex">x = \frac{1}{2}</script>. Similarly, we can render math in display mode (i.e. as a distinct block) by wrapping the dollar symbol pairs on separate lines. For example,</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$$
+<p>After that, equations and other math sections can be delimited with two dollar symbol <em>pairs</em>. For example, <code class="language-plaintext highlighter-rouge">$$x = \frac{1}{2}$$</code> is rendered inline as \(x = \frac{1}{2}\). Similarly, we can render math in display mode (i.e. as a distinct block) by wrapping the dollar symbol pairs on separate lines. For example,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$$
 y =  \beta_0 + \beta_1 x + \beta_2 x^2 + \epsilon
 $$
 </code></pre></div></div>
 <p>is rendered as display math:</p>
-<script type="math/tex; mode=display">y =  \beta_0 + \beta_1 x + \beta_2 x^2 + \epsilon</script>
-<p>While we don’t include such examples here, note that standard <script type="math/tex">\LaTeX</script> math environments such as <code class="highlighter-rouge">\begin{equation} ... \end{equation}</code> (for numbered equations) and <code class="highlighter-rouge">\begin{align} ... \end{align}</code> (for aligned equation systems) are all supported. Just remember to wrap them between a pair of dollar symbols. More information about MathJax can be found <a href="https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">here</a>.</p>
+\[y =  \beta_0 + \beta_1 x + \beta_2 x^2 + \epsilon\]
+<p>While we don’t include such examples here, note that standard \(\LaTeX\) math environments such as <code class="language-plaintext highlighter-rouge">\begin{equation} ... \end{equation}</code> (for numbered equations) and <code class="language-plaintext highlighter-rouge">\begin{align} ... \end{align}</code> (for aligned equation systems) are all supported. Just remember to wrap them between a pair of dollar symbols. More information about MathJax can be found <a href="https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">here</a>.</p>
       <h1 id="structure-of-a-lost-page">
-          <a href="#structure-of-a-lost-page" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> STRUCTURE OF A LOST PAGE
+          <a href="#structure-of-a-lost-page" aria-labelledby="structure-of-a-lost-page" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> STRUCTURE OF A LOST PAGE
       </h1>
 <p>When starting a LOST page, you should copy the <a href="https://github.com/LOST-STATS/LOST-STATS.github.io/blob/master/NewPageTemplate.md">New Page Template</a>. There are four main sections of a LOST page:</p>
       <h2 id="navigation-information">
-          <a href="#navigation-information" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Navigation Information
+          <a href="#navigation-information" aria-labelledby="navigation-information" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Navigation Information
       </h2>
 <p>Your page will begin with what’s known as YAML, i.e. something that looks like this:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
 title: Observation level
 parent: Data Manipulation
 has_children: false
@@ -160,7 +176,7 @@ nav_order: 1
 mathjax: true
 ---
 </code></pre></div></div>
-<p>You don’t need to worry too much about YAML syntax (here’s the <a href="https://en.wikipedia.org/wiki/YAML">Wikipedia entry</a> for those interested). The important thing is that the YAML provides a set of very basic instructions for the website navigation and page structure. Make sure to fill in the <code class="highlighter-rouge">title</code> with a relevant and brief title. Also be sure to put the appropriate name for the <code class="highlighter-rouge">parent</code> — this will ensure that your page shows up in the appropriate spot in the navigation structure. Options for <code class="highlighter-rouge">parent</code> include:</p>
+<p>You don’t need to worry too much about YAML syntax (here’s the <a href="https://en.wikipedia.org/wiki/YAML">Wikipedia entry</a> for those interested). The important thing is that the YAML provides a set of very basic instructions for the website navigation and page structure. Make sure to fill in the <code class="language-plaintext highlighter-rouge">title</code> with a relevant and brief title. Also be sure to put the appropriate name for the <code class="language-plaintext highlighter-rouge">parent</code> — this will ensure that your page shows up in the appropriate spot in the navigation structure. Options for <code class="language-plaintext highlighter-rouge">parent</code> include:</p>
 <ul>
   <li>Data Manipulation</li>
   <li>Geo-Spatial</li>
@@ -171,13 +187,13 @@ mathjax: true
   <li>Time Series</li>
   <li>Other</li>
 </ul>
-<p>For the most part, you should generally ignore <code class="highlighter-rouge">has_children</code>. (An exception is if you are creating a new section that <em>does</em> have new child pages, but then you are probably better off filing an issue with us to make sure this is done correctly.) You can also ignore <code class="highlighter-rouge">nav_order</code> — leaving this at 1 for everything will put everything in alphabetical order.</p>
+<p>For the most part, you should generally ignore <code class="language-plaintext highlighter-rouge">has_children</code>. (An exception is if you are creating a new section that <em>does</em> have new child pages, but then you are probably better off filing an issue with us to make sure this is done correctly.) You can also ignore <code class="language-plaintext highlighter-rouge">nav_order</code> — leaving this at 1 for everything will put everything in alphabetical order.</p>
       <h2 id="introduction">
-          <a href="#introduction" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Introduction
+          <a href="#introduction" aria-labelledby="introduction" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Introduction
       </h2>
 <p>This is an introduction to the technique. Most of the time this will be just a few sentences about what it is and does, and perhaps why it is used. However, in cases of more niche or complex material, there may be a reason to include more detailed information or general non-language-specific instructions here. In general, however, for more detailed explanations or discussions of statistical properties, you can always just link to an outside trusted source like Wikipedia or a (non-paywalled) academic paper.</p>
       <h2 id="keep-in-mind">
-          <a href="#keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Keep in Mind
+          <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
       </h2>
 <p>This is a list of details and reminders for people using the method, especially if they are not yet an expert at it or if the detail is not well-known. This may include:</p>
 <ul>
@@ -188,14 +204,14 @@ mathjax: true
   <li>Rules of thumb for use (“you will want to set the number of bootstrap samples to at least 1,000 (citation)”)</li>
 </ul>
       <h2 id="also-consider">
-          <a href="#also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Also Consider
+          <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
       </h2>
 <p>This is a list of <em>other</em> techniques that are commonly used <em>in addition to</em> this page’s technique, or <em>as an alternative to</em> this page’s technique. If not obvious, include a very brief explanation of why you might want to use that other technique in addition to/instead of the current one. Note that you can link to another LOST page even if that page doesn’t exist yet. Maybe it will inspite someone to write it!</p>
 <p>For example, pages about estimation techniques might list standard robustness tests to be used in addition to the technique, or adjustments to standard errors they might want to use. A page about a data visualization technique might include a link to a page about setting color palettes to be used in addition.</p>
 <p>Or, they might list an alternative technique that might be used if a certain assumption fails (“This technique requires continuous variables. So if your data is discrete, use this other method.”).</p>
-<p>To link to other LOST pages (even if they don’t exist yet — don’t forget to add these to <a href="https://lost-stats.github.io/Desired_Nonexistent_Pages/desired_nonexistent_pages.html">Desired Nonexistent Pages</a>!, use the Markdown <code class="highlighter-rouge">[Link name](url)</code> structure, where the URL is of the format <code class="highlighter-rouge">https://lost-stats.github.io/Category_Name/page_name.html</code>.</p>
+<p>To link to other LOST pages (even if they don’t exist yet — don’t forget to add these to <a href="https://lost-stats.github.io/Desired_Nonexistent_Pages/desired_nonexistent_pages.html">Desired Nonexistent Pages</a>!, use the Markdown <code class="language-plaintext highlighter-rouge">[Link name](url)</code> structure, where the URL is of the format <code class="language-plaintext highlighter-rouge">https://lost-stats.github.io/Category_Name/page_name.html</code>.</p>
       <h2 id="implementations">
-          <a href="#implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Implementations
+          <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h2>
 <p>Implementations contains multiple subsections, one for each statistical software environment/programming language that the technique can be implemented in.</p>
 <ul>
@@ -209,12 +225,12 @@ mathjax: true
 </ul>
 <p><strong>Images</strong></p>
 <p>Images can be added to Implementation sections if relevant, for example if you’re working with GUI-only software, or demonstrating the output of a data visualization technique.</p>
-<p>How can you add these images? You can upload the images somewhere on the internet that allows image linking, and include the image in your instructions with <code class="highlighter-rouge">![Image](src)</code>. Ideally, upload the image directly to the <code class="highlighter-rouge">Images/name-of-your-page/</code> subfolder of whatever directory you’re working in, and link to the images there.</p>
-<p>Please be sure to add alt text to images for sight-impaired users. Image filenames should make reference to the language used to make them, i.e. <code class="highlighter-rouge">python_scatterplot.png</code>.</p>
+<p>How can you add these images? You can upload the images somewhere on the internet that allows image linking, and include the image in your instructions with <code class="language-plaintext highlighter-rouge">![Image](src)</code>. Ideally, upload the image directly to the <code class="language-plaintext highlighter-rouge">Images/name-of-your-page/</code> subfolder of whatever directory you’re working in, and link to the images there.</p>
+<p>Please be sure to add alt text to images for sight-impaired users. Image filenames should make reference to the language used to make them, i.e. <code class="language-plaintext highlighter-rouge">python_scatterplot.png</code>.</p>
 <p><strong>Data</strong></p>
-<p><em>Ideally</em>, the same data set will be uploaded to LOST directly in a format accessible by many languages (like CSV) in the <code class="highlighter-rouge">Data/name-of-your-page/</code> subfolder of whatever directory you’re wokring in, and then that data can be used for implementation in all languages on the page. This is not required, but is encouraged.</p>
+<p><em>Ideally</em>, the same data set will be uploaded to LOST directly in a format accessible by many languages (like CSV) in the <code class="language-plaintext highlighter-rouge">Data/name-of-your-page/</code> subfolder of whatever directory you’re wokring in, and then that data can be used for implementation in all languages on the page. This is not required, but is encouraged.</p>
       <h1 id="frequently-asked-questions">
-          <a href="#frequently-asked-questions" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> FREQUENTLY ASKED QUESTIONS
+          <a href="#frequently-asked-questions" aria-labelledby="frequently-asked-questions" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> FREQUENTLY ASKED QUESTIONS
       </h1>
 <ul>
   <li><strong>What techniques are important enough to be their own page?</strong> This is a little subjective, but if you’re writing about X, which is a minor option/variant of Y, then you can just include it on the Y page. If X is a <em>different technique</em> or a variant of Y that is used in different circumstances or produces meaningfully different output, then give X its own page.</li>
@@ -225,9 +241,17 @@ mathjax: true
   <li><strong>How can I [add an image/link to another LOST page/add an external link/bold text] in the LOST wiki?</strong> See the Markdown section above.</li>
   <li><strong>I want to contribute but I do not like all the rules and structure on this page. I don’t even want my FAQ entry to be a question. Just let me write what I want.</strong> If you have valuable knowledge about statistical techniques to share with people and are able to explain things clearly, I don’t want to stop you. So go for it. Maybe post something in <a href="https://github.com/LOST-STATS/LOST-STATS.github.io/issues">Issues</a> when you’re done and perhaps someone else will help make your page more consistent with the rest of the Wiki. I mean, it would be nicer if you did that yourself, but hey, we all have different strengths, right?</li>
 </ul>
-        </div>
+          <hr>
+          <footer>
+              <div class="d-flex mt-2">
+                  <p class="text-small text-grey-dk-000 mb-0">
+                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Contributing/Contributing.md" id="edit-this-page">Edit this page on GitHub.</a>
+                  </p>
+              </div>
+          </footer>
       </div>
     </div>
+      <div class="search-overlay"></div>
   </div>
 </body>
 </html>
