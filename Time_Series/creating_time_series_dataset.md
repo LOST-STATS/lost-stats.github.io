@@ -18,6 +18,23 @@ Time-series estimators are, by definition, a function of the temporal ordering o
 
 # Implementations
 
+## Python
+
+**pandas** supports time series data. Here is an example which downloads quarterly data, casts the date column (read in as an `object` series) as a `datetime` series, and creates a year-quarter column.
+
+```python
+import pandas as pd
+
+# Read in data
+gdp = pd.read_csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv")
+
+# Convert date column to be of data type datetime64
+gdp['DATE'] = pd.to_datetime(gdp['DATE'])
+
+# Create a column with quarter-year combinations
+gdp['yr-qtr'] = gdp['DATE'].apply(lambda x: str(x.year) + '-' + str(x.quarter))
+```
+
 ## R
 
 There are many different kinds of time series data set objects in R. Instead of R-based time series objects such as `ts`, `zoo` and `xts`, here we will use **tsibble**, will preserves time indices as the essential data column and makes heterogeneous data structures possible.
