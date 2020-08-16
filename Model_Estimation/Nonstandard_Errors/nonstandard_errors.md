@@ -1,6 +1,7 @@
 ---
 title: Nonstandard Errors
-parent: Model Estimation
+parent: Statistical Inference
+grand_parent: Model Estimation ## Optional for indexing
 has_children: true
 mathjax: false
 nav_order: 100
