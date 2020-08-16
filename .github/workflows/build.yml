@@ -1,0 +1,60 @@
+name: Build and Push
+on:
+  push:
+    branches:
+      - source
+
+jobs:
+  build_job:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node: ['12']
+        ruby: ['2.6']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Pull cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            vendor/bundle
+            **/node_modules
+          key: bundle-use-ruby-${{ matrix.ruby }}-${{ hashFiles('**/Gemfile.lock') }}-node-${{ matrix.node }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            bundle-use-ruby-${{ matrix.ruby }}-node-${{ matrix.node }}-
+
+      - name: bundle install
+        run: |
+          gem install bundler:2.1.4
+          bundle config deployment true
+          bundle config path vendor/bundle
+          bundle install --jobs 4
+
+      - name: npm install
+        run: npm install
+
+      - name: Build the page
+        run: npm run gulp ghActionsBuild
+
+      - name: Push to GH Pages
+        uses: JamesIves/github-pages-deploy-action@3.5.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: master
+          FOLDER: _site
