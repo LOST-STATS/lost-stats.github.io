@@ -1,7 +1,7 @@
 ---
 title: Linear Hypothesis Tests
 parent: Statistical Inference
-grant_parent: Model Estimation ## Optional for indexing
+grand_parent: Model Estimation ## Optional for indexing
 has_children: false
 nav_order: 1
 mathjax: true ## Switch to false if this page has no equations or other math rendering.
