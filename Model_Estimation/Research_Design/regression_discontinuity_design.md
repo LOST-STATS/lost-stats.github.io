@@ -1,6 +1,7 @@
 ---
 title: Regression Discontinuity Design
-parent: Model Estimation
+parent: Research Design
+grand_parent: Model Estimation ## Optional for indexing
 has_children: false
 nav_order: 1
 mathjax: true ## Switch to false if this page has no equations or other math rendering.
