@@ -116,6 +116,21 @@
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<p><strong>pandas</strong> supports time series data. Here is an example which downloads quarterly data, casts the date column (read in as an <code class="language-plaintext highlighter-rouge">object</code> series) as a <code class="language-plaintext highlighter-rouge">datetime</code> series, and creates a year-quarter column.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="c1"># Read in data
+</span><span class="n">gdp</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv"</span><span class="p">)</span>
+
+<span class="c1"># Convert date column to be of data type datetime64
+</span><span class="n">gdp</span><span class="p">[</span><span class="s">'DATE'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">gdp</span><span class="p">[</span><span class="s">'DATE'</span><span class="p">])</span>
+
+<span class="c1"># Create a column with quarter-year combinations
+</span><span class="n">gdp</span><span class="p">[</span><span class="s">'yr-qtr'</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdp</span><span class="p">[</span><span class="s">'DATE'</span><span class="p">].</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">year</span><span class="p">)</span> <span class="o">+</span> <span class="s">'-'</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">quarter</span><span class="p">))</span>
+</code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
