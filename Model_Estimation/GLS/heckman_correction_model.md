@@ -1,6 +1,7 @@
 ---
 title: Heckman Correction Model
-parent: Model Estimation
+parent: Generalised Least Squares
+grand_parent: Multilevel Models ## Optional for indexing
 has_children: false
 mathjax: true
 nav_order: 1
