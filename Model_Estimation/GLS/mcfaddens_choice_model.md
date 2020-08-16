@@ -1,7 +1,7 @@
 ---
 title: McFadden's Choice Model (Alternative-Specific Conditional Logit)
 parent: Generalised Least Squares
-grand_parent: Multilevel Models ## Optional for indexing
+grand_parent: Model Estimation ## Optional for indexing
 has_children: false
 mathjax: true
 nav_order: 1
