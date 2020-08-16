@@ -22,6 +22,9 @@
 <loc>/Time_Series/GARCH_Model.html</loc>
 </url>
 <url>
+<loc>/Model_Estimation/GLS/GLS.html</loc>
+</url>
+<url>
 <loc>/Geo-Spatial/Geo-spatial.html</loc>
 </url>
 <url>
@@ -142,7 +145,7 @@
 <loc>/Presentation/heatmap_colored_correlation_matrix.html</loc>
 </url>
 <url>
-<loc>/Model_Estimation/heckman_correction_model.html</loc>
+<loc>/Model_Estimation/GLS/heckman_correction_model.html</loc>
 </url>
 <url>
 <loc>/Presentation/histograms.html</loc>
@@ -169,13 +172,13 @@
 <loc>/Model_Estimation/Multilevel_Models/linear_mixed_effects_regression.html</loc>
 </url>
 <url>
-<loc>/Model_Estimation/logit_model.html</loc>
+<loc>/Model_Estimation/GLS/logit_model.html</loc>
 </url>
 <url>
 <loc>/Presentation/marginal_effects_plots_for_interactions_with_continuous_variables.html</loc>
 </url>
 <url>
-<loc>/Model_Estimation/mcfaddens_choice_model.html</loc>
+<loc>/Model_Estimation/GLS/mcfaddens_choice_model.html</loc>
 </url>
 <url>
 <loc>/Geo-Spatial/merging_shape_files.html</loc>
@@ -190,7 +193,7 @@
 <loc>/Machine_Learning/penalized_regression.html</loc>
 </url>
 <url>
-<loc>/Model_Estimation/probit_model.html</loc>
+<loc>/Model_Estimation/GLS/probit_model.html</loc>
 </url>
 <url>
 <loc>/Machine_Learning/random_forest.html</loc>
