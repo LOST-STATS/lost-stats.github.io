@@ -1,7 +1,7 @@
 ---
 title: Linear Mixed-Effects Regression
-parent: Research Design
-grand_parent: Multilevel Models ## Optional for indexing
+parent: Multilevel Models
+grand_parent: Model Estimation ## Optional for indexing
 has_children: false
 nav_order: 1
 mathjax: true ## Switch to false if this page has no equations or other math rendering.
