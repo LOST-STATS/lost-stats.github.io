@@ -18,7 +18,7 @@ const pushGHPages = () => {
 
 const build = () => cp.spawn('bundle', ['exec', 'jekyll', 'build'], { stdio: 'inherit' })
 
-const ghActionsBuild = () => gulp.series(build, image)
+const ghActionsBuild = gulp.series(build, image)
 
 const deploy = gulp.series(build, image, pushGHSource, pushGHPages)
 
