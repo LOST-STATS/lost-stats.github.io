@@ -1,7 +1,7 @@
 ---
 title: Bootstrap Standard Errors
 parent: Nonstandard Errors
-grant_parent: Statistical Inference ## Optional for indexing
+grand_parent: Statistical Inference ## Optional for indexing
 has_children: false
 nav_order: 1
 mathjax: true ## Switch to false if this page has no equations or other math rendering.
