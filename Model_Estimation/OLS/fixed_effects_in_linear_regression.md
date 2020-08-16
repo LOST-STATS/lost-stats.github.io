@@ -1,9 +1,10 @@
 ---
 title: Fixed Effects in Linear Regression
-parent: Model Estimation
+parent: Ordinary Least Squares
+grand_parent: Model Estimation ## Optional for indexing
 has_children: false
 mathjax: true
-nav_order: 1
+nav_order: 3
 ---
 
 # Fixed Effects in Linear Regression

@@ -1,12 +1,13 @@
 ---
-title: Ordinary Least Squares (Linear Regression)
-parent: Model Estimation
+title: Simple Linear Regression
+parent: Ordinary Least Squares
+grand_parent: Model Estimation ## Optional for indexing
 has_children: false
 nav_order: 1
 mathjax: true
 ---
 
-# Ordinary Least Squares (Linear Regression)
+# Simple Linear Regression
 
 Ordinary Least Squares (OLS) is a statistical method that produces a best-fit line between some outcome variable $$Y$$ and any number of predictor variables $$X_1, X_2, X_3, ...$$. These predictor variables may also be called independent variables or right-hand-side variables.
 
