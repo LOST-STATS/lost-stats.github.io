@@ -1,6 +1,7 @@
 ---
 title: Scatterplot by Group on Shared Axes
-parent: Presentation
+parent: Figures
+grand_parent: Presentation ## Optional for indexing
 has_children: false
 mathjax: true
 nav_order: 1

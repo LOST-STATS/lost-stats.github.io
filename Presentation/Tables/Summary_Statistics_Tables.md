@@ -1,6 +1,7 @@
 ---
 title: Summary Statistics Tables
-parent: Summary Statistics
+parent: Tables
+grand_parent: Presentation ## Optional for indexing
 has_children: false
 nav_order: 1
 mathjax: true ## Switch to false if this page has no equations or other math rendering.

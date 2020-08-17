@@ -1,6 +1,7 @@
 ---
 title: Line Graph with Labels at the Beginning or End of Lines
-parent: Presentation
+parent: Figures
+grand_parent: Presentation ## Optional for indexing
 has_children: false
 nav_order: 1
 ---
@@ -33,7 +34,7 @@ library(directlabels)
 # Load in Google Trends Nobel Search Data
 # Which contains the Google Trends global search popularity index for the four
 # research-based Nobel prizes over a month.
-df <- read.csv('https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Presentation/Data/Line_Graph_with_Labels_at_the_Beginning_or_End_of_Lines/Research_Nobel_Google_Trends.csv')
+df <- read.csv('https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Presentation/Figures/Data/Line_Graph_with_Labels_at_the_Beginning_or_End_of_Lines/Research_Nobel_Google_Trends.csv')
 
 # Properly treat our date variable as a date
 # Not necessary in all applications of this technique.
@@ -59,7 +60,7 @@ ggplot(df, aes(x = date, y = log(hits), color = name)) +
 ```
 This results in:
 
-![Line Graph of Search Popularity for Research Nobels in R.](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Images/Line_Graph_with_Labels_at_the_Beginning_or_End_of_Lines/R_line_graph_with_labels.png)
+![Line Graph of Search Popularity for Research Nobels in R.](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Line_Graph_with_Labels_at_the_Beginning_or_End_of_Lines/R_line_graph_with_labels.png)
 
 ## Stata
 
@@ -69,7 +70,7 @@ Unfortunately, performing this technique in Stata requires placing each `text()`
 * Load in Google Trends Nobel Search Data
 * Which contains the Google Trends global search popularity index for the four
 * research-based Nobel prizes over a month.
-import delimited "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Presentation/Data/Line_Graph_with_Labels_at_the_Beginning_or_End_of_Lines/Research_Nobel_Google_Trends.csv", clear
+import delimited "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Presentation/Figures/Data/Line_Graph_with_Labels_at_the_Beginning_or_End_of_Lines/Research_Nobel_Google_Trends.csv", clear
 
 * Convert the date variable to an actual date
 * (not necessary in all implementations)
@@ -118,4 +119,4 @@ twoway `lines', `textlabs' legend(off) xscale(range(`start' `end')) xtitle("Date
 
 This results in:
 
-![Line Graph of Search Popularity for Research Nobels in Stata](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Images/Line_Graph_with_Labels_at_the_Beginning_or_End_of_Lines/stata_line_graph_with_labels.png)
+![Line Graph of Search Popularity for Research Nobels in Stata](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Line_Graph_with_Labels_at_the_Beginning_or_End_of_Lines/stata_line_graph_with_labels.png)

@@ -1,6 +1,7 @@
 ---
 title: Marginal Effects Plots for Interactions with Continuous Variables
-parent: Presentation
+parent: Figures
+grand_parent: Presentation ## Optional for indexing
 has_children: false
 mathjax: true
 nav_order: 1

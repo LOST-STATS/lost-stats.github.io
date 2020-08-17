@@ -1,11 +1,12 @@
 ---
-title: "Scatterplots"
+title: Scatterplots
+parent: Figures
+grand_parent: Presentation ## Optional for indexing
 mathjax: yes
 nav_order: 1
-output:
-  html_document:
-    df_print: paged
-parent: Presentation
+# output:
+#   html_document:
+#     df_print: paged
 has_children: no
 ---
 

@@ -1,6 +1,7 @@
 ---
-title: Balance Table
-parent: Summary Statistics
+title: Balance Tables
+parent: Tables
+grand_parent: Presentation ## Optional for indexing
 has_children: false
 nav_order: 1
 ---

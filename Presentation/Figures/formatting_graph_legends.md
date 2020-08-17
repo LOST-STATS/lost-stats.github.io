@@ -1,6 +1,7 @@
 ---
-title: "Formatting Graph Legends"
-parent: "Presentation"
+title: Formatting Graph Legends
+parent: Figures
+grand_parent: Presentation ## Optional for indexing
 mathjax: true
 ---
 

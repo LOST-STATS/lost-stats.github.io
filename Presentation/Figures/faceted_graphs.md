@@ -1,6 +1,7 @@
 ---
 title: Faceted Graphs
-parent: Presentation
+parent: Figures
+grand_parent: Presentation ## Optional for indexing
 has_children: false
 nav_order: 1
 mathjax: false

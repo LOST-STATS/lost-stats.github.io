@@ -1,12 +1,13 @@
 ---
-title: Export a Formatted Regression Table
-parent: Presentation
+title: Regression Tables
+parent: Tables
+grand_parent: Presentation ## Optional for indexing
 has_children: false
 nav_order: 1
 mathjax: true ## Switch to false if this page has no equations or other math rendering.
 ---
 
-# Export a Formatted Regression Table
+# Regression Tables
 
 Statistical packages often report regression results in a way that is not how you would want to display them in a paper or on a website. Additionally, they rarely provide an option to display multiple regression results in the same table. 
 
