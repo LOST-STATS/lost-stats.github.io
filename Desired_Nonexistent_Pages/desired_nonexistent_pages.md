@@ -16,39 +16,55 @@ If you create one of these pages, please remove it from this list.
 
 * Aggregating Statistics
 
-## Model Estimation
-
-* Nonlinear Instrumental Variables Estimation
-* Differences in Differences with treatment rollout (use updated methods!)
-* Propensity Score Matching
-* Event Study Estimation
-* Nonparametric regression
-* Generalized Method of Moments (GMM)
-* Cluster Bootstrap Standard Errors
-* Treatment Effect Model
-* Endogenous Switching Model
-* Nonparametric Sample Selection Models
-* Jackknife Standard Errors
-* Tobit
-* Average Marginal Effects
-* Marginal Effects at the Mean
-* Conditional Logit
-* Mixed Logit
-* Nested Logit
-* Hierarchical Bayes Conditional Logit
-* Multilevel Regression with Poststratification
-* Nonlinear Mixed Effects Models
-* Ordered Probit
-* Ordered Logit
-* Nonlinear hypothesis tests
-* Synethic Control Method
-
 ## Geo-Spatial
 
 * Handling Raster Data
 * Handling Vector Data
 * Spatial Regression Model
 
+## Model Estimation
+
+### OLS
+
+### GLS
+
+* Nonlinear Instrumental Variables Estimation
+* Nonparametric regression
+* Generalized Method of Moments (GMM)
+* Tobit
+* Ordered Probit
+* Ordered Logit
+* Conditional Logit
+* Mixed Logit
+* Nested Logit
+
+### Multilevel Models
+
+* Hierarchical Bayes Conditional Logit
+* Multilevel Regression with Poststratification
+* Nonlinear Mixed Effects Models
+
+### Research Design
+
+* Differences in Differences with treatment rollout (use updated methods!)
+* Propensity Score Matching
+* Event Study Estimation
+* Synethic Control Method
+
+### Statistical Inference
+
+* Average Marginal Effects
+* Marginal Effects at the Mean
+* Nonlinear hypothesis tests
+
+#### Nonstandard Errors
+
+* Cluster Bootstrap Standard Errors
+* Jackknife Standard Errors
+
+* Treatment Effect Model
+* Endogenous Switching Model
+* Nonparametric Sample Selection Models
 
 ## Machine Learning 
 
@@ -58,11 +74,13 @@ If you create one of these pages, please remove it from this list.
 
 ## Presentation
 
+### Figures
+
 * Marginal Effects Plots for Discrete Variables
 * Histograms
 * Graph themes
 
-## Summary Statistics
+### Tables
 
 * Summary Statistics by Group
 * Cross-Tabulations
