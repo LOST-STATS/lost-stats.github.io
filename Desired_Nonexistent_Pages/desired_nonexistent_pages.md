@@ -37,6 +37,8 @@ If you create one of these pages, please remove it from this list.
 * Conditional Logit
 * Mixed Logit
 * Nested Logit
+* Endogenous Switching Model
+* Nonparametric Sample Selection Models
 
 ### Multilevel Models
 
@@ -56,15 +58,12 @@ If you create one of these pages, please remove it from this list.
 * Average Marginal Effects
 * Marginal Effects at the Mean
 * Nonlinear hypothesis tests
+* Treatment Effect Model
 
 #### Nonstandard Errors
 
 * Cluster Bootstrap Standard Errors
 * Jackknife Standard Errors
-
-* Treatment Effect Model
-* Endogenous Switching Model
-* Nonparametric Sample Selection Models
 
 ## Machine Learning 
 
