@@ -3,6 +3,7 @@ ruby RUBY_VERSION
 
 gem "rake"
 gem "jekyll", "4.1.1"
+gem "html-proofer", "3.15.0"
 
 group :jekyll_plugins do
   gem "rouge", "3.22.0"
