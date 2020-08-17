@@ -8,7 +8,7 @@ nav_order: 1
 
 # Line Graph with Labels at the Beginning or End of Lines
 
-A [line graph](https://lost-stats.github.io/Presentation/line_graphs.html) is a common way of showing how a value changes over time (or over any other x-axis where there's only one observation per x-axis value). It is also common to put several line graphs on the same set of axes so you can see how multiple values are changing together.
+A [line graph](https://lost-stats.github.io/Presentation/Figures/line_graphs.html) is a common way of showing how a value changes over time (or over any other x-axis where there's only one observation per x-axis value). It is also common to put several line graphs on the same set of axes so you can see how multiple values are changing together.
 
 When putting multiple line graphs on the same set of axes, a good idea is to label the different lines *on the lines themselves*, rather than in a legend, which generally makes things easier to read.
 
@@ -18,8 +18,8 @@ When putting multiple line graphs on the same set of axes, a good idea is to lab
 
 ## Also Consider
 
-- More generally, see [Line graph](https://lost-stats.github.io/Presentation/line_graphs.html) and [Styling line graphs](https://lost-stats.github.io/Presentation/styling_line_graphs.html). In particular, consider [Styling line graphs](https://lost-stats.github.io/Presentation/styling_line_graphs.html) in order to distinguish the lines by color, pattern, etc. in addition to labels
-- If there are too many lines to be able to clearly follow them, labels won't help too much. Instead, consider [Faceted graphs](https://lost-stats.github.io/Presentation/faceted_graphs.html).
+- More generally, see [Line graph](https://lost-stats.github.io/Presentation/Figures/line_graphs.html) and [Styling line graphs](https://lost-stats.github.io/Presentation/Figures/styling_line_graphs.html). In particular, consider [Styling line graphs](https://lost-stats.github.io/Presentation/Figures/styling_line_graphs.html) in order to distinguish the lines by color, pattern, etc. in addition to labels
+- If there are too many lines to be able to clearly follow them, labels won't help too much. Instead, consider [Faceted graphs](https://lost-stats.github.io/Presentation/Figures/faceted_graphs.html).
 
 # Implementations
 

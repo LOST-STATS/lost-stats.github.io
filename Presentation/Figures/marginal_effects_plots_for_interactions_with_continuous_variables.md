@@ -22,7 +22,7 @@ A marginal effects plot displays the effect of $$X$$ on $$Y$$ for different valu
 
 - Consider performing a [power analysis of interaction terms](https://lost-stats.github.io/Other/power_analysis_for_interactions) before running your analysis to see whether you have the statistical power for your interactions
 - [Average marginal effects](https://lost-stats.github.io/Model_Estimation/average_marginal_effects.html) or [marginal effects at the mean](https://lost-stats.github.io/Model_Estimation/marginal_effects_at_the_mean.html) can be used to get a single marginal effect averaged over your sample, rather than showing how it varies across the sample.
-- [Marginal effects plots for interactions with categorical variables](https://lost-stats.github.io/Presentation/marginal_effects_plots_for_interactions_with_categorical_variables.html)
+- [Marginal effects plots for interactions with categorical variables](https://lost-stats.github.io/Presentation/Figures/marginal_effects_plots_for_interactions_with_categorical_variables.html)
 
 # Implementations
 
@@ -60,7 +60,7 @@ interplot(cubic_model,
 ```
 This results in:
 
-![Marginal effect of listings varying over listings, produced with R.](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Images/Marginal-Effects-Plots-for-Interactions-with-Continuous-Variables/r_marginal_effect_continuous_interaction.png)
+![Marginal effect of listings varying over listings, produced with R.](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Marginal-Effects-Plots-for-Interactions-with-Continuous-Variables/r_marginal_effect_continuous_interaction.png)
 
 ## Stata
 
@@ -87,4 +87,4 @@ marginsplot, xtitle("Tenure") ytitle("Marginal Effect of Tenure") recast(line) r
 ```
 This results in:
 
-![Marginal effect of tenure varying over tenure, produced with Stata.](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Images/Marginal-Effects-Plots-for-Interactions-with-Continuous-Variables/stata_marginal_effects_continuous_interaction.png)
+![Marginal effect of tenure varying over tenure, produced with Stata.](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Marginal-Effects-Plots-for-Interactions-with-Continuous-Variables/stata_marginal_effects_continuous_interaction.png)

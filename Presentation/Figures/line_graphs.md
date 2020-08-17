@@ -18,7 +18,7 @@ A line graph is a visualization tool that shows how a value changes over time. A
 
 ## Also Consider
 
-- To enhance a basic line graph, see [Styling Line Graphs](https://lost-stats.github.io/Presentation/styling_line_graphs.html) and [Line Graph with Labels at the Beginning or End of Lines](https://lost-stats.github.io/Presentation/line_graph_with_labels_at_the_beginning_or_end.html).
+- To enhance a basic line graph, see [Styling Line Graphs](https://lost-stats.github.io/Presentation/Figures/styling_line_graphs.html) and [Line Graph with Labels at the Beginning or End of Lines](https://lost-stats.github.io/Presentation/Figures/line_graph_with_labels_at_the_beginning_or_end.html).
 
 
 # Implementations
@@ -136,7 +136,7 @@ ggplot(Orange, aes(x = age, y = circumference, color = Tree)) +
 ```
 ![R Line Graph with Multiple Lines](Images/Line_Graphs/line_graph_multi_R.png)
 
-The steps will get you started with creating graphs in R. For more information on styling your graphs, again, visit [Styling Line Graphs](https://lost-stats.github.io/Presentation/styling_line_graphs.html) and [Line Graph with Labels at the Beginning or End of Lines](https://lost-stats.github.io/Presentation/line_graph_with_labels_at_the_beginning_or_end.html).
+The steps will get you started with creating graphs in R. For more information on styling your graphs, again, visit [Styling Line Graphs](https://lost-stats.github.io/Presentation/Figures/styling_line_graphs.html) and [Line Graph with Labels at the Beginning or End of Lines](https://lost-stats.github.io/Presentation/Figures/line_graph_with_labels_at_the_beginning_or_end.html).
 
 Another great resource for line graph styling tips is [this blog post](http://t-redactyl.io/blog/2015/12/creating-plots-in-r-using-ggplot2-part-1-line-plots.html) created by Jodie Burchell. 
 
@@ -165,7 +165,7 @@ We can also include all the trees on the same line graph:
 * If we want all of our trees graphed on the same axis
 * We can specify each line separately using ()
 * Use legend() so we know which line is which
-* Or label the lines directly using https://lost-stats.github.io/Presentation/line_graph_with_labels_at_the_beginning_or_end.html
+* Or label the lines directly using https://lost-stats.github.io/Presentation/Figures/line_graph_with_labels_at_the_beginning_or_end.html
 twoway (line circumference age if tree == 1) (line circumference age if tree == 2) (line circumference age if tree == 3) (line circumference age if tree == 4) (line circumference age if tree == 5), xtitle("Age (days since 12/31/1968)") ytitle("Circumference") legend(lab(1 "Tree 1") lab(2 "Tree 2") lab(3 "Tree 3") lab(4 "Tree 4") lab(5 "Tree 5"))
 ```
 

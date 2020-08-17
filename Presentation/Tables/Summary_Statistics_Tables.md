@@ -18,7 +18,7 @@ Before looking at relationships between variables, it is generally a good idea t
 
 ## Also Consider
 
-- Graphs can be more informative ways of showing the distribution of a variable, and you may want to show a graph of your variable's distribution in addition to its inclusion on a summary statistics table. There are many ways to do this, but two common ones are [density plots](https://lost-stats.github.io/Presentation/Density_Plots.html) or [histograms](https://lost-stats.github.io/Presentation/Histograms.html) for continuous variables, or [bar plots](https://lost-stats.github.io/Presentation/Bar_Plots.html) for categorical variables.
+- Graphs can be more informative ways of showing the distribution of a variable, and you may want to show a graph of your variable's distribution in addition to its inclusion on a summary statistics table. There are many ways to do this, but two common ones are [density plots](https://lost-stats.github.io/Presentation/Tables/Density_Plots.html) or [histograms](https://lost-stats.github.io/Presentation/Tables/Histograms.html) for continuous variables, or [bar plots](https://lost-stats.github.io/Presentation/Tables/Bar_Plots.html) for categorical variables.
 
 # Implementations
 

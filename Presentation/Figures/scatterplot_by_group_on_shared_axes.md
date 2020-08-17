@@ -9,7 +9,7 @@ nav_order: 1
 
 # Scatterplot by Group on Shared Axes
 
-[Scatterplot](https://lost-stats.github.io/Presentation/scatterplot.html)s are a standard data visualization tool that allows you to look at the relationship between two variables $$X$$ and $$Y$$. If you want to see how the relationship between $$X$$ and $$Y$$ might be different for Group A as opposed to Group B, then you might want to plot the scatterplot for both groups on the same set of axes, so you can compare them.
+[Scatterplot](https://lost-stats.github.io/Presentation/Figures/scatterplot.html)s are a standard data visualization tool that allows you to look at the relationship between two variables $$X$$ and $$Y$$. If you want to see how the relationship between $$X$$ and $$Y$$ might be different for Group A as opposed to Group B, then you might want to plot the scatterplot for both groups on the same set of axes, so you can compare them.
 
 ## Keep in Mind
 
@@ -17,8 +17,8 @@ nav_order: 1
 
 ## Also Consider
 
-- Sometimes, instead of putting both Group A and Group B on the same set of axes, it makes more sense to plot them separately, and put the plots next to each other. See [Faceted Graphs](https://lost-stats.github.io/Presentation/faceted_graphs.html).
-- There are many ways to make the scatterplots of the two groups distinct. See [Styling Scatterplots](https://lost-stats.github.io/Presentation/styling_scatterplots.html).
+- Sometimes, instead of putting both Group A and Group B on the same set of axes, it makes more sense to plot them separately, and put the plots next to each other. See [Faceted Graphs](https://lost-stats.github.io/Presentation/Figures/faceted_graphs.html).
+- There are many ways to make the scatterplots of the two groups distinct. See [Styling Scatterplots](https://lost-stats.github.io/Presentation/Figures/styling_scatterplots.html).
 
 # Implementations
 
@@ -46,7 +46,7 @@ ggplot(mtcars, aes(x = wt, y = mpg,
 ```
 This results in:
 
-![Scatterplot of car weight against MPG, differentiated by transmission type, in R](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Images/Scatterplot-by-Groups-on-Shared-Axes/r_scatterplot_by_transmission.png)
+![Scatterplot of car weight against MPG, differentiated by transmission type, in R](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Scatterplot-by-Groups-on-Shared-Axes/r_scatterplot_by_transmission.png)
 
 ## Stata
 
@@ -65,4 +65,4 @@ twoway (scatter weight mpg if foreign == 0, mcolor(black)) (scatter weight mpg i
 ```
 This results in:
 
-![Scatterplot of car weight against MPG, differentiated by foreign, in Stata](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Images/Scatterplot-by-Groups-on-Shared-Axes/stata_scatterplot_by_group.png)
+![Scatterplot of car weight against MPG, differentiated by foreign, in Stata](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Scatterplot-by-Groups-on-Shared-Axes/stata_scatterplot_by_group.png)

@@ -18,7 +18,7 @@ When plotting relationship among variables of interest, one of the useful ways t
 
 ## Also Consider
 
-- It is important to know the basic plotting techniques such as [Bar Graphs](https://lost-stats.github.io/Presentation/bar_graphs.html), [Line Graphs](https://lost-stats.github.io/Presentation/line_graph_with_labels_at_the_beginning_or_end.html) and [Scatterplot](https://lost-stats.github.io/Presentation/scatterplot_by_group_on_shared_axes.html) before learning about faceted graphs as the facets are an addition to the underlying plot such as bar graph, line graph, scatterplot etc.
+- It is important to know the basic plotting techniques such as [Bar Graphs](https://lost-stats.github.io/Presentation/Figures/bar_graphs.html), [Line Graphs](https://lost-stats.github.io/Presentation/Figures/line_graph_with_labels_at_the_beginning_or_end.html) and [Scatterplot](https://lost-stats.github.io/Presentation/Figures/Figures/scatterplot_by_group_on_shared_axes.html) before learning about faceted graphs as the facets are an addition to the underlying plot such as bar graph, line graph, scatterplot etc.
 
 
 # Implementations
@@ -45,7 +45,7 @@ geom_point(mapping = aes(x = displ, y = hwy))+
 facet_wrap(~class)
 ```
 The above set of code results in the following panel of subplots:
-![Faceted graph](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Images/Faceted_Graphs/faceted_graph_class.png).
+![Faceted graph](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Faceted_Graphs/faceted_graph_class.png).
 
 Additionally, one can create faceted graph using two variables with `facet_grid()`. Inside the bracket, use two variables seperated by `~`. The example of the same using 'mpg' dataframe and two variables 'drv' (whether it's front wheel, rear wheel or 4wd) and 'cyl' (number of cylinders) is given below.
 
@@ -55,7 +55,7 @@ geom_point(mapping = aes(x = displ, y = hwy))+
 facet_grid(drv ~ cyl)
 ```
 The code reults in the follwing panel of subplots:
-![Faceted graph with two variables](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Images/Faceted_Graphs/faceted_graph_two_variables.png)
+![Faceted graph with two variables](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Faceted_Graphs/faceted_graph_two_variables.png)
 
 
 ## Stata
@@ -68,4 +68,4 @@ twoway (scatter mpg length), by(foreign)
 ```
 
 The code generates the following graph:
-![Faceted Graph by Origin of Car](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Images/Faceted_Graphs/stata_faceted_graph.png)
+![Faceted Graph by Origin of Car](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Faceted_Graphs/stata_faceted_graph.png)

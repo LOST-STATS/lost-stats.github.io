@@ -17,7 +17,7 @@ A density plot visualises the distribution of data over a continuous interval (o
 
 ## Also Consider
 
-= You might also want to know how to make a histogram or a line graph, click [Histogram](https://lost-stats.github.io/Presentation/histograms.html) or [Line graph](https://lost-stats.github.io/Presentation/line_graphs.html) for more information.
+= You might also want to know how to make a histogram or a line graph, click [Histogram](https://lost-stats.github.io/Presentation/Figures/histograms.html) or [Line graph](https://lost-stats.github.io/Presentation/Figures/line_graphs.html) for more information.
 
 
 # Implementations
@@ -41,7 +41,7 @@ Next, in order to make a density plot, we are going to use the `ggplot()` and `g
 ggplot(diamonds, aes(x=price))+
   geom_density()
 ```
-![Basic density plot](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Images/density_plot/1.png)
+![Basic density plot](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/density_plot/1.png)
 
 We can always change the color of the density plot using the `col` argument and fill the color inside the density plot using `fill` argument. Furthermore, we can specify the degree of transparency density fill area using the argument `alpha` where `alpha` ranges from 0 to 1. 
 
@@ -52,7 +52,7 @@ ggplot(diamonds, aes(x=price))+
                alpha=0.6)
 ```
 
-![Colored density plot](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Images/density_plot/2.png)
+![Colored density plot](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/density_plot/2.png)
 We can also change the type of line of the density plot as well by adding `linetype=` inside `geom_density()`.
 
 ```{r}
@@ -62,7 +62,7 @@ ggplot(diamonds, aes(x=price))+
                linetype="dashed")
 ```
 
-![Density plot with linetype](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Images/density_plot/3.png)
+![Density plot with linetype](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/density_plot/3.png)
 Furthermore, you can also combine both histogram and density plots together.
 
 ```{r,warning=FALSE,message=FALSE}
@@ -70,7 +70,7 @@ ggplot(diamonds, aes(x=price)) +
  geom_histogram(aes(y=..density..), colour="black", fill="grey45")+
  geom_density(col="red",size=1,linetype='dashed') 
 ```
-![Density Plot Overlaid on Histogram](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Images/density_plot/4.png)
+![Density Plot Overlaid on Histogram](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/density_plot/4.png)
 
 What happen if we want to make multiple densities? 
 
@@ -81,5 +81,5 @@ ggplot(data=diamonds, aes(x=price,fill=cut)) +
     geom_density(adjust=1.5, 
                  alpha=.3)
 ```
-![multiple](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Images/density_plot/5.png)
+![multiple](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/density_plot/5.png)
 :
