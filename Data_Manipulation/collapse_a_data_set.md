@@ -43,7 +43,7 @@ This can be one useful way to produce [summary statistics](https://lost-stats.gi
 
 As in the R example below, we would like to collapse data on storms so that it is uniquely identified by name, year, month, and day. However, there are sometimes multiple observations within each combination of those so we need to collapse these. But to combine multiple variables requires an aggregation of some kind. So, in code, we groupby the variables that we would like to retain and give a dictionary of functions (of the form `'original column': 'function'`) to aggregate the other variables by.
 
-```Python
+```python
 import pandas as pd
 
 # Pull in data on storms
@@ -57,7 +57,6 @@ storms_collapsed = (storms
                     .agg({'wind': 'mean',
                           'pressure': 'mean',
                           'category': 'first'}))
-
 ```
 
 ## R
