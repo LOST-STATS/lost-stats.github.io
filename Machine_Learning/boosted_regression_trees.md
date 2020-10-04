@@ -30,6 +30,39 @@ Random forests improve upon bagged trees by decorrelating the trees. In order to
 
 # Implementations
 
+## Python
+
+There are several packages that can be used to estimate boosted regression trees but [**sklearn**](https://scikit-learn.org/stable/index.html) provides a function `GradientBoostingRegressor` that is perhaps the most user-friendly.
+
+```python
+# Install scikit-learn using conda or pip if you don't already have it installed
+from sklearn.datasets import make_regression
+from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.model_selection import train_test_split
+
+# Generate some synthetic data
+X, y = make_regression()
+
+# Split the synthetic data into train and test arrays
+X_train, X_test, y_train, y_test = train_test_split(X, y)
+
+# The number of trees is set by n_estimators; there are many other options that
+# you should experiment with. Typically the defaults will be sensible but are
+# unlikely to be perfect for your use case. Let's create the empty model:
+reg = GradientBoostingRegressor(n_estimators=100,
+                                max_depth=3,
+                                learning_rate=0.1,
+                                min_samples_split=3)
+# Fit the model
+reg.fit(X_train, y_train)
+
+# Predict the value of the first test case
+reg.predict(X_test[:1])
+
+# R^2 score for the model (on the test data)
+reg.score(X_test, y_test)
+```
+
 ## R
 
 Boosted trees can be produced using the **gbm** package
