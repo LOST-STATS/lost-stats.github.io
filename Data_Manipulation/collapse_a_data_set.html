@@ -235,21 +235,21 @@
       <h2 id="python">
           <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
       </h2>
-<p>As in the R example below, we would like to collapse data on storms so that it is uniquely identified by name, year, month, and day. However, there are sometimes multiple observations within each combination of those so we need to collapse these. But to combine multiple variables requires an aggregation of some kind. So, in code, we groupby the variables that we would like to retain and give a dictionary of functions (of the form <code class="language-plaintext highlighter-rouge">'original column': 'function'</code>) to aggregate the other variables by.</p><pre><code class="language-Python">import pandas as pd
+<p>As in the R example below, we would like to collapse data on storms so that it is uniquely identified by name, year, month, and day. However, there are sometimes multiple observations within each combination of those so we need to collapse these. But to combine multiple variables requires an aggregation of some kind. So, in code, we groupby the variables that we would like to retain and give a dictionary of functions (of the form <code class="language-plaintext highlighter-rouge">'original column': 'function'</code>) to aggregate the other variables by.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
 
-# Pull in data on storms
-storms = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv')
+<span class="c1"># Pull in data on storms
+</span><span class="n">storms</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv'</span><span class="p">)</span>
 
-# Find the mean wind, mean pressure, and the first
+<span class="c1"># Find the mean wind, mean pressure, and the first
 # category value by name, year, month, and day.
 # To do this, use a groupby, followed by an aggregation.
-storms_collapsed = (storms
-                    .groupby(['name', 'year', 'month', 'day'])
-                    .agg({'wind': 'mean',
-                          'pressure': 'mean',
-                          'category': 'first'}))
-
-</code></pre>
+</span><span class="n">storms_collapsed</span> <span class="o">=</span> <span class="p">(</span><span class="n">storms</span>
+                    <span class="p">.</span><span class="n">groupby</span><span class="p">([</span><span class="s">'name'</span><span class="p">,</span> <span class="s">'year'</span><span class="p">,</span> <span class="s">'month'</span><span class="p">,</span> <span class="s">'day'</span><span class="p">])</span>
+                    <span class="p">.</span><span class="n">agg</span><span class="p">({</span><span class="s">'wind'</span><span class="p">:</span> <span class="s">'mean'</span><span class="p">,</span>
+                          <span class="s">'pressure'</span><span class="p">:</span> <span class="s">'mean'</span><span class="p">,</span>
+                          <span class="s">'category'</span><span class="p">:</span> <span class="s">'first'</span><span class="p">}))</span>
+</code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
