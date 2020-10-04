@@ -213,6 +213,24 @@
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<p>To check for duplicate rows when using <a href="https://pandas.pydata.org/"><strong>pandas</strong></a> dataframes, you can call <code class="language-plaintext highlighter-rouge">duplicated</code> or, to omit the duplicates, <code class="language-plaintext highlighter-rouge">drop_duplicates</code>.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Use conda or pip to install pandas if you don't already have it installed
+</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="n">storms</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv'</span><span class="p">)</span>
+
+<span class="c1"># Find the duplicates by name, year, month, day, and hour
+</span><span class="n">level_variables</span> <span class="o">=</span> <span class="p">[</span><span class="s">'name'</span><span class="p">,</span> <span class="s">'year'</span><span class="p">,</span> <span class="s">'month'</span><span class="p">,</span> <span class="s">'day'</span><span class="p">,</span> <span class="s">'hour'</span><span class="p">]</span>
+<span class="n">storms</span><span class="p">[</span><span class="n">storms</span><span class="p">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">level_variables</span><span class="p">)]</span>
+
+<span class="c1"># Drop these duplicates, but retain the first occurrence of each
+</span><span class="n">storms</span> <span class="o">=</span> <span class="n">storms</span><span class="p">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">level_variables</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="s">'first'</span><span class="p">)</span>
+
+</code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
