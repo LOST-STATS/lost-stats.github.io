@@ -309,43 +309,42 @@
           <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
       </h2>
 <p>The <a href="https://econml.azurewebsites.net/spec/spec.html"><strong>econml</strong></a> package from Microsoft provides a range of causal machine learning functions, including deep instrumental variables, doubly robust learning, double machine learning, and <a href="https://econml.azurewebsites.net/spec/estimation/forest.html#causalforest-aka-forest-double-machine-learning">causal forests</a>. As in the R example below, we will download some crime data and look at the effect of one variable (‘pctymle’, the % of young males, assumed to be exogenous) on another (‘crmrte’, the crime rate).</p>
-<pre><code class="language-Python"># Use `pip install econml` on the command line to install the package
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeRegressor
-from econml.ortho_forest import ContinuousTreatmentOrthoForest as CausalForest
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Use "pip install econml" on the command line to install the package
+</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
+<span class="kn">from</span> <span class="nn">econml.ortho_forest</span> <span class="kn">import</span> <span class="n">ContinuousTreatmentOrthoForest</span> <span class="k">as</span> <span class="n">CausalForest</span>
 
-df = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/Crime.csv')
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/Crime.csv'</span><span class="p">)</span>
 
-# Set the categorical variables:
-cat_vars = ['year', 'region', 'smsa']
-# Transform the categorical variables to dummies and add them back in
-xf = pd.get_dummies(df[cat_vars])
-df = pd.concat([df.drop(cat_vars, axis=1), xf], axis=1)
-cat_var_dummy_names = list(xf.columns)
+<span class="c1"># Set the categorical variables:
+</span><span class="n">cat_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s">'year'</span><span class="p">,</span> <span class="s">'region'</span><span class="p">,</span> <span class="s">'smsa'</span><span class="p">]</span>
+<span class="c1"># Transform the categorical variables to dummies and add them back in
+</span><span class="n">xf</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">cat_vars</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="n">cat_vars</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">xf</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">cat_var_dummy_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">xf</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span>
 
-regressors = ['prbarr', 'prbconv', 'prbpris',
-              'avgsen', 'polpc', 'density', 'taxpc',
-              'pctmin', 'wcon']
-# Add in the dummy names to the list of regressors
-regressors = regressors + cat_var_dummy_names
+<span class="n">regressors</span> <span class="o">=</span> <span class="p">[</span><span class="s">'prbarr'</span><span class="p">,</span> <span class="s">'prbconv'</span><span class="p">,</span> <span class="s">'prbpris'</span><span class="p">,</span>
+              <span class="s">'avgsen'</span><span class="p">,</span> <span class="s">'polpc'</span><span class="p">,</span> <span class="s">'density'</span><span class="p">,</span> <span class="s">'taxpc'</span><span class="p">,</span>
+              <span class="s">'pctmin'</span><span class="p">,</span> <span class="s">'wcon'</span><span class="p">]</span>
+<span class="c1"># Add in the dummy names to the list of regressors
+</span><span class="n">regressors</span> <span class="o">=</span> <span class="n">regressors</span> <span class="o">+</span> <span class="n">cat_var_dummy_names</span>
 
-# Split into train and test
-train, test = train_test_split(df, test_size=0.2)
+<span class="c1"># Split into train and test
+</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 
-# Estimate causal forest
-estimator = CausalForest(n_trees=100,
-                         model_T=DecisionTreeRegressor(),
-                         model_Y=DecisionTreeRegressor())
-estimator.fit(train['crmrte'],
-              train['pctymle'],
-              train[regressors],
-              inference='blb')
-effects_train = estimator.effect(train[regressors])
-effects_test = estimator.effect(test[regressors])
-conf_intrvl = estimator.effect_interval(test[regressors])
-
-</code></pre>
+<span class="c1"># Estimate causal forest
+</span><span class="n">estimator</span> <span class="o">=</span> <span class="n">CausalForest</span><span class="p">(</span><span class="n">n_trees</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                         <span class="n">model_T</span><span class="o">=</span><span class="n">DecisionTreeRegressor</span><span class="p">(),</span>
+                         <span class="n">model_Y</span><span class="o">=</span><span class="n">DecisionTreeRegressor</span><span class="p">())</span>
+<span class="n">estimator</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s">'crmrte'</span><span class="p">],</span>
+              <span class="n">train</span><span class="p">[</span><span class="s">'pctymle'</span><span class="p">],</span>
+              <span class="n">train</span><span class="p">[</span><span class="n">regressors</span><span class="p">],</span>
+              <span class="n">inference</span><span class="o">=</span><span class="s">'blb'</span><span class="p">)</span>
+<span class="n">effects_train</span> <span class="o">=</span> <span class="n">estimator</span><span class="p">.</span><span class="n">effect</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">regressors</span><span class="p">])</span>
+<span class="n">effects_test</span> <span class="o">=</span> <span class="n">estimator</span><span class="p">.</span><span class="n">effect</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">regressors</span><span class="p">])</span>
+<span class="n">conf_intrvl</span> <span class="o">=</span> <span class="n">estimator</span><span class="p">.</span><span class="n">effect_interval</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">regressors</span><span class="p">])</span>
+</code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
