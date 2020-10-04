@@ -23,6 +23,49 @@ For more information, see [Explicitly Optimizing on Causal Effects via the Causa
 
 # Implementations
 
+## Python
+
+The [**econml**](https://econml.azurewebsites.net/spec/spec.html) package from Microsoft provides a range of causal machine learning functions, including deep instrumental variables, doubly robust learning, double machine learning, and [causal forests](https://econml.azurewebsites.net/spec/estimation/forest.html#causalforest-aka-forest-double-machine-learning). As in the R example below, we will download some crime data and look at the effect of one variable ('pctymle', the % of young males, assumed to be exogenous) on another ('crmrte', the crime rate).
+
+```Python
+# Use `pip install econml` on the command line to install the package
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeRegressor
+from econml.ortho_forest import ContinuousTreatmentOrthoForest as CausalForest
+
+df = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/Crime.csv')
+
+# Set the categorical variables:
+cat_vars = ['year', 'region', 'smsa']
+# Transform the categorical variables to dummies and add them back in
+xf = pd.get_dummies(df[cat_vars])
+df = pd.concat([df.drop(cat_vars, axis=1), xf], axis=1)
+cat_var_dummy_names = list(xf.columns)
+
+regressors = ['prbarr', 'prbconv', 'prbpris',
+              'avgsen', 'polpc', 'density', 'taxpc',
+              'pctmin', 'wcon']
+# Add in the dummy names to the list of regressors
+regressors = regressors + cat_var_dummy_names
+
+# Split into train and test
+train, test = train_test_split(df, test_size=0.2)
+
+# Estimate causal forest
+estimator = CausalForest(n_trees=100,
+                         model_T=DecisionTreeRegressor(),
+                         model_Y=DecisionTreeRegressor())
+estimator.fit(train['crmrte'],
+              train['pctymle'],
+              train[regressors],
+              inference='blb')
+effects_train = estimator.effect(train[regressors])
+effects_test = estimator.effect(test[regressors])
+conf_intrvl = estimator.effect_interval(test[regressors])
+
+```
+
 ## R
 
 The **grf** package has a `causal_forest` function that can be used to estimate causal forests. Additional functions afterwards can estimate, for example, the `average_treatment_effect()`. See `help(package='grf')` for more options.
