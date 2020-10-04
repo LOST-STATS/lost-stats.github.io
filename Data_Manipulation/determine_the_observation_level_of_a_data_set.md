@@ -32,6 +32,26 @@ When working with data that has case-identifier variables, like panel data, it's
 
 # Implementations
 
+## Python
+
+To check for duplicate rows when using [**pandas**](https://pandas.pydata.org/) dataframes, you can call `duplicated` or, to omit the duplicates, `drop_duplicates`.
+
+```python
+# Use conda or pip to install pandas if you don't already have it installed
+
+import pandas as pd
+
+storms = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv')
+
+# Find the duplicates by name, year, month, day, and hour
+level_variables = ['name', 'year', 'month', 'day', 'hour']
+storms[storms.duplicated(subset=level_variables)]
+
+# Drop these duplicates, but retain the first occurrence of each
+storms = storms.drop_duplicates(subset=level_variables, keep='first')
+
+```
+
 ## R
 
 ```r
