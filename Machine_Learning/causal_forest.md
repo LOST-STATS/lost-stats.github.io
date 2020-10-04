@@ -27,8 +27,8 @@ For more information, see [Explicitly Optimizing on Causal Effects via the Causa
 
 The [**econml**](https://econml.azurewebsites.net/spec/spec.html) package from Microsoft provides a range of causal machine learning functions, including deep instrumental variables, doubly robust learning, double machine learning, and [causal forests](https://econml.azurewebsites.net/spec/estimation/forest.html#causalforest-aka-forest-double-machine-learning). As in the R example below, we will download some crime data and look at the effect of one variable ('pctymle', the % of young males, assumed to be exogenous) on another ('crmrte', the crime rate).
 
-```Python
-# Use `pip install econml` on the command line to install the package
+```python
+# Use "pip install econml" on the command line to install the package
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeRegressor
@@ -63,7 +63,6 @@ estimator.fit(train['crmrte'],
 effects_train = estimator.effect(train[regressors])
 effects_test = estimator.effect(test[regressors])
 conf_intrvl = estimator.effect_interval(test[regressors])
-
 ```
 
 ## R
