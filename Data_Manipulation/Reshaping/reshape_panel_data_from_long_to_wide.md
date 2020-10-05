@@ -46,6 +46,57 @@ Reshaping is the method of converting wide-format data to long and [vice versa](
 
 # Implementations
 
+## Python
+
+The [**pandas**](https://pandas.pydata.org/) package has several functions to [reshape](https://pandas.pydata.org/pandas-docs/stable/user_guide/reshaping.html) data. For going from long data to wide data, there's `pivot` and `pivot_table`, both of which are demonstrated in the example below.
+
+```python
+# Install pandas using pip or conda, if you don't already have it installed.
+import pandas as pd
+
+# Load WHO data on population as an example, which has 'country', 'year',
+# and 'population' columns.
+df = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/tidyr/population.csv',
+                 index_col=0)
+
+# In this example, we would like to have one row per country but the data have
+# multiple rows per country, each corresponding with
+# a year-country value of population.
+# Let's take a look at the first 5 rows:
+print(df.head())
+
+# To reshape this into a dataframe with one country per row, we can use
+# the pivot function and set 'country' as the index. As we'd like to
+# split out years into different columns, we set columns to 'years', and the
+# values within this new dataframe will be population:
+df_wide = df.pivot(index='country',
+                   columns='year',
+                   values='population')
+
+# What if there are multiple year-country pairs? Pivot can't work
+# because it needs unique combinations. In this case, we can use
+# pivot_table which can aggregate any duplicate year-country pairs. To test it, let's
+# create some synthetic duplicate data for France and add it to the original
+# data. We'll pretend there was a second count of population that came in with
+# 5% higher values for all years.
+
+# Copy the data for France
+synth_fr_data = df.loc[df['country'] == 'France']
+
+# Add 5% for all years
+synth_fr_data['population'] = synth_fr_data['population']*1.05
+
+# Append it to the end of the original data
+df = pd.concat([df, synth_fr_data], axis=0)
+
+# Compute the wide data - averaging over the two estimates for France for each
+# year.
+df_wide = df.pivot_table(index='country',
+                         columns='year',
+                         values='population',
+                         aggfunc='mean')
+```
+
 ## R
 
 There are many ways to reshape in R, including base-R `reshape` and the deprecated `reshape2::melt` and `cast` and `tidyr::gather` and `spread`. We will be using the **tidyr** package function `pivot_wider`, which requires **tidyr** version 1.0.0 or later.
