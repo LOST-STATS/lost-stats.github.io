@@ -46,6 +46,65 @@ Reshaping is the method of converting wide-format data to long and [vice versa](
 
 # Implementations
 
+## Python
+
+The most user friendly ways to use Python to reshape data from wide to long formats come from the [**pandas**](https://pandas.pydata.org/) data analysis package. There's a more easy to use `wide_to_long` function and `melt` for more complex cases. In this example, we will download the billboard dataset, which has multiple columns for different weeks when a record was in the charts (with the values in each column giving the chart position for that week).
+
+All of the columns that we would like to convert to long format begin with the prefix 'wk'. The `wide_to_long` function accepts this prefix (as the `stubnames=` keyword parameter) and uses it to work out which columns to transform into a single column.
+
+```python
+# Install pandas using pip or conda, if you don't have it already installed
+
+import pandas as pd
+
+df = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/tidyr/billboard.csv',
+                 index_col=0)
+
+# stubnames is the prefix for the columns we want to convert to long. i is the
+# unique id for each row, and j will be the name of the new column. Finally,
+# the values from the original wide columns (the chart position) adopt the
+# stubname, so we rename 'wk' to 'position' in the last step.
+long_df = (pd.wide_to_long(df,
+                           stubnames='wk',
+                           i=['artist', 'track', 'date.entered'],
+                           j='week')
+             .rename(columns={'wk': 'position'}))
+
+# The wide_to_long function is a special case of the 'melt' function, which
+# can be used in more complex cases. Here we melt any columns that have the
+# string 'wk' in their names. In the final step, we extract the number of weeks
+# from the prefix 'wk' using regex. The final dataframe is the same as above.
+long_df = pd.melt(df,
+                  id_vars=['artist', 'track', 'date.entered'],
+                  value_vars=[x for x in df.columns if 'wk' in x],
+                  var_name='week',
+                  value_name='position')
+long_df['week'] = long_df['week'].str.extract(r'(\d+)')
+
+# A more complex case taken from the pandas docs:
+
+import numpy as np
+
+# In this case, there are two different patterns in the many columns
+# that we want to convert to two different long columns. We can pass
+# stubnames a list of these prefixes. It then splits the columns that
+# have the year suffix into two different long columns depending on
+# their first letter (A or B)
+
+# Create some synthetic data
+df = pd.DataFrame({"A1970" : {0 : "a", 1 : "b", 2 : "c"},
+                   "A1980" : {0 : "d", 1 : "e", 2 : "f"},
+                   "B1970" : {0 : 2.5, 1 : 1.2, 2 : .7},
+                   "B1980" : {0 : 3.2, 1 : 1.3, 2 : .1},
+                   "X"     : dict(zip(range(3), np.random.randn(3)))
+                  })
+# Set an index
+df["id"] = df.index
+# Wide to multiple long columns
+df_long = pd.wide_to_long(df, ["A", "B"], i="id", j="year")
+
+```
+
 ## R
 
 There are many ways to reshape in R, including base-R `reshape` and the deprecated `reshape2::melt` and `cast` and `tidyr::gather` and `spread`. We will be using the **tidyr** package function `pivot_longer`, which requires **tidyr** version 1.0.0 or later.
