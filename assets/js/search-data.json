@@ -2202,275 +2202,281 @@
     "relUrl": "/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html#implementations"
   },"367": {
     "doc": "Reshape Panel Data from Long to Wide",
+    "title": "Python",
+    "content": "The pandas package has several functions to reshape data. For going from long data to wide data, there’s pivot and pivot_table, both of which are demonstrated in the example below. # Install pandas using pip or conda, if you don't already have it installed. import pandas as pd # Load WHO data on population as an example, which has 'country', 'year', # and 'population' columns. df = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/tidyr/population.csv', index_col=0) # In this example, we would like to have one row per country but the data have # multiple rows per country, each corresponding with # a year-country value of population. # Let's take a look at the first 5 rows: print(df.head()) # To reshape this into a dataframe with one country per row, we can use # the pivot function and set 'country' as the index. As we'd like to # split out years into different columns, we set columns to 'years', and the # values within this new dataframe will be population: df_wide = df.pivot(index='country', columns='year', values='population') # What if there are multiple year-country pairs? Pivot can't work # because it needs unique combinations. In this case, we can use # pivot_table which can aggregate any duplicate year-country pairs. To test it, let's # create some synthetic duplicate data for France and add it to the original # data. We'll pretend there was a second count of population that came in with # 5% higher values for all years. # Copy the data for France synth_fr_data = df.loc[df['country'] == 'France'] # Add 5% for all years synth_fr_data['population'] = synth_fr_data['population']*1.05 # Append it to the end of the original data df = pd.concat([df, synth_fr_data], axis=0) # Compute the wide data - averaging over the two estimates for France for each # year. df_wide = df.pivot_table(index='country', columns='year', values='population', aggfunc='mean') . ",
+    "url": "/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html#python",
+    "relUrl": "/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html#python"
+  },"368": {
+    "doc": "Reshape Panel Data from Long to Wide",
     "title": "R",
     "content": "There are many ways to reshape in R, including base-R reshape and the deprecated reshape2::melt and cast and tidyr::gather and spread. We will be using the tidyr package function pivot_wider, which requires tidyr version 1.0.0 or later. # install.packages('tidyr') library(tidyr) # Load in population, which has one row per country per year data(\"population\") # If we look at the data, we'll see that we have: # identifying information in \"country\", # a time indicator in \"year\", # and our values in \"population\" head(population) . Now we think: . | Think about the set of variables that contain the values we’re interested in reshaping. Here’s it’s population. This list of variable names will be our values_from argument. | Think about what we want the new variables to be called. The variable variable says which variable we’re looking at. So that will be our names_from argument. And we want to specify that each variable represents population in a given year (rather than some other variable, so we’ll add “pop_” as our names_prefix. | . pop_wide &lt;- pivot_wider(population, names_from = year, values_from = population, names_prefix = \"pop_\") . ",
     "url": "/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html#r",
     "relUrl": "/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html#r"
-  },"368": {
+  },"369": {
     "doc": "Reshape Panel Data from Long to Wide",
     "title": "Stata",
     "content": "* Load blood pressure data in long format, which contains * blood pressure both before and after a treatment for some patients sysuse bplong.dta . The next steps involve thinking: . | Think about the set of variables that identify individuals. Here it’s patient. This will go in i(), so we have i(patient). | Think about the set of variables that vary across time. Here’s it’s bp. This will be one of our “stub”s. | Think about which variable separates the different time periods within individual. Here we have “when”, and this goes in j(), so we have j(when). | . * Syntax is: * reshape wide stub, i(individualvars) j(newtimevar) * So we have reshape wide bp i(patient) j(when) * Note that simply typing reshape * will show the syntax for the function . With especially large datasets, the Gtools package provides a much faster version of reshape known as greshape. The syntax can function exactly the same, though they provide alternative syntax that you may find more intuitive. * First, we will create a toy dataset that is very large to demonstrate the speed gains * If necessary, first install gtools: * ssc install gtools * Clear memory clear all * Turn on return message to see command run time set rmsg on * Set data size to 15 million observations set obs 15000000 * Create ten observations per person generate person_id = floor((_n-1)/10) * Number time periods from 1 to 10 for each person generate time_id = mod((_n-1), 10) + 1 *Create an income in each period generate income = round(rnormal(100, 20)) * Demonstrate the comparative speed of these two reshape approaches. * preserve and restore aren't a part of the reshape command; * they just store the current state of the data and then restore it, * so we can try our different reshape commands on the same data. *The traditional reshape command preserve reshape wide income, i(person_id) j(time_id) restore *The Gtools reshape command preserve greshape wide income, i(person_id) j(time_id) restore *The Gtools reshape command, alternative syntax preserve greshape wide income, by(person_id) keys(time_id) restore . Note: there is much more guidance to the usage of greshape on the Gtools reshape page. ",
     "url": "/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html#stata",
     "relUrl": "/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html#stata"
-  },"369": {
+  },"370": {
     "doc": "Reshape Panel Data from Wide to Long",
     "title": "Reshape Panel Data from Wide to Long",
     "content": "Panel data is data in which individuals are observed at multiple points in time. There are two standard ways of storing this data: . In wide format, there is one row per individual. Then, for each variable in the data set that varies over time, there is one column per time period. For example: . | Individual | FixedCharacteristic | TimeVarying1990 | TimeVarying1991 | TimeVarying1992 | . | 1 | C | 16 | 20 | 22 | . | 2 | H | 23.4 | 10 | 14 | . This format makes it easy to perform calculations across multiple years. In long format, there is one row per individual per time period: . | Individual | FixedCharacteristic | Year | TimeVarying | . | 1 | C | 1990 | 16 | . | 1 | C | 1991 | 20 | . | 1 | C | 1992 | 22 | . | 2 | H | 1990 | 23.4 | . | 2 | H | 1991 | 10 | . | 2 | H | 1992 | 14 | . This format makes it easy to run models like fixed effects. Reshaping is the method of converting wide-format data to long and vice versa.. ",
     "url": "/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html",
     "relUrl": "/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html"
-  },"370": {
+  },"371": {
     "doc": "Reshape Panel Data from Wide to Long",
     "title": "Keep in Mind",
     "content": ". | If your data has multiple observations per individual/time, then standard reshaping techniques generally won’t work. | It’s a good idea to check your data by directly looking at it both before and after a reshape to check that it worked properly. | . ",
     "url": "/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html#keep-in-mind",
     "relUrl": "/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html#keep-in-mind"
-  },"371": {
+  },"372": {
     "doc": "Reshape Panel Data from Wide to Long",
     "title": "Also Consider",
     "content": ". | To go in the other direction, reshape from long to wide. | Determine the observation level of a data set. | . ",
     "url": "/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html#also-consider",
     "relUrl": "/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html#also-consider"
-  },"372": {
+  },"373": {
     "doc": "Reshape Panel Data from Wide to Long",
     "title": "Implementations",
     "content": " ",
     "url": "/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html#implementations",
     "relUrl": "/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html#implementations"
-  },"373": {
+  },"374": {
     "doc": "Reshape Panel Data from Wide to Long",
     "title": "Python",
     "content": "The most user friendly ways to use Python to reshape data from wide to long formats come from the pandas data analysis package. There’s a more easy to use wide_to_long function and melt for more complex cases. In this example, we will download the billboard dataset, which has multiple columns for different weeks when a record was in the charts (with the values in each column giving the chart position for that week). All of the columns that we would like to convert to long format begin with the prefix ‘wk’. The wide_to_long function accepts this prefix (as the stubnames= keyword parameter) and uses it to work out which columns to transform into a single column. # Install pandas using pip or conda, if you don't have it already installed import pandas as pd df = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/tidyr/billboard.csv', index_col=0) # stubnames is the prefix for the columns we want to convert to long. i is the # unique id for each row, and j will be the name of the new column. Finally, # the values from the original wide columns (the chart position) adopt the # stubname, so we rename 'wk' to 'position' in the last step. long_df = (pd.wide_to_long(df, stubnames='wk', i=['artist', 'track', 'date.entered'], j='week') .rename(columns={'wk': 'position'})) # The wide_to_long function is a special case of the 'melt' function, which # can be used in more complex cases. Here we melt any columns that have the # string 'wk' in their names. In the final step, we extract the number of weeks # from the prefix 'wk' using regex. The final dataframe is the same as above. long_df = pd.melt(df, id_vars=['artist', 'track', 'date.entered'], value_vars=[x for x in df.columns if 'wk' in x], var_name='week', value_name='position') long_df['week'] = long_df['week'].str.extract(r'(\\d+)') # A more complex case taken from the pandas docs: import numpy as np # In this case, there are two different patterns in the many columns # that we want to convert to two different long columns. We can pass # stubnames a list of these prefixes. It then splits the columns that # have the year suffix into two different long columns depending on # their first letter (A or B) # Create some synthetic data df = pd.DataFrame({\"A1970\" : {0 : \"a\", 1 : \"b\", 2 : \"c\"}, \"A1980\" : {0 : \"d\", 1 : \"e\", 2 : \"f\"}, \"B1970\" : {0 : 2.5, 1 : 1.2, 2 : .7}, \"B1980\" : {0 : 3.2, 1 : 1.3, 2 : .1}, \"X\" : dict(zip(range(3), np.random.randn(3))) }) # Set an index df[\"id\"] = df.index # Wide to multiple long columns df_long = pd.wide_to_long(df, [\"A\", \"B\"], i=\"id\", j=\"year\") . ",
     "url": "/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html#python",
     "relUrl": "/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html#python"
-  },"374": {
+  },"375": {
     "doc": "Reshape Panel Data from Wide to Long",
     "title": "R",
     "content": "There are many ways to reshape in R, including base-R reshape and the deprecated reshape2::melt and cast and tidyr::gather and spread. We will be using the tidyr package function pivot_longer, which requires tidyr version 1.0.0 or later. # install.packages('tidyr') library(tidyr) # Load in billboard, which has one row per song # and one variable per week, for its chart position each week data(\"billboard\") # If we look at the data, we'll see that we have: # identifying information in \"artist\" and \"track\" # A variable consistent within individuals \"date.entered\" # and a bunch of variables containing position information # all named wk and then a number names(billboard) . Now we think: . | Think about the set of variables that contain time-varying information. Here’s it’s wk1-wk76. So we can give a list of all the variables we want to widen using the tidyselect helper function starts_with(): starts_with(\"wk\"). This list of variable names will be our col argument. | Think about what we want the new variables to be called. I’ll call the week time variable “week” (this will be the names_to argument), and the data values currently stored in wk1-wk76 is the “position” (values_to). | Think about the values you want to be in your new time variable. The column names are wk1-wk76 but we want the variable to have 1-76 instead, so we’ll take out the “wk” with names_prefix = \"wk\". | . billboard_long &lt;- pivot_longer(billboard, col = starts_with(\"wk\"), names_to = \"week\", names_prefix = \"wk\", values_to = \"position\", values_drop_na = TRUE) # values_drop_na says to drop any rows containing missing values of position. # If reshaping to create multiple variables, see the names_sep or names_pattern options. ",
     "url": "/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html#r",
     "relUrl": "/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html#r"
-  },"375": {
+  },"376": {
     "doc": "Reshape Panel Data from Wide to Long",
     "title": "Stata",
     "content": "* Load blood pressure data in wide format, which contains * bp_before and bp_after sysuse bpwide.dta . The next steps involve thinking: . | Think about the set of variables that identify individuals. Here it’s patient. This will go in i(), so we have i(patient). | Think about the set of variables that vary across time. Here’s it’s bp_. Note the inclusion of the _, so that “before” and “after” will be our time periods. This will be one of our “stub”s. | Think about what we want the new time variable to be called. I’ll just call it “time”, and this goes in j(), so we have j(time). | . * Syntax is: * reshape long stub, i(individualvars) j(newtimevar) * So we have reshape long bp_ i(patient) j(time) s * Where the s indicates that our time variable is a string (\"before\", \"after\") * Note that simply typing reshape * will show the syntax for the function . With especially large datasets, the Gtools package provides a much faster version of reshape known as greshape. The syntax can function exactly the same, though they provide alternative syntax that you may find more intuitive. * If necessary, install gtools * ssc install gtools * First, we will create a toy dataset that is very large to demonstrate the speed gains * Clear memory clear all * Turn on return message to see command run time set rmsg on * Set data size to 15 million observations set obs 15000000 * Create an ID variable generate person_id = _n * Create 4 separate fake test scores per student generate test_score1 = round(rnormal(180, 30)) generate test_score2 = round(rnormal(180, 30)) generate test_score3 = round(rnormal(180, 30)) generate test_score4 = round(rnormal(180, 30)) * Demonstrate the comparative speed of these two reshape approaches * preserve and restore aren't a part of the reshape command; * they just store the current state of the data and then restore it, * so we can try our different reshape commands on the same data. * The traditional reshape command preserve reshape long test_score, i(person_id) j(test_number) restore *The Gtools reshape command preserve greshape long test_score, i(person_id) j(test_number) restore *The Gtools reshape command, alternative syntax preserve greshape long test_score, by(person_id) keys(test_number) restore . Note: there is much more guidance to the usage of greshape on the Gtools reshape page. ",
     "url": "/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html#stata",
     "relUrl": "/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html#stata"
-  },"376": {
+  },"377": {
     "doc": "Rowwise Calculations",
     "title": "Rowwise Calculations",
     "content": "When working with a table of data, it’s not uncommon to want to perform a calculations across many columns. For example, taking the mean of a bunch of columns for each row. This is generally not difficult to do by hand if the number of variables being handled is small. For example, in most software packages, you could take the mean of columns A and B for each row by just asking for (A+B)/2. This becomes more difficult, though, when the list of variables gets too long to type out by hand, or when the calculation doesn’t play nicely with being given columns. In these cases, approaches explicitly designed for rowwise calculations are necessary. ",
     "url": "/Data_Manipulation/rowwise_calculations.html",
     "relUrl": "/Data_Manipulation/rowwise_calculations.html"
-  },"377": {
+  },"378": {
     "doc": "Rowwise Calculations",
     "title": "Keep in Mind",
     "content": ". | When incorporating lots of variables, rowwise calculations often allow you to select those variables by group, such as “all variables starting with r_”. When doing this, check ahead of time to make sure you aren’t accidentally incorporating unintended variables. | . ",
     "url": "/Data_Manipulation/rowwise_calculations.html#keep-in-mind",
     "relUrl": "/Data_Manipulation/rowwise_calculations.html#keep-in-mind"
-  },"378": {
+  },"379": {
     "doc": "Rowwise Calculations",
     "title": "Implementations",
     "content": " ",
     "url": "/Data_Manipulation/rowwise_calculations.html#implementations",
     "relUrl": "/Data_Manipulation/rowwise_calculations.html#implementations"
-  },"379": {
+  },"380": {
     "doc": "Rowwise Calculations",
     "title": "Stata",
     "content": "Stata has a series of built-in row operations that use the egen command. See help egen for the full list, and look for functions beginning with row like rowmean. The full list includes: rowfirst and rowlast (first or last non-missing observation), rowmean, rowmedian, rowmax, rowmin, rowpctile, and rowtotal (the mean, median, max, min, given percentile, or sum of all the variables), and rowmiss and rownonmiss (the count of the number of missing or nonmissing observations across the variables). The egenmore package, which can be installed with ssc install egenmore, adds rall, rany, and rcount (checks a condition for each variable and returns whether all are true, any are true, or the number that are true), rownvals and rowsvals (number of unique values for numeric and string variables, respectively), and rsum2 (rowtotal with some additional options). * Get data on midwestern states import delimited using \"https://vincentarelbundock.github.io/Rdatasets/csv/ggplot2/midwest.csv\" * There are three sets of variables starting with \"perc\" - let's make sure they * add up to 300 as they should * Use * as a wildcard for variable names egen total_perc = rowtotal(perc*) summ total_perc * They don't! Uh oh. * Let's just check the education variables - should add up to 100 * Use - to include all variables from one to the other * based on their current order in the data egen total_ed = rowtotal(perchsd-percprof) * Oh that explains it... * These aren't exclusive categories (HSD, college overlap) * and also leaves out non-HS graduates. summ total_ed . ",
     "url": "/Data_Manipulation/rowwise_calculations.html#stata",
     "relUrl": "/Data_Manipulation/rowwise_calculations.html#stata"
-  },"380": {
+  },"381": {
     "doc": "Rowwise Calculations",
     "title": "R",
     "content": "There are a few ways to perform rowwise operations in R. If you are summing the columns or taking their mean, rowSums and rowMeans in base R are great. For something more complex, apply in base R can perform any necessary rowwise calculation, but pmap in the purrr package is likely to be faster. In all cases, the tidyselect helpers in the dplyr package can help you to select many variables by name. # If necessary # install.packages(c('purrr','ggplot2','dplyr')) # ggplot2 is only for the data data(midwest, package = 'ggplot2') # dplyr is for the tidyselect functions, the pipe %&gt;%, and select() to pick columns library(dplyr) # There are three sets of variables starting with \"perc\" - let's make sure they # add up to 300 as they maybe should # Use starts_with to select the variables # First, do it with rowSums, # either by picking column indices or using tidyselect midwest$rowsum_rowSums1 &lt;- rowSums(midwest[,c(12:16,18:20,22:26)]) midwest$rowsum_rowSums2 &lt;- midwest %&gt;% select(starts_with('perc')) %&gt;% rowSums() # Next, with apply - we're doing sum() here for the function # but it could be anything midwest$rowsum_apply &lt;- apply( midwest %&gt;% select(starts_with('perc')), MARGIN = 1, sum) # Next, two ways with purrr: library(purrr) # First, using purrr::reduce, which is good for some functions like summing # Note that . is the data set being sent by %&gt;% midwest &lt;- midwest %&gt;% mutate(rowsum_purrrReduce = reduce(select(., starts_with('perc')), `+`)) # More flexible, purrr::pmap, which works for any function # using pmap_dbl here to get a numeric variable rather than a list midwest &lt;- midwest %&gt;% mutate(rowsum_purrrpmap = pmap_dbl( select(.,starts_with('perc')), sum)) # So do we get 300? summary(midwest$rowsum_rowSums2) # Uh-oh... looks like we didn't understand the data after all. ",
     "url": "/Data_Manipulation/rowwise_calculations.html#r",
     "relUrl": "/Data_Manipulation/rowwise_calculations.html#r"
-  },"381": {
+  },"382": {
     "doc": "Scatterplot by Group on Shared Axes",
     "title": "Scatterplot by Group on Shared Axes",
     "content": "Scatterplots are a standard data visualization tool that allows you to look at the relationship between two variables \\(X\\) and \\(Y\\). If you want to see how the relationship between \\(X\\) and \\(Y\\) might be different for Group A as opposed to Group B, then you might want to plot the scatterplot for both groups on the same set of axes, so you can compare them. ",
     "url": "/Presentation/Figures/scatterplot_by_group_on_shared_axes.html",
     "relUrl": "/Presentation/Figures/scatterplot_by_group_on_shared_axes.html"
-  },"382": {
+  },"383": {
     "doc": "Scatterplot by Group on Shared Axes",
     "title": "Keep in Mind",
     "content": ". | Scatterplots may not work well if the data is discrete, or if there are a large number of data points. | . ",
     "url": "/Presentation/Figures/scatterplot_by_group_on_shared_axes.html#keep-in-mind",
     "relUrl": "/Presentation/Figures/scatterplot_by_group_on_shared_axes.html#keep-in-mind"
-  },"383": {
+  },"384": {
     "doc": "Scatterplot by Group on Shared Axes",
     "title": "Also Consider",
     "content": ". | Sometimes, instead of putting both Group A and Group B on the same set of axes, it makes more sense to plot them separately, and put the plots next to each other. See Faceted Graphs. | There are many ways to make the scatterplots of the two groups distinct. See Styling Scatterplots. | . ",
     "url": "/Presentation/Figures/scatterplot_by_group_on_shared_axes.html#also-consider",
     "relUrl": "/Presentation/Figures/scatterplot_by_group_on_shared_axes.html#also-consider"
-  },"384": {
+  },"385": {
     "doc": "Scatterplot by Group on Shared Axes",
     "title": "Implementations",
     "content": " ",
     "url": "/Presentation/Figures/scatterplot_by_group_on_shared_axes.html#implementations",
     "relUrl": "/Presentation/Figures/scatterplot_by_group_on_shared_axes.html#implementations"
-  },"385": {
+  },"386": {
     "doc": "Scatterplot by Group on Shared Axes",
     "title": "R",
     "content": "library(ggplot2) # Load auto data data(mtcars) # Make sure that our grouping variable is a factor # and labeled properly mtcars$Transmission &lt;- factor(mtcars$am, labels = c(\"Automatic\", \"Manual\")) # Put wt on the x-axis, mpg on the y-axis, ggplot(mtcars, aes(x = wt, y = mpg, # distinguish the Transmission values by color, color = Transmission)) + # make it a scatterplot with geom_point() geom_point()+ # And label properly labs(x = \"Car Weight\", y = \"MPG\") . This results in: . ",
     "url": "/Presentation/Figures/scatterplot_by_group_on_shared_axes.html#r",
     "relUrl": "/Presentation/Figures/scatterplot_by_group_on_shared_axes.html#r"
-  },"386": {
+  },"387": {
     "doc": "Scatterplot by Group on Shared Axes",
     "title": "Stata",
     "content": "* Load auto data sysuse auto.dta * Start a twoway command * Then, for each group, put its scatter command in () * Using if to plot each group separately * And specifying mcolor or msymbol (etc.) to differentiate them twoway (scatter weight mpg if foreign == 0, mcolor(black)) (scatter weight mpg if foreign == 1, mcolor(blue)) * Add a legend option so you know what the colors mean twoway (scatter weight mpg if foreign == 0, mcolor(black)) (scatter weight mpg if foreign == 1, mcolor(blue)), legend(lab(1 Domestic) lab(2 Foreign)) xtitle(\"Weight\") ytitle(\"MPG\") . This results in: . ",
     "url": "/Presentation/Figures/scatterplot_by_group_on_shared_axes.html#stata",
     "relUrl": "/Presentation/Figures/scatterplot_by_group_on_shared_axes.html#stata"
-  },"387": {
+  },"388": {
     "doc": "Simple Linear Regression",
     "title": "Simple Linear Regression",
     "content": "Ordinary Least Squares (OLS) is a statistical method that produces a best-fit line between some outcome variable \\(Y\\) and any number of predictor variables \\(X_1, X_2, X_3, ...\\). These predictor variables may also be called independent variables or right-hand-side variables. For more information about OLS, see Wikipedia: Ordinary Least Squares. ",
     "url": "/Model_Estimation/OLS/simple_linear_regression.html",
     "relUrl": "/Model_Estimation/OLS/simple_linear_regression.html"
-  },"388": {
+  },"389": {
     "doc": "Simple Linear Regression",
     "title": "Keep in Mind",
     "content": ". | OLS assumes that you have specified a true linear relationship. | OLS results are not guaranteed to have a causal interpretation. Just because OLS estimates a positive relationship between \\(X_1\\) and \\(Y\\) does not necessarily mean that an increase in \\(X_1\\) will cause \\(Y\\) to increase. | OLS does not require that your variables follow a normal distribution. | . ",
     "url": "/Model_Estimation/OLS/simple_linear_regression.html#keep-in-mind",
     "relUrl": "/Model_Estimation/OLS/simple_linear_regression.html#keep-in-mind"
-  },"389": {
+  },"390": {
     "doc": "Simple Linear Regression",
     "title": "Also Consider",
     "content": ". | OLS standard errors assume that the model’s error term is IID, which may not be true. Consider whether your analysis should use heteroskedasticity-robust standard errors or cluster-robust standard errors. | If your outcome variable is discrete or bounded, then OLS is by nature incorrectly specified. You may want to use probit or logit instead for a binary outcome variable, or ordered probit or ordered logit for an ordinal outcome variable. | If the goal of your analysis is predicting the outcome variable and you have a very long list of predictor variables, you may want to consider using a method that will select a subset of your predictors. A common way to do this is a penalized regression method like LASSO. | In many contexts, you may want to include interaction terms or polynomials in your regression equation. | . ",
     "url": "/Model_Estimation/OLS/simple_linear_regression.html#also-consider",
     "relUrl": "/Model_Estimation/OLS/simple_linear_regression.html#also-consider"
-  },"390": {
+  },"391": {
     "doc": "Simple Linear Regression",
     "title": "Implementations",
     "content": " ",
     "url": "/Model_Estimation/OLS/simple_linear_regression.html#implementations",
     "relUrl": "/Model_Estimation/OLS/simple_linear_regression.html#implementations"
-  },"391": {
+  },"392": {
     "doc": "Simple Linear Regression",
     "title": "Gretl",
     "content": "# Load auto data open https://github.com/LOST-STATS/lost-stats.github.io/blob/master/Data/auto.gdt # Run OLS using the auto data, with mpg as the outcome variable # and headroom, trunk, and weight as predictors ols mpg const headroom trunk weight . ",
     "url": "/Model_Estimation/OLS/simple_linear_regression.html#gretl",
     "relUrl": "/Model_Estimation/OLS/simple_linear_regression.html#gretl"
-  },"392": {
+  },"393": {
     "doc": "Simple Linear Regression",
     "title": "Matlab",
     "content": "% Load auto data load('https://github.com/LOST-STATS/lost-stats.github.io/blob/master/Data/auto.mat') % Run OLS using the auto data, with mpg as the outcome variable % and headroom, trunk, and weight as predictors intercept = ones(length(headroom),1); X = [intercept headroom trunk weight]; [b,bint,r,rint,stats] = regress(mpg,X); . ",
     "url": "/Model_Estimation/OLS/simple_linear_regression.html#matlab",
     "relUrl": "/Model_Estimation/OLS/simple_linear_regression.html#matlab"
-  },"393": {
+  },"394": {
     "doc": "Simple Linear Regression",
     "title": "Python",
     "content": "'''Load R Datasets''' mtcars = sm.datasets.get_rdataset(\"mtcars\").data # Fit OLS regression model to mtcars ols = smf.ols(formula= 'mpg ~ cyl + hp + wt', data= mtcars).fit() # Look at the OLS results print(ols.summary()) . ",
     "url": "/Model_Estimation/OLS/simple_linear_regression.html#python",
     "relUrl": "/Model_Estimation/OLS/simple_linear_regression.html#python"
-  },"394": {
+  },"395": {
     "doc": "Simple Linear Regression",
     "title": "R",
     "content": "# Load Data # data(mtcars) ## Optional: automatically loaded anyway # Run OLS using the mtcars data, with mpg as the outcome variable # and cyl, hp, and wt as predictors olsmodel &lt;- lm(mpg ~ cyl + hp + wt, data = mtcars) # Look at the results summary(olsmodel) . ",
     "url": "/Model_Estimation/OLS/simple_linear_regression.html#r",
     "relUrl": "/Model_Estimation/OLS/simple_linear_regression.html#r"
-  },"395": {
+  },"396": {
     "doc": "Simple Linear Regression",
     "title": "SAS",
     "content": "/* Load Data */ proc import datafile=\"C:mtcars.dbf\" out=fromr dbms=dbf; run; /* OLS regression */ proc reg; model mpg = cyl hp wt; run; . ",
     "url": "/Model_Estimation/OLS/simple_linear_regression.html#sas",
     "relUrl": "/Model_Estimation/OLS/simple_linear_regression.html#sas"
-  },"396": {
+  },"397": {
     "doc": "Simple Linear Regression",
     "title": "Stata",
     "content": "* Load auto data sysuse https://github.com/LOST-STATS/lost-stats.github.io/blob/master/Data/auto.dta * Run OLS using the auto data, with mpg as the outcome variable * and headroom, trunk, and weight as predictors regress mpg headroom trunk weight . ",
     "url": "/Model_Estimation/OLS/simple_linear_regression.html#stata",
     "relUrl": "/Model_Estimation/OLS/simple_linear_regression.html#stata"
-  },"397": {
+  },"398": {
     "doc": "Spatial Joins",
     "title": "Spatial Joins",
     "content": "Spatial joins are crucial for merging different types of data in geospatial analysis. For example, if you want to know how many libraries (points) are in a city, county, or state (polygon). This skill allows you to take data from different types of spatial data (vector data like points, lines, and polygons, and raster data (with a little more work)) sets and merge them together using unique identifiers. Joins are typically interesections of objects, but can be expressed in different ways. These include: equals, covers, covered by, within, touches, near, crosses, and more. These are all functions within the sf function in R. Acknowledgments to Ryan A. Peek for his guide that I am reimagining for LOST. ",
     "url": "/Geo-Spatial/spatial_joins.html",
     "relUrl": "/Geo-Spatial/spatial_joins.html"
-  },"398": {
+  },"399": {
     "doc": "Spatial Joins",
     "title": "Keep in Mind",
     "content": ". | When it comes to the package we are using in R for the US boundaries, it is much easier to install via the devtools. This will save you the trouble of getting errors when installing the data packages for the boundaries. Otherwise, your mileage may vary. When I installed USAboundariesData via USAboundaries, I received errors. | . devtools::install_github(\"ropensci/USAboundaries\") devtools::install_github(\"ropensci/USAboundariesData\") . | Note: Even with installation, you may be prompted to install the “USAboundariesData” package and need to restart your session. | . ",
     "url": "/Geo-Spatial/spatial_joins.html#keep-in-mind",
     "relUrl": "/Geo-Spatial/spatial_joins.html#keep-in-mind"
-  },"399": {
+  },"400": {
     "doc": "Spatial Joins",
     "title": "Implementations",
     "content": " ",
     "url": "/Geo-Spatial/spatial_joins.html#implementations",
     "relUrl": "/Geo-Spatial/spatial_joins.html#implementations"
-  },"400": {
+  },"401": {
     "doc": "Spatial Joins",
     "title": "R",
     "content": "We will need a few packages to do our analysis. If you need to install any packages, do so with install.packages(‘name_of_package’), then load it if necessary. library(here) library(sf) library(dplyr) library(viridis) library(ggplot2) library(USAboundaries) library(GSODR) . | We will work with polygon data from the USA boundaries initially, then move on to climate data point data via the Global Surface Summary of the Day (gsodr) package and join them together. | We start with the boundaries of the United States to get desirable polygons to work with for our analysis. To pay homage to the states of my alma maters, we will do some analysis with Oregon, Ohio, and Michigan. | . #Selecting the United States Boundaries, but omitting Alaska, Hawaii, and Puerto Rico for it to be scaled better usa &lt;- us_boundaries(type=\"state\", resolution = \"low\") %&gt;% filter(!state_abbr %in% c(\"PR\", \"AK\", \"HI\")) #Ohio with high resolution oh &lt;- USAboundaries::us_states(resolution = \"high\", states = \"OH\") #Oregon with high resolution or &lt;- USAboundaries::us_states(resolution = \"high\", states = \"OR\") #Michigan with high resolution mi &lt;- USAboundaries::us_states(resolution = \"high\", states = \"MI\") #Insets for the identified states #Oregon or_box &lt;- st_make_grid(or, n = 1) #Ohio oh_box &lt;- st_make_grid(oh, n = 1) #Michigan mi_box &lt;- st_make_grid(mi, n = 1) #We can also include the counties boundaries within the state too! #Oregon or_co &lt;- USAboundaries::us_counties(resolution = \"high\", states = \"OR\") #Ohio oh_co &lt;- USAboundaries::us_counties(resolution = \"high\", states = \"OH\") #Michigan mi_co &lt;- USAboundaries::us_counties(resolution = \"high\", states = \"MI\") . Now we can plot it out. Oregon highlighted . plot(usa$geometry) plot(or$geometry, add=T, col=\"gray50\", border=\"black\") plot(or_co$geometry, add=T, border=\"green\", col=NA) plot(or_box, add=T, border=\"yellow\", col=NA, lwd=2) . Ohio highlighted . plot(usa$geometry) plot(oh$geometry, add=T, col=\"gray50\", border=\"black\") plot(oh_co$geometry, add=T, border=\"yellow\", col=NA) plot(oh_box, add=T, border=\"blue\", col=NA, lwd=2) . Michigan highlighted . plot(usa$geometry) plot(mi$geometry, add=T, col=\"gray50\", border=\"black\") plot(mi_co$geometry, add=T, border=\"gray\", col=NA) plot(mi_box, add=T, border=\"green\", col=NA, lwd=2) . All three highlighted at once. plot(usa$geometry) plot(mi$geometry, add=T, col=\"gray50\", border=\"black\") plot(mi_co$geometry, add=T, border=\"gray\", col=NA) plot(mi_box, add=T, border=\"green\", col=NA, lwd=2) plot(oh$geometry, add=T, col=\"gray50\", border=\"black\") plot(oh_co$geometry, add=T, border=\"yellow\", col=NA) plot(oh_box, add=T, border=\"blue\", col=NA, lwd=2) plot(or$geometry, add=T, col=\"gray50\", border=\"black\") plot(or_co$geometry, add=T, border=\"green\", col=NA) plot(or_box, add=T, border=\"yellow\", col=NA, lwd=2) . Now that there are polygons established and identified, we can add in some point data to join to our currently existing polygon data and do some analysis with it. To do this we will use the Global Surface Summary of the Day (gsodr) package for climate data. We will take the metadata from the GSODR package via ‘isd_history’, make it spatial data, then filter out only those observations in our candidate states of Oregon, Ohio, and Michigan. load(system.file(\"extdata\", \"isd_history.rda\", package = \"GSODR\")) #We want this to be spatial data isd_history &lt;- as.data.frame(isd_history) %&gt;% st_as_sf(coords=c(\"LON\",\"LAT\"), crs=4326, remove=FALSE) #There are many observations, so we want to narrow it to our three candidate states isd_history_or &lt;- dplyr::filter(isd_history, CTRY==\"US\", STATE==\"OR\") isd_history_oh &lt;- dplyr::filter(isd_history, CTRY==\"US\", STATE==\"OH\") isd_history_mi &lt;- dplyr::filter(isd_history, CTRY==\"US\", STATE==\"MI\") . This filtering should take you from around 26,700 observation sites around the world to approximately 200 in Michigan, 85 in Ohio, and 100 in Oregon. These numbers may vary based on when you independently do your analysis. Let’s see these stations plotted in each state individually: . Note: the codes in the ‘border’ and ‘bg’ identifiers are from the viridis package. You can get some awesome color scales using that package. You can also use standard names. Oregon . plot(isd_history_or$geometry, cex=0.5) plot(or$geometry, col=alpha(\"gray\", 0.5), border=\"#1F968BFF\", lwd=1.5, add=TRUE) plot(isd_history_or$geometry, add=T, pch=21, bg=\"#FDE725FF\", cex=0.7, col=\"black\") title(\"Oregon GSOD Climate Stations\") . Ohio . plot(isd_history_oh$geometry, cex=0.5) plot(oh$geometry, col=alpha(\"red\", 0.5), border=\"gray\", lwd=1.5, add=TRUE) plot(isd_history_oh$geometry, add=T, pch=21, bg=\"black\", cex=0.7, col=\"black\") title(\"Ohio GSOD Climate Stations\") . Michigan . plot(isd_history_mi$geometry, cex=0.5) plot(mi$geometry, col=alpha(\"green\", 0.5), border=\"blue\", lwd=1.5, add=TRUE) plot(isd_history_mi$geometry, add=T, pch=21, bg=\"white\", cex=0.7, col=\"black\") title(\"Michigan GSOD Climate Stations\") . ",
     "url": "/Geo-Spatial/spatial_joins.html#r",
     "relUrl": "/Geo-Spatial/spatial_joins.html#r"
-  },"401": {
+  },"402": {
     "doc": "Spatial Joins",
     "title": "Now, for the magic:",
     "content": "We are going to start with selecting polygons from points. This is not necessarily merging the data together, but using a spatial join to filter out polygons (counties, states, etc.) from points (climate data stations) . We will start by selecting the Oregon counties that have climate data stations within their boundaries: . or_co_isd_poly &lt;- or_co[isd_history, ] plot(or_co_isd_poly$geometry, col=alpha(\"green\",0.7)) title(\"Oregon Counties with GSOD Climate Stations\") . Now for all of our three candidate states: . cand_co &lt;- USAboundaries::us_counties(resolution = \"high\", states = c(\"OR\", \"OH\", \"MI\")) cand_co_isd_poly &lt;- cand_co[isd_history, ] plot(cand_co_isd_poly$geometry, col=alpha(\"blue\",0.7)) title(\"Counties in Candidate States with GSOD Climate Stations\") . We see how we can filter out polygons from attributes or intersecting relationships with points, but what if we want to merge data from the points into the polygon or vice versa? . We will use the data set for Oregon for the join example. Notice in our point dataset that there are no county names. Only station/city names. Let us join the county polygons with the climate station points and add the county names to the station data. We do this using the st_join function, which comes from the sf package. isd_or_co_pts &lt;- st_join(isd_history, left = FALSE, or_co[\"name\"]) #Rename the county name variable county instead of name, since we already have NAME for the station location colnames(isd_or_co_pts)[which(names(isd_or_co_pts) == \"name\")] &lt;- \"county\" plot(isd_or_co_pts$geometry, pch=21, cex=0.7, col=\"black\", bg=\"orange\") plot(or_co$geometry, border=\"gray\", col=NA, add=T) . You now have successfully joined the county name data into your new point data set! Those points in the plot now contain the county information for data analysis purposes. You can join in any attribute you would like, or by leaving it as: . isd_or_co_pts &lt;- st_join(isd_history, left = FALSE, or_co) . You add all attributes from the polygon into the point data frame! . Also note that st_join is the default function that joins any type of intersection. You can be more precise our particular about your conditions with the other spatial joins: . st_within only joins elements that are completely within the defined area . st_equal only joins elements that are spatially equal. Meaning that A is within B and B is within A. You can use these to pare down your selections and joins to specific relationships. Good luck with your geospatial analysis! . ",
     "url": "/Geo-Spatial/spatial_joins.html#now-for-the-magic",
     "relUrl": "/Geo-Spatial/spatial_joins.html#now-for-the-magic"
-  },"402": {
+  },"403": {
     "doc": "Styling Line Graphs",
     "title": "Styling Line Graphs",
     "content": "There are several ways of styling line graphs. The following examples demonstrate how to modify the appearances of the lines (type and sizes), as well chart titles and axes labels. ",
     "url": "/Presentation/Figures/styling_line_graphs.html",
     "relUrl": "/Presentation/Figures/styling_line_graphs.html"
-  },"403": {
+  },"404": {
     "doc": "Styling Line Graphs",
     "title": "Keep in Mind",
     "content": ". | To get started on how to plot line graphs, see here. | Elements for customization include line thickness, line type (solid, dashed, etc.), shade, transparency, and color. | Color is one of the easiest ways to distinguish a large number of line graphs. If you have many line graphs overlaid and have to use black-and-white, consider different shades of black/gray. | . ",
     "url": "/Presentation/Figures/styling_line_graphs.html#keep-in-mind",
     "relUrl": "/Presentation/Figures/styling_line_graphs.html#keep-in-mind"
-  },"404": {
+  },"405": {
     "doc": "Styling Line Graphs",
     "title": "Implementation",
     "content": " ",
     "url": "/Presentation/Figures/styling_line_graphs.html#implementation",
     "relUrl": "/Presentation/Figures/styling_line_graphs.html#implementation"
-  },"405": {
+  },"406": {
     "doc": "Styling Line Graphs",
     "title": "R",
     "content": "## If necessary ## install.packages(c('ggplot2','cowplot')) ## load packages library(ggplot2) ## Cowplot is just to join together the four graphs at the end library(cowplot) ## load data (the Economics dataset comes with ggplot2) eco_df &lt;- economics ## basic plot p1 &lt;- ggplot() + geom_line(aes(x=date, y = uempmed), data = eco_df) p1 ## Change line color and chart labels ## Note here that color is *outside* of the aes() argument, and so this will color the line ## If color were instead *inside* aes() and set to a factor variable, ggplot would create ## a different line for each value of the factor variable, colored differently. p2 &lt;- ggplot() + ## choose a color of preference geom_line(aes(x=date, y = uempmed), color = \"navyblue\", data = eco_df) + ## add chart title and change axes labels labs( title = \"Median Duration of Unemployment\", x = \"Date\", y = \"\") + ## Add a ggplot theme theme_light() ## center the chart title theme(plot.title = element_text(hjust = 0.5)) + p2 ## plotting multiple charts (of different line types and sizes) p3 &lt;-ggplot() + geom_line(aes(x=date, y = uempmed), color = \"navyblue\", size = 1.5, data = eco_df) + geom_line(aes(x=date, y = psavert), color = \"red2\", linetype = \"dotted\", size = 0.8, data = eco_df) + labs( title = \"Unemployment Duration (Blue) and Savings Rate (Red)\", x = \"Date\", y = \"\") + theme_light() + theme(plot.title = element_text(hjust = 0.5)) p3 ## Plotting a different line type for each group ## There isn't a natural factor in this data so let's just duplicate the data and make one up eco_df$fac &lt;- factor(1, levels = c(1,2)) eco_df2 &lt;- eco_df eco_df2$fac &lt;- 2 eco_df2$uempmed &lt;- eco_df2$uempmed - 2 + rnorm(nrow(eco_df2)) eco_df &lt;- rbind(eco_df, eco_df2) p4 &lt;- ggplot() + ## This time, color goes inside aes geom_line(aes(x=date, y = uempmed, color = fac), data = eco_df) + ## add chart title and change axes labels labs( title = \"Median Duration of Unemployment\", x = \"Date\", y = \"\") + ## Add a ggplot theme theme_light() + ## center the chart title theme(plot.title = element_text(hjust = 0.5), ## Move the legend onto some blank space on the diagram legend.position = c(.25,.8), ## And put a box around it legend.background = element_rect(color=\"black\")) + ## Retitle the legend that pops up to explain the discrete (factor) difference in colors ## (note if we just want a name change we could do guides(color = guide_legend(title = 'Random Factor')) instead) scale_color_manual(name = \"Random Factor\", # And specify the colors for the factor levels (1 and 2) by hand if we like values = c(\"1\" = \"red\", \"2\" = \"blue\")) p4 # Put them all together with cowplot for LOST upload plot_grid(p1,p2,p3,p4, nrow=2) . The four plots generated by the code are (in order p1, p2, then p3 and p4): . ",
     "url": "/Presentation/Figures/styling_line_graphs.html#r",
     "relUrl": "/Presentation/Figures/styling_line_graphs.html#r"
-  },"406": {
+  },"407": {
     "doc": "2x2 Difference in Difference",
     "title": "INTRODUCTION",
     "content": "Causal inference with cross-sectional data is fundamentally tricky. | People, firms, etc. are different from one another in lots of ways. | Can only get a clean comparison when you have a (quasi-)experimental setup, such as an experiment or an regression discontinuity. | . Difference-in-difference makes use of a treatment that was applied to one group at a given time but not another group. It compares how each of those groups changed over time (comparing them to themselves to eliminate between-group differences) and then compares the treatment group difference to the control group difference (both of which contain the same time gaps, eliminating differences over time). ",
     "url": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#introduction",
     "relUrl": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#introduction"
-  },"407": {
+  },"408": {
     "doc": "2x2 Difference in Difference",
     "title": "KEEP IN MIND",
     "content": ". | For Difference-in-differences to work, parallel trends must hold. That is, nothing else should be changing the gap between treated and control states at the same time as the treatment. While it is not a formal test of parallel trends, researchers often look at whether the gap between treated and control states is constant in pre-treatment years. | Suppose in \\(t = 0\\) (“Pre-period”), and \\(t = 1\\) (“Post-period”). We want to estimate \\(\\tau = Post - Pre\\), or \\(Y(post)-Y(pre)= Y(t=1)-Y(t=0)=\\tau\\). | . ",
     "url": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#keep-in-mind",
     "relUrl": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#keep-in-mind"
-  },"408": {
+  },"409": {
     "doc": "2x2 Difference in Difference",
     "title": "ALSO CONSIDER",
     "content": ". | This page discusses “2x2” difference-in-difference design, meaning there are two groups, and treatment occurs at a single point in time. Many difference-in-difference applications instead use many groups, and treatments that are implemented at different times (a “rollout” design). Traditionally these models have been estimated using fixed effects for group and time period, i.e. “two-way” fixed effects. However, this approach with difference-in-difference can heavily bias results if treatment effects differ across groups, and alternate estimators are preferred. See Goodman-Bacon 2018 and Callaway and Sant’anna 2019. | . ",
     "url": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#also-consider",
     "relUrl": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#also-consider"
-  },"409": {
+  },"410": {
     "doc": "2x2 Difference in Difference",
     "title": "IMPLEMENTATIONS",
     "content": " ",
     "url": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#implementations",
     "relUrl": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#implementations"
-  },"410": {
+  },"411": {
     "doc": "2x2 Difference in Difference",
     "title": "R",
     "content": "In this case, we need to discover whether legalized marijuana could change the murder rate. Some states legalized marijuana in 2014. So we measure the how the murder rate changes from before 2014 to after between legalized states and states without legalization. Step 1: . | First of all, we need to load Data and Package, we call this data set “DiD”. library(tidyverse) library(broom) library(here) library(readxl) DiD &lt;- read_excel(\"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Two_by_Two_Difference_in_Difference/did_crime.xlsx\")) . | . Step 2: . Notice that the data has already been collapsed to the treated-year level. That is, there is one observation of the murder rate for each year for the treated states (all averaged together), and one observation of the murder rate for each year for the untreated states (all averaged together). We create the indicator variable called after to indicate whether it is in the treated period of being after the year of 2014 (1), or the before period of between 2000-2013 (0). The variable treat indicates that the state legalizes marijuana in 2014. Notice that treat = 1 in these states even before 2014. If the year is after 2014 and the state decided to legalize marijuana, the indicator variable “treatafter” is “1” . DiD &lt;- DiD %&gt;% mutate(after = year &gt;= 2014) %&gt;% mutate(treatafter = after*treat) . Step 3: . Then we need to plot the graph to visualize the impact of legalize marijuana on murder rate by using ggplot. mt &lt;- ggplot(DiD,aes(x=year, y=murder, color = treat)) + geom_point(size=3)+geom_line() + geom_vline(xintercept=2014,lty=4) + labs(title=\"Murder and Time\", x=\"Year\", y=\"Murder Rate\") mt . It looks like, before the legalization occurred, murder rates in treated and untreated states were very similar, lending plausibility to the parallel trends assumption. Step 4: . We need to measure the impact of impact of legalize marijuana. If we include treat, after, and treatafter in a regression, the coefficient on treatafter can be interpreted as “how much bigger was the before-after difference for the treated group?” which is the DiD estimate. reg&lt;-lm(murder ~ treat+treatafter+after, data = DiD) summary(reg) . After legalization, the murder rate dropped by 0.3% more in treated than untreated states, suggesting that legalization reduced the murder rate. ",
     "url": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#r",
     "relUrl": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#r"
-  },"411": {
+  },"412": {
     "doc": "2x2 Difference in Difference",
     "title": "2x2 Difference in Difference",
     "content": " ",
     "url": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html",
     "relUrl": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html"
-  },"412": {
+  },"413": {
     "doc": "Home",
     "title": "Home",
     "content": "# Home Welcome to the **Library of Statistical Techniques** (LOST)! LOST is a publicly-editable website with the goal of making it easy to execute statistical techniques in statistical software. Each page of the website contains a statistical technique &mdash; which may be an estimation method, a data manipulation or cleaning method, a method for presenting or visualizing results, or any of the other kinds of things that statistical software typically does. For each of those techniques, the LOST page will contain code for performing that method in a variety of packages and languages. It may also contain information (or links) with thorough descriptions of the method, but the focus here is on implementation. How can you do it in your language of choice? If there are multiple ways, how are those ways different? Is the way you used to do it outdated, or does it do something unexpected? What's the `R` equivalent of that command you know about in `Stata` or `SAS`, or vice versa? In short, LOST is a Rosetta Stone for statistical software. If you are interested in contributing to LOST, please see the [Contributing](https://lost-stats.github.io/Contributing/Contributing.html) page. LOST was originated in 2019 by Nick Huntington-Klein and is maintained by volunteer contributors. The project's GitHub page is [here](https://github.com/LOST-STATS/lost-stats.github.io). ",

@@ -256,6 +256,55 @@
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<p>The <a href="https://pandas.pydata.org/"><strong>pandas</strong></a> package has several functions to <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/reshaping.html">reshape</a> data. For going from long data to wide data, there’s <code class="language-plaintext highlighter-rouge">pivot</code> and <code class="language-plaintext highlighter-rouge">pivot_table</code>, both of which are demonstrated in the example below.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Install pandas using pip or conda, if you don't already have it installed.
+</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="c1"># Load WHO data on population as an example, which has 'country', 'year',
+# and 'population' columns.
+</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'https://vincentarelbundock.github.io/Rdatasets/csv/tidyr/population.csv'</span><span class="p">,</span>
+                 <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># In this example, we would like to have one row per country but the data have
+# multiple rows per country, each corresponding with
+# a year-country value of population.
+# Let's take a look at the first 5 rows:
+</span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="c1"># To reshape this into a dataframe with one country per row, we can use
+# the pivot function and set 'country' as the index. As we'd like to
+# split out years into different columns, we set columns to 'years', and the
+# values within this new dataframe will be population:
+</span><span class="n">df_wide</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s">'country'</span><span class="p">,</span>
+                   <span class="n">columns</span><span class="o">=</span><span class="s">'year'</span><span class="p">,</span>
+                   <span class="n">values</span><span class="o">=</span><span class="s">'population'</span><span class="p">)</span>
+
+<span class="c1"># What if there are multiple year-country pairs? Pivot can't work
+# because it needs unique combinations. In this case, we can use
+# pivot_table which can aggregate any duplicate year-country pairs. To test it, let's
+# create some synthetic duplicate data for France and add it to the original
+# data. We'll pretend there was a second count of population that came in with
+# 5% higher values for all years.
+</span>
+<span class="c1"># Copy the data for France
+</span><span class="n">synth_fr_data</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s">'country'</span><span class="p">]</span> <span class="o">==</span> <span class="s">'France'</span><span class="p">]</span>
+
+<span class="c1"># Add 5% for all years
+</span><span class="n">synth_fr_data</span><span class="p">[</span><span class="s">'population'</span><span class="p">]</span> <span class="o">=</span> <span class="n">synth_fr_data</span><span class="p">[</span><span class="s">'population'</span><span class="p">]</span><span class="o">*</span><span class="mf">1.05</span>
+
+<span class="c1"># Append it to the end of the original data
+</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">synth_fr_data</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Compute the wide data - averaging over the two estimates for France for each
+# year.
+</span><span class="n">df_wide</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s">'country'</span><span class="p">,</span>
+                         <span class="n">columns</span><span class="o">=</span><span class="s">'year'</span><span class="p">,</span>
+                         <span class="n">values</span><span class="o">=</span><span class="s">'population'</span><span class="p">,</span>
+                         <span class="n">aggfunc</span><span class="o">=</span><span class="s">'mean'</span><span class="p">)</span>
+</code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
