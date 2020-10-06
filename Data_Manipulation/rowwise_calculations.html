@@ -175,33 +175,30 @@
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
-      <h2 id="stata">
-          <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
       </h2>
-<p>Stata has a series of built-in row operations that use the <code class="language-plaintext highlighter-rouge">egen</code> command. See <code class="language-plaintext highlighter-rouge">help egen</code> for the full list, and look for functions beginning with <code class="language-plaintext highlighter-rouge">row</code> like <code class="language-plaintext highlighter-rouge">rowmean</code>.</p>
-<p>The full list includes: <code class="language-plaintext highlighter-rouge">rowfirst</code> and <code class="language-plaintext highlighter-rouge">rowlast</code> (first or last non-missing observation), <code class="language-plaintext highlighter-rouge">rowmean</code>, <code class="language-plaintext highlighter-rouge">rowmedian</code>, <code class="language-plaintext highlighter-rouge">rowmax</code>, <code class="language-plaintext highlighter-rouge">rowmin</code>, <code class="language-plaintext highlighter-rouge">rowpctile</code>, and <code class="language-plaintext highlighter-rouge">rowtotal</code> (the mean, median, max, min, given percentile, or sum of all the variables), and <code class="language-plaintext highlighter-rouge">rowmiss</code> and <code class="language-plaintext highlighter-rouge">rownonmiss</code> (the count of the number of missing or nonmissing observations across the variables).</p>
-<p>The <strong>egenmore</strong> package, which can be installed with <code class="language-plaintext highlighter-rouge">ssc install egenmore</code>, adds <code class="language-plaintext highlighter-rouge">rall</code>, <code class="language-plaintext highlighter-rouge">rany</code>, and <code class="language-plaintext highlighter-rouge">rcount</code> (checks a condition for each variable and returns whether all are true, any are true, or the number that are true), <code class="language-plaintext highlighter-rouge">rownvals</code> and <code class="language-plaintext highlighter-rouge">rowsvals</code> (number of unique values for numeric and string variables, respectively), and <code class="language-plaintext highlighter-rouge">rsum2</code> (<code class="language-plaintext highlighter-rouge">rowtotal</code> with some additional options).</p>
-<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Get data on midwestern states
-</span><span class="err">import</span> <span class="err">delimited</span> <span class="err">using</span> <span class="s2">"https://vincentarelbundock.github.io/Rdatasets/csv/ggplot2/midwest.csv"</span><span class="err">
-</span><span class="c1">
-* There are three sets of variables starting with "perc" - let's make sure they
-* add up to 300 as they should
-* Use * as a wildcard for variable names
-</span><span class="err">egen</span> <span class="err">total_perc</span> <span class="o">=</span> <span class="err">rowtotal(perc</span><span class="o">*</span><span class="err">)
+<p>The <a href="https://pandas.pydata.org/"><strong>pandas</strong></a> data analysis package provides several methods for performing row-wise (or column-wise) operations in Python. Many common operations, such as sum and mean, can be called directly (eg summing over multiple columns to create a new column). It’s useful to know the axis convention in pandas: operations that combine columns often require the user to pass <code class="language-plaintext highlighter-rouge">axis=1</code> to the function, while operations that combine rows require <code class="language-plaintext highlighter-rouge">axis=0</code>. This convention follows the usual one for matrices of denoting individual elements first by the <em>i</em>th row and then by the <em>j</em>th column.
+Although not demonstrated in the example below, <a href="https://www.analyticsvidhya.com/blog/2020/03/what-are-lambda-functions-in-python/">lambda</a> functions can be used for more complex operations that aren’t built-in and apply to multiple rows or columns.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install pandas using pip or conda
+</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
 
-summ</span> <span class="err">total_perc
-</span><span class="c1">* They don't! Uh oh.
+<span class="c1"># Grab the data
+</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"https://vincentarelbundock.github.io/Rdatasets/csv/ggplot2/midwest.csv"</span><span class="p">,</span>
+                 <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-* Let's just check the education variables - should add up to 100
-* Use - to include all variables from one to the other
-* based on their current order in the data
-</span><span class="err">egen</span> <span class="err">total_ed</span> <span class="o">=</span> <span class="err">rowtotal(perchsd</span><span class="o">-</span><span class="err">percprof)
-</span><span class="c1">
-* Oh that explains it...
-* These aren't exclusive categories (HSD, college overlap)
-* and also leaves out non-HS graduates.
-</span><span class="err">summ</span> <span class="err">total_ed
-</span></code></pre></div></div>
+<span class="c1"># Let's assume that we want to sum, row-wise, every column
+# that contains 'perc' in its column name and check that
+# the total is 300. Use a list comprehension to get only
+# relevant columns, sum across them (axis=1), and create a
+# new column to store them:
+</span><span class="n">df</span><span class="p">[</span><span class="s">'perc_sum'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="p">.</span><span class="n">columns</span> <span class="k">if</span> <span class="s">'perc'</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]].</span><span class="nb">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># We can now check whether, on aggregate, each row entry of this new column
+# is 300 (it's not!)
+</span><span class="n">df</span><span class="p">[</span><span class="s">'perc_sum'</span><span class="p">].</span><span class="n">describe</span><span class="p">()</span>
+
+</code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
@@ -250,6 +247,33 @@ summ</span> <span class="err">total_perc
 </span><span class="c1"># So do we get 300?</span><span class="w">
 </span><span class="n">summary</span><span class="p">(</span><span class="n">midwest</span><span class="o">$</span><span class="n">rowsum_rowSums2</span><span class="p">)</span><span class="w">
 </span><span class="c1"># Uh-oh... looks like we didn't understand the data after all.</span><span class="w">
+</span></code></pre></div></div>
+      <h2 id="stata">
+          <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
+      </h2>
+<p>Stata has a series of built-in row operations that use the <code class="language-plaintext highlighter-rouge">egen</code> command. See <code class="language-plaintext highlighter-rouge">help egen</code> for the full list, and look for functions beginning with <code class="language-plaintext highlighter-rouge">row</code> like <code class="language-plaintext highlighter-rouge">rowmean</code>.</p>
+<p>The full list includes: <code class="language-plaintext highlighter-rouge">rowfirst</code> and <code class="language-plaintext highlighter-rouge">rowlast</code> (first or last non-missing observation), <code class="language-plaintext highlighter-rouge">rowmean</code>, <code class="language-plaintext highlighter-rouge">rowmedian</code>, <code class="language-plaintext highlighter-rouge">rowmax</code>, <code class="language-plaintext highlighter-rouge">rowmin</code>, <code class="language-plaintext highlighter-rouge">rowpctile</code>, and <code class="language-plaintext highlighter-rouge">rowtotal</code> (the mean, median, max, min, given percentile, or sum of all the variables), and <code class="language-plaintext highlighter-rouge">rowmiss</code> and <code class="language-plaintext highlighter-rouge">rownonmiss</code> (the count of the number of missing or nonmissing observations across the variables).</p>
+<p>The <strong>egenmore</strong> package, which can be installed with <code class="language-plaintext highlighter-rouge">ssc install egenmore</code>, adds <code class="language-plaintext highlighter-rouge">rall</code>, <code class="language-plaintext highlighter-rouge">rany</code>, and <code class="language-plaintext highlighter-rouge">rcount</code> (checks a condition for each variable and returns whether all are true, any are true, or the number that are true), <code class="language-plaintext highlighter-rouge">rownvals</code> and <code class="language-plaintext highlighter-rouge">rowsvals</code> (number of unique values for numeric and string variables, respectively), and <code class="language-plaintext highlighter-rouge">rsum2</code> (<code class="language-plaintext highlighter-rouge">rowtotal</code> with some additional options).</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Get data on midwestern states
+</span><span class="err">import</span> <span class="err">delimited</span> <span class="err">using</span> <span class="s2">"https://vincentarelbundock.github.io/Rdatasets/csv/ggplot2/midwest.csv"</span><span class="err">
+</span><span class="c1">
+* There are three sets of variables starting with "perc" - let's make sure they
+* add up to 300 as they should
+* Use * as a wildcard for variable names
+</span><span class="err">egen</span> <span class="err">total_perc</span> <span class="o">=</span> <span class="err">rowtotal(perc</span><span class="o">*</span><span class="err">)
+
+summ</span> <span class="err">total_perc
+</span><span class="c1">* They don't! Uh oh.
+
+* Let's just check the education variables - should add up to 100
+* Use - to include all variables from one to the other
+* based on their current order in the data
+</span><span class="err">egen</span> <span class="err">total_ed</span> <span class="o">=</span> <span class="err">rowtotal(perchsd</span><span class="o">-</span><span class="err">percprof)
+</span><span class="c1">
+* Oh that explains it...
+* These aren't exclusive categories (HSD, college overlap)
+* and also leaves out non-HS graduates.
+</span><span class="err">summ</span> <span class="err">total_ed
 </span></code></pre></div></div>
           <hr>
           <footer>
