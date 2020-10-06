@@ -20,35 +20,30 @@ This becomes more difficult, though, when the list of variables gets too long to
 
 # Implementations
 
-## Stata
+## Python
 
-Stata has a series of built-in row operations that use the `egen` command. See `help egen` for the full list, and look for functions beginning with `row` like `rowmean`. 
+The [**pandas**](https://pandas.pydata.org/) data analysis package provides several methods for performing row-wise (or column-wise) operations in Python. Many common operations, such as sum and mean, can be called directly (eg summing over multiple columns to create a new column). It's useful to know the axis convention in pandas: operations that combine columns often require the user to pass `axis=1` to the function, while operations that combine rows require `axis=0`. This convention follows the usual one for matrices of denoting individual elements first by the *i*th row and then by the *j*th column.
+Although not demonstrated in the example below, [lambda](https://www.analyticsvidhya.com/blog/2020/03/what-are-lambda-functions-in-python/) functions can be used for more complex operations that aren't built-in and apply to multiple rows or columns.
 
-The full list includes: `rowfirst` and `rowlast` (first or last non-missing observation), `rowmean`, `rowmedian`, `rowmax`, `rowmin`, `rowpctile`, and `rowtotal` (the mean, median, max, min, given percentile, or sum of all the variables), and `rowmiss` and `rownonmiss` (the count of the number of missing or nonmissing observations across the variables).
+```python
+# If necessary, install pandas using pip or conda
+import pandas as pd
 
-The **egenmore** package, which can be installed with `ssc install egenmore`, adds `rall`, `rany`, and `rcount` (checks a condition for each variable and returns whether all are true, any are true, or the number that are true), `rownvals` and `rowsvals` (number of unique values for numeric and string variables, respectively), and `rsum2` (`rowtotal` with some additional options).
+# Grab the data
+df = pd.read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/ggplot2/midwest.csv",
+                 index_col=0)
 
-```stata
-* Get data on midwestern states
-import delimited using "https://vincentarelbundock.github.io/Rdatasets/csv/ggplot2/midwest.csv"
+# Let's assume that we want to sum, row-wise, every column
+# that contains 'perc' in its column name and check that
+# the total is 300. Use a list comprehension to get only
+# relevant columns, sum across them (axis=1), and create a
+# new column to store them:
+df['perc_sum'] = df[[x for x in df.columns if 'perc' in x]].sum(axis=1)
 
-* There are three sets of variables starting with "perc" - let's make sure they
-* add up to 300 as they should
-* Use * as a wildcard for variable names
-egen total_perc = rowtotal(perc*)
+# We can now check whether, on aggregate, each row entry of this new column
+# is 300 (it's not!)
+df['perc_sum'].describe()
 
-summ total_perc
-* They don't! Uh oh.
-
-* Let's just check the education variables - should add up to 100
-* Use - to include all variables from one to the other
-* based on their current order in the data
-egen total_ed = rowtotal(perchsd-percprof)
-
-* Oh that explains it...
-* These aren't exclusive categories (HSD, college overlap)
-* and also leaves out non-HS graduates.
-summ total_ed
 ```
 
 ## R
@@ -104,3 +99,33 @@ summary(midwest$rowsum_rowSums2)
 # Uh-oh... looks like we didn't understand the data after all.
 ```
 
+## Stata
+
+Stata has a series of built-in row operations that use the `egen` command. See `help egen` for the full list, and look for functions beginning with `row` like `rowmean`. 
+
+The full list includes: `rowfirst` and `rowlast` (first or last non-missing observation), `rowmean`, `rowmedian`, `rowmax`, `rowmin`, `rowpctile`, and `rowtotal` (the mean, median, max, min, given percentile, or sum of all the variables), and `rowmiss` and `rownonmiss` (the count of the number of missing or nonmissing observations across the variables).
+
+The **egenmore** package, which can be installed with `ssc install egenmore`, adds `rall`, `rany`, and `rcount` (checks a condition for each variable and returns whether all are true, any are true, or the number that are true), `rownvals` and `rowsvals` (number of unique values for numeric and string variables, respectively), and `rsum2` (`rowtotal` with some additional options).
+
+```stata
+* Get data on midwestern states
+import delimited using "https://vincentarelbundock.github.io/Rdatasets/csv/ggplot2/midwest.csv"
+
+* There are three sets of variables starting with "perc" - let's make sure they
+* add up to 300 as they should
+* Use * as a wildcard for variable names
+egen total_perc = rowtotal(perc*)
+
+summ total_perc
+* They don't! Uh oh.
+
+* Let's just check the education variables - should add up to 100
+* Use - to include all variables from one to the other
+* based on their current order in the data
+egen total_ed = rowtotal(perchsd-percprof)
+
+* Oh that explains it...
+* These aren't exclusive categories (HSD, college overlap)
+* and also leaves out non-HS graduates.
+summ total_ed
+```
