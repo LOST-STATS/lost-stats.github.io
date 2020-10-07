@@ -164,12 +164,12 @@
           <a href="#spatial-joins" aria-labelledby="spatial-joins" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Spatial Joins
       </h1>
 <p>Spatial joins are crucial for merging different types of data in geospatial analysis.  For example, if you want to know how many libraries (points) are in a city, county, or state (polygon).  This skill allows you to take data from different types of spatial data (vector data like points, lines, and polygons, and raster data (with a little more work)) sets and merge them together using unique identifiers.</p>
-<p>Joins are typically interesections of objects, but can be expressed in different ways.  These include: equals, covers, covered by, within, touches, near, crosses, and more.  These are all functions within the <a href="https://cran.r-project.org/web/packages/sf/sf.pdf">sf</a> function in R.</p>
-<p><strong>Acknowledgments to <a href="https://ryanpeek.org/">Ryan A. Peek</a> for his guide that I am reimagining for LOST.</strong></p>
+<p>Joins are typically interesections of objects, but can be expressed in different ways.  These include: equals, covers, covered by, within, touches, near, crosses, and more.  These are all functions within the <a href="https://cran.r-project.org/web/packages/sf/sf.pdf">sf</a> function in R or the <a href="https://geopandas.org/"><strong>geopandas</strong></a> package in Python. For more on the different types of intersections in 2D projections, see the <a href="https://en.wikipedia.org/wiki/Spatial_relation">Wikipedia page on spatial relations</a>.</p>
       <h2 id="keep-in-mind">
           <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
       </h2>
 <ul>
+  <li>Geospatial packages in R and Python tend to have a large number of complex dependencies, which can make installing them painful. Best practice is to install geospatial packages in a new virtual environment.</li>
   <li>When it comes to the package we are using in R for the US boundaries, it is much easier to install via the <a href="https://cran.r-project.org/web/packages/devtools/index.html">devtools</a>.  This will save you the trouble of getting errors when installing the data packages for the boundaries.  Otherwise, your mileage may vary. When I installed USAboundariesData via USAboundaries, I received errors.</li>
 </ul>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">devtools</span><span class="o">::</span><span class="n">install_github</span><span class="p">(</span><span class="s2">"ropensci/USAboundaries"</span><span class="p">)</span><span class="w">
@@ -177,14 +177,71 @@
 
 </span></code></pre></div></div>
 <ul>
-  <li>Note: Even with installation, you may be prompted to install the “USAboundariesData” package and need to restart your session.</li>
+  <li>Note: Even with the R installation via devtools, you may be prompted to install the “USAboundariesData” package and need to restart your session.</li>
 </ul>
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<p>The <a href="https://geopandas.org/"><strong>geopandas</strong></a> package is the easiest way to start doing geo-spatial analysis in Python. This example of a spatial merge closely follows one from the documentation for <strong>geopandas</strong>.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Geospatial packages tend to have many elaborate dependencies. The quickest
+# way to get going is to use a clean virtual environment and then
+# 'conda install geopandas' followed by
+# 'conda install -c conda-forge descartes'
+# descartes is what allows geopandas to plot data.
+</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="n">gpd</span>
+
+<span class="c1"># Grab a world map
+</span><span class="n">world</span> <span class="o">=</span> <span class="n">gpd</span><span class="p">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">gpd</span><span class="p">.</span><span class="n">datasets</span><span class="p">.</span><span class="n">get_path</span><span class="p">(</span><span class="s">'naturalearth_lowres'</span><span class="p">))</span>
+
+<span class="c1"># Plot the map of the world
+</span><span class="n">world</span><span class="p">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="c1"># Grab data on cities
+</span><span class="n">cities</span> <span class="o">=</span> <span class="n">gpd</span><span class="p">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">gpd</span><span class="p">.</span><span class="n">datasets</span><span class="p">.</span><span class="n">get_path</span><span class="p">(</span><span class="s">'naturalearth_cities'</span><span class="p">))</span>
+
+<span class="c1"># We can plot the cities too - but they're just dots of lat/lon without any
+# context for now
+</span><span class="n">cities</span><span class="p">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="c1"># The data don't actually need to be combined to be viewed on a map as long as
+# they are using the same 'crs', or coordinate reference system.
+# Force cities and world to share crs:
+</span><span class="n">cities</span> <span class="o">=</span> <span class="n">cities</span><span class="p">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">world</span><span class="p">.</span><span class="n">crs</span><span class="p">)</span>
+
+<span class="c1"># Combine them on a plot:
+</span><span class="n">base</span> <span class="o">=</span> <span class="n">world</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s">'white'</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'black'</span><span class="p">)</span>
+<span class="n">cities</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">base</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">'o'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'red'</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># We want to perform a spatial merge, but there are many kinds in 2D
+# projections, including withins, touches, crosses, and overlaps. We want to
+# use an intersects spatial join - ie we want to combine each city (a lat/lon
+# point) with the shapes of countries and determine which city goes in which
+# country (even if it's on the boundary). We use the 'sjoin' function:
+</span>
+<span class="n">cities_with_country</span> <span class="o">=</span> <span class="n">gpd</span><span class="p">.</span><span class="n">sjoin</span><span class="p">(</span><span class="n">cities</span><span class="p">,</span> <span class="n">world</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s">"inner"</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="s">'intersects'</span><span class="p">)</span>
+
+<span class="n">cities_with_country</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+<span class="c1">#  name_left                   geometry    pop_est     continent  \
+#  Vatican City  POINT (12.45339 41.90328)   62137802    Europe   
+#    San Marino  POINT (12.44177 43.93610)   62137802    Europe   
+#          Rome  POINT (12.48131 41.89790)   62137802    Europe   
+#         Vaduz   POINT (9.51667 47.13372)    8754413    Europe   
+#        Vienna  POINT (16.36469 48.20196)    8754413    Europe   
+#  name_right iso_a3  gdp_md_est  
+#       Italy    ITA   2221000.0  
+#       Italy    ITA   2221000.0  
+#       Italy    ITA   2221000.0  
+#     Austria    AUT    416600.0  
+#     Austria    AUT    416600.0  
+</span></code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
+<p><strong>Acknowledgments to <a href="https://ryanpeek.org/">Ryan A. Peek</a> for his guide that I am reimagining for LOST.</strong></p>
 <p>We will need a few packages to do our analysis.  If you need to install any packages, do so with install.packages(‘name_of_package’), then load it if necessary.</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">here</span><span class="p">)</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span><span class="w">
