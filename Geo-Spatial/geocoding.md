@@ -53,11 +53,57 @@ It is important to recognize that there are many different geocoding platforms. 
 3. [IPUMS Geomarker](https://geomarker.ipums.org/)
 4. [ArcGIS](https://geocode.arcgis.com/arcgis/)
 
-This page will talk specifically about Geocodio and how to use the Goecodio platform in **R studio**. When you are deciding which geocode platform to use some important things to keep in mind are **pricing structures** and other specific features of the platfrom like **bulk geocoding** and **coverage**. For example, Geocodio is much more suited to geocode big data sets than Google's platform. However, Geocodio is only able to geocode within the United States and Cananda whereas Google has international capabilities. Google is better at guessing what location you are trying to geocode ("the White House") than Geocodio, but Geocodio offers census appends. The pricing sturcture is also nuanced across platforms. [Here](https://www.geocod.io/compare/) is a comparison chart provided by Geocodio that gives a flavor of what to consider when deciding which service to use (disclaimer, I find it to be a bit biased...) Lots to consider! In the end, which platform works best will depend on your preferences and the nature of your project. 
+When you are deciding which geocode platform to use some important things to keep in mind are **pricing structures** and other specific features of the platfrom like **bulk geocoding** and **coverage**. For example, Geocodio is much more suited to geocode big data sets than Google's platform. However, Geocodio is only able to geocode within the United States and Cananda whereas Google has international capabilities. Google is better at guessing what location you are trying to geocode ("the White House") than Geocodio, but Geocodio offers census appends. The pricing sturcture is also nuanced across platforms. [Here](https://www.geocod.io/compare/) is a comparison chart provided by Geocodio that gives a flavor of what to consider when deciding which service to use (although you should bear in mind that vendor evaluations may be biased...) Lots to consider! In the end, which platform works best will depend on your preferences and the nature of your project. 
 
 
-## Geocodio
-This page will focus specifically on using Geocodio. [Geocodio's website](https://www.geocod.io/) is very straight forward, but I will briefly walk through the porcess:
+
+
+## Keep in Mind
+
+- Be attentive to **accuracy** and **accuracy type**. Just because something is spit out doesn't mean you should use/trust it
+- When you use a service like Geocodio, you need to consider pricing (2,500 free lookups per day)
+- One size doesn't necesarily fit all--tailor the geocode platform you choose to your project
+
+# Implementations
+
+## Python
+
+[**Geopy**](https://geopy.readthedocs.io/en/stable/) is a Python package thay provides a front end for a large number of geocoding APIs, including [OpenStreetMap](https://www.openstreetmap.org), Bing, Google, ArcGIS, and more. Below is an example of using **geopy**. Users may also want to explore the [**geocoder**](https://geocoder.readthedocs.io/) Python package. We'll use the OpenStreetMap API to do the geocoding. It's important to note that this API has some fair usage conditions including a maximum of 1 request per second, that you provide an informative 'user agent' parameter, and that you clearly display attribution (thank you OpenStreetMap!). For bulk geocoding, you may need to pay a fee to a provider.
+
+```python
+# If you don't have it, install geopy using 'pip install geopy'
+from geopy.geocoders import Nominatim
+
+# Create a geolocator using Open Street Map (aka Nominatim)
+# Use your own user agent identifier here
+geolocator = Nominatim(user_agent='LOST_geocoding_page')
+
+# Pass an address to retrieve full location information:
+location = geolocator.geocode('Bank of England')
+
+print(location.address)
+# >> Bank of England, 8AH, Threadneedle Street, Bishopsgate, City of London,
+# England, EC2R 8AH, United Kingdom
+
+print(location.latitude, location.longitude)
+# >> 51.51413225 -0.08892476721255456
+
+# We can also reverse geocode from a lat and lon:
+scnd_location = geolocator.reverse("51.529969, -0.127688")
+
+print(scnd_location.address)
+# >> British Library, 96, Euston Road, Bloomsbury, London Borough of Camden,
+# England, NW1 2DB, United Kingdom
+```
+
+
+
+## rgeocodio (R + Geocodio)
+
+This example will talk specifically about Geocodio and how to use the Goecodio platform in **R studio**. 
+
+### Geocodio
+[Geocodio's website](https://www.geocod.io/) is very straight forward, but I will briefly walk through the process:
 
 1. Start by making an account. This account will allow you to do your geocoding with Geocodio as well as get a Geocodio API which we can use in R studio.
 
@@ -69,15 +115,7 @@ This page will focus specifically on using Geocodio. [Geocodio's website](https:
 
 5. Finally Geocodio will geocode your addresses and return a downloadable csv file. The cost  and the time of this process depends on the size of your data. For example, 250,000 addresses can be geocoded for $123.75 and will take about an hour to process. For estimates of both cost and time click [here](https://www.geocod.io/pricing/)
 
-## Keep in Mind
-
-- Be attentive to **accruacy** and **accuracy type**. Just because something is spit out doesn't mean you should use/trust it
-- When you run **rgeocodio** commands in R it is accessing Geocodio's server so you need to consider pricing (2,500 free lookups per day)
-- One size doesn't necesarily fit all--tailor the geocode platform you choose to your project
-
-# Implementations
-
-## rgeocodio (R + Geocodio)
+## Example
 
 rgeocodio allows you to access the Geocodio platform in R studio. Instead of the steps mentioned above you can use the rgeocodio to perform the same functions. 
 
