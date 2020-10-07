@@ -10,12 +10,11 @@ mathjax: true ## Switch to false if this page has no equations or other math ren
 
 Spatial joins are crucial for merging different types of data in geospatial analysis.  For example, if you want to know how many libraries (points) are in a city, county, or state (polygon).  This skill allows you to take data from different types of spatial data (vector data like points, lines, and polygons, and raster data (with a little more work)) sets and merge them together using unique identifiers.
 
-Joins are typically interesections of objects, but can be expressed in different ways.  These include: equals, covers, covered by, within, touches, near, crosses, and more.  These are all functions within the [sf](https://cran.r-project.org/web/packages/sf/sf.pdf) function in R.  
-
-**Acknowledgments to [Ryan A. Peek](https://ryanpeek.org/) for his guide that I am reimagining for LOST.**
+Joins are typically interesections of objects, but can be expressed in different ways.  These include: equals, covers, covered by, within, touches, near, crosses, and more.  These are all functions within the [sf](https://cran.r-project.org/web/packages/sf/sf.pdf) function in R or the [**geopandas**](https://geopandas.org/) package in Python. For more on the different types of intersections in 2D projections, see the [Wikipedia page on spatial relations](https://en.wikipedia.org/wiki/Spatial_relation).  
 
 ## Keep in Mind
 
+- Geospatial packages in R and Python tend to have a large number of complex dependencies, which can make installing them painful. Best practice is to install geospatial packages in a new virtual environment.
 - When it comes to the package we are using in R for the US boundaries, it is much easier to install via the [devtools](https://cran.r-project.org/web/packages/devtools/index.html).  This will save you the trouble of getting errors when installing the data packages for the boundaries.  Otherwise, your mileage may vary. When I installed USAboundariesData via USAboundaries, I received errors.
 
 ```r
@@ -23,12 +22,72 @@ devtools::install_github("ropensci/USAboundaries")
 devtools::install_github("ropensci/USAboundariesData")
 
 ```
-- Note: Even with installation, you may be prompted to install the "USAboundariesData" package and need to restart your session.   
+- Note: Even with the R installation via devtools, you may be prompted to install the "USAboundariesData" package and need to restart your session.   
 
 
 # Implementations
 
+## Python
+The [**geopandas**](https://geopandas.org/) package is the easiest way to start doing geo-spatial analysis in Python. This example of a spatial merge closely follows one from the documentation for **geopandas**.
+
+```python
+# Geospatial packages tend to have many elaborate dependencies. The quickest
+# way to get going is to use a clean virtual environment and then
+# 'conda install geopandas' followed by
+# 'conda install -c conda-forge descartes'
+# descartes is what allows geopandas to plot data.
+
+import geopandas as gpd
+
+# Grab a world map
+world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+
+# Plot the map of the world
+world.plot()
+
+# Grab data on cities
+cities = gpd.read_file(gpd.datasets.get_path('naturalearth_cities'))
+
+# We can plot the cities too - but they're just dots of lat/lon without any
+# context for now
+cities.plot()
+
+# The data don't actually need to be combined to be viewed on a map as long as
+# they are using the same 'crs', or coordinate reference system.
+# Force cities and world to share crs:
+cities = cities.to_crs(world.crs)
+
+# Combine them on a plot:
+base = world.plot(color='white', edgecolor='black')
+cities.plot(ax=base, marker='o', color='red', markersize=5)
+
+# We want to perform a spatial merge, but there are many kinds in 2D
+# projections, including withins, touches, crosses, and overlaps. We want to
+# use an intersects spatial join - ie we want to combine each city (a lat/lon
+# point) with the shapes of countries and determine which city goes in which
+# country (even if it's on the boundary). We use the 'sjoin' function:
+
+cities_with_country = gpd.sjoin(cities, world, how="inner", op='intersects')
+
+cities_with_country.head()
+#  name_left                   geometry    pop_est     continent  \
+#  Vatican City  POINT (12.45339 41.90328)   62137802    Europe   
+#    San Marino  POINT (12.44177 43.93610)   62137802    Europe   
+#          Rome  POINT (12.48131 41.89790)   62137802    Europe   
+#         Vaduz   POINT (9.51667 47.13372)    8754413    Europe   
+#        Vienna  POINT (16.36469 48.20196)    8754413    Europe   
+#  name_right iso_a3  gdp_md_est  
+#       Italy    ITA   2221000.0  
+#       Italy    ITA   2221000.0  
+#       Italy    ITA   2221000.0  
+#     Austria    AUT    416600.0  
+#     Austria    AUT    416600.0  
+```
+
+
 ## R
+
+**Acknowledgments to [Ryan A. Peek](https://ryanpeek.org/) for his guide that I am reimagining for LOST.**
 
 We will need a few packages to do our analysis.  If you need to install any packages, do so with install.packages('name_of_package'), then load it if necessary.
 
