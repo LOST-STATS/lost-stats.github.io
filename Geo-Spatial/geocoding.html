@@ -207,11 +207,54 @@
   <li><a href="https://geomarker.ipums.org/">IPUMS Geomarker</a></li>
   <li><a href="https://geocode.arcgis.com/arcgis/">ArcGIS</a></li>
 </ol>
-<p>This page will talk specifically about Geocodio and how to use the Goecodio platform in <strong>R studio</strong>. When you are deciding which geocode platform to use some important things to keep in mind are <strong>pricing structures</strong> and other specific features of the platfrom like <strong>bulk geocoding</strong> and <strong>coverage</strong>. For example, Geocodio is much more suited to geocode big data sets than Google’s platform. However, Geocodio is only able to geocode within the United States and Cananda whereas Google has international capabilities. Google is better at guessing what location you are trying to geocode (“the White House”) than Geocodio, but Geocodio offers census appends. The pricing sturcture is also nuanced across platforms. <a href="https://www.geocod.io/compare/">Here</a> is a comparison chart provided by Geocodio that gives a flavor of what to consider when deciding which service to use (disclaimer, I find it to be a bit biased…) Lots to consider! In the end, which platform works best will depend on your preferences and the nature of your project.</p>
-      <h2 id="geocodio">
-          <a href="#geocodio" aria-labelledby="geocodio" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Geocodio
+<p>When you are deciding which geocode platform to use some important things to keep in mind are <strong>pricing structures</strong> and other specific features of the platfrom like <strong>bulk geocoding</strong> and <strong>coverage</strong>. For example, Geocodio is much more suited to geocode big data sets than Google’s platform. However, Geocodio is only able to geocode within the United States and Cananda whereas Google has international capabilities. Google is better at guessing what location you are trying to geocode (“the White House”) than Geocodio, but Geocodio offers census appends. The pricing sturcture is also nuanced across platforms. <a href="https://www.geocod.io/compare/">Here</a> is a comparison chart provided by Geocodio that gives a flavor of what to consider when deciding which service to use (although you should bear in mind that vendor evaluations may be biased…) Lots to consider! In the end, which platform works best will depend on your preferences and the nature of your project.</p>
+      <h2 id="keep-in-mind">
+          <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
       </h2>
-<p>This page will focus specifically on using Geocodio. <a href="https://www.geocod.io/">Geocodio’s website</a> is very straight forward, but I will briefly walk through the porcess:</p>
+<ul>
+  <li>Be attentive to <strong>accuracy</strong> and <strong>accuracy type</strong>. Just because something is spit out doesn’t mean you should use/trust it</li>
+  <li>When you use a service like Geocodio, you need to consider pricing (2,500 free lookups per day)</li>
+  <li>One size doesn’t necesarily fit all–tailor the geocode platform you choose to your project</li>
+</ul>
+      <h1 id="implementations">
+          <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
+      </h1>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<p><a href="https://geopy.readthedocs.io/en/stable/"><strong>Geopy</strong></a> is a Python package thay provides a front end for a large number of geocoding APIs, including <a href="https://www.openstreetmap.org">OpenStreetMap</a>, Bing, Google, ArcGIS, and more. Below is an example of using <strong>geopy</strong>. Users may also want to explore the <a href="https://geocoder.readthedocs.io/"><strong>geocoder</strong></a> Python package. We’ll use the OpenStreetMap API to do the geocoding. It’s important to note that this API has some fair usage conditions including a maximum of 1 request per second, that you provide an informative ‘user agent’ parameter, and that you clearly display attribution (thank you OpenStreetMap!). For bulk geocoding, you may need to pay a fee to a provider.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If you don't have it, install geopy using 'pip install geopy'
+</span><span class="kn">from</span> <span class="nn">geopy.geocoders</span> <span class="kn">import</span> <span class="n">Nominatim</span>
+
+<span class="c1"># Create a geolocator using Open Street Map (aka Nominatim)
+# Use your own user agent identifier here
+</span><span class="n">geolocator</span> <span class="o">=</span> <span class="n">Nominatim</span><span class="p">(</span><span class="n">user_agent</span><span class="o">=</span><span class="s">'LOST_geocoding_page'</span><span class="p">)</span>
+
+<span class="c1"># Pass an address to retrieve full location information:
+</span><span class="n">location</span> <span class="o">=</span> <span class="n">geolocator</span><span class="p">.</span><span class="n">geocode</span><span class="p">(</span><span class="s">'Bank of England'</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">location</span><span class="p">.</span><span class="n">address</span><span class="p">)</span>
+<span class="c1"># &gt;&gt; Bank of England, 8AH, Threadneedle Street, Bishopsgate, City of London,
+# England, EC2R 8AH, United Kingdom
+</span>
+<span class="k">print</span><span class="p">(</span><span class="n">location</span><span class="p">.</span><span class="n">latitude</span><span class="p">,</span> <span class="n">location</span><span class="p">.</span><span class="n">longitude</span><span class="p">)</span>
+<span class="c1"># &gt;&gt; 51.51413225 -0.08892476721255456
+</span>
+<span class="c1"># We can also reverse geocode from a lat and lon:
+</span><span class="n">scnd_location</span> <span class="o">=</span> <span class="n">geolocator</span><span class="p">.</span><span class="n">reverse</span><span class="p">(</span><span class="s">"51.529969, -0.127688"</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">scnd_location</span><span class="p">.</span><span class="n">address</span><span class="p">)</span>
+<span class="c1"># &gt;&gt; British Library, 96, Euston Road, Bloomsbury, London Borough of Camden,
+# England, NW1 2DB, United Kingdom
+</span></code></pre></div></div>
+      <h2 id="rgeocodio-r--geocodio">
+          <a href="#rgeocodio-r--geocodio" aria-labelledby="rgeocodio-r--geocodio" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> rgeocodio (R + Geocodio)
+      </h2>
+<p>This example will talk specifically about Geocodio and how to use the Goecodio platform in <strong>R studio</strong>.</p>
+      <h3 id="geocodio">
+          <a href="#geocodio" aria-labelledby="geocodio" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Geocodio
+      </h3>
+<p><a href="https://www.geocod.io/">Geocodio’s website</a> is very straight forward, but I will briefly walk through the process:</p>
 <ol>
   <li>
     <p>Start by making an account. This account will allow you to do your geocoding with Geocodio as well as get a Geocodio API which we can use in R studio.</p>
@@ -229,19 +272,8 @@
     <p>Finally Geocodio will geocode your addresses and return a downloadable csv file. The cost  and the time of this process depends on the size of your data. For example, 250,000 addresses can be geocoded for $123.75 and will take about an hour to process. For estimates of both cost and time click <a href="https://www.geocod.io/pricing/">here</a></p>
   </li>
 </ol>
-      <h2 id="keep-in-mind">
-          <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
-      </h2>
-<ul>
-  <li>Be attentive to <strong>accruacy</strong> and <strong>accuracy type</strong>. Just because something is spit out doesn’t mean you should use/trust it</li>
-  <li>When you run <strong>rgeocodio</strong> commands in R it is accessing Geocodio’s server so you need to consider pricing (2,500 free lookups per day)</li>
-  <li>One size doesn’t necesarily fit all–tailor the geocode platform you choose to your project</li>
-</ul>
-      <h1 id="implementations">
-          <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
-      </h1>
-      <h2 id="rgeocodio-r--geocodio">
-          <a href="#rgeocodio-r--geocodio" aria-labelledby="rgeocodio-r--geocodio" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> rgeocodio (R + Geocodio)
+      <h2 id="example">
+          <a href="#example" aria-labelledby="example" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Example
       </h2>
 <p>rgeocodio allows you to access the Geocodio platform in R studio. Instead of the steps mentioned above you can use the rgeocodio to perform the same functions.</p>
 <p>In order to install <code class="language-plaintext highlighter-rouge">rgeocodio</code> you will need to load the <code class="language-plaintext highlighter-rouge">devtools</code> package. Install it if you haven’t already <code class="language-plaintext highlighter-rouge">install.packages("devtools")</code>. Once <code class="language-plaintext highlighter-rouge">devtools</code> is loaded run:<code class="language-plaintext highlighter-rouge">devtools::install_github('hrbrmstr/rgeocodio')</code>.</p>
