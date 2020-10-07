@@ -10,14 +10,20 @@
   <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Time Series | LOST</title>
+<title>Choropleths | LOST</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Time Series" />
+<meta property="og:title" content="Choropleths" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"@type":"WebPage","headline":"Time Series","url":"/Time_Series/Time_Series.html","@context":"https://schema.org"}</script>
+{"@type":"WebPage","headline":"Choropleths","url":"/Geo-Spatial/choropleths.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML">
+  </script>
 </head>
 <body>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -70,7 +76,7 @@
                         <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="nav-list-link">Reshape Panel Data from Wide to Long</a>
                       </li><li class="nav-list-item ">
                         <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="nav-list-link">Reshape Panel Data from Long to Wide</a>
-                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/rowwise_calculations.html" class="nav-list-link">Rowwise Calculations</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Geo-Spatial/Geo-spatial.html" class="nav-list-link">Geo-Spatial</a><ul class="nav-list "><li class="nav-list-item "><a href="/Geo-Spatial/choropleths.html" class="nav-list-link">Choropleths</a></li><li class="nav-list-item "><a href="/Geo-Spatial/geocoding.html" class="nav-list-link">Geocoding</a></li><li class="nav-list-item "><a href="/Geo-Spatial/merging_shape_files.html" class="nav-list-link">Merging Shape Files</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_joins.html" class="nav-list-link">Spatial Joins</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Machine_Learning/Machine_Learning.html" class="nav-list-link">Machine Learning</a><ul class="nav-list "><li class="nav-list-item "><a href="/Machine_Learning/artificial_neural_network.html" class="nav-list-link">Artificial Neural Network</a></li><li class="nav-list-item "><a href="/Machine_Learning/boosted_regression_trees.html" class="nav-list-link">Boosted Regression Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/causal_forest.html" class="nav-list-link">Causal Forest</a></li><li class="nav-list-item "><a href="/Machine_Learning/decision_trees.html" class="nav-list-link">Decision Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/penalized_regression.html" class="nav-list-link">Penalized Regression</a></li><li class="nav-list-item "><a href="/Machine_Learning/random_forest.html" class="nav-list-link">Random Forest</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Model_Estimation.html" class="nav-list-link">Model Estimation</a><ul class="nav-list "><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/OLS/OLS.html" class="nav-list-link">Ordinary Least Squares</a><ul class="nav-list"><li class="nav-list-item ">
+                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/rowwise_calculations.html" class="nav-list-link">Rowwise Calculations</a></li></ul></li><li class="nav-list-item active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Geo-Spatial/Geo-spatial.html" class="nav-list-link">Geo-Spatial</a><ul class="nav-list "><li class="nav-list-item  active"><a href="/Geo-Spatial/choropleths.html" class="nav-list-link active">Choropleths</a></li><li class="nav-list-item "><a href="/Geo-Spatial/geocoding.html" class="nav-list-link">Geocoding</a></li><li class="nav-list-item "><a href="/Geo-Spatial/merging_shape_files.html" class="nav-list-link">Merging Shape Files</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_joins.html" class="nav-list-link">Spatial Joins</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Machine_Learning/Machine_Learning.html" class="nav-list-link">Machine Learning</a><ul class="nav-list "><li class="nav-list-item "><a href="/Machine_Learning/artificial_neural_network.html" class="nav-list-link">Artificial Neural Network</a></li><li class="nav-list-item "><a href="/Machine_Learning/boosted_regression_trees.html" class="nav-list-link">Boosted Regression Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/causal_forest.html" class="nav-list-link">Causal Forest</a></li><li class="nav-list-item "><a href="/Machine_Learning/decision_trees.html" class="nav-list-link">Decision Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/penalized_regression.html" class="nav-list-link">Penalized Regression</a></li><li class="nav-list-item "><a href="/Machine_Learning/random_forest.html" class="nav-list-link">Random Forest</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Model_Estimation.html" class="nav-list-link">Model Estimation</a><ul class="nav-list "><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/OLS/OLS.html" class="nav-list-link">Ordinary Least Squares</a><ul class="nav-list"><li class="nav-list-item ">
                         <a href="/Model_Estimation/OLS/simple_linear_regression.html" class="nav-list-link">Simple Linear Regression</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/OLS/interaction_terms_and_polynomials.html" class="nav-list-link">Interaction Terms and Polynomials</a>
@@ -130,7 +136,7 @@
                         <a href="/Presentation/Tables/Regression_Tables.html" class="nav-list-link">Regression Tables</a>
                       </li><li class="nav-list-item ">
                         <a href="/Presentation/Tables/Summary_Statistics_Tables.html" class="nav-list-link">Summary Statistics Tables</a>
-                      </li></ul></li></ul></li><li class="nav-list-item active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Time_Series/Time_Series.html" class="nav-list-link active">Time Series</a><ul class="nav-list "><li class="nav-list-item "><a href="/Time_Series/AR-models.html" class="nav-list-link">AR Models</a></li><li class="nav-list-item "><a href="/Time_Series/ARCH_Model.html" class="nav-list-link">ARCH Model</a></li><li class="nav-list-item "><a href="/Time_Series/ARMA-models.html" class="nav-list-link">ARMA Models</a></li><li class="nav-list-item "><a href="/Time_Series/GARCH_Model.html" class="nav-list-link">GARCH Model</a></li><li class="nav-list-item "><a href="/Time_Series/Granger_Causality.html" class="nav-list-link">Granger Causality</a></li><li class="nav-list-item "><a href="/Time_Series/creating_time_series_dataset.html" class="nav-list-link">Creating Time Series Dataset</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Other/Other.html" class="nav-list-link">Other</a><ul class="nav-list "><li class="nav-list-item "><a href="/Other/create_a_conda_package.html" class="nav-list-link">Create a Conda Package (Python)</a></li><li class="nav-list-item "><a href="/Other/get_a_list_of_files.html" class="nav-list-link">Get a List of Files</a></li><li class="nav-list-item "><a href="/Other/import_a_foreign_data_file.html" class="nav-list-link">Import a Foreign Data File</a></li></ul></li><li class="nav-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="nav-list-link">Desired Nonexistent Pages</a></li><li class="nav-list-item"><a href="/Contributing/Contributing.html" class="nav-list-link">Contributing</a></li><li class="nav-list-item"><a href="/" class="nav-list-link">Home</a></li></ul>
+                      </li></ul></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Time_Series/Time_Series.html" class="nav-list-link">Time Series</a><ul class="nav-list "><li class="nav-list-item "><a href="/Time_Series/AR-models.html" class="nav-list-link">AR Models</a></li><li class="nav-list-item "><a href="/Time_Series/ARCH_Model.html" class="nav-list-link">ARCH Model</a></li><li class="nav-list-item "><a href="/Time_Series/ARMA-models.html" class="nav-list-link">ARMA Models</a></li><li class="nav-list-item "><a href="/Time_Series/GARCH_Model.html" class="nav-list-link">GARCH Model</a></li><li class="nav-list-item "><a href="/Time_Series/Granger_Causality.html" class="nav-list-link">Granger Causality</a></li><li class="nav-list-item "><a href="/Time_Series/creating_time_series_dataset.html" class="nav-list-link">Creating Time Series Dataset</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Other/Other.html" class="nav-list-link">Other</a><ul class="nav-list "><li class="nav-list-item "><a href="/Other/create_a_conda_package.html" class="nav-list-link">Create a Conda Package (Python)</a></li><li class="nav-list-item "><a href="/Other/get_a_list_of_files.html" class="nav-list-link">Get a List of Files</a></li><li class="nav-list-item "><a href="/Other/import_a_foreign_data_file.html" class="nav-list-link">Import a Foreign Data File</a></li></ul></li><li class="nav-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="nav-list-link">Desired Nonexistent Pages</a></li><li class="nav-list-item"><a href="/Contributing/Contributing.html" class="nav-list-link">Contributing</a></li><li class="nav-list-item"><a href="/" class="nav-list-link">Home</a></li></ul>
     </nav>
     <footer class="site-footer">
       This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
@@ -147,37 +153,82 @@
         </div>
     </div>
     <div id="main-content-wrap" class="main-content-wrap">
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list">
+                <li class="breadcrumb-nav-list-item"><a href="/Geo-Spatial/Geo-spatial.html">Geo-Spatial</a></li>
+              <li class="breadcrumb-nav-list-item"><span>Choropleths</span></li>
+            </ol>
+          </nav>
       <div id="main-content" class="main-content" role="main">
-          <h1 id="time-series">
-          <a href="#time-series" aria-labelledby="time-series" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Time Series
+          <h1 id="choropleths">
+          <a href="#choropleths" aria-labelledby="choropleths" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Choropleths
       </h1>
-          <hr>
-          <h2 class="text-delta">Table of contents</h2>
-          <ul>
-              <li>
-                <a href="/Time_Series/AR-models.html">AR Models</a>
-              </li>
-              <li>
-                <a href="/Time_Series/ARCH_Model.html">ARCH Model</a>
-              </li>
-              <li>
-                <a href="/Time_Series/ARMA-models.html">ARMA Models</a>
-              </li>
-              <li>
-                <a href="/Time_Series/GARCH_Model.html">GARCH Model</a>
-              </li>
-              <li>
-                <a href="/Time_Series/Granger_Causality.html">Granger Causality</a>
-              </li>
-              <li>
-                <a href="/Time_Series/creating_time_series_dataset.html">Creating Time Series Dataset</a>
-              </li>
-          </ul>
+<p>Choropleths are maps in which areas are shaded or patterned in proportion to a statistical variable that represents an aggregate summary of a geographic characteristic within each area. For instance, population might be represented by dark green where it is (relatively) high and light green where it is (relatively) low. Choropleths are useful when you want to show differences in variables across areas.</p>
+      <h2 id="keep-in-mind">
+          <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
+      </h2>
+<ul>
+  <li>Geospatial packages in R and Python tend to have a large number of complex dependencies, which can make installing them painful. Best practice is to install geospatial packages in a new virtual environment.</li>
+  <li>Think carefully about the units you’re using and whether plotting your data on a map is really informative. Choropleths can all too easily end up simply being plots of population density - and no-one will be surprised to see that areas like Manhattan have a high population!</li>
+</ul>
+      <h1 id="implementations">
+          <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
+      </h1>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<p>The <a href="https://geopandas.org/"><strong>geopandas</strong></a> package is the easiest way to start making choropleths in Python. For plotting more sophisticated maps, there’s <a href="https://residentmario.github.io/geoplot/index.html"><strong>geoplot</strong></a>. In the example below, we’ll see three ways of plotting data on GDP per capita by geography. The first uses <strong>geopandas</strong> built-in <code class="language-plaintext highlighter-rouge">.plot</code> method. The second combines this with the <strong>matplotlib</strong> package to create a more attractive looking chart. The third example uses <strong>geoplot</strong> to create a cartogram in which the area of each country on the map gets shrunk according to how small its GDP per capita is.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Geospatial packages tend to have many elaborate dependencies. The quickest
+# way to get going is to use a clean virtual environment and then
+# 'conda install geopandas' followed by
+# 'conda install -c conda-forge descartes'
+</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="n">gpd</span>
+
+<span class="n">world</span> <span class="o">=</span> <span class="n">gpd</span><span class="p">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">gpd</span><span class="p">.</span><span class="n">datasets</span><span class="p">.</span><span class="n">get_path</span><span class="p">(</span><span class="s">'naturalearth_lowres'</span><span class="p">))</span>
+
+<span class="n">world</span> <span class="o">=</span> <span class="n">world</span><span class="p">[(</span><span class="n">world</span><span class="p">.</span><span class="n">pop_est</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">world</span><span class="p">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s">"Antarctica"</span><span class="p">)]</span>
+
+<span class="n">world</span><span class="p">[</span><span class="s">'gdp_per_cap'</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0e6</span> <span class="o">*</span> <span class="n">world</span><span class="p">.</span><span class="n">gdp_md_est</span> <span class="o">/</span> <span class="n">world</span><span class="p">.</span><span class="n">pop_est</span>
+
+<span class="c1"># Simple choropleth
+</span><span class="n">world</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s">'gdp_per_cap'</span><span class="p">)</span>
+
+<span class="c1"># Much better looking choropleth
+</span><span class="n">plt</span><span class="p">.</span><span class="n">style</span><span class="p">.</span><span class="n">use</span><span class="p">(</span><span class="s">'seaborn-paper'</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">world</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s">'gdp_per_cap'</span><span class="p">,</span>
+           <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+           <span class="n">cmap</span><span class="o">=</span><span class="s">'plasma'</span><span class="p">,</span>
+           <span class="n">legend</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+           <span class="n">vmin</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span>
+           <span class="n">legend_kwds</span><span class="o">=</span><span class="p">{</span><span class="s">'label'</span><span class="p">:</span> <span class="s">"GDP per capita (USD)"</span><span class="p">,</span>
+                        <span class="s">'orientation'</span><span class="p">:</span> <span class="s">"horizontal"</span><span class="p">})</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">axis</span><span class="p">(</span><span class="s">'off'</span><span class="p">)</span>
+
+<span class="c1"># Now let's try a cartogram
+# If you don't have it already, geoplot can be installed by runnning
+# 'conda install geoplot -c conda-forge' on the command line.
+</span><span class="kn">import</span> <span class="nn">geoplot</span> <span class="k">as</span> <span class="n">gplt</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">gplt</span><span class="p">.</span><span class="n">cartogram</span><span class="p">(</span>
+    <span class="n">world</span><span class="p">,</span>
+    <span class="n">scale</span><span class="o">=</span><span class="s">'gdp_per_cap'</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s">'gdp_per_cap'</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s">'plasma'</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">gplt</span><span class="p">.</span><span class="n">polyplot</span><span class="p">(</span><span class="n">world</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">'lightgray'</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'None'</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"GDP per capita (USD)"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
           <hr>
           <footer>
               <div class="d-flex mt-2">
                   <p class="text-small text-grey-dk-000 mb-0">
-                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Time_Series/Time_Series.md" id="edit-this-page">Edit this page on GitHub.</a>
+                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Geo-Spatial/choropleths.md" id="edit-this-page">Edit this page on GitHub.</a>
                   </p>
               </div>
           </footer>
