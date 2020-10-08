@@ -30,8 +30,37 @@ open auto.gdt
 logit mpg const headroom trunk weight
 ```
 
+## Python
+
+There are a number of Python packages that can perform logit regressions but the most comprehensive is probably [**statsmodels**](https://www.statsmodels.org/stable/index.html). The code below is an example of how to use it.
+
+```python
+# Install pandas and statsmodels using pip or conda, if you don't already have them.
+
+import pandas as pd
+import statsmodels.formula.api as smf
+
+df = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/datasets/mtcars.csv',
+                 index_col=0)
+
+# Specify the model, regressing vs on mpg and cyl
+mod = smf.logit('vs ~ mpg + cyl', data=df)
+
+# Fit the model
+res = mod.fit()
+
+# Look at the results
+res.summary()
+
+# Compute marginal effects
+marg_effect = res.get_margeff(at='mean', method='dydx')
+
+# Show marginal effects
+marg_effect.summary()
+```
 
 ## R
+
 R can run a logit regression using the `glm()` function. However, to get marginal effects you will need to calculate them by hand or use a package. We will use the **mfx** package, although the **margins** package is another good option, which produces tidy model output.
 
 ```r
