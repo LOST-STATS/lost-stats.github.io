@@ -185,6 +185,33 @@ open auto.gdt
 # and headroom, trunk, and weight as predictors
 logit mpg const headroom trunk weight
 </code></pre>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<p>There are a number of Python packages that can perform logit regressions but the most comprehensive is probably <a href="https://www.statsmodels.org/stable/index.html"><strong>statsmodels</strong></a>. The code below is an example of how to use it.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Install pandas and statsmodels using pip or conda, if you don't already have them.
+</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="n">smf</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'https://vincentarelbundock.github.io/Rdatasets/csv/datasets/mtcars.csv'</span><span class="p">,</span>
+                 <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Specify the model, regressing vs on mpg and cyl
+</span><span class="n">mod</span> <span class="o">=</span> <span class="n">smf</span><span class="p">.</span><span class="n">logit</span><span class="p">(</span><span class="s">'vs ~ mpg + cyl'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+
+<span class="c1"># Fit the model
+</span><span class="n">res</span> <span class="o">=</span> <span class="n">mod</span><span class="p">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Look at the results
+</span><span class="n">res</span><span class="p">.</span><span class="n">summary</span><span class="p">()</span>
+
+<span class="c1"># Compute marginal effects
+</span><span class="n">marg_effect</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">get_margeff</span><span class="p">(</span><span class="n">at</span><span class="o">=</span><span class="s">'mean'</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">'dydx'</span><span class="p">)</span>
+
+<span class="c1"># Show marginal effects
+</span><span class="n">marg_effect</span><span class="p">.</span><span class="n">summary</span><span class="p">()</span>
+</code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
