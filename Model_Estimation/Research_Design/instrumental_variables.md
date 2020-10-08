@@ -35,6 +35,43 @@ For more information, see [Wikipedia: Instrumental variables estimation](https:/
 
 # Implementations
 
+## Python
+
+The easiest way to run instrument variables regressions in Python is probably the [**linearmodels**](https://bashtage.github.io/linearmodels/index.html) package, although there are other packages available.
+
+```python
+# Conda install linearmodels, pandas, and numpy, if you don't have them already
+from linearmodels.iv import IV2SLS
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/AER/CigarettesSW.csv',
+                 index_col=0)
+
+# We will use cigarette taxes as an instrument for cigarette prices
+# to evaluate the effect of cigarette price on log number of packs smoked
+# With income per capita as a control
+
+# Adjust everything for inflation
+df['rprice'] = df['price']/df['cpi']
+df['rincome'] = df['income']/df['population']/df['cpi']
+df['tdiff'] = (df['taxs'] - df['tax'])/df['cpi']
+
+# Specify formula in format of 'y ~ exog + [endog ~ instruments]'.
+# The '1' on the right-hand side of the formula adds a constant.
+formula = 'np.log(packs) ~ 1 + np.log(rincome) + [np.log(rprice) ~ tdiff]'
+
+# Specify model and data
+mod = IV2SLS.from_formula(formula, df)
+
+# Fit model
+res = mod.fit()
+
+# Show model summary
+res.summary
+
+```
+
 ## R
 
 There are several ways to run instrumental variables in R. Here we will cover two - `AER::ivreg()`, which is probably the most common, and `lfe::felm()`, which is more flexible and powerful. You may also want to consider looking at `estimatr::iv_robust`, which combines much of the flexibility of `lfe::felm()` with the simple syntax of `AER::ivreg()`, although it is not as powerful.
