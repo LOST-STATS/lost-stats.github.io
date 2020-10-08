@@ -37,6 +37,75 @@ The goal here is to create regions with as of classifications as possible, as su
 
 # Implementations
 
+## Python
+
+The easiest way to get started with decision trees in Python is to use the [**scikit-learn**](https://scikit-learn.org/stable/index.html) package. In the example below, we'll use data on the passengers of the Titanic to build a classification tree that predicts whether passengers survived or not (binary outcome) based on
+properties such as passenger age, gender as recorded in the data, and class of cabin. As ever with machine learning, it's essential that an out-of-sample set, also known as a test set, is retained and used to score the final model.
+
+```python
+# Install sklearn and pandas using pip or conda, if you don't have them already.
+# Note that the 'f-strings' used in the print statements below are only available in Python>=3.6.
+from sklearn import tree
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import plot_confusion_matrix
+import pandas as pd
+
+titanic = pd.read_csv("https://raw.githubusercontent.com/Evanmj7/Decision-Trees/master/titanic.csv",
+                      index_col=0)
+
+# Let's ensure the columns we want to treat as continuous are indeed continuous by using pd.to_numeric
+# The errors = 'coerce' keyword argument will force any values that cannot be
+# cast into continuous variables to become NaNs.
+continuous_cols = ['age', 'fare']
+for col in continuous_cols:
+    titanic[col] = pd.to_numeric(titanic[col], errors='coerce')
+
+# Set categorical cols & convert to dummies
+cat_cols = ['sex', 'pclass']
+for col in cat_cols:
+    titanic[col] = titanic[col].astype('category').cat.codes
+
+# Clean the dataframe. An alternative would be to retain some rows with missing values by giving
+# a special value to nan for each column, eg by imputing some values, but one should be careful not to
+# use information from the test set to impute values in the training set if doing this. Strictly speaking,
+# we shouldn't be dropping the nans from the test set here (as we pretend we don't know what's in it) - but
+# for the sake of simplicity, we will.
+titanic = titanic.dropna()
+
+# Create list of regressors
+regressors = continuous_cols + cat_cols
+# Predicted var
+y_var = ['survived']
+
+# Create a test (25% of data) and train set
+train, test = train_test_split(titanic, test_size=0.25)
+
+# Now let's create an empty decision tree to solve the classification problem:
+clf = tree.DecisionTreeClassifier(max_depth=10, min_samples_split=5,
+                                  ccp_alpha=0.01)
+# The last option, ccp_alpha, prunes low-value complexity from the tree to help
+# avoid overfitting.
+
+# Fit the tree with the data
+clf.fit(train[regressors], train[y_var])
+
+# Let's take a look at the tree:
+tree.plot_tree(clf)
+
+# How does it perform on the train and test data?
+train_accuracy = round(clf.score(train[regressors], train[y_var]), 4)
+print(f'Accuracy on train set is {train_accuracy}')
+
+test_accuracy = round(clf.score(test[regressors], test[y_var]), 4)
+print(f'Accuracy on test set is {test_accuracy}')
+
+# Show the confusion matrix
+plot_confusion_matrix(clf, test[regressors], test[y_var])
+
+# Although it won't be the same from run to run, this model scored around 80%
+# out of sample, and has slightly more false positives than false negatives.
+```
+
 ## R
 ```r
 # Load packages
