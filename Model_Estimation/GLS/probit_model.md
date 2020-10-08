@@ -19,6 +19,46 @@ For more information about Probit, see [Wikipedia: Probit](https://en.wikipedia.
 
 # Implementations
 
+## Gretl
+
+```gretl
+# Load auto data
+open auto.gdt
+
+# Run probit using the auto data, with mpg as the outcome variable
+# and headroom, trunk, and weight as predictors
+probit mpg const headroom trunk weight
+```
+
+## Python
+
+The [**statsmodels**](https://www.statsmodels.org/stable/index.html) package has methods that can perform probit regressions.
+
+```python
+# Use pip or conda to install pandas and statsmodels
+import pandas as pd
+import statsmodels.formula.api as smf
+
+# Read in the data
+df = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/datasets/mtcars.csv',
+                 index_col=0)
+
+# Specify the model
+mod = smf.probit('vs ~ mpg + cyl', data=df)
+
+# Fit the model
+res = mod.fit()
+
+# Look at the results
+res.summary()
+
+# Compute marginal effects
+marge_effect = res.get_margeff(at='mean', method='dydx')
+
+# Show marginal effects
+marge_effect.summary()
+```
+
 ## R
 R can run a probit regression using the `glm()` function. However, to get marginal effects you will need to calculate them by hand or use a package. We will use the **mfx** package, although the **margins** package is another good option, which produces tidy model output.
 
@@ -57,15 +97,4 @@ probit foreign mpg weight headroom trunk
 
 * Recover the Marginal Effects (Beta Coefficient in OLS)
 margins, dydx(*)
-```
-
-## Gretl
-
-```gretl
-# Load auto data
-open auto.gdt
-
-# Run probit using the auto data, with mpg as the outcome variable
-# and headroom, trunk, and weight as predictors
-probit mpg const headroom trunk weight
 ```
