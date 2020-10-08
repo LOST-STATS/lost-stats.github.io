@@ -189,6 +189,41 @@
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<p>The easiest way to run instrument variables regressions in Python is probably the <a href="https://bashtage.github.io/linearmodels/index.html"><strong>linearmodels</strong></a> package, although there are other packages available.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Conda install linearmodels, pandas, and numpy, if you don't have them already
+</span><span class="kn">from</span> <span class="nn">linearmodels.iv</span> <span class="kn">import</span> <span class="n">IV2SLS</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'https://vincentarelbundock.github.io/Rdatasets/csv/AER/CigarettesSW.csv'</span><span class="p">,</span>
+                 <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># We will use cigarette taxes as an instrument for cigarette prices
+# to evaluate the effect of cigarette price on log number of packs smoked
+# With income per capita as a control
+</span>
+<span class="c1"># Adjust everything for inflation
+</span><span class="n">df</span><span class="p">[</span><span class="s">'rprice'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'price'</span><span class="p">]</span><span class="o">/</span><span class="n">df</span><span class="p">[</span><span class="s">'cpi'</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s">'rincome'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'income'</span><span class="p">]</span><span class="o">/</span><span class="n">df</span><span class="p">[</span><span class="s">'population'</span><span class="p">]</span><span class="o">/</span><span class="n">df</span><span class="p">[</span><span class="s">'cpi'</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s">'tdiff'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'taxs'</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s">'tax'</span><span class="p">])</span><span class="o">/</span><span class="n">df</span><span class="p">[</span><span class="s">'cpi'</span><span class="p">]</span>
+
+<span class="c1"># Specify formula in format of 'y ~ exog + [endog ~ instruments]'.
+# The '1' on the right-hand side of the formula adds a constant.
+</span><span class="n">formula</span> <span class="o">=</span> <span class="s">'np.log(packs) ~ 1 + np.log(rincome) + [np.log(rprice) ~ tdiff]'</span>
+
+<span class="c1"># Specify model and data
+</span><span class="n">mod</span> <span class="o">=</span> <span class="n">IV2SLS</span><span class="p">.</span><span class="n">from_formula</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+
+<span class="c1"># Fit model
+</span><span class="n">res</span> <span class="o">=</span> <span class="n">mod</span><span class="p">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Show model summary
+</span><span class="n">res</span><span class="p">.</span><span class="n">summary</span>
+
+</code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
