@@ -185,6 +185,73 @@
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<p>The easiest way to get started with decision trees in Python is to use the <a href="https://scikit-learn.org/stable/index.html"><strong>scikit-learn</strong></a> package. In the example below, we’ll use data on the passengers of the Titanic to build a classification tree that predicts whether passengers survived or not (binary outcome) based on
+properties such as passenger age, gender as recorded in the data, and class of cabin. As ever with machine learning, it’s essential that an out-of-sample set, also known as a test set, is retained and used to score the final model.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Install sklearn and pandas using pip or conda, if you don't have them already.
+# Note that the 'f-strings' used in the print statements below are only available in Python&gt;=3.6.
+</span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">plot_confusion_matrix</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="n">titanic</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"https://raw.githubusercontent.com/Evanmj7/Decision-Trees/master/titanic.csv"</span><span class="p">,</span>
+                      <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Let's ensure the columns we want to treat as continuous are indeed continuous by using pd.to_numeric
+# The errors = 'coerce' keyword argument will force any values that cannot be
+# cast into continuous variables to become NaNs.
+</span><span class="n">continuous_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s">'age'</span><span class="p">,</span> <span class="s">'fare'</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">continuous_cols</span><span class="p">:</span>
+    <span class="n">titanic</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">titanic</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s">'coerce'</span><span class="p">)</span>
+
+<span class="c1"># Set categorical cols &amp; convert to dummies
+</span><span class="n">cat_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s">'sex'</span><span class="p">,</span> <span class="s">'pclass'</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cat_cols</span><span class="p">:</span>
+    <span class="n">titanic</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="n">col</span><span class="p">].</span><span class="n">astype</span><span class="p">(</span><span class="s">'category'</span><span class="p">).</span><span class="n">cat</span><span class="p">.</span><span class="n">codes</span>
+
+<span class="c1"># Clean the dataframe. An alternative would be to retain some rows with missing values by giving
+# a special value to nan for each column, eg by imputing some values, but one should be careful not to
+# use information from the test set to impute values in the training set if doing this. Strictly speaking,
+# we shouldn't be dropping the nans from the test set here (as we pretend we don't know what's in it) - but
+# for the sake of simplicity, we will.
+</span><span class="n">titanic</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="c1"># Create list of regressors
+</span><span class="n">regressors</span> <span class="o">=</span> <span class="n">continuous_cols</span> <span class="o">+</span> <span class="n">cat_cols</span>
+<span class="c1"># Predicted var
+</span><span class="n">y_var</span> <span class="o">=</span> <span class="p">[</span><span class="s">'survived'</span><span class="p">]</span>
+
+<span class="c1"># Create a test (25% of data) and train set
+</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">titanic</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+<span class="c1"># Now let's create an empty decision tree to solve the classification problem:
+</span><span class="n">clf</span> <span class="o">=</span> <span class="n">tree</span><span class="p">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                                  <span class="n">ccp_alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="c1"># The last option, ccp_alpha, prunes low-value complexity from the tree to help
+# avoid overfitting.
+</span>
+<span class="c1"># Fit the tree with the data
+</span><span class="n">clf</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">regressors</span><span class="p">],</span> <span class="n">train</span><span class="p">[</span><span class="n">y_var</span><span class="p">])</span>
+
+<span class="c1"># Let's take a look at the tree:
+</span><span class="n">tree</span><span class="p">.</span><span class="n">plot_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">)</span>
+
+<span class="c1"># How does it perform on the train and test data?
+</span><span class="n">train_accuracy</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">clf</span><span class="p">.</span><span class="n">score</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">regressors</span><span class="p">],</span> <span class="n">train</span><span class="p">[</span><span class="n">y_var</span><span class="p">]),</span> <span class="mi">4</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">f'Accuracy on train set is </span><span class="si">{</span><span class="n">train_accuracy</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+
+<span class="n">test_accuracy</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">clf</span><span class="p">.</span><span class="n">score</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">regressors</span><span class="p">],</span> <span class="n">test</span><span class="p">[</span><span class="n">y_var</span><span class="p">]),</span> <span class="mi">4</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">f'Accuracy on test set is </span><span class="si">{</span><span class="n">test_accuracy</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+
+<span class="c1"># Show the confusion matrix
+</span><span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">test</span><span class="p">[</span><span class="n">regressors</span><span class="p">],</span> <span class="n">test</span><span class="p">[</span><span class="n">y_var</span><span class="p">])</span>
+
+<span class="c1"># Although it won't be the same from run to run, this model scored around 80%
+# out of sample, and has slightly more false positives than false negatives.
+</span></code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
