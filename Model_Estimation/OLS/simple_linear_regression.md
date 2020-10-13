@@ -57,12 +57,22 @@ X = [intercept headroom trunk weight];
 ## Python
 
 ```python
-'''Load R Datasets'''
+# Use 'pip install statsmodels' or 'conda install statsmodels'
+# on the command line to install the statsmodels package.
+
+# Import the relevant parts of the package:
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+
+# Get the mtcars example dataset
 mtcars = sm.datasets.get_rdataset("mtcars").data
+
 # Fit OLS regression model to mtcars
-ols = smf.ols(formula= 'mpg ~ cyl + hp + wt', data= mtcars).fit()
+ols = smf.ols(formula='mpg ~ cyl + hp + wt', data=mtcars).fit()
+
 # Look at the OLS results
 print(ols.summary())
+
 ```
 
 ## R
