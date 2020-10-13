@@ -211,12 +211,22 @@ ols mpg const headroom trunk weight
       <h2 id="python">
           <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
       </h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">'''Load R Datasets'''</span>
-<span class="n">mtcars</span> <span class="o">=</span> <span class="n">sm</span><span class="p">.</span><span class="n">datasets</span><span class="p">.</span><span class="n">get_rdataset</span><span class="p">(</span><span class="s">"mtcars"</span><span class="p">).</span><span class="n">data</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Use 'pip install statsmodels' or 'conda install statsmodels'
+# on the command line to install the statsmodels package.
+</span>
+<span class="c1"># Import the relevant parts of the package:
+</span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="n">sm</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="n">smf</span>
+
+<span class="c1"># Get the mtcars example dataset
+</span><span class="n">mtcars</span> <span class="o">=</span> <span class="n">sm</span><span class="p">.</span><span class="n">datasets</span><span class="p">.</span><span class="n">get_rdataset</span><span class="p">(</span><span class="s">"mtcars"</span><span class="p">).</span><span class="n">data</span>
+
 <span class="c1"># Fit OLS regression model to mtcars
-</span><span class="n">ols</span> <span class="o">=</span> <span class="n">smf</span><span class="p">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span> <span class="s">'mpg ~ cyl + hp + wt'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span> <span class="n">mtcars</span><span class="p">).</span><span class="n">fit</span><span class="p">()</span>
+</span><span class="n">ols</span> <span class="o">=</span> <span class="n">smf</span><span class="p">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s">'mpg ~ cyl + hp + wt'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mtcars</span><span class="p">).</span><span class="n">fit</span><span class="p">()</span>
+
 <span class="c1"># Look at the OLS results
 </span><span class="k">print</span><span class="p">(</span><span class="n">ols</span><span class="p">.</span><span class="n">summary</span><span class="p">())</span>
+
 </code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
