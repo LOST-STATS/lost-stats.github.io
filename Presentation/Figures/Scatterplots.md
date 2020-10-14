@@ -28,6 +28,35 @@ Scatterplots are a useful tool for visualizing data and the possible relationshi
 
 # Implementations
 
+## Python
+
+There are many plotting libraries in Python, covering both *imperative* (specify all of the steps to get the desired outcome) and *declarative* (specify the desired outcome without the steps) approaches. Imperative plotting gives more control and some people may find each step clearer to read, but it can also be fiddly and cumbersome, especially with simple plots. Declarative plotting trades away control in favour of tried and tested processes that can quickly produce standardised charts, but the specialised syntax can be a barrier for newcomers.
+
+The code below shows examples of scatterplots using both methods using the declarative library [**seaborn**](https://seaborn.pydata.org/index.html), drawing from the packages' website. For imperative scatter plots, use [**matplotlib**](https://matplotlib.org/3.3.0/index.html). As usual with Python, you may need to install seaborn using `pip install seaborn` or `conda install seaborn` on the command line.
+
+```python
+import seaborn as sns
+
+# Load the tips dataset
+df = sns.load_dataset("tips")
+
+# Plot the data. hue sets the colour of points.
+# alpha sets the transparency of points. There
+# are various other keyword arguments to add other
+# dimensions of information too, eg size.
+sns.scatterplot(data=df,
+                x="total_bill",
+                y="tip",
+                alpha=.8,
+                hue='time').set_title('Tips data', loc='right')
+
+```
+
+This results in:
+
+![seaborn_scatterplot](Images/Scatterplots/seaborn_scatter.png)
+
+
 ## R
 In R, one of the best tools for creating scatterplots is the function `ggplot()`, found in the `ggplot2` package. For this demonstration, we will also be using a dataset already built in to R called `mtcars`.
 
