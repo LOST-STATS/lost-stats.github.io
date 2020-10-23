@@ -1,8 +1,5 @@
 name: Build and Push
-on:
-  push:
-    branches:
-      - source
+on: ["push", "pull_request"]
 
 jobs:
   build_job:
@@ -10,7 +7,6 @@ jobs:
 
     strategy:
       matrix:
-        node: ['12']
         ruby: ['2.6']
 
     steps:
@@ -24,20 +20,15 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
 
-      - name: Setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
-
       - name: Pull cache
         uses: actions/cache@v2
         with:
           path: |
             vendor/bundle
             **/node_modules
-          key: bundle-use-ruby-${{ matrix.ruby }}-${{ hashFiles('**/Gemfile.lock') }}-node-${{ matrix.node }}-${{ hashFiles('**/package-lock.json') }}
+          key: bundle-use-ruby-${{ matrix.ruby }}-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
-            bundle-use-ruby-${{ matrix.ruby }}-node-${{ matrix.node }}-
+            bundle-use-ruby-${{ matrix.ruby }}-
 
       - name: bundle install
         run: |
@@ -46,14 +37,12 @@ jobs:
           bundle config path vendor/bundle
           bundle install --jobs 4
 
-      - name: npm install
-        run: npm install
-
       - name: Build the page
-        run: npm run gulp ghActionsBuild
+        run: bundle exec jekyll build
 
       - name: Push to GH Pages
         uses: JamesIves/github-pages-deploy-action@3.5.1
+        if: github.ref == 'refs/heads/source' && github.event_name == 'push'
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: master
