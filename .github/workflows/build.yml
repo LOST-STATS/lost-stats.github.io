@@ -52,6 +52,9 @@ jobs:
       - name: Build the page
         run: npm run gulp ghActionsBuild
 
+      - name: Check for broken links
+        run: "bundle exec htmlproofer --assume-extension --allow-hash-href ./_site || true"
+
       - name: Push to GH Pages
         uses: JamesIves/github-pages-deploy-action@3.5.1
         with:

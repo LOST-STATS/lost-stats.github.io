@@ -19,7 +19,7 @@ plugins:
   - jekyll-default-layout
   - jekyll-feed
   - jekyll-redirect-from
-  - "jekyll-mentions"
+  - jekyll-mentions
   - jekyll-relative-links
   - jekyll-titles-from-headings
 
@@ -47,7 +47,3 @@ gh_edit_link_text: "Edit this page on GitHub."
 gh_edit_repository: "https://github.com/lost-stats/lost-stats.github.io"
 gh_edit_branch: "source" # the branch that your docs is served from
 gh_edit_view_mode: "edit" # "tree" or "edit" if you want the user to jump into the editor immediately
-
-#optional_front_matter:
-#  enabled: true
-#  remove_originals: true
