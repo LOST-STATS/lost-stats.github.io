@@ -183,31 +183,23 @@
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
-<p>For cluster-robust estimation of (high-dimensional) fixed effect models in R, see <a href="https://lost-stats.github.io/Model_Estimation/fixed_effects_in_linear_regression.html#r">here</a>.</p>
-<p>Cluster-robust standard errors for many different kinds of regression objects in R can be obtained using the <code class="language-plaintext highlighter-rouge">coeftest</code> function in the <strong>lmtest</strong> package combined with the <code class="language-plaintext highlighter-rouge">vcovCL</code> function in the <strong>sandwich</strong> package. Alternately, while it does not handle as many types of regressions, the <code class="language-plaintext highlighter-rouge">lm_robust</code> function in <strong>estimatr</strong> can provide cluster-robust standard errors much more easily.</p>
+<p>For cluster-robust estimation of (high-dimensional) fixed effect models in R, see <a href="https://lost-stats.github.io/Model_Estimation/fixed_effects_in_linear_regression.html#r">here</a>. Note that these methods can easily be re-purposed to run and cluster standard errors of non-panel models; just omit the fixed-effects in the model call. But for this page we’ll focus on some additional methods.</p>
+<p>Cluster-robust standard errors for many different kinds of regression objects in R can be obtained using the <code class="language-plaintext highlighter-rouge">coeftest</code> function in the <strong>lmtest</strong> package, combined with the <code class="language-plaintext highlighter-rouge">vcovCL</code> function from the <strong>sandwich</strong> package (<a href="http://sandwich.r-forge.r-project.org/index.html">link</a>). This approach allows users to adjust the standard errors for a model “<a href="https://grantmcdermott.com/better-way-adjust-SEs/">on-the-fly</a>” (i.e. post-estimation) and is thus very flexible. Alternately, users can specify clustered standard errors directly in the model call using the <code class="language-plaintext highlighter-rouge">lm_robust</code> function from the <strong>estimatr</strong> package (<a href="https://github.com/DeclareDesign/estimatr">link</a>). This latter approach is very similar to how errors are clustered in Stata, for example.</p>
 <div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install lmtest, sandwich, and estimatr</span><span class="w">
 </span><span class="c1"># install.packages(c('lmtest','sandwich','estimatr'))</span><span class="w">
 
 </span><span class="c1"># Read in data from the College Scorecard</span><span class="w">
-</span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s1">'https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv'</span><span class="p">)</span><span class="w">
+</span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s1">'https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv'</span><span class="p">)</span><span class="w">
 
-</span><span class="c1"># Get robust errors using vcovCL and lmtest</span><span class="w">
-</span><span class="n">library</span><span class="p">(</span><span class="n">lmtest</span><span class="p">)</span><span class="w">
-</span><span class="n">library</span><span class="p">(</span><span class="n">sandwich</span><span class="p">)</span><span class="w">
-
-</span><span class="c1"># Create a regression model without cluster-robust standard errors</span><span class="w">
+</span><span class="c1"># Create a regression model with normal (iid) errors</span><span class="w">
 </span><span class="n">my_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lm</span><span class="p">(</span><span class="n">repay_rate</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">earnings_med</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">state_abbr</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="p">)</span><span class="w">
 
-</span><span class="c1"># Put the model into vcovCL() to get a robust covariance matrix</span><span class="w">
-</span><span class="c1"># and then put that in lmtest() to get the regression results with robust errors</span><span class="w">
-</span><span class="c1"># Pick the kind of robust errors with "type" </span><span class="w">
-</span><span class="c1"># It refers to the heteroskedasticity-consistent error types.</span><span class="w">
-</span><span class="c1"># HC1 is the default but I've specified it here anyway</span><span class="w">
-</span><span class="n">coeftest</span><span class="p">(</span><span class="n">my_model</span><span class="p">,</span><span class="w"> </span><span class="n">vcov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vcovCL</span><span class="p">(</span><span class="n">my_model</span><span class="p">,</span><span class="w"> 
-                                 </span><span class="n">cluster</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">inst_name</span><span class="p">,</span><span class="w">
-                                 </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"HC1"</span><span class="p">))</span><span class="w">
+</span><span class="c1"># Swap out cluster-robust errors post-estimation with coeftest::lmtest and sandwich::vcovCL </span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">lmtest</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">sandwich</span><span class="p">)</span><span class="w">
+</span><span class="n">coeftest</span><span class="p">(</span><span class="n">my_model</span><span class="p">,</span><span class="w"> </span><span class="n">vcov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vcovCL</span><span class="p">(</span><span class="n">my_model</span><span class="p">,</span><span class="w"> </span><span class="n">cluster</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">inst_name</span><span class="p">))</span><span class="w">
 
-</span><span class="c1"># Alternately, just use lm_robust. </span><span class="w">
+</span><span class="c1"># Alternately, use estimator::lm_robust to specify clustered SEs in the original model call. </span><span class="w">
 </span><span class="c1"># Standard error types are referred to as CR0, CR1 ("stata"), CR2 here.</span><span class="w">
 </span><span class="c1"># Here, CR2 is the default</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">estimatr</span><span class="p">)</span><span class="w">
@@ -221,7 +213,7 @@
       </h2>
 <p>Stata has clustered standard errors built into most regression commands, and they generally work the same way for all commands.</p>
 <div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load in College Scorecard data
-</span><span class="err">import</span> <span class="err">delimited</span> <span class="s2">"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv"</span><span class="err">,</span> <span class="err">clear
+</span><span class="err">import</span> <span class="err">delimited</span> <span class="s2">"https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv"</span><span class="err">,</span> <span class="err">clear
 </span><span class="c1">
 * The missings are written as "NA", let's turn this numeric
 </span><span class="err">destring</span> <span class="err">earnings_med</span> <span class="err">repay_rate,</span> <span class="err">replace</span> <span class="err">force
