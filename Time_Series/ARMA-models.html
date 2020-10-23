@@ -163,7 +163,7 @@
           <h1 id="autoregressive-moving-average-arma-models">
           <a href="#autoregressive-moving-average-arma-models" aria-labelledby="autoregressive-moving-average-arma-models" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Autoregressive Moving-Average (ARMA) Models
       </h1>
-<p>Auto regressive moving average (ARMA) models are a combination of two commonly used time series processes, the <a href="https://lost-stats.github.io/Time_Series/AR-models.html">autoregressive (AR)</a> process and the <a href="https://lost-stats.github.io/Time_Series/MA-models.html">moving-average (MA)</a> process. As such, ARMA models have the form</p>
+<p>Auto regressive moving average (ARMA) models are a combination of two commonly used time series processes, the <a href="/Time_Series/AR-models.html">autoregressive (AR)</a> process and the <a href="/Time_Series/MA-models.html">moving-average (MA)</a> process. As such, ARMA models have the form</p>
 \[Y_t = c + \sum_{i = 1}^{p} \beta_i Y_{t-i} + \sum_{j = 1}^{q} \theta_j \varepsilon_{t-j} + \varepsilon_t\]
 <p>If an ARMA model has an AR component of order \(p\) and an MA component of order \(q\), then the model is commonly refered to as an \(ARMA(p,q)\)</p>
 <p>For additional information, see <a href="https://en.wikipedia.org/wiki/Autoregressive%E2%80%93moving-average_model">Wikipedia: Autoregressive Moving-Average model</a>.</p>
@@ -171,7 +171,7 @@
           <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep In Mind
       </h1>
 <ul>
-  <li>Data must be properly formatted for estimation as a time-series. See <a href="https://lost-stats.github.io/Time_Series/creating_time_series_dataset.html">creating a time series data set</a>. If this is not done, then depending on your statistical package of choice, either your estimation will fail to execute or you will receive erroneous output.</li>
+  <li>Data must be properly formatted for estimation as a time-series. See <a href="/Time_Series/creating_time_series_dataset.html">creating a time series data set</a>. If this is not done, then depending on your statistical package of choice, either your estimation will fail to execute or you will receive erroneous output.</li>
   <li>ARMA models include some number of lagged error terms from the MA component, which are inherently unobservable. Consequently these models cannot be estimated using OLS alone, unlike AR models.</li>
   <li>ARMA models are most commonly estimated using maximum likelihood estimation (MLE). One consequence of this is that, given some time series and some specified order \((p,q)\), the estimates obtained from the estimated \(ARMA(p,q)\) model will vary depending on the type of MLE estimation used.</li>
   <li>As is the case in many situations where one is trying to estimate a time-series process, model selection is important. For ARMA models, model selection meaning chosing the number of AR and MA parameters, the \(p\) and \(q\), for which a coefficient will be estimated. In practice, it is common to estimate several different potential models, then use some criterion to determine which model best fits the time-series. Common criteria used to evaluate ARMA models are the Akaike Information Criterion (AIC) and the Bayesian Information Criterion (BIC), also referred to as the Schwarz Information Criterion (SIC). For more information on these and other model selection criteria, see <a href="https://en.wikipedia.org/wiki/Model_selection#Criteria">Wikipedia: Model Selection</a>.</li>
@@ -181,14 +181,14 @@
           <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
       </h1>
 <ul>
-  <li>ARMA models can only be estimated for univariate time series. If you are interested in estimating a time series process using multiple time series on the right hand side of your model, consider using a <a href="https://lost-stats.github.io/Time_Series/VAR-models.html">vector AR (VAR)</a> model or a <a href="https://lost-stats.github.io/Time_Series/VARMA-models.html">VARMA</a> model.</li>
-  <li>Before estimating an ARMA model, it is standard practice to try to determine whether or not the time series appears to be stationary. See <a href="https://lost-stats.github.io/Time_Series/Stationarity-and-weak-dependence.html">LOST: Stationarity and Weak Dependence</a> for more details.</li>
-  <li>If the time series you are trying to estimate does not appear to be stationary, then using an ARMA model to estimate the series is innappropriate. For simpler forms of nonstationarity, an ARIMA model may be useful. An \(ARIMA(p,d,q)\) model is a more general model for a time-series than an \(ARMA(p,q)\). In these models, \(p\) still signifies an \(AR(p)\) component, and \(q\) an \(MA(q)\) component. For more information on ARIMA models, see <a href="https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average">Wikipedia: ARIMA</a>. For information about estimating an ARIMA model, see <a href="https://lost-stats.github.io/Time_Series/ARIMA-models.html">LOST: ARIMA models</a></li>
+  <li>ARMA models can only be estimated for univariate time series. If you are interested in estimating a time series process using multiple time series on the right hand side of your model, consider using a <a href="/Time_Series/VAR-models.html">vector AR (VAR)</a> model or a <a href="/Time_Series/VARMA-models.html">VARMA</a> model.</li>
+  <li>Before estimating an ARMA model, it is standard practice to try to determine whether or not the time series appears to be stationary. See <a href="/Time_Series/Stationarity-and-weak-dependence.html">LOST: Stationarity and Weak Dependence</a> for more details.</li>
+  <li>If the time series you are trying to estimate does not appear to be stationary, then using an ARMA model to estimate the series is innappropriate. For simpler forms of nonstationarity, an ARIMA model may be useful. An \(ARIMA(p,d,q)\) model is a more general model for a time-series than an \(ARMA(p,q)\). In these models, \(p\) still signifies an \(AR(p)\) component, and \(q\) an \(MA(q)\) component. For more information on ARIMA models, see <a href="https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average">Wikipedia: ARIMA</a>. For information about estimating an ARIMA model, see <a href="/Time_Series/ARIMA-models.html">LOST: ARIMA models</a></li>
 </ul>
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
-<p>First, follow the <a href="https://lost-stats.github.io/Time_Series/creating_time_series_dataset.html">instructions</a> for creating and formatting time-series data using your software of choice. We will again use quarterly US GDP data downloaded from <a href="https://fred.stlouisfed.org/series/GDPC1">FRED</a> as an example. This time, though, we will try to estimate the quarterly log change in GDP with an \(ARMA(3,1)\) process. Note that an \(ARMA(3,1)\) model is almost certainly not the best way to estimate this time series, and is used here solely as an example.</p>
+<p>First, follow the <a href="/Time_Series/creating_time_series_dataset.html">instructions</a> for creating and formatting time-series data using your software of choice. We will again use quarterly US GDP data downloaded from <a href="https://fred.stlouisfed.org/series/GDPC1">FRED</a> as an example. This time, though, we will try to estimate the quarterly log change in GDP with an \(ARMA(3,1)\) process. Note that an \(ARMA(3,1)\) model is almost certainly not the best way to estimate this time series, and is used here solely as an example.</p>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
@@ -207,7 +207,7 @@
 
 </span><span class="n">gdp_ts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as_tsibble</span><span class="p">(</span><span class="n">gdp</span><span class="p">,</span><span class="w">
                      </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DATE</span><span class="p">,</span><span class="w">
-                     </span><span class="n">regular</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+                     </span><span class="n">regular</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
     </span><span class="n">index_by</span><span class="p">(</span><span class="n">qtr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">yearquarter</span><span class="p">(</span><span class="n">.</span><span class="p">))</span><span class="w">
 
 </span><span class="c1">#construct our first difference of log gdp variable</span><span class="w">
@@ -217,7 +217,7 @@
 
 
 </span><span class="c1">#Estimate our ARMA(3,1)</span><span class="w">
-</span><span class="c1">##Note that because we are modeling for the first difference of log GDP, we cannot use our first observation of </span><span class="w">
+</span><span class="c1">##Note that because we are modeling for the first difference of log GDP, we cannot use our first observation of</span><span class="w">
 </span><span class="c1">##log GDP to estimate our model.</span><span class="w">
 </span><span class="n">arma_gdp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arima</span><span class="p">(</span><span class="n">gdp_ts</span><span class="o">$</span><span class="n">lgdp</span><span class="p">[</span><span class="m">2</span><span class="o">:</span><span class="m">292</span><span class="p">],</span><span class="w"> </span><span class="n">order</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">))</span><span class="w">
 </span><span class="n">arma_gdp</span><span class="w">
@@ -247,7 +247,7 @@ gen</span> <span class="err">lgdp</span> <span class="o">=</span> <span class="e
 gen</span> <span class="err">dlgdp</span> <span class="o">=</span> <span class="err">D.lgdp
 </span><span class="c1">
 *Specify the ARMA model using the arima command
-*Stata will automatically drop the first entry, since we do not have a value for the first difference of GDP 
+*Stata will automatically drop the first entry, since we do not have a value for the first difference of GDP
 *for this entry.
 </span><span class="err">
 arima</span> <span class="err">dlgdp,</span> <span class="err">arima(3,0,1)
