@@ -28,7 +28,26 @@ Bootstrap is commonly used to calculate standard errors. If you produce many boo
 
 ## R
 
-The standard approach to bootstrapping standard errors in R is to use the **boot** package.
+The **sandwich** package ((link)[http://sandwich.r-forge.r-project.org/reference/vcovBS.html]) provides a convenient `vcovBS` function for obtaining bootstrapped covariance-variance matrices, and thus standard errors, for a wide range of model classes in R. We normally combine this with the `coeftest` function from the **lmtest** package, which allows us to substitute in the adjusted (here: bootstrapped) errors into our model post-estimation.
+
+```r
+# If necessary
+# install.packages('sandwich','lmtest')
+
+library(sandwich)
+library(lmtest)
+
+# Use in-built mtcars data
+data(mtcars)
+
+# Run a regression with normal (iid) errors
+ m <- lm(hp~mpg + cyl, data = mtcars) 
+ 
+ Obtain the boostrapped equivalent
+ coeftest(m, vcov = vcovBS(m)) 
+```
+
+Another approach to obtaining bootstrapping standard errors in R is to use the **boot** package ([link](https://cran.r-project.org/web/packages/boot/)). This is typcally more hands-on, but gives the user a lot of control over how the bootrapping procedure will execute.
 
 ```r
 # If necessary
@@ -36,9 +55,6 @@ The standard approach to bootstrapping standard errors in R is to use the **boot
 
 # Load boot library
 library(boot)
-
-# Use mtcars data
-data(mtcars)
 
 # Create function that takes
 # A dataset and indices as input, and then
