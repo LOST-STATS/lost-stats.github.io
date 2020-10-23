@@ -30,7 +30,7 @@ For cluster-robust estimation of (high-dimensional) fixed effect models in Julia
 
 For cluster-robust estimation of (high-dimensional) fixed effect models in R, see [here](https://lost-stats.github.io/Model_Estimation/fixed_effects_in_linear_regression.html#r). Note that these methods can easily be re-purposed to run and cluster standard errors of non-panel models; just omit the fixed-effects in the model call. But for this page we'll focus on some additional methods.
 
-Cluster-robust standard errors for many different kinds of regression objects in R can be obtained using the `coeftest` function in the **lmtest** package, combined with the `vcovCL` function from the **sandwich** package ([link](http://sandwich.r-forge.r-project.org/index.html)). This approach allows users to adjust the standard errors for a model "[on-the-fly](https://grantmcdermott.com/better-way-adjust-SEs/)" (i.e. post-estimation) and is thus very flexible. Alternately, users can specify clustered standard errors directly in the model call using the `lm_robust` function from the **estimatr** package ([link](https://github.com/DeclareDesign/estimatr)). This latter approach is very similar to how errors are clustered in Stata, for example.
+Cluster-robust standard errors for many different kinds of regression objects in R can be obtained using the `vcovCL` or `vcovBS` functions from the **sandwich** package ([link](http://sandwich.r-forge.r-project.org/index.html)). To perform statistical inference, we combine these with the `coeftest` function from the **lmtest** package. This approach allows users to adjust the standard errors for a model "[on-the-fly](https://grantmcdermott.com/better-way-adjust-SEs/)" (i.e. post-estimation) and is thus very flexible. 
 
 ```R
 # If necessary, install lmtest, sandwich, and estimatr
@@ -46,7 +46,11 @@ my_model <- lm(repay_rate ~ earnings_med + state_abbr, data = df)
 library(lmtest)
 library(sandwich)
 coeftest(my_model, vcov = vcovCL(my_model, cluster = ~inst_name))
+```
 
+Alternately, users can specify clustered standard errors directly in the model call using the `lm_robust` function from the **estimatr** package ([link](https://github.com/DeclareDesign/estimatr)). This latter approach is very similar to how errors are clustered in Stata, for example.
+
+```R
 # Alternately, use estimator::lm_robust to specify clustered SEs in the original model call. 
 # Standard error types are referred to as CR0, CR1 ("stata"), CR2 here.
 # Here, CR2 is the default
