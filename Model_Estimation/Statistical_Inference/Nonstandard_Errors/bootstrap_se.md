@@ -28,7 +28,7 @@ Bootstrap is commonly used to calculate standard errors. If you produce many boo
 
 ## R
 
-The **sandwich** package ((link)[http://sandwich.r-forge.r-project.org/reference/vcovBS.html]) provides a convenient `vcovBS` function for obtaining bootstrapped covariance-variance matrices, and thus standard errors, for a wide range of model classes in R. We normally combine this with the `coeftest` function from the **lmtest** package, which allows us to substitute in the adjusted (here: bootstrapped) errors into our model post-estimation.
+The **sandwich** package ([link](http://sandwich.r-forge.r-project.org/reference/vcovBS.html)] provides a convenient `vcovBS` function for obtaining bootstrapped covariance-variance matrices, and thus standard errors, for a wide range of model classes in R. We normally combine this with the `coeftest` function from the **lmtest** package, which allows us to substitute in the adjusted (here: bootstrapped) errors into our model post-estimation.
 
 ```r
 # If necessary
