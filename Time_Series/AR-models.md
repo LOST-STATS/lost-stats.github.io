@@ -35,7 +35,7 @@ y_t = \delta_0 + \delta_1 t + \phi_1 y_{t-1} + \ldots + \phi_p y_{t-p} + \sum_{i
 
 $$
 
-where $$d_i$$ are seasonal dummies, $$x_{t,j}$$ are exogenous regressors, and the $$phi_p$$ are the coefficients of the auto-regressive components of the model.
+where $$d_i$$ are seasonal dummies, $$x_{t,j}$$ are exogenous regressors, and the $$\phi_p$$ are the coefficients of the auto-regressive components of the model.
 
 Using GDP data, let’s fit an auto-regressive model of order 1, an AR(1), with `AutoReg`:
 
