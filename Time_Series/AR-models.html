@@ -185,7 +185,7 @@ provides a range of tools to fit models using maximum likelihood
 estimation. In the example below, we will use the <code class="language-plaintext highlighter-rouge">AutoReg</code> function. This
 can fit models of the form:</p>
 \[y_t = \delta_0 + \delta_1 t + \phi_1 y_{t-1} + \ldots + \phi_p y_{t-p} + \sum_{i=1}^{s-1} \gamma_i d_i + \sum_{j=1}^{m} \kappa_j x_{t,j} + \epsilon_t.\]
-<p>where \(d_i\) are seasonal dummies, \(x_{t,j}\) are exogenous regressors, and the \(phi_p\) are the coefficients of the auto-regressive components of the model.</p>
+<p>where \(d_i\) are seasonal dummies, \(x_{t,j}\) are exogenous regressors, and the \(\phi_p\) are the coefficients of the auto-regressive components of the model.</p>
 <p>Using GDP data, let’s fit an auto-regressive model of order 1, an AR(1), with <code class="language-plaintext highlighter-rouge">AutoReg</code>:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Install pandas and statsmodels using 'pip install' or 'conda install' on the command line
 </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
