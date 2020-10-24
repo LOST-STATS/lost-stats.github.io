@@ -6,9 +6,9 @@ mathjax: true
 ---
 
 <iframe width="560" height="315"
-src="https://www.youtube.com/embed/zGQDlKQcPhg" 
-frameborder="0" 
-allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+src="https://www.youtube.com/embed/zGQDlKQcPhg"
+frameborder="0"
+allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen></iframe>
 
 # HOW TO CONTRIBUTE
@@ -135,7 +135,9 @@ For example, pages about estimation techniques might list standard robustness te
 
 Or, they might list an alternative technique that might be used if a certain assumption fails ("This technique requires continuous variables. So if your data is discrete, use this other method.").
 
-To link to other LOST pages (even if they don't exist yet &mdash; don't forget to add these to [Desired Nonexistent Pages]({{ "/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" | relative_url }})!, use the Markdown `[Link name](url)` structure, where the URL is of the format `{{ "/Category_Name/page_name.html" | relative_url }}`.
+To link to other LOST pages (even if they don't exist yet &mdash; don't forget to add these to [Desired Nonexistent Pages]({{ "/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" | relative_url }})!), we ask that you spell the `url` in a way our markdown renderer understands. Specifically, please write the `url` as `{% raw %}{{ "/Category_name/page.html" | relative_url }}{% endraw %}`.
+
+For example, if you'd like to link to this page, please write `{% raw %}[Guide to Contributing]({{ "/Contributing/Contributing.html" | relative_url}}){% endraw %}` which will then be rendered as [Guide to Contributing]({{ "/Contributing/Contributing.html" | relative_url}}).
 
 ## Implementations
 
