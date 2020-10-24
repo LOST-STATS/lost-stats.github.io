@@ -43,8 +43,8 @@ def fix_md(path: Path) -> str:
 
 def main():
     if len(sys.argv) < 2:
+        print(USAGE, file=sys.stderr)
         sys.exit(1)
-        print(USAGE)
 
     cwd = Path(".")
     for pattern in sys.argv[1:]:
