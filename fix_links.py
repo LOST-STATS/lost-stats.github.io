@@ -43,6 +43,7 @@ def fix_md(path: Path) -> str:
 
 def main():
     if len(sys.argv) < 2:
+        sys.exit(1)
         print(USAGE)
 
     cwd = Path(".")
