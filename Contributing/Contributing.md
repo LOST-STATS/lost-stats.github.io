@@ -18,7 +18,7 @@ allowfullscreen></iframe>
 3. Read the below LOST Writing Guide, which shows what a good LOST page looks like from top to bottom. Even if you are just adding another language to an existing page, be sure to read the Implementations section at the bottom.
 4. Explore LOST using the navigation bar on the left, find a page that needs to be expanded, and add more content. Or find one that doesn't exist but should (perhaps on the [Desired Nonexistent Pages list]({{ "/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" | relative_url }}), and write it yourself! Go to the [GitHub Repository](https://github.com/LOST-STATS/LOST-STATS.github.io) for LOST to find the appropriate file to edit or folder to create your new file in.
 5. If you are a "Contributor" to the project, you can make your edits and changes directly to the repository. If not, you will need to issue a [pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) to get your work on LOST. We will add you as a contributor after your first accepted pull request. If you don't know Git or how to do a pull request, please post in [Issues](https://github.com/LOST-STATS/LOST-STATS.github.io/issues) asking to be added as a contributor so you can edit LOST directly.
-6. If you've made a new page, make sure it's saved as a `.md` file, put it in the appropriate folder, and add Navigation Information at the top (see below). If you've written a Desired Nonexistent Page, be sure to remove it from the [list](https://github.com/LOST-STATS/LOST-STATS.github.io/blob/master/Desired_Nonexistent_Pages/Desired_Nonexistent_Pages.md). Or, if your page links to some new nonexistent pages, add those to the list! Also, try to see if other pages have attempted to link to the page you're working on, and update their links so they go to the right place.
+6. If you've made a new page, make sure it's saved as a `.md` file, put it in the appropriate folder, and add Navigation Information at the top (see below). If you've written a Desired Nonexistent Page, be sure to remove it from the [list](https://github.com/LOST-STATS/LOST-STATS.github.io/blob/source/Desired_Nonexistent_Pages/Desired_Nonexistent_Pages.md). Or, if your page links to some new nonexistent pages, add those to the list! Also, try to see if other pages have attempted to link to the page you're working on, and update their links so they go to the right place.
 
 # LOST WRITING GUIDE
 
@@ -64,7 +64,7 @@ For more details see [GitHub Flavored Markdown](https://guides.github.com/featur
 
 Math is rendered with MathJax, which provides support for $$\LaTeX$$ math formatting. To use on a specific page, make sure that the [YAML](#navigation-information) at the top on the underlying Markdown (i.e. .md) file includes a line saying `mathjax: true`. This should already be the default on most existing pages, but it is worth emphasising. For example, here is a screenshot of the "Contributing.md" file that you are reading right now.
 
-![](mathjax_yaml.png)
+![MathJax example](mathjax_yaml.png)
 
 After that, equations and other math sections can be delimited with two dollar symbol _pairs_. For example, `$$x = \frac{1}{2}$$` is rendered inline as $$x = \frac{1}{2}$$. Similarly, we can render math in display mode (i.e. as a distinct block) by wrapping the dollar symbol pairs on separate lines. For example,
 
@@ -84,7 +84,7 @@ While we don't include such examples here, note that standard $$\LaTeX$$ math en
 
 # STRUCTURE OF A LOST PAGE
 
-When starting a LOST page, you should copy the [New Page Template](https://github.com/LOST-STATS/LOST-STATS.github.io/blob/master/NewPageTemplate.md). There are four main sections of a LOST page:
+When starting a LOST page, you should copy the [New Page Template](https://github.com/LOST-STATS/LOST-STATS.github.io/blob/source/NewPageTemplate.md). There are four main sections of a LOST page:
 
 ## Navigation Information
 
