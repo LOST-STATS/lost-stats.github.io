@@ -15,13 +15,13 @@ $$\sigma_{t}^{2} = \alpha_{0} + \sum_{i=1}^{q}\alpha_{i}\epsilon_{t-i}^{2} + \su
 
 
 # Keep in Mind
-- Data should be properly formatted for estimation as a time-series. See [creating a time series data set](https://lost-stats.github.io/Time_Series/creating_time_series_dataset.html). If not, you may fail to execute  or receive erroneous output.
+- Data should be properly formatted for estimation as a time-series. See [creating a time series data set]({{ "/Time_Series/creating_time_series_dataset.html" | relative_url }}). If not, you may fail to execute  or receive erroneous output.
 - GARCH is appropriate for time series data where the variance of the error term is serially autocorrelated following an autoregressive moving average process. 
 
 # Also Consider
 - GARCH can be used to help predict the volatility of returns on financial assets.
 - GARCH is useful to assess risk and expected returns for assets that exhibit clustered periods of volatility in returns.
-- If an autoregressive(AR) model is assumed for the error variance, the model is an autoregressive conditional heteroskedasticity (ARCH) model. For more information on GARCH models, see [Wikipedia: ARCH](https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity#ARCH(q)_model_specification). For information about estimating an ARCH model, see [LOST: ARCH models](https://lost-stats.github.io/Time_Series/ARCH-models.html).
+- If an autoregressive(AR) model is assumed for the error variance, the model is an autoregressive conditional heteroskedasticity (ARCH) model. For more information on GARCH models, see [Wikipedia: ARCH](https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity#ARCH(q)_model_specification). For information about estimating an ARCH model, see [LOST: ARCH models]({{ "/Time_Series/ARCH" | relative_url }}-models.html).
 
 
 # Implementations

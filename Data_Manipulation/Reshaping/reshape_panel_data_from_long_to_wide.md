@@ -30,9 +30,9 @@ In long format, there is one row per individual per time period:
 | 2          | H                   | 1991 | 10          |
 | 2          | H                   | 1992 | 14          |
 
-This format makes it easy to run models like [fixed effects](https://lost-stats.github.io/Model_Estimation/fixed_effects.html). 
+This format makes it easy to run models like [fixed effects]({{ "/Model_Estimation/OLS/fixed_effects_in_linear_regression.html" | relative_url }}).
 
-Reshaping is the method of converting wide-format data to long and [vice versa](https://lost-stats.github.io/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html).
+Reshaping is the method of converting wide-format data to long and [vice versa]({{ "/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" | relative_url }}).
 
 ## Keep in Mind
 
@@ -41,8 +41,8 @@ Reshaping is the method of converting wide-format data to long and [vice versa](
 
 ## Also Consider
 
-- To go in the other direction, [reshape from wide to long](https://lost-stats.github.io/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html).
-- [Determine the observation level of a data set](https://lost-stats.github.io/Data_Manipulation/determine_the_observation_level_of_a_data_set.html).
+- To go in the other direction, [reshape from wide to long]({{ "/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" | relative_url }}).
+- [Determine the observation level of a data set]({{ "/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" | relative_url }}).
 
 # Implementations
 
@@ -144,51 +144,51 @@ The next steps involve thinking:
 * reshape wide stub, i(individualvars) j(newtimevar)
 * So we have
 reshape wide bp i(patient) j(when)
-* Note that simply typing 
+* Note that simply typing
 reshape
 * will show the syntax for the function
 ```
 
-With especially large datasets, the [**Gtools**](https://gtools.readthedocs.io/en/latest/index.html) package provides a much faster version of reshape known as greshape. The syntax can function exactly the same, though they provide alternative syntax that you may find more intuitive. 
+With especially large datasets, the [**Gtools**](https://gtools.readthedocs.io/en/latest/index.html) package provides a much faster version of reshape known as greshape. The syntax can function exactly the same, though they provide alternative syntax that you may find more intuitive.
 
 ```stata
-* First, we will create a toy dataset that is very large to demonstrate the speed gains 
+* First, we will create a toy dataset that is very large to demonstrate the speed gains
 * If necessary, first install gtools:
 * ssc install gtools
 
 * Clear memory
-clear all 
+clear all
 * Turn on return message to see command run time
-set rmsg on 
+set rmsg on
 * Set data size to 15 million observations
-set obs 15000000 
+set obs 15000000
 * Create ten observations per person
 generate person_id = floor((_n-1)/10)
 * Number time periods from 1 to 10 for each person
 generate time_id = mod((_n-1), 10) + 1
 
-*Create an income in each period 
+*Create an income in each period
 generate income = round(rnormal(100, 20))
 
-* Demonstrate the comparative speed of these two reshape approaches. 
+* Demonstrate the comparative speed of these two reshape approaches.
 * preserve and restore aren't a part of the reshape command;
 * they just store the current state of the data and then restore it,
 * so we can try our different reshape commands on the same data.
-	
+
 *The traditional reshape command
-preserve 
-reshape wide income, i(person_id) j(time_id) 
-restore 
-	
-*The Gtools reshape command  
 preserve
-greshape wide income, i(person_id) j(time_id) 
-restore 
-	
+reshape wide income, i(person_id) j(time_id)
+restore
+
+*The Gtools reshape command
+preserve
+greshape wide income, i(person_id) j(time_id)
+restore
+
 *The Gtools reshape command, alternative syntax
 preserve
 greshape wide income, by(person_id) keys(time_id)
-restore 
+restore
 ```
 
-Note: there is much more guidance to the usage of greshape on the [Gtools reshape page](https://gtools.readthedocs.io/en/latest/usage/greshape/index.html). 
+Note: there is much more guidance to the usage of greshape on the [Gtools reshape page](https://gtools.readthedocs.io/en/latest/usage/greshape/index.html).

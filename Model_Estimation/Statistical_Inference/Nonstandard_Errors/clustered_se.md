@@ -16,19 +16,19 @@ Data is considered to be clustered when there are subsamples within the data tha
 
 ## Also Consider
 
-- [Cluster Bootstrap Standard Errors](https://lost-stats.github.io/Model_Estimation/cluster_bootstrap_standard_errors.html), which are another way of performing cluster-robust inference that will work even outside of a standard regression context.
+- [Cluster Bootstrap Standard Errors]({{ "/Model_Estimation/cluster_bootstrap_standard_errors.html" | relative_url }}), which are another way of performing cluster-robust inference that will work even outside of a standard regression context.
 
 # Implementations
 
-**Note:** Clustering of standard errors is especially common in panel models, such as [linear fixed effects](https://lost-stats.github.io/Model_Estimation/fixed_effects_in_linear_regression.html). For this reason, software routines for these particular models typically offer built-in support for (multiway) clustering. The implementation pages for these models should be hyperlinked in the relevant places below. Here, we instead concentrate on providing implementation guidelines for clustering in general.
+**Note:** Clustering of standard errors is especially common in panel models, such as [linear fixed effects]({{ "/Model_Estimation/fixed_effects_in_linear_regression.html" | relative_url }}). For this reason, software routines for these particular models typically offer built-in support for (multiway) clustering. The implementation pages for these models should be hyperlinked in the relevant places below. Here, we instead concentrate on providing implementation guidelines for clustering in general.
 
 ## Julia
 
-For cluster-robust estimation of (high-dimensional) fixed effect models in Julia, see [here](https://lost-stats.github.io/Model_Estimation/fixed_effects_in_linear_regression.html#julia).
+For cluster-robust estimation of (high-dimensional) fixed effect models in Julia, see [here]({{ "/Model_Estimation/fixed_effects_in_linear_regression.html#julia" | relative_url }}).
 
 ## R
 
-For cluster-robust estimation of (high-dimensional) fixed effect models in R, see [here](https://lost-stats.github.io/Model_Estimation/fixed_effects_in_linear_regression.html#r). Note that these methods can easily be re-purposed to run and cluster standard errors of non-panel models; just omit the fixed-effects in the model call. But for this page we'll focus on some additional methods.
+For cluster-robust estimation of (high-dimensional) fixed effect models in R, see [here]({{ "/Model_Estimation/fixed_effects_in_linear_regression.html#r" | relative_url }}). Note that these methods can easily be re-purposed to run and cluster standard errors of non-panel models; just omit the fixed-effects in the model call. But for this page we'll focus on some additional methods.
 
 Cluster-robust standard errors for many different kinds of regression objects in R can be obtained using the `vcovCL` or `vcovBS` functions from the **sandwich** package ([link](http://sandwich.r-forge.r-project.org/index.html)). To perform statistical inference, we combine these with the `coeftest` function from the **lmtest** package. This approach allows users to adjust the standard errors for a model "[on-the-fly](https://grantmcdermott.com/better-way-adjust-SEs/)" (i.e. post-estimation) and is thus very flexible. 
 

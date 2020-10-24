@@ -10,7 +10,7 @@ mathjax: true ## Switch to false if this page has no equations or other math ren
 
 Spatial joins are crucial for merging different types of data in geospatial analysis.  For example, if you want to know how many libraries (points) are in a city, county, or state (polygon).  This skill allows you to take data from different types of spatial data (vector data like points, lines, and polygons, and raster data (with a little more work)) sets and merge them together using unique identifiers.
 
-Joins are typically interesections of objects, but can be expressed in different ways.  These include: equals, covers, covered by, within, touches, near, crosses, and more.  These are all functions within the [sf](https://cran.r-project.org/web/packages/sf/sf.pdf) function in R or the [**geopandas**](https://geopandas.org/) package in Python. For more on the different types of intersections in 2D projections, see the [Wikipedia page on spatial relations](https://en.wikipedia.org/wiki/Spatial_relation).  
+Joins are typically interesections of objects, but can be expressed in different ways.  These include: equals, covers, covered by, within, touches, near, crosses, and more.  These are all functions within the [sf](https://cran.r-project.org/web/packages/sf/sf.pdf) function in R or the [**geopandas**](https://geopandas.org/) package in Python. For more on the different types of intersections in 2D projections, see the [Wikipedia page on spatial relations](https://en.wikipedia.org/wiki/Spatial_relation).
 
 ## Keep in Mind
 
@@ -22,7 +22,7 @@ devtools::install_github("ropensci/USAboundaries")
 devtools::install_github("ropensci/USAboundariesData")
 
 ```
-- Note: Even with the R installation via devtools, you may be prompted to install the "USAboundariesData" package and need to restart your session.   
+- Note: Even with the R installation via devtools, you may be prompted to install the "USAboundariesData" package and need to restart your session.
 
 
 # Implementations
@@ -71,17 +71,17 @@ cities_with_country = gpd.sjoin(cities, world, how="inner", op='intersects')
 
 cities_with_country.head()
 #  name_left                   geometry    pop_est     continent  \
-#  Vatican City  POINT (12.45339 41.90328)   62137802    Europe   
-#    San Marino  POINT (12.44177 43.93610)   62137802    Europe   
-#          Rome  POINT (12.48131 41.89790)   62137802    Europe   
-#         Vaduz   POINT (9.51667 47.13372)    8754413    Europe   
-#        Vienna  POINT (16.36469 48.20196)    8754413    Europe   
-#  name_right iso_a3  gdp_md_est  
-#       Italy    ITA   2221000.0  
-#       Italy    ITA   2221000.0  
-#       Italy    ITA   2221000.0  
-#     Austria    AUT    416600.0  
-#     Austria    AUT    416600.0  
+#  Vatican City  POINT (12.45339 41.90328)   62137802    Europe
+#    San Marino  POINT (12.44177 43.93610)   62137802    Europe
+#          Rome  POINT (12.48131 41.89790)   62137802    Europe
+#         Vaduz   POINT (9.51667 47.13372)    8754413    Europe
+#        Vienna  POINT (16.36469 48.20196)    8754413    Europe
+#  name_right iso_a3  gdp_md_est
+#       Italy    ITA   2221000.0
+#       Italy    ITA   2221000.0
+#       Italy    ITA   2221000.0
+#     Austria    AUT    416600.0
+#     Austria    AUT    416600.0
 ```
 
 
@@ -108,9 +108,9 @@ library(GSODR)
 ```r
 #Selecting the United States Boundaries, but omitting Alaska, Hawaii, and Puerto Rico for it to be scaled better
 
-usa <- us_boundaries(type="state", resolution = "low") %>% 
+usa <- us_boundaries(type="state", resolution = "low") %>%
   filter(!state_abbr %in% c("PR", "AK", "HI"))
-  
+
 #Ohio with high resolution
 oh <- USAboundaries::us_states(resolution = "high", states = "OH")
 
@@ -154,7 +154,7 @@ plot(or$geometry, add=T, col="gray50", border="black")
 plot(or_co$geometry, add=T, border="green", col=NA)
 plot(or_box, add=T, border="yellow", col=NA, lwd=2)
 ```
-![](Images/spatial_joins/join_image_1.png)
+![Oregon highlighted](Images/spatial_joins/join_image_1.png)
 
 **Ohio highlighted**
 
@@ -164,7 +164,7 @@ plot(oh$geometry, add=T, col="gray50", border="black")
 plot(oh_co$geometry, add=T, border="yellow", col=NA)
 plot(oh_box, add=T, border="blue", col=NA, lwd=2)
 ```
-![](Images/spatial_joins/join_image_2.png)
+![Ohio highlighted](Images/spatial_joins/join_image_2.png)
 
 **Michigan highlighted**
 
@@ -174,7 +174,7 @@ plot(mi$geometry, add=T, col="gray50", border="black")
 plot(mi_co$geometry, add=T, border="gray", col=NA)
 plot(mi_box, add=T, border="green", col=NA, lwd=2)
 ```
-![](Images/spatial_joins/join_image_3.png)
+![Michigan highlighted](Images/spatial_joins/join_image_3.png)
 
 **All three highlighted at once.**
 
@@ -190,7 +190,7 @@ plot(or$geometry, add=T, col="gray50", border="black")
 plot(or_co$geometry, add=T, border="green", col=NA)
 plot(or_box, add=T, border="yellow", col=NA, lwd=2)
 ```
-![](Images/spatial_joins/join_image_4.png)
+![Oregon, Ohio, and Michigan highlighted](Images/spatial_joins/join_image_4.png)
 
 **Now that there are polygons established and identified, we can add in some point data to join to our currently existing polygon data and do some analysis with it.  To do this we will use the Global Surface Summary of the Day (gsodr) package for climate data.**
 
@@ -200,8 +200,8 @@ plot(or_box, add=T, border="yellow", col=NA, lwd=2)
 load(system.file("extdata", "isd_history.rda", package = "GSODR"))
 
 #We want this to be spatial data
-isd_history <- as.data.frame(isd_history) %>% 
-  st_as_sf(coords=c("LON","LAT"), crs=4326, remove=FALSE)  
+isd_history <- as.data.frame(isd_history) %>%
+  st_as_sf(coords=c("LON","LAT"), crs=4326, remove=FALSE)
 
 #There are many observations, so we want to narrow it to our three candidate states
 isd_history_or <- dplyr::filter(isd_history, CTRY=="US", STATE=="OR")
@@ -223,7 +223,7 @@ plot(isd_history_or$geometry, add=T, pch=21, bg="#FDE725FF", cex=0.7, col="black
 title("Oregon GSOD Climate Stations")
 ```
 
-![](Images/spatial_joins/join_image_5.png)
+![Oregon](Images/spatial_joins/join_image_5.png)
 
 
 **Ohio**
@@ -235,7 +235,7 @@ plot(isd_history_oh$geometry, add=T, pch=21, bg="black", cex=0.7, col="black")
 title("Ohio GSOD Climate Stations")
 ```
 
-![](Images/spatial_joins/join_image_6.png)
+![Ohio](Images/spatial_joins/join_image_6.png)
 
 **Michigan**
 
@@ -245,7 +245,7 @@ plot(mi$geometry, col=alpha("green", 0.5), border="blue", lwd=1.5, add=TRUE)
 plot(isd_history_mi$geometry, add=T, pch=21, bg="white", cex=0.7, col="black")
 title("Michigan GSOD Climate Stations")
 ```
-![](Images/spatial_joins/join_image_7.png)
+![Michigan](Images/spatial_joins/join_image_7.png)
 
 # Now, for the magic:
 
@@ -259,7 +259,7 @@ plot(or_co_isd_poly$geometry, col=alpha("green",0.7))
 title("Oregon Counties with GSOD Climate Stations")
 ```
 
-![](Images/spatial_joins/join_image_8.png)
+![Oregon counties with climate data stations](Images/spatial_joins/join_image_8.png)
 
 **Now for all of our three candidate states:**
 
@@ -270,16 +270,16 @@ plot(cand_co_isd_poly$geometry, col=alpha("blue",0.7))
 title("Counties in Candidate States with GSOD Climate Stations")
 ```
 
-![](Images/spatial_joins/join_image_9.png)
+![Oregon, Ohio, and Michigan counties with climate data stations](Images/spatial_joins/join_image_9.png)
 
 
 **We see how we can filter out polygons from attributes or intersecting relationships with points, but what if we want to merge data from the points into the polygon or vice versa?**
 
 **We will use the data set for Oregon for the join example.**
 
-**Notice in our point dataset that there are no county names.  Only station/city names.**  
+**Notice in our point dataset that there are no county names.  Only station/city names.**
 
-![](Images/spatial_joins/join_image_10.png)
+![Filtered dataset](Images/spatial_joins/join_image_10.png)
 
 
 **Let us join the county polygons with the climate station points and add the county names to the station data.  We do this using the st_join function, which comes from the sf package.**
@@ -299,7 +299,7 @@ plot(or_co$geometry, border="gray", col=NA, add=T)
 **You now have successfully joined the county name data into your new point data set!  Those points in the plot now contain the county information for data analysis purposes.**
 
 
-![](Images/spatial_joins/join_image_11.png)
+![Joined data](Images/spatial_joins/join_image_11.png)
 
 
 
@@ -313,7 +313,7 @@ isd_or_co_pts <- st_join(isd_history, left = FALSE, or_co)
 
 **You add all attributes from the polygon into the point data frame!**
 
-![](Images/spatial_joins/join_image_12.png)
+![Annotated with all attributes](Images/spatial_joins/join_image_12.png)
 
 **Also note that st_join is the default function that joins any type of intersection.  You can be more precise our particular about your conditions with the other spatial joins:**
 

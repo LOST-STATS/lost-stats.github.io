@@ -15,7 +15,7 @@ For example, perhaps you have one data file per month, and want to compile them 
 ## Keep in Mind
 
 - Giving your files a consistent naming scheme will often make it easier to get this to work, as many approaches require you to give a template for the file names you want.
-- Before doing this you will probably find it useful to [Set a Working Directory](https://lost-stats.github.io/Other/set_a_working_directory.html)
+- Before doing this you will probably find it useful to [Set a Working Directory]({{ "/Other/set_a_working_directory.html" | relative_url }})
 
 # Implementations
 

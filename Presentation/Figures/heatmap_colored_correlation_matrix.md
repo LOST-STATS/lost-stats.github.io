@@ -17,7 +17,7 @@ A correlation matrix shows the correlation between different variables in a matr
 
 ## Also Consider
 
-- You may just want to [create a correlation matrix](https://lost-stats.github.io/Summary_Statistics/correlation_matrix.html)
+- You may just want to [create a correlation matrix]({{ "/Summary_Statistics/correlation_matrix.html" | relative_url }})
 
 # Implementations
 
@@ -82,7 +82,7 @@ sns.heatmap(
 # f.savefig('heatmap_colored_correlation_matrix_seaborn_python.png')
 ```
 
-![Heatmap Colored Correlation Matrix in Python using Seaborn](https://lost-stats.github.io/Presentation/Figures/Images/Heatmap-Colored-Correlation-Matrix/heatmap_colored_correlation_matrix_seaborn_python.png)
+![Heatmap Colored Correlation Matrix in Python using Seaborn]({{ "/Presentation/Figures/Images/Heatmap" | relative_url }}-Colored-Correlation-Matrix/heatmap_colored_correlation_matrix_seaborn_python.png)
 
 ## R
 
@@ -118,7 +118,7 @@ corrplot(cor(mtcars),
 
 This results in:
 
-![Heatmap Colored Correlation Matrix in R using Corrplot](https://lost-stats.github.io/Presentation/Figures/Images/Heatmap-Colored-Correlation-Matrix/heatmap_colored_correlation_matrix_corrplot_R.png)
+![Heatmap Colored Correlation Matrix in R using Corrplot]({{ "/Presentation/Figures/Images/Heatmap" | relative_url }}-Colored-Correlation-Matrix/heatmap_colored_correlation_matrix_corrplot_R.png)
 
 
 Now we will make the graph using **ggplot2**. We will also make a little use of **dplyr** and **tidyr**, and so we'll load them all as a part of the **tidyverse**. This example makes use of [this guide](http://www.sthda.com/english/wiki/ggplot2-quick-correlation-matrix-heatmap-r-software-and-data-visualization). 
@@ -195,7 +195,7 @@ ggplot(C_Long,
 ```
 This results in:
 
-![Heatmap Colored Correlation Matrix in R using ggplot2](https://lost-stats.github.io/Presentation/Figures/Images/Heatmap-Colored-Correlation-Matrix/heatmap_colored_correlation_matrix_ggplot2_r.png)
+![Heatmap Colored Correlation Matrix in R using ggplot2]({{ "/Presentation/Figures/Images/Heatmap" | relative_url }}-Colored-Correlation-Matrix/heatmap_colored_correlation_matrix_ggplot2_r.png)
 
 ## SAS
 
@@ -222,5 +222,5 @@ corrtable price-length, half flag1(r(rho) > 0) howflag1(plotregion(color(blue * 
 
 This results in:
 
-![Heatmap Colored Correlation Matrix in Stata](https://lost-stats.github.io/Presentation/Figures/Images/Heatmap-Colored-Correlation-Matrix/heatmap_colored_correlation_matrix_stata.png)
+![Heatmap Colored Correlation Matrix in Stata]({{ "/Presentation/Figures/Images/Heatmap" | relative_url }}-Colored-Correlation-Matrix/heatmap_colored_correlation_matrix_stata.png)
 

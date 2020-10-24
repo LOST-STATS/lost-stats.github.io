@@ -13,16 +13,16 @@ Many regression models assume homoskedasticity (i.e. constant variance of the er
 
 ## Keep in Mind
 
-- Robust standard errors are a common way of dealing with heteroskedasticity. However, they make certain assumptions about the form of that heteroskedasticity which may not be true. You may instead want to use [GMM](https://lost-stats.github.io/Model_Estimation/generalized_method_of_moments.html) instead.
-- For nonlinear models like [Logit](https://lost-stats.github.io/Model_Estimation/logit_model.html), heteroskedasticity can bias estimates in addition to messing up standard errors. Simply using a robust covariance matrix will not eliminate this bias. Check the documentation of your nonlinear regression command to see whether its robust-error options also adjust for this bias. If not, consider other ways of dealing with heteroskedasticity besides robust errors.
+- Robust standard errors are a common way of dealing with heteroskedasticity. However, they make certain assumptions about the form of that heteroskedasticity which may not be true. You may instead want to use [GMM]({{ "/Model_Estimation/generalized_method_of_moments.html" | relative_url }}) instead.
+- For nonlinear models like [Logit]({{ "/Model_Estimation/logit_model.html" | relative_url }}), heteroskedasticity can bias estimates in addition to messing up standard errors. Simply using a robust covariance matrix will not eliminate this bias. Check the documentation of your nonlinear regression command to see whether its robust-error options also adjust for this bias. If not, consider other ways of dealing with heteroskedasticity besides robust errors.
 - There are multiple kinds of robust standard errors, for example HC1, HC2, and HC3. Check in to the kind available to you in the commands you're using.
 
 ## Also Consider
 
-- [Generalized Method of Moments](https://lost-stats.github.io/Model_Estimation/generalized_method_of_moments.html)
-- [Cluster-Robust Standard Errors](https://lost-stats.github.io/Model_Estimation/cluster_robust_standard_errors.html)
-- [Bootstrap Standard Errors](https://lost-stats.github.io/Model_Estimation/bootstrap_standard_errors.html)
-- [Jackknife Standard Errors](https://lost-stats.github.io/Model_Estimation/jackknife_standard_errors.html)
+- [Generalized Method of Moments]({{ "/Model_Estimation/generalized_method_of_moments.html" | relative_url }})
+- [Cluster-Robust Standard Errors]({{ "/Model_Estimation/cluster_robust_standard_errors.html" | relative_url }})
+- [Bootstrap Standard Errors]({{ "/Model_Estimation/bootstrap_standard_errors.html" | relative_url }})
+- [Jackknife Standard Errors]({{ "/Model_Estimation/jackknife_standard_errors.html" | relative_url }})
 
 # Implementations
 

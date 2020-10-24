@@ -30,9 +30,9 @@ In long format, there is one row per individual per time period:
 | 2          | H                   | 1991 | 10          |
 | 2          | H                   | 1992 | 14          |
 
-This format makes it easy to run models like [fixed effects](https://lost-stats.github.io/Model_Estimation/fixed_effects.html). 
+This format makes it easy to run models like [fixed effects]({{ "/Model_Estimation/fixed_effects.html" | relative_url }}).
 
-Reshaping is the method of converting wide-format data to long and [vice versa](https://lost-stats.github.io/Data_Manipulation/reshape_panel_data_from_long_to_wide.html)..
+Reshaping is the method of converting wide-format data to long and [vice versa]({{ "/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" | relative_url }})..
 
 ## Keep in Mind
 
@@ -41,8 +41,8 @@ Reshaping is the method of converting wide-format data to long and [vice versa](
 
 ## Also Consider
 
-- To go in the other direction, [reshape from long to wide](https://lost-stats.github.io/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html).
-- [Determine the observation level of a data set](https://lost-stats.github.io/Data_Manipulation/determine_the_observation_level_of_a_data_set.html).
+- To go in the other direction, [reshape from long to wide]({{ "/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" | relative_url }}).
+- [Determine the observation level of a data set]({{ "/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" | relative_url }}).
 
 # Implementations
 
@@ -160,52 +160,52 @@ The next steps involve thinking:
 * So we have
 reshape long bp_ i(patient) j(time) s
 * Where the s indicates that our time variable is a string ("before", "after")
-* Note that simply typing 
+* Note that simply typing
 reshape
 * will show the syntax for the function
 ```
 
-With especially large datasets, the [**Gtools**](https://gtools.readthedocs.io/en/latest/index.html) package provides a much faster version of reshape known as greshape. The syntax can function exactly the same, though they provide alternative syntax that you may find more intuitive. 
+With especially large datasets, the [**Gtools**](https://gtools.readthedocs.io/en/latest/index.html) package provides a much faster version of reshape known as greshape. The syntax can function exactly the same, though they provide alternative syntax that you may find more intuitive.
 
 ```stata
 * If necessary, install gtools
 * ssc install gtools
 
-* First, we will create a toy dataset that is very large to demonstrate the speed gains 
+* First, we will create a toy dataset that is very large to demonstrate the speed gains
 * Clear memory
-clear all 
+clear all
 * Turn on return message to see command run time
-set rmsg on 
+set rmsg on
 * Set data size to 15 million observations
-set obs 15000000 
-* Create an ID variable 
-generate person_id = _n 
+set obs 15000000
+* Create an ID variable
+generate person_id = _n
 
-* Create 4 separate fake test scores per student 
+* Create 4 separate fake test scores per student
 generate test_score1 = round(rnormal(180, 30))
 generate test_score2 = round(rnormal(180, 30))
 generate test_score3 = round(rnormal(180, 30))
 generate test_score4 = round(rnormal(180, 30))
 
-* Demonstrate the comparative speed of these two reshape approaches 
+* Demonstrate the comparative speed of these two reshape approaches
 * preserve and restore aren't a part of the reshape command;
 * they just store the current state of the data and then restore it,
 * so we can try our different reshape commands on the same data.
-	
+
 * The traditional reshape command
-preserve 
-reshape long test_score, i(person_id) j(test_number) 
-restore 
-	
-*The Gtools reshape command  
 preserve
-greshape long test_score, i(person_id) j(test_number) 
-restore 
-	
+reshape long test_score, i(person_id) j(test_number)
+restore
+
+*The Gtools reshape command
+preserve
+greshape long test_score, i(person_id) j(test_number)
+restore
+
 *The Gtools reshape command, alternative syntax
 preserve
 greshape long test_score, by(person_id) keys(test_number)
-restore 
+restore
 ```
 
-Note: there is much more guidance to the usage of greshape on the [**Gtools** reshape page](https://gtools.readthedocs.io/en/latest/usage/greshape/index.html). 
+Note: there is much more guidance to the usage of greshape on the [**Gtools** reshape page](https://gtools.readthedocs.io/en/latest/usage/greshape/index.html).

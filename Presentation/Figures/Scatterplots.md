@@ -20,10 +20,10 @@ Scatterplots are a useful tool for visualizing data and the possible relationshi
 
 ## Also Consider
 * Scatterplots are not always the best presentation method for data. 
-  * If the independent variable that is being presented is categorical or discrete, a bar graph might be a better presentation method. A guide to implementing bar graphs can be found [here](https://lost-stats.github.io/Presentation/Figures/bar_graphs.html). 
-  * If the goal is to represent distributions of continuous variables, a [histogram](https://lost-stats.github.io/Presentation/Figures/histograms.html) would be a good option for presentation.
+  * If the independent variable that is being presented is categorical or discrete, a bar graph might be a better presentation method. A guide to implementing bar graphs can be found [here]({{ "/Presentation/Figures/bar_graphs.html" | relative_url }}). 
+  * If the goal is to represent distributions of continuous variables, a [histogram]({{ "/Presentation/Figures/histograms.html" | relative_url }}) would be a good option for presentation.
 
-* Additional techniques for formatting scatterplots can by found [here](https://lost-stats.github.io/Presentation/Figures/Styling_Scatterplots.html).
+* Additional techniques for formatting scatterplots can by found [here]({{ "/Presentation/Figures/Styling_Scatterplots.html" | relative_url }}).
 
 
 # Implementations
@@ -128,4 +128,4 @@ ggplot(data = mtcars, aes(x =wt, y = mpg)) +
 ```
 ![Scatterplot with Labels Points](Images/Scatterplots/scatter_labels.png)
 
-Congrats!!! You're well on your way to becoming a scatterplot master! Don't forget to check out the LOST page on [styling scatterplots](https://lost-stats.github.io/Presentation/Figures/Styling_Scatterplots.html) if you would like to learn more.
+Congrats!!! You're well on your way to becoming a scatterplot master! Don't forget to check out the LOST page on [styling scatterplots]({{ "/Presentation/Figures/Styling_Scatterplots.html" | relative_url }}) if you would like to learn more.

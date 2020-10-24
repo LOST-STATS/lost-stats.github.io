@@ -17,7 +17,7 @@ A density plot visualises the distribution of data over a continuous interval (o
 
 ## Also Consider
 
-= You might also want to know how to make a histogram or a line graph, click [Histogram](https://lost-stats.github.io/Presentation/Figures/histograms.html) or [Line graph](https://lost-stats.github.io/Presentation/Figures/line_graphs.html) for more information.
+= You might also want to know how to make a histogram or a line graph, click [Histogram]({{ "/Presentation/Figures/histograms.html" | relative_url }}) or [Line graph]({{ "/Presentation/Figures/line_graphs.html" | relative_url }}) for more information.
 
 
 # Implementations

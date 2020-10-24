@@ -33,7 +33,7 @@ The goal here is to create regions with as of classifications as possible, as su
 
 
 ## Also Consider
-* Decision trees are the basis for all tree-based methodologies. More robust methods, such as [Random Forests](https://lost-stats.github.io/Machine_Learning/random_forest.html), are a collection of decision trees that aggregate their decisions into a single prediction. These forests are often more useful for predictive modeling.
+* Decision trees are the basis for all tree-based methodologies. More robust methods, such as [Random Forests]({{ "/Machine_Learning/random_forest.html" | relative_url }}), are a collection of decision trees that aggregate their decisions into a single prediction. These forests are often more useful for predictive modeling.
 
 # Implementations
 

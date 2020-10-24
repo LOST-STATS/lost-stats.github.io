@@ -23,7 +23,7 @@ For this reason, statistical softwares such as R and Stata will often accept eit
 
 ## Histogram vs. bar graph
 
-Because histograms represent data frequency using rectangular bars, they might be mistaken for [bar graphs](https://lost-stats.github.io/Presentation/Figures/bar_graphs.html) at first glance. Whereas bar graphs (sometimes called bar charts) plot values for *categorical* data, histograms represent the distribution of continuous variables such as income, height, weight, etc.
+Because histograms represent data frequency using rectangular bars, they might be mistaken for [bar graphs]({{ "/Presentation/Figures/bar_graphs.html" | relative_url }}) at first glance. Whereas bar graphs (sometimes called bar charts) plot values for *categorical* data, histograms represent the distribution of continuous variables such as income, height, weight, etc.
 
 # Implementations
 

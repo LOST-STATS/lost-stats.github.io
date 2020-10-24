@@ -18,7 +18,7 @@ Because we expect such identifiers to be unique to an individual (unlike many na
 
 # Also Consider
 
-- [Determine the observation level of a data set](https://lost-stats.github.io/Data_Manipulation/determine_the_observation_level_of_a_data_set.html).
+- [Determine the observation level of a data set]({{ "/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" | relative_url }}).
 
 # Implementations
 
@@ -64,7 +64,7 @@ Next we want to join together `GDP2018` and `DollarValue2018` so we can convert 
 GDPandExchange <- left_join(GDP2018, DollarValue2018)
 ```
 
-The `join` function will automatically detect that the `Currency` variable is shared in both data sets and use it to join them. Generally, you will want to be sure that the set of variables you are joining by uniquely identifies observations in at least one of the data sets you are joining. If you're not sure whether that's true, see [Determine the observation level of a data set](https://lost-stats.github.io/Data_Manipulation/determine_the_observation_level_of_a_data_set.html), or run `join` through the `safe_join` from the **pmdplyr** package.
+The `join` function will automatically detect that the `Currency` variable is shared in both data sets and use it to join them. Generally, you will want to be sure that the set of variables you are joining by uniquely identifies observations in at least one of the data sets you are joining. If you're not sure whether that's true, see [Determine the observation level of a data set]({{ "/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" | relative_url }}), or run `join` through the `safe_join` from the **pmdplyr** package.
 
 ## Stata 
 

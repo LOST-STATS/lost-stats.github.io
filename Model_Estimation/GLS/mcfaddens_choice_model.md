@@ -11,7 +11,7 @@ nav_order: 1
 
 Discrete choice models are a regression method used to predict a categorical dependent variable with more than two categories. For example, a discrete choice model might be used to predict whether someone is going to take a train, car, or bus to work. 
 
-McFadden's Choice Model is a discrete choice model that uses [conditional logit](https://lost-stats.github.io/Model_Estimation/conditional_logit.html), in which the variables that predict choice can vary either at the individual level (perhaps tall people are more likely to take the bus), or at the alternative level (perhaps the train is cheaper than the bus).
+McFadden's Choice Model is a discrete choice model that uses [conditional logit]({{ "/Model_Estimation/conditional_logit.html" | relative_url }}), in which the variables that predict choice can vary either at the individual level (perhaps tall people are more likely to take the bus), or at the alternative level (perhaps the train is cheaper than the bus).
 
 For more information, see [Wikipedia: Discrete Choice](https://en.wikipedia.org/wiki/Discrete_choice)
 
@@ -42,7 +42,7 @@ This might be referred to as "long" choice data. "Wide" choice data is also comm
 
 ## Also Consider
 
-- In order to relax the independence of irrelevant alternatives assumption and/or more closely model individual preferences, consider the [mixed logit](https://lost-stats.github.io/Model_Estimation/mixed_logit.html), [nested logit](https://lost-stats.github.io/Model_Estimation/nested_logit.html) or [hierarchical Bayes conditional logit](https://lost-stats.github.io/Model_Estimation/hierarchical_bayes_conditional_logit.html) models.
+- In order to relax the independence of irrelevant alternatives assumption and/or more closely model individual preferences, consider the [mixed logit]({{ "/Model_Estimation/mixed_logit.html" | relative_url }}), [nested logit]({{ "/Model_Estimation/nested_logit.html" | relative_url }}) or [hierarchical Bayes conditional logit]({{ "/Model_Estimation/hierarchical_bayes_conditional_logit.html" | relative_url }}) models.
 
 # Implementations
 

@@ -28,14 +28,14 @@ For additional information, see [Wikipedia: Autoregressive conditional heteroske
 
 ## Keep in Mind
 
-- Data should be properly formatted for estimation as a time-series. See [creating a time series data set](https://lost-stats.github.io/Time_Series/creating_time_series_dataset.html). If not, you may fail to execute  or receive erroneous output.
+- Data should be properly formatted for estimation as a time-series. See [creating a time series data set]({{ "/Time_Series/creating_time_series_dataset.html" | relative_url }}). If not, you may fail to execute  or receive erroneous output.
 - ARCH can be used to model time-varying conditional variance.
 
 ## Also Consider
 
 - ARCH models can be univariate (scalar) or multivariate (vector). 
 - ARCH models are commonly employed in modeling financial time series that exhibit time-varying volatility and volatility clustering, i.e. periods of swings interspersed with periods of relative calm.
-- If an autoregressive moving average (ARMA) model is assumed for the error variance, the model is a generalized autoregressive conditional heteroskedasticity (GARCH) model. For more information on GARCH models, see [Wikipedia: GARCH](https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity#GARCH). For information about estimating an GARCH models, see [LOST: GARCH models](https://lost-stats.github.io/Time_Series/GARCH-models.html).
+- If an autoregressive moving average (ARMA) model is assumed for the error variance, the model is a generalized autoregressive conditional heteroskedasticity (GARCH) model. For more information on GARCH models, see [Wikipedia: GARCH](https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity#GARCH). For information about estimating an GARCH models, see [LOST: GARCH models]({{ "/Time_Series/GARCH" | relative_url }}-models.html).
 
 # Implementations
 

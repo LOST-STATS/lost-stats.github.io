@@ -19,7 +19,7 @@ When plotting relationship among variables of interest, one of the useful ways t
 
 ## Also Consider
 
-- It is important to know the basic plotting techniques such as [Bar Graphs](https://lost-stats.github.io/Presentation/Figures/bar_graphs.html), [Line Graphs](https://lost-stats.github.io/Presentation/Figures/line_graph_with_labels_at_the_beginning_or_end.html) and [Scatterplot](https://lost-stats.github.io/Presentation/Figures/Figures/scatterplot_by_group_on_shared_axes.html) before learning about faceted graphs as the facets are an addition to the underlying plot such as bar graph, line graph, scatterplot etc.
+- It is important to know the basic plotting techniques such as [Bar Graphs]({{ "/Presentation/Figures/bar_graphs.html" | relative_url }}), [Line Graphs]({{ "/Presentation/Figures/line_graph_with_labels_at_the_beginning_or_end.html" | relative_url }}) and [Scatterplot]({{ "/Presentation/Figures/Figures/scatterplot_by_group_on_shared_axes.html" | relative_url }}) before learning about faceted graphs as the facets are an addition to the underlying plot such as bar graph, line graph, scatterplot etc.
 
 
 # Implementations
