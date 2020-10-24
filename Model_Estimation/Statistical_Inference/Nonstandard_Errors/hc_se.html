@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"@type":"WebPage","headline":"Heteroskedasticity-consistent standard errors","url":"/Model_Estimation/Statistical_Inference/Nonstandard_Errors/hc_se.html","@context":"https://schema.org"}</script>
+{"@type":"WebPage","url":"/Model_Estimation/Statistical_Inference/Nonstandard_Errors/hc_se.html","headline":"Heteroskedasticity-consistent standard errors","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 </head>
 <body>
@@ -164,18 +164,18 @@
           <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
       </h2>
 <ul>
-  <li>Robust standard errors are a common way of dealing with heteroskedasticity. However, they make certain assumptions about the form of that heteroskedasticity which may not be true. You may instead want to use <a href="https://lost-stats.github.io/Model_Estimation/generalized_method_of_moments.html">GMM</a> instead.</li>
-  <li>For nonlinear models like <a href="https://lost-stats.github.io/Model_Estimation/logit_model.html">Logit</a>, heteroskedasticity can bias estimates in addition to messing up standard errors. Simply using a robust covariance matrix will not eliminate this bias. Check the documentation of your nonlinear regression command to see whether its robust-error options also adjust for this bias. If not, consider other ways of dealing with heteroskedasticity besides robust errors.</li>
+  <li>Robust standard errors are a common way of dealing with heteroskedasticity. However, they make certain assumptions about the form of that heteroskedasticity which may not be true. You may instead want to use <a href="/Model_Estimation/generalized_method_of_moments.html">GMM</a> instead.</li>
+  <li>For nonlinear models like <a href="/Model_Estimation/logit_model.html">Logit</a>, heteroskedasticity can bias estimates in addition to messing up standard errors. Simply using a robust covariance matrix will not eliminate this bias. Check the documentation of your nonlinear regression command to see whether its robust-error options also adjust for this bias. If not, consider other ways of dealing with heteroskedasticity besides robust errors.</li>
   <li>There are multiple kinds of robust standard errors, for example HC1, HC2, and HC3. Check in to the kind available to you in the commands you’re using.</li>
 </ul>
       <h2 id="also-consider">
           <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
       </h2>
 <ul>
-  <li><a href="https://lost-stats.github.io/Model_Estimation/generalized_method_of_moments.html">Generalized Method of Moments</a></li>
-  <li><a href="https://lost-stats.github.io/Model_Estimation/cluster_robust_standard_errors.html">Cluster-Robust Standard Errors</a></li>
-  <li><a href="https://lost-stats.github.io/Model_Estimation/bootstrap_standard_errors.html">Bootstrap Standard Errors</a></li>
-  <li><a href="https://lost-stats.github.io/Model_Estimation/jackknife_standard_errors.html">Jackknife Standard Errors</a></li>
+  <li><a href="/Model_Estimation/generalized_method_of_moments.html">Generalized Method of Moments</a></li>
+  <li><a href="/Model_Estimation/cluster_robust_standard_errors.html">Cluster-Robust Standard Errors</a></li>
+  <li><a href="/Model_Estimation/bootstrap_standard_errors.html">Bootstrap Standard Errors</a></li>
+  <li><a href="/Model_Estimation/jackknife_standard_errors.html">Jackknife Standard Errors</a></li>
 </ul>
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations

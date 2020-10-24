@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"@type":"WebPage","headline":"Styling Scatterplots","url":"/Presentation/Figures/Styling_Scatterplots.html","@context":"https://schema.org"}</script>
+{"@type":"WebPage","url":"/Presentation/Figures/Styling_Scatterplots.html","headline":"Styling Scatterplots","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
@@ -177,7 +177,7 @@
           <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
       </h2>
 <ul>
-  <li>If one of your variables is discrete, then instead of scatterplots, you may want to check how to make bar graphs <a href="https://lost-stats.github.io/Presentation/Figures/bar_graphs.html">here</a>.</li>
+  <li>If one of your variables is discrete, then instead of scatterplots, you may want to check how to make bar graphs <a href="/Presentation/Figures/bar_graphs.html">here</a>.</li>
 </ul>
 <p>Specifically in R:</p>
 <ul>
@@ -208,7 +208,7 @@ Using the function <code class="language-plaintext highlighter-rouge">p_load()</
   <li>Step2: tell which variable to show on x and y axis</li>
   <li>Step3: add a <code class="language-plaintext highlighter-rouge">geom_point()</code> in order to show the points</li>
 </ul>
-<p>If you have questions about how to use <code class="language-plaintext highlighter-rouge">ggplot</code> and <code class="language-plaintext highlighter-rouge">aes</code>, check <a href="https://lost-stats.github.io/Presentation/Figures/bar_graphs.html">Here</a> for more help.</p>
+<p>If you have questions about how to use <code class="language-plaintext highlighter-rouge">ggplot</code> and <code class="language-plaintext highlighter-rouge">aes</code>, check <a href="/Presentation/Figures/bar_graphs.html">Here</a> for more help.</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="w">
   </span><span class="c1">## Put Sepal.Length on the x-axis, Sepal.Width on the y-axis</span><span class="w">
   </span><span class="n">x</span><span class="o">=</span><span class="n">Sepal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">Sepal.Width</span><span class="p">))</span><span class="o">+</span><span class="w">

@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"@type":"WebPage","headline":"Horizontal Combination (Deterministic)","url":"/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html","@context":"https://schema.org"}</script>
+{"@type":"WebPage","url":"/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html","headline":"Horizontal Combination (Deterministic)","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 </head>
 <body>
@@ -171,7 +171,7 @@
           <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
       </h1>
 <ul>
-  <li><a href="https://lost-stats.github.io/Data_Manipulation/determine_the_observation_level_of_a_data_set.html">Determine the observation level of a data set</a>.</li>
+  <li><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html">Determine the observation level of a data set</a>.</li>
 </ul>
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
@@ -211,7 +211,7 @@
 <p>Next we want to join together <code class="language-plaintext highlighter-rouge">GDP2018</code> and <code class="language-plaintext highlighter-rouge">DollarValue2018</code> so we can convert all the GDPs to dollars and compare them. There are three kinds of observations we could get - observations in <code class="language-plaintext highlighter-rouge">GDP2018</code> but not <code class="language-plaintext highlighter-rouge">DollarValue2018</code>, observations in <code class="language-plaintext highlighter-rouge">DollarValue2018</code> but not <code class="language-plaintext highlighter-rouge">GDP2018</code>, and observations in both. Use <code class="language-plaintext highlighter-rouge">help(join)</code> to pick the variant of <code class="language-plaintext highlighter-rouge">join</code> that keeps the observations we want. The “Yen” observation won’t have a match, and we don’t need to keep it. So let’s do a <code class="language-plaintext highlighter-rouge">left_join</code> and list <code class="language-plaintext highlighter-rouge">GDP2018</code> first, so it keeps matched observations, plus any observations only in <code class="language-plaintext highlighter-rouge">GDP2018</code>.</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">GDPandExchange</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">left_join</span><span class="p">(</span><span class="n">GDP2018</span><span class="p">,</span><span class="w"> </span><span class="n">DollarValue2018</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
-<p>The <code class="language-plaintext highlighter-rouge">join</code> function will automatically detect that the <code class="language-plaintext highlighter-rouge">Currency</code> variable is shared in both data sets and use it to join them. Generally, you will want to be sure that the set of variables you are joining by uniquely identifies observations in at least one of the data sets you are joining. If you’re not sure whether that’s true, see <a href="https://lost-stats.github.io/Data_Manipulation/determine_the_observation_level_of_a_data_set.html">Determine the observation level of a data set</a>, or run <code class="language-plaintext highlighter-rouge">join</code> through the <code class="language-plaintext highlighter-rouge">safe_join</code> from the <strong>pmdplyr</strong> package.</p>
+<p>The <code class="language-plaintext highlighter-rouge">join</code> function will automatically detect that the <code class="language-plaintext highlighter-rouge">Currency</code> variable is shared in both data sets and use it to join them. Generally, you will want to be sure that the set of variables you are joining by uniquely identifies observations in at least one of the data sets you are joining. If you’re not sure whether that’s true, see <a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html">Determine the observation level of a data set</a>, or run <code class="language-plaintext highlighter-rouge">join</code> through the <code class="language-plaintext highlighter-rouge">safe_join</code> from the <strong>pmdplyr</strong> package.</p>
       <h2 id="stata">
           <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
       </h2>

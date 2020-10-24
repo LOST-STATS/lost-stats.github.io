@@ -19,10 +19,3 @@ If you'd like to check for broken links, you can run
 bundle exec jekyll build
 bundle exec htmlproofer --assume-extension --allow-hash-href ./_site
 ```
-
-Note that our deployment process uses node, mostly for access to gulp. If you ever need to manually deploy, you'll need to run
-
-```bash
-npm install
-npm run gulp deploy
-```

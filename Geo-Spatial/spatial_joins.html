@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"@type":"WebPage","headline":"Spatial Joins","url":"/Geo-Spatial/spatial_joins.html","@context":"https://schema.org"}</script>
+{"@type":"WebPage","url":"/Geo-Spatial/spatial_joins.html","headline":"Spatial Joins","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
@@ -226,17 +226,17 @@
 
 <span class="n">cities_with_country</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
 <span class="c1">#  name_left                   geometry    pop_est     continent  \
-#  Vatican City  POINT (12.45339 41.90328)   62137802    Europe   
-#    San Marino  POINT (12.44177 43.93610)   62137802    Europe   
-#          Rome  POINT (12.48131 41.89790)   62137802    Europe   
-#         Vaduz   POINT (9.51667 47.13372)    8754413    Europe   
-#        Vienna  POINT (16.36469 48.20196)    8754413    Europe   
-#  name_right iso_a3  gdp_md_est  
-#       Italy    ITA   2221000.0  
-#       Italy    ITA   2221000.0  
-#       Italy    ITA   2221000.0  
-#     Austria    AUT    416600.0  
-#     Austria    AUT    416600.0  
+#  Vatican City  POINT (12.45339 41.90328)   62137802    Europe
+#    San Marino  POINT (12.44177 43.93610)   62137802    Europe
+#          Rome  POINT (12.48131 41.89790)   62137802    Europe
+#         Vaduz   POINT (9.51667 47.13372)    8754413    Europe
+#        Vienna  POINT (16.36469 48.20196)    8754413    Europe
+#  name_right iso_a3  gdp_md_est
+#       Italy    ITA   2221000.0
+#       Italy    ITA   2221000.0
+#       Italy    ITA   2221000.0
+#     Austria    AUT    416600.0
+#     Austria    AUT    416600.0
 </span></code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
@@ -261,9 +261,9 @@
 </ul>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Selecting the United States Boundaries, but omitting Alaska, Hawaii, and Puerto Rico for it to be scaled better</span><span class="w">
 
-</span><span class="n">usa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">us_boundaries</span><span class="p">(</span><span class="n">type</span><span class="o">=</span><span class="s2">"state"</span><span class="p">,</span><span class="w"> </span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"low"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+</span><span class="n">usa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">us_boundaries</span><span class="p">(</span><span class="n">type</span><span class="o">=</span><span class="s2">"state"</span><span class="p">,</span><span class="w"> </span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"low"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="n">filter</span><span class="p">(</span><span class="o">!</span><span class="n">state_abbr</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"PR"</span><span class="p">,</span><span class="w"> </span><span class="s2">"AK"</span><span class="p">,</span><span class="w"> </span><span class="s2">"HI"</span><span class="p">))</span><span class="w">
-  
+
 </span><span class="c1">#Ohio with high resolution</span><span class="w">
 </span><span class="n">oh</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">USAboundaries</span><span class="o">::</span><span class="n">us_states</span><span class="p">(</span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"high"</span><span class="p">,</span><span class="w"> </span><span class="n">states</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"OH"</span><span class="p">)</span><span class="w">
 
@@ -303,21 +303,21 @@
 </span><span class="n">plot</span><span class="p">(</span><span class="n">or_co</span><span class="o">$</span><span class="n">geometry</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="o">=</span><span class="nb">T</span><span class="p">,</span><span class="w"> </span><span class="n">border</span><span class="o">=</span><span class="s2">"green"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="kc">NA</span><span class="p">)</span><span class="w">
 </span><span class="n">plot</span><span class="p">(</span><span class="n">or_box</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="o">=</span><span class="nb">T</span><span class="p">,</span><span class="w"> </span><span class="n">border</span><span class="o">=</span><span class="s2">"yellow"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
-<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_1.png" alt="" /></p>
+<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_1.png" alt="Oregon highlighted" /></p>
 <p><strong>Ohio highlighted</strong></p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">usa</span><span class="o">$</span><span class="n">geometry</span><span class="p">)</span><span class="w">
 </span><span class="n">plot</span><span class="p">(</span><span class="n">oh</span><span class="o">$</span><span class="n">geometry</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="o">=</span><span class="nb">T</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="s2">"gray50"</span><span class="p">,</span><span class="w"> </span><span class="n">border</span><span class="o">=</span><span class="s2">"black"</span><span class="p">)</span><span class="w">
 </span><span class="n">plot</span><span class="p">(</span><span class="n">oh_co</span><span class="o">$</span><span class="n">geometry</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="o">=</span><span class="nb">T</span><span class="p">,</span><span class="w"> </span><span class="n">border</span><span class="o">=</span><span class="s2">"yellow"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="kc">NA</span><span class="p">)</span><span class="w">
 </span><span class="n">plot</span><span class="p">(</span><span class="n">oh_box</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="o">=</span><span class="nb">T</span><span class="p">,</span><span class="w"> </span><span class="n">border</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
-<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_2.png" alt="" /></p>
+<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_2.png" alt="Ohio highlighted" /></p>
 <p><strong>Michigan highlighted</strong></p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">usa</span><span class="o">$</span><span class="n">geometry</span><span class="p">)</span><span class="w">
 </span><span class="n">plot</span><span class="p">(</span><span class="n">mi</span><span class="o">$</span><span class="n">geometry</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="o">=</span><span class="nb">T</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="s2">"gray50"</span><span class="p">,</span><span class="w"> </span><span class="n">border</span><span class="o">=</span><span class="s2">"black"</span><span class="p">)</span><span class="w">
 </span><span class="n">plot</span><span class="p">(</span><span class="n">mi_co</span><span class="o">$</span><span class="n">geometry</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="o">=</span><span class="nb">T</span><span class="p">,</span><span class="w"> </span><span class="n">border</span><span class="o">=</span><span class="s2">"gray"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="kc">NA</span><span class="p">)</span><span class="w">
 </span><span class="n">plot</span><span class="p">(</span><span class="n">mi_box</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="o">=</span><span class="nb">T</span><span class="p">,</span><span class="w"> </span><span class="n">border</span><span class="o">=</span><span class="s2">"green"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
-<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_3.png" alt="" /></p>
+<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_3.png" alt="Michigan highlighted" /></p>
 <p><strong>All three highlighted at once.</strong></p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">usa</span><span class="o">$</span><span class="n">geometry</span><span class="p">)</span><span class="w">
 </span><span class="n">plot</span><span class="p">(</span><span class="n">mi</span><span class="o">$</span><span class="n">geometry</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="o">=</span><span class="nb">T</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="s2">"gray50"</span><span class="p">,</span><span class="w"> </span><span class="n">border</span><span class="o">=</span><span class="s2">"black"</span><span class="p">)</span><span class="w">
@@ -330,14 +330,14 @@
 </span><span class="n">plot</span><span class="p">(</span><span class="n">or_co</span><span class="o">$</span><span class="n">geometry</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="o">=</span><span class="nb">T</span><span class="p">,</span><span class="w"> </span><span class="n">border</span><span class="o">=</span><span class="s2">"green"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="kc">NA</span><span class="p">)</span><span class="w">
 </span><span class="n">plot</span><span class="p">(</span><span class="n">or_box</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="o">=</span><span class="nb">T</span><span class="p">,</span><span class="w"> </span><span class="n">border</span><span class="o">=</span><span class="s2">"yellow"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
-<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_4.png" alt="" /></p>
+<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_4.png" alt="Oregon, Ohio, and Michigan highlighted" /></p>
 <p><strong>Now that there are polygons established and identified, we can add in some point data to join to our currently existing polygon data and do some analysis with it.  To do this we will use the Global Surface Summary of the Day (gsodr) package for climate data.</strong></p>
 <p><strong>We will take the metadata from the GSODR package via ‘isd_history’, make it spatial data, then filter out only those observations in our candidate states of Oregon, Ohio, and Michigan.</strong></p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">load</span><span class="p">(</span><span class="n">system.file</span><span class="p">(</span><span class="s2">"extdata"</span><span class="p">,</span><span class="w"> </span><span class="s2">"isd_history.rda"</span><span class="p">,</span><span class="w"> </span><span class="n">package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"GSODR"</span><span class="p">))</span><span class="w">
 
 </span><span class="c1">#We want this to be spatial data</span><span class="w">
-</span><span class="n">isd_history</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">isd_history</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
-  </span><span class="n">st_as_sf</span><span class="p">(</span><span class="n">coords</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s2">"LON"</span><span class="p">,</span><span class="s2">"LAT"</span><span class="p">),</span><span class="w"> </span><span class="n">crs</span><span class="o">=</span><span class="m">4326</span><span class="p">,</span><span class="w"> </span><span class="n">remove</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w">  
+</span><span class="n">isd_history</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">isd_history</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">st_as_sf</span><span class="p">(</span><span class="n">coords</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s2">"LON"</span><span class="p">,</span><span class="s2">"LAT"</span><span class="p">),</span><span class="w"> </span><span class="n">crs</span><span class="o">=</span><span class="m">4326</span><span class="p">,</span><span class="w"> </span><span class="n">remove</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
 
 </span><span class="c1">#There are many observations, so we want to narrow it to our three candidate states</span><span class="w">
 </span><span class="n">isd_history_or</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dplyr</span><span class="o">::</span><span class="n">filter</span><span class="p">(</span><span class="n">isd_history</span><span class="p">,</span><span class="w"> </span><span class="n">CTRY</span><span class="o">==</span><span class="s2">"US"</span><span class="p">,</span><span class="w"> </span><span class="n">STATE</span><span class="o">==</span><span class="s2">"OR"</span><span class="p">)</span><span class="w">
@@ -353,21 +353,21 @@
 </span><span class="n">plot</span><span class="p">(</span><span class="n">isd_history_or</span><span class="o">$</span><span class="n">geometry</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="o">=</span><span class="nb">T</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="o">=</span><span class="m">21</span><span class="p">,</span><span class="w"> </span><span class="n">bg</span><span class="o">=</span><span class="s2">"#FDE725FF"</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="o">=</span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="s2">"black"</span><span class="p">)</span><span class="w">
 </span><span class="n">title</span><span class="p">(</span><span class="s2">"Oregon GSOD Climate Stations"</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
-<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_5.png" alt="" /></p>
+<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_5.png" alt="Oregon" /></p>
 <p><strong>Ohio</strong></p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">isd_history_oh</span><span class="o">$</span><span class="n">geometry</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="o">=</span><span class="m">0.5</span><span class="p">)</span><span class="w">
 </span><span class="n">plot</span><span class="p">(</span><span class="n">oh</span><span class="o">$</span><span class="n">geometry</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="n">alpha</span><span class="p">(</span><span class="s2">"red"</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w"> </span><span class="n">border</span><span class="o">=</span><span class="s2">"gray"</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="o">=</span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
 </span><span class="n">plot</span><span class="p">(</span><span class="n">isd_history_oh</span><span class="o">$</span><span class="n">geometry</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="o">=</span><span class="nb">T</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="o">=</span><span class="m">21</span><span class="p">,</span><span class="w"> </span><span class="n">bg</span><span class="o">=</span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="o">=</span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="s2">"black"</span><span class="p">)</span><span class="w">
 </span><span class="n">title</span><span class="p">(</span><span class="s2">"Ohio GSOD Climate Stations"</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
-<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_6.png" alt="" /></p>
+<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_6.png" alt="Ohio" /></p>
 <p><strong>Michigan</strong></p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">isd_history_mi</span><span class="o">$</span><span class="n">geometry</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="o">=</span><span class="m">0.5</span><span class="p">)</span><span class="w">
 </span><span class="n">plot</span><span class="p">(</span><span class="n">mi</span><span class="o">$</span><span class="n">geometry</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="n">alpha</span><span class="p">(</span><span class="s2">"green"</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w"> </span><span class="n">border</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="o">=</span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
 </span><span class="n">plot</span><span class="p">(</span><span class="n">isd_history_mi</span><span class="o">$</span><span class="n">geometry</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="o">=</span><span class="nb">T</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="o">=</span><span class="m">21</span><span class="p">,</span><span class="w"> </span><span class="n">bg</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="o">=</span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="s2">"black"</span><span class="p">)</span><span class="w">
 </span><span class="n">title</span><span class="p">(</span><span class="s2">"Michigan GSOD Climate Stations"</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
-<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_7.png" alt="" /></p>
+<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_7.png" alt="Michigan" /></p>
       <h1 id="now-for-the-magic">
           <a href="#now-for-the-magic" aria-labelledby="now-for-the-magic" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Now, for the magic:
       </h1>
@@ -377,18 +377,18 @@
 </span><span class="n">plot</span><span class="p">(</span><span class="n">or_co_isd_poly</span><span class="o">$</span><span class="n">geometry</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="n">alpha</span><span class="p">(</span><span class="s2">"green"</span><span class="p">,</span><span class="m">0.7</span><span class="p">))</span><span class="w">
 </span><span class="n">title</span><span class="p">(</span><span class="s2">"Oregon Counties with GSOD Climate Stations"</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
-<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_8.png" alt="" /></p>
+<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_8.png" alt="Oregon counties with climate data stations" /></p>
 <p><strong>Now for all of our three candidate states:</strong></p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cand_co</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">USAboundaries</span><span class="o">::</span><span class="n">us_counties</span><span class="p">(</span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"high"</span><span class="p">,</span><span class="w"> </span><span class="n">states</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"OR"</span><span class="p">,</span><span class="w"> </span><span class="s2">"OH"</span><span class="p">,</span><span class="w"> </span><span class="s2">"MI"</span><span class="p">))</span><span class="w">
 </span><span class="n">cand_co_isd_poly</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cand_co</span><span class="p">[</span><span class="n">isd_history</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span><span class="n">plot</span><span class="p">(</span><span class="n">cand_co_isd_poly</span><span class="o">$</span><span class="n">geometry</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="n">alpha</span><span class="p">(</span><span class="s2">"blue"</span><span class="p">,</span><span class="m">0.7</span><span class="p">))</span><span class="w">
 </span><span class="n">title</span><span class="p">(</span><span class="s2">"Counties in Candidate States with GSOD Climate Stations"</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
-<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_9.png" alt="" /></p>
+<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_9.png" alt="Oregon, Ohio, and Michigan counties with climate data stations" /></p>
 <p><strong>We see how we can filter out polygons from attributes or intersecting relationships with points, but what if we want to merge data from the points into the polygon or vice versa?</strong></p>
 <p><strong>We will use the data set for Oregon for the join example.</strong></p>
 <p><strong>Notice in our point dataset that there are no county names.  Only station/city names.</strong></p>
-<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_10.png" alt="" /></p>
+<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_10.png" alt="Filtered dataset" /></p>
 <p><strong>Let us join the county polygons with the climate station points and add the county names to the station data.  We do this using the st_join function, which comes from the sf package.</strong></p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">isd_or_co_pts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">st_join</span><span class="p">(</span><span class="n">isd_history</span><span class="p">,</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">or_co</span><span class="p">[</span><span class="s2">"name"</span><span class="p">])</span><span class="w">
 
@@ -400,12 +400,12 @@
 </span><span class="n">plot</span><span class="p">(</span><span class="n">or_co</span><span class="o">$</span><span class="n">geometry</span><span class="p">,</span><span class="w"> </span><span class="n">border</span><span class="o">=</span><span class="s2">"gray"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="o">=</span><span class="nb">T</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 <p><strong>You now have successfully joined the county name data into your new point data set!  Those points in the plot now contain the county information for data analysis purposes.</strong></p>
-<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_11.png" alt="" /></p>
+<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_11.png" alt="Joined data" /></p>
 <p><strong>You can join in any attribute you would like, or by leaving it as:</strong></p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">isd_or_co_pts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">st_join</span><span class="p">(</span><span class="n">isd_history</span><span class="p">,</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">or_co</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 <p><strong>You add all attributes from the polygon into the point data frame!</strong></p>
-<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_12.png" alt="" /></p>
+<p><img src="/Geo-Spatial/Images/spatial_joins/join_image_12.png" alt="Annotated with all attributes" /></p>
 <p><strong>Also note that st_join is the default function that joins any type of intersection.  You can be more precise our particular about your conditions with the other spatial joins:</strong></p>
 <p><strong>st_within only joins elements that are completely within the defined area</strong></p>
 <p><strong>st_equal only joins elements that are spatially equal.  Meaning that A is within B and B is within A.</strong></p>

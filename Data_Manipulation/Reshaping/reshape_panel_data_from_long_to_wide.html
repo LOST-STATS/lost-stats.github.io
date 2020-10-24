@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"@type":"WebPage","headline":"Reshape Panel Data from Long to Wide","url":"/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html","@context":"https://schema.org"}</script>
+{"@type":"WebPage","url":"/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html","headline":"Reshape Panel Data from Long to Wide","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 </head>
 <body>
@@ -237,8 +237,8 @@
     </tr>
   </tbody>
 </table></div>
-<p>This format makes it easy to run models like <a href="https://lost-stats.github.io/Model_Estimation/fixed_effects.html">fixed effects</a>.</p>
-<p>Reshaping is the method of converting wide-format data to long and <a href="https://lost-stats.github.io/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html">vice versa</a>.</p>
+<p>This format makes it easy to run models like <a href="/Model_Estimation/OLS/fixed_effects_in_linear_regression.html">fixed effects</a>.</p>
+<p>Reshaping is the method of converting wide-format data to long and <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html">vice versa</a>.</p>
       <h2 id="keep-in-mind">
           <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
       </h2>
@@ -250,8 +250,8 @@
           <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
       </h2>
 <ul>
-  <li>To go in the other direction, <a href="https://lost-stats.github.io/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html">reshape from wide to long</a>.</li>
-  <li><a href="https://lost-stats.github.io/Data_Manipulation/determine_the_observation_level_of_a_data_set.html">Determine the observation level of a data set</a>.</li>
+  <li>To go in the other direction, <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html">reshape from wide to long</a>.</li>
+  <li><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html">Determine the observation level of a data set</a>.</li>
 </ul>
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
@@ -348,48 +348,48 @@
 * reshape wide stub, i(individualvars) j(newtimevar)
 * So we have
 </span><span class="err">reshape</span> <span class="err">wide</span> <span class="err">bp</span> <span class="err">i(patient)</span> <span class="err">j(when)
-</span><span class="c1">* Note that simply typing 
+</span><span class="c1">* Note that simply typing
 </span><span class="err">reshape
 </span><span class="c1">* will show the syntax for the function
 </span></code></pre></div></div>
 <p>With especially large datasets, the <a href="https://gtools.readthedocs.io/en/latest/index.html"><strong>Gtools</strong></a> package provides a much faster version of reshape known as greshape. The syntax can function exactly the same, though they provide alternative syntax that you may find more intuitive.</p>
-<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* First, we will create a toy dataset that is very large to demonstrate the speed gains 
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* First, we will create a toy dataset that is very large to demonstrate the speed gains
 * If necessary, first install gtools:
 * ssc install gtools
 
 * Clear memory
-</span><span class="err">clear</span> <span class="err">all</span> <span class="err">
+</span><span class="err">clear</span> <span class="err">all
 </span><span class="c1">* Turn on return message to see command run time
-</span><span class="err">set</span> <span class="err">rmsg</span> <span class="err">on</span> <span class="err">
+</span><span class="err">set</span> <span class="err">rmsg</span> <span class="err">on
 </span><span class="c1">* Set data size to 15 million observations
-</span><span class="err">set</span> <span class="err">obs</span> <span class="err">15000000</span> <span class="err">
+</span><span class="err">set</span> <span class="err">obs</span> <span class="err">15000000
 </span><span class="c1">* Create ten observations per person
 </span><span class="err">generate</span> <span class="err">person_id</span> <span class="o">=</span> <span class="err">floor((_n</span><span class="o">-</span><span class="err">1)</span><span class="o">/</span><span class="err">10)
 </span><span class="c1">* Number time periods from 1 to 10 for each person
 </span><span class="err">generate</span> <span class="err">time_id</span> <span class="o">=</span> <span class="err">mod((_n</span><span class="o">-</span><span class="err">1),</span> <span class="err">10)</span> <span class="o">+</span> <span class="err">1
 </span><span class="c1">
-*Create an income in each period 
+*Create an income in each period
 </span><span class="err">generate</span> <span class="err">income</span> <span class="o">=</span> <span class="err">round(rnormal(100,</span> <span class="err">20))
 </span><span class="c1">
-* Demonstrate the comparative speed of these two reshape approaches. 
+* Demonstrate the comparative speed of these two reshape approaches.
 * preserve and restore aren't a part of the reshape command;
 * they just store the current state of the data and then restore it,
 * so we can try our different reshape commands on the same data.
-	
+
 *The traditional reshape command
-</span><span class="err">preserve</span> <span class="err">
-reshape</span> <span class="err">wide</span> <span class="err">income,</span> <span class="err">i(person_id)</span> <span class="err">j(time_id)</span> <span class="err">
-restore</span> <span class="err">
-</span><span class="c1">	
-*The Gtools reshape command  
 </span><span class="err">preserve
-greshape</span> <span class="err">wide</span> <span class="err">income,</span> <span class="err">i(person_id)</span> <span class="err">j(time_id)</span> <span class="err">
-restore</span> <span class="err">
-</span><span class="c1">	
+reshape</span> <span class="err">wide</span> <span class="err">income,</span> <span class="err">i(person_id)</span> <span class="err">j(time_id)
+restore
+</span><span class="c1">
+*The Gtools reshape command
+</span><span class="err">preserve
+greshape</span> <span class="err">wide</span> <span class="err">income,</span> <span class="err">i(person_id)</span> <span class="err">j(time_id)
+restore
+</span><span class="c1">
 *The Gtools reshape command, alternative syntax
 </span><span class="err">preserve
 greshape</span> <span class="err">wide</span> <span class="err">income,</span> <span class="err">by(person_id)</span> <span class="err">keys(time_id)
-restore</span> <span class="err">
+restore
 </span></code></pre></div></div>
 <p>Note: there is much more guidance to the usage of greshape on the <a href="https://gtools.readthedocs.io/en/latest/usage/greshape/index.html">Gtools reshape page</a>.</p>
           <hr>

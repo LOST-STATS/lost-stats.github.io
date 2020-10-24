@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"@type":"WebPage","headline":"Styling Line Graphs","url":"/Presentation/Figures/styling_line_graphs.html","@context":"https://schema.org"}</script>
+{"@type":"WebPage","url":"/Presentation/Figures/styling_line_graphs.html","headline":"Styling Line Graphs","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 </head>
 <body>
@@ -158,13 +158,13 @@
           <h1 id="styling-line-graphs">
           <a href="#styling-line-graphs" aria-labelledby="styling-line-graphs" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Styling Line Graphs
       </h1>
-<p>There are several ways of styling line graphs. The following examples demonstrate how to modify the appearances of the lines 
+<p>There are several ways of styling line graphs. The following examples demonstrate how to modify the appearances of the lines
 (type and sizes), as well chart titles and axes labels.</p>
       <h2 id="keep-in-mind">
           <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
       </h2>
 <ul>
-  <li>To get started on how to plot line graphs, see <a href="https://lost-stats.github.io/Presentation/Figures/line_graph_with_labels_at_the_beginning_or_end.html">here</a>.</li>
+  <li>To get started on how to plot line graphs, see <a href="/Presentation/Figures/line_graph_with_labels_at_the_beginning_or_end.html">here</a>.</li>
   <li>Elements for customization include line thickness, line type (solid, dashed, etc.), shade, transparency, and color.</li>
   <li>Color is one of the easiest ways to distinguish a large number of line graphs. If you have many line graphs overlaid and have to use black-and-white, consider different shades of black/gray.</li>
 </ul>
@@ -181,7 +181,7 @@
 </span><span class="c1">## Cowplot is just to join together the four graphs at the end</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">cowplot</span><span class="p">)</span><span class="w">
 
-</span><span class="c1">## load data (the Economics dataset comes with ggplot2) </span><span class="w">
+</span><span class="c1">## load data (the Economics dataset comes with ggplot2)</span><span class="w">
 </span><span class="n">eco_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">economics</span><span class="w">
 
 </span><span class="c1">## basic plot</span><span class="w">
@@ -189,7 +189,7 @@
   </span><span class="n">geom_line</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uempmed</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eco_df</span><span class="p">)</span><span class="w">
 </span><span class="n">p1</span><span class="w">
 
-</span><span class="c1">## Change line color and chart labels </span><span class="w">
+</span><span class="c1">## Change line color and chart labels</span><span class="w">
 </span><span class="c1">## Note here that color is *outside* of the aes() argument, and so this will color the line</span><span class="w">
 </span><span class="c1">## If color were instead *inside* aes() and set to a factor variable, ggplot would create</span><span class="w">
 </span><span class="c1">## a different line for each value of the factor variable, colored differently.</span><span class="w">
@@ -198,7 +198,7 @@
   </span><span class="n">geom_line</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uempmed</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"navyblue"</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eco_df</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
   </span><span class="c1">## add chart title and change axes labels</span><span class="w">
   </span><span class="n">labs</span><span class="p">(</span><span class="w">
-    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Median Duration of Unemployment"</span><span class="p">,</span><span class="w"> 
+    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Median Duration of Unemployment"</span><span class="p">,</span><span class="w">
     </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Date"</span><span class="p">,</span><span class="w">
     </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
   </span><span class="c1">## Add a ggplot theme</span><span class="w">
@@ -210,17 +210,17 @@
 
 </span><span class="c1">## plotting multiple charts (of different line types and sizes)</span><span class="w">
 </span><span class="n">p3</span><span class="w"> </span><span class="o">&lt;-</span><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
-  </span><span class="n">geom_line</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uempmed</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"navyblue"</span><span class="p">,</span><span class="w"> 
+  </span><span class="n">geom_line</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uempmed</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"navyblue"</span><span class="p">,</span><span class="w">
             </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eco_df</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
-  </span><span class="n">geom_line</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">psavert</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red2"</span><span class="p">,</span><span class="w"> 
+  </span><span class="n">geom_line</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">psavert</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red2"</span><span class="p">,</span><span class="w">
             </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dotted"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eco_df</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
   </span><span class="n">labs</span><span class="p">(</span><span class="w">
-    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Unemployment Duration (Blue) and Savings Rate (Red)"</span><span class="p">,</span><span class="w"> 
+    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Unemployment Duration (Blue) and Savings Rate (Red)"</span><span class="p">,</span><span class="w">
     </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Date"</span><span class="p">,</span><span class="w">
     </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
   </span><span class="n">theme_light</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
   </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">))</span><span class="w">
-  
+
 </span><span class="n">p3</span><span class="w">
 
 </span><span class="c1">## Plotting a different line type for each group</span><span class="w">
@@ -235,7 +235,7 @@
   </span><span class="n">geom_line</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uempmed</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fac</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eco_df</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
   </span><span class="c1">## add chart title and change axes labels</span><span class="w">
   </span><span class="n">labs</span><span class="p">(</span><span class="w">
-    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Median Duration of Unemployment"</span><span class="p">,</span><span class="w"> 
+    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Median Duration of Unemployment"</span><span class="p">,</span><span class="w">
     </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Date"</span><span class="p">,</span><span class="w">
     </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
   </span><span class="c1">## Add a ggplot theme</span><span class="w">
@@ -257,7 +257,7 @@
 </span><span class="n">plot_grid</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">p3</span><span class="p">,</span><span class="n">p4</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="m">2</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 <p>The four plots generated by the code are (in order p1, p2, then p3 and p4):</p>
-<p><img src="https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Images/Styling-Line-Graphs/styling_line_graphs_R.png" alt="Four Styled Line Graphs in R" /></p>
+<p><img src="/Presentation/Figures/Images/Styling-Line-Graphs/styling_line_graphs_R.png" alt="Four Styled Line Graphs in R" /></p>
           <hr>
           <footer>
               <div class="d-flex mt-2">

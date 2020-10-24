@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"@type":"WebPage","headline":"Contributing","url":"/Contributing/Contributing.html","@context":"https://schema.org"}</script>
+{"@type":"WebPage","url":"/Contributing/Contributing.html","headline":"Contributing","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
@@ -162,9 +162,9 @@
   <li><a href="https://github.com/join">Get a GitHub account</a>. You do not need to know Git to contribute to LOST, but you do need a GitHub account.</li>
   <li>Read the <a href="https://guides.github.com/features/mastering-markdown/">Guide to GitHub Markdown</a> which will show the syntax that is used on LOST pages.</li>
   <li>Read the below LOST Writing Guide, which shows what a good LOST page looks like from top to bottom. Even if you are just adding another language to an existing page, be sure to read the Implementations section at the bottom.</li>
-  <li>Explore LOST using the navigation bar on the left, find a page that needs to be expanded, and add more content. Or find one that doesn’t exist but should (perhaps on the <a href="https://lost-stats.github.io/Desired_Nonexistent_Pages/desired_nonexistent_pages.html">Desired Nonexistent Pages list</a>, and write it yourself! Go to the <a href="https://github.com/LOST-STATS/LOST-STATS.github.io">GitHub Repository</a> for LOST to find the appropriate file to edit or folder to create your new file in.</li>
+  <li>Explore LOST using the navigation bar on the left, find a page that needs to be expanded, and add more content. Or find one that doesn’t exist but should (perhaps on the <a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html">Desired Nonexistent Pages list</a>, and write it yourself! Go to the <a href="https://github.com/LOST-STATS/LOST-STATS.github.io">GitHub Repository</a> for LOST to find the appropriate file to edit or folder to create your new file in.</li>
   <li>If you are a “Contributor” to the project, you can make your edits and changes directly to the repository. If not, you will need to issue a <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request">pull request</a> to get your work on LOST. We will add you as a contributor after your first accepted pull request. If you don’t know Git or how to do a pull request, please post in <a href="https://github.com/LOST-STATS/LOST-STATS.github.io/issues">Issues</a> asking to be added as a contributor so you can edit LOST directly.</li>
-  <li>If you’ve made a new page, make sure it’s saved as a <code class="language-plaintext highlighter-rouge">.md</code> file, put it in the appropriate folder, and add Navigation Information at the top (see below). If you’ve written a Desired Nonexistent Page, be sure to remove it from the <a href="https://github.com/LOST-STATS/LOST-STATS.github.io/blob/master/Desired_Nonexistent_Pages/Desired_Nonexistent_Pages.md">list</a>. Or, if your page links to some new nonexistent pages, add those to the list! Also, try to see if other pages have attempted to link to the page you’re working on, and update their links so they go to the right place.</li>
+  <li>If you’ve made a new page, make sure it’s saved as a <code class="language-plaintext highlighter-rouge">.md</code> file, put it in the appropriate folder, and add Navigation Information at the top (see below). If you’ve written a Desired Nonexistent Page, be sure to remove it from the <a href="https://github.com/LOST-STATS/LOST-STATS.github.io/blob/source/Desired_Nonexistent_Pages/Desired_Nonexistent_Pages.md">list</a>. Or, if your page links to some new nonexistent pages, add those to the list! Also, try to see if other pages have attempted to link to the page you’re working on, and update their links so they go to the right place.</li>
 </ol>
       <h1 id="lost-writing-guide">
           <a href="#lost-writing-guide" aria-labelledby="lost-writing-guide" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> LOST WRITING GUIDE
@@ -207,7 +207,7 @@
           <a href="#math" aria-labelledby="math" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Math
       </h2>
 <p>Math is rendered with MathJax, which provides support for \(\LaTeX\) math formatting. To use on a specific page, make sure that the <a href="#navigation-information">YAML</a> at the top on the underlying Markdown (i.e. .md) file includes a line saying <code class="language-plaintext highlighter-rouge">mathjax: true</code>. This should already be the default on most existing pages, but it is worth emphasising. For example, here is a screenshot of the “Contributing.md” file that you are reading right now.</p>
-<p><img src="/Contributing/mathjax_yaml.png" alt="" /></p>
+<p><img src="/Contributing/mathjax_yaml.png" alt="MathJax example" /></p>
 <p>After that, equations and other math sections can be delimited with two dollar symbol <em>pairs</em>. For example, <code class="language-plaintext highlighter-rouge">$$x = \frac{1}{2}$$</code> is rendered inline as \(x = \frac{1}{2}\). Similarly, we can render math in display mode (i.e. as a distinct block) by wrapping the dollar symbol pairs on separate lines. For example,</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$$
 y =  \beta_0 + \beta_1 x + \beta_2 x^2 + \epsilon
@@ -219,7 +219,7 @@ $$
       <h1 id="structure-of-a-lost-page">
           <a href="#structure-of-a-lost-page" aria-labelledby="structure-of-a-lost-page" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> STRUCTURE OF A LOST PAGE
       </h1>
-<p>When starting a LOST page, you should copy the <a href="https://github.com/LOST-STATS/LOST-STATS.github.io/blob/master/NewPageTemplate.md">New Page Template</a>. There are four main sections of a LOST page:</p>
+<p>When starting a LOST page, you should copy the <a href="https://github.com/LOST-STATS/LOST-STATS.github.io/blob/source/NewPageTemplate.md">New Page Template</a>. There are four main sections of a LOST page:</p>
       <h2 id="navigation-information">
           <a href="#navigation-information" aria-labelledby="navigation-information" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Navigation Information
       </h2>
@@ -265,7 +265,8 @@ mathjax: true
 <p>This is a list of <em>other</em> techniques that are commonly used <em>in addition to</em> this page’s technique, or <em>as an alternative to</em> this page’s technique. If not obvious, include a very brief explanation of why you might want to use that other technique in addition to/instead of the current one. Note that you can link to another LOST page even if that page doesn’t exist yet. Maybe it will inspite someone to write it!</p>
 <p>For example, pages about estimation techniques might list standard robustness tests to be used in addition to the technique, or adjustments to standard errors they might want to use. A page about a data visualization technique might include a link to a page about setting color palettes to be used in addition.</p>
 <p>Or, they might list an alternative technique that might be used if a certain assumption fails (“This technique requires continuous variables. So if your data is discrete, use this other method.”).</p>
-<p>To link to other LOST pages (even if they don’t exist yet — don’t forget to add these to <a href="https://lost-stats.github.io/Desired_Nonexistent_Pages/desired_nonexistent_pages.html">Desired Nonexistent Pages</a>!, use the Markdown <code class="language-plaintext highlighter-rouge">[Link name](url)</code> structure, where the URL is of the format <code class="language-plaintext highlighter-rouge">https://lost-stats.github.io/Category_Name/page_name.html</code>.</p>
+<p>To link to other LOST pages (even if they don’t exist yet — don’t forget to add these to <a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html">Desired Nonexistent Pages</a>!), we ask that you spell the <code class="language-plaintext highlighter-rouge">url</code> in a way our markdown renderer understands. Specifically, please write the <code class="language-plaintext highlighter-rouge">url</code> as <code class="language-plaintext highlighter-rouge">{{ "/Category_name/page.html" | relative_url }}</code>.</p>
+<p>For example, if you’d like to link to this page, please write <code class="language-plaintext highlighter-rouge">[Guide to Contributing]({{ "/Contributing/Contributing.html" | relative_url}})</code> which will then be rendered as <a href="/Contributing/Contributing.html">Guide to Contributing</a>.</p>
       <h2 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h2>

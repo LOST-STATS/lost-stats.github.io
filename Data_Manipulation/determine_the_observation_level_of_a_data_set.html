@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"@type":"WebPage","headline":"Determine the Observation Level of a Data Set","url":"/Data_Manipulation/determine_the_observation_level_of_a_data_set.html","@context":"https://schema.org"}</script>
+{"@type":"WebPage","url":"/Data_Manipulation/determine_the_observation_level_of_a_data_set.html","headline":"Determine the Observation Level of a Data Set","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
@@ -196,7 +196,7 @@
   </tbody>
 </table></div>
 <p>the variables \(I\) and \(J\) uniquely identify rows. The first row has \(I = 1\) and \(J = 1\), and there is no other row with that combination. We could also say that \(X\) uniquely identifies rows, but in this example \(X\) is not a case-identifying variable, it’s actual data.</p>
-<p>When working with data that has case-identifier variables, like panel data, it’s generally a good idea to know what set of them makes up the observation level of a data set. Otherwise you might perform <a href="https://lost-stats.github.io/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_combination_deterministic.html">merges</a> or case-level calculations incorrectly.</p>
+<p>When working with data that has case-identifier variables, like panel data, it’s generally a good idea to know what set of them makes up the observation level of a data set. Otherwise you might perform <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html">merges</a> or case-level calculations incorrectly.</p>
       <h2 id="keep-in-mind">
           <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
       </h2>
@@ -208,7 +208,7 @@
           <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
       </h2>
 <ul>
-  <li>You can <a href="https://lost-stats.github.io/Data_Manipulation/collapse_a_data_set.html">collapse a data set</a> to switch from one observation level to another, coarser one.</li>
+  <li>You can <a href="/Data_Manipulation/collapse_a_data_set.html">collapse a data set</a> to switch from one observation level to another, coarser one.</li>
 </ul>
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
@@ -256,7 +256,7 @@
 
 
 </span><span class="c1"># Alternately, we can use dplyr</span><span class="w">
-</span><span class="n">storms</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+</span><span class="n">storms</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="n">group_by</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="p">,</span><span class="w"> </span><span class="n">hour</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="c1"># Add a variable with the number of times that particular combination shows up</span><span class="w">
   </span><span class="n">mutate</span><span class="p">(</span><span class="n">number_duplicates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">())</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
@@ -266,9 +266,9 @@
   </span><span class="nf">max</span><span class="p">()</span><span class="w">
 </span><span class="c1"># If the result is 1, then we have found the observation level. If not, we have duplicates.</span><span class="w">
 
-</span><span class="c1"># We can pick out the rows that are duplicated for inspection </span><span class="w">
+</span><span class="c1"># We can pick out the rows that are duplicated for inspection</span><span class="w">
 </span><span class="c1"># by filtering on n(). This approach will give you every time the duplicate appears.</span><span class="w">
-</span><span class="n">duplicated_rows</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">storms</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+</span><span class="n">duplicated_rows</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">storms</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="n">group_by</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="p">,</span><span class="w"> </span><span class="n">hour</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="c1"># Add a variable with the number of times that particular combination shows up</span><span class="w">
   </span><span class="n">filter</span><span class="p">(</span><span class="n">n</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
@@ -279,7 +279,7 @@
 <div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load surface.dta, which contains temperature recordings in different locations
 </span><span class="err">sysuse</span> <span class="err">surface.dta,</span> <span class="err">clear
 </span><span class="c1">
-* duplicates report followed by a variable list will show how many times 
+* duplicates report followed by a variable list will show how many times
 * each combination shows up.
 * I think there is one observation level for each location, so I'll check that
 </span><span class="err">duplicates</span> <span class="err">report</span> <span class="err">latitude</span> <span class="err">longitude
