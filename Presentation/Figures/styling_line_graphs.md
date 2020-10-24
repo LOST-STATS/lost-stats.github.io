@@ -12,7 +12,7 @@ There are several ways of styling line graphs. The following examples demonstrat
 (type and sizes), as well chart titles and axes labels.   
 
 ## Keep in Mind
-- To get started on how to plot line graphs, see [here](https://lost-stats.github.io/Presentation/Figures/line_graph_with_labels_at_the_beginning_or_end.html).
+- To get started on how to plot line graphs, see [here]({{ "/Presentation/Figures/line_graph_with_labels_at_the_beginning_or_end.html" | relative_url }}).
 - Elements for customization include line thickness, line type (solid, dashed, etc.), shade, transparency, and color.
 - Color is one of the easiest ways to distinguish a large number of line graphs. If you have many line graphs overlaid and have to use black-and-white, consider different shades of black/gray.
 

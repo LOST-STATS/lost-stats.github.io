@@ -21,7 +21,7 @@ For more information on graphs see other articles such as: bar graphs, scatter p
 
 - Before finalizing your legend the graph itself should be completed. Deciding which type of graph is best suited for your data is a whole topic in itself. 
 - Some of the graphical implementations this page contains include are;
-[Bar Graphs](https://lost-stats.github.io/Presentation/Figures/bar_graphs.html), [Histograms](https://lost-stats.github.io/Presentation/Figures/histograms.html), and [Scatterplot by Group on Shared Axes](https://lost-stats.github.io/Presentation/Figures/scatterplot_by_group_on_shared_axes.html). 
+[Bar Graphs]({{ "/Presentation/Figures/bar_graphs.html" | relative_url }}), [Histograms]({{ "/Presentation/Figures/histograms.html" | relative_url }}), and [Scatterplot by Group on Shared Axes]({{ "/Presentation/Figures/scatterplot_by_group_on_shared_axes.html" | relative_url }}). 
 - Check out [this article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4078179/) for a brief description of the relationships shown for different graph types . 
 
 # Graphs legends in R

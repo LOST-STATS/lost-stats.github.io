@@ -9,7 +9,7 @@ mathjax: true ## Switch to false if this page has no equations or other math ren
 
 # Interaction Terms and Polynomials
 
-Regression models generally assume that the outcome variable is a function of an *index*, which is a linear function of the independent variables, for example in [ordinary least squares](https://lost-stats.github.io/Model_Estimation/ordinary_least_squares.html):
+Regression models generally assume that the outcome variable is a function of an *index*, which is a linear function of the independent variables, for example in [ordinary least squares]({{ "/Model_Estimation/ordinary_least_squares.html" | relative_url }}):
 
 $$
 Y = \beta_0+\beta_1X_1+\beta_2X_2
@@ -37,10 +37,10 @@ $$
 
 ## Also Consider
 
-- Interaction terms tend to have low statistical power. Consider performing a [power analysis of interaction terms](https://lost-stats.github.io/Other/power_analysis_for_interactions) before running your analysis.
-- Polynomials are not the only way to model a nonlinear relationship. You could, for example, run one of many kinds of [nonparametric regression](https://lost-stats.github.io/Model_Estimation/nonparametric_regression.html).
-- You may want to get the [average marginal effects](https://lost-stats.github.io/Model_Estimation/average_marginal_effects.html) or the [marginal effects at the mean](https://lost-stats.github.io/Model_Estimation/marginal_effects_at_the_mean.html) of your variables after running your model.
-- One common way to display the effects of a model with interactions is to graph them. See [marginal effects plots for interactions with continuous variables](https://lost-stats.github.io/Presentation/marginal_effects_plots_for_interactions_with_continuous_variables.html) and [Marginal effects plots for interactions with continuous variables](https://lost-stats.github.io/Presentation/marginal_effects_plots_for_interactions_with_categorical_variables.html)
+- Interaction terms tend to have low statistical power. Consider performing a [power analysis of interaction terms]({{ "/Other/power_analysis_for_interactions" | relative_url }}) before running your analysis.
+- Polynomials are not the only way to model a nonlinear relationship. You could, for example, run one of many kinds of [nonparametric regression]({{ "/Model_Estimation/nonparametric_regression.html" | relative_url }}).
+- You may want to get the [average marginal effects]({{ "/Model_Estimation/average_marginal_effects.html" | relative_url }}) or the [marginal effects at the mean]({{ "/Model_Estimation/marginal_effects_at_the_mean.html" | relative_url }}) of your variables after running your model.
+- One common way to display the effects of a model with interactions is to graph them. See [marginal effects plots for interactions with continuous variables]({{ "/Presentation/marginal_effects_plots_for_interactions_with_continuous_variables.html" | relative_url }}) and [Marginal effects plots for interactions with continuous variables]({{ "/Presentation/marginal_effects_plots_for_interactions_with_categorical_variables.html" | relative_url }})
 
 # Implementations
 

@@ -79,7 +79,7 @@ plot(boot_results)
 # Optional: print regression table with the bootstrap SEs
 # This uses stargazer, but the method is similar
 # with other table-making packages,
-# see https://lost-stats.github.io/Presentation/export_a_formatted_regression_table.html
+# see {{ "/Presentation/export_a_formatted_regression_table.html" | relative_url }}
 library(broom)
 tidy_results <- tidy(boot_results)
 

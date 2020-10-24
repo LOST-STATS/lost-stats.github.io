@@ -26,7 +26,7 @@ Random forests improve upon bagged trees by decorrelating the trees. In order to
 
 ## Also Consider
 
-- There are non-boosted approaches to decision trees, which can be found at [Decision Trees](https://lost-stats.github.io/Machine_Learning/decision_trees.html) and [Random Forest](https://lost-stats.github.io/Machine_Learning/random_forest.html).
+- There are non-boosted approaches to decision trees, which can be found at [Decision Trees]({{ "/Machine_Learning/decision_trees.html" | relative_url }}) and [Random Forest]({{ "/Machine_Learning/random_forest.html" | relative_url }}).
 
 # Implementations
 

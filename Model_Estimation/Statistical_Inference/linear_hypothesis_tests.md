@@ -27,7 +27,7 @@ Alternately, you may want to do a joint significance test of multiple linear hyp
 
 ## Also Consider
 
-- The process for testing a nonlinear combination of your coefficients, for example testing if $$\beta_1\times\beta_2 = 1$$ or $$\sqrt{\beta_1} = .5$$, is generally different. See [Nonlinear hypothesis tests](https://lost-stats.github.io/Model_Estimation/nonlinear_hypothesis_tests.html).
+- The process for testing a nonlinear combination of your coefficients, for example testing if $$\beta_1\times\beta_2 = 1$$ or $$\sqrt{\beta_1} = .5$$, is generally different. See [Nonlinear hypothesis tests]({{ "/Model_Estimation/nonlinear_hypothesis_tests.html" | relative_url }}).
 
 # Implementations
 

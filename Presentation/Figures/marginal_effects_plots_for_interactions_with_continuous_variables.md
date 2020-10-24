@@ -20,9 +20,9 @@ A marginal effects plot displays the effect of $$X$$ on $$Y$$ for different valu
 
 ## Also Consider
 
-- Consider performing a [power analysis of interaction terms](https://lost-stats.github.io/Other/power_analysis_for_interactions) before running your analysis to see whether you have the statistical power for your interactions
-- [Average marginal effects](https://lost-stats.github.io/Model_Estimation/average_marginal_effects.html) or [marginal effects at the mean](https://lost-stats.github.io/Model_Estimation/marginal_effects_at_the_mean.html) can be used to get a single marginal effect averaged over your sample, rather than showing how it varies across the sample.
-- [Marginal effects plots for interactions with categorical variables](https://lost-stats.github.io/Presentation/Figures/marginal_effects_plots_for_interactions_with_categorical_variables.html)
+- Consider performing a [power analysis of interaction terms]({{ "/Other/power_analysis_for_interactions" | relative_url }}) before running your analysis to see whether you have the statistical power for your interactions
+- [Average marginal effects]({{ "/Model_Estimation/average_marginal_effects.html" | relative_url }}) or [marginal effects at the mean]({{ "/Model_Estimation/marginal_effects_at_the_mean.html" | relative_url }}) can be used to get a single marginal effect averaged over your sample, rather than showing how it varies across the sample.
+- [Marginal effects plots for interactions with categorical variables]({{ "/Presentation/Figures/marginal_effects_plots_for_interactions_with_categorical_variables.html" | relative_url }})
 
 # Implementations
 

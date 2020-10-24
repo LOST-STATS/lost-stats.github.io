@@ -19,7 +19,7 @@ The *observation level* of a data set is the set of case-identifying variables w
 
 the variables $$I$$ and $$J$$ uniquely identify rows. The first row has $$I = 1$$ and $$J = 1$$, and there is no other row with that combination. We could also say that $$X$$ uniquely identifies rows, but in this example $$X$$ is not a case-identifying variable, it's actual data.
 
-When working with data that has case-identifier variables, like panel data, it's generally a good idea to know what set of them makes up the observation level of a data set. Otherwise you might perform [merges](https://lost-stats.github.io/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_combination_deterministic.html) or case-level calculations incorrectly.
+When working with data that has case-identifier variables, like panel data, it's generally a good idea to know what set of them makes up the observation level of a data set. Otherwise you might perform [merges]({{ "/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_combination_deterministic.html" | relative_url }}) or case-level calculations incorrectly.
 
 ## Keep in Mind
 
@@ -28,7 +28,7 @@ When working with data that has case-identifier variables, like panel data, it's
 
 ## Also Consider
 
-- You can [collapse a data set](https://lost-stats.github.io/Data_Manipulation/collapse_a_data_set.html) to switch from one observation level to another, coarser one.
+- You can [collapse a data set]({{ "/Data_Manipulation/collapse_a_data_set.html" | relative_url }}) to switch from one observation level to another, coarser one.
 
 # Implementations
 

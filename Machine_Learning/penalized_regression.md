@@ -36,7 +36,7 @@ Typically $$p$$ is set to 1 for LASSO regression (least absolute shrinkage and s
 
 ## Also Consider
 
-- If it is not important to estimate coefficients but the goal is simply to predict an outcome, then there are many other [machine learning](https://lost-stats.github.io/Machine_Learning/Machine_Learning.html) methods that do so, and in some cases can handle higher dimensionality or work with smaller samples.
+- If it is not important to estimate coefficients but the goal is simply to predict an outcome, then there are many other [machine learning]({{ "/Machine_Learning/Machine_Learning.html" | relative_url }}) methods that do so, and in some cases can handle higher dimensionality or work with smaller samples.
 
 # Implementations
 

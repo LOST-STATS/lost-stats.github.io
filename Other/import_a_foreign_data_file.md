@@ -10,7 +10,7 @@ nav_order: 1
 
 Commonly, data will be distributed in a format that is not native to the software that you are using, such as Excel. How can you import it?
 
-This page is specifically about importing data files from formats specific to particular foreign software. For importing standard shared formats, see [Import a Delimited Data File (CSV, TSV)](https://lost-stats.github.io/Other/import_a_delimited_data_file.html) or [Import a Fixed-Width Data File](https://lost-stats.github.io/Other/import_a_fixed_width_data_file.html).
+This page is specifically about importing data files from formats specific to particular foreign software. For importing standard shared formats, see [Import a Delimited Data File (CSV, TSV)]({{ "/Other/import_a_delimited_data_file.html" | relative_url }}) or [Import a Fixed-Width Data File]({{ "/Other/import_a_fixed_width_data_file.html" | relative_url }}).
 
 ## Keep in Mind
 
@@ -18,13 +18,13 @@ This page is specifically about importing data files from formats specific to pa
 
 ## Also Consider
 
-- [Import a Delimited Data File (CSV, TSV)](https://lost-stats.github.io/Other/import_a_delimited_data_file.html)
-- [Import a Fixed-Width Data File](https://lost-stats.github.io/Other/import_a_fixed_width_data_file.html)
-- [Export Data to a Foreign Format](https://lost-stats.github.io/Other/export_data_to_a_foreign_format.html)
+- [Import a Delimited Data File (CSV, TSV)]({{ "/Other/import_a_delimited_data_file.html" | relative_url }})
+- [Import a Fixed-Width Data File]({{ "/Other/import_a_fixed_width_data_file.html" | relative_url }})
+- [Export Data to a Foreign Format]({{ "/Other/export_data_to_a_foreign_format.html" | relative_url }})
 
 # Implementations
 
-Because there are so many potential foreign formats, these implementations will be more about listing the appropriate commands with example syntax than providing full working examples. Make sure that you fill in the proper filename. The filename should include a filepath, or you should [Set a Working Directory](https://lost-stats.github.io/Other/set_a_working_directory.html).
+Because there are so many potential foreign formats, these implementations will be more about listing the appropriate commands with example syntax than providing full working examples. Make sure that you fill in the proper filename. The filename should include a filepath, or you should [Set a Working Directory]({{ "/Other/set_a_working_directory.html" | relative_url }}).
 
 ## R
 

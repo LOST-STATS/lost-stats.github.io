@@ -21,7 +21,7 @@ A scatterplot is a useful and straightforward way to visualize the relationship 
 
 ## Also Consider
 
-- If one of your variables is discrete, then instead of scatterplots, you may want to check how to make bar graphs [here](https://lost-stats.github.io/Presentation/Figures/bar_graphs.html).
+- If one of your variables is discrete, then instead of scatterplots, you may want to check how to make bar graphs [here]({{ "/Presentation/Figures/bar_graphs.html" | relative_url }}).
 
 Specifically in R:
 - Formatting graph legends is important for styling scatterplots. So check [here](https://www.r-graph-gallery.com/239-custom-layout-legend-ggplot2.html) if you want to work with graph legends. 
@@ -52,7 +52,7 @@ Let's start with the basic scatterplot. Say we want to check the relationship be
 * Step3: add a `geom_point()` in order to show the points
 
 
-If you have questions about how to use `ggplot` and `aes`, check [Here](https://lost-stats.github.io/Presentation/Figures/bar_graphs.html) for more help.
+If you have questions about how to use `ggplot` and `aes`, check [Here]({{ "/Presentation/Figures/bar_graphs.html" | relative_url }}) for more help.
 
 ```r
 ggplot(data = iris, aes(

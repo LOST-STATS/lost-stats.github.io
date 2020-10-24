@@ -8,7 +8,7 @@ mathjax: true ## Switch to false if this page has no equations or other math ren
 
 # Causal Forest
 
-Causal forests are a causal inference learning method that are an extension of [Random Forests](https://lost-stats.github.io/Machine_Learning/random_forest.html). In random forests, the data is repeatedly split in order to minimize prediction error of an outcome variable. Causal forests are built similarly, except that instead of minimizing prediction error, data is split in order to maximize the difference across splits in the relationship between an outcome variable and a "treatment" variable. This is intended to uncover how treatment effects vary across a sample.
+Causal forests are a causal inference learning method that are an extension of [Random Forests]({{ "/Machine_Learning/random_forest.html" | relative_url }}). In random forests, the data is repeatedly split in order to minimize prediction error of an outcome variable. Causal forests are built similarly, except that instead of minimizing prediction error, data is split in order to maximize the difference across splits in the relationship between an outcome variable and a "treatment" variable. This is intended to uncover how treatment effects vary across a sample.
 
 For more information, see [Explicitly Optimizing on Causal Effects via the Causal Forest](https://www.markhw.com/blog/causalforestintro).
 
@@ -19,7 +19,7 @@ For more information, see [Explicitly Optimizing on Causal Effects via the Causa
 
 ## Also Consider
 
-- Your intuition for how causal forest works can be based on a thorough understanding of [Random Forests](https://lost-stats.github.io/Machine_Learning/random_forest.html), for which materials are much more widely available.
+- Your intuition for how causal forest works can be based on a thorough understanding of [Random Forests]({{ "/Machine_Learning/random_forest.html" | relative_url }}), for which materials are much more widely available.
 
 # Implementations
 

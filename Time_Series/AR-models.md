@@ -19,7 +19,7 @@ For additional information, see [Wikipedia: Autoregressive model](https://en.wik
 
 # Implementations
 
-Following the [instructions](https://lost-stats.github.io/Time_Series/creating_time_series_dataset.html) for creating and formatting Time Series Data, we will use quaterly GDP data downloaded from [FRED](https://fred.stlouisfed.org/series/GDPC1) as an example.
+Following the [instructions]({{ "/Time_Series/creating_time_series_dataset.html" | relative_url }}) for creating and formatting Time Series Data, we will use quaterly GDP data downloaded from [FRED](https://fred.stlouisfed.org/series/GDPC1) as an example.
 
 ## R
 
