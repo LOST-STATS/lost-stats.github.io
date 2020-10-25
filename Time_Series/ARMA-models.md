@@ -35,6 +35,81 @@ For additional information, see [Wikipedia: Autoregressive Moving-Average model]
 
 First, follow the [instructions]({{ "/Time_Series/creating_time_series_dataset.html" | relative_url }}) for creating and formatting time-series data using your software of choice. We will again use quarterly US GDP data downloaded from [FRED](https://fred.stlouisfed.org/series/GDPC1) as an example. This time, though, we will try to estimate the quarterly log change in GDP with an $$ARMA(3,1)$$ process. Note that an $$ARMA(3,1)$$ model is almost certainly not the best way to estimate this time series, and is used here solely as an example.
 
+## Python
+
+The [**statsmodels**](https://www.statsmodels.org/stable/index.html) library offers a way to fit ARIMA(p, d, q) models, with its `ARIMA` function. To get an ARMA model, just set $$d$$ to zero.
+
+In the example below, we'll take the first difference of the log of the data, then fit a model with $$p=3$$ auto-regressive terms and $$q=1$$ moving average terms.
+
+
+```python
+import numpy as np
+import pandas as pd
+from statsmodels.tsa.arima.model import ARIMA
+
+gdp = pd.read_csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv",
+                    index_col=0)
+
+# Take 1st diff of log of gdp
+d_ln_gdp = np.log(gdp).diff()
+
+print(d_ln_gdp.head())
+```
+
+                   GDPC1
+    DATE                
+    1947-01-01       NaN
+    1947-04-01 -0.002670
+    1947-07-01 -0.002067
+    1947-10-01  0.015521
+    1948-01-01  0.014931
+
+
+You can see that the first value is NaN. That's because, for the first value, there is no previous value to do the differencing with.
+
+Let's fit the model:
+
+
+```python
+p = 3
+d = 0
+q = 1
+
+mod = ARIMA(d_ln_gdp, order=(p, d, q))
+res = mod.fit()
+print(res.summary())
+```
+
+                                   SARIMAX Results                                
+    ==============================================================================
+    Dep. Variable:                  GDPC1   No. Observations:                  292
+    Model:                 ARIMA(3, 0, 1)   Log Likelihood                 972.763
+    Date:                        00:00:00   AIC                          -1933.526
+    Time:                        00:00:00   BIC                          -1911.466
+    Sample:                    01-01-1947   HQIC                         -1924.690
+                             - 10-01-2019                                         
+    Covariance Type:                  opg                                         
+    ==============================================================================
+                     coef    std err          z      P>|z|      [0.025      0.975]
+    ------------------------------------------------------------------------------
+    const          0.0077      0.001      9.163      0.000       0.006       0.009
+    ar.L1          0.1918      0.417      0.461      0.645      -0.625       1.008
+    ar.L2          0.1980      0.145      1.368      0.171      -0.086       0.482
+    ar.L3         -0.0961      0.072     -1.332      0.183      -0.237       0.045
+    ma.L1          0.1403      0.410      0.342      0.732      -0.663       0.944
+    sigma2      7.301e-05   4.29e-06     17.006      0.000    6.46e-05    8.14e-05
+    ===================================================================================
+    Ljung-Box (L1) (Q):                   0.02   Jarque-Bera (JB):                59.78
+    Prob(Q):                              0.90   Prob(JB):                         0.00
+    Heteroskedasticity (H):               0.26   Skew:                             0.15
+    Prob(H) (two-sided):                  0.00   Kurtosis:                         5.20
+    ===================================================================================
+    
+    Warnings:
+    [1] Covariance matrix calculated using the outer product of gradients (complex-step).
+
+
+
 ## R
 
 There are numerous packages to estimate ARMA models in R. For this tutorial, we will use the `arima()` function, which comes preloaded into R from the **stats** package. For our purposes, it is sufficient to note that estimating an $$ARIMA(p,0,q)$$ model is largely equivalent to estimating an $$ARMA(p,q)$$. For more information about estimating a true ARIMA process (where $$d>0$$), see the *Also Consider* section above. Additionally, the **tsibble** package can also be used to easily construct our quarterly log change in GDP variable.
