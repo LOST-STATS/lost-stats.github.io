@@ -189,6 +189,69 @@
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
 <p>First, follow the <a href="/Time_Series/creating_time_series_dataset.html">instructions</a> for creating and formatting time-series data using your software of choice. We will again use quarterly US GDP data downloaded from <a href="https://fred.stlouisfed.org/series/GDPC1">FRED</a> as an example. This time, though, we will try to estimate the quarterly log change in GDP with an \(ARMA(3,1)\) process. Note that an \(ARMA(3,1)\) model is almost certainly not the best way to estimate this time series, and is used here solely as an example.</p>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<p>The <a href="https://www.statsmodels.org/stable/index.html"><strong>statsmodels</strong></a> library offers a way to fit ARIMA(p, d, q) models, with its <code class="language-plaintext highlighter-rouge">ARIMA</code> function. To get an ARMA model, just set \(d\) to zero.</p>
+<p>In the example below, we’ll take the first difference of the log of the data, then fit a model with \(p=3\) auto-regressive terms and \(q=1\) moving average terms.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.arima.model</span> <span class="kn">import</span> <span class="n">ARIMA</span>
+
+<span class="n">gdp</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv"</span><span class="p">,</span>
+                    <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Take 1st diff of log of gdp
+</span><span class="n">d_ln_gdp</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">gdp</span><span class="p">).</span><span class="n">diff</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">d_ln_gdp</span><span class="p">.</span><span class="n">head</span><span class="p">())</span>
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>               GDPC1
+DATE                
+1947-01-01       NaN
+1947-04-01 -0.002670
+1947-07-01 -0.002067
+1947-10-01  0.015521
+1948-01-01  0.014931
+</code></pre></div></div>
+<p>You can see that the first value is NaN. That’s because, for the first value, there is no previous value to do the differencing with.</p>
+<p>Let’s fit the model:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">p</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">q</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">mod</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">d_ln_gdp</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">q</span><span class="p">))</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">mod</span><span class="p">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">summary</span><span class="p">())</span>
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                               SARIMAX Results                                
+==============================================================================
+Dep. Variable:                  GDPC1   No. Observations:                  292
+Model:                 ARIMA(3, 0, 1)   Log Likelihood                 972.763
+Date:                        00:00:00   AIC                          -1933.526
+Time:                        00:00:00   BIC                          -1911.466
+Sample:                    01-01-1947   HQIC                         -1924.690
+                         - 10-01-2019                                         
+Covariance Type:                  opg                                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0077      0.001      9.163      0.000       0.006       0.009
+ar.L1          0.1918      0.417      0.461      0.645      -0.625       1.008
+ar.L2          0.1980      0.145      1.368      0.171      -0.086       0.482
+ar.L3         -0.0961      0.072     -1.332      0.183      -0.237       0.045
+ma.L1          0.1403      0.410      0.342      0.732      -0.663       0.944
+sigma2      7.301e-05   4.29e-06     17.006      0.000    6.46e-05    8.14e-05
+===================================================================================
+Ljung-Box (L1) (Q):                   0.02   Jarque-Bera (JB):                59.78
+Prob(Q):                              0.90   Prob(JB):                         0.00
+Heteroskedasticity (H):               0.26   Skew:                             0.15
+Prob(H) (two-sided):                  0.00   Kurtosis:                         5.20
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+</code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
