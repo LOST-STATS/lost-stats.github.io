@@ -164,7 +164,7 @@
   <li>Read the below LOST Writing Guide, which shows what a good LOST page looks like from top to bottom. Even if you are just adding another language to an existing page, be sure to read the Implementations section at the bottom.</li>
   <li>Explore LOST using the navigation bar on the left, find a page that needs to be expanded, and add more content. Or find one that doesn’t exist but should (perhaps on the <a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html">Desired Nonexistent Pages list</a>, and write it yourself! Go to the <a href="https://github.com/LOST-STATS/LOST-STATS.github.io">GitHub Repository</a> for LOST to find the appropriate file to edit or folder to create your new file in.</li>
   <li>If you are a “Contributor” to the project, you can make your edits and changes directly to the repository. If not, you will need to issue a <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request">pull request</a> to get your work on LOST. We will add you as a contributor after your first accepted pull request. If you don’t know Git or how to do a pull request, please post in <a href="https://github.com/LOST-STATS/LOST-STATS.github.io/issues">Issues</a> asking to be added as a contributor so you can edit LOST directly.</li>
-  <li>If you’ve made a new page, make sure it’s saved as a <code class="language-plaintext highlighter-rouge">.md</code> file, put it in the appropriate folder, and add Navigation Information at the top (see below). If you’ve written a Desired Nonexistent Page, be sure to remove it from the <a href="https://github.com/LOST-STATS/LOST-STATS.github.io/blob/source/Desired_Nonexistent_Pages/Desired_Nonexistent_Pages.md">list</a>. Or, if your page links to some new nonexistent pages, add those to the list! Also, try to see if other pages have attempted to link to the page you’re working on, and update their links so they go to the right place.</li>
+  <li>If you’ve made a new page, make sure it’s saved as a <code class="language-plaintext highlighter-rouge">.md</code> file, put it in the appropriate folder, and add Navigation Information at the top (see below). If you’ve written a Desired Nonexistent Page, be sure to remove it from the <a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html">list</a>. Or, if your page links to some new nonexistent pages, add those to the list! Also, try to see if other pages have attempted to link to the page you’re working on, and update their links so they go to the right place.</li>
 </ol>
       <h1 id="lost-writing-guide">
           <a href="#lost-writing-guide" aria-labelledby="lost-writing-guide" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> LOST WRITING GUIDE
@@ -200,7 +200,13 @@
 
 <span class="gs">**Bold**</span> and _Italic_ and <span class="sb">`Code`</span> text
 
-<span class="p">[</span><span class="nv">Link</span><span class="p">](</span><span class="sx">url</span><span class="p">)</span> and !<span class="p">[</span><span class="nv">Image</span><span class="p">](</span><span class="sx">src</span><span class="p">)</span>
+<span class="p">![</span><span class="nv">Image</span><span class="p">](</span><span class="sx">src</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Note that links in LOST are <em>relative links</em> - when linking to another LOST page, don’t use the full URL. Instead of regular-markdown</p>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nv">Page</span><span class="p">](</span><span class="sx">url</span><span class="p">)</span>
+</code></pre></div></div>
+<p>instead do, for example:</p>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Category/page.html
 </code></pre></div></div>
 <p>For more details see <a href="https://guides.github.com/features/mastering-markdown/">GitHub Flavored Markdown</a>.</p>
       <h2 id="math">
