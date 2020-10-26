@@ -20,8 +20,8 @@ For more information, see [Wikipedia: Heckman correction](https://en.wikipedia.o
 ## Also Consider
 
 - There are many ways to estimate a Heckman model. Maximum likelihood approaches generally have better statistical properties, but two-stage models are computationally simpler. Often you can look in the options of your Heckman estimator command to select an estimation method.
-- If your goal is to estimate the effect of a binary treatment by modeling selection into treatment, consider a [Treatment Effect Model]({{ "/Model_Estimation/treatment_effect_model.html" | relative_url }}), or an [Endogenous Switching Model]({{ "/Model_Estimation/endogenous_switching_model.html" | relative_url }}) which also allows predictors to work differently in different settings.
-- Standard Heckman models rely heavily on assumptions about the normality of error terms. You may want to consider [Nonparametric Sample Selection Models]({{ "/Model_Estimation/nonparametric_sample_selecion_model.html" | relative_url }}).
+- If your goal is to estimate the effect of a binary treatment by modeling selection into treatment, consider a [Treatment Effect Model]({{ "/Model_Estimation/GLS/treatment_effect_model.html" | relative_url }}), or an [Endogenous Switching Model]({{ "/Model_Estimation/GLS/endogenous_switching_model.html" | relative_url }}) which also allows predictors to work differently in different settings.
+- Standard Heckman models rely heavily on assumptions about the normality of error terms. You may want to consider [Nonparametric Sample Selection Models]({{ "/Model_Estimation/GLS/nonparametric_sample_selecion_model.html" | relative_url }}).
 
 # Implementations
 
