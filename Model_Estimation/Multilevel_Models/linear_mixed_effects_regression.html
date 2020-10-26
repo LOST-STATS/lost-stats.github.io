@@ -164,7 +164,7 @@
           <h1 id="linear-mixed-effects-regression">
           <a href="#linear-mixed-effects-regression" aria-labelledby="linear-mixed-effects-regression" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Linear Mixed-Effects Regression
       </h1>
-<p>Mixed-effects regression goes by many names, including hierarchical linear model, random coefficient model, and random parameter models. In a mixed-effects regression, some of the parameters are “random effects” which are allowed to vary over the sample. Others are “fixed effects”, which are not. Note that this use of the term “fixed effects” is not the same as in <a href="/Model_Estimation/fixed_effects_in_linear_regression.html">fixed effects regression</a>.</p>
+<p>Mixed-effects regression goes by many names, including hierarchical linear model, random coefficient model, and random parameter models. In a mixed-effects regression, some of the parameters are “random effects” which are allowed to vary over the sample. Others are “fixed effects”, which are not. Note that this use of the term “fixed effects” is not the same as in <a href="/Model_Estimation/OLS/fixed_effects_in_linear_regression.html">fixed effects regression</a>.</p>
 <p>For example, consider the model</p>
 \[y_{ij} = \beta_{0j} + \beta_{1j}X_{1ij} + \beta_{2}X_{2ij} + e_{ij}\]
 <p>The intercept \(\beta_{0j}\) has a $j$ subscript and is allowed to vary over the sample at the \(j\) level, where \(j\) may indicate individual or group, depending on context. The slope on \(X_{1ij}\), \(\beta_{1j}\), is similarly allowed to vary over the sample. These are random effects. \(\beta_{2}\) is not allowed to vary over the sample and so is fixed.</p>
@@ -184,8 +184,8 @@
           <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
       </h2>
 <ul>
-  <li>There are many variations of mixed-effects models for working with non-linear data, see <a href="/Model_Estimation/nonlinear_mixed_effects_models.html">nonlinear mixed-effects models</a>.</li>
-  <li>If the goal is making predictions within subgroups, you may want to consider <a href="/Model_Estimation/multilevel_regression_with_poststratification.html">multi-level regression with poststratification</a>.</li>
+  <li>There are many variations of mixed-effects models for working with non-linear data, see <a href="/Model_Estimation/Multilevel_Models/nonlinear_mixed_effects_models.html">nonlinear mixed-effects models</a>.</li>
+  <li>If the goal is making predictions within subgroups, you may want to consider <a href="/Model_Estimation/Multilevel_Models/multilevel_regression_with_poststratification.html">multi-level regression with poststratification</a>.</li>
 </ul>
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
