@@ -26,7 +26,7 @@ It is common to want to *collapse* a data set from one level to another, coarser
 | 1 | 3.25 |
 | 2 | 3.25 |
 
-This can be one useful way to produce [summary statistics]({{ "/Summary_Statistics/summary_statistics.html" | relative_url }}), but can also be used to rid the data of unnecessary or unusable detail, or to change one data set to match the observation level of another.
+This can be one useful way to produce [summary statistics]({{ "/Presentation/Tables/Summary_Statistics_Tables.html" | relative_url }}), but can also be used to rid the data of unnecessary or unusable detail, or to change one data set to match the observation level of another.
 
 ## Keep in Mind
 
