@@ -9,7 +9,7 @@ mathjax: true ## Switch to false if this page has no equations or other math ren
 
 # Linear Mixed-Effects Regression
 
-Mixed-effects regression goes by many names, including hierarchical linear model, random coefficient model, and random parameter models. In a mixed-effects regression, some of the parameters are "random effects" which are allowed to vary over the sample. Others are "fixed effects", which are not. Note that this use of the term "fixed effects" is not the same as in [fixed effects regression]({{ "/Model_Estimation/fixed_effects_in_linear_regression.html" | relative_url }}).
+Mixed-effects regression goes by many names, including hierarchical linear model, random coefficient model, and random parameter models. In a mixed-effects regression, some of the parameters are "random effects" which are allowed to vary over the sample. Others are "fixed effects", which are not. Note that this use of the term "fixed effects" is not the same as in [fixed effects regression]({{ "/Model_Estimation/OLS/fixed_effects_in_linear_regression.html" | relative_url }}).
 
 For example, consider the model
 
@@ -39,8 +39,8 @@ For more information see [Wikipedia](https://en.wikipedia.org/wiki/Multilevel_mo
 
 ## Also Consider
 
-- There are many variations of mixed-effects models for working with non-linear data, see [nonlinear mixed-effects models]({{ "/Model_Estimation/nonlinear_mixed_effects_models.html" | relative_url }}).
-- If the goal is making predictions within subgroups, you may want to consider [multi-level regression with poststratification]({{ "/Model_Estimation/multilevel_regression_with_poststratification.html" | relative_url }}).
+- There are many variations of mixed-effects models for working with non-linear data, see [nonlinear mixed-effects models]({{ "/Model_Estimation/Multilevel_Models/nonlinear_mixed_effects_models.html" | relative_url }}).
+- If the goal is making predictions within subgroups, you may want to consider [multi-level regression with poststratification]({{ "/Model_Estimation/Multilevel_Models/multilevel_regression_with_poststratification.html" | relative_url }}).
 
 # Implementations
 
