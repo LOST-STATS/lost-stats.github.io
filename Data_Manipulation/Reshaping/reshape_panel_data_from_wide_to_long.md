@@ -30,7 +30,7 @@ In long format, there is one row per individual per time period:
 | 2          | H                   | 1991 | 10          |
 | 2          | H                   | 1992 | 14          |
 
-This format makes it easy to run models like [fixed effects]({{ "/Model_Estimation/fixed_effects.html" | relative_url }}).
+This format makes it easy to run models like [fixed effects]({{ "/Model_Estimation/OLS/fixed_effects_in_linear_regression.html" | relative_url }}).
 
 Reshaping is the method of converting wide-format data to long and [vice versa]({{ "/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" | relative_url }})..
 
@@ -107,7 +107,7 @@ df_long = pd.wide_to_long(df, ["A", "B"], i="id", j="year")
 
 ## R
 
-There are many ways to reshape in R, including base-R `reshape` and the deprecated `reshape2::melt` and `cast` and `tidyr::gather` and `spread`. We will be using the **tidyr** package function `pivot_longer`, which requires **tidyr** version 1.0.0 or later.
+There are many ways to reshape in R, including base-R `reshape` and the deprecated `reshape2::melt` and `cast` and `tidyr::gather` and `spread`. There is also the incredibly fast `data.table::melt()`. We will be using the **tidyr** package function `pivot_longer`, which requires **tidyr** version 1.0.0 or later.
 
 ```r
 # install.packages('tidyr')
