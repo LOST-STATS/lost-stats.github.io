@@ -42,7 +42,7 @@ The [**statsmodels**](https://www.statsmodels.org/stable/index.html) library off
 In the example below, we'll take the first difference of the log of the data, then fit a model with $$p=3$$ auto-regressive terms and $$q=1$$ moving average terms.
 
 
-```python
+```python?example=arimaexample
 import numpy as np
 import pandas as pd
 from statsmodels.tsa.arima.model import ARIMA
@@ -57,7 +57,7 @@ print(d_ln_gdp.head())
 ```
 
                    GDPC1
-    DATE                
+    DATE
     1947-01-01       NaN
     1947-04-01 -0.002670
     1947-07-01 -0.002067
@@ -70,7 +70,7 @@ You can see that the first value is NaN. That's because, for the first value, th
 Let's fit the model:
 
 
-```python
+```python?example=arimaexample
 p = 3
 d = 0
 q = 1
@@ -80,15 +80,15 @@ res = mod.fit()
 print(res.summary())
 ```
 
-                                   SARIMAX Results                                
+                                   SARIMAX Results
     ==============================================================================
     Dep. Variable:                  GDPC1   No. Observations:                  292
     Model:                 ARIMA(3, 0, 1)   Log Likelihood                 972.763
     Date:                        00:00:00   AIC                          -1933.526
     Time:                        00:00:00   BIC                          -1911.466
     Sample:                    01-01-1947   HQIC                         -1924.690
-                             - 10-01-2019                                         
-    Covariance Type:                  opg                                         
+                             - 10-01-2019
+    Covariance Type:                  opg
     ==============================================================================
                      coef    std err          z      P>|z|      [0.025      0.975]
     ------------------------------------------------------------------------------
@@ -104,7 +104,7 @@ print(res.summary())
     Heteroskedasticity (H):               0.26   Skew:                             0.15
     Prob(H) (two-sided):                  0.00   Kurtosis:                         5.20
     ===================================================================================
-    
+
     Warnings:
     [1] Covariance matrix calculated using the outer product of gradients (complex-step).
 

@@ -14,8 +14,8 @@ For additional information, see [Wikipedia: Autoregressive model](https://en.wik
 
 ## Keep In Mind
 
-- An AR model can be univariate (scalar) or multivariate (vector). This may be important to implementing an AR model in your statisical package of choice.  
-- Data should be properly formatted before estimation. If not, non-time series objects (e.g., a date column) may be interpereted by software as a time series variable, leading to erroneous output. 
+- An AR model can be univariate (scalar) or multivariate (vector). This may be important to implementing an AR model in your statisical package of choice.
+- Data should be properly formatted before estimation. If not, non-time series objects (e.g., a date column) may be interpereted by software as a time series variable, leading to erroneous output.
 
 # Implementations
 
@@ -39,7 +39,7 @@ where $$d_i$$ are seasonal dummies, $$x_{t,j}$$ are exogenous regressors, and th
 
 Using GDP data, let’s fit an auto-regressive model of order 1, an AR(1), with `AutoReg`:
 
-```python
+```python?example=arexample
 # Install pandas and statsmodels using 'pip install' or 'conda install' on the command line
 import pandas as pd
 from statsmodels.tsa.ar_model import AutoReg, ar_select_order
@@ -51,7 +51,7 @@ results = ar1_model.fit()
 print(results.summary())
 ```
 
-    ##                             AutoReg Model Results                             
+    ##                             AutoReg Model Results
     ## ==============================================================================
     ## Dep. Variable:                  GDPC1   No. Observations:                  292
     ## Model:                     AutoReg(1)   Log Likelihood               -1625.980
@@ -59,13 +59,13 @@ print(results.summary())
     ## Date:                0000000000000000   AIC                              8.358
     ## Time:                        00:00:00   BIC                              8.396
     ## Sample:                    04-01-1947   HQIC                             8.373
-    ##                          - 10-01-2019                                         
+    ##                          - 10-01-2019
     ## ==============================================================================
     ##                  coef    std err          z      P>|z|      [0.025      0.975]
     ## ------------------------------------------------------------------------------
     ## intercept     21.8083      7.439      2.931      0.003       7.227      36.389
     ## GDPC1.L1       1.0043      0.001   1356.492      0.000       1.003       1.006
-    ##                                     Roots                                    
+    ##                                     Roots
     ## =============================================================================
     ##                   Real          Imaginary           Modulus         Frequency
     ## -----------------------------------------------------------------------------
@@ -74,7 +74,7 @@ print(results.summary())
 
 Now let’s use the automatic option to choose how many lags to include (this uses the BIC criterion to choose, though over criteria are available):
 
-```python
+```python?example=arexample
 select_model = ar_select_order(gdp, maxlag=10)
 print(select_model.ar_lags)
 ```
@@ -83,13 +83,13 @@ print(select_model.ar_lags)
 This tells us to include lags up to 3. We can pass the list of lags right back to the
 `Auto_Reg` function:
 
-```python
+```python?example=arexample
 arp_model = AutoReg(gdp, select_model.ar_lags)
 results_p = arp_model.fit()
 print(results_p.summary())
 ```
 
-    ##                             AutoReg Model Results                             
+    ##                             AutoReg Model Results
     ## ==============================================================================
     ## Dep. Variable:                  GDPC1   No. Observations:                  292
     ## Model:                     AutoReg(3)   Log Likelihood               -1593.285
@@ -97,7 +97,7 @@ print(results_p.summary())
     ## Date:                0000000000000000   AIC                              8.223
     ## Time:                        00:00:00   BIC                              8.286
     ## Sample:                    10-01-1947   HQIC                             8.248
-    ##                          - 10-01-2019                                         
+    ##                          - 10-01-2019
     ## ==============================================================================
     ##                  coef    std err          z      P>|z|      [0.025      0.975]
     ## ------------------------------------------------------------------------------
@@ -105,7 +105,7 @@ print(results_p.summary())
     ## GDPC1.L1       1.2921      0.058     22.273      0.000       1.178       1.406
     ## GDPC1.L2      -0.1253      0.095     -1.315      0.189      -0.312       0.062
     ## GDPC1.L3      -0.1646      0.058     -2.826      0.005      -0.279      -0.050
-    ##                                     Roots                                    
+    ##                                     Roots
     ## =============================================================================
     ##                   Real          Imaginary           Modulus         Frequency
     ## -----------------------------------------------------------------------------
@@ -121,12 +121,12 @@ print(results_p.summary())
 #load data
 gdp = read.csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv")
 
-#estimation via ols: pay attention to the selection of the 'GDPC1' column. 
+#estimation via ols: pay attention to the selection of the 'GDPC1' column.
 #if the column is not specified, the function call also interprets the date column as a time series variable!
 ar_gdp = ar.ols(gdp$GDPC1)
 ar_gdp
 
-#lag order is automatically selected by minimizing AIC 
+#lag order is automatically selected by minimizing AIC
 #disable this feature with the optional command 'aic = F'. Note: you will also likely wish to specify the argument 'order.max'.
 #ar.ols() defaults to demeaning the data automatically. Also consider taking logs and first differencing for statistically meaningful results.
 ```
