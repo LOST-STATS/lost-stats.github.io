@@ -164,7 +164,7 @@
           <h1 id="randommixed-effects-in-linear-regression">
           <a href="#randommixed-effects-in-linear-regression" aria-labelledby="randommixed-effects-in-linear-regression" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Random/Mixed Effects in Linear Regression
       </h1>
-<p>In panel data, we often have to deal with unobserved heterogeneity among the units of observation that are observed over time. If we assume that the unobserved heterogeneity is uncorrelated with the independent variables, we can use random effects model. Otherwise, we may consider <a href="/Model_Estimation/fixed_effects_in_linear_regression.html">fixed effects</a>. In practice, random effects and fixed effects are often combined to implement a mixed effects model. Mixed refers to the fact that these models contain both fixed, and random effects.</p>
+<p>In panel data, we often have to deal with unobserved heterogeneity among the units of observation that are observed over time. If we assume that the unobserved heterogeneity is uncorrelated with the independent variables, we can use random effects model. Otherwise, we may consider <a href="/Model_Estimation/OLS/fixed_effects_in_linear_regression.html">fixed effects</a>. In practice, random effects and fixed effects are often combined to implement a mixed effects model. Mixed refers to the fact that these models contain both fixed, and random effects.</p>
 <p>For more information, see <a href="https://en.wikipedia.org/wiki/Random_effects_model">Wikipedia: Random Effects Model</a></p>
       <h2 id="keep-in-mind">
           <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
@@ -179,15 +179,15 @@
           <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
       </h2>
 <ul>
-  <li>Consider <a href="/Model_Estimation/fixed_effects_in_linear_regression.html">Fixed effects</a>
+  <li>Consider <a href="/Model_Estimation/OLS/fixed_effects_in_linear_regression.html">Fixed effects</a>
 if unobserved heterogeneity and independent variables are correlated or if only within-variation is desired.</li>
   <li><a href="https://en.wikipedia.org/wiki/Durbin%E2%80%93Wu%E2%80%93Hausman_test">Hauman Tests</a> are often used to inform us about the appropiateness of fixed effects models vs. random effects models in which only the intercept is random.</li>
-  <li><a href="/Model_Estimation/Nonstandard_Errors/clustered_se.html">Clustering your error</a></li>
+  <li><a href="/Statistical_Inference/Nonstandard_Errors/clustered_se.html">Clustering your error</a></li>
 </ul>
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
-<p>We continue from our the example in <a href="/Model_Estimation/fixed_effects_in_linear_regression.html">Fixed effects</a>. In that example we estimated a fixed effect model of the form:</p>
+<p>We continue from our the example in <a href="/Model_Estimation/OLS/fixed_effects_in_linear_regression.html">Fixed effects</a>. In that example we estimated a fixed effect model of the form:</p>
 \[earnings_{it} = \beta_0 + \beta_1 prop\_ working_{it} + \delta_t + \delta_i + \epsilon_{it}\]
 <p>That is, average earnings of graduates of an institution depends on proportion employed, after controlling for time and institution fixed effects. But, some institutions have one observation, and the average number of observations is 5.1. We may be worried about the precision of our estimates. So, we may choose to use random effects for intercepts by institution to estimate the model even if we think \(corr(prop\_ working_{it}, \delta_{i}) \ne 0\). That is, we choose possiblity of bias over variance.</p>
       <h2 id="r">
