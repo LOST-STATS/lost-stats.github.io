@@ -66,7 +66,7 @@ $$
 ##### NOTE: Feel free to skip this section if you just interested in how to apply the test.
 
 
-```r
+```r?example=grangertest
 # set seed
 set.seed(1234)
 
@@ -77,51 +77,51 @@ coe <- 1.2 # Coefficient of X in model Y
 alpha <- 0.5 # Intercept of the model Y
 
 # Function to create the error of Y
-ARsim2 <- function(rho,first,serieslength,distribution){
+ARsim2 <- function(rho, first, serieslength, distribution) {
   if(distribution=="runif"){a <- runif(serieslength,min=0,max=1)}
   else {a <- rnorm(serieslength,0,1)}
   Y <- first
   for (i in (length(rho)+1):serieslength){
     Y[i] <- rho*Y[i-1]+(sqrt(1-(rho^2)))*a[i]
   }
-  return(Y)}
+  return(Y)
+}
 
 # Error for Y model
-error<-ARsim2(rho,c(0,0),n,"rnorm")
+error < -ARsim2(rho, c(0, 0), n, "rnorm")
 
 # times series X (simulation)
 X <- arima.sim(list(order = c(1, 0, 0), ar = c(0.2)), n)
 
 # times series Y (simulation)
 Y <- NULL
-for(i in 2:200){
-Y[i] <- alpha + (coe*X[i-1]) + error[i]
+for (i in 2:200) {
+  Y[i] <- alpha + (coe * X[i - 1]) + error[i]
 }
 ```
 
 
 ### Data
 
-```r
+```r?example=grangertest
 data <- as.data.frame(cbind(1:200,X,as.ts(Y)))
 colnames(data) <- c("time", "X","Y")
 ```
 
 ### Graph
 
-```r
+```r?example=grangertest
 # If necessary
 # install.packages("tidyr")
 # install.packages("ggplot2")
 
-library(tidyr) # For data manipulation
-library(ggplot2) # Plots
+library(tidyr)
+library(ggplot2)
 
 graphdata <- data[2:200,] %>%
   pivot_longer(
     cols = -c(time), names_to="variable", values_to="value"
   )
-
 
 ggplot(graphdata, aes(x = time, y = value, group=variable)) +
   geom_line(aes(color = variable), size = 0.7) +
@@ -131,14 +131,14 @@ ggplot(graphdata, aes(x = time, y = value, group=variable)) +
   theme(text = element_text(size = 15))
 ```
 
-![Auto-distributed lag graph](/Images/Granger_Causality/R_adl.png)<!-- -->
+![Auto-distributed lag graph](/Images/Granger_Causality/R_adl.png)
 
 * It seems that both series are stationary (later is check with the ADF test) and,
 * Disturbances in variable X are visible after periods in Y (as expected).
 
 ### Check Stationarity
 
-```r
+```r?example=grangertest
 # If necessary
 # install.packages("tseries")
 library(tseries)
