@@ -2,7 +2,7 @@ import subprocess
 from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List
+from typing import Dict, List
 from urllib import parse
 
 import mistune
@@ -21,6 +21,7 @@ class CodeBlock:
 
     language: str
     code: str
+    options: Dict[str, str]
     location: Path
 
     def __repr__(self) -> str:
@@ -79,32 +80,30 @@ def get_top_level_block_codes(mark: str, location: Path) -> List[CodeBlock]:
 
             language, _, options = language.partition("?")
             if options:
-                name = parse.parse_qs(options).get("example", [""])[0]
-                if name:
-                    named_blocks[name].append(
-                        CodeBlock(
-                            code=elt.get("text"), language=language, location=location
-                        )
-                    )
-                else:
-                    unnamed_blocks.append(
-                        CodeBlock(
-                            code=elt.get("text"), language=language, location=location
-                        )
-                    )
+                doptions = parse.parse_qs(options)
+                name = doptions.get("example", [""])[0]
             else:
-                unnamed_blocks.append(
-                    CodeBlock(
-                        code=elt.get("text"), language=language, location=location
-                    )
-                )
+                doptions = {}
+                name = ""
+
+            block = CodeBlock(
+                code=elt.get("text"),
+                language=language,
+                options=doptions,
+                location=location,
+            )
+            if name:
+                named_blocks[name].append(block)
+            else:
+                unnamed_blocks.append(block)
 
     for block_of_blocks in named_blocks.values():
         unnamed_blocks.append(
             CodeBlock(
                 code="\n\n".join(block.code for block in block_of_blocks),
-                language=block_of_blocks[0].language.split()[0].lower(),
+                language=block_of_blocks[0].language,
                 location=location,
+                options=block_of_blocks[0].options,
             )
         )
 
@@ -135,6 +134,7 @@ def pytest_generate_tests(metafunc):
     exclude_paths = _expand_paths(base_exclude_paths)
     all_paths = sorted(set(all_paths) - set(exclude_paths))
 
+    # Retrieve the blocks from the code
     all_blocks: List[CodeBlock] = []
     for filename in all_paths:
         with open(filename, "rt") as infile:
@@ -142,15 +142,21 @@ def pytest_generate_tests(metafunc):
         blocks = get_top_level_block_codes(text, filename)
         all_blocks.extend(blocks)
 
+    # Skip the blocks labeled `skip`
+    run_blocks = [
+        block
+        for block in all_blocks
+        if block.options.get("skip", "false").lower() != "true"
+    ]
     if "python_code_block" in metafunc.fixturenames:
         metafunc.parametrize(
             "python_code_block",
-            [block for block in all_blocks if block.language.startswith("py")],
+            [block for block in run_blocks if block.language.startswith("py")],
         )
 
     if "r_code_block" in metafunc.fixturenames:
         metafunc.parametrize(
-            "r_code_block", [block for block in all_blocks if block.language == "r"]
+            "r_code_block", [block for block in run_blocks if block.language == "r"]
         )
 
 
