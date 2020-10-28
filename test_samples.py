@@ -111,18 +111,29 @@ def get_top_level_block_codes(mark: str, location: Path) -> List[CodeBlock]:
     return unnamed_blocks
 
 
-def pytest_generate_tests(metafunc):
-    base_paths = list(map(Path, metafunc.config.getoption("mdpath")))
-    base_paths = base_paths or [Path(__file__).parent]
-
-    all_paths = []
-    for path in base_paths:
+def _expand_paths(paths: List[Path]) -> List[Path]:
+    all_paths: List[Path] = []
+    for path in paths:
         if not path.exists():
             continue
         if path.is_file():
             all_paths.append(path)
         elif path.is_dir():
             all_paths.extend(path.glob("**/*.md"))
+
+    return all_paths
+
+
+def pytest_generate_tests(metafunc):
+    base_paths = list(map(Path, metafunc.config.getoption("mdpath")))
+    base_paths = base_paths or [Path(__file__).parent]
+
+    base_exclude_paths = list(map(Path, metafunc.config.getoption("xmdpath")))
+
+    # Expand and exclude paths on command line
+    all_paths = _expand_paths(base_paths)
+    exclude_paths = _expand_paths(base_exclude_paths)
+    all_paths = sorted(set(all_paths) - set(exclude_paths))
 
     all_blocks: List[CodeBlock] = []
     for filename in all_paths:
