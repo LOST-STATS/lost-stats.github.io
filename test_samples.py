@@ -18,6 +18,7 @@ class CodeBlock:
         code: The actual content of the code block
         location: Which file did we find the code block in?
     """
+
     language: str
     code: str
     location: Path
@@ -28,7 +29,7 @@ class CodeBlock:
             code = f"{self.code[:47]}..."
         else:
             code = self.code
-        return f"CodeBlock(language=\"{self.language}\", code=\"{code}\", location={self.location})"
+        return f'CodeBlock(language="{self.language}", code="{code}", location={self.location})'
 
 
 @dataclass(frozen=True)
@@ -41,6 +42,7 @@ class Outcome:
         stdout: The standard out of the test
         returncode: The return code from running the test
     """
+
     block: CodeBlock
     stdout: str
     returncode: int
@@ -69,28 +71,42 @@ def get_top_level_block_codes(mark: str, location: Path) -> List[CodeBlock]:
     named_blocks = defaultdict(list)
     unnamed_blocks = []
     for elt in ast:
-        if elt.get('type') == 'block_code':
+        if elt.get("type") == "block_code":
             # N.B. mistune 2.0.0a5 creates an `info` key with value None if the
             #      info parameter doesn't exist. Thus we can't use `.get()` directly
-            language = elt.get('info') or ''
+            language = elt.get("info") or ""
             language = language.lower()
 
-            language, _, options = language.partition('?')
+            language, _, options = language.partition("?")
             if options:
-                name = parse.parse_qs(options).get('example', [''])[0]
+                name = parse.parse_qs(options).get("example", [""])[0]
                 if name:
-                    named_blocks[name].append(CodeBlock(code=elt.get('text'), language=language, location=location))
+                    named_blocks[name].append(
+                        CodeBlock(
+                            code=elt.get("text"), language=language, location=location
+                        )
+                    )
                 else:
-                    unnamed_blocks.append(CodeBlock(code=elt.get('text'), language=language, location=location))
+                    unnamed_blocks.append(
+                        CodeBlock(
+                            code=elt.get("text"), language=language, location=location
+                        )
+                    )
             else:
-                unnamed_blocks.append(CodeBlock(code=elt.get('text'), language=language, location=location))
+                unnamed_blocks.append(
+                    CodeBlock(
+                        code=elt.get("text"), language=language, location=location
+                    )
+                )
 
     for block_of_blocks in named_blocks.values():
-        unnamed_blocks.append(CodeBlock(
-            code='\n\n'.join(block.code for block in block_of_blocks),
-            language=block_of_blocks[0].language.split()[0].lower(),
-            location=location
-        ))
+        unnamed_blocks.append(
+            CodeBlock(
+                code="\n\n".join(block.code for block in block_of_blocks),
+                language=block_of_blocks[0].language.split()[0].lower(),
+                location=location,
+            )
+        )
 
     return unnamed_blocks
 
@@ -106,67 +122,68 @@ def pytest_generate_tests(metafunc):
         if path.is_file():
             all_paths.append(path)
         elif path.is_dir():
-            all_paths.extend(path.glob('**/*.md'))
+            all_paths.extend(path.glob("**/*.md"))
 
     all_blocks: List[CodeBlock] = []
     for filename in all_paths:
-        with open(filename, 'rt') as infile:
+        with open(filename, "rt") as infile:
             text = infile.read()
         blocks = get_top_level_block_codes(text, filename)
         all_blocks.extend(blocks)
 
-    if 'python_code_block' in metafunc.fixturenames:
-        metafunc.parametrize('python_code_block', [block for block in all_blocks if block.language.startswith('py')])
+    if "python_code_block" in metafunc.fixturenames:
+        metafunc.parametrize(
+            "python_code_block",
+            [block for block in all_blocks if block.language.startswith("py")],
+        )
 
-    if 'r_code_block' in metafunc.fixturenames:
-        metafunc.parametrize('r_code_block', [block for block in all_blocks if block.language == 'r'])
+    if "r_code_block" in metafunc.fixturenames:
+        metafunc.parametrize(
+            "r_code_block", [block for block in all_blocks if block.language == "r"]
+        )
 
 
 def run_docker_python(block: CodeBlock) -> Outcome:
-    process = subprocess.run([
-        'docker',
-        'run',
-        '--rm',
-        'ghcr.io/khwilson/tester-python:latest',
-        'python',
-        '-c',
-        block.code],
+    process = subprocess.run(
+        [
+            "docker",
+            "run",
+            "--rm",
+            "ghcr.io/khwilson/tester-python:latest",
+            "python",
+            "-c",
+            block.code,
+        ],
         stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT
+        stderr=subprocess.STDOUT,
     )
 
-    return Outcome(
-        block=block,
-        stdout=process.stdout,
-        returncode=process.returncode
-    )
+    return Outcome(block=block, stdout=process.stdout, returncode=process.returncode)
 
 
 def run_docker_r(block: CodeBlock) -> Outcome:
-    process = subprocess.run([
-        'docker',
-        'run',
-        '--rm',
-        'ghcr.io/khwilson/tester-r:latest',
-        'R',
-        '-e',
-        block.code],
+    process = subprocess.run(
+        [
+            "docker",
+            "run",
+            "--rm",
+            "ghcr.io/khwilson/tester-r:latest",
+            "R",
+            "-e",
+            block.code,
+        ],
         stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT
+        stderr=subprocess.STDOUT,
     )
 
-    return Outcome(
-        block=block,
-        stdout=process.stdout,
-        returncode=process.returncode
-    )
+    return Outcome(block=block, stdout=process.stdout, returncode=process.returncode)
 
 
-def test_python_code_block(python_code_block):
+def test_python_code_block(python_code_block: CodeBlock):
     outcome = run_docker_python(python_code_block)
     assert outcome.returncode == 0, str(python_code_block)
 
 
-def test_r_code_block(r_code_block):
+def test_r_code_block(r_code_block: CodeBlock):
     outcome = run_docker_r(r_code_block)
     assert outcome.returncode == 0, str(r_code_block)
