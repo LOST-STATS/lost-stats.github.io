@@ -49,7 +49,7 @@ ggplot(diamonds, aes(x = price)) +
 
 We can always change the color of the density plot using the `col` argument and fill the color inside the density plot using `fill` argument. Furthermore, we can specify the degree of transparency density fill area using the argument `alpha` where `alpha` ranges from 0 to 1.
 
-```?example=density
+```r?example=density
 ggplot(diamonds, aes(x = price))+
   geom_density(fill = "lightblue", col = 'black', alpha = 0.6)
 ```
@@ -57,7 +57,7 @@ ggplot(diamonds, aes(x = price))+
 ![Colored density plot]({{ "/Presentation/Figures/Images/density_plot/2.png" | relative_url }})
 We can also change the type of line of the density plot as well by adding `linetype=` inside `geom_density()`.
 
-```?example=density
+```r?example=density
 ggplot(diamonds, aes(x = price)) +
   geom_density(fill = "lightblue", col = 'black', linetype = "dashed")
 ```
@@ -65,7 +65,7 @@ ggplot(diamonds, aes(x = price)) +
 ![Density plot with linetype]({{ "/Presentation/Figures/Images/density_plot/3.png" | relative_url }})
 Furthermore, you can also combine both histogram and density plots together.
 
-```?example=density
+```r?example=density
 ggplot(diamonds, aes(x = price)) +
   geom_histogram(aes(y = ..density..), colour = "black", fill = "grey45") +
   geom_density(col = "red", size = 1,linetype = "dashed")
@@ -76,7 +76,7 @@ What happen if we want to make multiple densities?
 
 For example, we want to make multiple densities plots for price based on the type of cut, all we need to do is adding `fill=cut` inside `aes()`.
 
-```?example=density
+```r?example=density
 ggplot(data=diamonds, aes(x = price, fill = cut)) +
     geom_density(adjust = 1.5, alpha = .3)
 ```
