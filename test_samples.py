@@ -1,5 +1,4 @@
-import asyncio
-import re
+import subprocess
 from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
@@ -8,24 +7,62 @@ from urllib import parse
 
 import mistune
 
-MAX_TASKS = 3
-
 
 @dataclass(frozen=True)
 class CodeBlock:
+    """
+    A code block that is found amongst the markdown
+
+    Args:
+        language: The language indicated by the code block
+        code: The actual content of the code block
+        location: Which file did we find the code block in?
+    """
     language: str
     code: str
     location: Path
 
+    def __repr__(self) -> str:
+        """ Modify the repr so that only the first several characters of code are printed """
+        if len(self.code) > 50:
+            code = f"{self.code[:47]}..."
+        else:
+            code = self.code
+        return f"CodeBlock(language=\"{self.language}\", code=\"{code}\", location={self.location})"
+
 
 @dataclass(frozen=True)
-class TestOutcome:
+class Outcome:
+    """
+    The outcome of running a particular code block
+
+    Args:
+        block: The CodeBlock object we ran the test on
+        stdout: The standard out of the test
+        returncode: The return code from running the test
+    """
     block: CodeBlock
     stdout: str
     returncode: int
 
 
 def get_top_level_block_codes(mark: str, location: Path) -> List[CodeBlock]:
+    """
+    Search for code blocks in the markdown `mark`.
+
+    Some notes on processing:
+        * Code blocks are denoted by top-level blocks marked out with ```
+        * The language is specified as ```language_name on the first fence
+        * If a code block is separated by text, you can join them by giving them
+          the same name, specifically like ```python?example=name
+
+    Args:
+        mark: The markdown string we'll search for.
+        location: The path to the file we are reading
+
+    Returns:
+        The list of code blocks. May not be in the order they are found in the file
+    """
     markdown = mistune.create_markdown(renderer=mistune.AstRenderer())
     ast = markdown(mark)
 
@@ -58,60 +95,78 @@ def get_top_level_block_codes(mark: str, location: Path) -> List[CodeBlock]:
     return unnamed_blocks
 
 
-def format_file(block: CodeBlock, prefix: str = 'Running') -> str:
-    cleaned_code = re.sub(r'\s', ' ', block.code[:50])
-    return f"{prefix} code in {block.location} that begins {cleaned_code}"
+def pytest_generate_tests(metafunc):
+    base_paths = list(map(Path, metafunc.config.getoption("mdpath")))
+    base_paths = base_paths or [Path(__file__).parent]
 
-
-async def main():
-    semaphore = asyncio.Semaphore(MAX_TASKS)
-
-    async def run_docker(block: CodeBlock) -> TestOutcome:
-        async with semaphore:
-            print(format_file(block))
-            process = await asyncio.create_subprocess_exec(
-                'docker',
-                'run',
-                '--rm',
-                'tester',
-                'python',
-                '-c',
-                block.code,
-                stdout=asyncio.subprocess.PIPE,
-                stderr=asyncio.subprocess.STDOUT
-            )
-            stdout, _ = await process.communicate()
-
-        return TestOutcome(
-            block=block,
-            stdout=stdout,
-            returncode=process.returncode
-        )
-
-    async def create_tasks(blocks):
-        tasks = [run_docker(block) for block in blocks]
-        return await asyncio.gather(*tasks)
+    all_paths = []
+    for path in base_paths:
+        if not path.exists():
+            continue
+        if path.is_file():
+            all_paths.append(path)
+        elif path.is_dir():
+            all_paths.extend(path.glob('**/*.md'))
 
     all_blocks: List[CodeBlock] = []
-    for filename in Path('Time_Series').glob('**/*.md'):
+    for filename in all_paths:
         with open(filename, 'rt') as infile:
             text = infile.read()
         blocks = get_top_level_block_codes(text, filename)
         all_blocks.extend(blocks)
 
-    all_blocks = [block for block in all_blocks if block.language.startswith('py')]
-    outputs = await create_tasks(all_blocks)
-    for output in outputs:
-        if output.returncode != 0:
-            print()
-            print(f"===== {format_file(output.block, prefix='Error in')} =====")
-            print(output.stdout)
-            print()
+    if 'python_code_block' in metafunc.fixturenames:
+        metafunc.parametrize('python_code_block', [block for block in all_blocks if block.language.startswith('py')])
+
+    if 'r_code_block' in metafunc.fixturenames:
+        metafunc.parametrize('r_code_block', [block for block in all_blocks if block.language == 'r'])
 
 
-if __name__ == "__main__":
-    loop = asyncio.get_event_loop()
-    try:
-        loop.run_until_complete(main())
-    finally:
-        loop.close()
+def run_docker_python(block: CodeBlock) -> Outcome:
+    process = subprocess.run([
+        'docker',
+        'run',
+        '--rm',
+        'ghcr.io/khwilson/tester-python:latest',
+        'python',
+        '-c',
+        block.code],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT
+    )
+
+    return Outcome(
+        block=block,
+        stdout=process.stdout,
+        returncode=process.returncode
+    )
+
+
+def run_docker_r(block: CodeBlock) -> Outcome:
+    process = subprocess.run([
+        'docker',
+        'run',
+        '--rm',
+        'ghcr.io/khwilson/tester-r:latest',
+        'R',
+        '-e',
+        block.code],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT
+    )
+
+    return Outcome(
+        block=block,
+        stdout=process.stdout,
+        returncode=process.returncode
+    )
+
+
+def test_python_code_block(python_code_block):
+    outcome = run_docker_python(python_code_block)
+    assert outcome.returncode == 0, str(python_code_block)
+
+
+def test_r_code_block(r_code_block):
+    outcome = run_docker_r(r_code_block)
+    assert outcome.returncode == 0, str(r_code_block)

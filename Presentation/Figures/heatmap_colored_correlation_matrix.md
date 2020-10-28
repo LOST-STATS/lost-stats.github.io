@@ -121,7 +121,7 @@ This results in:
 ![Heatmap Colored Correlation Matrix in R using Corrplot]({{ "/Presentation/Figures/Images/Heatmap" | relative_url }}-Colored-Correlation-Matrix/heatmap_colored_correlation_matrix_corrplot_R.png)
 
 
-Now we will make the graph using **ggplot2**. We will also make a little use of **dplyr** and **tidyr**, and so we'll load them all as a part of the **tidyverse**. This example makes use of [this guide](http://www.sthda.com/english/wiki/ggplot2-quick-correlation-matrix-heatmap-r-software-and-data-visualization). 
+Now we will make the graph using **ggplot2**. We will also make a little use of **dplyr** and **tidyr**, and so we'll load them all as a part of the **tidyverse**. This example makes use of [this guide](http://www.sthda.com/english/wiki/ggplot2-quick-correlation-matrix-heatmap-r-software-and-data-visualization).
 
 ```r
 # Install the tidyverse if necessary
@@ -139,7 +139,7 @@ C <- mtcars %>%
   # We use dplyr's select() here but there are other ways to limit variables, like []
   select(cyl, disp, drat, hp, mpg, qsec, wt) %>%
   # Correlation matrix
-  cor() 
+  cor()
 
 # At this point, we can limit the matrix to just its lower half
 # Note this will give weird results if you didn't select variables in alphabetical order earlier
@@ -152,8 +152,6 @@ C <- C %>%
   # We use dplyr's mutate to create this column but it could be made with $
   # the . here means "the data set we're working with"
   mutate(Variable = row.names(.))
-
-
 
 # Use tidyr's pivot_longer to reshape to long format
 # There are other ways to reshape too
@@ -178,16 +176,16 @@ ggplot(C_Long,
   # Color the graph as we like
   # Here our negative correlations are red, positive are blue
   # gradient2 instead of gradient gives us a "mid" color which we can make white
-  scale_fill_gradient2(low = "red", high = "blue", mid = "white", 
-                       midpoint = 0, limit = c(-1,1), space = "Lab", 
+  scale_fill_gradient2(low = "red", high = "blue", mid = "white",
+                       midpoint = 0, limit = c(-1,1), space = "Lab",
                        name="Pearson\nCorrelation") +
-  # Axis names don't make much sense 
-  labs(x = NULL, y = NULL) + 
+  # Axis names don't make much sense
+  labs(x = NULL, y = NULL) +
   # We don't need that background
   theme_minimal() +
   # If we need more room for variable names at the bottom, rotate them
-  theme(axis.text.x = element_text(angle = 45, vjust = 1, 
-                                   size = 12, hjust = 1)) + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1,
+                                   size = 12, hjust = 1)) +
   # We want those cells to be square!
   coord_fixed() +
   # If you also want the correlations to be written directly on there, add geom_text

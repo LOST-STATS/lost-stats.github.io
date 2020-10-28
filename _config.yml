@@ -11,6 +11,11 @@ search_tokenizer_separator: /[\s/]+/
 # Supports true (default) or false/nil
 heading_anchors: true
 
+exclude:
+  - NewPageTemplate.md
+  - test_samples.py
+  - conftest.py
+
 plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
