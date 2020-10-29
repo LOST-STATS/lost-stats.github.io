@@ -59,7 +59,6 @@ ggplot(df, aes(x = date, y = log(hits), color = name)) +
   # Extend the x axis so the labels are visible -
   # Try the graph a few times until you find a range that works
   scale_x_date(limits = c(min(df$date), lubridate::ymd("2019-10-25")))
-
 ```
 This results in:
 

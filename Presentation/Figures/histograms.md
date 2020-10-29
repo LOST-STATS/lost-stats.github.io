@@ -59,7 +59,6 @@ ggplot(data = incomes) +
 
 ggplot(data = incomes) +
   geom_histogram(aes(x = income), binwidth = 500)
-
 ```
 
 ## Stata

@@ -41,7 +41,6 @@ library(estimatr)
 # Default is "HC2". Here we'll specify "HC3" just to illustrate.
 m1 <- lm_robust(mpg ~ cyl + disp + hp, data = mtcars, se_type = "HC3")
 summary(m1)
-
 ```
 
 Alternately, users may consider the `vcovHC` function from the **sandwich** package ([link](https://cran.r-project.org/web/packages/sandwich/index.html)), which is very flexible and supports a wide variety of generic regression objects. For inference (t-tests, etc.), use in conjunction with the `coeftest` function from the **lmtest** package ([link](https://cran.r-project.org/web/packages/lmtest/index.html)).
@@ -63,7 +62,6 @@ sqrt(diag(vcovHC(m2))) ## HAC SEs
 
 # For statistical inference, use together with lmtest::coeftest().
 coeftest(m2, vcov = vcovHC(m2))
-
 ```
 
 ## Stata

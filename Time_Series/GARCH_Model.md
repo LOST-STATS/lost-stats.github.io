@@ -82,5 +82,4 @@ for (i in 2:obs) {
 # fit the model
 garch.fit <- garchFit(~ garch(1, 1), data = eps, trace = F)
 summary(garch.fit)
-
 ```

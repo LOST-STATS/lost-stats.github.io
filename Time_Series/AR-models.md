@@ -134,7 +134,6 @@ ar_gdp
 # lag order is automatically selected by minimizing AIC
 # disable this feature with the optional command 'aic = F'. Note: you will also likely wish to specify the argument 'order.max'.
 # ar.ols() defaults to demeaning the data automatically. Also consider taking logs and first differencing for statistically meaningful results.
-
 ```
 
 ## STATA

@@ -45,7 +45,6 @@ m <- lm(hp ~ mpg + cyl, data = mtcars)
 
 # Obtain the boostrapped SEs
 coeftest(m, vcov = vcovBS(m))
-
 ```
 
 Another approach to obtaining bootstrapping standard errors in R is to use the **boot** package ([link](https://cran.r-project.org/web/packages/boot/)). This is typcally more hands-on, but gives the user a lot of control over how the bootrapping procedure will execute.
@@ -87,7 +86,6 @@ tidy_results <- tidy(boot_results)
 library(stargazer)
 m1 <- lm(hp ~ mpg + cyl, data = mtcars)
 stargazer(m1, se = list(tidy_results$std.error), type = "text")
-
 ```
 
 ## Stata

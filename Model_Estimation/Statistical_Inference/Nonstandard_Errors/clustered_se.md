@@ -46,7 +46,6 @@ my_model <- lm(repay_rate ~ earnings_med + state_abbr, data = df)
 library(lmtest)
 library(sandwich)
 coeftest(my_model, vcov = vcovCL(my_model, cluster = ~inst_name))
-
 ```
 
 Alternately, users can specify clustered standard errors directly in the model call using the `lm_robust` function from the **estimatr** package ([link](https://github.com/DeclareDesign/estimatr)). This latter approach is very similar to how errors are clustered in Stata, for example.
@@ -62,7 +61,6 @@ my_model2 <- lm_robust(repay_rate ~ earnings_med + state_abbr,
   se_type = "stata"
 )
 summary(my_model2)
-
 ```
 
 ## Stata

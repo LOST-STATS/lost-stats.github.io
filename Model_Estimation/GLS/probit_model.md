@@ -89,7 +89,6 @@ summary(my_probit)
 
 # Marginal effects
 probitmfx(vs ~ mpg + cyl, data = mtcars)
-
 ```
 
 ## Stata

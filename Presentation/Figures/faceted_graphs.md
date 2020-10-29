@@ -133,7 +133,6 @@ library(tidyverse)
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_wrap(~class)
-
 ```
 The above set of code results in the following panel of subplots:
 ![Faceted graph](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Faceted_Graphs/faceted_graph_class.png).
@@ -144,7 +143,6 @@ Additionally, one can create faceted graph using two variables with `facet_grid(
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_grid(drv ~ cyl)
-
 ```
 The code reults in the follwing panel of subplots:
 ![Faceted graph with two variables](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Faceted_Graphs/faceted_graph_two_variables.png)

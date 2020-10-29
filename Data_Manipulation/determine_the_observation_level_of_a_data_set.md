@@ -95,7 +95,6 @@ duplicated_rows <- storms %>%
   group_by(name, year, month, day, hour) %>%
   # Add a variable with the number of times that particular combination shows up
   filter(n() > 1)
-
 ```
 
 ## Stata

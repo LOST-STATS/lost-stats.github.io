@@ -52,7 +52,6 @@ storms %>%
   select(year, wind, pressure, ts_diameter) %>%
   as.data.frame() %>%
   stargazer(type = "text")
-
 ```
 
 But if you plan on maybe R Markdown instead of LaTeX formatting, there are a ton of summary statistic table packages for you to choose from. The package skimr is an excellent alternative to base::summary. skimr::skim takes different data types and outputs a summary statistic data frame. Numeric data gets miniature histograms and all types of data get information about the number of missing entries.
@@ -80,7 +79,6 @@ starwars %>%
   group_by(species) %>%
   my_skim() %>%
   dplyr::filter(skim_variable == "height" & n > 1)
-
 ```
 
 Another alternative is summarytools::dfsummary. It's even more extended than skim(). dfsummary() can handle data in the forms of characters, factors, numerics, and dates, and outputs a data frame with statistics and graphs for all variables. That data frame can't be viewed from the console however, you'll open it in the viewer.

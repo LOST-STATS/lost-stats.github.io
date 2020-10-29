@@ -127,7 +127,6 @@ ivmodel3 <- felm(log(packs) ~ log(rincome) | 0 | (log(rprice) ~ tdiff),
   data = CigarettesSW, kclass = "liml", fuller = 4
 )
 summary(ivmodel3)
-
 ```
 
 ## Stata

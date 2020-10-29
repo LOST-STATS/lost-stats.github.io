@@ -124,7 +124,6 @@ effects.hold <- predict(cf, X.hold)$predictions
 # Get standard errors for the holding data predictions - we probably should have set the num.trees
 # option in causal_forest higher before doing this, perhaps to 5000.
 SEs <- sqrt(predict(cf, X.hold, estimate.variance = TRUE)$variance.estimates)
-
 ```
 
 # Stata

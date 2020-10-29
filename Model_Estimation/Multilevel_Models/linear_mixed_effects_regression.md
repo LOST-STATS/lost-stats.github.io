@@ -77,7 +77,6 @@ summary(me2)
 # Now both the intercept and lectage slope will vary at the department level
 me3 <- lmer(y ~ lectage + service + (lectage | dept), data = InstEval)
 summary(me3)
-
 ```
 
 ## Stata

@@ -3,8 +3,8 @@ from typing import List
 import click
 
 from .fix_links import fix_md
-from .lint import format_file
 from .pathutils import expand_and_filter_filenames
+from .style import format_file
 
 
 @click.group()

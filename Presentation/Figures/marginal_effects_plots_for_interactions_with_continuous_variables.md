@@ -61,7 +61,6 @@ interplot(cubic_model,
   )
 # Try setting adding listings*date to the regression model
 # and then in interplot set var2 = "date" to get the effect of listings at different values of date
-
 ```
 This results in:
 

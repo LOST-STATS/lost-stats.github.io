@@ -50,7 +50,6 @@ mtcars2 <- mtcars[11:32, ]
 
 # Use bind_rows to vertically combine the data sets
 mtcarswhole <- bind_rows(mtcars1, mtcars2)
-
 ```
 
 ## Stata

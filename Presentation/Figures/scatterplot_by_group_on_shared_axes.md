@@ -46,7 +46,6 @@ ggplot(mtcars, aes(
   geom_point() +
   # And label properly
   labs(x = "Car Weight", y = "MPG")
-
 ```
 This results in:
 

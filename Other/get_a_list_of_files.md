@@ -59,7 +59,6 @@ library(tidyverse)
 data <- filelist %>%
   map(read_csv) %>%
   bind_rows()
-
 ```
 
 ## Stata

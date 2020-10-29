@@ -102,7 +102,6 @@ Y <- NULL
 for (i in 2:200) {
   Y[i] <- alpha + (coe * X[i - 1]) + error[i]
 }
-
 ```
 
 
@@ -134,7 +133,6 @@ ggplot(graphdata, aes(x = time, y = value, group = variable)) +
   theme_minimal() +
   labs(title = "Simulated ADL models") +
   theme(text = element_text(size = 15))
-
 ```
 
 ![Auto-distributed lag graph](/Images/Granger_Causality/R_adl.png)
@@ -152,7 +150,6 @@ library(tseries)
 ## ADF test
 adf.test(X, k = 3)
 adf.test(na.omit(Y), k = 3) # na.omit() to delete the first 2 periods of lag
-
 ```
 
 * With a p-value of 0.01 and 0.01 for series X, and Y, we assure that both are stationary.
@@ -169,7 +166,6 @@ adf.test(na.omit(Y), k = 3) # na.omit() to delete the first 2 periods of lag
 # install.packages("lmtest")
 library(lmtest)
 grangertest(Y ~ X, order = 2, data = data)
-
 ```
 
 ```
@@ -188,7 +184,6 @@ grangertest(Y ~ X, order = 2, data = data)
 
 ```r?example=grangertest
 grangertest(X ~ Y, order = 2, data = data)
-
 ```
 
 ```

@@ -167,5 +167,4 @@ test$survived <- as.factor(test$survived)
 confusionMatrix(predictions, test$survived)
 
 # This particular model got ~80% accuracy. This varies each time if you do not set a seed. Much better than a coin toss, but not great. With some additional tuning a decision tree can be much more accurate! Try it for yourself by changing the factors that go into the prediction and the penalty rates.
-
 ```

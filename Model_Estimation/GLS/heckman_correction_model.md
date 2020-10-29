@@ -66,7 +66,6 @@ heck_model <- selection(
 )
 
 summary(heck_model)
-
 ```
 
 ## Stata

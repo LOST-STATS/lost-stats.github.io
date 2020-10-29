@@ -106,5 +106,4 @@ summary(rddfuzzy)
 rdplot(df$y, df$x,
   c = 0, p = 2
 )
-
 ```

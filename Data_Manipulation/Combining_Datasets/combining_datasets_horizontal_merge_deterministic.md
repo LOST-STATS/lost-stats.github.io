@@ -66,14 +66,12 @@ DollarValue2018 <- data.frame(
   Currency = c("Euro", "Pound", "Yen", "Dollar"),
   InDollars = c(1.104, 1.256, .00926, 1)
 )
-
 ```
 
 Next we want to join together `GDP2018` and `DollarValue2018` so we can convert all the GDPs to dollars and compare them. There are three kinds of observations we could get - observations in `GDP2018` but not `DollarValue2018`, observations in `DollarValue2018` but not `GDP2018`, and observations in both. Use `help(join)` to pick the variant of `join` that keeps the observations we want. The "Yen" observation won't have a match, and we don't need to keep it. So let's do a `left_join` and list `GDP2018` first, so it keeps matched observations, plus any observations only in `GDP2018`.
 
 ```r
 GDPandExchange <- left_join(GDP2018, DollarValue2018)
-
 ```
 
 The `join` function will automatically detect that the `Currency` variable is shared in both data sets and use it to join them. Generally, you will want to be sure that the set of variables you are joining by uniquely identifies observations in at least one of the data sets you are joining. If you're not sure whether that's true, see [Determine the observation level of a data set]({{ "/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" | relative_url }}), or run `join` through the `safe_join` from the **pmdplyr** package.

@@ -89,7 +89,6 @@ storms_collapsed <- storms %>%
   )
 # Note that if we wanted to collapse every variable in the data with the
 # same function, we could instead use summarize_all()
-
 ```
 
 ## Stata

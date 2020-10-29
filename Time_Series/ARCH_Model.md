@@ -82,7 +82,6 @@ for (i in 2:obs) {
 # fit the model
 arch.fit <- garchFit(~ garch(1, 0), data = e, trace = F)
 summary(arch.fit)
-
 ```
 
 ## Stata

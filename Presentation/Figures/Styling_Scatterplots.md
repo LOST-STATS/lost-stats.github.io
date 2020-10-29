@@ -41,7 +41,6 @@ Using the function `p_load()` in the **pacman** package is able to allow us to i
 ```r
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(ggplot2, viridis, dplyr, RColorBrewer, tidyverse, ggthemes, ggpubr)
-
 ```
 
 ### Step 1: Basic Scatterplot
@@ -62,7 +61,6 @@ ggplot(data = iris, aes(
 )) +
   ## Make it a scatterplot with geom_point()
   geom_point()
-
 ```
 
 ![Basic Scatterplot](Images/Styling_Scatterplots/R_basic_plot.png)
@@ -86,7 +84,6 @@ ggplot(iris, aes(
   alpha = Species
 )) +
   geom_point(size = 4, color = "seagreen")
-
 ```
 ![Scatterplot with Transparency](Images/Styling_Scatterplots/R_transparency.png)
 
@@ -103,7 +100,6 @@ ggplot(iris, aes(
   shape = Species
 )) +
   geom_point(size = 4, color = "orange")
-
 ```
 
 ![Scatterplot with Different Shapes](Images/Styling_Scatterplots/R_shape.png)
@@ -120,7 +116,6 @@ ggplot(iris, aes(
   size = Species
 )) +
   geom_point(shape = 18, color = "#FC4E07")
-
 ```
 
 ![Scatterplot With Different Sizes](Images/Styling_Scatterplots/R_size.png)
@@ -144,7 +139,6 @@ ggplot(data = iris, aes(
   color = Species
 )) +
   geom_point()
-
 ```
 ![Scatterplot with different colors](Images/Styling_Scatterplots/R_color.png)
 
@@ -163,7 +157,6 @@ ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
   geom_point() +
   ## Where viridis package comes in
   scale_color_viridis(discrete = TRUE, option = "D") ## There are more options to choose
-
 ```
 
 This first graph is using `RColorBrewer` package,and the second graph is using `viridis` package.
@@ -194,7 +187,6 @@ ggplot(iris, aes(
   geom_point(size = 3) +
   scale_color_viridis(discrete = TRUE, option = "D") +
   theme_minimal(base_size = 12)
-
 ```
 
 ![](Images/Styling_Scatterplots/R_theme_1.png)
@@ -214,7 +206,6 @@ ggplot(iris, aes(
   scale_color_viridis(discrete = TRUE, option = "D") +
   ## Using the theme_tufte()
   theme_tufte()
-
 ```
 ![](Images/Styling_Scatterplots/R_theme_2.png)
 
@@ -250,7 +241,6 @@ ggplot(iris, aes(
     title = "Sepal length vs. Sepal width",
     subtitle = " plot within different Iris Species"
   )
-
 ```
 
 ![Scatterplot with Axis Lables](Images/Styling_Scatterplots/R_label_1.png)
@@ -285,7 +275,6 @@ ggplot(iris, aes(
     plot.title = element_text(color = "black", size = 14, face = "bold"),
     plot.subtitle = element_text(color = "grey40", size = 10, face = "italic")
   )
-
 ```
 
 ![Scatterplot with Elements Moved](Images/Styling_Scatterplots/R_label_2.png)
@@ -324,7 +313,6 @@ ggplot(iris, aes(
   ) +
   ## Where linear trend + confidence interval come in
   geom_smooth(method = "lm", se = TRUE)
-
 ```
 
 ![Scatterplot with Linear Trend](Images/Styling_Scatterplots/R_linear_trend.png)

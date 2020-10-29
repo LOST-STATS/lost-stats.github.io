@@ -20,7 +20,6 @@ Joins are typically interesections of objects, but can be expressed in different
 ```r
 devtools::install_github("ropensci/USAboundaries")
 devtools::install_github("ropensci/USAboundariesData")
-
 ```
 - Note: Even with the R installation via devtools, you may be prompted to install the "USAboundariesData" package and need to restart your session.
 
@@ -100,7 +99,6 @@ library(viridis)
 library(ggplot2)
 library(USAboundaries)
 library(GSODR)
-
 ```
 
 - We will work with polygon data from the USA boundaries initially, then move on to climate data point data via the [Global Surface Summary of the Day (gsodr)](https://www.rdocumentation.org/packages/GSODR/versions/2.0.0/topics/GSODR) package and join them together.
@@ -144,7 +142,6 @@ oh_co <- USAboundaries::us_counties(resolution = "high", states = "OH")
 # Michigan
 
 mi_co <- USAboundaries::us_counties(resolution = "high", states = "MI")
-
 ```
 **Now we can plot it out.**
 
@@ -156,7 +153,6 @@ plot(usa$geometry)
 plot(or$geometry, add = T, col = "gray50", border = "black")
 plot(or_co$geometry, add = T, border = "green", col = NA)
 plot(or_box, add = T, border = "yellow", col = NA, lwd = 2)
-
 ```
 ![Oregon highlighted](Images/spatial_joins/join_image_1.png)
 
@@ -167,7 +163,6 @@ plot(usa$geometry)
 plot(oh$geometry, add = T, col = "gray50", border = "black")
 plot(oh_co$geometry, add = T, border = "yellow", col = NA)
 plot(oh_box, add = T, border = "blue", col = NA, lwd = 2)
-
 ```
 ![Ohio highlighted](Images/spatial_joins/join_image_2.png)
 
@@ -178,7 +173,6 @@ plot(usa$geometry)
 plot(mi$geometry, add = T, col = "gray50", border = "black")
 plot(mi_co$geometry, add = T, border = "gray", col = NA)
 plot(mi_box, add = T, border = "green", col = NA, lwd = 2)
-
 ```
 ![Michigan highlighted](Images/spatial_joins/join_image_3.png)
 
@@ -195,7 +189,6 @@ plot(oh_box, add = T, border = "blue", col = NA, lwd = 2)
 plot(or$geometry, add = T, col = "gray50", border = "black")
 plot(or_co$geometry, add = T, border = "green", col = NA)
 plot(or_box, add = T, border = "yellow", col = NA, lwd = 2)
-
 ```
 ![Oregon, Ohio, and Michigan highlighted](Images/spatial_joins/join_image_4.png)
 
@@ -214,7 +207,6 @@ isd_history <- as.data.frame(isd_history) %>%
 isd_history_or <- dplyr::filter(isd_history, CTRY == "US", STATE == "OR")
 isd_history_oh <- dplyr::filter(isd_history, CTRY == "US", STATE == "OH")
 isd_history_mi <- dplyr::filter(isd_history, CTRY == "US", STATE == "MI")
-
 ```
 This filtering should take you from around 26,700 observation sites around the world to approximately 200 in Michigan, 85 in Ohio, and 100 in Oregon.  These numbers may vary based on when you independently do your analysis.
 
@@ -229,7 +221,6 @@ plot(isd_history_or$geometry, cex = 0.5)
 plot(or$geometry, col = alpha("gray", 0.5), border = "#1F968BFF", lwd = 1.5, add = TRUE)
 plot(isd_history_or$geometry, add = T, pch = 21, bg = "#FDE725FF", cex = 0.7, col = "black")
 title("Oregon GSOD Climate Stations")
-
 ```
 
 ![Oregon](Images/spatial_joins/join_image_5.png)
@@ -242,7 +233,6 @@ plot(isd_history_oh$geometry, cex = 0.5)
 plot(oh$geometry, col = alpha("red", 0.5), border = "gray", lwd = 1.5, add = TRUE)
 plot(isd_history_oh$geometry, add = T, pch = 21, bg = "black", cex = 0.7, col = "black")
 title("Ohio GSOD Climate Stations")
-
 ```
 
 ![Ohio](Images/spatial_joins/join_image_6.png)
@@ -254,7 +244,6 @@ plot(isd_history_mi$geometry, cex = 0.5)
 plot(mi$geometry, col = alpha("green", 0.5), border = "blue", lwd = 1.5, add = TRUE)
 plot(isd_history_mi$geometry, add = T, pch = 21, bg = "white", cex = 0.7, col = "black")
 title("Michigan GSOD Climate Stations")
-
 ```
 ![Michigan](Images/spatial_joins/join_image_7.png)
 
@@ -279,7 +268,6 @@ cand_co <- USAboundaries::us_counties(resolution = "high", states = c("OR", "OH"
 cand_co_isd_poly <- cand_co[isd_history, ]
 plot(cand_co_isd_poly$geometry, col = alpha("blue", 0.7))
 title("Counties in Candidate States with GSOD Climate Stations")
-
 ```
 
 ![Oregon, Ohio, and Michigan counties with climate data stations](Images/spatial_joins/join_image_9.png)

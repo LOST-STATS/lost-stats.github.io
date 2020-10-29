@@ -101,7 +101,6 @@ midwest <- midwest %>%
 # So do we get 300?
 summary(midwest$rowsum_rowSums2)
 # Uh-oh... looks like we didn't understand the data after all.
-
 ```
 
 ## Stata

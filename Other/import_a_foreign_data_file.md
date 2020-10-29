@@ -52,7 +52,6 @@ data <- read.mtb("filename.mtb")
 data <- read.octave("filename.octave")
 data <- read.S("filename.S")
 data <- read.systat("filename.systat")
-
 ```
 
 ## Stata

@@ -65,7 +65,6 @@ relm_model <- lmer(earnings_med ~ prop_working + factor(df$year) + (1 | inst_nam
 summary(relm_model)
 
 # We note that comparing with the fixed effects model, our estimates are more precise. But, the correlation between X`s and errors suggest bias in our mixed effect model, and we do see a large increase in estimated beta.
-
 ```
 
 ## Stata

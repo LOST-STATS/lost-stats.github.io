@@ -67,7 +67,6 @@ pacman::p_load(ggplot2)
 
 # load the dataset
 data(mtcars)
-
 ```
 
 Next, we will use `ggplot()`, `aes()`, and `geom_point()` in order to create a basic scatterplot. For this plot, we will put car weight on the x-axis and miles-per-gallon on the y-axis.
@@ -77,7 +76,6 @@ Next, we will use `ggplot()`, `aes()`, and `geom_point()` in order to create a b
 ggplot(data = mtcars, aes(x = wt, y = mpg)) +
   # create points on the plot for each observation
   geom_point()
-
 ```
 ![Basic Scatterplot](Images/Scatterplots/basic_scatterplot.png)
 
@@ -96,7 +94,6 @@ ggplot(data = mtcars, aes(x = wt, y = mpg)) +
     x = "Weight", y = "Miles Per Gallon",
     title = "Car MPG by Weight"
   )
-
 ```
 ![Scatterplot with Title and Axis Labels](Images/Scatterplots/scatter_titles.png)
 
@@ -115,7 +112,6 @@ ggplot(data = mtcars, aes(x = wt, y = mpg)) +
     x = "Weight", y = "Miles Per Gallon",
     title = "Car MPG by Weight"
   )
-
 ```
 ![Scatterplot with Large Blue Points](Images/Scatterplots/scatter_size_color.png)
 
@@ -133,7 +129,6 @@ labs(
   x = "Weight", y = "Miles Per Gallon",
   title = "Car MPG by Weight"
 )
-
 ```
 ![Scatterplot with Labels Points](Images/Scatterplots/scatter_labels.png)
 

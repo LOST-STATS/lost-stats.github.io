@@ -30,7 +30,6 @@ Here are some of the packages that will be used in this section:
 ```r
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(ggplot2)
-
 ```
 
 The dataset used in this article will be the ***mtcars*** dataset as it comes with base R. The functions here are `ggplot` and `geom_point` from the ***ggplot2*** package. `geom_point` creates a scatterplot while in `ggplot` we will assign the axis and the legend. More specifically, in `aes()` we color the point depending on the number of cylinders.
@@ -39,7 +38,6 @@ The dataset used in this article will be the ***mtcars*** dataset as it comes wi
 fig1 <- ggplot(mtcars, aes(wt, mpg, colour = factor(cyl))) +
   geom_point()
 fig1
-
 ```
 
 Now we can add another layor by giving each type of transition a different shape through shape in `aes()`. Additionally, you can augment the labels for both colour and shape with `labs()`.
@@ -49,7 +47,6 @@ fig2 <- ggplot(mtcars, aes(wt, mpg, colour = factor(cyl), shape = factor(am))) +
   geom_point()
 
 fig2 + labs(colour = "Number of Cylinders", shape = "Transmission Type")
-
 ```
 
 To change the legend position use the `theme()` modifier in ggplot. From there you can choose top, right, bottom, left, or none (removes the legend). To put the legends inside the plot create column vector of size 2 (the first value refers to the x coordinate. while the second refers to the y) where both elements are between 0 and 1. To ensure that the whole legends is within the graph use the `legend.justification` to set the corner where you want the legend.
@@ -60,7 +57,6 @@ fig2 +
     legend.position = c(.95, .95),
     legend.justification = c("right", "top")
   )
-
 ```
 
 There are other cool things you can do to the legend to better customize the visual experience by adding more to the ***theme*** modifier such as:
@@ -77,7 +73,6 @@ fig3 <- fig2 +
     legend.text = element_text(size = 8, colour = "red")
   )
 fig3
-
 ```
 
 ![Modified Legend](Images/Formatting_Graph_Legends/R_modified_legend.png)
@@ -87,7 +82,6 @@ Sometimes you may want to remove a legend for the sake of graph readability or t
 fig4 <- fig2 +
   theme(legend.postion = "none")
 fig4
-
 ```
 
 You can alternately remove legends (or components of legends) with `guides`
@@ -101,7 +95,6 @@ fig5
 fig6 <- fig2 +
   guides(color = FALSE, shape = FALSE)
 fig6
-
 ```
 
 

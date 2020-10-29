@@ -52,7 +52,6 @@ stargazer(lm1, lm2,
   covariate.labels = c("Cylinders", "Horsepower"),
   dep.var.labels = "Miles per Gallon"
 )
-
 ```
 
 This produces:

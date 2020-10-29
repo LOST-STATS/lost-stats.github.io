@@ -30,7 +30,6 @@ data(mtcars)
 
 # Create Balance Table
 bal.tab(am ~ mpg + hp, data = mtcars)
-
 ```
 
 ## Stata

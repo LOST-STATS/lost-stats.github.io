@@ -24,7 +24,9 @@ def format_str(src_string: str, parameters: str) -> str:
             input=src_string.encode("utf8"),
             capture_output=True,
         )
-        return "\n".join(["```" + parameters, proc.stdout.decode("utf8"), "```"])
+        return "\n".join(
+            ["```" + parameters, proc.stdout.decode("utf8").rstrip(), "```"]
+        )
 
     return "\n".join(["```" + parameters, src_string, "```"])
 

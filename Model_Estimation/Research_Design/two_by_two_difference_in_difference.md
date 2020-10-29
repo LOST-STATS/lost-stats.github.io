@@ -51,7 +51,6 @@ If the year is after 2014 **and** the state decided to legalize marijuana, the i
 DiD <- DiD %>%
   mutate(after = year >= 2014) %>%
   mutate(treatafter = after * treat)
-
 ```
 
 Step 3:
@@ -65,7 +64,6 @@ mt <- ggplot(DiD, aes(x = year, y = murder, color = treat)) +
   geom_vline(xintercept = 2014, lty = 4) +
   labs(title = "Murder and Time", x = "Year", y = "Murder Rate")
 mt
-
 ```
 ![Diff-in-Diff](Images/Two_by_Two_Difference_in_Difference/difindif.jpg)
 
@@ -78,7 +76,6 @@ We need to measure the impact of impact of legalize marijuana. If we include `tr
 ```r
 reg <- lm(murder ~ treat + treatafter + after, data = DiD)
 summary(reg)
-
 ```
 
 After legalization, the murder rate dropped by 0.3% more in treated than untreated states, suggesting that legalization reduced the murder rate.

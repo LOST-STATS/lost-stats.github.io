@@ -82,7 +82,6 @@ library(ggplot2)
 
 # load in dataset
 data(Orange)
-
 ```
 
 This dataset has measurements for four different trees. To start off, we'll only be graphing the growth of Tree #1, so we first need to subset our data.
@@ -90,7 +89,6 @@ This dataset has measurements for four different trees. To start off, we'll only
 ```r?example=basicline
 # subset data to just tree #1
 tree_1_df <- Orange %>% filter(Tree == 1)
-
 ```
 
 Then we will construct our plot using `ggplot()`. We'll create our line graph using the following steps:
@@ -102,7 +100,6 @@ Then we will construct our plot using `ggplot()`. We'll create our line graph us
 ```r?example=basicline
 ggplot(tree_1_df, aes(x = age, y = circumference)) +
   geom_line()
-
 ```
 
 ![Unstyled R Line Graph](Images/Line_Graphs/line_graph_basic_R.png)
@@ -122,7 +119,6 @@ ggplot(tree_1_df, aes(x = age, y = circumference)) +
     title = "Orange Tree Circumference Growth by Age"
   ) +
   theme(plot.title = element_text(hjust = 0.5))
-
 ```
 ![Styled R Line Graph](Images/Line_Graphs/line_graph_styled_R.png)
 
@@ -138,7 +134,6 @@ ggplot(Orange, aes(x = age, y = circumference, color = Tree)) +
   geom_line() +
   labs(x = "Age (days since 12/31/1968)", y = "Circumference (mm)", title = "Orange Tree Circumference Growth by Age") +
   theme(plot.title = element_text(hjust = 0.5))
-
 ```
 ![R Line Graph with Multiple Lines](Images/Line_Graphs/line_graph_multi_R.png)
 

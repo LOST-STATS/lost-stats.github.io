@@ -113,7 +113,9 @@ def get_top_level_block_codes(mark: str, location: Path) -> List[CodeBlock]:
 
 
 def pytest_generate_tests(metafunc):
-    base_paths: List[str] = metafunc.config.getoption("mdpath") or [str(Path(__file__).absolute().parent)]
+    base_paths: List[str] = metafunc.config.getoption("mdpath") or [
+        str(Path(__file__).absolute().parent)
+    ]
     base_exclude_paths: List[str] = metafunc.config.getoption("xmdpath") or []
 
     # Expand and exclude paths on command line

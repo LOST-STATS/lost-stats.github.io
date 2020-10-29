@@ -90,7 +90,6 @@ summary(my_logit)
 
 # Marginal effects
 logitmfx(vs ~ mpg + cyl, data = mtcars)
-
 ```
 
 ## Stata

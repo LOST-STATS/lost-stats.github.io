@@ -96,7 +96,6 @@ train <- subset(carInsurance_train, sample == TRUE)
 test <- subset(carInsurance_train, sample == FALSE)
 total <- rbind(train, test)
 gg_miss_upset(total)
-
 ```
 
 Step 1: Produce dummies as appropriate
@@ -113,7 +112,6 @@ total$CallEnd <- strptime(total$CallEnd, format = " %H:%M:%S")
 total$averagetimecall <- as.numeric(as.POSIXct(total$CallEnd) - as.POSIXct(total$CallStart), units = "secs")
 
 time <- mean(total$averagetimecall, na.rm = TRUE)
-
 ```
 
 Produce dummy variables as appropriate
@@ -122,7 +120,6 @@ Produce dummy variables as appropriate
 total_df <- dummy.data.frame(total %>%
   dplyr::select(-CallStart, -CallEnd, -Id, -Outcome))
 summary(total_df)
-
 ```
 
 Fill in missing values
@@ -133,7 +130,6 @@ total_df$Education [is.na(total_df$Education)] <- "secondary"
 total_df$Marital[is.na(total_df$Marital)] <- "married"
 total_df$Communication[is.na(total_df$Communication)] <- "cellular"
 total_df$LastContactMonth[is.na(total_df$LastContactMonth)] <- "may"
-
 ```
 
 Step 2: Preprocess data with median imputation and a central scaling
@@ -143,7 +139,6 @@ clean_new <- preProcess(
   x = total_df %>% dplyr::select(-CarInsurance) %>% as.matrix(),
   method = c("medianImpute")
 ) %>% predict(total_df)
-
 ```
 
 Step 3: Divide the data into testing and training data
@@ -152,7 +147,6 @@ Step 3: Divide the data into testing and training data
 trainclean <- head(clean_new, 3200) %>% as.data.frame()
 testclean <- tail(clean_new, 800) %>% as.data.frame()
 summary(trainclean)
-
 ```
 Step 4: Parameters
 
@@ -182,5 +176,4 @@ carinsurance_boost <- train(
     "n.minobsinnode" = 5
   )
 )
-
 ```

@@ -90,7 +90,6 @@ model <- mlogit(choice ~ type + fuel + price | college,
 
 # Look at the results
 summary(model)
-
 ```
 
 ## Stata

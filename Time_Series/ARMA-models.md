@@ -149,7 +149,6 @@ gdp_ts$ldiffgdp <- difference(gdp_ts$lgdp, lag = 1, difference = 1)
 ## log GDP to estimate our model.
 arma_gdp <- arima(gdp_ts$lgdp[2:292], order = c(3, 0, 1))
 arma_gdp
-
 ```
 
 ## Stata

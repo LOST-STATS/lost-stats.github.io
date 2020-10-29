@@ -68,7 +68,6 @@ head(result)
 print(sum(predictions == y_test))
 print(length(y_test))
 print(sum(predictions == y_test) / length(y_test))
-
 ```
 
 

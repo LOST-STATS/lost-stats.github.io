@@ -50,7 +50,6 @@ iris <- cbind(iris, model.matrix(~ -1 + Species, data = iris))
 
 # Of course, in a regression we can skip this process
 summary(lm(Sepal.Length ~ Petal.Length + Species, data = iris))
-
 ```
 
 If you are only creating one dummy at a time rather than a set from a factor variable, creating a dummy variable doesn't have to be any different than creating any other variable. Below are several ways to create a new variable in R.
@@ -74,7 +73,6 @@ data(iris)
 # variables
 mutated_data <- iris %>%
   mutate(Long.Petal = Petal.Length > Petal.Width)
-
 ```
 
 This will create a new column of logical (`TRUE`/`FALSE`) variables. This works just fine for most uses of dummy variables. However if you need the variables to be 1s and 0s you can now take
@@ -82,7 +80,6 @@ This will create a new column of logical (`TRUE`/`FALSE`) variables. This works 
 ```r
 mutated_data <- mutated_data %>%
   mutate(Long.Petal = Long.Petal * 1)
-
 ```
 
 You could also nest that operation inside the original creation of new_dummy like so:
@@ -90,7 +87,6 @@ You could also nest that operation inside the original creation of new_dummy lik
 ```r
 mutated_data <- iris %>%
   mutate(Long.Petal = (Petal.Length > Petal.Width) * 1)
-
 ```
 
 ### Base R
@@ -100,7 +96,6 @@ mutated_data <- iris %>%
 letters <- c("a", "b", "c", "d", "e")
 numbers <- c(1, 2, 3, 4, 5)
 df <- data.frame(letters, numbers)
-
 ```
 
 Now I'll show several different ways to create a dummy indicating if the numbers variable is odd.
@@ -119,7 +114,6 @@ df$dummy <- df$dummy * 1
 # or
 
 df$dummy <- (df$numbers %% 2 == 1) * 1
-
 ```
 
 ## MATLAB

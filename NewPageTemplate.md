@@ -35,7 +35,7 @@ $$
 
 ## NAME OF LANGUAGE/SOFTWARE 1
 
-```identifier for language type, see this page: https://github.com/jmm/gfm-lang-ids/wiki/GitHub-Flavored-Markdown-%28GFM%29-language-IDs
+```identifier for language type, see this page: https://github.com/jmm/gfm-lang-ids/wiki/github-flavored-markdown-%28gfm%29-language-ids
 Commented code demonstrating the technique
 ```
 
@@ -45,12 +45,12 @@ There are two ways to perform this technique in language/software 2.
 
 First, explanation of what is different about the first way:
 
-```identifier for language type, see this page: https://github.com/jmm/gfm-lang-ids/wiki/GitHub-Flavored-Markdown-%28GFM%29-language-IDs
+```identifier for language type, see this page: https://github.com/jmm/gfm-lang-ids/wiki/github-flavored-markdown-%28gfm%29-language-ids
 Commented code demonstrating the technique
 ```
 
 Second, explanation of what is different about the second way:
 
-```identifier for language type, see this page: https://github.com/jmm/gfm-lang-ids/wiki/GitHub-Flavored-Markdown-%28GFM%29-language-IDs
+```identifier for language type, see this page: https://github.com/jmm/gfm-lang-ids/wiki/github-flavored-markdown-%28gfm%29-language-ids
 Commented code demonstrating the technique
 ```

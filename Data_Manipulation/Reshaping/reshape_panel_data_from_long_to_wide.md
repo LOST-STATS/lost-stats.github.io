@@ -113,7 +113,6 @@ data("population")
 # a time indicator in "year",
 # and our values in "population"
 head(population)
-
 ```
 
 Now we think:
@@ -126,7 +125,6 @@ pop_wide <- pivot_wider(population,
   values_from = population,
   names_prefix = "pop_"
 )
-
 ```
 
 ## Stata

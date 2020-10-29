@@ -17,12 +17,16 @@ def expand_filenames(
     Returns:
         The list of expanded filenames, sorted.
     """
-    filenames: List[Path] = [
-        filename for glob in filenames for filename in cwd.glob(glob)
-    ]
+    new_filenames = []
+    for filename in filenames:
+        if any(char in str(filename) for char in ['*', '?', '[']):
+            # This is a glob
+            new_filenames.extend(cwd.glob(filename))
+        else:
+            new_filenames.append(cwd / filename)
 
     output: List[Path] = []
-    for filename in filenames:
+    for filename in new_filenames:
         if filename.is_dir():
             output.extend(filename.glob("**/*.md"))
         elif filename.exists() and filename.suffix == ".md":

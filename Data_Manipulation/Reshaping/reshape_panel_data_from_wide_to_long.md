@@ -128,7 +128,6 @@ data("billboard")
 # and a bunch of variables containing position information
 # all named wk and then a number
 names(billboard)
-
 ```
 
 Now we think:
@@ -146,7 +145,6 @@ billboard_long <- pivot_longer(billboard,
 )
 # values_drop_na says to drop any rows containing missing values of position.
 # If reshaping to create multiple variables, see the names_sep or names_pattern options.
-
 ```
 
 ## Stata

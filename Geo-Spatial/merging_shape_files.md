@@ -83,5 +83,4 @@ ggplot(Brazil_pm25_2010) +
   scale_fill_viridis_c(option = "viridis", name = "PM25") +
   ggtitle("PM25 in municipals of Brazil") +
   ggsn::blank()
-
 ```

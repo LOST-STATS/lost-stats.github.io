@@ -53,7 +53,6 @@ linearHypothesis(m1, c("hp = 0", "disp = 0"))
 
 # Test joint significance of multiple linear combinations
 linearHypothesis(m1, c("hp + disp = 0", "am + wt = 0"))
-
 ```
 
 ## Stata

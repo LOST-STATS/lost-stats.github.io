@@ -87,7 +87,6 @@ olsmodel <- lm(mpg ~ cyl + hp + wt, data = mtcars)
 
 # Look at the results
 summary(olsmodel)
-
 ```
 
 ## SAS

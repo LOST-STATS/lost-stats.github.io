@@ -95,7 +95,6 @@ ridge.model <- glmnet(M, Y, family = "gaussian", alpha = 0, lambda = cv.ridge$la
 
 cv.elasticnet <- cv.glmnet(M, Y, family = "gaussian", nfolds = 20, alpha = .5)
 elasticnet.model <- glmnet(M, Y, family = "gaussian", alpha = .5, lambda = cv.elasticnet$lambda.min)
-
 ```
 
 ## Stata

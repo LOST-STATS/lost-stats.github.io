@@ -53,7 +53,6 @@ STEP 1) Load necessary packages
 # install.packages(c('tsibble','tidyverse'))
 library(tsibble)
 library(tidyverse)
-
 ```
 
 STEP 2) Import data into R.
@@ -64,7 +63,6 @@ gdp <- read.csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/T
 # read.csv() has read in our date variable as a factor. We need a date!
 gdp$DATE <- as.Date(gdp$DATE)
 # If it were a little less well-behaved than this, we could use the lubridate package to fix it.
-
 ```
 
 STEP 3) Convert a date variable formats to quarter
@@ -75,7 +73,6 @@ gdp_ts <- as_tsibble(gdp,
   regular = FALSE
 ) %>%
   index_by(qtr = ~ yearquarter(.))
-
 ```
 
 By applying `yearmonth()` to the index variable (referred to as `.`), it creates new variable named `qtr` with a quarter interval which corresponds to the year-quarter for the original variable `DATE`.

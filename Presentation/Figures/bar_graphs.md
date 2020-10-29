@@ -21,7 +21,6 @@ For the R demonstration, we will be calling the **tidyverse** package.
 ```r?example=bargraph
 library(tidyverse)
 library(ggplot2)
-
 ```
 
 This tutorial will use a dataset that already exists in R, so no need to load any new data into your environment. The dataset we will use is called `starwars`, which uses data collected from the Star Wars Universe. The **tidyverse** package uses **ggplot2** to construct bar graphs. For our first example, let's look at species' appearences in Star Wars movies. Follow along below!

@@ -116,7 +116,6 @@ corrplot(cor(mtcars),
   # Add the number on top of the color
   addCoef.col = "black"
 )
-
 ```
 
 This results in:
@@ -203,7 +202,6 @@ ggplot(
   coord_fixed() +
   # If you also want the correlations to be written directly on there, add geom_text
   geom_text(aes(label = round(value, 3)))
-
 ```
 This results in:
 

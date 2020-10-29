@@ -102,7 +102,6 @@ model3 <- lm(mpg ~ hp * cyl, data = mtcars)
 # Include only the interaction term and not the variables themselves with :
 # Hard to interpret! Occasionally useful though.
 model4 <- lm(mpg ~ hp:cyl, data = mtcars)
-
 ```
 
 ## Stata
