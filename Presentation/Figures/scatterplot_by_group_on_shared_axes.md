@@ -13,7 +13,7 @@ nav_order: 1
 
 ## Keep in Mind
 
-- Scatterplots may not work well if the data is discrete, or if there are a large number of data points. 
+- Scatterplots may not work well if the data is discrete, or if there are a large number of data points.
 
 ## Also Consider
 
@@ -32,17 +32,21 @@ data(mtcars)
 
 # Make sure that our grouping variable is a factor
 # and labeled properly
-mtcars$Transmission <- factor(mtcars$am, 
-                              labels = c("Automatic", "Manual"))
+mtcars$Transmission <- factor(mtcars$am,
+  labels = c("Automatic", "Manual")
+)
 
-# Put wt on the x-axis, mpg on the y-axis, 
-ggplot(mtcars, aes(x = wt, y = mpg, 
-                   # distinguish the Transmission values by color,
-                   color = Transmission)) + 
+# Put wt on the x-axis, mpg on the y-axis,
+ggplot(mtcars, aes(
+  x = wt, y = mpg,
+  # distinguish the Transmission values by color,
+  color = Transmission
+)) +
   # make it a scatterplot with geom_point()
-  geom_point()+
+  geom_point() +
   # And label properly
   labs(x = "Car Weight", y = "MPG")
+
 ```
 This results in:
 

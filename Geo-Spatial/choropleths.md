@@ -30,26 +30,27 @@ The [**geopandas**](https://geopandas.org/) package is the easiest way to start 
 import matplotlib.pyplot as plt
 import geopandas as gpd
 
-world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+world = gpd.read_file(gpd.datasets.get_path("naturalearth_lowres"))
 
 world = world[(world.pop_est > 0) & (world.name != "Antarctica")]
 
-world['gdp_per_cap'] = 1.0e6 * world.gdp_md_est / world.pop_est
+world["gdp_per_cap"] = 1.0e6 * world.gdp_md_est / world.pop_est
 
 # Simple choropleth
-world.plot(column='gdp_per_cap')
+world.plot(column="gdp_per_cap")
 
 # Much better looking choropleth
-plt.style.use('seaborn-paper')
+plt.style.use("seaborn-paper")
 fig, ax = plt.subplots(1, 1)
-world.plot(column='gdp_per_cap',
-           ax=ax,
-           cmap='plasma',
-           legend=True,
-           vmin=0.,
-           legend_kwds={'label': "GDP per capita (USD)",
-                        'orientation': "horizontal"})
-plt.axis('off')
+world.plot(
+    column="gdp_per_cap",
+    ax=ax,
+    cmap="plasma",
+    legend=True,
+    vmin=0.0,
+    legend_kwds={"label": "GDP per capita (USD)", "orientation": "horizontal"},
+)
+plt.axis("off")
 
 # Now let's try a cartogram
 # If you don't have it already, geoplot can be installed by runnning
@@ -58,13 +59,14 @@ import geoplot as gplt
 
 ax = gplt.cartogram(
     world,
-    scale='gdp_per_cap',
-    hue='gdp_per_cap',
-    cmap='plasma',
+    scale="gdp_per_cap",
+    hue="gdp_per_cap",
+    cmap="plasma",
     linewidth=0.5,
-    figsize=(8, 12)
+    figsize=(8, 12),
 )
-gplt.polyplot(world, facecolor='lightgray', edgecolor='None', ax=ax)
+gplt.polyplot(world, facecolor="lightgray", edgecolor="None", ax=ax)
 plt.title("GDP per capita (USD)")
 plt.show()
+
 ```

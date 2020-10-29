@@ -8,7 +8,7 @@ nav_order: 1
 
 # Balance Tables
 
-Balance Tables are a method by which you can statistically compare differences in characteristics between a treatment and control group. Common in experimental work and when using matching estimators, balance tables show if the treatment and control group are 'balanced' and can be seen as similarly 'identical' for comparison of a causal effect. 
+Balance Tables are a method by which you can statistically compare differences in characteristics between a treatment and control group. Common in experimental work and when using matching estimators, balance tables show if the treatment and control group are 'balanced' and can be seen as similarly 'identical' for comparison of a causal effect.
 
 ## Keep in Mind
 
@@ -30,17 +30,18 @@ data(mtcars)
 
 # Create Balance Table
 bal.tab(am ~ mpg + hp, data = mtcars)
+
 ```
 
 ## Stata
 
 ```stata
-* Import Dependency: 'ssc install table1' 
+* Import Dependency: 'ssc install table1'
 * Load Data
 sysuse auto, clear
 
 * Create Balance Table
-* You need to declare the kind of variable for each, as well as the variable by which you define treatment and control. 
+* You need to declare the kind of variable for each, as well as the variable by which you define treatment and control.
 * Adding test gives the statistical difference between the two groups. The ending saves your output as an .xls file
 
 table1, by(foreign) vars(price conts \ mpg conts \ weight contn \ length conts) test saving(bal_tab.xls, replace)

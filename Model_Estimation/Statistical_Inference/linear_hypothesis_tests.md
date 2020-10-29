@@ -35,7 +35,7 @@ Alternately, you may want to do a joint significance test of multiple linear hyp
 
 Linear hypothesis test in R can be performed for most regression models using the `linearHypothesis()` function in the **car** package. See [this guide](https://www.econometrics-with-r.org/7-3-joint-hypothesis-testing-using-the-f-statistic.html) for more information.
 
-```R
+```r
 # If necessary
 # install.packages('car')
 library(car)
@@ -46,13 +46,14 @@ data(mtcars)
 m1 <- lm(mpg ~ hp + disp + am + wt, data = mtcars)
 
 # Test a linear combination of coefficients
-linearHypothesis(m1, c('hp + disp = 0'))
+linearHypothesis(m1, c("hp + disp = 0"))
 
 # Test joint significance of multiple coefficients
-linearHypothesis(m1, c('hp = 0','disp = 0'))
+linearHypothesis(m1, c("hp = 0", "disp = 0"))
 
 # Test joint significance of multiple linear combinations
-linearHypothesis(m1, c('hp + disp = 0','am + wt = 0'))
+linearHypothesis(m1, c("hp + disp = 0", "am + wt = 0"))
+
 ```
 
 ## Stata

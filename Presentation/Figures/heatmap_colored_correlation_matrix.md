@@ -46,8 +46,7 @@ from sklearn.datasets import fetch_california_housing
 
 data = fetch_california_housing()
 df = pd.DataFrame(
-    np.c_[data['data'], data['target']],
-    columns=data['feature_names'] + ['target']
+    np.c_[data["data"], data["target"]], columns=data["feature_names"] + ["target"]
 )
 
 # Create the correlation matrix
@@ -66,20 +65,23 @@ cmap = sns.diverging_palette(220, 10, as_cmap=True)
 # Draw the heatmap with the mask and correct aspect ratio
 # More details at https://seaborn.pydata.org/generated/seaborn.heatmap.html
 sns.heatmap(
-    corr,          # The data to plot
-    mask=mask,     # Mask some cells
-    cmap=cmap,     # What colors to plot the heatmap as
-    annot=True,    # Should the values be plotted in the cells?
-    vmax=.3,       # The maximum value of the legend. All higher vals will be same color
-    vmin=-.3,      # The minimum value of the legend. All lower vals will be same color
-    center=0,      # The center value of the legend. With divergent cmap, where white is
-    square=True,   # Force cells to be square
-    linewidths=.5, # Width of lines that divide cells
-    cbar_kws={"shrink": .5}  # Extra kwargs for the legend; in this case, shrink by 50%
+    corr,  # The data to plot
+    mask=mask,  # Mask some cells
+    cmap=cmap,  # What colors to plot the heatmap as
+    annot=True,  # Should the values be plotted in the cells?
+    vmax=0.3,  # The maximum value of the legend. All higher vals will be same color
+    vmin=-0.3,  # The minimum value of the legend. All lower vals will be same color
+    center=0,  # The center value of the legend. With divergent cmap, where white is
+    square=True,  # Force cells to be square
+    linewidths=0.5,  # Width of lines that divide cells
+    cbar_kws={
+        "shrink": 0.5
+    },  # Extra kwargs for the legend; in this case, shrink by 50%
 )
 
 # You can save this as a png with
 # f.savefig('heatmap_colored_correlation_matrix_seaborn_python.png')
+
 ```
 
 ![Heatmap Colored Correlation Matrix in Python using Seaborn]({{ "/Presentation/Figures/Images/Heatmap" | relative_url }}-Colored-Correlation-Matrix/heatmap_colored_correlation_matrix_seaborn_python.png)
@@ -101,19 +103,20 @@ library(corrplot)
 data(mtcars)
 
 # Don't use too many variables or it will get messy!
-mtcars <- mtcars[,c('mpg','cyl','disp','hp','drat','wt','qsec')]
+mtcars <- mtcars[, c("mpg", "cyl", "disp", "hp", "drat", "wt", "qsec")]
 
 # Create a corrgram
 corrplot(cor(mtcars),
-         # Using the color method for a heatmap
-         method = 'color',
-         # And the lower half only for easier readability
-         type = 'lower',
-         # Omit the 1's along the diagonal to bring variable names closer
-         diag = FALSE,
-         # Add the number on top of the color
-         addCoef.col = 'black'
-         )
+  # Using the color method for a heatmap
+  method = "color",
+  # And the lower half only for easier readability
+  type = "lower",
+  # Omit the 1's along the diagonal to bring variable names closer
+  diag = FALSE,
+  # Add the number on top of the color
+  addCoef.col = "black"
+)
+
 ```
 
 This results in:
@@ -155,41 +158,52 @@ C <- C %>%
 
 # Use tidyr's pivot_longer to reshape to long format
 # There are other ways to reshape too
-C_Long <- pivot_longer(C, cols = c(mpg, cyl, disp, hp, drat, wt, qsec),
-                       # We will want this option for sure if we dropped the
-                       # upper half of the triangle earlier
-                       values_drop_na = TRUE) %>%
+C_Long <- pivot_longer(C,
+  cols = c(mpg, cyl, disp, hp, drat, wt, qsec),
+  # We will want this option for sure if we dropped the
+  # upper half of the triangle earlier
+  values_drop_na = TRUE
+) %>%
   # Make both variables into factors
-  mutate(Variable = factor(Variable),
-         name = factor(name)) %>%
+  mutate(
+    Variable = factor(Variable),
+    name = factor(name)
+  ) %>%
   # Reverse the order of one of the variables so that the x and y variables have
   # Opposing orders, common for a correlation matrix
   mutate(Variable = factor(Variable, levels = rev(levels(.$Variable))))
 
 # Now we graph!
-ggplot(C_Long,
-       # Our x and y axis are Variable and name
-       # And we want to fill each cell with the value
-       aes(x = Variable, y = name, fill = value))+
+ggplot(
+  C_Long,
+  # Our x and y axis are Variable and name
+  # And we want to fill each cell with the value
+  aes(x = Variable, y = name, fill = value)
+) +
   # geom_tile to draw the graph
   geom_tile() +
   # Color the graph as we like
   # Here our negative correlations are red, positive are blue
   # gradient2 instead of gradient gives us a "mid" color which we can make white
-  scale_fill_gradient2(low = "red", high = "blue", mid = "white",
-                       midpoint = 0, limit = c(-1,1), space = "Lab",
-                       name="Pearson\nCorrelation") +
+  scale_fill_gradient2(
+    low = "red", high = "blue", mid = "white",
+    midpoint = 0, limit = c(-1, 1), space = "Lab",
+    name = "Pearson\nCorrelation"
+  ) +
   # Axis names don't make much sense
   labs(x = NULL, y = NULL) +
   # We don't need that background
   theme_minimal() +
   # If we need more room for variable names at the bottom, rotate them
-  theme(axis.text.x = element_text(angle = 45, vjust = 1,
-                                   size = 12, hjust = 1)) +
+  theme(axis.text.x = element_text(
+    angle = 45, vjust = 1,
+    size = 12, hjust = 1
+  )) +
   # We want those cells to be square!
   coord_fixed() +
   # If you also want the correlations to be written directly on there, add geom_text
-  geom_text(aes(label = round(value,3)))
+  geom_text(aes(label = round(value, 3)))
+
 ```
 This results in:
 

@@ -22,13 +22,13 @@ This should be highly reminiscent of ordinary least squares. Where this differs 
 The methodology behind classificiation is very similar, except the splits are decided by minimizing purity, such as the Gini index:
 
 $$
-G= 1 - \sum_{i = 1}^{C} (p_{i})^2 
+G= 1 - \sum_{i = 1}^{C} (p_{i})^2
 $$
 
 The goal here is to create regions with as of classifications as possible, as such, a smaller Gini index implies a more pure region.
 
 ## Keep in Mind
-* While decision trees are easy to interpret and understand, they often underpreform relative to other machine learning methodologies. 
+* While decision trees are easy to interpret and understand, they often underpreform relative to other machine learning methodologies.
 * Even though they may not offer the best predictions, decision trees excel at identifying key variables in the data.
 
 
@@ -50,20 +50,22 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import plot_confusion_matrix
 import pandas as pd
 
-titanic = pd.read_csv("https://raw.githubusercontent.com/Evanmj7/Decision-Trees/master/titanic.csv",
-                      index_col=0)
+titanic = pd.read_csv(
+    "https://raw.githubusercontent.com/Evanmj7/Decision-Trees/master/titanic.csv",
+    index_col=0,
+)
 
 # Let's ensure the columns we want to treat as continuous are indeed continuous by using pd.to_numeric
 # The errors = 'coerce' keyword argument will force any values that cannot be
 # cast into continuous variables to become NaNs.
-continuous_cols = ['age', 'fare']
+continuous_cols = ["age", "fare"]
 for col in continuous_cols:
-    titanic[col] = pd.to_numeric(titanic[col], errors='coerce')
+    titanic[col] = pd.to_numeric(titanic[col], errors="coerce")
 
 # Set categorical cols & convert to dummies
-cat_cols = ['sex', 'pclass']
+cat_cols = ["sex", "pclass"]
 for col in cat_cols:
-    titanic[col] = titanic[col].astype('category').cat.codes
+    titanic[col] = titanic[col].astype("category").cat.codes
 
 # Clean the dataframe. An alternative would be to retain some rows with missing values by giving
 # a special value to nan for each column, eg by imputing some values, but one should be careful not to
@@ -75,14 +77,13 @@ titanic = titanic.dropna()
 # Create list of regressors
 regressors = continuous_cols + cat_cols
 # Predicted var
-y_var = ['survived']
+y_var = ["survived"]
 
 # Create a test (25% of data) and train set
 train, test = train_test_split(titanic, test_size=0.25)
 
 # Now let's create an empty decision tree to solve the classification problem:
-clf = tree.DecisionTreeClassifier(max_depth=10, min_samples_split=5,
-                                  ccp_alpha=0.01)
+clf = tree.DecisionTreeClassifier(max_depth=10, min_samples_split=5, ccp_alpha=0.01)
 # The last option, ccp_alpha, prunes low-value complexity from the tree to help
 # avoid overfitting.
 
@@ -94,16 +95,17 @@ tree.plot_tree(clf)
 
 # How does it perform on the train and test data?
 train_accuracy = round(clf.score(train[regressors], train[y_var]), 4)
-print(f'Accuracy on train set is {train_accuracy}')
+print(f"Accuracy on train set is {train_accuracy}")
 
 test_accuracy = round(clf.score(test[regressors], test[y_var]), 4)
-print(f'Accuracy on test set is {test_accuracy}')
+print(f"Accuracy on test set is {test_accuracy}")
 
 # Show the confusion matrix
 plot_confusion_matrix(clf, test[regressors], test[y_var])
 
 # Although it won't be the same from run to run, this model scored around 80%
 # out of sample, and has slightly more false positives than false negatives.
+
 ```
 
 ## R
@@ -111,8 +113,8 @@ plot_confusion_matrix(clf, test[regressors], test[y_var])
 # Load packages
 # install.packages("pacman") ## already installed
 library(pacman)
-p_load(rpart,rpart.plot,caret,rattle)
-# We will utilize data regarding passengers on their survival. We have multiple pieces of information on every passenger, including passenger age, sex, cabin number, and class. 
+p_load(rpart, rpart.plot, caret, rattle)
+# We will utilize data regarding passengers on their survival. We have multiple pieces of information on every passenger, including passenger age, sex, cabin number, and class.
 
 # Our goal is to build a decision tree that can predict whether or not passengers survived the wreck, making it a classification tree. These same methodologies can be used and applied to a regression tree framework.
 
@@ -129,8 +131,8 @@ titanic$fare <- as.numeric(titanic$fare)
 # As with all machine learning methodologies, we want to create a test and a training dataset
 
 # Take a random sample of the data, here we have chosen to use 75% for training and 25% for validation
-samp_size <- floor(0.75*nrow(titanic))
-train_index <- sample(seq_len(nrow(titanic)),size=samp_size,replace=FALSE)
+samp_size <- floor(0.75 * nrow(titanic))
+train_index <- sample(seq_len(nrow(titanic)), size = samp_size, replace = FALSE)
 
 train <- titanic[train_index, ]
 test <- titanic[-train_index, ]
@@ -141,28 +143,28 @@ test <- titanic[-train_index, ]
 
 basic_tree <- rpart(
   survived ~ pclass + sex + age + fare + embarked, # our formula
-  data=train,
+  data = train,
   method = "class", # tell the model we are doing classification
-  minsplit=2, # set a minimum number of splits
-  cp=.02 # set an optional penalty rate. It is often useful to try out many different ones, use the caret package to test many at once
+  minsplit = 2, # set a minimum number of splits
+  cp = .02 # set an optional penalty rate. It is often useful to try out many different ones, use the caret package to test many at once
 )
 
 basic_tree
 
 # plot it using the packages we loaded above
-fancyRpartPlot(basic_tree,caption="Basic Decision Tree")
+fancyRpartPlot(basic_tree, caption = "Basic Decision Tree")
 
 # This plot gives a very intuitive visual representation on what is going on behind the scenes.
 
 # Now we should predict using the test data we left out!
-predictions <- predict(basic_tree,newdata=test,type="class")
+predictions <- predict(basic_tree, newdata = test, type = "class")
 
 # Make the numeric responses as well as the variables that we are testing on into factors
 predictions <- as.factor(predictions)
 test$survived <- as.factor(test$survived)
 
 # Create a confusion matrix which tells us how well we did.
-confusionMatrix(predictions,test$survived)
+confusionMatrix(predictions, test$survived)
 
 # This particular model got ~80% accuracy. This varies each time if you do not set a seed. Much better than a coin toss, but not great. With some additional tuning a decision tree can be much more accurate! Try it for yourself by changing the factors that go into the prediction and the penalty rates.
 

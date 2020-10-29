@@ -41,10 +41,11 @@ library(lmtest)
 data(mtcars)
 
 # Run a regression with normal (iid) errors
- m <- lm(hp~mpg + cyl, data = mtcars) 
- 
- # Obtain the boostrapped SEs
- coeftest(m, vcov = vcovBS(m)) 
+m <- lm(hp ~ mpg + cyl, data = mtcars)
+
+# Obtain the boostrapped SEs
+coeftest(m, vcov = vcovBS(m))
+
 ```
 
 Another approach to obtaining bootstrapping standard errors in R is to use the **boot** package ([link](https://cran.r-project.org/web/packages/boot/)). This is typcally more hands-on, but gives the user a lot of control over how the bootrapping procedure will execute.
@@ -60,8 +61,8 @@ library(boot)
 # A dataset and indices as input, and then
 # performs analysis and returns a parameter of interest
 regboot <- function(data, indices) {
-  m1 <- lm(hp~mpg + cyl, data = data[indices,])
-  
+  m1 <- lm(hp ~ mpg + cyl, data = data[indices, ])
+
   return(coefficients(m1))
 }
 
@@ -84,8 +85,9 @@ library(broom)
 tidy_results <- tidy(boot_results)
 
 library(stargazer)
-m1 <- lm(hp~mpg + cyl, data = mtcars)
-stargazer(m1, se = list(tidy_results$std.error), type = 'text')
+m1 <- lm(hp ~ mpg + cyl, data = mtcars)
+stargazer(m1, se = list(tidy_results$std.error), type = "text")
+
 ```
 
 ## Stata
@@ -105,5 +107,5 @@ reg mpg weight length, vce(bootstrap, reps(200))
 
 * If a command does not support vce(bootstrap), there's a good chance it will
 * work with a bootstrap: prefix, which works similarly
-bootstrap, reps(200): reg mpg weight length 
+bootstrap, reps(200): reg mpg weight length
 ```

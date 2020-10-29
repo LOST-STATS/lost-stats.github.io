@@ -13,7 +13,7 @@ When plotting relationship among variables of interest, one of the useful ways t
 
 ## Keep in Mind
 
-- It is important to use a categorical (discrete) variable as a facet variable for creating faceted graphs. 
+- It is important to use a categorical (discrete) variable as a facet variable for creating faceted graphs.
 - Plotting libraries generally fall into two broad camps: *imperative* (specify all of the steps to get the desired outcome) or *declarative* (specify the desired outcome without the steps). Imperative plotting gives more control and some people may find each step clearer to read, but it can also be fiddly and cumbersome, especially with simple plots. Declarative plotting trades away control in favour of tried and tested processes that can quickly produce standardised charts, but the specialised syntax can be a barrier for newcomers. Facets are available in both types, but the code to produce them will look quite different.
 
 
@@ -39,9 +39,16 @@ df = sns.load_dataset("penguins")
 # Plot a scatter of bill properties with
 # columns (facets) given by island and colour
 # given by the species of Penguin
-sns.relplot(x="bill_depth_mm", y="bill_length_mm",
-            hue="species", col="island",
-            alpha=.5, palette="muted", data=df)
+sns.relplot(
+    x="bill_depth_mm",
+    y="bill_length_mm",
+    hue="species",
+    col="island",
+    alpha=0.5,
+    palette="muted",
+    data=df,
+)
+
 ```
 
 Results in:
@@ -54,10 +61,13 @@ If you have used R for plotting, you might be familiar with the **ggplot** packa
 from plotnine import *
 from plotnine.data import mtcars
 
-(ggplot(mtcars, aes('wt', 'mpg', color='factor(gear)'))
- + geom_point()
- + stat_smooth(method='lm')
- + facet_wrap('~gear'))
+(
+    ggplot(mtcars, aes("wt", "mpg", color="factor(gear)"))
+    + geom_point()
+    + stat_smooth(method="lm")
+    + facet_wrap("~gear")
+)
+
 ```
 
 Results in:
@@ -75,26 +85,26 @@ x = np.linspace(0, 2 * np.pi, 400)
 y = np.sin(x ** 2)
 
 fig, (ax1, ax2) = plt.subplots(2, sharex=True)
-fig.suptitle('Two sine waves')
+fig.suptitle("Two sine waves")
 ax1.plot(x, y)
-ax2.scatter(x + 1, -y, color='red')
+ax2.scatter(x + 1, -y, color="red")
+
 ```
 
 (NB: no figure shown in this case.) Note how everything is specified. While `plt.subplots(nrows, ncols, ...)` allows for a rectangular facet grid, even more complex facets can be constructed using the [mosaic option](https://matplotlib.org/3.3.0/tutorials/provisional/mosaic.html) in **matplotlib** version 3.3.0+. The arrangment of facets can be specified either through text, as in the example below, or with lists of lists:
 
 ```python
-
 import matplotlib.pyplot as plt
 
 axd = plt.figure(constrained_layout=True).subplot_mosaic(
     """
     TTE
     L.E
-    """)
+    """
+)
 for k, ax in axd.items():
-    ax.text(0.5, 0.5, k,
-            ha='center', va='center', fontsize=36,
-            color='darkgrey')
+    ax.text(0.5, 0.5, k, ha="center", va="center", fontsize=36, color="darkgrey")
+
 ```
 
 Results in:
@@ -111,28 +121,30 @@ We will use **tidyverse** package available in R for faceted graphs. **Tidyverse
 
 To create faceted graph, use `facet_wrap()` option in ggplot. The argument inside the bracket is `~` sign follwed by the categorical variable to be used to create subsets of data. Its use is illustrated in the code given below.
 
-```R
-#Install package, if not already installed.
+```r
+# Install package, if not already installed.
 install.packages("tidyverse")
 
-#Load the package
+# Load the package
 library(tidyverse)
 
 # Now, we will create faceted graph, with variable 'displ' (a car's engine size) on  # x-axis and variable 'hwy (car's fuel efficiency on highway) on y-axis. We will use # `facet_wrap(~class)` option to created faceted graph. The variable 'class' denotes # type of car. We use 'geom_point()` to create a scatterplot.
 
-ggplot(data = mpg)+
-geom_point(mapping = aes(x = displ, y = hwy))+
-facet_wrap(~class)
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_wrap(~class)
+
 ```
 The above set of code results in the following panel of subplots:
 ![Faceted graph](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Faceted_Graphs/faceted_graph_class.png).
 
 Additionally, one can create faceted graph using two variables with `facet_grid()`. Inside the bracket, use two variables seperated by `~`. The example of the same using 'mpg' dataframe and two variables 'drv' (whether it's front wheel, rear wheel or 4wd) and 'cyl' (number of cylinders) is given below.
 
-```R
-ggplot(data = mpg)+
-geom_point(mapping = aes(x = displ, y = hwy))+
-facet_grid(drv ~ cyl)
+```r
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(drv ~ cyl)
+
 ```
 The code reults in the follwing panel of subplots:
 ![Faceted graph with two variables](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Faceted_Graphs/faceted_graph_two_variables.png)

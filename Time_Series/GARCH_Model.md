@@ -38,6 +38,7 @@ from random import seed
 from matplotlib import pyplot
 from arch import arch_model
 import numpy as np
+
 # seed the process
 np.random.seed(1)
 # Simulating a GARCH(1, 1) process
@@ -49,11 +50,12 @@ w = np.random.normal(size=n)
 eps = np.zeros_like(w)
 sigsq = np.zeros_like(w)
 for i in range(1, n):
-    sigsq[i] = a0 + a1*(eps[i-1]**2) + b1*sigsq[i-1]
+    sigsq[i] = a0 + a1 * (eps[i - 1] ** 2) + b1 * sigsq[i - 1]
     eps[i] = w[i] * np.sqrt(sigsq[i])
 model = arch_model(eps)
 model_fit = model.fit()
 print(model_fit.summary)
+
 ```
 
 ## R
@@ -71,12 +73,14 @@ a1 <- 0.5
 b1 <- 0.3
 obs <- 1000
 eps <- rep(0, obs)
-sigsq <- rep(0,obs)
+sigsq <- rep(0, obs)
 for (i in 2:obs) {
-  sigsq[i] = a0 + a1*(eps[i-1]^2) + b1*sigsq[i-1]
-  eps[i] <- rnorm(1)*sqrt(sigsq[i])}
+  sigsq[i] <- a0 + a1 * (eps[i - 1]^2) + b1 * sigsq[i - 1]
+  eps[i] <- rnorm(1) * sqrt(sigsq[i])
+}
 
 # fit the model
-garch.fit <- garchFit(~garch(1,1), data = eps, trace = F)
+garch.fit <- garchFit(~ garch(1, 1), data = eps, trace = F)
 summary(garch.fit)
+
 ```

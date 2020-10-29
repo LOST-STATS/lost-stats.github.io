@@ -9,7 +9,7 @@ nav_order: 1
 
 # McFadden's Choice Model (Alternative-Specific Conditional Logit)
 
-Discrete choice models are a regression method used to predict a categorical dependent variable with more than two categories. For example, a discrete choice model might be used to predict whether someone is going to take a train, car, or bus to work. 
+Discrete choice models are a regression method used to predict a categorical dependent variable with more than two categories. For example, a discrete choice model might be used to predict whether someone is going to take a train, car, or bus to work.
 
 McFadden's Choice Model is a discrete choice model that uses [conditional logit]({{ "/Model_Estimation/GLS/conditional_logit.html" | relative_url }}), in which the variables that predict choice can vary either at the individual level (perhaps tall people are more likely to take the bus), or at the alternative level (perhaps the train is cheaper than the bus).
 
@@ -50,7 +50,7 @@ This might be referred to as "long" choice data. "Wide" choice data is also comm
 
 We will implement McFadden's choice model in R using the **mlogit** package, which can accept "wide" or "long" data in the `mlogit.data` function.
 
-```R
+```r
 # If necessary, install mlogit package
 # install.packages('mlogit')
 library(mlogit)
@@ -66,28 +66,31 @@ data(Car)
 # We also need sep = "" since our wide-format variable names are type1, type2, etc.
 # If the variable names were type_1, type_2, etc., we'd need sep = "_".
 # If this were long data we'd also want:
-# the case identifier with id.var (for individuals) and/or chid.var 
+# the case identifier with id.var (for individuals) and/or chid.var
 # (for multiple choices within individuals)
 # And a variable indicating the alternatives with alt.var
 # But could skip the alt.levels and sep arguments
 mlogit.Car <- mlogit.data(Car,
-                          choice = 'choice',
-                          shape = 'wide',
-                          varying = 5:70,
-                          alt.levels = 1:6,
-                          sep="")
+  choice = "choice",
+  shape = "wide",
+  varying = 5:70,
+  alt.levels = 1:6,
+  sep = ""
+)
 # mlogit.Car is now in "long" format
 # Note that if we did start with "long" format we could probably skip the mlogit.data() step.
 
 # Now we can run the regression with mlogit().
 # We "regress" the choice on the alternative-specific variables like type, fuel, and price
-# Then put a pipe separator | 
+# Then put a pipe separator |
 # and add our case-specific variables like college
-model <- mlogit(choice ~ type + fuel + price | college, 
-                data = mlogit.Car)
+model <- mlogit(choice ~ type + fuel + price | college,
+  data = mlogit.Car
+)
 
 # Look at the results
 summary(model)
+
 ```
 
 ## Stata

@@ -37,7 +37,7 @@ Histograms can be represented using base `R`, or more elegantly with `ggplot`. `
 
 # loading the data
 
-incomes = data.frame(income = state.x77[,'Income'])
+incomes <- data.frame(income = state.x77[, "Income"])
 
 # first using base R
 
@@ -59,6 +59,7 @@ ggplot(data = incomes) +
 
 ggplot(data = incomes) +
   geom_histogram(aes(x = income), binwidth = 500)
+
 ```
 
 ## Stata

@@ -30,25 +30,27 @@ Although not demonstrated in the example below, [lambda](https://www.analyticsvi
 import pandas as pd
 
 # Grab the data
-df = pd.read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/ggplot2/midwest.csv",
-                 index_col=0)
+df = pd.read_csv(
+    "https://vincentarelbundock.github.io/Rdatasets/csv/ggplot2/midwest.csv",
+    index_col=0,
+)
 
 # Let's assume that we want to sum, row-wise, every column
 # that contains 'perc' in its column name and check that
 # the total is 300. Use a list comprehension to get only
 # relevant columns, sum across them (axis=1), and create a
 # new column to store them:
-df['perc_sum'] = df[[x for x in df.columns if 'perc' in x]].sum(axis=1)
+df["perc_sum"] = df[[x for x in df.columns if "perc" in x]].sum(axis=1)
 
 # We can now check whether, on aggregate, each row entry of this new column
 # is 300 (it's not!)
-df['perc_sum'].describe()
+df["perc_sum"].describe()
 
 ```
 
 ## R
 
-There are a few ways to perform rowwise operations in R. If you are summing the columns or taking their mean, `rowSums` and `rowMeans` in base R are great. 
+There are a few ways to perform rowwise operations in R. If you are summing the columns or taking their mean, `rowSums` and `rowMeans` in base R are great.
 
 For something more complex, `apply` in base R can perform any necessary rowwise calculation, but `pmap` in the `purrr` package is likely to be faster.
 
@@ -58,7 +60,7 @@ In all cases, the **tidyselect** helpers in the **dplyr** package can help you t
 # If necessary
 # install.packages(c('purrr','ggplot2','dplyr'))
 # ggplot2 is only for the data
-data(midwest, package = 'ggplot2')
+data(midwest, package = "ggplot2")
 # dplyr is for the tidyselect functions, the pipe %>%, and select() to pick columns
 library(dplyr)
 
@@ -66,42 +68,45 @@ library(dplyr)
 # add up to 300 as they maybe should
 # Use starts_with to select the variables
 
-# First, do it with rowSums, 
+# First, do it with rowSums,
 # either by picking column indices or using tidyselect
-midwest$rowsum_rowSums1 <- rowSums(midwest[,c(12:16,18:20,22:26)])
+midwest$rowsum_rowSums1 <- rowSums(midwest[, c(12:16, 18:20, 22:26)])
 midwest$rowsum_rowSums2 <- midwest %>%
-  select(starts_with('perc')) %>%
+  select(starts_with("perc")) %>%
   rowSums()
 
 # Next, with apply - we're doing sum() here for the function
 # but it could be anything
 midwest$rowsum_apply <- apply(
-  midwest %>% select(starts_with('perc')), 
-  MARGIN = 1, 
-  sum)
+  midwest %>% select(starts_with("perc")),
+  MARGIN = 1,
+  sum
+)
 
 # Next, two ways with purrr:
 library(purrr)
 # First, using purrr::reduce, which is good for some functions like summing
 # Note that . is the data set being sent by %>%
 midwest <- midwest %>%
-  mutate(rowsum_purrrReduce = reduce(select(., starts_with('perc')), `+`))
+  mutate(rowsum_purrrReduce = reduce(select(., starts_with("perc")), `+`))
 
 # More flexible, purrr::pmap, which works for any function
 # using pmap_dbl here to get a numeric variable rather than a list
 midwest <- midwest %>%
   mutate(rowsum_purrrpmap = pmap_dbl(
-    select(.,starts_with('perc')),
-    sum))
+    select(., starts_with("perc")),
+    sum
+  ))
 
 # So do we get 300?
 summary(midwest$rowsum_rowSums2)
 # Uh-oh... looks like we didn't understand the data after all.
+
 ```
 
 ## Stata
 
-Stata has a series of built-in row operations that use the `egen` command. See `help egen` for the full list, and look for functions beginning with `row` like `rowmean`. 
+Stata has a series of built-in row operations that use the `egen` command. See `help egen` for the full list, and look for functions beginning with `row` like `rowmean`.
 
 The full list includes: `rowfirst` and `rowlast` (first or last non-missing observation), `rowmean`, `rowmedian`, `rowmax`, `rowmin`, `rowpctile`, and `rowtotal` (the mean, median, max, min, given percentile, or sum of all the variables), and `rowmiss` and `rownonmiss` (the count of the number of missing or nonmissing observations across the variables).
 

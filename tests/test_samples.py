@@ -7,6 +7,8 @@ from urllib import parse
 
 import mistune
 
+from lostutils.pathutils import expand_and_filter_filenames
+
 
 @dataclass(frozen=True)
 class CodeBlock:
@@ -110,29 +112,12 @@ def get_top_level_block_codes(mark: str, location: Path) -> List[CodeBlock]:
     return unnamed_blocks
 
 
-def _expand_paths(paths: List[Path]) -> List[Path]:
-    all_paths: List[Path] = []
-    for path in paths:
-        if not path.exists():
-            continue
-        if path.is_file():
-            all_paths.append(path)
-        elif path.is_dir():
-            all_paths.extend(path.glob("**/*.md"))
-
-    return all_paths
-
-
 def pytest_generate_tests(metafunc):
-    base_paths = list(map(Path, metafunc.config.getoption("mdpath")))
-    base_paths = base_paths or [Path(__file__).parent]
-
-    base_exclude_paths = list(map(Path, metafunc.config.getoption("xmdpath")))
+    base_paths: List[str] = metafunc.config.getoption("mdpath") or [str(Path(__file__).absolute().parent)]
+    base_exclude_paths: List[str] = metafunc.config.getoption("xmdpath") or []
 
     # Expand and exclude paths on command line
-    all_paths = _expand_paths(base_paths)
-    exclude_paths = _expand_paths(base_exclude_paths)
-    all_paths = sorted(set(all_paths) - set(exclude_paths))
+    all_paths = expand_and_filter_filenames(base_paths, base_exclude_paths)
 
     # Retrieve the blocks from the code
     all_blocks: List[CodeBlock] = []

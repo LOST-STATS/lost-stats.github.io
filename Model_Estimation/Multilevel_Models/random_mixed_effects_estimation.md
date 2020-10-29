@@ -39,20 +39,22 @@ That is, average earnings of graduates of an institution depends on proportion e
 
 Several packages can be used to implement a random effects model in R - such as [**lme4**](https://cran.r-project.org/web/packages/lme4/index.html) and [**nlme**](https://cran.r-project.org/web/packages/nlme/nlme.pdf). **lme4** is more widely used. The example that follows uses the **lme4** package.
 
-``` r
+```r
 # If necessary, install lme4
-if(!require(lme4)){install.packages("lme4")}
+if (!require(lme4)) {
+  install.packages("lme4")
+}
 library(lme4)
 
 # Read in data from the College Scorecard
-df <- read.csv('https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv')
+df <- read.csv("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv")
 
 # Calculate proportion of graduates working
-df$prop_working <- df$count_working/(df$count_working + df$count_not_working)
+df$prop_working <- df$count_working / (df$count_working + df$count_not_working)
 
 # We write the mixed effect formula for estimation in lme4 as:
-# dependent_var ~ 
-# covariates (that can include fixed effects) + 
+# dependent_var ~
+# covariates (that can include fixed effects) +
 # random effects - we need to specify if our model is random effects in intercepts or in slopes. In our example, we suspect random effects in intercepts at institutions. So we write "...+(1 | inst_name), ...." If we wanted to specify a model where the coefficient on prop_working was also varying by institution - we would use (1 + open | inst_name).
 
 # Here we regress average earnings graduates in an institution on prop_working, year fixed effects and random effects in intercepts for institutions.
@@ -63,6 +65,7 @@ relm_model <- lmer(earnings_med ~ prop_working + factor(df$year) + (1 | inst_nam
 summary(relm_model)
 
 # We note that comparing with the fixed effects model, our estimates are more precise. But, the correlation between X`s and errors suggest bias in our mixed effect model, and we do see a large increase in estimated beta.
+
 ```
 
 ## Stata
@@ -72,7 +75,7 @@ We will estimate a mixed effects model using Stata using the built in `xtreg` co
 ```stata
 
 * Obtain same data from Fixed Effect tutorial
- 
+
 import delimited "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Fix
 ed_Effects_in_Linear_Regression/Scorecard.csv", clear
 
@@ -91,7 +94,7 @@ encode inst_name, g(name_number)
 * Set the data as panel data with xtset
 xtset name_number
 
-* Use xtreg with the "re" option to run random effects on institution intercepts 
+* Use xtreg with the "re" option to run random effects on institution intercepts
 * Regressing earnings_med on prop_working
 * with random effects for name_number (implied by re)
 * and also year fixed effects (which we'll add manually with i.year)

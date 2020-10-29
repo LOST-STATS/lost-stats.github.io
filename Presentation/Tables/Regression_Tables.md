@@ -9,7 +9,7 @@ mathjax: true ## Switch to false if this page has no equations or other math ren
 
 # Regression Tables
 
-Statistical packages often report regression results in a way that is not how you would want to display them in a paper or on a website. Additionally, they rarely provide an option to display multiple regression results in the same table. 
+Statistical packages often report regression results in a way that is not how you would want to display them in a paper or on a website. Additionally, they rarely provide an option to display multiple regression results in the same table.
 
 Two (bad) options for including regression results in your paper include copying over each desied number by hand, or taking a screenshot of your regression output. Much better is using a command that outputs regression results in a nice format, in a way you can include in your presentation.
 
@@ -44,12 +44,15 @@ lm2 <- lm(mpg ~ cyl + hp, data = mtcars)
 
 # Let's output an HTML table, perhaps for pasting into Word
 # We could instead set type = 'latex' for LaTeX or type = 'text' for a text-only table.
-stargazer(lm1, lm2, type = 'html', out = 'my_reg_table.html')
+stargazer(lm1, lm2, type = "html", out = "my_reg_table.html")
 
 # In line with good practices, we should use readable names for our variables
-stargazer(lm1, lm2, type = 'html', out = 'my_reg_table.html',
-          covariate.labels = c('Cylinders','Horsepower'),
-          dep.var.labels = 'Miles per Gallon')
+stargazer(lm1, lm2,
+  type = "html", out = "my_reg_table.html",
+  covariate.labels = c("Cylinders", "Horsepower"),
+  dep.var.labels = "Miles per Gallon"
+)
+
 ```
 
 This produces:
@@ -122,7 +125,7 @@ huxreg(lm1, lm2,
   # We can send it to the screen to view it instantly
   print_screen()
 
-# Or we can send it to a file with the quick_ functions, which can 
+# Or we can send it to a file with the quick_ functions, which can
 # output to pdf, docx, html, xlsx, pptx, rtf, or latex.
 huxreg(lm1, lm2,
        coefs=c('Cylinders' = 'cyl',
@@ -181,7 +184,7 @@ estimates store weightandforeign
 * replacing any table we've already made
 * and making an HTML table with style(html)
 * style(tex) also works, and the default is tab-delimited data for use in Excel.
-* Note also the default is to display t-statistics in parentheses. If we want 
+* Note also the default is to display t-statistics in parentheses. If we want
 * standard errors instead, we say so with se
 esttab weightonly weightandforeign using my_reg_output.html, label replace style(html) se
 ```

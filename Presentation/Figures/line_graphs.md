@@ -35,17 +35,18 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load in data
-Orange = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/datasets/Orange.csv')
+Orange = pd.read_csv(
+    "https://vincentarelbundock.github.io/Rdatasets/csv/datasets/Orange.csv"
+)
 
 # Specify a line plot in Seaborn using
 # age and circumference on the x and y axis
 # and picking just Tree 1 from the data
-sns.lineplot(x = 'age',
-             y = 'circumference',
-             data = Orange.loc[Orange.Tree == 1])
+sns.lineplot(x="age", y="circumference", data=Orange.loc[Orange.Tree == 1])
 # And title the axes
-plt.xlabel('Age (days since 12/31/1968)')
-plt.ylabel('Circumference')
+plt.xlabel("Age (days since 12/31/1968)")
+plt.ylabel("Circumference")
+
 ```
 
 The result is:
@@ -57,13 +58,11 @@ If we want to include all the trees on the graph, with color to distinguish them
 ```python?example=seaborn
 # Add on a hue axis to add objects of different color by tree
 # So we can graph all the trees
-sns.lineplot(x = 'age',
-             y = 'circumference',
-             hue = 'Tree',
-             data = Orange)
+sns.lineplot(x="age", y="circumference", hue="Tree", data=Orange)
 # And title the axes
-plt.xlabel('Age (days since 12/31/1968)')
-plt.ylabel('Circumference')
+plt.xlabel("Age (days since 12/31/1968)")
+plt.ylabel("Circumference")
+
 ```
 
 Which results in:
@@ -76,20 +75,22 @@ Which results in:
 
 To make a line graph in R, we'll be using a dataset that's already built in to R, called 'Orange'. This dataset tracks the growth in circumference of several trees as they age.
 
-```R?example=basicline
+```r?example=basicline
 library(dplyr)
 library(lubridate)
 library(ggplot2)
 
-#load in dataset
+# load in dataset
 data(Orange)
+
 ```
 
 This dataset has measurements for four different trees. To start off, we'll only be graphing the growth of Tree #1, so we first need to subset our data.
 
-```R?example=basicline
-#subset data to just tree #1
+```r?example=basicline
+# subset data to just tree #1
 tree_1_df <- Orange %>% filter(Tree == 1)
+
 ```
 
 Then we will construct our plot using `ggplot()`. We'll create our line graph using the following steps:
@@ -98,9 +99,10 @@ Then we will construct our plot using `ggplot()`. We'll create our line graph us
  - To make the actual line of the line graph, we will add the line geom_line() to our ggplot line using the `+` symbol. Using the `+` symbol allows us to add different lines of code to the same graph in order to create new elements within it.
  - Putting those steps together, we get the following code resulting in our first line graph:
 
-```R?example=basicline
+```r?example=basicline
 ggplot(tree_1_df, aes(x = age, y = circumference)) +
-            geom_line()
+  geom_line()
+
 ```
 
 ![Unstyled R Line Graph](Images/Line_Graphs/line_graph_basic_R.png)
@@ -112,12 +114,15 @@ This does show us how the tree grows over time, but it's rather plain and lacks 
 - Using the function `theme()` allows us to manipulate the apperance of our labels through the element_text function
 - Let's change the line color, add a title and center it, and also add more information to our axes labels.
 
-```R?example=basicline
+```r?example=basicline
 ggplot(tree_1_df, aes(x = age, y = circumference)) +
-            geom_line(color = "orange") +
-            labs(x = "Age (days since 12/31/1968)", y = "Circumference (mm)",
-                 title = "Orange Tree Circumference Growth by Age") +
-            theme(plot.title = element_text(hjust = 0.5))
+  geom_line(color = "orange") +
+  labs(
+    x = "Age (days since 12/31/1968)", y = "Circumference (mm)",
+    title = "Orange Tree Circumference Growth by Age"
+  ) +
+  theme(plot.title = element_text(hjust = 0.5))
+
 ```
 ![Styled R Line Graph](Images/Line_Graphs/line_graph_styled_R.png)
 
@@ -128,11 +133,12 @@ A great way to employ line graphs is to compare the changes of different values 
 
 To add multiple lines using data from the same dataframe, simply add the `color` argument to the `aes()` function within our `ggplot()` line. Set the color argument to the identifying variable within your data set, here, that variable is `Tree`, so we will set `color = Tree`.
 
-```R?example=basicline
+```r?example=basicline
 ggplot(Orange, aes(x = age, y = circumference, color = Tree)) +
-        geom_line() +
-        labs(x = "Age (days since 12/31/1968)", y = "Circumference (mm)", title = "Orange Tree Circumference Growth by Age") +
-        theme(plot.title = element_text(hjust = 0.5))
+  geom_line() +
+  labs(x = "Age (days since 12/31/1968)", y = "Circumference (mm)", title = "Orange Tree Circumference Growth by Age") +
+  theme(plot.title = element_text(hjust = 0.5))
+
 ```
 ![R Line Graph with Multiple Lines](Images/Line_Graphs/line_graph_multi_R.png)
 

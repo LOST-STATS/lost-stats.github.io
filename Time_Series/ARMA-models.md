@@ -47,13 +47,16 @@ import numpy as np
 import pandas as pd
 from statsmodels.tsa.arima.model import ARIMA
 
-gdp = pd.read_csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv",
-                    index_col=0)
+gdp = pd.read_csv(
+    "https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv",
+    index_col=0,
+)
 
 # Take 1st diff of log of gdp
 d_ln_gdp = np.log(gdp).diff()
 
 print(d_ln_gdp.head())
+
 ```
 
                    GDPC1
@@ -78,6 +81,7 @@ q = 1
 mod = ARIMA(d_ln_gdp, order=(p, d, q))
 res = mod.fit()
 print(res.summary())
+
 ```
 
                                    SARIMAX Results
@@ -122,28 +126,30 @@ if (!require("tsibble")) install.packages("tsibble")
 library(tsibble)
 
 
-#load data
-gdp = read.csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv")
+# load data
+gdp <- read.csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv")
 
-#set our data up as a time-series
+# set our data up as a time-series
 gdp$DATE <- as.Date(gdp$DATE)
 
 gdp_ts <- as_tsibble(gdp,
-                     index = DATE,
-                     regular = FALSE) %>%
-    index_by(qtr = ~ yearquarter(.))
+  index = DATE,
+  regular = FALSE
+) %>%
+  index_by(qtr = ~ yearquarter(.))
 
-#construct our first difference of log gdp variable
-gdp_ts$lgdp=log(gdp_ts$GDPC1)
+# construct our first difference of log gdp variable
+gdp_ts$lgdp <- log(gdp_ts$GDPC1)
 
-gdp_ts$ldiffgdp=difference(gdp_ts$lgdp, lag=1, difference=1)
+gdp_ts$ldiffgdp <- difference(gdp_ts$lgdp, lag = 1, difference = 1)
 
 
-#Estimate our ARMA(3,1)
-##Note that because we are modeling for the first difference of log GDP, we cannot use our first observation of
-##log GDP to estimate our model.
-arma_gdp = arima(gdp_ts$lgdp[2:292], order=c(3,0,1))
+# Estimate our ARMA(3,1)
+## Note that because we are modeling for the first difference of log GDP, we cannot use our first observation of
+## log GDP to estimate our model.
+arma_gdp <- arima(gdp_ts$lgdp[2:292], order = c(3, 0, 1))
 arma_gdp
+
 ```
 
 ## Stata

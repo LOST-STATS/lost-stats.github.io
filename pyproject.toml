@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "lostutils"
+version = "0.1.0"
+description = ""
+authors = ["Kevin Wilson <khwilson@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pytest = "^6.1.2"
+black = "^20.8b1"
+mistune = "2.0.0a5"
+click = "^7.1.2"
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.6.0"
+
+[tool.poetry.scripts]
+lostutils = "lostutils.cli:cli"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

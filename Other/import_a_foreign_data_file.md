@@ -32,26 +32,27 @@ Because there are so many potential foreign formats, these implementations will 
 # Load Excel files with the readxl package
 # install.packages('readxl')
 library(readxl)
-data <- read_excel('filename.xlsx')
+data <- read_excel("filename.xlsx")
 
 # Read Stata, SAS, and SPSS files with the haven package
 # install.packages('haven')
 library(haven)
-data <- read_stata('filename.dta')
-data <- read_spss('filename.sav')
+data <- read_stata("filename.dta")
+data <- read_spss("filename.sav")
 # read_sas also supports .sas7bcat, or read_xpt supports transport files
-data <- read_sas('filename.sas7bdat')
+data <- read_sas("filename.sas7bdat")
 
 # Read lots of other types with the foreign package
 # install.packages('foreign')
 library(foreign)
-data <- read.arff('filename.arff')
-data <- read.dbf('filename.dbf')
-data <- read.epiinfo('filename.epiinfo')
-data <- read.mtb('filename.mtb')
-data <- read.octave('filename.octave')
-data <- read.S('filename.S')
-data <- read.systat('filename.systat')
+data <- read.arff("filename.arff")
+data <- read.dbf("filename.dbf")
+data <- read.epiinfo("filename.epiinfo")
+data <- read.mtb("filename.mtb")
+data <- read.octave("filename.octave")
+data <- read.S("filename.S")
+data <- read.systat("filename.systat")
+
 ```
 
 ## Stata

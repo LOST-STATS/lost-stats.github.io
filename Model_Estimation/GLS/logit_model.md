@@ -9,7 +9,7 @@ nav_order: 1
 
 # Logit Regressions
 
-A logistical regression (Logit) is a statistical method for a best-fit line between a binary [0/1] outcome variable $$Y$$ and any number of independent variables. Logit regressions follow a [logistical distribution](https://en.wikipedia.org/wiki/Logistic_distribution) and the predicted probabilities are bounded between 0 and 1. 
+A logistical regression (Logit) is a statistical method for a best-fit line between a binary [0/1] outcome variable $$Y$$ and any number of independent variables. Logit regressions follow a [logistical distribution](https://en.wikipedia.org/wiki/Logistic_distribution) and the predicted probabilities are bounded between 0 and 1.
 
 For more information about Logit, see [Wikipedia: Logit](https://en.wikipedia.org/wiki/Logit).
 
@@ -40,11 +40,13 @@ There are a number of Python packages that can perform logit regressions but the
 import pandas as pd
 import statsmodels.formula.api as smf
 
-df = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/datasets/mtcars.csv',
-                 index_col=0)
+df = pd.read_csv(
+    "https://vincentarelbundock.github.io/Rdatasets/csv/datasets/mtcars.csv",
+    index_col=0,
+)
 
 # Specify the model, regressing vs on mpg and cyl
-mod = smf.logit('vs ~ mpg + cyl', data=df)
+mod = smf.logit("vs ~ mpg + cyl", data=df)
 
 # Fit the model
 res = mod.fit()
@@ -53,10 +55,11 @@ res = mod.fit()
 res.summary()
 
 # Compute marginal effects
-marg_effect = res.get_margeff(at='mean', method='dydx')
+marg_effect = res.get_margeff(at="mean", method="dydx")
 
 # Show marginal effects
 marg_effect.summary()
+
 ```
 
 ## R
@@ -73,10 +76,12 @@ library(mfx)
 data(mtcars)
 
 # Use the glm() function to run logit
-# Here we are predicting engine type using 
+# Here we are predicting engine type using
 # miles per gallon and number of cylinders as predictors
-my_logit <- glm(vs ~ mpg + cyl, data = mtcars,
-                family = binomial(link = 'logit'))
+my_logit <- glm(vs ~ mpg + cyl,
+  data = mtcars,
+  family = binomial(link = "logit")
+)
 # The family argument says we are working with binary data
 # and using a logit link function (rather than, say, probit)
 
@@ -85,6 +90,7 @@ summary(my_logit)
 
 # Marginal effects
 logitmfx(vs ~ mpg + cyl, data = mtcars)
+
 ```
 
 ## Stata

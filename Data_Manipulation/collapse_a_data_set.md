@@ -17,7 +17,7 @@ The *observation level* of a data set is the set of case-identifying variables w
 | 2 | 1 | 2 |
 | 2 | 2 | 4.5 |
 
-the variables $$I$$ and $$J$$ uniquely identify rows. The first row has $$I = 1$$ and $$J = 1$$, and there is no other row with that combination. We could also say that $$X$$ uniquely identifies rows, but in this example $$X$$ is not a case-identifying variable, it's actual data. 
+the variables $$I$$ and $$J$$ uniquely identify rows. The first row has $$I = 1$$ and $$J = 1$$, and there is no other row with that combination. We could also say that $$X$$ uniquely identifies rows, but in this example $$X$$ is not a case-identifying variable, it's actual data.
 
 It is common to want to *collapse* a data set from one level to another, coarser level. For example, perhaps instead of one row per combination of $$I$$ and $$J$$, we simply want one row per $$I$$, perhaps with the average $$X$$ across all $$I$$ observations. This would result in:
 
@@ -47,16 +47,17 @@ As in the R example below, we would like to collapse data on storms so that it i
 import pandas as pd
 
 # Pull in data on storms
-storms = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv')
+storms = pd.read_csv(
+    "https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv"
+)
 
 # Find the mean wind, mean pressure, and the first
 # category value by name, year, month, and day.
 # To do this, use a groupby, followed by an aggregation.
-storms_collapsed = (storms
-                    .groupby(['name', 'year', 'month', 'day'])
-                    .agg({'wind': 'mean',
-                          'pressure': 'mean',
-                          'category': 'first'}))
+storms_collapsed = storms.groupby(["name", "year", "month", "day"]).agg(
+    {"wind": "mean", "pressure": "mean", "category": "first"}
+)
+
 ```
 
 ## R
@@ -77,15 +78,18 @@ data("storms")
 # To construct the collapsed data, we start with the original
 storms_collapsed <- storms %>%
   # group by the variables that make the new observation level
-  group_by(name, year, month, day) %>% 
+  group_by(name, year, month, day) %>%
   # And use summarize() to pick the variables to keep, as well as
   # the functions we want to use to collapse each variable.
   # Let's get the mean wind and pressure, and the first category value
-  summarize(wind = mean(wind),
-            pressure = mean(pressure),
-            category = first(category))
-# Note that if we wanted to collapse every variable in the data with the 
+  summarize(
+    wind = mean(wind),
+    pressure = mean(pressure),
+    category = first(category)
+  )
+# Note that if we wanted to collapse every variable in the data with the
 # same function, we could instead use summarize_all()
+
 ```
 
 ## Stata

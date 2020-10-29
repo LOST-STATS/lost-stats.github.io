@@ -65,7 +65,7 @@ If you create one of these pages, please remove it from this list.
 * Cluster Bootstrap Standard Errors
 * Jackknife Standard Errors
 
-## Machine Learning 
+## Machine Learning
 
 * A-B Testing
 * Artificial Neural Networks
@@ -91,7 +91,7 @@ If you create one of these pages, please remove it from this list.
 * Stationarity and Weak Dependence
 * Granger Causality
 * Moving Average Model
-* ARIMA Model 
+* ARIMA Model
 * ARIMAX Model
 * ARCH Model
 * GARCH Model

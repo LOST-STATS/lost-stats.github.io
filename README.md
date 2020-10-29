@@ -20,6 +20,27 @@ bundle exec jekyll build
 bundle exec htmlproofer --assume-extension --allow-hash-href ./_site
 ```
 
+## Linting code samples
+
+In order to keep our formatting consistent, we try to format all of our code using [`black`](https://github.com/psf/black) for Python code and [`styler`](https://github.com/r-lib/styler) for R code. In order to run our automated linters, you will need R, Python 3.8+, and [Poetry](https://python-poetry.org/docs/#installation). Then you will need to run:
+
+```bash
+R -e 'install.packages("styler")'
+poetry install
+```
+
+Once this is completed, then you should be able to run
+
+```bash
+poetry run lostutils style .
+```
+
+or you can specify specific directories or files a la
+
+```bash
+poetry run lostutils style Other Presentation/Figures/bar_graphs.md --skip Other/create_a_conda_package.md
+```
+
 ## Testing code samples
 
 We have some facilities for testing to make sure that all the code samples in this repository work, at least fo the open source languages. You will need a few extra requirements for this section.
@@ -28,12 +49,10 @@ We have some facilities for testing to make sure that all the code samples in th
 
 ### Requirements
 
-You will first need to install [Docker](https://docs.docker.com/desktop/). You will also need Python 3.8 or above. After this, you will need to run the following commands:
+You will first need to install [Docker](https://docs.docker.com/desktop/). You will also need Python 3.8 or above as well as [Poetry](https://python-poetry.org/docs/#installation). After this, you will need to run the following commands:
 
 ```bash
-python3 -m venv venv
-source venv/bin/activate
-pip install 'mistune==2.0.0a5' 'py.test==6.1.1' 'pytest-xdist==2.1.0'
+poetry install
 
 docker pull ghcr.io/khwilson/lost-docker-images/tester-r
 docker pull ghcr.io/khwilson/lost-docker-images/tester-python
@@ -46,20 +65,19 @@ At this point, the docker images will _not_ be updated unless you explicitly rep
 After completing the setup, you can simply run
 
 ```
-source venv/bin/activate
-py.test test_samples.py
+poetry run py.test tests
 ```
 
 Note that this will take a _long_ time to run. You can reduce the set of tests run using the `--mdpath` option. For instance, to find and run all the code samples in the `Time_Series` and `Presentation` folders, you can run
 
 ```
-py.test test_samples.py --mdpath Time_Series --mdpath Presentation
+py.test tests --mdpath Time_Series --mdpath Presentation
 ```
 
 Furthermore, you can run tests in parallel by adding the `-n` parameter:
 
 ```
-py.test test_samples.py -n 3 --mdpath Time_Series
+py.test tests -n 3 --mdpath Time_Series
 ```
 
 ### Adding dependencies

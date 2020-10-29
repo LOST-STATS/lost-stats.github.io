@@ -34,18 +34,26 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeRegressor
 from econml.ortho_forest import ContinuousTreatmentOrthoForest as CausalForest
 
-df = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/Crime.csv')
+df = pd.read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/Crime.csv")
 
 # Set the categorical variables:
-cat_vars = ['year', 'region', 'smsa']
+cat_vars = ["year", "region", "smsa"]
 # Transform the categorical variables to dummies and add them back in
 xf = pd.get_dummies(df[cat_vars])
 df = pd.concat([df.drop(cat_vars, axis=1), xf], axis=1)
 cat_var_dummy_names = list(xf.columns)
 
-regressors = ['prbarr', 'prbconv', 'prbpris',
-              'avgsen', 'polpc', 'density', 'taxpc',
-              'pctmin', 'wcon']
+regressors = [
+    "prbarr",
+    "prbconv",
+    "prbpris",
+    "avgsen",
+    "polpc",
+    "density",
+    "taxpc",
+    "pctmin",
+    "wcon",
+]
 # Add in the dummy names to the list of regressors
 regressors = regressors + cat_var_dummy_names
 
@@ -53,29 +61,27 @@ regressors = regressors + cat_var_dummy_names
 train, test = train_test_split(df, test_size=0.2)
 
 # Estimate causal forest
-estimator = CausalForest(n_trees=100,
-                         model_T=DecisionTreeRegressor(),
-                         model_Y=DecisionTreeRegressor())
-estimator.fit(train['crmrte'],
-              train['pctymle'],
-              train[regressors],
-              inference='blb')
+estimator = CausalForest(
+    n_trees=100, model_T=DecisionTreeRegressor(), model_Y=DecisionTreeRegressor()
+)
+estimator.fit(train["crmrte"], train["pctymle"], train[regressors], inference="blb")
 effects_train = estimator.effect(train[regressors])
 effects_test = estimator.effect(test[regressors])
 conf_intrvl = estimator.effect_interval(test[regressors])
+
 ```
 
 ## R
 
 The **grf** package has a `causal_forest` function that can be used to estimate causal forests. Additional functions afterwards can estimate, for example, the `average_treatment_effect()`. See `help(package='grf')` for more options.
 
-```R
+```r
 # If necessary
 # install.packages('grf')
 library(grf)
 
 # Get crime data from North Carolina
-df <- read.csv('https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/Crime.csv')
+df <- read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/Crime.csv")
 
 # It's not, but let's pretend that "percentage of young males" pctymle is exogenous
 # and see how the effect of it on crmrte varies across the other measured covariates
@@ -83,12 +89,12 @@ df <- read.csv('https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/Crime.c
 # Make sure the data has no missing values. Here I'm dropping observations
 # with missing values in any variable, but you can limit the data first to just
 # variables used in analysis to only drop observations with missing values in those variables
-df <- df[complete.cases(df),]
+df <- df[complete.cases(df), ]
 
 # Let's use training and holdout data
 split <- sample(c(FALSE, TRUE), nrow(df), replace = TRUE)
-df.train <- df[split,]
-df.hold <- df[!split,]
+df.train <- df[split, ]
+df.hold <- df[!split, ]
 
 # Isolate the "treatment" as a matrix
 pctymle <- as.matrix(df.train$pctymle)
@@ -98,26 +104,27 @@ crmrte <- as.matrix(df.train$crmrte)
 
 # Use model.matrix to get our predictor matrix
 # We might also consider adding interaction terms
-X <- model.matrix(lm(crmrte ~ -1 + factor(year) + prbarr + prbconv + prbpris + 
-                       avgsen + polpc + density + taxpc + factor(region) + factor(smsa) + 
-                       pctmin + wcon, data = df.train))
+X <- model.matrix(lm(crmrte ~ -1 + factor(year) + prbarr + prbconv + prbpris +
+  avgsen + polpc + density + taxpc + factor(region) + factor(smsa) +
+  pctmin + wcon, data = df.train))
 
 # Estimate causal forest
-cf <- causal_forest(X,crmrte,pctymle)
+cf <- causal_forest(X, crmrte, pctymle)
 
 # Get predicted causal effects for each observation
 effects <- predict(cf)$predictions
 
 # And use holdout X's for prediction
-X.hold <- model.matrix(lm(crmrte ~ -1 + factor(year) + prbarr + prbconv + prbpris + 
-                       avgsen + polpc + density + taxpc + factor(region) + factor(smsa) + 
-                       pctmin + wcon, data = df.hold))
+X.hold <- model.matrix(lm(crmrte ~ -1 + factor(year) + prbarr + prbconv + prbpris +
+  avgsen + polpc + density + taxpc + factor(region) + factor(smsa) +
+  pctmin + wcon, data = df.hold))
 # And get effects
 effects.hold <- predict(cf, X.hold)$predictions
 
 # Get standard errors for the holding data predictions - we probably should have set the num.trees
 # option in causal_forest higher before doing this, perhaps to 5000.
 SEs <- sqrt(predict(cf, X.hold, estimate.variance = TRUE)$variance.estimates)
+
 ```
 
 # Stata

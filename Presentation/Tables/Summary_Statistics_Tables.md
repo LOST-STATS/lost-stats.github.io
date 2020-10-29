@@ -33,15 +33,15 @@ library(stargazer)
 data(mtcars)
 
 # Feed stargazer a data.frame with the variables you want summarized
-mt_tosum <- mtcars[,c('mpg','cyl','disp')]
+mt_tosum <- mtcars[, c("mpg", "cyl", "disp")]
 # Type = 'text' to print the table to screen, or 'latex' or 'html' to get LaTeX or HTML tables
-stargazer(mt_tosum, type = 'text')
+stargazer(mt_tosum, type = "text")
 
 # There are *many* options and customizations. For all of them, see
 # help(stargazer)
 # Some useful ones include out, which designates a file to send the table to
 # (note that HTML tables can be copied straight into Word from an output file)
-stargazer(mt_tosum, type = 'html', out = 'my_summary.html', median = TRUE)
+stargazer(mt_tosum, type = "html", out = "my_summary.html", median = TRUE)
 
 # Also note that stargazer does not accept tibbles.
 # Use as.data.frame() to stargazer a tibble
@@ -51,7 +51,8 @@ data("storms")
 storms %>%
   select(year, wind, pressure, ts_diameter) %>%
   as.data.frame() %>%
-  stargazer(type = 'text')  
+  stargazer(type = "text")
+
 ```
 
 But if you plan on maybe R Markdown instead of LaTeX formatting, there are a ton of summary statistic table packages for you to choose from. The package skimr is an excellent alternative to base::summary. skimr::skim takes different data types and outputs a summary statistic data frame. Numeric data gets miniature histograms and all types of data get information about the number of missing entries.
@@ -65,20 +66,20 @@ library(skimr)
 
 skim(starwars)
 
-#If you're wondering which columns have missing values, you can use skim() in a pipeline.
+# If you're wondering which columns have missing values, you can use skim() in a pipeline.
 starwars %>%
   skim() %>%
   dplyr::filter(n_missing > 0) %>%
   dplyr::select(skim_variable, n_missing, complete_rate)
-  
-#You can analyze grouped data with skimr. You can also easily customize the output table using skim_with().
+
+# You can analyze grouped data with skimr. You can also easily customize the output table using skim_with().
 my_skim <- skim_with(base = sfl(
-    n = length
+  n = length
 ))
 starwars %>%
-    group_by(species) %>%
-    my_skim() %>%
-    dplyr::filter(skim_variable == "height" & n > 1)
+  group_by(species) %>%
+  my_skim() %>%
+  dplyr::filter(skim_variable == "height" & n > 1)
 
 ```
 
@@ -107,7 +108,7 @@ estpost summarize price mpg rep78 f_*
 
 * We can then use esttab and cells() to pick columns
 * Now it's nicely formatted
-* The quotes around the statistics put all the statistics in one row 
+* The quotes around the statistics put all the statistics in one row
 esttab, cells("count mean sd min max")
 
 * If we want to limit the number of significant digits we must do this stat by stat

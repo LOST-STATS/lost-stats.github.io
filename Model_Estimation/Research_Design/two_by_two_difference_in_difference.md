@@ -36,11 +36,7 @@ In this case, we need to discover whether legalized marijuana could change the m
 Step 1:
 * First of all, we need to load Data and Package, we call this data set "DiD".
 ```r
-library(tidyverse)
-library(broom)
-library(here)
-library(readxl)
-DiD <- read_excel("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Two_by_Two_Difference_in_Difference/did_crime.xlsx"))
+
 ```
 
 Step 2:
@@ -53,8 +49,9 @@ If the year is after 2014 **and** the state decided to legalize marijuana, the i
 
 ```r
 DiD <- DiD %>%
-		mutate(after = year >= 2014) %>%
-        mutate(treatafter = after*treat)
+  mutate(after = year >= 2014) %>%
+  mutate(treatafter = after * treat)
+
 ```
 
 Step 3:
@@ -62,11 +59,13 @@ Step 3:
 Then we need to plot the graph to visualize the impact of legalize marijuana on murder rate by using `ggplot`.
 
 ```r
-mt <- ggplot(DiD,aes(x=year, y=murder, color = treat)) +
-        geom_point(size=3)+geom_line() +
-        geom_vline(xintercept=2014,lty=4) +
-        labs(title="Murder and Time", x="Year", y="Murder Rate")
+mt <- ggplot(DiD, aes(x = year, y = murder, color = treat)) +
+  geom_point(size = 3) +
+  geom_line() +
+  geom_vline(xintercept = 2014, lty = 4) +
+  labs(title = "Murder and Time", x = "Year", y = "Murder Rate")
 mt
+
 ```
 ![Diff-in-Diff](Images/Two_by_Two_Difference_in_Difference/difindif.jpg)
 
@@ -77,8 +76,9 @@ Step 4:
 We need to measure the impact of impact of legalize marijuana. If we include `treat`, `after`, and `treatafter` in a regression, the coefficient on `treatafter` can be interpreted as "how much bigger was the before-after difference for the treated group?" which is the DiD estimate.
 
 ```r
-reg<-lm(murder ~ treat+treatafter+after, data = DiD)
+reg <- lm(murder ~ treat + treatafter + after, data = DiD)
 summary(reg)
+
 ```
 
 After legalization, the murder rate dropped by 0.3% more in treated than untreated states, suggesting that legalization reduced the murder rate.

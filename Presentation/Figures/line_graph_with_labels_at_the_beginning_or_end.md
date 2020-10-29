@@ -25,7 +25,7 @@ When putting multiple line graphs on the same set of axes, a good idea is to lab
 
 ## R
 
-```R
+```r
 # If necessary, install ggplot2, lubridate, and directlabels
 # install.packages(c('ggplot2','directlabels', 'lubridate'))
 library(ggplot2)
@@ -34,7 +34,7 @@ library(directlabels)
 # Load in Google Trends Nobel Search Data
 # Which contains the Google Trends global search popularity index for the four
 # research-based Nobel prizes over a month.
-df <- read.csv('https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Presentation/Figures/Data/Line_Graph_with_Labels_at_the_Beginning_or_End_of_Lines/Research_Nobel_Google_Trends.csv')
+df <- read.csv("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Presentation/Figures/Data/Line_Graph_with_Labels_at_the_Beginning_or_End_of_Lines/Research_Nobel_Google_Trends.csv")
 
 # Properly treat our date variable as a date
 # Not necessary in all applications of this technique.
@@ -43,20 +43,23 @@ df$date <- lubridate::ymd(df$date)
 # Construct our standard ggplot line graph
 # Drawing separate lines by name
 # And using the log of hits for visibility
-ggplot(df, aes(x = date, y = log(hits), color = name)) + 
-  labs(x = "Date",
-       y = "Log of Google Trends Index")+
-  geom_line()+
+ggplot(df, aes(x = date, y = log(hits), color = name)) +
+  labs(
+    x = "Date",
+    y = "Log of Google Trends Index"
+  ) +
+  geom_line() +
   # Since we are about to add line labels, we don't need a legend
   theme(legend.position = "none") +
-  # Add, from the directlabels package, 
-  # geom_dl, using method = 'last.bumpup' to put the 
-  # labels at the end, and make sure that if they intersect, 
+  # Add, from the directlabels package,
+  # geom_dl, using method = 'last.bumpup' to put the
+  # labels at the end, and make sure that if they intersect,
   # one is bumped up
-  geom_dl(aes(label = name), method = 'last.bumpup') + 
-  # Extend the x axis so the labels are visible - 
+  geom_dl(aes(label = name), method = "last.bumpup") +
+  # Extend the x axis so the labels are visible -
   # Try the graph a few times until you find a range that works
-  scale_x_date(limits = c(min(df$date), lubridate::ymd('2019-10-25')))
+  scale_x_date(limits = c(min(df$date), lubridate::ymd("2019-10-25")))
+
 ```
 This results in:
 
@@ -97,7 +100,7 @@ foreach n in `names' {
 	* Add in the line graph code
 	* by building on the local we already have (`lines') and adding a new twoway segment
 	local lines `lines' (line loghits ymddate if name == "`n'")
-	
+
 	* Figure out the value this line hits on the last point on the graph
 	quietly summ loghits if name == "`n'" & ymddate == `lastday'
 	* The text command takes the y-value (from the mean we just took)
