@@ -174,6 +174,40 @@
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<p>Random forests can be used to perform both regression and classification tasks. In the example below, we’ll use the <code class="language-plaintext highlighter-rouge">RandomForestClassifier</code> from the popular <a href="https://scikit-learn.org/stable/index.html"><strong>sklearn</strong></a> machine learning library. <code class="language-plaintext highlighter-rouge">RandomForestClassifier</code> is an ensemble function that fits a number of decision tree classifiers on various sub-samples of the dataset and uses averaging to improve the predictive accuracy and control over-fitting. We’ll use this classifier to predict the species of iris based on its properties, using data from the iris dataset.</p>
+<p>You may need to install packages on the command line, using <code class="language-plaintext highlighter-rouge">pip install package-name</code> or <code class="language-plaintext highlighter-rouge">conda install package-name</code>, to run these examples (if you don’t already have them installed).</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+
+
+<span class="c1"># Read data
+</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"https://vincentarelbundock.github.io/Rdatasets/csv/datasets/iris.csv"</span><span class="p">)</span>
+
+<span class="c1"># Prepare data
+</span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s">"Sepal.Length"</span><span class="p">,</span> <span class="s">"Sepal.Width"</span><span class="p">,</span> <span class="s">"Petal.Length"</span><span class="p">,</span> <span class="s">"Petal.Width"</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s">"Species"</span><span class="p">]]</span>
+
+<span class="c1"># Split data into training and test set
+</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1996</span>
+<span class="p">)</span>
+
+<span class="c1"># Creating model using random forest
+</span><span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">model</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Predict values for test data
+</span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Evaluate model prediction
+</span><span class="k">print</span><span class="p">(</span><span class="s">f"Accuracy is </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">:.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="s"> %"</span><span class="p">)</span>
+
+</code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
@@ -218,52 +252,6 @@
 </span><span class="n">print</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">y_test</span><span class="p">))</span><span class="w">
 </span><span class="n">print</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">predictions</span><span class="o">==</span><span class="n">y_test</span><span class="p">)</span><span class="o">/</span><span class="nf">length</span><span class="p">(</span><span class="n">y_test</span><span class="p">))</span><span class="w">
 </span></code></pre></div></div>
-      <h2 id="python">
-          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
-      </h2>
-<p>Use iris features (sepal length and width, petal length and width) to predict iris species</p>
-<p>#Import libraries</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-%matplotlib inline
-import seaborn as sns
-sns.set()
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score,confusion_matrix
-
-'imports ready for use'
-
-#Read data
-file='https://vincentarelbundock.github.io/Rdatasets/csv/datasets/iris.csv'
-iris = pd.read_csv(file)
-iris.head(5)
-
-#Check whether there are missing values to deal with
-iris.info()
-
-#Prepare data for training 
-X=iris[['SepalLengthCm','SepalWidthCm','PetalLengthCm','PetalWidthCm']]
-y=iris[['Species']]
-
-#Split data into training and test set
-X_train,X_test,y_train,y_test=train_test_split (X,y,test_size=0.3,random_state=1996)
-X_train.shape,X_test.shape,y_train.shape,y_test.shape
-
-#Creating model using random forest
-Model=RandomForestClassifier(max_depth=2)
-Model.fit(X_train,y_train)
-
-#Predict values for test data
-y_pred=Model.predict(X_test)
-
-#Evaluate model prediction
-print("Accuracy is:”,accuracy_score(y_pred, y_test)*100,”%")
-
-#Predict what type of iris it is 
-Model.predict([[3,4,5,2]])
-</code></pre></div></div>
           <hr>
           <footer>
               <div class="d-flex mt-2">
