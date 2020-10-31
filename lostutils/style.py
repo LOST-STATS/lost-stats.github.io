@@ -21,7 +21,8 @@ def format_str(
         proc = subprocess.run(
             [
                 "docker",
-                "run" "--rm",
+                "run",
+                "--rm",
                 r_docker_image,
                 "Rscript",
                 "--vanilla",
