@@ -1,3 +1,4 @@
+import os
 import subprocess
 from collections import defaultdict
 from dataclasses import dataclass
@@ -6,6 +7,16 @@ from typing import Dict, List
 from urllib import parse
 
 import mistune
+
+
+PYTHON_DOCKER_IMAGE = os.environ.get(
+    "LOST_PYTHON_DOCKER_IMAGE",
+    "ghcr.io/lost-stats/docker-images/tester-python:latest"
+)
+R_DOCKER_IMAGE = os.environ.get(
+    "LOST_R_DOCKER_IMAGE",
+    "ghcr.io/lost-stats/docker-images/tester-r:latest"
+)
 
 
 @dataclass(frozen=True)
@@ -166,7 +177,7 @@ def run_docker_python(block: CodeBlock) -> Outcome:
             "docker",
             "run",
             "--rm",
-            "ghcr.io/khwilson/tester-python:latest",
+            PYTHON_DOCKER_IMAGE,
             "python",
             "-c",
             block.code,
@@ -184,7 +195,7 @@ def run_docker_r(block: CodeBlock) -> Outcome:
             "docker",
             "run",
             "--rm",
-            "ghcr.io/khwilson/tester-r:latest",
+            R_DOCKER_IMAGE,
             "R",
             "-e",
             block.code,
