@@ -2,6 +2,7 @@ from typing import List
 
 import click
 
+from .constants import R_DOCKER_IMAGE
 from .fix_links import fix_md
 from .pathutils import expand_and_filter_filenames
 from .style import format_file
@@ -21,7 +22,13 @@ def cli():
     type=click.Path(),
     help="Files to skip. Follows same expansion rules as FILENAME",
 )
-def style_command(filename: List[str], skip: List[str]):
+@click.option(
+    "--docker-r",
+    type=str,
+    default=R_DOCKER_IMAGE,
+    help="Tag of the docker image in which to run styler for R code",
+)
+def style_command(filename: List[str], skip: List[str], docker_r: str):
     """
     Attempt to style the code samples using black and styler.
     You must specify at least one FILENAME. Note that filenames are
@@ -30,7 +37,7 @@ def style_command(filename: List[str], skip: List[str]):
     """
     filenames = expand_and_filter_filenames(filename, skip)
     for filename in filenames:
-        fixed_md = format_file(filename)
+        fixed_md = format_file(filename, r_docker_image=docker_r)
         with open(filename, "wt") as outfile:
             print(fixed_md, file=outfile)
 

@@ -10,6 +10,7 @@ pytest = "^6.1.2"
 black = "^20.8b1"
 mistune = "2.0.0a5"
 click = "^7.1.2"
+pytest-xdist = "^2.1.0"
 
 [tool.poetry.dev-dependencies]
 pylint = "^2.6.0"

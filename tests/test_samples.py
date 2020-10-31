@@ -147,13 +147,13 @@ def pytest_generate_tests(metafunc):
         )
 
 
-def run_docker_python(block: CodeBlock) -> Outcome:
+def run_docker_python(block: CodeBlock, python_docker_image: str) -> Outcome:
     process = subprocess.run(
         [
             "docker",
             "run",
             "--rm",
-            "ghcr.io/khwilson/tester-python:latest",
+            python_docker_image,
             "python",
             "-c",
             block.code,
@@ -165,13 +165,13 @@ def run_docker_python(block: CodeBlock) -> Outcome:
     return Outcome(block=block, stdout=process.stdout, returncode=process.returncode)
 
 
-def run_docker_r(block: CodeBlock) -> Outcome:
+def run_docker_r(block: CodeBlock, r_docker_image: str) -> Outcome:
     process = subprocess.run(
         [
             "docker",
             "run",
             "--rm",
-            "ghcr.io/khwilson/tester-r:latest",
+            r_docker_image,
             "R",
             "-e",
             block.code,
@@ -183,11 +183,11 @@ def run_docker_r(block: CodeBlock) -> Outcome:
     return Outcome(block=block, stdout=process.stdout, returncode=process.returncode)
 
 
-def test_python_code_block(python_code_block: CodeBlock):
-    outcome = run_docker_python(python_code_block)
+def test_python_code_block(python_code_block: CodeBlock, python_docker_image: str):
+    outcome = run_docker_python(python_code_block, python_docker_image)
     assert outcome.returncode == 0, str(python_code_block)
 
 
-def test_r_code_block(r_code_block: CodeBlock):
-    outcome = run_docker_r(r_code_block)
+def test_r_code_block(r_code_block: CodeBlock, r_docker_image: str):
+    outcome = run_docker_r(r_code_block, r_docker_image)
     assert outcome.returncode == 0, str(r_code_block)

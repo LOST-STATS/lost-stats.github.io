@@ -19,7 +19,7 @@ def expand_filenames(
     """
     new_filenames = []
     for filename in filenames:
-        if any(char in str(filename) for char in ['*', '?', '[']):
+        if any(char in str(filename) for char in ["*", "?", "["]):
             # This is a glob
             new_filenames.extend(cwd.glob(filename))
         else:

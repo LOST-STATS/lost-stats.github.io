@@ -4,8 +4,12 @@ from typing import List, Union
 
 import black
 
+from .constants import R_DOCKER_IMAGE
 
-def format_str(src_string: str, parameters: str) -> str:
+
+def format_str(
+    src_string: str, parameters: str, r_docker_image: str = R_DOCKER_IMAGE
+) -> str:
     parameters = parameters.strip().lower()
     if parameters.startswith("py"):
         return "\n".join(
@@ -16,6 +20,9 @@ def format_str(src_string: str, parameters: str) -> str:
         # Should do something here
         proc = subprocess.run(
             [
+                "docker",
+                "run" "--rm",
+                r_docker_image,
                 "Rscript",
                 "--vanilla",
                 "-e",
@@ -31,7 +38,9 @@ def format_str(src_string: str, parameters: str) -> str:
     return "\n".join(["```" + parameters, src_string, "```"])
 
 
-def format_file(filename: Union[str, Path]) -> str:
+def format_file(
+    filename: Union[str, Path], r_docker_image: str = R_DOCKER_IMAGE
+) -> str:
     filename = Path(filename)
     with open(filename, "rt") as infile:
         is_in_fence = False
@@ -46,7 +55,11 @@ def format_file(filename: Union[str, Path]) -> str:
                 if is_in_fence:
                     # End the fence
                     final_lines.append(
-                        format_str("\n".join(fenced_lines), fence_parameters)
+                        format_str(
+                            "\n".join(fenced_lines),
+                            fence_parameters,
+                            r_docker_image=r_docker_image,
+                        )
                     )
                     is_in_fence = False
                     fenced_lines = []
