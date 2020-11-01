@@ -111,9 +111,11 @@ plot_confusion_matrix(clf, test[regressors], test[y_var])
 ## R
 ```r
 # Load packages
-# install.packages("pacman") ## already installed
-library(pacman)
-p_load(rpart, rpart.plot, caret, rattle)
+library(rpart)
+library(rpart.plot)
+library(caret)
+library(rattle)
+
 # We will utilize data regarding passengers on their survival. We have multiple pieces of information on every passenger, including passenger age, sex, cabin number, and class.
 
 # Our goal is to build a decision tree that can predict whether or not passengers survived the wreck, making it a classification tree. These same methodologies can be used and applied to a regression tree framework.

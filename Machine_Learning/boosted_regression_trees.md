@@ -60,7 +60,6 @@ reg.predict(X_test[:1])
 
 # R^2 score for the model (on the test data)
 reg.score(X_test, y_test)
-
 ```
 
 ## R
@@ -76,14 +75,16 @@ Boosting has three tuning parameters.
 
 data from:https://www.kaggle.com/kondla/carinsurance
 
-```r
+```r?example=rml
 # Load necessary packages and set the seed
-library(pacman)
-p_load(
-  tidyverse, janitor, caret, glmnet, magrittr,
-  dummies, janitor, rpart.plot, e1071, dplyr, caTools, naniar,
-  forcats, ggplot2, MASS, creshape, pROC, ROCR, readr, gbm
-)
+library(tidyverse)
+library(caTools)
+library(naniar)
+library(caret)
+library(lubridate)
+library(dummies)
+library(gbm)
+
 set.seed(101)
 
 # Load in data
@@ -100,23 +101,16 @@ gg_miss_upset(total)
 
 Step 1: Produce dummies as appropriate
 
-```r
-total$CallStart <- as.character(total$CallStart)
+```r?example=rml
+total <- total %>%
+  mutate(callTime = seconds(hms(CallEnd) - hms(CallStart)))
 
-total$CallStart <- strptime(total$CallStart, format = " %H:%M:%S")
-
-total$CallEnd <- as.character(total$CallEnd)
-
-total$CallEnd <- strptime(total$CallEnd, format = " %H:%M:%S")
-
-total$averagetimecall <- as.numeric(as.POSIXct(total$CallEnd) - as.POSIXct(total$CallStart), units = "secs")
-
-time <- mean(total$averagetimecall, na.rm = TRUE)
+time <- mean(total$callTime, na.rm = TRUE)
 ```
 
 Produce dummy variables as appropriate
 
-```r
+```r?example=rml
 total_df <- dummy.data.frame(total %>%
   dplyr::select(-CallStart, -CallEnd, -Id, -Outcome))
 summary(total_df)
@@ -124,7 +118,7 @@ summary(total_df)
 
 Fill in missing values
 
-```r
+```r?example=rml
 total_df$Job[is.na(total_df$Job)] <- "management"
 total_df$Education [is.na(total_df$Education)] <- "secondary"
 total_df$Marital[is.na(total_df$Marital)] <- "married"
@@ -134,7 +128,8 @@ total_df$LastContactMonth[is.na(total_df$LastContactMonth)] <- "may"
 
 Step 2: Preprocess data with median imputation and a central scaling
 
-```r
+```r?example=rml
+# N.B. There is a warning that medianImpute doesn't exist anymore
 clean_new <- preProcess(
   x = total_df %>% dplyr::select(-CarInsurance) %>% as.matrix(),
   method = c("medianImpute")
@@ -143,11 +138,12 @@ clean_new <- preProcess(
 
 Step 3: Divide the data into testing and training data
 
-```r
-trainclean <- head(clean_new, 3200) %>% as.data.frame()
-testclean <- tail(clean_new, 800) %>% as.data.frame()
+```r?example=rml
+trainclean <- clean_new %>% head(3200) %>% as.data.frame()
+testclean <- clean_new %>% tail(800) %>% as.data.frame()
 summary(trainclean)
 ```
+
 Step 4: Parameters
 
 **gbm** needs the three standard parameters of boosted trees—plus one more:
@@ -160,7 +156,7 @@ Step 5: Train the boosted regression tree
 
 Notice that `trControl` is being set to select parameters using five-fold cross-validation (`"cv"`).
 
-```r
+```r?example=rml
 carinsurance_boost <- train(
   factor(CarInsurance) ~ .,
   data = trainclean,

@@ -58,7 +58,7 @@ If you are only creating one dummy at a time rather than a set from a factor var
 
 Let's say that we want our dummy to indicate if variable_1 > variable_2. To do this we can use `mutate`:
 
-```r
+```r?example=dplyr
 # If necessary, install dplyr
 # install.packages('dplyr')
 library(dplyr)
@@ -77,21 +77,21 @@ mutated_data <- iris %>%
 
 This will create a new column of logical (`TRUE`/`FALSE`) variables. This works just fine for most uses of dummy variables. However if you need the variables to be 1s and 0s you can now take
 
-```r
+```r?example=dplyr
 mutated_data <- mutated_data %>%
   mutate(Long.Petal = Long.Petal * 1)
 ```
 
 You could also nest that operation inside the original creation of new_dummy like so:
 
-```r
+```r?example=dplyr
 mutated_data <- iris %>%
   mutate(Long.Petal = (Petal.Length > Petal.Width) * 1)
 ```
 
 ### Base R
 
-```r
+```r?example=base
 # the following creates a 5 x 2 data frame
 letters <- c("a", "b", "c", "d", "e")
 numbers <- c(1, 2, 3, 4, 5)
@@ -100,7 +100,7 @@ df <- data.frame(letters, numbers)
 
 Now I'll show several different ways to create a dummy indicating if the numbers variable is odd.
 
-```r
+```r?example=base
 df$dummy <- df$numbers %% 2
 
 df$dummy <- ifelse(df$numbers %% 2 == 1, 1, 0)

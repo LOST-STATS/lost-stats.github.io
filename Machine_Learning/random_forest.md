@@ -29,15 +29,14 @@ We'll be using a built-in dataset in R, called "Iris". There are five variables 
 
 ```r
 # Load packages
-library(pacman)
-pacman::p_load(
-  tidyverse, rvest, dplyr, caret, randomForest, Metrics,
-  readr
-)
+library(tidyverse)
+library(rvest)
+library(caret)
+library(randomForest)
+library(Metrics)
 
 # Read data in R
 data(iris)
-iris
 
 # Create features and target
 X <- iris %>%

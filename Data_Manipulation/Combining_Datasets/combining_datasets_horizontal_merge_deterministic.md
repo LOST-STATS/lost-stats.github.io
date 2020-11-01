@@ -50,7 +50,7 @@ GDPandExchange = pd.merge(gdp_2018, dollar_value_2018, how="left", on="currency"
 
 There are several ways to combine data sets horizontally in R, including base-R `merge` and several different approaches in the **data.table** package. We will be using the `join` functions in the **dplyr** package.
 
-```r
+```r?example=exchange
 # If necessary, install dplyr
 # install.packages('dplyr')
 library(dplyr)
@@ -70,7 +70,7 @@ DollarValue2018 <- data.frame(
 
 Next we want to join together `GDP2018` and `DollarValue2018` so we can convert all the GDPs to dollars and compare them. There are three kinds of observations we could get - observations in `GDP2018` but not `DollarValue2018`, observations in `DollarValue2018` but not `GDP2018`, and observations in both. Use `help(join)` to pick the variant of `join` that keeps the observations we want. The "Yen" observation won't have a match, and we don't need to keep it. So let's do a `left_join` and list `GDP2018` first, so it keeps matched observations, plus any observations only in `GDP2018`.
 
-```r
+```r?example=exchange
 GDPandExchange <- left_join(GDP2018, DollarValue2018)
 ```
 

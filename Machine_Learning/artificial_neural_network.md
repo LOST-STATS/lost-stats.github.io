@@ -46,5 +46,4 @@ regr = MLPRegressor(hidden_layer_sizes=(100,), activation="relu").fit(X_train, y
 
 # Compute R^2 score
 regr.score(X_test, y_test)
-
 ```

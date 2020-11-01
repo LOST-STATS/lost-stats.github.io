@@ -101,7 +101,7 @@ df_wide = df.pivot_table(
 
 There are many ways to reshape in R, including base-R `reshape` and the deprecated `reshape2::melt` and `cast` and `tidyr::gather` and `spread`. We will be using the **tidyr** package function `pivot_wider`, which requires **tidyr** version 1.0.0 or later.
 
-```r
+```r?example=tidy
 # install.packages('tidyr')
 library(tidyr)
 
@@ -119,7 +119,7 @@ Now we think:
 1. Think about the set of variables that contain the values we're interested in reshaping. Here's it's `population`. This list of variable names will be our `values_from` argument.
 2. Think about what we want the new variables to be called. The `variable` variable says which variable we're looking at. So that will be our `names_from` argument. And we want to specify that each variable represents population in a given year (rather than some other variable, so we'll add "pop_" as our `names_prefix`.
 
-```r
+```r?example=tidy
 pop_wide <- pivot_wider(population,
   names_from = year,
   values_from = population,

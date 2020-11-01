@@ -13,7 +13,7 @@ def format_str(
     parameters = parameters.strip().lower()
     if parameters.startswith("py"):
         return "\n".join(
-            ["```" + parameters, black.format_str(src_string, mode=black.Mode()), "```"]
+            ["```" + parameters, black.format_str(src_string, mode=black.Mode()).rstrip(), "```"]
         )
 
     if parameters.startswith("r"):
