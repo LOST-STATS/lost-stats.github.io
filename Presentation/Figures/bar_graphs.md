@@ -13,6 +13,78 @@ This is a brief tutorial on how to make bar graphs. It also provides a little in
 
 # Implementations
 
+## Python
+
+There are many plotting libraries in Python, including *declarative* (say what you want) and *imperative* (build what you want) options.
+
+In the example below, we'll explore several different options for plotting bar chart data. For even greater control over plot elements, users may want to explore the [**matplotlib**](https://matplotlib.org/3.1.1/index.html) library (and its bar chart functionality [here](https://matplotlib.org/3.3.2/api/_as_gen/matplotlib.pyplot.bar.html)), but the examples below will cover most use cases.
+
+By far the quickest way to plot a bar chart is to use data analysis package [**pandas**](https://pandas.pydata.org/)' built-in bar chart option.
+
+
+```python
+import pandas as pd
+
+df = pd.read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/DAAG/Manitoba.lakes.csv", index_col=0)
+
+df.plot.bar(y='area', legend=False, title='Area of lakes in Manitoba');
+```
+
+![png](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/bar_plot_graphs/bar_py_1.png)
+
+This produces a functional, if not hugely attractive, plot. Calling the function without the `y='area'` keyword argument causes **pandas** to plot two columns for each lake based on the two variables in the dataframe, one for area and one for elevation (while sharing the same y-axis).
+
+**pandas** uses the plotting library [**matplotlib**](https://matplotlib.org/) under the hood. Many extra configuration options are available using **matplotlib**. In this case, let's just tidy the plot up a bit by applying a style, adding in a label, and putting the title on the left.
+
+```python
+import matplotlib.pyplot as plt
+
+plt.style.use('seaborn')
+
+ax = df.plot.bar(y='area', legend=False, ylabel='Area', rot=15)
+ax.set_title('Area of lakes in Manitoba', loc='left');
+```
+
+
+![png](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/bar_plot_graphs/bar_py_2.png)
+
+For more sophisticated visualisations, let's look first at the [**seaborn**](https://seaborn.pydata.org/) library. We'll use the tips dataset.
+
+Note that if seaborn finds more than one row per category for the bar chart, it will automatically create error bars based on the standard deviation of your data.
+
+Although it is declarative, **seaborn** is built on **matplotlib** (like **pandas** built-in plots), so finer control of plots is available should it be needed. (Like `df.plot.bar`, `sns.barplot` returns an `ax` object when not used with the `;` character.)
+
+
+```python
+import seaborn as sns
+
+tips = sns.load_dataset("tips")
+
+sns.barplot(x="day", y="total_bill", hue="sex", data=tips);
+```
+
+![png](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/bar_plot_graphs/bar_py_3.png)
+
+
+Yet another declarative option comes from [**plotnine**](https://plotnine.readthedocs.io/en/stable/index.html), which is a port of R's **ggplot** and so has nearly identical syntax that library.
+
+
+```python
+from plotnine import ggplot, geom_bar, aes, labs
+
+(
+    ggplot(tips)
+    + geom_bar(aes(x='day'), colour='black', fill='blue')
+    + labs(x = "Day", y = "Number", title = "Number of diners")
+)
+```
+
+![png](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/bar_plot_graphs/bar_py_4.png)
+
+
+Other packages for bar charts include [**proplot**](https://proplot.readthedocs.io/en/latest/), an imperative library for  publication-quality charts that wraps **matplotlib**, and [**altair**](https://altair-viz.github.io/), a declarative library which produces high-quality, web-ready graphics.
+
+
 ## R
 
 
