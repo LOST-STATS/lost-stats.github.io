@@ -25,7 +25,7 @@ For more information, see [Wikipedia: Random Effects Model](https://en.wikipedia
   - Consider [Fixed effects]({{ "/Model_Estimation/OLS/fixed_effects_in_linear_regression.html" | relative_url }})
     if unobserved heterogeneity and independent variables are correlated or if only within-variation is desired.
   - [Hauman Tests](https://en.wikipedia.org/wiki/Durbin%E2%80%93Wu%E2%80%93Hausman_test) are often used to inform us about the appropiateness of fixed effects models vs. random effects models in which only the intercept is random.
-  - [Clustering your error]({{ "Model_Eestimation/Statistical_Inference/Nonstandard_Errors/clustered_se.html" | relative_url }})
+  - [Clustering your error]({{ "Model_Estimation/Statistical_Inference/Nonstandard_Errors/clustered_se.html" | relative_url }})
 
 # Implementations
 
