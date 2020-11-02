@@ -168,6 +168,50 @@
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<p>There are many plotting libraries in Python, including <em>declarative</em> (say what you want) and <em>imperative</em> (build what you want) options.</p>
+<p>In the example below, we’ll explore several different options for plotting bar chart data. For even greater control over plot elements, users may want to explore the <a href="https://matplotlib.org/3.1.1/index.html"><strong>matplotlib</strong></a> library (and its bar chart functionality <a href="https://matplotlib.org/3.3.2/api/_as_gen/matplotlib.pyplot.bar.html">here</a>), but the examples below will cover most use cases.</p>
+<p>By far the quickest way to plot a bar chart is to use data analysis package <a href="https://pandas.pydata.org/"><strong>pandas</strong></a>’ built-in bar chart option.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"https://vincentarelbundock.github.io/Rdatasets/csv/DAAG/Manitoba.lakes.csv"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">df</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">bar</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s">'area'</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">'Area of lakes in Manitoba'</span><span class="p">);</span>
+</code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/bar_plot_graphs/bar_py_1.png" alt="png" /></p>
+<p>This produces a functional, if not hugely attractive, plot. Calling the function without the <code class="language-plaintext highlighter-rouge">y='area'</code> keyword argument causes <strong>pandas</strong> to plot two columns for each lake based on the two variables in the dataframe, one for area and one for elevation (while sharing the same y-axis).</p>
+<p><strong>pandas</strong> uses the plotting library <a href="https://matplotlib.org/"><strong>matplotlib</strong></a> under the hood. Many extra configuration options are available using <strong>matplotlib</strong>. In this case, let’s just tidy the plot up a bit by applying a style, adding in a label, and putting the title on the left.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">style</span><span class="p">.</span><span class="n">use</span><span class="p">(</span><span class="s">'seaborn'</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">bar</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s">'area'</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">'Area'</span><span class="p">,</span> <span class="n">rot</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Area of lakes in Manitoba'</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s">'left'</span><span class="p">);</span>
+</code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/bar_plot_graphs/bar_py_2.png" alt="png" /></p>
+<p>For more sophisticated visualisations, let’s look first at the <a href="https://seaborn.pydata.org/"><strong>seaborn</strong></a> library. We’ll use the tips dataset.</p>
+<p>Note that if seaborn finds more than one row per category for the bar chart, it will automatically create error bars based on the standard deviation of your data.</p>
+<p>Although it is declarative, <strong>seaborn</strong> is built on <strong>matplotlib</strong> (like <strong>pandas</strong> built-in plots), so finer control of plots is available should it be needed. (Like <code class="language-plaintext highlighter-rouge">df.plot.bar</code>, <code class="language-plaintext highlighter-rouge">sns.barplot</code> returns an <code class="language-plaintext highlighter-rouge">ax</code> object when not used with the <code class="language-plaintext highlighter-rouge">;</code> character.)</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+
+<span class="n">tips</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s">"tips"</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="p">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">"day"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">"total_bill"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">"sex"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">tips</span><span class="p">);</span>
+</code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/bar_plot_graphs/bar_py_3.png" alt="png" /></p>
+<p>Yet another declarative option comes from <a href="https://plotnine.readthedocs.io/en/stable/index.html"><strong>plotnine</strong></a>, which is a port of R’s <strong>ggplot</strong> and so has nearly identical syntax that library.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">plotnine</span> <span class="kn">import</span> <span class="n">ggplot</span><span class="p">,</span> <span class="n">geom_bar</span><span class="p">,</span> <span class="n">aes</span><span class="p">,</span> <span class="n">labs</span>
+
+<span class="p">(</span>
+    <span class="n">ggplot</span><span class="p">(</span><span class="n">tips</span><span class="p">)</span>
+    <span class="o">+</span> <span class="n">geom_bar</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">'day'</span><span class="p">),</span> <span class="n">colour</span><span class="o">=</span><span class="s">'black'</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s">'blue'</span><span class="p">)</span>
+    <span class="o">+</span> <span class="n">labs</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s">"Day"</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">"Number"</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s">"Number of diners"</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/bar_plot_graphs/bar_py_4.png" alt="png" /></p>
+<p>Other packages for bar charts include <a href="https://proplot.readthedocs.io/en/latest/"><strong>proplot</strong></a>, an imperative library for  publication-quality charts that wraps <strong>matplotlib</strong>, and <a href="https://altair-viz.github.io/"><strong>altair</strong></a>, a declarative library which produces high-quality, web-ready graphics.</p>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
