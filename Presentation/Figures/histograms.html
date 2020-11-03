@@ -177,6 +177,52 @@
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
 <p>When feeding data to visualise using a histogram, one will notice that both R and Stata will attempt to “guess” what the “best” bin width/number of bins are. These may be overridden by user commands, as we will see.</p>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<p>There are many plotting libraries in Python, including <em>declarative</em> (say what you want) and <em>imperative</em> (build what you want) options. In the example below, we’ll explore several different options for plotting histogram data.</p>
+<p>By far the quickest way to plot a histogram is to use data analysis package <a href="https://pandas.pydata.org/"><strong>pandas</strong></a>’ built-in bar chart option (which uses plotting library <a href="https://matplotlib.org/3.1.1/index.html"><strong>matplotlib</strong></a>).</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/PSID.csv"</span><span class="p">,</span>
+                 <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s">'earnings'</span><span class="p">].</span><span class="n">plot</span><span class="p">.</span><span class="n">hist</span><span class="p">();</span>
+</code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/histogram_graphs/py_hist_1.png" alt="png" /></p>
+<p>Note that, by default, the <code class="language-plaintext highlighter-rouge">hist</code> function shows counts on the y-axis.</p>
+<p>We can make this plot a bit more appealing by calling on the customisation features from <strong>matplotlib</strong>. Calling <code class="language-plaintext highlighter-rouge">df['column-name'].plot.hist()</code> returns a <strong>matplotlib</strong> <code class="language-plaintext highlighter-rouge">ax</code> object that accepts further customisation. We will use this and a style to make the plot more appealing, while also switching to show a density rather than counts, setting the number of bins explicitly, and using a logarithmic scale.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">style</span><span class="p">.</span><span class="n">use</span><span class="p">(</span><span class="s">'seaborn'</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'earnings'</span><span class="p">].</span><span class="n">plot</span><span class="p">.</span><span class="n">hist</span><span class="p">(</span><span class="n">density</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Earnings in the PSID'</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s">'left'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'Density'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'Earnings'</span><span class="p">);</span>
+
+</code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/histogram_graphs/py_hist_2.png" alt="png" /></p>
+<p>An alternative to the matplotlib-pandas combination is <a href=""><strong>seaborn</strong></a>, a declarative plotting library. Using <strong>seaborn</strong>, we can quickly compared histograms of different cuts of the data. In the example below, a binary variable that sorts individuals into two groups based on age is added and used as the ‘hue’ of the keyword argument.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+
+<span class="n">age_cut_off</span> <span class="o">=</span> <span class="mi">45</span>
+<span class="n">df</span><span class="p">[</span><span class="s">f'Older than </span><span class="si">{</span><span class="n">age_cut_off</span><span class="si">}</span><span class="s">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'age'</span><span class="p">]</span><span class="o">&gt;</span><span class="n">age_cut_off</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">"earnings"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">f"Older than </span><span class="si">{</span><span class="n">age_cut_off</span><span class="si">}</span><span class="s">"</span><span class="p">,</span> <span class="n">element</span><span class="o">=</span><span class="s">"step"</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s">"density"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s">'log'</span><span class="p">)</span>
+</code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/histogram_graphs/py_hist_3.png" alt="png" /></p>
+<p>Finally, let’s look at a different declarative library, <a href="https://plotnine.readthedocs.io/en/stable/"><strong>plotnine</strong></a>, which is inspired by (and has very similar syntax to) R’s plotting library <strong>ggplot</strong>.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">plotnine</span> <span class="kn">import</span> <span class="n">ggplot</span><span class="p">,</span> <span class="n">aes</span><span class="p">,</span> <span class="n">geom_histogram</span>
+
+<span class="p">(</span>
+    <span class="n">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">'earnings'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">'stat(density)'</span><span class="p">)</span>
+          <span class="p">)</span>
+    <span class="o">+</span> <span class="n">geom_histogram</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/histogram_graphs/py_hist_4.png" alt="png" /></p>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
