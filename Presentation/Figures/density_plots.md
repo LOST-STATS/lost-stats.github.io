@@ -22,6 +22,135 @@ A density plot visualises the distribution of data over a continuous interval (o
 
 # Implementations
 
+## Python
+
+In this example, we'll use [**seaborn**](https://seaborn.pydata.org/index.html), a *declarative* plotting library that provides a quick and easy way to produce density plots. It builds on [**matplotlib**](https://matplotlib.org/).
+
+```python
+# You may need to install seaborn on the command line using 'pip install seaborn' or 'conda install seaborn'
+import seaborn as sns
+
+# Set a theme for seaborn
+sns.set_theme(style="darkgrid")
+
+# Load the example diamonds dataset
+diamonds = sns.load_dataset("diamonds")
+
+# Take a look at the data
+print(diamonds.head())
+```
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>carat</th>
+      <th>cut</th>
+      <th>color</th>
+      <th>clarity</th>
+      <th>depth</th>
+      <th>table</th>
+      <th>price</th>
+      <th>x</th>
+      <th>y</th>
+      <th>z</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.23</td>
+      <td>Ideal</td>
+      <td>E</td>
+      <td>SI2</td>
+      <td>61.5</td>
+      <td>55.0</td>
+      <td>326</td>
+      <td>3.95</td>
+      <td>3.98</td>
+      <td>2.43</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.21</td>
+      <td>Premium</td>
+      <td>E</td>
+      <td>SI1</td>
+      <td>59.8</td>
+      <td>61.0</td>
+      <td>326</td>
+      <td>3.89</td>
+      <td>3.84</td>
+      <td>2.31</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.23</td>
+      <td>Good</td>
+      <td>E</td>
+      <td>VS1</td>
+      <td>56.9</td>
+      <td>65.0</td>
+      <td>327</td>
+      <td>4.05</td>
+      <td>4.07</td>
+      <td>2.31</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.29</td>
+      <td>Premium</td>
+      <td>I</td>
+      <td>VS2</td>
+      <td>62.4</td>
+      <td>58.0</td>
+      <td>334</td>
+      <td>4.20</td>
+      <td>4.23</td>
+      <td>2.63</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.31</td>
+      <td>Good</td>
+      <td>J</td>
+      <td>SI2</td>
+      <td>63.3</td>
+      <td>58.0</td>
+      <td>335</td>
+      <td>4.34</td>
+      <td>4.35</td>
+      <td>2.75</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+```python
+sns.kdeplot(data=diamonds, x="price", cut=0);
+```
+
+![png](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/density_plot/py_density_plot_1.png)
+
+This is basic, but there are lots of ways to adjust it through keyword arguments (you can see these by running `help(sns.kdeplot)`) or via calling functions on the **matplotlib** `ax` object that running `sns.kdeplot` returns when not followed by `;`. In this simple example, the `cut` keyword argument forces the density estimate to end at the end-points of the data--which makes sense for a variable like price, which has a hard cut-off at 0.
+
+Let's use further keyword arguments to enrich the plot, including different colours ('hues') for each cut of diamond. One keyword argument that may not be obvious is `hue_order`. The default function call would have arranged the `cut` types so that the 'Fair' cut obscured the other types, so the argument passed to the `hue_order` keyword below *reverses* the order of the unique list of diamond cuts via `[::-1]`.
+
+```python
+sns.kdeplot(data=diamonds,
+            x="price",
+            hue="cut",
+            hue_order=diamonds['cut'].unique()[::-1],
+            fill=True,
+            alpha=.4,
+            linewidth=0.5,
+            cut=0.);
+```
+
+![png](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/density_plot/py_density_plot_2.png)
+
+
 ## R
 
 For this R demonstration, we are going to use **ggplot2** package to create a density plot. Additionally, we will use the dataset `diamonds` that is natively available in R. 
