@@ -165,7 +165,7 @@
       </h2>
 <ul>
   <li>Robust standard errors are a common way of dealing with heteroskedasticity. However, they make certain assumptions about the form of that heteroskedasticity which may not be true. You may instead want to use <a href="/Model_Estimation/generalized_method_of_moments.html">GMM</a> instead.</li>
-  <li>For nonlinear models like <a href="/Model_Estimation/logit_model.html">Logit</a>, heteroskedasticity can bias estimates in addition to messing up standard errors. Simply using a robust covariance matrix will not eliminate this bias. Check the documentation of your nonlinear regression command to see whether its robust-error options also adjust for this bias. If not, consider other ways of dealing with heteroskedasticity besides robust errors.</li>
+  <li>For nonlinear models like <a href="/Model_Estimation/GLS/logit_model.html">Logit</a>, heteroskedasticity can bias estimates in addition to messing up standard errors. Simply using a robust covariance matrix will not eliminate this bias. Check the documentation of your nonlinear regression command to see whether its robust-error options also adjust for this bias. If not, consider other ways of dealing with heteroskedasticity besides robust errors.</li>
   <li>There are multiple kinds of robust standard errors, for example HC1, HC2, and HC3. Check in to the kind available to you in the commands you’re using.</li>
 </ul>
       <h2 id="also-consider">
@@ -173,9 +173,9 @@
       </h2>
 <ul>
   <li><a href="/Model_Estimation/generalized_method_of_moments.html">Generalized Method of Moments</a></li>
-  <li><a href="/Model_Estimation/cluster_robust_standard_errors.html">Cluster-Robust Standard Errors</a></li>
-  <li><a href="/Model_Estimation/bootstrap_standard_errors.html">Bootstrap Standard Errors</a></li>
-  <li><a href="/Model_Estimation/jackknife_standard_errors.html">Jackknife Standard Errors</a></li>
+  <li><a href="/Model_Estimation/Statistical_Inference/Nonstandard_Errors/clustered_se.html">Cluster-Robust Standard Errors</a></li>
+  <li><a href="/Model_Estimation/Statistical_Inference/Nonstandard_Errors/bootstrap_standard_errors.html">Bootstrap Standard Errors</a></li>
+  <li><a href="/Model_Estimation/Statistical_Inference/Nonstandard_Errors/jackknife_standard_errors.html">Jackknife Standard Errors</a></li>
 </ul>
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
