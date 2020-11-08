@@ -178,7 +178,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   theme_minimal(base_size = 12)
 ```
 
-![](Images/Styling_Scatterplots/R_theme_1.png)
+![Depiction of minimal theme](Images/Styling_Scatterplots/R_theme_1.png)
 
 
 #### <span style="color:orange"> **Themes from the `ggthemes` package** </span>
@@ -194,7 +194,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
   ## Using the theme_tufte()
   theme_tufte()
 ```
-![](Images/Styling_Scatterplots/R_theme_2.png)
+![Depiction of minimal theme](Images/Styling_Scatterplots/R_theme_2.png)
 
 
 #### <span style="color:orange"> **Create by your own** </span>
