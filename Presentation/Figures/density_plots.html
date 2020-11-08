@@ -178,6 +178,123 @@
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<p>In this example, we’ll use <a href="https://seaborn.pydata.org/index.html"><strong>seaborn</strong></a>, a <em>declarative</em> plotting library that provides a quick and easy way to produce density plots. It builds on <a href="https://matplotlib.org/"><strong>matplotlib</strong></a>.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># You may need to install seaborn on the command line using 'pip install seaborn' or 'conda install seaborn'
+</span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+
+<span class="c1"># Set a theme for seaborn
+</span><span class="n">sns</span><span class="p">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s">"darkgrid"</span><span class="p">)</span>
+
+<span class="c1"># Load the example diamonds dataset
+</span><span class="n">diamonds</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s">"diamonds"</span><span class="p">)</span>
+
+<span class="c1"># Take a look at the data
+</span><span class="k">print</span><span class="p">(</span><span class="n">diamonds</span><span class="p">.</span><span class="n">head</span><span class="p">())</span>
+</code></pre></div></div>
+<div>
+<div class="table-wrapper"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>carat</th>
+      <th>cut</th>
+      <th>color</th>
+      <th>clarity</th>
+      <th>depth</th>
+      <th>table</th>
+      <th>price</th>
+      <th>x</th>
+      <th>y</th>
+      <th>z</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.23</td>
+      <td>Ideal</td>
+      <td>E</td>
+      <td>SI2</td>
+      <td>61.5</td>
+      <td>55.0</td>
+      <td>326</td>
+      <td>3.95</td>
+      <td>3.98</td>
+      <td>2.43</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.21</td>
+      <td>Premium</td>
+      <td>E</td>
+      <td>SI1</td>
+      <td>59.8</td>
+      <td>61.0</td>
+      <td>326</td>
+      <td>3.89</td>
+      <td>3.84</td>
+      <td>2.31</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.23</td>
+      <td>Good</td>
+      <td>E</td>
+      <td>VS1</td>
+      <td>56.9</td>
+      <td>65.0</td>
+      <td>327</td>
+      <td>4.05</td>
+      <td>4.07</td>
+      <td>2.31</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.29</td>
+      <td>Premium</td>
+      <td>I</td>
+      <td>VS2</td>
+      <td>62.4</td>
+      <td>58.0</td>
+      <td>334</td>
+      <td>4.20</td>
+      <td>4.23</td>
+      <td>2.63</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.31</td>
+      <td>Good</td>
+      <td>J</td>
+      <td>SI2</td>
+      <td>63.3</td>
+      <td>58.0</td>
+      <td>335</td>
+      <td>4.34</td>
+      <td>4.35</td>
+      <td>2.75</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sns</span><span class="p">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">diamonds</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">"price"</span><span class="p">,</span> <span class="n">cut</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
+</code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/density_plot/py_density_plot_1.png" alt="png" /></p>
+<p>This is basic, but there are lots of ways to adjust it through keyword arguments (you can see these by running <code class="language-plaintext highlighter-rouge">help(sns.kdeplot)</code>) or via calling functions on the <strong>matplotlib</strong> <code class="language-plaintext highlighter-rouge">ax</code> object that running <code class="language-plaintext highlighter-rouge">sns.kdeplot</code> returns when not followed by <code class="language-plaintext highlighter-rouge">;</code>. In this simple example, the <code class="language-plaintext highlighter-rouge">cut</code> keyword argument forces the density estimate to end at the end-points of the data–which makes sense for a variable like price, which has a hard cut-off at 0.</p>
+<p>Let’s use further keyword arguments to enrich the plot, including different colours (‘hues’) for each cut of diamond. One keyword argument that may not be obvious is <code class="language-plaintext highlighter-rouge">hue_order</code>. The default function call would have arranged the <code class="language-plaintext highlighter-rouge">cut</code> types so that the ‘Fair’ cut obscured the other types, so the argument passed to the <code class="language-plaintext highlighter-rouge">hue_order</code> keyword below <em>reverses</em> the order of the unique list of diamond cuts via <code class="language-plaintext highlighter-rouge">[::-1]</code>.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sns</span><span class="p">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">diamonds</span><span class="p">,</span>
+            <span class="n">x</span><span class="o">=</span><span class="s">"price"</span><span class="p">,</span>
+            <span class="n">hue</span><span class="o">=</span><span class="s">"cut"</span><span class="p">,</span>
+            <span class="n">hue_order</span><span class="o">=</span><span class="n">diamonds</span><span class="p">[</span><span class="s">'cut'</span><span class="p">].</span><span class="n">unique</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">fill</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="p">.</span><span class="mi">4</span><span class="p">,</span>
+            <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">cut</span><span class="o">=</span><span class="mf">0.</span><span class="p">);</span>
+</code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/density_plot/py_density_plot_2.png" alt="png" /></p>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
