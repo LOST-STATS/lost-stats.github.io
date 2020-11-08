@@ -158,16 +158,44 @@
           <a href="#combining-datasets-overview" aria-labelledby="combining-datasets-overview" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Combining Datasets Overview
       </h1>
 <p>There are two main ways to combine data: <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html">vertically</a> and <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html">horizontally</a>. That is, you can want to combine observations (adding new variables) or combine variables (adding new observations). This is perhaps easiest to show visually:</p>
-<p>Individual Name Info
-| Name         | ID   |
-| ———–  | —- |
-| John Smith    | A63240 |
-| Desiree Thomas | B78242 |</p>
-<p>Individual Age Info
-| ID | Age |
-| – | – |
-| B78242 | 22 |
-| A63240 | 27 |</p>
+<p><strong>Individual Name Info</strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>John Smith</td>
+      <td>A63240</td>
+    </tr>
+    <tr>
+      <td>Desiree Thomas</td>
+      <td>B78242</td>
+    </tr>
+  </tbody>
+</table></div>
+<p><strong>Individual Age Info</strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>B78242</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <td>A63240</td>
+      <td>27</td>
+    </tr>
+  </tbody>
+</table></div>
 <p>In the case above, we would like to combine two datasets, the Individual Name Info and the Individual Date Info, that have different information about the same people, who are identified by the ID variable. The result from the merge would be to have a new dataset with more columns than the original datasets because it contains all of the information for each individual from both of the original datasets. Here we have to combine the files according to the ID variable, placing the information from observations with the same ID on the same row in the combined dataset.</p>
 <p>Alternatively, the below example has two datasets that collect the same information about different people. We would like to combine these datasets vertically, with the result containing more rows than the original dataset, because it contains all of the people that are present in each of the original datasets. Here we combine the files based on the name or position of the columns in the dataset.</p>
 <div class="table-wrapper"><table>
