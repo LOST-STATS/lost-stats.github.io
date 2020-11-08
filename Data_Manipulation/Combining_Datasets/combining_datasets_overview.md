@@ -9,14 +9,16 @@ nav_order: 1
 
 There are two main ways to combine data: [vertically]({{ "/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" | relative_url }}) and [horizontally]({{ "/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" | relative_url }}). That is, you can want to combine observations (adding new variables) or combine variables (adding new observations). This is perhaps easiest to show visually:
 
-Individual Name Info
+**Individual Name Info**
+
 | Name         | ID   |
 | -----------  | ---- |
 | John Smith    | A63240 |
 | Desiree Thomas | B78242 |
 
 
-Individual Age Info
+**Individual Age Info**
+
 | ID | Age |
 | -- | -- |
 | B78242 | 22 |
