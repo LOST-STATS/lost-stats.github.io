@@ -10,14 +10,20 @@
   <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Vertical Combination | LOST</title>
+<title>Creating a Variable with Group Calculations | LOST</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Vertical Combination" />
+<meta property="og:title" content="Creating a Variable with Group Calculations" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"@type":"WebPage","url":"/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html","headline":"Vertical Combination","@context":"https://schema.org"}</script>
+{"@type":"WebPage","url":"/Data_Manipulation/creating_a_variable_with_group_calculations.html","headline":"Creating a Variable with Group Calculations","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML">
+  </script>
 </head>
 <body>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -62,11 +68,11 @@
       </a>
     </div>
     <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
-      <ul class="nav-list"><li class="nav-list-item active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/data_manipulation.html" class="nav-list-link">Data Manipulation</a><ul class="nav-list "><li class="nav-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="nav-list-link">Collapse a Data Set</a></li><li class="nav-list-item  active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="nav-list-link">Combining Datasets</a><ul class="nav-list"><li class="nav-list-item  active">
-                        <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="nav-list-link active">Vertical Combination</a>
+      <ul class="nav-list"><li class="nav-list-item active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/data_manipulation.html" class="nav-list-link">Data Manipulation</a><ul class="nav-list "><li class="nav-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="nav-list-link">Collapse a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="nav-list-link">Combining Datasets</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="nav-list-link">Vertical Combination</a>
                       </li><li class="nav-list-item ">
                         <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="nav-list-link">Horizontal Combination (Deterministic)</a>
-                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/creating_a_variable_with_group_calculations.html" class="nav-list-link">Creating a Variable with Group Calculations</a></li><li class="nav-list-item "><a href="/Data_Manipulation/Creating_Dummy_Variables/creating_dummy_variables.html" class="nav-list-link">Creating Dummy Variables</a></li><li class="nav-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="nav-list-link">Determine the Observation Level of a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Reshaping/reshape.html" class="nav-list-link">Reshaping Data</a><ul class="nav-list"><li class="nav-list-item ">
+                      </li></ul></li><li class="nav-list-item  active"><a href="/Data_Manipulation/creating_a_variable_with_group_calculations.html" class="nav-list-link active">Creating a Variable with Group Calculations</a></li><li class="nav-list-item "><a href="/Data_Manipulation/Creating_Dummy_Variables/creating_dummy_variables.html" class="nav-list-link">Creating Dummy Variables</a></li><li class="nav-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="nav-list-link">Determine the Observation Level of a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Reshaping/reshape.html" class="nav-list-link">Reshaping Data</a><ul class="nav-list"><li class="nav-list-item ">
                         <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="nav-list-link">Reshape Panel Data from Wide to Long</a>
                       </li><li class="nav-list-item ">
                         <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="nav-list-link">Reshape Panel Data from Long to Wide</a>
@@ -150,21 +156,88 @@
           <nav aria-label="Breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb-nav-list">
                 <li class="breadcrumb-nav-list-item"><a href="/Data_Manipulation/data_manipulation.html">Data Manipulation</a></li>
-                <li class="breadcrumb-nav-list-item"><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html">Combining Datasets</a></li>
-              <li class="breadcrumb-nav-list-item"><span>Vertical Combination</span></li>
+              <li class="breadcrumb-nav-list-item"><span>Creating a Variable with Group Calculations</span></li>
             </ol>
           </nav>
       <div id="main-content" class="main-content" role="main">
-          <h1 id="combining-datasets-vertical-combination">
-          <a href="#combining-datasets-vertical-combination" aria-labelledby="combining-datasets-vertical-combination" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Combining Datasets: Vertical Combination
+          <h1 id="creating-a-variable-with-group-calculations">
+          <a href="#creating-a-variable-with-group-calculations" aria-labelledby="creating-a-variable-with-group-calculations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Creating a Variable with Group Calculations
       </h1>
-<p>When combining two datasets that collect the same information about different people, they get combined vertically because they have variables in common but different observations. The result of this combination will more rows than the original dataset because it contains all of the people that are present in each of the original datasets. Here we combine the files based on the name or position of the columns in the dataset. It is a “vertical” combination in the sense that one set of observations gets added to the bottom of the other set of observations.</p>
-      <h1 id="keep-in-mind">
-          <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
-      </h1>
+<p>Many data sets have hierarchical structures, where individual observations belong within certain groups. For example, data with students inside classrooms inside schools. Or companies inside countries. See the below table for one example</p>
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>I</th>
+      <th>J</th>
+      <th>X</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3.5</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>2</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table></div>
+<p>Here, we have data where each group $I$ has multiple rows, one for each $J$.</p>
+<p>We often might want to create a new variable that performs a calculation <em>within</em> each group, and assigns the result to each value in that group. For example, perhaps we want to calculate the mean of $X$ within each group $I$, so we can know how far above or below the group average each observation is. Our goal is:</p>
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>I</th>
+      <th>J</th>
+      <th>X</th>
+      <th>AvgX</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>3.25</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3.5</td>
+      <td>3.25</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3.5</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>2</td>
+      <td>5</td>
+      <td>3.5</td>
+    </tr>
+  </tbody>
+</table></div>
+      <h2 id="also-consider">
+          <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
+      </h2>
 <ul>
-  <li>Vertical combinations require datasets to have variables in common to be of much use. That said, it may not be necessary for the two datasets to have exactly the same variables. Be aware of how your statistical package handles observations for a variable that is in one dataset but not another (e.g. are such observations set to missing?).</li>
-  <li>It may be the case that the datasets you are combining have the same variables but those variables are stored differently (numeric vs. string storage types). Be aware of how the variables are stored across datasets and how your statistical package handles attempts to combine the same variable with different storage types (e.g. Stata throws an error and will now allow the combination, unless the “, force” option is specified.)</li>
+  <li>If the goal is to produce a data set with <em>one row per group</em> rather than <em>a new variable assigning the calculation to each observation in the group</em>, then instead look at <a href="/Data_Manipulation/collapse_a_data_set.html">Collapse a Data Set</a>.</li>
 </ul>
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
@@ -172,63 +245,55 @@
       <h2 id="python">
           <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
       </h2>
-<p><code class="language-plaintext highlighter-rouge">pandas</code> is by far the most widely-used library for data manipulation in python. The <code class="language-plaintext highlighter-rouge">concat</code> function concatenates datasets vertically and combines datasets even if they don’t contain the exact same set of variables. It’s also possible to concatenate dataframes horizontally by passing the function the keyword argument <code class="language-plaintext highlighter-rouge">axis=1</code>.</p>
+<p><strong>pandas</strong> doesn’t have a straightforward and flexible built-in method for doing this, with aggregation methods heavily preferring to work as described on <a href="/Data_Manipulation/collapse_a_data_set.html">Collapse a Data Set</a>. However, we can just follow those methods and then <code class="language-plaintext highlighter-rouge">merge</code> the result back in.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
 
-<span class="c1"># Load California Population data from the internet
-</span><span class="n">df_ca</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_stata</span><span class="p">(</span><span class="s">'http://www.stata-press.com/data/r14/capop.dta'</span><span class="p">)</span>
-<span class="n">df_il</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_stata</span><span class="p">(</span><span class="s">'http://www.stata-press.com/data/r14/ilpop.dta'</span><span class="p">)</span>
+<span class="c1"># Pull in data on storms
+</span><span class="n">storms</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv'</span><span class="p">)</span>
 
-<span class="c1"># Concatenate a list of the dataframes (works on any number of dataframes)
-</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_ca</span><span class="p">,</span> <span class="n">df_il</span><span class="p">])</span>
-
+<span class="c1"># Use groupby and agg to perform a group calculation
+# Here it's a mean, but it could be anything
+</span><span class="n">meanwind</span> <span class="o">=</span> <span class="p">(</span><span class="n">storms</span><span class="p">.</span><span class="n">groupby</span><span class="p">([</span><span class="s">'name'</span><span class="p">,</span> <span class="s">'year'</span><span class="p">,</span> <span class="s">'month'</span><span class="p">,</span> <span class="s">'day'</span><span class="p">])</span>
+            <span class="p">.</span><span class="n">agg</span><span class="p">({</span><span class="s">'wind'</span><span class="p">:</span> <span class="s">'mean'</span><span class="p">})</span>
+            <span class="c1"># Rename so that when we merge it in it has a 
+</span>            <span class="c1"># different name
+</span>           <span class="p">.</span><span class="n">rename</span><span class="p">({</span><span class="s">'wind'</span><span class="p">:</span> <span class="s">'mean_wind'</span><span class="p">}))</span>
+            <span class="c1"># make sure it's a data frame so we can join it  
+</span>    
+<span class="c1"># Use merge to bring the result back into the data
+</span><span class="n">storms</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">merge</span><span class="p">(</span><span class="n">storms</span><span class="p">,</span><span class="n">meanwind</span><span class="p">,</span>
+                    <span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s">'name'</span><span class="p">,</span> <span class="s">'year'</span><span class="p">,</span> <span class="s">'month'</span><span class="p">,</span> <span class="s">'day'</span><span class="p">])</span>
 </code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
-<p>There are several ways to vertically combine data sets in R, including <code class="language-plaintext highlighter-rouge">rbind</code>. We will use the <strong>dplyr</strong> package function <code class="language-plaintext highlighter-rouge">bind_rows</code>, which allows the two data sets to combine even if they don’t contain the exact same set of variables.</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install dplyr</span><span class="w">
-</span><span class="c1"># install.packages('dplyr')</span><span class="w">
-</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+<p>The <strong>dplyr</strong> package makes this process easy.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
 
-</span><span class="c1"># Load in mtcars data</span><span class="w">
-</span><span class="n">data</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w">
+</span><span class="n">data</span><span class="p">(</span><span class="s2">"storms"</span><span class="p">)</span><span class="w">
 
-</span><span class="c1"># Split it in two, so we can combine them back together</span><span class="w">
-</span><span class="n">mtcars1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mtcars</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,]</span><span class="w">
-</span><span class="n">mtcars2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mtcars</span><span class="p">[</span><span class="m">11</span><span class="o">:</span><span class="m">32</span><span class="p">,]</span><span class="w">
-
-</span><span class="c1"># Use bind_rows to vertically combine the data sets</span><span class="w">
-</span><span class="n">mtcarswhole</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bind_rows</span><span class="p">(</span><span class="n">mtcars1</span><span class="p">,</span><span class="w"> </span><span class="n">mtcars2</span><span class="p">)</span><span class="w">
+</span><span class="c1"># Use group_by to designate the groups</span><span class="w">
+</span><span class="n">storms</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">storms</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="c1"># To add a new column, rather than collapse,</span><span class="w">
+  </span><span class="c1"># just use mutate instead of summarize</span><span class="w">
+  </span><span class="c1"># note that "mean" could be anything here</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">mean_wind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">wind</span><span class="p">))</span><span class="w">
 </span></code></pre></div></div>
       <h2 id="stata">
           <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
       </h2>
-<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load California Population data
-</span><span class="err">webuse</span> <span class="err">http:</span><span class="c1">//www.stata-press.com/data/r14/capop.dta // Import data from the web </span><span class="err">
-
-append</span> <span class="err">using</span> <span class="err">http:</span><span class="c1">//www.stata-press.com/data/r14/ilpop.dta // Merge on Illinois population data from the web </span><span class="err">
-</span></code></pre></div></div>
-<p>You can also append multiple datasets at once, by simply listing both datasets separated by a space:</p>
-<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load California Population data
-* Import data from the web 
-</span><span class="err">webuse</span> <span class="err">http:</span><span class="c1">//www.stata-press.com/data/r14/capop.dta </span><span class="err">
+<p>This process is made easy in Stata using the <code class="language-plaintext highlighter-rouge">egen</code> command. <code class="language-plaintext highlighter-rouge">egen</code> is not entirely flexible and is limited to a set of predetermined group calculations (see <code class="language-plaintext highlighter-rouge">help egen</code>), although this can be expanded using the <strong>egenmore</strong> package (<code class="language-plaintext highlighter-rouge">ssc install egenmore</code> then <code class="language-plaintext highlighter-rouge">help egenmore</code>). However, the list of predetermined functions is long enough that you’ll rarely be caught out!</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">import</span> <span class="err">delimited</span> <span class="s2">"https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv"</span><span class="err">,</span> <span class="err">clear
 </span><span class="c1">
-* Merge on Illinois and Texas population data from the web 
-</span><span class="err">append</span> <span class="err">using</span> <span class="err">http:</span><span class="c1">//www.stata-press.com/data/r14/ilpop.dta http://www.stata-press.com/data/r14/txpop.dta </span><span class="err">
-</span></code></pre></div></div>
-<p>Note that, if there are columns in one but not the other of the datasets, Stata will still append the two datasets, but observations from the dataset that did not contain those columns will have their values for that variable set to missing.</p>
-<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load Even Number Data 
-</span><span class="err">webuse</span> <span class="err">odd.dta,</span> <span class="err">clear</span> <span class="err">
-
-append</span> <span class="err">using</span> <span class="err">http:</span><span class="c1">//www.stata-press.com/data/r14/even.dta </span><span class="err">
-
+* Use bysort to determine the grouping, and egen to do the calculation
+</span><span class="err">bysort</span> <span class="err">name</span> <span class="err">year</span> <span class="err">month</span> <span class="err">day:</span> <span class="err">egen</span> <span class="err">mean_wind</span> <span class="o">=</span> <span class="err">mean(wind)
 </span></code></pre></div></div>
           <hr>
           <footer>
               <div class="d-flex mt-2">
                   <p class="text-small text-grey-dk-000 mb-0">
-                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.md" id="edit-this-page">Edit this page on GitHub.</a>
+                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Data_Manipulation/creating_a_variable_with_group_calculations.md" id="edit-this-page">Edit this page on GitHub.</a>
                   </p>
               </div>
           </footer>
