@@ -17,9 +17,9 @@ Many data sets have hierarchical structures, where individual observations belon
 | 2 | 1 | 2 |
 | 2 | 2 | 5 |
 
-Here, we have data where each group $I$ has multiple rows, one for each $J$. 
+Here, we have data where each group $$I$$ has multiple rows, one for each $$J$$. 
 
-We often might want to create a new variable that performs a calculation *within* each group, and assigns the result to each value in that group. For example, perhaps we want to calculate the mean of $X$ within each group $I$, so we can know how far above or below the group average each observation is. Our goal is:
+We often might want to create a new variable that performs a calculation *within* each group, and assigns the result to each value in that group. For example, perhaps we want to calculate the mean of $$X$$ within each group $$I$$, so we can know how far above or below the group average each observation is. Our goal is:
 
 
 | I | J | X | AvgX |
