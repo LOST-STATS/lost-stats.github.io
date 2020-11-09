@@ -155,4 +155,4 @@ and the following graph should appear
 
 ![Colored and Styled Stata Bar Graph](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/bar_plot_graphs/bar_graph_3.png)
 
-Our bars are now red with a blue outline. Pretty neat! There are many sources of Stata help on the internet and many different way to customize your bar graphs. There is an official [Stata support](stata.com/support/) page that can answer queries regarding Stata. 
+Our bars are now red with a blue outline. Pretty neat! There are many sources of Stata help on the internet and many different way to customize your bar graphs. There is an official [Stata support](http://www.stata.com/support/) page that can answer queries regarding Stata. 
