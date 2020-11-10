@@ -176,6 +176,59 @@
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<p>There isn’t a quick, declarative way to add text labels to lines with the most popular libraries. So, in the example below, we’ll add labels to lines using the imperative (build what you want) tools of plotting library <a href="https://matplotlib.org/"><strong>matplotlib</strong></a>, creating the lines themselves with declarative plotting library <a href="https://seaborn.pydata.org/"><strong>seaborn</strong></a>.</p>
+<p>You may need to install the packages using <code class="language-plaintext highlighter-rouge">pip install packagename</code> or <code class="language-plaintext highlighter-rouge">conda install packagename</code> before you begin.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.dates</span> <span class="k">as</span> <span class="n">mdates</span>
+
+<span class="c1"># Read in the data
+</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Presentation/Figures/Data/Line_Graph_with_Labels_at_the_Beginning_or_End_of_Lines/Research_Nobel_Google_Trends.csv'</span><span class="p">,</span>
+                 <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s">'date'</span><span class="p">])</span>
+
+<span class="c1"># Create the column we wish to plot
+</span><span class="n">title</span> <span class="o">=</span> <span class="s">'Log of Google Trends Index'</span>
+<span class="n">df</span><span class="p">[</span><span class="n">title</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'hits'</span><span class="p">])</span>
+
+<span class="c1"># Set a style for the plot
+</span><span class="n">plt</span><span class="p">.</span><span class="n">style</span><span class="p">.</span><span class="n">use</span><span class="p">(</span><span class="s">'ggplot'</span><span class="p">)</span>
+
+<span class="c1"># Make a plot
+</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="c1"># Add lines to it
+</span><span class="n">sns</span><span class="p">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">"date"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">"name"</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+
+<span class="c1"># Add the text--for each line, find the end, annotate it with a label, and
+# adjust the chart axes so that everything fits on.
+</span><span class="k">for</span> <span class="n">line</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ax</span><span class="p">.</span><span class="n">lines</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s">'name'</span><span class="p">].</span><span class="n">unique</span><span class="p">()):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="n">get_ydata</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="n">get_xdata</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">ax</span><span class="p">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">name</span><span class="p">,</span>
+                       <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span>
+                       <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                       <span class="n">color</span><span class="o">=</span><span class="n">line</span><span class="p">.</span><span class="n">get_color</span><span class="p">(),</span>
+                       <span class="n">xycoords</span><span class="o">=</span><span class="p">(</span><span class="n">ax</span><span class="p">.</span><span class="n">get_xaxis_transform</span><span class="p">(),</span>
+                                 <span class="n">ax</span><span class="p">.</span><span class="n">get_yaxis_transform</span><span class="p">()),</span>
+                       <span class="n">textcoords</span><span class="o">=</span><span class="s">"offset points"</span><span class="p">)</span>
+    <span class="n">text_width</span> <span class="o">=</span> <span class="p">(</span><span class="n">text</span><span class="p">.</span><span class="n">get_window_extent</span><span class="p">(</span>
+        <span class="n">fig</span><span class="p">.</span><span class="n">canvas</span><span class="p">.</span><span class="n">get_renderer</span><span class="p">()).</span><span class="n">transformed</span><span class="p">(</span><span class="n">ax</span><span class="p">.</span><span class="n">transData</span><span class="p">.</span><span class="n">inverted</span><span class="p">()).</span><span class="n">width</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">ax</span><span class="p">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">text</span><span class="p">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">text_width</span> <span class="o">*</span> <span class="mf">1.05</span><span class="p">)</span>
+
+<span class="c1"># Format the date axis to be prettier.
+</span><span class="n">ax</span><span class="p">.</span><span class="n">xaxis</span><span class="p">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mdates</span><span class="p">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s">'%b-%d'</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">xaxis</span><span class="p">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">mdates</span><span class="p">.</span><span class="n">DayLocator</span><span class="p">())</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">xaxis</span><span class="p">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mdates</span><span class="p">.</span><span class="n">AutoDateLocator</span><span class="p">(</span><span class="n">interval_multiples</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+</code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Line_Graph_with_Labels_at_the_Beginning_or_End_of_Lines/py_line_labels.png" alt="Line Graph of Search Popularity for Research Nobels in Python." /></p>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
