@@ -23,6 +23,63 @@ When putting multiple line graphs on the same set of axes, a good idea is to lab
 
 # Implementations
 
+## Python
+
+There isn't a quick, declarative way to add text labels to lines with the most popular libraries. So, in the example below, we'll add labels to lines using the imperative (build what you want) tools of plotting library [**matplotlib**](https://matplotlib.org/), creating the lines themselves with declarative plotting library [**seaborn**](https://seaborn.pydata.org/).
+
+You may need to install the packages using `pip install packagename` or `conda install packagename` before you begin.
+
+```python
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib.dates as mdates
+
+# Read in the data
+df = pd.read_csv('https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Presentation/Figures/Data/Line_Graph_with_Labels_at_the_Beginning_or_End_of_Lines/Research_Nobel_Google_Trends.csv',
+                 parse_dates=['date'])
+
+# Create the column we wish to plot
+title = 'Log of Google Trends Index'
+df[title] = np.log(df['hits'])
+
+# Set a style for the plot
+plt.style.use('ggplot')
+
+# Make a plot
+fig, ax = plt.subplots()
+
+# Add lines to it
+sns.lineplot(ax=ax, data=df, x="date", y=title, hue="name", legend=None)
+
+# Add the text--for each line, find the end, annotate it with a label, and
+# adjust the chart axes so that everything fits on.
+for line, name in zip(ax.lines, df['name'].unique()):
+    y = line.get_ydata()[-1]
+    x = line.get_xdata()[-1]
+    text = ax.annotate(name,
+                       xy=(x, y),
+                       xytext=(0, 0),
+                       color=line.get_color(),
+                       xycoords=(ax.get_xaxis_transform(),
+                                 ax.get_yaxis_transform()),
+                       textcoords="offset points")
+    text_width = (text.get_window_extent(
+        fig.canvas.get_renderer()).transformed(ax.transData.inverted()).width)
+    ax.set_xlim(ax.get_xlim()[0], text.xy[0] + text_width * 1.05)
+
+# Format the date axis to be prettier.
+ax.xaxis.set_major_formatter(mdates.DateFormatter('%b-%d'))
+ax.xaxis.set_minor_locator(mdates.DayLocator())
+ax.xaxis.set_major_locator(mdates.AutoDateLocator(interval_multiples=False))
+plt.tight_layout()
+plt.show()
+
+```
+
+![Line Graph of Search Popularity for Research Nobels in Python.](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Line_Graph_with_Labels_at_the_Beginning_or_End_of_Lines/py_line_labels.png)
+
 ## R
 
 ```R
