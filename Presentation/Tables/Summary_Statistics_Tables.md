@@ -24,37 +24,38 @@ Before looking at relationships between variables, it is generally a good idea t
 
 ## R
 
-Probably the most straightforward and simplest way to do a summary statistics table in R is with the **stargazer** package, which also has many options for customization. There are also other options like `summary_table()` in **qwraps2** or `table1()` in **table1**, both of which have more cross-tabulation and categorical-variable functionality but require more work to set up. See [this page](https://thatdatatho.com/2018/08/20/easily-create-descriptive-summary-statistic-tables-r-studio/) for a comparison of different packages other than **stargazer**.
+Probably the most straightforward and simplest way to do a summary statistics table in R is with the `sumtable` function in the **vtable** package, which also has many options for customization. There are also other options like `stargazer` in **stargazer**, `dfsummary()` in **summarytools**, `summary_table()` in **qwraps2** or `table1()` in **table1**. See [this page](https://thatdatatho.com/2018/08/20/easily-create-descriptive-summary-statistic-tables-r-studio/) for a comparison of different packages.
 
 ```r
 # If necessary
-# install.packages('stargazer')
-library(stargazer)
+# install.packages('vtable')
+library(vtable)
 data(mtcars)
 
-# Feed stargazer a data.frame with the variables you want summarized
+# Feed sumtable a data.frame with the variables you want summarized
 mt_tosum <- mtcars[,c('mpg','cyl','disp')]
-# Type = 'text' to print the table to screen, or 'latex' or 'html' to get LaTeX or HTML tables
-stargazer(mt_tosum, type = 'text')
+# By default, the table shows up in the Viewer pane (in RStudio) or your browser (otherwise)
+# (or if being run inside of RMarkdown, in the RMarkdown document format)
+sumtable(mt_tosum)
+# st() as a shortcut also works
+st(mt_tosum)
 
 # There are *many* options and customizations. For all of them, see
-# help(stargazer)
+# help(sumtable)
 # Some useful ones include out, which designates a file to send the table to
 # (note that HTML tables can be copied straight into Word from an output file)
-stargazer(mt_tosum, type = 'html', out = 'my_summary.html', median = TRUE)
+sumtable(mt_tosum, out = 'html', file = 'my_summary.html')
 
-# Also note that stargazer does not accept tibbles.
-# Use as.data.frame() to stargazer a tibble
-library(tidyverse)
-data("storms")
+# sumtable will handle factor variables as expected,
+# and you can replace variable names with "labels"
+mt_tosum$trans <- factor(mtcars$am, labels = c('Manual','Automatic'))
+st(mt_tosum, labels = c('Miles per Gallon','Cylinders','Displacement','Transmission'))
 
-storms %>%
-  select(year, wind, pressure, ts_diameter) %>%
-  as.data.frame() %>%
-  stargazer(type = 'text')  
+# Use group to get summary statistics by group
+st(mt_tosum, labels = c('Miles per Gallon','Cylinders','Displacement'), group = 'trans')
 ```
 
-But if you plan on maybe R Markdown instead of LaTeX formatting, there are a ton of summary statistic table packages for you to choose from. The package skimr is an excellent alternative to base::summary. skimr::skim takes different data types and outputs a summary statistic data frame. Numeric data gets miniature histograms and all types of data get information about the number of missing entries.
+Another good option is the package **skimr**, which is an excellent alternative to `base::summary()`. `skimr::skim()` takes different data types and outputs a summary statistic data frame. Numeric data gets miniature histograms and all types of data get information about the number of missing entries.
 
 ```r
 # If necessary
@@ -81,8 +82,6 @@ starwars %>%
     dplyr::filter(skim_variable == "height" & n > 1)
 
 ```
-
-Another alternative is summarytools::dfsummary. It's even more extended than skim(). dfsummary() can handle data in the forms of characters, factors, numerics, and dates, and outputs a data frame with statistics and graphs for all variables. That data frame can't be viewed from the console however, you'll open it in the viewer.
 
 ## Stata
 
