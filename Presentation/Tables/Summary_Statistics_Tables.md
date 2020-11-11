@@ -14,11 +14,11 @@ Before looking at relationships between variables, it is generally a good idea t
 ## Keep in Mind
 
 - Make sure that you are using the appropriate summary measures for the variables that you have. For example, if you have a variable indicating the country someone is from coded as that country's international calling code, don't include it in a table that reports the mean - you'd get an answer but that answer wouldn't make any sense.
-- If you have categorical variables, you can generally still incorporate them into a summary statistics table by [turning them into binary "dummy" variables]({{ "/Data_Manipulation/creating_dummies.html" | relative_url }}).
+- If you have categorical variables, you can generally still incorporate them into a summary statistics table by [turning them into binary "dummy" variables]({{ "/Data_Manipulation/Creating_Dummy_Variables/creating_dummy_variables.html" | relative_url }}).
 
 ## Also Consider
 
-- Graphs can be more informative ways of showing the distribution of a variable, and you may want to show a graph of your variable's distribution in addition to its inclusion on a summary statistics table. There are many ways to do this, but two common ones are [density plots]({{ "/Presentation/Tables/Density_Plots.html" | relative_url }}) or [histograms]({{ "/Presentation/Tables/Histograms.html" | relative_url }}) for continuous variables, or [bar plots]({{ "/Presentation/Tables/Bar_Plots.html" | relative_url }}) for categorical variables.
+- Graphs can be more informative ways of showing the distribution of a variable, and you may want to show a graph of your variable's distribution in addition to its inclusion on a summary statistics table. There are many ways to do this, but two common ones are [density plots]({{ "/Presentation/Figures/density_plots.html" | relative_url }}) or [histograms]({{ "/Presentation/Figures/histograms.html" | relative_url }}) for continuous variables, or [bar plots]({{ "/Presentation/Figures/bar_graphs.html" | relative_url }}) for categorical variables.
 
 # Implementations
 
