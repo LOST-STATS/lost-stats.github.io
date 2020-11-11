@@ -184,34 +184,35 @@
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
-<p>Probably the most straightforward and simplest way to do a summary statistics table in R is with the <strong>stargazer</strong> package, which also has many options for customization. There are also other options like <code class="language-plaintext highlighter-rouge">summary_table()</code> in <strong>qwraps2</strong> or <code class="language-plaintext highlighter-rouge">table1()</code> in <strong>table1</strong>, both of which have more cross-tabulation and categorical-variable functionality but require more work to set up. See <a href="https://thatdatatho.com/2018/08/20/easily-create-descriptive-summary-statistic-tables-r-studio/">this page</a> for a comparison of different packages other than <strong>stargazer</strong>.</p>
+<p>Probably the most straightforward and simplest way to do a summary statistics table in R is with the <code class="language-plaintext highlighter-rouge">sumtable</code> function in the <strong>vtable</strong> package, which also has many options for customization. There are also other options like <code class="language-plaintext highlighter-rouge">stargazer</code> in <strong>stargazer</strong>, <code class="language-plaintext highlighter-rouge">dfsummary()</code> in <strong>summarytools</strong>, <code class="language-plaintext highlighter-rouge">summary_table()</code> in <strong>qwraps2</strong> or <code class="language-plaintext highlighter-rouge">table1()</code> in <strong>table1</strong>. See <a href="https://thatdatatho.com/2018/08/20/easily-create-descriptive-summary-statistic-tables-r-studio/">this page</a> for a comparison of different packages.</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary</span><span class="w">
-</span><span class="c1"># install.packages('stargazer')</span><span class="w">
-</span><span class="n">library</span><span class="p">(</span><span class="n">stargazer</span><span class="p">)</span><span class="w">
+</span><span class="c1"># install.packages('vtable')</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">vtable</span><span class="p">)</span><span class="w">
 </span><span class="n">data</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w">
 
-</span><span class="c1"># Feed stargazer a data.frame with the variables you want summarized</span><span class="w">
+</span><span class="c1"># Feed sumtable a data.frame with the variables you want summarized</span><span class="w">
 </span><span class="n">mt_tosum</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mtcars</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="s1">'mpg'</span><span class="p">,</span><span class="s1">'cyl'</span><span class="p">,</span><span class="s1">'disp'</span><span class="p">)]</span><span class="w">
-</span><span class="c1"># Type = 'text' to print the table to screen, or 'latex' or 'html' to get LaTeX or HTML tables</span><span class="w">
-</span><span class="n">stargazer</span><span class="p">(</span><span class="n">mt_tosum</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'text'</span><span class="p">)</span><span class="w">
+</span><span class="c1"># By default, the table shows up in the Viewer pane (in RStudio) or your browser (otherwise)</span><span class="w">
+</span><span class="c1"># (or if being run inside of RMarkdown, in the RMarkdown document format)</span><span class="w">
+</span><span class="n">sumtable</span><span class="p">(</span><span class="n">mt_tosum</span><span class="p">)</span><span class="w">
+</span><span class="c1"># st() as a shortcut also works</span><span class="w">
+</span><span class="n">st</span><span class="p">(</span><span class="n">mt_tosum</span><span class="p">)</span><span class="w">
 
 </span><span class="c1"># There are *many* options and customizations. For all of them, see</span><span class="w">
-</span><span class="c1"># help(stargazer)</span><span class="w">
+</span><span class="c1"># help(sumtable)</span><span class="w">
 </span><span class="c1"># Some useful ones include out, which designates a file to send the table to</span><span class="w">
 </span><span class="c1"># (note that HTML tables can be copied straight into Word from an output file)</span><span class="w">
-</span><span class="n">stargazer</span><span class="p">(</span><span class="n">mt_tosum</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'html'</span><span class="p">,</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'my_summary.html'</span><span class="p">,</span><span class="w"> </span><span class="n">median</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">sumtable</span><span class="p">(</span><span class="n">mt_tosum</span><span class="p">,</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'html'</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'my_summary.html'</span><span class="p">)</span><span class="w">
 
-</span><span class="c1"># Also note that stargazer does not accept tibbles.</span><span class="w">
-</span><span class="c1"># Use as.data.frame() to stargazer a tibble</span><span class="w">
-</span><span class="n">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span><span class="w">
-</span><span class="n">data</span><span class="p">(</span><span class="s2">"storms"</span><span class="p">)</span><span class="w">
+</span><span class="c1"># sumtable will handle factor variables as expected,</span><span class="w">
+</span><span class="c1"># and you can replace variable names with "labels"</span><span class="w">
+</span><span class="n">mt_tosum</span><span class="o">$</span><span class="n">trans</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">mtcars</span><span class="o">$</span><span class="n">am</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'Manual'</span><span class="p">,</span><span class="s1">'Automatic'</span><span class="p">))</span><span class="w">
+</span><span class="n">st</span><span class="p">(</span><span class="n">mt_tosum</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'Miles per Gallon'</span><span class="p">,</span><span class="s1">'Cylinders'</span><span class="p">,</span><span class="s1">'Displacement'</span><span class="p">,</span><span class="s1">'Transmission'</span><span class="p">))</span><span class="w">
 
-</span><span class="n">storms</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
-  </span><span class="n">select</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">wind</span><span class="p">,</span><span class="w"> </span><span class="n">pressure</span><span class="p">,</span><span class="w"> </span><span class="n">ts_diameter</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
-  </span><span class="n">as.data.frame</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
-  </span><span class="n">stargazer</span><span class="p">(</span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'text'</span><span class="p">)</span><span class="w">  
+</span><span class="c1"># Use group to get summary statistics by group</span><span class="w">
+</span><span class="n">st</span><span class="p">(</span><span class="n">mt_tosum</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'Miles per Gallon'</span><span class="p">,</span><span class="s1">'Cylinders'</span><span class="p">,</span><span class="s1">'Displacement'</span><span class="p">),</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'trans'</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
-<p>But if you plan on maybe R Markdown instead of LaTeX formatting, there are a ton of summary statistic table packages for you to choose from. The package skimr is an excellent alternative to base::summary. skimr::skim takes different data types and outputs a summary statistic data frame. Numeric data gets miniature histograms and all types of data get information about the number of missing entries.</p>
+<p>Another good option is the package <strong>skimr</strong>, which is an excellent alternative to <code class="language-plaintext highlighter-rouge">base::summary()</code>. <code class="language-plaintext highlighter-rouge">skimr::skim()</code> takes different data types and outputs a summary statistic data frame. Numeric data gets miniature histograms and all types of data get information about the number of missing entries.</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary</span><span class="w">
 </span><span class="c1"># install.packages('dplyr')</span><span class="w">
 </span><span class="c1"># install.packages('skimr')</span><span class="w">
@@ -236,7 +237,6 @@
     </span><span class="n">dplyr</span><span class="o">::</span><span class="n">filter</span><span class="p">(</span><span class="n">skim_variable</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"height"</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
 
 </span></code></pre></div></div>
-<p>Another alternative is summarytools::dfsummary. It’s even more extended than skim(). dfsummary() can handle data in the forms of characters, factors, numerics, and dates, and outputs a data frame with statistics and graphs for all variables. That data frame can’t be viewed from the console however, you’ll open it in the viewer.</p>
       <h2 id="stata">
           <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
       </h2>
