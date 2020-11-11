@@ -35,7 +35,7 @@ For additional information, see [Wikipedia: Autoregressive conditional heteroske
 
 - ARCH models can be univariate (scalar) or multivariate (vector). 
 - ARCH models are commonly employed in modeling financial time series that exhibit time-varying volatility and volatility clustering, i.e. periods of swings interspersed with periods of relative calm.
-- If an autoregressive moving average (ARMA) model is assumed for the error variance, the model is a generalized autoregressive conditional heteroskedasticity (GARCH) model. For more information on GARCH models, see [Wikipedia: GARCH](https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity#GARCH). For information about estimating an GARCH models, see [LOST: GARCH models]({{ "/Time_Series/GARCH_Model.html" | relative_url }}-models.html).
+- If an autoregressive moving average (ARMA) model is assumed for the error variance, the model is a generalized autoregressive conditional heteroskedasticity (GARCH) model. For more information on GARCH models, see [Wikipedia: GARCH](https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity#GARCH). For information about estimating an GARCH models, see [LOST: GARCH models]({{ "/Time_Series/GARCH_Model.html" | relative_url }}).
 
 # Implementations
 
