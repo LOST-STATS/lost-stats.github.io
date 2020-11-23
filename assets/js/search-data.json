@@ -2567,66 +2567,102 @@
     "url": "/Geo-Spatial/spatial_joins.html#now-for-the-magic",
     "relUrl": "/Geo-Spatial/spatial_joins.html#now-for-the-magic"
   },"428": {
+    "doc": "Spatial Lag Model",
+    "title": "Spatial Lag Model",
+    "content": "Data that is to some extent geographical in nature often displays spatial autocorrelation. Outcome variables and explanatory variables both tend to be clustered geographically, which can drive spurious correlations, or upward-biased treatment effect estimates (Ploton et al. 2020). One way to account for this spatial dependence is to model the autocorrelation directly, as would be done with autocorrated time-series data. One such model is the spatial lag model, in which a dependent variable is predicted using the value of the dependent variable of an observation’s “neighbors.” . \\[Y_i = \\rho W Y_j + \\beta X_i + \\varepsilon_i\\] Where $Y_j$ is the set of $Y$ values from observations other than $i$, and $W$ is a matrix of spatial weights, which are higher for $j$s that are spatially closer to $i$. This process requires estimation of which observations constitute neighbors, and generally the estimation of $\\rho$ is performed using a separate process from how $\\beta$ is estimated. More estimation details are in Darmofal (2015). ",
+    "url": "/Geo-Spatial/spatial_lag_model.html",
+    "relUrl": "/Geo-Spatial/spatial_lag_model.html"
+  },"429": {
+    "doc": "Spatial Lag Model",
+    "title": "Keep in Mind",
+    "content": ". | There is more than one way to create the weighting matrix, and also more than one way to estimate the spatial lag model. Be sure to read the documentation to see what model and method your command is estimating, and that it’s the one you want. | Some approaches select a list of “neighbor” observations, such that each observation $j$ either is or is not a neighbor of $i$ (note that non-neighbors can still affect $i$ if they are neighbors-of-neighbors, and so on) | The effect of a given predictor in a spatial lag model is not just given by its coefficient, but should also include its spillover effects via $\\rho$. | . ",
+    "url": "/Geo-Spatial/spatial_lag_model.html#keep-in-mind",
+    "relUrl": "/Geo-Spatial/spatial_lag_model.html#keep-in-mind"
+  },"430": {
+    "doc": "Spatial Lag Model",
+    "title": "Also Consider",
+    "content": ". | There are other ways of modeling spatial dependence, such as the Spatial Moving-Average Model | A common test to determine whether there is spatial dependence that needs to be modeled is the Moran Test | . ",
+    "url": "/Geo-Spatial/spatial_lag_model.html#also-consider",
+    "relUrl": "/Geo-Spatial/spatial_lag_model.html#also-consider"
+  },"431": {
+    "doc": "Spatial Lag Model",
+    "title": "Implementations",
+    "content": "These examples will use some data on US colleges from IPEDS, including their latitude, longitude, and the extent of distance learning they offered in 2018. It will then see if this distance learning predicts (and perhaps reduces?) the prevalence of COVID in the college’s county by July 2020. ",
+    "url": "/Geo-Spatial/spatial_lag_model.html#implementations",
+    "relUrl": "/Geo-Spatial/spatial_lag_model.html#implementations"
+  },"432": {
+    "doc": "Spatial Lag Model",
+    "title": "R",
+    "content": "# if necessary # install.packages(c('spatialreg', 'spdep')) # Library for calculating neighbors library(spdep) # And for the spatial lag model library(spatialreg) # Load data df &lt;- read.csv('https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Geo-Spatial/Data/Merging_Shape_Files/colleges_covid.csv') # Use latitude and longitude to determine the list of neighbors # Here we're using K-nearest-neighbors to find 5 neighbors for each college # But there are othe rmethods available # Get latitude and longitude into a matrix # Make sure longitude comes first loc_matrix &lt;- as.matrix(df[, c('longitude','latitude')]) # Get 5 nearest neighbors kn &lt;- knearneigh(loc_matrix, 5) # Turn the k-nearest-neighbors object into a neighbors object nb &lt;- knn2nb(kn) # Turn the nb object into a listw object # Which is a list of spatial weights for the neighbors listw &lt;- nb2listw(nb) # Use a spatial regression # This uses the method from Bivand &amp; Piras (2015) https://www.jstatsoft.org/v63/i18/. m &lt;- lagsarlm(covid_cases_per_cap_jul312020 ~ pctdesom + pctdenon, data = df, listw = listw) # Note that, whlie summary(m) will show rho below the regression results, # most regression-table functions like modelsummary::msummary() or jtools::export_summs() # will include it as a coefficient along with the others and report its standard error summary(m) . ",
+    "url": "/Geo-Spatial/spatial_lag_model.html#r",
+    "relUrl": "/Geo-Spatial/spatial_lag_model.html#r"
+  },"433": {
+    "doc": "Spatial Lag Model",
+    "title": "Stata",
+    "content": "Stata has a suite of built-in spatial analysis commands, which we will be using here. A more thorough description of using Stata for spatial autocorrelation models (and perhaps using shapefiles to start with) can be found here. * Import data import delimited using \"https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Geo-Spatial/Data/Merging_Shape_Files/colleges_covid.csv\", clear * This process requires full data drop if missing(pctdesom) | missing(pctdenon) * Get Stata to recognize this is a spatial dataset * with longitude and latitude spset unitid, coord(longitude latitude) * Create matrix of inverse distance weights spmatrix create idistance M * Note that Stata doesn't have an automatic process for selecting a set of neighbors * Unless you are working with a shapefile * Run spatial regression model * This uses a maximum likelihood estimator, but GS2SLS is also available spregress covid_cases_per_cap_jul312020 pctdesom pctdenon, ml dvarlag(M) * Get impact of each predictor, including spillovers, with estat impact estat impact . ",
+    "url": "/Geo-Spatial/spatial_lag_model.html#stata",
+    "relUrl": "/Geo-Spatial/spatial_lag_model.html#stata"
+  },"434": {
     "doc": "Styling Line Graphs",
     "title": "Styling Line Graphs",
     "content": "There are several ways of styling line graphs. The following examples demonstrate how to modify the appearances of the lines (type and sizes), as well chart titles and axes labels. ",
     "url": "/Presentation/Figures/styling_line_graphs.html",
     "relUrl": "/Presentation/Figures/styling_line_graphs.html"
-  },"429": {
+  },"435": {
     "doc": "Styling Line Graphs",
     "title": "Keep in Mind",
     "content": ". | To get started on how to plot line graphs, see here. | Elements for customization include line thickness, line type (solid, dashed, etc.), shade, transparency, and color. | Color is one of the easiest ways to distinguish a large number of line graphs. If you have many line graphs overlaid and have to use black-and-white, consider different shades of black/gray. | . ",
     "url": "/Presentation/Figures/styling_line_graphs.html#keep-in-mind",
     "relUrl": "/Presentation/Figures/styling_line_graphs.html#keep-in-mind"
-  },"430": {
+  },"436": {
     "doc": "Styling Line Graphs",
     "title": "Implementation",
     "content": " ",
     "url": "/Presentation/Figures/styling_line_graphs.html#implementation",
     "relUrl": "/Presentation/Figures/styling_line_graphs.html#implementation"
-  },"431": {
+  },"437": {
     "doc": "Styling Line Graphs",
     "title": "R",
     "content": "## If necessary ## install.packages(c('ggplot2','cowplot')) ## load packages library(ggplot2) ## Cowplot is just to join together the four graphs at the end library(cowplot) ## load data (the Economics dataset comes with ggplot2) eco_df &lt;- economics ## basic plot p1 &lt;- ggplot() + geom_line(aes(x=date, y = uempmed), data = eco_df) p1 ## Change line color and chart labels ## Note here that color is *outside* of the aes() argument, and so this will color the line ## If color were instead *inside* aes() and set to a factor variable, ggplot would create ## a different line for each value of the factor variable, colored differently. p2 &lt;- ggplot() + ## choose a color of preference geom_line(aes(x=date, y = uempmed), color = \"navyblue\", data = eco_df) + ## add chart title and change axes labels labs( title = \"Median Duration of Unemployment\", x = \"Date\", y = \"\") + ## Add a ggplot theme theme_light() ## center the chart title theme(plot.title = element_text(hjust = 0.5)) + p2 ## plotting multiple charts (of different line types and sizes) p3 &lt;-ggplot() + geom_line(aes(x=date, y = uempmed), color = \"navyblue\", size = 1.5, data = eco_df) + geom_line(aes(x=date, y = psavert), color = \"red2\", linetype = \"dotted\", size = 0.8, data = eco_df) + labs( title = \"Unemployment Duration (Blue) and Savings Rate (Red)\", x = \"Date\", y = \"\") + theme_light() + theme(plot.title = element_text(hjust = 0.5)) p3 ## Plotting a different line type for each group ## There isn't a natural factor in this data so let's just duplicate the data and make one up eco_df$fac &lt;- factor(1, levels = c(1,2)) eco_df2 &lt;- eco_df eco_df2$fac &lt;- 2 eco_df2$uempmed &lt;- eco_df2$uempmed - 2 + rnorm(nrow(eco_df2)) eco_df &lt;- rbind(eco_df, eco_df2) p4 &lt;- ggplot() + ## This time, color goes inside aes geom_line(aes(x=date, y = uempmed, color = fac), data = eco_df) + ## add chart title and change axes labels labs( title = \"Median Duration of Unemployment\", x = \"Date\", y = \"\") + ## Add a ggplot theme theme_light() + ## center the chart title theme(plot.title = element_text(hjust = 0.5), ## Move the legend onto some blank space on the diagram legend.position = c(.25,.8), ## And put a box around it legend.background = element_rect(color=\"black\")) + ## Retitle the legend that pops up to explain the discrete (factor) difference in colors ## (note if we just want a name change we could do guides(color = guide_legend(title = 'Random Factor')) instead) scale_color_manual(name = \"Random Factor\", # And specify the colors for the factor levels (1 and 2) by hand if we like values = c(\"1\" = \"red\", \"2\" = \"blue\")) p4 # Put them all together with cowplot for LOST upload plot_grid(p1,p2,p3,p4, nrow=2) . The four plots generated by the code are (in order p1, p2, then p3 and p4): . ",
     "url": "/Presentation/Figures/styling_line_graphs.html#r",
     "relUrl": "/Presentation/Figures/styling_line_graphs.html#r"
-  },"432": {
+  },"438": {
     "doc": "2x2 Difference in Difference",
     "title": "INTRODUCTION",
     "content": "Causal inference with cross-sectional data is fundamentally tricky. | People, firms, etc. are different from one another in lots of ways. | Can only get a clean comparison when you have a (quasi-)experimental setup, such as an experiment or an regression discontinuity. | . Difference-in-difference makes use of a treatment that was applied to one group at a given time but not another group. It compares how each of those groups changed over time (comparing them to themselves to eliminate between-group differences) and then compares the treatment group difference to the control group difference (both of which contain the same time gaps, eliminating differences over time). ",
     "url": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#introduction",
     "relUrl": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#introduction"
-  },"433": {
+  },"439": {
     "doc": "2x2 Difference in Difference",
     "title": "KEEP IN MIND",
     "content": ". | For Difference-in-differences to work, parallel trends must hold. That is, nothing else should be changing the gap between treated and control states at the same time as the treatment. While it is not a formal test of parallel trends, researchers often look at whether the gap between treated and control states is constant in pre-treatment years. | Suppose in \\(t = 0\\) (“Pre-period”), and \\(t = 1\\) (“Post-period”). We want to estimate \\(\\tau = Post - Pre\\), or \\(Y(post)-Y(pre)= Y(t=1)-Y(t=0)=\\tau\\). | . ",
     "url": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#keep-in-mind",
     "relUrl": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#keep-in-mind"
-  },"434": {
+  },"440": {
     "doc": "2x2 Difference in Difference",
     "title": "ALSO CONSIDER",
     "content": ". | This page discusses “2x2” difference-in-difference design, meaning there are two groups, and treatment occurs at a single point in time. Many difference-in-difference applications instead use many groups, and treatments that are implemented at different times (a “rollout” design). Traditionally these models have been estimated using fixed effects for group and time period, i.e. “two-way” fixed effects. However, this approach with difference-in-difference can heavily bias results if treatment effects differ across groups, and alternate estimators are preferred. See Goodman-Bacon 2018 and Callaway and Sant’anna 2019. | . ",
     "url": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#also-consider",
     "relUrl": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#also-consider"
-  },"435": {
+  },"441": {
     "doc": "2x2 Difference in Difference",
     "title": "IMPLEMENTATIONS",
     "content": " ",
     "url": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#implementations",
     "relUrl": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#implementations"
-  },"436": {
+  },"442": {
     "doc": "2x2 Difference in Difference",
     "title": "R",
     "content": "In this case, we need to discover whether legalized marijuana could change the murder rate. Some states legalized marijuana in 2014. So we measure the how the murder rate changes from before 2014 to after between legalized states and states without legalization. Step 1: . | First of all, we need to load Data and Package, we call this data set “DiD”. library(tidyverse) library(broom) library(here) library(readxl) DiD &lt;- read_excel(\"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Two_by_Two_Difference_in_Difference/did_crime.xlsx\")) . | . Step 2: . Notice that the data has already been collapsed to the treated-year level. That is, there is one observation of the murder rate for each year for the treated states (all averaged together), and one observation of the murder rate for each year for the untreated states (all averaged together). We create the indicator variable called after to indicate whether it is in the treated period of being after the year of 2014 (1), or the before period of between 2000-2013 (0). The variable treat indicates that the state legalizes marijuana in 2014. Notice that treat = 1 in these states even before 2014. If the year is after 2014 and the state decided to legalize marijuana, the indicator variable “treatafter” is “1” . DiD &lt;- DiD %&gt;% mutate(after = year &gt;= 2014) %&gt;% mutate(treatafter = after*treat) . Step 3: . Then we need to plot the graph to visualize the impact of legalize marijuana on murder rate by using ggplot. mt &lt;- ggplot(DiD,aes(x=year, y=murder, color = treat)) + geom_point(size=3)+geom_line() + geom_vline(xintercept=2014,lty=4) + labs(title=\"Murder and Time\", x=\"Year\", y=\"Murder Rate\") mt . It looks like, before the legalization occurred, murder rates in treated and untreated states were very similar, lending plausibility to the parallel trends assumption. Step 4: . We need to measure the impact of impact of legalize marijuana. If we include treat, after, and treatafter in a regression, the coefficient on treatafter can be interpreted as “how much bigger was the before-after difference for the treated group?” which is the DiD estimate. reg&lt;-lm(murder ~ treat+treatafter+after, data = DiD) summary(reg) . After legalization, the murder rate dropped by 0.3% more in treated than untreated states, suggesting that legalization reduced the murder rate. ",
     "url": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#r",
     "relUrl": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#r"
-  },"437": {
+  },"443": {
     "doc": "2x2 Difference in Difference",
     "title": "2x2 Difference in Difference",
     "content": " ",
     "url": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html",
     "relUrl": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html"
-  },"438": {
+  },"444": {
     "doc": "Home",
     "title": "Home",
     "content": "# Home Welcome to the **Library of Statistical Techniques** (LOST)! LOST is a publicly-editable website with the goal of making it easy to execute statistical techniques in statistical software. Each page of the website contains a statistical technique &mdash; which may be an estimation method, a data manipulation or cleaning method, a method for presenting or visualizing results, or any of the other kinds of things that statistical software typically does. For each of those techniques, the LOST page will contain code for performing that method in a variety of packages and languages. It may also contain information (or links) with thorough descriptions of the method, but the focus here is on implementation. How can you do it in your language of choice? If there are multiple ways, how are those ways different? Is the way you used to do it outdated, or does it do something unexpected? What's the `R` equivalent of that command you know about in `Stata` or `SAS`, or vice versa? In short, LOST is a Rosetta Stone for statistical software. If you are interested in contributing to LOST, please see the [Contributing](https://lost-stats.github.io/Contributing/Contributing.html) page. LOST was originated in 2019 by Nick Huntington-Klein and is maintained by volunteer contributors. The project's GitHub page is [here](https://github.com/LOST-STATS/lost-stats.github.io). ",
