@@ -1,7 +1,6 @@
 ---
 title: Spatial Lag Model
-parent: Ordinary Least Squares
-grand_parent: Model Estimation ## Optional for indexing
+parent: Geo-Spatial
 has_children: false
 nav_order: 1
 mathjax: true ## Switch to false if this page has no equations or other math rendering.
