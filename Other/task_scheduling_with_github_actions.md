@@ -249,7 +249,7 @@ jobs:
         run: |
           git push "https://${GITHUB_ACTOR}:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
         env:
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
 ```
 
 You'll need to edit this file and retain only the stanzas that pertain to whether you're using Python or R. However, you'll need to make a few adjustments. Let's go through the file stanza by stanza to explain what it is doing:
@@ -317,7 +317,7 @@ This pushes the commit back up to the repository using `git push`.
 
 Note that if the name of your main branch is not `main` (for instance, it may be `master`), you will need to change `HEAD:main` to whatever your main branch is called (e.g., `HEAD:master`).
 
-Also note that we are setting an environment variable here. Specfically, in the `env:` section we're setting the `TOKEN` environment variable to `${{ secrets.GITHUB_TOKEN }}`. This is a a special value that Github generates for each run of your action that allows your action to manipulate its own repository. In this case, it's allowing it to push a commit back to the central repository.
+Also note that we are setting an environment variable here. Specfically, in the `env:` section we're setting the `TOKEN` environment variable to `{% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}`. This is a a special value that Github generates for each run of your action that allows your action to manipulate its own repository. In this case, it's allowing it to push a commit back to the central repository.
 
 ## And that's all!
 
@@ -352,7 +352,7 @@ api_key <- Sys.getenv("API_KEY", unset = some_other_way)
 
 ```yaml
 - name: Pull data
-run: python3 main.py
-env:
-    API_KEY: ${{ secrets.API_KEY }}
+  run: python3 main.py
+  env:
+    API_KEY: {% raw %}${{ secrets.API_KEY }}{% endraw %}
 ```
