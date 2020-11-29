@@ -14,13 +14,13 @@ If you create one of these pages, please remove it from this list.
 
 ## Data Manipulation
 
-* Aggregating Statistics
+* Regular Expressions
 
 ## Geo-Spatial
 
 * Handling Raster Data
 * Handling Vector Data
-* Spatial Regression Model
+* Spatial Moving Average Model
 
 ## Model Estimation
 
@@ -76,12 +76,10 @@ If you create one of these pages, please remove it from this list.
 ### Figures
 
 * Marginal Effects Plots for Discrete Variables
-* Histograms
 * Graph themes
 
 ### Tables
 
-* Summary Statistics by Group
 * Cross-Tabulations
 * Correlation Matrix
 
