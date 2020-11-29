@@ -1219,13 +1219,13 @@
   },"203": {
     "doc": "Desired Nonexistent Pages",
     "title": "Data Manipulation",
-    "content": ". | Aggregating Statistics | . ",
+    "content": ". | Regular Expressions | . ",
     "url": "/Desired_Nonexistent_Pages/desired_nonexistent_pages.html#data-manipulation",
     "relUrl": "/Desired_Nonexistent_Pages/desired_nonexistent_pages.html#data-manipulation"
   },"204": {
     "doc": "Desired Nonexistent Pages",
     "title": "Geo-Spatial",
-    "content": ". | Handling Raster Data | Handling Vector Data | Spatial Regression Model | . ",
+    "content": ". | Handling Raster Data | Handling Vector Data | Spatial Moving Average Model | . ",
     "url": "/Desired_Nonexistent_Pages/desired_nonexistent_pages.html#geo-spatial",
     "relUrl": "/Desired_Nonexistent_Pages/desired_nonexistent_pages.html#geo-spatial"
   },"205": {
@@ -1243,7 +1243,7 @@
   },"207": {
     "doc": "Desired Nonexistent Pages",
     "title": "Presentation",
-    "content": "Figures . | Marginal Effects Plots for Discrete Variables | Histograms | Graph themes | . Tables . | Summary Statistics by Group | Cross-Tabulations | Correlation Matrix | . ",
+    "content": "Figures . | Marginal Effects Plots for Discrete Variables | Graph themes | . Tables . | Cross-Tabulations | Correlation Matrix | . ",
     "url": "/Desired_Nonexistent_Pages/desired_nonexistent_pages.html#presentation",
     "relUrl": "/Desired_Nonexistent_Pages/desired_nonexistent_pages.html#presentation"
   },"208": {
