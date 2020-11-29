@@ -1,0 +1,485 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/just-the-docs-default.css">
+    <script type="text/javascript" src="/assets/js/vendor/lunr.min.js"></script>
+  <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Task Scheduling with Github Actions | LOST</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Task Scheduling with Github Actions" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="LOST" />
+<script type="application/ld+json">
+{"@type":"WebPage","url":"/Other/task_scheduling_with_github_actions.html","headline":"Task Scheduling with Github Actions","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="svg-link" viewBox="0 0 24 24">
+      <title>Link</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+    </symbol>
+    <symbol id="svg-search" viewBox="0 0 24 24">
+      <title>Search</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </symbol>
+    <symbol id="svg-menu" viewBox="0 0 24 24">
+      <title>Menu</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+        <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </symbol>
+    <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+      <title>Expand</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </symbol>
+    <symbol id="svg-doc" viewBox="0 0 24 24">
+      <title>Document</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+      </svg>
+    </symbol>
+  </svg>
+  <div class="side-bar">
+    <div class="site-header">
+      <a href="/" class="site-title lh-tight">
+  LOST
+</a>
+      <a href="#" id="menu-button" class="site-button">
+        <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+      </a>
+    </div>
+    <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
+      <ul class="nav-list"><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/data_manipulation.html" class="nav-list-link">Data Manipulation</a><ul class="nav-list "><li class="nav-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="nav-list-link">Collapse a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="nav-list-link">Combining Datasets</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="nav-list-link">Vertical Combination</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="nav-list-link">Horizontal Combination (Deterministic)</a>
+                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/creating_a_variable_with_group_calculations.html" class="nav-list-link">Creating a Variable with Group Calculations</a></li><li class="nav-list-item "><a href="/Data_Manipulation/Creating_Dummy_Variables/creating_dummy_variables.html" class="nav-list-link">Creating Dummy Variables</a></li><li class="nav-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="nav-list-link">Determine the Observation Level of a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Reshaping/reshape.html" class="nav-list-link">Reshaping Data</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="nav-list-link">Reshape Panel Data from Wide to Long</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="nav-list-link">Reshape Panel Data from Long to Wide</a>
+                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/rowwise_calculations.html" class="nav-list-link">Rowwise Calculations</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Geo-Spatial/Geo-spatial.html" class="nav-list-link">Geo-Spatial</a><ul class="nav-list "><li class="nav-list-item "><a href="/Geo-Spatial/choropleths.html" class="nav-list-link">Choropleths</a></li><li class="nav-list-item "><a href="/Geo-Spatial/geocoding.html" class="nav-list-link">Geocoding</a></li><li class="nav-list-item "><a href="/Geo-Spatial/merging_shape_files.html" class="nav-list-link">Merging Shape Files</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_joins.html" class="nav-list-link">Spatial Joins</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_lag_model.html" class="nav-list-link">Spatial Lag Model</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Machine_Learning/Machine_Learning.html" class="nav-list-link">Machine Learning</a><ul class="nav-list "><li class="nav-list-item "><a href="/Machine_Learning/artificial_neural_network.html" class="nav-list-link">Artificial Neural Network</a></li><li class="nav-list-item "><a href="/Machine_Learning/boosted_regression_trees.html" class="nav-list-link">Boosted Regression Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/causal_forest.html" class="nav-list-link">Causal Forest</a></li><li class="nav-list-item "><a href="/Machine_Learning/decision_trees.html" class="nav-list-link">Decision Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/penalized_regression.html" class="nav-list-link">Penalized Regression</a></li><li class="nav-list-item "><a href="/Machine_Learning/random_forest.html" class="nav-list-link">Random Forest</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Model_Estimation.html" class="nav-list-link">Model Estimation</a><ul class="nav-list "><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/OLS/OLS.html" class="nav-list-link">Ordinary Least Squares</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/OLS/simple_linear_regression.html" class="nav-list-link">Simple Linear Regression</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/OLS/interaction_terms_and_polynomials.html" class="nav-list-link">Interaction Terms and Polynomials</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/OLS/fixed_effects_in_linear_regression.html" class="nav-list-link">Fixed Effects in Linear Regression</a>
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/GLS/GLS.html" class="nav-list-link">Generalised Least Squares</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/GLS/heckman_correction_model.html" class="nav-list-link">Heckman Correction Model</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/GLS/logit_model.html" class="nav-list-link">Logit Model</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/GLS/mcfaddens_choice_model.html" class="nav-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/GLS/probit_model.html" class="nav-list-link">Probit Model</a>
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Multilevel_Models/Multilevel_Models.html" class="nav-list-link">Multilevel Models</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Multilevel_Models/linear_mixed_effects_regression.html" class="nav-list-link">Linear Mixed-Effects Regression</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Multilevel_Models/random_mixed_effects_estimation.html" class="nav-list-link">Random/Mixed Effects in Linear Regression</a>
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Research_Design/Research_Design.html" class="nav-list-link">Research Design</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Research_Design/instrumental_variables.html" class="nav-list-link">Instrumental Variables</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Research_Design/regression_discontinuity_design.html" class="nav-list-link">Regression Discontinuity Design</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html" class="nav-list-link">2x2 Difference in Difference</a>
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Statistical_Inference/Statistical_Inference.html" class="nav-list-link">Statistical Inference</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Statistical_Inference/linear_hypothesis_tests.html" class="nav-list-link">Linear Hypothesis Tests</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Statistical_Inference/Nonstandard_Errors/nonstandard_errors.html" class="nav-list-link">Nonstandard Errors</a>
+                      </li></ul></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Presentation.html" class="nav-list-link">Presentation</a><ul class="nav-list "><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Figures/Figures.html" class="nav-list-link">Figures</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/Scatterplots.html" class="nav-list-link">Scatterplots</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/Styling_Scatterplots.html" class="nav-list-link">Styling Scatterplots</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/bar_graphs.html" class="nav-list-link">Bar Graphs</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/density_plots.html" class="nav-list-link">Density Plots</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/faceted_graphs.html" class="nav-list-link">Faceted Graphs</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/heatmap_colored_correlation_matrix.html" class="nav-list-link">Heatmap Colored Correlation Matrix</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/histograms.html" class="nav-list-link">Histograms</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/line_graph_with_labels_at_the_beginning_or_end.html" class="nav-list-link">Line Graph with Labels at the Beginning or End of Lines</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/line_graphs.html" class="nav-list-link">Line Graphs</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/marginal_effects_plots_for_interactions_with_continuous_variables.html" class="nav-list-link">Marginal Effects Plots for Interactions with Continuous Variables</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/scatterplot_by_group_on_shared_axes.html" class="nav-list-link">Scatterplot by Group on Shared Axes</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/styling_line_graphs.html" class="nav-list-link">Styling Line Graphs</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/formatting_graph_legends.html" class="nav-list-link">Formatting Graph Legends</a>
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Tables/Tables.html" class="nav-list-link">Tables</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Presentation/Tables/Balance_Tables.html" class="nav-list-link">Balance Tables</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Tables/Regression_Tables.html" class="nav-list-link">Regression Tables</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Tables/Summary_Statistics_Tables.html" class="nav-list-link">Summary Statistics Tables</a>
+                      </li></ul></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Time_Series/Time_Series.html" class="nav-list-link">Time Series</a><ul class="nav-list "><li class="nav-list-item "><a href="/Time_Series/AR-models.html" class="nav-list-link">AR Models</a></li><li class="nav-list-item "><a href="/Time_Series/ARCH_Model.html" class="nav-list-link">ARCH Model</a></li><li class="nav-list-item "><a href="/Time_Series/ARMA-models.html" class="nav-list-link">ARMA Models</a></li><li class="nav-list-item "><a href="/Time_Series/GARCH_Model.html" class="nav-list-link">GARCH Model</a></li><li class="nav-list-item "><a href="/Time_Series/Granger_Causality.html" class="nav-list-link">Granger Causality</a></li><li class="nav-list-item "><a href="/Time_Series/creating_time_series_dataset.html" class="nav-list-link">Creating Time Series Dataset</a></li></ul></li><li class="nav-list-item active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Other/Other.html" class="nav-list-link">Other</a><ul class="nav-list "><li class="nav-list-item "><a href="/Other/create_a_conda_package.html" class="nav-list-link">Create a Conda Package (Python)</a></li><li class="nav-list-item "><a href="/Other/get_a_list_of_files.html" class="nav-list-link">Get a List of Files</a></li><li class="nav-list-item "><a href="/Other/import_a_foreign_data_file.html" class="nav-list-link">Import a Foreign Data File</a></li><li class="nav-list-item  active"><a href="/Other/task_scheduling_with_github_actions.html" class="nav-list-link active">Task Scheduling with Github Actions</a></li></ul></li><li class="nav-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="nav-list-link">Desired Nonexistent Pages</a></li><li class="nav-list-item"><a href="/Contributing/Contributing.html" class="nav-list-link">Contributing</a></li><li class="nav-list-item"><a href="/" class="nav-list-link">Home</a></li></ul>
+    </nav>
+    <footer class="site-footer">
+      This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+    </footer>
+  </div>
+  <div class="main" id="top">
+    <div id="main-header" class="main-header">
+        <div class="search">
+          <div class="search-input-wrap">
+            <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search LOST" aria-label="Search LOST" autocomplete="off">
+            <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+          </div>
+          <div id="search-results" class="search-results"></div>
+        </div>
+    </div>
+    <div id="main-content-wrap" class="main-content-wrap">
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list">
+                <li class="breadcrumb-nav-list-item"><a href="/Other/Other.html">Other</a></li>
+              <li class="breadcrumb-nav-list-item"><span>Task Scheduling with Github Actions</span></li>
+            </ol>
+          </nav>
+      <div id="main-content" class="main-content" role="main">
+          <p>Typically when performing statistical analyses, we write code to be run approximately once. But software more generally is frequently run multiple times. Web servers run constantly, executing the same code over and over in response to user commands. A video game is rerun on demand, each time you turn it on.</p>
+<p>In statistical analyses, though, if code is to be run multiple times, it often needs to be run <em>on a schedule</em>. For instance, you may want to scrape weather data every hour to build an archive for later analysis. Or perhaps you want to perform the <em>same</em> statistical analyses each week on new data as it comes in. In our experience, this is the worst kind of tasks for humans to do: They have to reliably remember to run a piece of code at a specified time, aggregate the results in a consistent format, and then walk away. One mistimed meeting or baby feeding and it’s likely the reseaercher will forget to hit “go.”</p>
+<p>Thankfully, in addition to doing things over and over or on demand, computers are also reasonably good at keeping time. In this article, we’ll describe the role of a <em>task scheduler</em> and demonstrate how to use <a href="https://github.com/features/actions">Github Actions</a> to run a simple data gathering task at regular intervals and commit that data to a repository.</p>
+      <h2 id="the-problem-well-solve">
+          <a href="#the-problem-well-solve" aria-labelledby="the-problem-well-solve" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> The Problem We’ll Solve
+      </h2>
+<p>The United States <a href="https://www.samhsa.gov/">Substance Abuse and Mental Health Services Administration (SAMHSA)</a> is an agency inside the U.S. Department of Health and Human Services tasked with overseeing the country’s substance abuse and mental health initiatives. A major one of these initiatives is maintaining the list of “waived providers” who can prescribe opioids, something that is typically prohibited under the federal Controlled Substances Act.</p>
+<p>SAMHSA makes available a list of <em>currently</em> waived providers, but does <em>not</em> publish (at least easily) historical lists of providers. As such, we’ll write a small web scraper that pulls all the data from their website and writes it out to a CSV.</p>
+<p>This article, however, is not about web scrapers. Instead, our problem is that SAMHSA seems to update the list without fanfare at irregular intervals. So we would like to scrape their website <em>every day</em>. This article demonstrates how set up a Github repo to do just that.</p>
+      <h2 id="requirements">
+          <a href="#requirements" aria-labelledby="requirements" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Requirements
+      </h2>
+<p>You’ll need:</p>
+<ol>
+  <li>A <a href="https://www.github.com/">Github</a> account and some familiarity with git</li>
+  <li>A program that can be run on the command line that accomplishes your data gathering task</li>
+  <li>The <em>requirements</em> for that program enumerated in one of several standard ways</li>
+</ol>
+<p>For the rest of this section, we’ll focus a bit on requirements (2) and (3).</p>
+      <h3 id="requirement-2-a-command-line-program">
+          <a href="#requirement-2-a-command-line-program" aria-labelledby="requirement-2-a-command-line-program" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Requirement (2): A command line program
+      </h3>
+<p>What you’ll be able to tell Github to do is run a series of commands. It is best to package these up into one command that will do everything for you.</p>
+<p>For instance, if you’re using <code class="language-plaintext highlighter-rouge">python</code>, you will probably want to have a file called <code class="language-plaintext highlighter-rouge">main.py</code> that looks something like this:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">URL</span> <span class="o">=</span> <span class="s">"https://whereveryourdatais.com/"</span>
+
+<span class="k">def</span> <span class="nf">process_page</span><span class="p">(</span><span class="n">html</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]:</span>
+    <span class="s">"""
+    This is the meat of your web scraper:
+    Pulling out the data you want from the HTML of the web page
+    """</span>
+
+
+<span class="k">def</span> <span class="nf">pull_data</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]:</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">resp</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+    <span class="n">content</span> <span class="o">=</span> <span class="n">resp</span><span class="p">.</span><span class="n">content</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf8'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">process_page</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># The program takes 1 optional argument: an output filename. If not present,
+</span>    <span class="c1"># we will write the output a default filename, which is:
+</span>    <span class="n">filename</span> <span class="o">=</span> <span class="s">f"data/output-</span><span class="si">{</span><span class="n">datetime</span><span class="p">.</span><span class="n">utcnow</span><span class="p">().</span><span class="n">strftime</span><span class="p">(</span><span class="s">'%Y-%m-%d'</span><span class="p">).</span><span class="n">csv</span><span class="s">"
+    if len(sys.argv) &gt; 1:
+        filename = sys.argv[1]
+
+    print(f"</span><span class="n">Will</span> <span class="n">write</span> <span class="n">data</span> <span class="n">to</span> <span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s">")
+
+    print(f"</span><span class="n">Pulling</span> <span class="n">data</span> <span class="k">from</span> <span class="si">{</span><span class="n">URL</span><span class="si">}</span><span class="p">...</span><span class="s">")
+    data = pull_data(URL)
+    print(f"</span><span class="n">Done</span> <span class="n">pulling</span> <span class="n">data</span><span class="p">.</span><span class="s">")
+
+    print("</span><span class="n">Writing</span> <span class="n">data</span><span class="p">...</span><span class="s">")
+    with open(filename, 'wt') as outfile:
+        writer = csv.writer(outfile)
+        writer.writerows(data)
+    print("</span><span class="n">Done</span> <span class="n">writing</span> <span class="n">data</span><span class="p">.</span><span class="s">")
+
+
+if __name__ == "</span><span class="n">__main__</span><span class="s">":
+    main()
+</span></code></pre></div></div>
+<p>Here the meat of your web scraper goes into the <code class="language-plaintext highlighter-rouge">pull_data</code> and the <code class="language-plaintext highlighter-rouge">process_page</code> functions. These are then wrapped into the <code class="language-plaintext highlighter-rouge">main</code> function which you can call on the command line as:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 main.py
+</code></pre></div></div>
+<p>Similarly, if you’re using <code class="language-plaintext highlighter-rouge">R</code>, you’ll want to create a <code class="language-plaintext highlighter-rouge">main.R</code> file to similar effect. For instance, it might look something like:</p>
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">readr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">httr</span><span class="p">)</span><span class="w">
+
+</span><span class="n">URL</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"https://whereveryourdatais.com/"</span><span class="w">
+
+</span><span class="cd">#' This hte meat of your web scraper:</span><span class="w">
+</span><span class="cd">#' Pulling out the data you want from the HTML of the web page</span><span class="w">
+</span><span class="n">process_page</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">html</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="c1"># Process html</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="cd">#' Pull data from a single URL and return a tibble with it nice and ordered</span><span class="w">
+</span><span class="n">pull_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">resp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">GET</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="w">
+    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">resp</span><span class="o">$</span><span class="n">status_code</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">400</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="n">stop</span><span class="p">(</span><span class="n">paste0</span><span class="p">(</span><span class="s2">"Something bad occurred in trying to pull "</span><span class="p">,</span><span class="w"> </span><span class="n">URL</span><span class="p">))</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+    </span><span class="nf">return</span><span class="p">(</span><span class="n">process_page</span><span class="p">(</span><span class="n">content</span><span class="p">(</span><span class="n">resp</span><span class="p">)))</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">main</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="c1"># The program takes 1 optional argument: an output filename. If not present,</span><span class="w">
+    </span><span class="c1"># we will write the output a default filename, which is:</span><span class="w">
+    </span><span class="n">date</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sys.time</span><span class="p">()</span><span class="w">
+    </span><span class="nf">attr</span><span class="p">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="s2">"tzone"</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"UTC"</span><span class="w">
+    </span><span class="n">filename</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="s2">"data/output-"</span><span class="p">,</span><span class="w"> </span><span class="n">as.Date</span><span class="p">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%Y-%m-%d"</span><span class="p">))</span><span class="w">
+
+    </span><span class="n">args</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">commandArgs</span><span class="p">(</span><span class="n">trailingOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="n">filename</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">args</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+    </span><span class="n">print</span><span class="p">(</span><span class="n">paste0</span><span class="p">(</span><span class="s2">"Will write data to "</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="p">))</span><span class="w">
+
+    </span><span class="n">print</span><span class="p">(</span><span class="n">paste0</span><span class="p">(</span><span class="s2">"Pulling data from "</span><span class="p">,</span><span class="w"> </span><span class="n">URL</span><span class="p">))</span><span class="w">
+    </span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pull_data</span><span class="p">(</span><span class="n">URL</span><span class="p">)</span><span class="w">
+    </span><span class="n">print</span><span class="p">(</span><span class="s2">"Done pulling data"</span><span class="p">)</span><span class="w">
+
+    </span><span class="n">print</span><span class="p">(</span><span class="s2">"Writing data..."</span><span class="p">)</span><span class="w">
+    </span><span class="n">write_csv</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="p">)</span><span class="w">
+    </span><span class="n">print</span><span class="p">(</span><span class="s2">"Done writing data."</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>Here the meat of your web scraper goes into the <code class="language-plaintext highlighter-rouge">pull_data</code> and the <code class="language-plaintext highlighter-rouge">process_page</code> functions. These are then wrapped into the <code class="language-plaintext highlighter-rouge">main</code> function which you can call on the command line as (note the <code class="language-plaintext highlighter-rouge">--vanilla</code>):</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Rscript --vanilla main.R
+</code></pre></div></div>
+      <h3 id="requirement-3-enumerated-lists-of-requirements">
+          <a href="#requirement-3-enumerated-lists-of-requirements" aria-labelledby="requirement-3-enumerated-lists-of-requirements" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Requirement (3): Enumerated lists of requirements
+      </h3>
+<p>In order for Github to run your command, it will need to know what <em>dependencies</em> it needs to install. For experts, using a tool like <a href="https://python-poetry.org/">poetry</a> in Python or <a href="https://rstudio.github.io/renv/articles/renv.html">renv</a> in R is probably what you actually want to do. However, for the purposes of this article, we’ll stick to a simple list.</p>
+<p>As such, you should create a file entitled <code class="language-plaintext highlighter-rouge">requirements.txt</code> in your project’s main folder. In this you should list, one requirement per line, the requirements of your script. For instance, in the python example above, your <code class="language-plaintext highlighter-rouge">requirements.txt</code> should look like</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>requests
+</code></pre></div></div>
+<p>The <code class="language-plaintext highlighter-rouge">R</code> example should have</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>httr
+readr
+</code></pre></div></div>
+<p>If you’re using <code class="language-plaintext highlighter-rouge">R</code>, you’ll also need to add the following script in a file called <code class="language-plaintext highlighter-rouge">install.R</code> to your project:</p>
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">CRAN</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"https://mirror.las.iastate.edu/CRAN/"</span><span class="w">
+
+</span><span class="n">process_file</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">file</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span><span class="w"> </span><span class="s2">"r"</span><span class="p">)</span><span class="w">
+  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">line</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">trimws</span><span class="p">(</span><span class="n">readLines</span><span class="p">(</span><span class="n">con</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w">
+    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="k">break</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="n">install.packages</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="n">repos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CRAN</span><span class="p">)</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+
+  </span><span class="n">close</span><span class="p">(</span><span class="n">con</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">process_file</span><span class="p">(</span><span class="s2">"requirements.txt"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+      <h2 id="setting-up-the-action">
+          <a href="#setting-up-the-action" aria-labelledby="setting-up-the-action" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Setting up the Action
+      </h2>
+<p>With all of the above accomplished, you should have a <code class="language-plaintext highlighter-rouge">main.py</code> or a <code class="language-plaintext highlighter-rouge">main.R</code> file and a <code class="language-plaintext highlighter-rouge">requirements.txt</code> file setup in your repository. If you’re using <code class="language-plaintext highlighter-rouge">R</code>, you’ll also have an <code class="language-plaintext highlighter-rouge">install.R</code> script present. With that, we move to setting up the Github Action!</p>
+<p>In this section, we assume that your repository is already on Github. Throughout, we’ll assume that the repository is hosted at <code class="language-plaintext highlighter-rouge">USERNAME/REPO</code>, e.g., <code class="language-plaintext highlighter-rouge">lost-stats/lost-stats.github.io</code>.</p>
+      <h3 id="telling-it-to-run">
+          <a href="#telling-it-to-run" aria-labelledby="telling-it-to-run" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Telling it to run
+      </h3>
+<p>Now you just need to add a file called <code class="language-plaintext highlighter-rouge">.github/workflows/schedule.yml</code> to your repo. Its contents should look like this:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">Run scheduled action</span>
+<span class="na">on</span><span class="pi">:</span>
+  <span class="na">schedule</span><span class="pi">:</span>
+    <span class="c1"># You need to set your schedule here</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s">CRON_SCHEDULE</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">pull_data</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-20.04</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Checkout code</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v2</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">persist-credentials</span><span class="pi">:</span> <span class="no">false</span>
+          <span class="na">fetch-depth</span><span class="pi">:</span> <span class="m">0</span>
+
+      <span class="c1"># If using Python:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Set up Python </span><span class="m">3.8</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/setup-python@v2</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">python-version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3.8"</span>
+
+      <span class="c1"># If using R:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Set up R 4.0.3</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">r-lib/actions/setup-r@v1</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">r-version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">4.0.3"</span>
+
+      <span class="c1"># If using Python:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Install dependencies</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">pip install -r requirements.txt</span>
+
+      <span class="c1"># If using R:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Install dependencies</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">Rscript --vanilla install.R</span>
+
+      <span class="c1"># If using Python:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Pull data</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python3 main.py</span>
+
+      <span class="c1"># If using R:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Pull data</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">Rscript --vanilla main.R</span>
+
+      <span class="c1"># NOTE: This commits everything in the `data` directory. Make sure this matches your needs</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Git commit</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="s">git add data</span>
+          <span class="s">git config --local user.email "action@github.com"</span>
+          <span class="s">git config --local user.name "GitHub Action"</span>
+          <span class="s">git commit -m "Commiting data"</span>
+
+      <span class="c1"># NOTE: Check that your branch name is correct here</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Git push</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="s">git push "https://${GITHUB_ACTOR}:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main</span>
+        <span class="na">env</span><span class="pi">:</span>
+          <span class="na">TOKEN</span><span class="pi">:</span> <span class="s">${{ secrets.GITHUB_TOKEN }}</span>
+</code></pre></div></div>
+<p>You’ll need to edit this file and retain only the stanzas that pertain to whether you’re using Python or R. However, you’ll need to make a few adjustments. Let’s go through the file stanza by stanza to explain what it is doing:</p>
+      <h3 id="name-run-scheduled-action">
+          <a href="#name-run-scheduled-action" aria-labelledby="name-run-scheduled-action" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> name: Run scheduled action
+      </h3>
+<p>This is just a descriptive name. Everything after the <code class="language-plaintext highlighter-rouge">:</code> is decorative. Name it whatever you like!</p>
+      <h3 id="on">
+          <a href="#on" aria-labelledby="on" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> on:
+      </h3>
+<p>This section describes when the action should run. Github actions supports several potential events, including <code class="language-plaintext highlighter-rouge">push</code>, <code class="language-plaintext highlighter-rouge">pull_request</code>, and <code class="language-plaintext highlighter-rouge">repository_dispatch</code>. However, since this is a scheduled action, we’re going to use the <code class="language-plaintext highlighter-rouge">schedule</code> event.</p>
+<p>The next line <code class="language-plaintext highlighter-rouge">- cron: CRON_SCHEDULE</code> tells Github how frequently to run the action. You need to replace <code class="language-plaintext highlighter-rouge">CRON_SCHEDULE</code> with your preferred frequency. You need to write this in “<a href="https://en.wikipedia.org/wiki/Cron">cron</a> syntax,” which is an arcane but pretty universally recognized format for specifying event schedules. I recommend using a helper like <a href="https://cron.help/">this one</a> to write this expression.</p>
+<p>For instance, let’s say we want to run this job at noon UTC every day. Then this line should become <code class="language-plaintext highlighter-rouge">- cron: "0 12 * * *"</code>.</p>
+      <h3 id="jobs">
+          <a href="#jobs" aria-labelledby="jobs" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> jobs:
+      </h3>
+<p>This tells us that we’re about to begin specifying the list of jobs to be run on the schedule described above.</p>
+      <h3 id="pull_data">
+          <a href="#pull_data" aria-labelledby="pull_data" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> pull_data:
+      </h3>
+<p>This is also just a descriptive name. It is best that it follow <code class="language-plaintext highlighter-rouge">snake_casing</code>, in particular, it should have no spaces or strange characters.</p>
+      <h3 id="runs-on-ubuntu-2004">
+          <a href="#runs-on-ubuntu-2004" aria-labelledby="runs-on-ubuntu-2004" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> runs-on: ubuntu-20.04
+      </h3>
+<p>This specifies which operating system to run your code on. Github supports a lot of choices, but generally, <code class="language-plaintext highlighter-rouge">ubuntu-20.04</code> or <code class="language-plaintext highlighter-rouge">ubuntu-latest</code> is what you’ll want.</p>
+      <h3 id="steps">
+          <a href="#steps" aria-labelledby="steps" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> steps:
+      </h3>
+<p>In what follows, we list out the individual steps Github should take. Each step consists of several components:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">name:</code> A descriptive name. Can be anything you’d like. It’s also optional, but I find it useful.</li>
+  <li><code class="language-plaintext highlighter-rouge">uses:</code> Optionally reference an series of steps somebody else has already specified.</li>
+  <li><code class="language-plaintext highlighter-rouge">with:</code> If using <code class="language-plaintext highlighter-rouge">uses:</code>, specificy any variables in calling that action.</li>
+  <li><code class="language-plaintext highlighter-rouge">run:</code> Just simply run a (series of) commands in the shell, one per line.</li>
+  <li><code class="language-plaintext highlighter-rouge">env:</code> Specify envrionment variables for use in the shell.</li>
+</ul>
+<p>We’ll see several examples of this below.</p>
+      <h3 id="checkout-code">
+          <a href="#checkout-code" aria-labelledby="checkout-code" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Checkout code
+      </h3>
+<p>This stanza tells the action to checkout this repository’s code. This will begin basically every Github action you build. Note that it <code class="language-plaintext highlighter-rouge">uses:</code> a standard action that is maintained by Github itself.</p>
+      <h3 id="setup-python-or-r">
+          <a href="#setup-python-or-r" aria-labelledby="setup-python-or-r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Setup Python or R
+      </h3>
+<p>These are actions that tell Github to make a specific version of Python or R available in your envrionment. You probably only need one, but you can use both if you need. Specify the exact version you want in the <code class="language-plaintext highlighter-rouge">with:</code> section.</p>
+      <h3 id="install-dependencies">
+          <a href="#install-dependencies" aria-labelledby="install-dependencies" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Install dependencies
+      </h3>
+<p>This runs a script that installs all the dependencies you enumerated earlier in <code class="language-plaintext highlighter-rouge">requirements.txt</code>. Python comes with a built in dependency manager called <code class="language-plaintext highlighter-rouge">pip</code>, so we just point it to our list of dependencies. On the other hand, we tell <code class="language-plaintext highlighter-rouge">R</code> to execute our dependency installation script <code class="language-plaintext highlighter-rouge">install.R</code>.</p>
+<p>In either case, we’re using <code class="language-plaintext highlighter-rouge">run:</code> as we’re telling Github to execute a command in its own shell.</p>
+      <h3 id="pull-data">
+          <a href="#pull-data" aria-labelledby="pull-data" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Pull data
+      </h3>
+<p>This is the task we’re actually going to run! Note that we’re calling either the <code class="language-plaintext highlighter-rouge">main.py</code> or <code class="language-plaintext highlighter-rouge">main.R</code> file we built before. After this is done, we assume there will be a new file in the <code class="language-plaintext highlighter-rouge">data/</code> directory.</p>
+      <h3 id="git-commit">
+          <a href="#git-commit" aria-labelledby="git-commit" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Git commit
+      </h3>
+<p>This stanza commits the new data to this repository and sets up the required git variables. Note that here we’re using <code class="language-plaintext highlighter-rouge">run: |</code>. In YAML, ending a line with <code class="language-plaintext highlighter-rouge">|</code> indicates that all the following lines that are at the same tab depth should be used as a single value. So here, we’re telling Github to run the commands, <code class="language-plaintext highlighter-rouge">git add data</code>, <code class="language-plaintext highlighter-rouge">git config --local user.email "action@github.com"</code>, etc in order.</p>
+      <h3 id="git-push">
+          <a href="#git-push" aria-labelledby="git-push" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Git push
+      </h3>
+<p>This pushes the commit back up to the repository using <code class="language-plaintext highlighter-rouge">git push</code>.</p>
+<p>Note that if the name of your main branch is not <code class="language-plaintext highlighter-rouge">main</code> (for instance, it may be <code class="language-plaintext highlighter-rouge">master</code>), you will need to change <code class="language-plaintext highlighter-rouge">HEAD:main</code> to whatever your main branch is called (e.g., <code class="language-plaintext highlighter-rouge">HEAD:master</code>).</p>
+<p>Also note that we are setting an environment variable here. Specfically, in the <code class="language-plaintext highlighter-rouge">env:</code> section we’re setting the <code class="language-plaintext highlighter-rouge">TOKEN</code> environment variable to <code class="language-plaintext highlighter-rouge">${{ secrets.GITHUB_TOKEN }}</code>. This is a a special value that Github generates for each run of your action that allows your action to manipulate its own repository. In this case, it’s allowing it to push a commit back to the central repository.</p>
+      <h2 id="and-thats-all">
+          <a href="#and-thats-all" aria-labelledby="and-thats-all" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> And that’s all!
+      </h2>
+<p>And that’s it! With that file commited, you Github action should run every day at noon UTC.</p>
+<p>From here, there are a lot of simple extensions to be made and tried. Here are some challenges to make sure you know what’s going on above:</p>
+<ul>
+  <li>Instead making the job run every day at noon UTC, make it run on Wednesdays at 4pm UTC.</li>
+  <li>Instead of returning at <code class="language-plaintext highlighter-rouge">tibble</code>, return a <code class="language-plaintext highlighter-rouge">data.frame</code> in R. Note that you’ll need to expand the collection of requirements!</li>
+  <li>Instead of returning a list of lists in Python, return a pandas data frame. Note that you’ll need to expand the collection of requirements!</li>
+</ul>
+      <h2 id="one-final-note-api-keys">
+          <a href="#one-final-note-api-keys" aria-labelledby="one-final-note-api-keys" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> One final note: API keys
+      </h2>
+<p>A very common need to pull data is some sort of API key. Your cron job will need access to your API key. Conveniently, Github has provided a nice functionality to do exactly this: <a href="https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets">Secrets</a>.</p>
+<p>To get your API key to your script, follow these steps:</p>
+<ol>
+  <li>Setup your secret according to the above instructions. Let’s give it the name <code class="language-plaintext highlighter-rouge">API_KEY</code> for convenience.</li>
+  <li>Modify your <code class="language-plaintext highlighter-rouge">main.py</code> or <code class="language-plaintext highlighter-rouge">main.R</code> file to look for the <code class="language-plaintext highlighter-rouge">API_KEY</code> environemnt variable. For instance, in Python you might do:</li>
+</ol>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"API_KEY"</span><span class="p">,</span> <span class="n">some_other_way</span><span class="p">)</span>
+</code></pre></div></div>
+<p>or in R you might do</p>
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">api_key</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s2">"API_KEY"</span><span class="p">,</span><span class="w"> </span><span class="n">unset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">some_other_way</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<ol>
+  <li>Amend the <code class="language-plaintext highlighter-rouge">Pull data</code> step in your action to set the <code class="language-plaintext highlighter-rouge">API_KEY</code> environment variable. For instance, it might look like:</li>
+</ol>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Pull data</span>
+  <span class="na">run</span><span class="pi">:</span> <span class="s">python3 main.py</span>
+  <span class="na">env</span><span class="pi">:</span>
+    <span class="na">API_KEY</span><span class="pi">:</span> <span class="s">${{ secrets.API_KEY }}</span>
+</code></pre></div></div>
+          <hr>
+          <footer>
+              <div class="d-flex mt-2">
+                  <p class="text-small text-grey-dk-000 mb-0">
+                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Other/task_scheduling_with_github_actions.md" id="edit-this-page">Edit this page on GitHub.</a>
+                  </p>
+              </div>
+          </footer>
+      </div>
+    </div>
+      <div class="search-overlay"></div>
+  </div>
+</body>
+</html>
