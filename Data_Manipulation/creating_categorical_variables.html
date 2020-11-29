@@ -10,13 +10,13 @@
   <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Collapse a Data Set | LOST</title>
+<title>Creating Categorical Variables | LOST</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Collapse a Data Set" />
+<meta property="og:title" content="Creating Categorical Variables" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"@type":"WebPage","url":"/Data_Manipulation/collapse_a_data_set.html","headline":"Collapse a Data Set","@context":"https://schema.org"}</script>
+{"@type":"WebPage","url":"/Data_Manipulation/creating_categorical_variables.html","headline":"Creating Categorical Variables","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
@@ -68,11 +68,11 @@
       </a>
     </div>
     <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
-      <ul class="nav-list"><li class="nav-list-item active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/data_manipulation.html" class="nav-list-link">Data Manipulation</a><ul class="nav-list "><li class="nav-list-item  active"><a href="/Data_Manipulation/collapse_a_data_set.html" class="nav-list-link active">Collapse a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="nav-list-link">Combining Datasets</a><ul class="nav-list"><li class="nav-list-item ">
+      <ul class="nav-list"><li class="nav-list-item active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/data_manipulation.html" class="nav-list-link">Data Manipulation</a><ul class="nav-list "><li class="nav-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="nav-list-link">Collapse a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="nav-list-link">Combining Datasets</a><ul class="nav-list"><li class="nav-list-item ">
                         <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="nav-list-link">Vertical Combination</a>
                       </li><li class="nav-list-item ">
                         <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="nav-list-link">Horizontal Combination (Deterministic)</a>
-                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/creating_a_variable_with_group_calculations.html" class="nav-list-link">Creating a Variable with Group Calculations</a></li><li class="nav-list-item "><a href="/Data_Manipulation/creating_categorical_variables.html" class="nav-list-link">Creating Categorical Variables</a></li><li class="nav-list-item "><a href="/Data_Manipulation/Creating_Dummy_Variables/creating_dummy_variables.html" class="nav-list-link">Creating Dummy Variables</a></li><li class="nav-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="nav-list-link">Determine the Observation Level of a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Reshaping/reshape.html" class="nav-list-link">Reshaping Data</a><ul class="nav-list"><li class="nav-list-item ">
+                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/creating_a_variable_with_group_calculations.html" class="nav-list-link">Creating a Variable with Group Calculations</a></li><li class="nav-list-item  active"><a href="/Data_Manipulation/creating_categorical_variables.html" class="nav-list-link active">Creating Categorical Variables</a></li><li class="nav-list-item "><a href="/Data_Manipulation/Creating_Dummy_Variables/creating_dummy_variables.html" class="nav-list-link">Creating Dummy Variables</a></li><li class="nav-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="nav-list-link">Determine the Observation Level of a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Reshaping/reshape.html" class="nav-list-link">Reshaping Data</a><ul class="nav-list"><li class="nav-list-item ">
                         <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="nav-list-link">Reshape Panel Data from Wide to Long</a>
                       </li><li class="nav-list-item ">
                         <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="nav-list-link">Reshape Panel Data from Long to Wide</a>
@@ -156,78 +156,21 @@
           <nav aria-label="Breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb-nav-list">
                 <li class="breadcrumb-nav-list-item"><a href="/Data_Manipulation/data_manipulation.html">Data Manipulation</a></li>
-              <li class="breadcrumb-nav-list-item"><span>Collapse a Data Set</span></li>
+              <li class="breadcrumb-nav-list-item"><span>Creating Categorical Variables</span></li>
             </ol>
           </nav>
       <div id="main-content" class="main-content" role="main">
-          <h1 id="collapse-a-data-set">
-          <a href="#collapse-a-data-set" aria-labelledby="collapse-a-data-set" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Collapse a Data Set
+          <h1 id="creating-categorical-variables">
+          <a href="#creating-categorical-variables" aria-labelledby="creating-categorical-variables" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Creating Categorical Variables
       </h1>
-<p>The <em>observation level</em> of a data set is the set of case-identifying variables which, in combination, uniquely identify every row of the data set. For example, in the data set</p>
-<div class="table-wrapper"><table>
-  <thead>
-    <tr>
-      <th>I</th>
-      <th>J</th>
-      <th>X</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>1</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>2</td>
-      <td>3.5</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>1</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>2</td>
-      <td>4.5</td>
-    </tr>
-  </tbody>
-</table></div>
-<p>the variables \(I\) and \(J\) uniquely identify rows. The first row has \(I = 1\) and \(J = 1\), and there is no other row with that combination. We could also say that \(X\) uniquely identifies rows, but in this example \(X\) is not a case-identifying variable, it’s actual data.</p>
-<p>It is common to want to <em>collapse</em> a data set from one level to another, coarser level. For example, perhaps instead of one row per combination of \(I\) and \(J\), we simply want one row per \(I\), perhaps with the average \(X\) across all \(I\) observations. This would result in:</p>
-<div class="table-wrapper"><table>
-  <thead>
-    <tr>
-      <th>I</th>
-      <th>X</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>3.25</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>3.25</td>
-    </tr>
-  </tbody>
-</table></div>
-<p>This can be one useful way to produce <a href="/Presentation/Tables/Summary_Statistics_Tables.html">summary statistics</a>, but can also be used to rid the data of unnecessary or unusable detail, or to change one data set to match the observation level of another.</p>
+<p>Many variables are categorical in nature. Each observation takes one of a set list of values, which are mutually exclusive. We may want to create these variables from raw data, assigning the category based on the values of other variables.</p>
+<p>For example, we may create a simplified four or five-category race variable based on a self-reported open-ended “race” question on a survey. Or we may want to create income bins based on splitting up a continuous variable.</p>
+<p>This page will explore how to consider a set of conditions and assigning a category based on those conditions. For example, maybe everyone with a value of <code class="language-plaintext highlighter-rouge">birthplace == 'USA'</code> and <code class="language-plaintext highlighter-rouge">citizenship == 'USA'</code> is in the ‘natural-born USA citizen’ category.</p>
       <h2 id="keep-in-mind">
           <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
       </h2>
 <ul>
-  <li>Collapsing a data set almost by definition requires losing some information. Make sure that you actually want to lose this information, rather than, for example, doing a <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html">horizontal merge</a>, which can match data sets with different observation levels without losing information.</li>
-  <li>Make sure that, for each variable you plan to retain in your new, collapsed data, you know the correct procedure that should be used to figure out the new, summarized value. Should the collapsed data for variable \(X\) use the mean of all the observations you started with? The median? The mode? The first value found in the data? Think through these decisions.</li>
-</ul>
-      <h2 id="also-consider">
-          <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
-      </h2>
-<ul>
-  <li>For more information about observation levels and how to determine what the current observation level is, see <a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set">determine the observation level of a data set</a>.</li>
+  <li>Make sure that the categories you’re going for are truly mutually exclusive, or you’ll have to figure out what to do with overlaps later when you find them!</li>
 </ul>
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
@@ -235,69 +178,73 @@
       <h2 id="python">
           <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
       </h2>
-<p>As in the R example below, we would like to collapse data on storms so that it is uniquely identified by name, year, month, and day. However, there are sometimes multiple observations within each combination of those so we need to collapse these. But to combine multiple variables requires an aggregation of some kind. So, in code, we groupby the variables that we would like to retain and give a dictionary of functions (of the form <code class="language-plaintext highlighter-rouge">'original column': 'function'</code>) to aggregate the other variables by.</p>
+<p>We can use the filtering operation in <strong>pandas</strong> to only assign the categorical value to the rows that satisfy the condition.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
 
-<span class="c1"># Pull in data on storms
-</span><span class="n">storms</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv'</span><span class="p">)</span>
+<span class="c1"># and purely for the dataset
+</span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="n">sm</span>
+<span class="n">mtcars</span> <span class="o">=</span> <span class="n">sm</span><span class="p">.</span><span class="n">datasets</span><span class="p">.</span><span class="n">get_rdataset</span><span class="p">(</span><span class="s">'mtcars'</span><span class="p">).</span><span class="n">data</span>
 
-<span class="c1"># Find the mean wind, mean pressure, and the first
-# category value by name, year, month, and day.
-# To do this, use a groupby, followed by an aggregation.
-</span><span class="n">storms_collapsed</span> <span class="o">=</span> <span class="p">(</span><span class="n">storms</span>
-                    <span class="p">.</span><span class="n">groupby</span><span class="p">([</span><span class="s">'name'</span><span class="p">,</span> <span class="s">'year'</span><span class="p">,</span> <span class="s">'month'</span><span class="p">,</span> <span class="s">'day'</span><span class="p">])</span>
-                    <span class="p">.</span><span class="n">agg</span><span class="p">({</span><span class="s">'wind'</span><span class="p">:</span> <span class="s">'mean'</span><span class="p">,</span>
-                          <span class="s">'pressure'</span><span class="p">:</span> <span class="s">'mean'</span><span class="p">,</span>
-                          <span class="s">'category'</span><span class="p">:</span> <span class="s">'first'</span><span class="p">}))</span>
+<span class="c1"># Now we go through each pair of conditions and group assignments, 
+# using loc to only send that group assignment to observations
+# satisfying the given condition
+</span><span class="n">mtcars</span><span class="p">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">mtcars</span><span class="p">.</span><span class="n">mpg</span> <span class="o">&lt;=</span> <span class="mi">19</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">mtcars</span><span class="p">.</span><span class="n">hp</span> <span class="o">&lt;=</span> <span class="mi">123</span><span class="p">),</span> <span class="s">'classification'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'Efficient and Non-Powerful'</span>
+<span class="n">mtcars</span><span class="p">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">mtcars</span><span class="p">.</span><span class="n">mpg</span> <span class="o">&gt;</span> <span class="mi">19</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">mtcars</span><span class="p">.</span><span class="n">hp</span> <span class="o">&lt;=</span> <span class="mi">123</span><span class="p">),</span> <span class="s">'classification'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'Inefficient and Non-Powerful'</span>
+<span class="n">mtcars</span><span class="p">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">mtcars</span><span class="p">.</span><span class="n">mpg</span> <span class="o">&lt;=</span> <span class="mi">19</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">mtcars</span><span class="p">.</span><span class="n">hp</span> <span class="o">&gt;</span> <span class="mi">123</span><span class="p">),</span> <span class="s">'classification'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'Efficient and Powerful'</span>
+<span class="n">mtcars</span><span class="p">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">mtcars</span><span class="p">.</span><span class="n">mpg</span> <span class="o">&gt;</span> <span class="mi">19</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">mtcars</span><span class="p">.</span><span class="n">hp</span> <span class="o">&gt;</span> <span class="mi">123</span><span class="p">),</span> <span class="s">'classification'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'Inefficient and Powerful'</span>
 </code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install dplyr</span><span class="w">
-</span><span class="c1"># install.packages('dplyr')</span><span class="w">
-</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+<p>We will create a categorical variable in two ways, first using <code class="language-plaintext highlighter-rouge">case_when()</code> from the <strong>dplyr</strong> package, and then using the faster <code class="language-plaintext highlighter-rouge">fcase()</code> from the <strong>data.table</strong> package.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
 
-</span><span class="c1"># Get data on storms from dplyr</span><span class="w">
-</span><span class="n">data</span><span class="p">(</span><span class="s2">"storms"</span><span class="p">)</span><span class="w">
+</span><span class="n">data</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w">
 
-</span><span class="c1"># We would like each storm to be identified by</span><span class="w">
-</span><span class="c1"># name, year, month, and day</span><span class="w">
-</span><span class="c1"># However, currently, they are also identified by hour,</span><span class="w">
-</span><span class="c1"># And even then there are sometimes multiple observations per hour</span><span class="w">
+</span><span class="n">mtcars</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mtcars</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">classification</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">case_when</span><span class="p">(</span><span class="w">
+    </span><span class="n">mpg</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">hp</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">123</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s1">'Efficient and Non-Powerful'</span><span class="p">,</span><span class="w"> </span><span class="c1"># Here we list each pair of conditions and group assignments</span><span class="w">
+    </span><span class="n">mpg</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">hp</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">123</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s1">'Inefficient and Non-Powerful'</span><span class="p">,</span><span class="w">
+    </span><span class="n">mpg</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">hp</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">123</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s1">'Efficient and Powerful'</span><span class="p">,</span><span class="w">
+    </span><span class="n">mpg</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">hp</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">123</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s1">'Inefficient and Powerful'</span><span class="w">
+  </span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">classification</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.factor</span><span class="p">(</span><span class="n">classification</span><span class="p">))</span><span class="w"> </span><span class="c1"># Storing categorical variables as factors often makes sense</span><span class="w">
+</span></code></pre></div></div>
+<p>Now, using <code class="language-plaintext highlighter-rouge">fcase()</code> in <strong>data.table</strong>, which has similar syntax to <code class="language-plaintext highlighter-rouge">case_when()</code> except it uses more commas instead of <code class="language-plaintext highlighter-rouge">~</code>.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">data.table</span><span class="p">)</span><span class="w">
 
-</span><span class="c1"># To construct the collapsed data, we start with the original</span><span class="w">
-</span><span class="n">storms_collapsed</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">storms</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
-  </span><span class="c1"># group by the variables that make the new observation level</span><span class="w">
-  </span><span class="n">group_by</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
-  </span><span class="c1"># And use summarize() to pick the variables to keep, as well as</span><span class="w">
-  </span><span class="c1"># the functions we want to use to collapse each variable.</span><span class="w">
-  </span><span class="c1"># Let's get the mean wind and pressure, and the first category value</span><span class="w">
-  </span><span class="n">summarize</span><span class="p">(</span><span class="n">wind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">wind</span><span class="p">),</span><span class="w">
-            </span><span class="n">pressure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">pressure</span><span class="p">),</span><span class="w">
-            </span><span class="n">category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first</span><span class="p">(</span><span class="n">category</span><span class="p">))</span><span class="w">
-</span><span class="c1"># Note that if we wanted to collapse every variable in the data with the </span><span class="w">
-</span><span class="c1"># same function, we could instead use summarize_all()</span><span class="w">
+</span><span class="n">data</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w">
+
+</span><span class="n">mtcars</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.table</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w">
+
+</span><span class="n">mtcars</span><span class="p">[,</span><span class="w"> </span><span class="n">classification</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">fcase</span><span class="p">(</span><span class="w">
+  </span><span class="n">mpg</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">hp</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">123</span><span class="p">,</span><span class="w"> </span><span class="s1">'Efficient and Non-Powerful'</span><span class="p">,</span><span class="w"> </span><span class="c1"># Here we list each pair of conditions and group assignments</span><span class="w">
+  </span><span class="n">mpg</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">hp</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">123</span><span class="p">,</span><span class="w"> </span><span class="s1">'Inefficient and Non-Powerful'</span><span class="p">,</span><span class="w">
+  </span><span class="n">mpg</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">hp</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">123</span><span class="p">,</span><span class="w"> </span><span class="s1">'Efficient and Powerful'</span><span class="p">,</span><span class="w">
+  </span><span class="n">mpg</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">hp</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">123</span><span class="p">,</span><span class="w"> </span><span class="s1">'Inefficient and Powerful'</span><span class="w">
+</span><span class="p">)]</span><span class="w">
+
+</span><span class="c1"># Storing categorical variables as factors often makes sense</span><span class="w">
+</span><span class="n">mtcars</span><span class="p">[,</span><span class="w"> </span><span class="n">classification</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">as.factor</span><span class="p">(</span><span class="n">classification</span><span class="p">)]</span><span class="w">
 </span></code></pre></div></div>
       <h2 id="stata">
           <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
       </h2>
-<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">** Load surface.dta, which contains temperature recordings in different locations
-</span><span class="err">sysuse</span> <span class="err">surface.dta,</span> <span class="err">clear
+<p>There are several ways to turn conditionals into a categorical variable in Stata. However, the easiest way that requires learning the least lingo is just to use good ol’ <code class="language-plaintext highlighter-rouge">replace</code> with <code class="language-plaintext highlighter-rouge">if</code>.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">sysuse</span> <span class="err">auto.dta,</span> <span class="err">clear
 </span><span class="c1">
-* Currently, there is one observation per latitude per longitude per date
-* I would like this to just be one observation per latitude/longitude
-
-* So I construct a collapse command.
-* I take my new target observation level and put it in by()
-* and then take each variable I'd like to keep around and tell
-* Stata what function to use to create the new collapsed value, here (mean)
-</span><span class="err">collapse</span> <span class="err">(mean)</span> <span class="err">temperature,</span> <span class="err">by(latitude</span> <span class="err">longitude)
+* Use if on each step, including generate, so that 
+* observations that satisfy none of the conditions end up missing
+</span><span class="err">g</span> <span class="err">classification</span> <span class="o">=</span> <span class="s2">"Efficient and Non-Powerful"</span> <span class="err">if</span> <span class="err">mpg</span> <span class="o">&lt;=</span> <span class="err">19</span> <span class="o">&amp;</span> <span class="err">gear_ratio</span> <span class="o">&lt;=</span> <span class="err">2.9
+replace</span> <span class="err">classification</span> <span class="o">=</span> <span class="s2">"Inefficient and Non-Powerful"</span> <span class="err">if</span> <span class="err">mpg</span> <span class="o">&gt;</span> <span class="err">19</span> <span class="o">&amp;</span> <span class="err">gear_ratio</span> <span class="o">&lt;=</span> <span class="err">2.9
+replace</span> <span class="err">classification</span> <span class="o">=</span> <span class="s2">"Efficient and Powerful"</span> <span class="err">if</span> <span class="err">mpg</span> <span class="o">&lt;=</span> <span class="err">19</span> <span class="o">&amp;</span> <span class="err">gear_ratio</span> <span class="o">&gt;</span> <span class="err">2.9
+replace</span> <span class="err">classification</span> <span class="o">=</span> <span class="s2">"Inefficient and Powerful"</span> <span class="err">if</span> <span class="err">mpg</span> <span class="o">&gt;</span> <span class="err">19</span> <span class="o">&amp;</span> <span class="err">gear_ratio</span> <span class="o">&gt;</span> <span class="err">2.9
 </span></code></pre></div></div>
           <hr>
           <footer>
               <div class="d-flex mt-2">
                   <p class="text-small text-grey-dk-000 mb-0">
-                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Data_Manipulation/collapse_a_data_set.md" id="edit-this-page">Edit this page on GitHub.</a>
+                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Data_Manipulation/creating_categorical_variables.md" id="edit-this-page">Edit this page on GitHub.</a>
                   </p>
               </div>
           </footer>
