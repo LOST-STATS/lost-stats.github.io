@@ -32,6 +32,16 @@ data(mtcars)
 bal.tab(am ~ mpg + hp, data = mtcars)
 ```
 
+Another approach provides an omnibus summary of overall balance on many covariates and also allows for stratification like that arising from block-randomized experiments (for example those designed using the `blockTools` package) or matched designs (for example using the `optmatch` package).
+
+```r
+library(RItools)
+options(show.signif.stars=FALSE,digits=3)
+xb_res <- xBalance(am~mpg+hp+cyl+wt,strata=list(nostrat=NULL,vsstrat=~vs),data=mtcars,report="all")
+xb_res$overall
+xb_res$results[,c(1:3,6:7),]
+```
+
 ## Stata
 
 ```stata
