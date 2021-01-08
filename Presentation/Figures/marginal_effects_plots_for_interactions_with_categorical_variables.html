@@ -1,200 +1,373 @@
-# Marginal effects plots for interactions with categorical variables
 
-In many contexts, the effect of one variable on another might be allowed to vary. For example, the relationship between income and mortality might be different between someone with no degree, a high school degree, or a college degree. 
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/just-the-docs-default.css">
+    <script type="text/javascript" src="/assets/js/vendor/lunr.min.js"></script>
+  <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Marginal effects plots for interactions with categorical variables | LOST</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Marginal effects plots for interactions with categorical variables" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="LOST" />
+<script type="application/ld+json">
+{"@type":"WebPage","url":"/Presentation/Figures/marginal_effects_plots_for_interactions_with_categorical_variables.html","headline":"Marginal effects plots for interactions with categorical variables","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML">
+  </script>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="svg-link" viewBox="0 0 24 24">
+      <title>Link</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+    </symbol>
+    <symbol id="svg-search" viewBox="0 0 24 24">
+      <title>Search</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </symbol>
+    <symbol id="svg-menu" viewBox="0 0 24 24">
+      <title>Menu</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+        <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </symbol>
+    <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+      <title>Expand</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </symbol>
+    <symbol id="svg-doc" viewBox="0 0 24 24">
+      <title>Document</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+      </svg>
+    </symbol>
+  </svg>
+  <div class="side-bar">
+    <div class="site-header">
+      <a href="/" class="site-title lh-tight">
+  LOST
+</a>
+      <a href="#" id="menu-button" class="site-button">
+        <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+      </a>
+    </div>
+    <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
+      <ul class="nav-list"><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/data_manipulation.html" class="nav-list-link">Data Manipulation</a><ul class="nav-list "><li class="nav-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="nav-list-link">Collapse a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="nav-list-link">Combining Datasets</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="nav-list-link">Vertical Combination</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="nav-list-link">Horizontal Combination (Deterministic)</a>
+                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/creating_a_variable_with_group_calculations.html" class="nav-list-link">Creating a Variable with Group Calculations</a></li><li class="nav-list-item "><a href="/Data_Manipulation/creating_categorical_variables.html" class="nav-list-link">Creating Categorical Variables</a></li><li class="nav-list-item "><a href="/Data_Manipulation/Creating_Dummy_Variables/creating_dummy_variables.html" class="nav-list-link">Creating Dummy Variables</a></li><li class="nav-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="nav-list-link">Determine the Observation Level of a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Reshaping/reshape.html" class="nav-list-link">Reshaping Data</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="nav-list-link">Reshape Panel Data from Wide to Long</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="nav-list-link">Reshape Panel Data from Long to Wide</a>
+                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/rowwise_calculations.html" class="nav-list-link">Rowwise Calculations</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Geo-Spatial/Geo-spatial.html" class="nav-list-link">Geo-Spatial</a><ul class="nav-list "><li class="nav-list-item "><a href="/Geo-Spatial/choropleths.html" class="nav-list-link">Choropleths</a></li><li class="nav-list-item "><a href="/Geo-Spatial/geocoding.html" class="nav-list-link">Geocoding</a></li><li class="nav-list-item "><a href="/Geo-Spatial/merging_shape_files.html" class="nav-list-link">Merging Shape Files</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_joins.html" class="nav-list-link">Spatial Joins</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_lag_model.html" class="nav-list-link">Spatial Lag Model</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Machine_Learning/Machine_Learning.html" class="nav-list-link">Machine Learning</a><ul class="nav-list "><li class="nav-list-item "><a href="/Machine_Learning/artificial_neural_network.html" class="nav-list-link">Artificial Neural Network</a></li><li class="nav-list-item "><a href="/Machine_Learning/boosted_regression_trees.html" class="nav-list-link">Boosted Regression Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/causal_forest.html" class="nav-list-link">Causal Forest</a></li><li class="nav-list-item "><a href="/Machine_Learning/decision_trees.html" class="nav-list-link">Decision Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/penalized_regression.html" class="nav-list-link">Penalized Regression</a></li><li class="nav-list-item "><a href="/Machine_Learning/random_forest.html" class="nav-list-link">Random Forest</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Model_Estimation.html" class="nav-list-link">Model Estimation</a><ul class="nav-list "><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/OLS/OLS.html" class="nav-list-link">Ordinary Least Squares</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/OLS/simple_linear_regression.html" class="nav-list-link">Simple Linear Regression</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/OLS/interaction_terms_and_polynomials.html" class="nav-list-link">Interaction Terms and Polynomials</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/OLS/fixed_effects_in_linear_regression.html" class="nav-list-link">Fixed Effects in Linear Regression</a>
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/GLS/GLS.html" class="nav-list-link">Generalised Least Squares</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/GLS/heckman_correction_model.html" class="nav-list-link">Heckman Correction Model</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/GLS/logit_model.html" class="nav-list-link">Logit Model</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/GLS/mcfaddens_choice_model.html" class="nav-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/GLS/probit_model.html" class="nav-list-link">Probit Model</a>
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Multilevel_Models/Multilevel_Models.html" class="nav-list-link">Multilevel Models</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Multilevel_Models/linear_mixed_effects_regression.html" class="nav-list-link">Linear Mixed-Effects Regression</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Multilevel_Models/random_mixed_effects_estimation.html" class="nav-list-link">Random/Mixed Effects in Linear Regression</a>
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Research_Design/Research_Design.html" class="nav-list-link">Research Design</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Research_Design/instrumental_variables.html" class="nav-list-link">Instrumental Variables</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Research_Design/regression_discontinuity_design.html" class="nav-list-link">Regression Discontinuity Design</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html" class="nav-list-link">2x2 Difference in Difference</a>
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Statistical_Inference/Statistical_Inference.html" class="nav-list-link">Statistical Inference</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Statistical_Inference/linear_hypothesis_tests.html" class="nav-list-link">Linear Hypothesis Tests</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Statistical_Inference/Nonstandard_Errors/nonstandard_errors.html" class="nav-list-link">Nonstandard Errors</a>
+                      </li></ul></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Presentation.html" class="nav-list-link">Presentation</a><ul class="nav-list "><li class="nav-list-item  active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Figures/Figures.html" class="nav-list-link">Figures</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/Scatterplots.html" class="nav-list-link">Scatterplots</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/Styling_Scatterplots.html" class="nav-list-link">Styling Scatterplots</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/bar_graphs.html" class="nav-list-link">Bar Graphs</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/density_plots.html" class="nav-list-link">Density Plots</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/faceted_graphs.html" class="nav-list-link">Faceted Graphs</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/heatmap_colored_correlation_matrix.html" class="nav-list-link">Heatmap Colored Correlation Matrix</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/histograms.html" class="nav-list-link">Histograms</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/line_graph_with_labels_at_the_beginning_or_end.html" class="nav-list-link">Line Graph with Labels at the Beginning or End of Lines</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/line_graphs.html" class="nav-list-link">Line Graphs</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/marginal_effects_plots_for_interactions_with_continuous_variables.html" class="nav-list-link">Marginal Effects Plots for Interactions with Continuous Variables</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/scatterplot_by_group_on_shared_axes.html" class="nav-list-link">Scatterplot by Group on Shared Axes</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/styling_line_graphs.html" class="nav-list-link">Styling Line Graphs</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/formatting_graph_legends.html" class="nav-list-link">Formatting Graph Legends</a>
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Tables/Tables.html" class="nav-list-link">Tables</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Presentation/Tables/Balance_Tables.html" class="nav-list-link">Balance Tables</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Tables/Regression_Tables.html" class="nav-list-link">Regression Tables</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Tables/Summary_Statistics_Tables.html" class="nav-list-link">Summary Statistics Tables</a>
+                      </li></ul></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Time_Series/Time_Series.html" class="nav-list-link">Time Series</a><ul class="nav-list "><li class="nav-list-item "><a href="/Time_Series/AR-models.html" class="nav-list-link">AR Models</a></li><li class="nav-list-item "><a href="/Time_Series/ARCH_Model.html" class="nav-list-link">ARCH Model</a></li><li class="nav-list-item "><a href="/Time_Series/ARMA-models.html" class="nav-list-link">ARMA Models</a></li><li class="nav-list-item "><a href="/Time_Series/GARCH_Model.html" class="nav-list-link">GARCH Model</a></li><li class="nav-list-item "><a href="/Time_Series/Granger_Causality.html" class="nav-list-link">Granger Causality</a></li><li class="nav-list-item "><a href="/Time_Series/creating_time_series_dataset.html" class="nav-list-link">Creating Time Series Dataset</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Other/Other.html" class="nav-list-link">Other</a><ul class="nav-list "><li class="nav-list-item "><a href="/Other/create_a_conda_package.html" class="nav-list-link">Create a Conda Package (Python)</a></li><li class="nav-list-item "><a href="/Other/get_a_list_of_files.html" class="nav-list-link">Get a List of Files</a></li><li class="nav-list-item "><a href="/Other/import_a_foreign_data_file.html" class="nav-list-link">Import a Foreign Data File</a></li><li class="nav-list-item "><a href="/Other/task_scheduling_with_github_actions.html" class="nav-list-link">Task Scheduling with Github Actions</a></li></ul></li><li class="nav-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="nav-list-link">Desired Nonexistent Pages</a></li><li class="nav-list-item"><a href="/Contributing/Contributing.html" class="nav-list-link">Contributing</a></li><li class="nav-list-item"><a href="/" class="nav-list-link">Home</a></li></ul>
+    </nav>
+    <footer class="site-footer">
+      This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+    </footer>
+  </div>
+  <div class="main" id="top">
+    <div id="main-header" class="main-header">
+        <div class="search">
+          <div class="search-input-wrap">
+            <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search LOST" aria-label="Search LOST" autocomplete="off">
+            <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+          </div>
+          <div id="search-results" class="search-results"></div>
+        </div>
+    </div>
+    <div id="main-content-wrap" class="main-content-wrap">
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list">
+                <li class="breadcrumb-nav-list-item"><a href="">Figures</a></li>
+              <li class="breadcrumb-nav-list-item"><span>Marginal effects plots for interactions with categorical variables</span></li>
+            </ol>
+          </nav>
+      <div id="main-content" class="main-content" role="main">
+          <h1 id="marginal-effects-plots-for-interactions-with-categorical-variables">
+          <a href="#marginal-effects-plots-for-interactions-with-categorical-variables" aria-labelledby="marginal-effects-plots-for-interactions-with-categorical-variables" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Marginal effects plots for interactions with categorical variables
+      </h1>
+<p>In many contexts, the effect of one variable on another might be allowed to vary. For example, the relationship between income and mortality might be different between someone with no degree, a high school degree, or a college degree.</p>
+<p>A marginal effects plot for a categorical interaction displays the effect of $X$ on $Y$ on the y-axis for different values of a categorical variable $Z$ on the x-axis. The plot will often include confidence intervals as well. In some cases the categorical variable may be ordered, so you’d want the $Z$ values to show up in that order.</p>
+      <h2 id="keep-in-mind">
+          <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
+      </h2>
+<ul>
+  <li>Some versions of these graphs normalize the effect of one of the categories to 0, and shows the effect for other values relative to that one.</li>
+</ul>
+      <h2 id="also-consider">
+          <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
+      </h2>
+<ul>
+  <li>Consider performing a <a href="/Other/power_analysis_for_interactions.html">power analysis of interaction terms</a> before running your analysis to see whether you have the statistical power for your interactions</li>
+  <li><a href="/Figures/marginal_effects_plots_for_interactions_with_continuous_variables.html">Marginal effects plots for interactions with continuous variables</a></li>
+</ul>
+      <h1 id="implementations">
+          <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
+      </h1>
+<p>In each of these examples, we will be using data on organ donation rates by state from <a href="https://www.nber.org/papers/w20378">Kessler &amp; Roth 2014</a>. The example is of a <a href="/Research_Design/two_by_two_difference_in_difference.html">2x2 difference-in-difference model</a> extended to estimate dynamic treatment effects, where treatment is interacted with the number of time periods until/since treatment goes into effect.</p>
+<p>All of these examples directly retrieve effect and confidence interval information from the regression by hand rather than relying on a package; packages for graphing interactions often focus on continuous interactions. The original code snippets for the Python, R, and Stata examples comes from the textbook <a href="http://nickchk.com/causalitybook.html">The Effect</a>.</p>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># PYTHON CODE
+</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">linearmodels</span> <span class="k">as</span> <span class="n">lm</span>
 
-A marginal effects plot for a categorical interaction displays the effect of $X$ on $Y$ on the y-axis for different values of a categorical variable $Z$ on the x-axis. The plot will often include confidence intervals as well. In some cases the categorical variable may be ordered, so you'd want the $Z$ values to show up in that order.
+<span class="c1"># Read in data
+</span><span class="n">od</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Data/Marginal_Effects_Plots_For_Interactions_With_Categorical_Variables/organ_donation.csv'</span><span class="p">)</span>
 
-## Keep in Mind
+<span class="c1"># Create Treatment Variable
+</span><span class="n">od</span><span class="p">[</span><span class="s">'California'</span><span class="p">]</span> <span class="o">=</span> <span class="n">od</span><span class="p">[</span><span class="s">'State'</span><span class="p">]</span> <span class="o">==</span> <span class="s">'California'</span>
 
-- Some versions of these graphs normalize the effect of one of the categories to 0, and shows the effect for other values relative to that one.
+<span class="c1"># PanelOLS requires a numeric time variable
+</span><span class="n">od</span><span class="p">[</span><span class="s">'Qtr'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">od</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">od</span><span class="p">[</span><span class="s">'Quarter'</span><span class="p">]</span> <span class="o">==</span> <span class="s">'Q12011'</span><span class="p">,</span> <span class="s">'Qtr'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">od</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">od</span><span class="p">[</span><span class="s">'Quarter'</span><span class="p">]</span> <span class="o">==</span> <span class="s">'Q22011'</span><span class="p">,</span> <span class="s">'Qtr'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">od</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">od</span><span class="p">[</span><span class="s">'Quarter'</span><span class="p">]</span> <span class="o">==</span> <span class="s">'Q32011'</span><span class="p">,</span> <span class="s">'Qtr'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">od</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">od</span><span class="p">[</span><span class="s">'Quarter'</span><span class="p">]</span> <span class="o">==</span> <span class="s">'Q42011'</span><span class="p">,</span> <span class="s">'Qtr'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">od</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">od</span><span class="p">[</span><span class="s">'Quarter'</span><span class="p">]</span> <span class="o">==</span> <span class="s">'Q12012'</span><span class="p">,</span> <span class="s">'Qtr'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span>
 
-## Also Consider
-
-- Consider performing a [power analysis of interaction terms](/Other/power_analysis_for_interactions.html) before running your analysis to see whether you have the statistical power for your interactions
-- [Marginal effects plots for interactions with continuous variables](/Figures/marginal_effects_plots_for_interactions_with_continuous_variables.html)
-
-# Implementations
-
-In each of these examples, we will be using data on organ donation rates by state from [Kessler & Roth 2014](https://www.nber.org/papers/w20378). The example is of a [2x2 difference-in-difference model](/Research_Design/two_by_two_difference_in_difference.html) extended to estimate dynamic treatment effects, where treatment is interacted with the number of time periods until/since treatment goes into effect. 
-
-All of these examples directly retrieve effect and confidence interval information from the regression by hand rather than relying on a package; packages for graphing interactions often focus on continuous interactions. The original code snippets for the Python, R, and Stata examples comes from the textbook [The Effect](http://nickchk.com/causalitybook.html).
-
-## Python
-
-```python
-# PYTHON CODE
-import pandas as pd
-import matplotlib as plt
-import linearmodels as lm
-
-# Read in data
-od = pd.read_csv('https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Data/Marginal_Effects_Plots_For_Interactions_With_Categorical_Variables/organ_donation.csv')
-
-# Create Treatment Variable
-od['California'] = od['State'] == 'California'
-
-# PanelOLS requires a numeric time variable
-od['Qtr'] = 1
-od.loc[od['Quarter'] == 'Q12011', 'Qtr'] = 2
-od.loc[od['Quarter'] == 'Q22011', 'Qtr'] = 3
-od.loc[od['Quarter'] == 'Q32011', 'Qtr'] = 4
-od.loc[od['Quarter'] == 'Q42011', 'Qtr'] = 5
-od.loc[od['Quarter'] == 'Q12012', 'Qtr'] = 6
-
-# Create our interactions by hand,
+<span class="c1"># Create our interactions by hand,
 # skipping quarter 3, the last one before treatment
-for i in [1, 2, 4, 5, 6]:
-	name = 'INX'+str(i)
-	od[name] = 1*od['California']
-	od.loc[od['Qtr'] != i, name] = 0
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]:</span>
+	<span class="n">name</span> <span class="o">=</span> <span class="s">'INX'</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+	<span class="n">od</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="n">od</span><span class="p">[</span><span class="s">'California'</span><span class="p">]</span>
+	<span class="n">od</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">od</span><span class="p">[</span><span class="s">'Qtr'</span><span class="p">]</span> <span class="o">!=</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
-# Set our individual and time (index) for our data
-od = od.set_index(['State','Qtr'])
+<span class="c1"># Set our individual and time (index) for our data
+</span><span class="n">od</span> <span class="o">=</span> <span class="n">od</span><span class="p">.</span><span class="n">set_index</span><span class="p">([</span><span class="s">'State'</span><span class="p">,</span><span class="s">'Qtr'</span><span class="p">])</span>
 
-mod = lm.PanelOLS.from_formula('''Rate ~ 
+<span class="n">mod</span> <span class="o">=</span> <span class="n">lm</span><span class="p">.</span><span class="n">PanelOLS</span><span class="p">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s">'''Rate ~ 
 INX1 + INX2 + INX4 + INX5 + INX6 + 
-EntityEffects + TimeEffects''',od)
+EntityEffects + TimeEffects'''</span><span class="p">,</span><span class="n">od</span><span class="p">)</span>
 
-# Specify clustering when we fit the model
-clfe = mod.fit(cov_type = 'clustered',
-	cluster_entity = True)
+<span class="c1"># Specify clustering when we fit the model
+</span><span class="n">clfe</span> <span class="o">=</span> <span class="n">mod</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cov_type</span> <span class="o">=</span> <span class="s">'clustered'</span><span class="p">,</span>
+	<span class="n">cluster_entity</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
 
-# Get coefficients and CIs
-res = pd.concat([clfe.params, clfe.std_errors], axis = 1)
-# Scale standard error to CI
-res['ci'] = res['std_error']*1.96
+<span class="c1"># Get coefficients and CIs
+</span><span class="n">res</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">clfe</span><span class="p">.</span><span class="n">params</span><span class="p">,</span> <span class="n">clfe</span><span class="p">.</span><span class="n">std_errors</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Scale standard error to CI
+</span><span class="n">res</span><span class="p">[</span><span class="s">'ci'</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s">'std_error'</span><span class="p">]</span><span class="o">*</span><span class="mf">1.96</span>
 
-# Add our quarter values
-res['Qtr'] = [1, 2, 4, 5, 6]
-# And add our reference period back in
-reference = pd.DataFrame([[0,0,0,3]],
-			  columns = ['parameter',
-						 'lower',
-						 'upper',
-						 'Qtr'])
-res = pd.concat([res, reference])
+<span class="c1"># Add our quarter values
+</span><span class="n">res</span><span class="p">[</span><span class="s">'Qtr'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="c1"># And add our reference period back in
+</span><span class="n">reference</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">]],</span>
+			  <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">'parameter'</span><span class="p">,</span>
+						 <span class="s">'lower'</span><span class="p">,</span>
+						 <span class="s">'upper'</span><span class="p">,</span>
+						 <span class="s">'Qtr'</span><span class="p">])</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">res</span><span class="p">,</span> <span class="n">reference</span><span class="p">])</span>
 
-# For plotting, sort and add labels
-res = res.sort_values('Qtr')
-res['Quarter'] = ['Q42010','Q12011',
-				  'Q22011','Q32011',
-				  'Q42011','Q12012']
+<span class="c1"># For plotting, sort and add labels
+</span><span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s">'Qtr'</span><span class="p">)</span>
+<span class="n">res</span><span class="p">[</span><span class="s">'Quarter'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Q42010'</span><span class="p">,</span><span class="s">'Q12011'</span><span class="p">,</span>
+				  <span class="s">'Q22011'</span><span class="p">,</span><span class="s">'Q32011'</span><span class="p">,</span>
+				  <span class="s">'Q42011'</span><span class="p">,</span><span class="s">'Q12012'</span><span class="p">]</span>
 
-# Plot the estimates as connected lines with error bars
+<span class="c1"># Plot the estimates as connected lines with error bars
+</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">pyplot</span><span class="p">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s">'Quarter'</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">'parameter'</span><span class="p">,</span>
+					<span class="n">yerr</span> <span class="o">=</span> <span class="s">'ci'</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">res</span><span class="p">)</span>
+<span class="c1"># Add a horizontal line at 0
+</span><span class="n">plt</span><span class="p">.</span><span class="n">pyplot</span><span class="p">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s">'dashed'</span><span class="p">)</span>
+</code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Images/Marginal_Effects_Plots_For_Interactions_With_Categorical_Variables/Python_Categorical_Interaction_Effect.png" alt="Categorical marginal effect plot in Python" /></p>
+      <h2 id="r">
+          <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
+      </h2>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># install.packages(c('tidyverse','fixest','broom'))</span><span class="w">
 
-plt.pyplot.errorbar(x = 'Quarter', y = 'parameter',
-					yerr = 'ci', data = res)
-# Add a horizontal line at 0
-plt.pyplot.axhline(0, linestyle = 'dashed')
-```
+</span><span class="c1"># fixest is just for running the model and won't be necessary in many applications</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">);</span><span class="w"> </span><span class="n">library</span><span class="p">(</span><span class="n">fixest</span><span class="p">);</span><span class="w"> </span><span class="n">library</span><span class="p">(</span><span class="n">broom</span><span class="p">)</span><span class="w">
 
-![Categorical marginal effect plot in Python](https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Images/Marginal_Effects_Plots_For_Interactions_With_Categorical_Variables/Python_Categorical_Interaction_Effect.png)
+</span><span class="n">od</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Data/Marginal_Effects_Plots_For_Interactions_With_Categorical_Variables/organ_donation.csv'</span><span class="p">)</span><span class="w">
 
-## R
+</span><span class="c1"># Treatment variable</span><span class="w">
+</span><span class="n">od</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">od</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+	</span><span class="n">mutate</span><span class="p">(</span><span class="n">Treated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'California'</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> 
+	</span><span class="n">Quarter</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'Q32011'</span><span class="p">,</span><span class="s1">'Q42011'</span><span class="p">,</span><span class="s1">'Q12012'</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+	</span><span class="c1"># Create an ordered version of Quarter so we can graph it</span><span class="w">
+	</span><span class="c1"># and make sure we drop the last pre-treatment interaction,</span><span class="w">
+	</span><span class="c1"># which is quarter 2 of 2011</span><span class="w">
+	</span><span class="n">mutate</span><span class="p">(</span><span class="n">Quarter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">relevel</span><span class="p">(</span><span class="n">factor</span><span class="p">(</span><span class="n">Quarter</span><span class="p">),</span><span class="w"> </span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Q22011'</span><span class="p">))</span><span class="w">
 
-```r
-# install.packages(c('tidyverse','fixest','broom'))
+</span><span class="c1"># Interact quarter with being in the treated group</span><span class="w">
+</span><span class="n">clfe</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">feols</span><span class="p">(</span><span class="n">Rate</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">I</span><span class="p">(</span><span class="n">State</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'California'</span><span class="p">)</span><span class="o">*</span><span class="n">Quarter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">State</span><span class="p">,</span><span class="w">
+			  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">od</span><span class="p">)</span><span class="w">
 
-# fixest is just for running the model and won't be necessary in many applications
-library(tidyverse); library(fixest); library(broom)
-
-od <- read_csv('https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Data/Marginal_Effects_Plots_For_Interactions_With_Categorical_Variables/organ_donation.csv')
-
-# Treatment variable
-od <- od %>%
-	mutate(Treated = State == 'California' & 
-	Quarter %in% c('Q32011','Q42011','Q12012')) %>%
-	# Create an ordered version of Quarter so we can graph it
-	# and make sure we drop the last pre-treatment interaction,
-	# which is quarter 2 of 2011
-	mutate(Quarter = relevel(factor(Quarter), ref = 'Q22011'))
-
-# Interact quarter with being in the treated group
-clfe <- feols(Rate ~ I(State == 'California')*Quarter | State,
-			  data = od)
-
-# Use broom::tidy to get the coefficients and SEs
-res <- tidy(clfe) %>%
-	# Keep only the interactions
-	filter(str_detect(term, ':')) %>%
-	# Pull the quarter out of the term
-	mutate(Quarter = str_sub(term, -6)) %>%
-	# Add in the term we dropped as 0
-	add_row(estimate = 0, std.error = 0, 
-			Quarter = 'Q22011') %>%
-	# and add 95% confidence intervals
-	mutate(ci_bottom = estimate - 1.96*std.error,
-		   ci_top = estimate + 1.96*std.error) %>%
-	# And put the quarters in order
-	mutate(Quarter = factor(Quarter,
-		   levels = c('Q42010','Q12011','Q22011',
-					  'Q32011','Q42011','Q12012')))
+</span><span class="c1"># Use broom::tidy to get the coefficients and SEs</span><span class="w">
+</span><span class="n">res</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tidy</span><span class="p">(</span><span class="n">clfe</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+	</span><span class="c1"># Keep only the interactions</span><span class="w">
+	</span><span class="n">filter</span><span class="p">(</span><span class="n">str_detect</span><span class="p">(</span><span class="n">term</span><span class="p">,</span><span class="w"> </span><span class="s1">':'</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+	</span><span class="c1"># Pull the quarter out of the term</span><span class="w">
+	</span><span class="n">mutate</span><span class="p">(</span><span class="n">Quarter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str_sub</span><span class="p">(</span><span class="n">term</span><span class="p">,</span><span class="w"> </span><span class="m">-6</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+	</span><span class="c1"># Add in the term we dropped as 0</span><span class="w">
+	</span><span class="n">add_row</span><span class="p">(</span><span class="n">estimate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">std.error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> 
+			</span><span class="n">Quarter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Q22011'</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+	</span><span class="c1"># and add 95% confidence intervals</span><span class="w">
+	</span><span class="n">mutate</span><span class="p">(</span><span class="n">ci_bottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">estimate</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1.96</span><span class="o">*</span><span class="n">std.error</span><span class="p">,</span><span class="w">
+		   </span><span class="n">ci_top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">estimate</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1.96</span><span class="o">*</span><span class="n">std.error</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+	</span><span class="c1"># And put the quarters in order</span><span class="w">
+	</span><span class="n">mutate</span><span class="p">(</span><span class="n">Quarter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">Quarter</span><span class="p">,</span><span class="w">
+		   </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'Q42010'</span><span class="p">,</span><span class="s1">'Q12011'</span><span class="p">,</span><span class="s1">'Q22011'</span><span class="p">,</span><span class="w">
+					  </span><span class="s1">'Q32011'</span><span class="p">,</span><span class="s1">'Q42011'</span><span class="p">,</span><span class="s1">'Q12012'</span><span class="p">)))</span><span class="w">
 
 
-# And graph
-# "group = 1" is necessary to get ggplot to add the line graph
-# when the x-axis is a factor
-ggplot(res, aes(x = Quarter, y = estimate, group = 1)) + 
-	 # Add points for each estimate and connect them
-	geom_point() + 
-	geom_line() +
-	# Add confidence intervals
-	geom_linerange(aes(ymin = ci_bottom, ymax = ci_top)) +
-	# Add a line so we know where 0 is
-	geom_hline(aes(yintercept = 0), linetype = 'dashed') + 
-	# Always label!
-	labs(caption = '95% Confidence Intervals Shown')
-```
-
-![Categorical marginal effect plot in R/ggplot2](https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Images/Marginal_Effects_Plots_For_Interactions_With_Categorical_Variables/R_Categorical_Interaction_Effect.png)
-
-## Stata
-
-```stata
-* For running the model:
+</span><span class="c1"># And graph</span><span class="w">
+</span><span class="c1"># "group = 1" is necessary to get ggplot to add the line graph</span><span class="w">
+</span><span class="c1"># when the x-axis is a factor</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Quarter</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">estimate</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+	 </span><span class="c1"># Add points for each estimate and connect them</span><span class="w">
+	</span><span class="n">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+	</span><span class="n">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+	</span><span class="c1"># Add confidence intervals</span><span class="w">
+	</span><span class="n">geom_linerange</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ci_bottom</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ci_top</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+	</span><span class="c1"># Add a line so we know where 0 is</span><span class="w">
+	</span><span class="n">geom_hline</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'dashed'</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+	</span><span class="c1"># Always label!</span><span class="w">
+	</span><span class="n">labs</span><span class="p">(</span><span class="n">caption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'95% Confidence Intervals Shown'</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Images/Marginal_Effects_Plots_For_Interactions_With_Categorical_Variables/R_Categorical_Interaction_Effect.png" alt="Categorical marginal effect plot in R/ggplot2" /></p>
+      <h2 id="stata">
+          <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
+      </h2>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* For running the model:
 * ssc install reghdfe
-
-import delimited using https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Data/Marginal_Effects_Plots_For_Interactions_With_Categorical_Variables/organ_donation.csv, clear
-
+</span><span class="err">
+import</span> <span class="err">delimited</span> <span class="err">using</span> <span class="err">https:</span><span class="c1">//github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Data/Marginal_Effects_Plots_For_Interactions_With_Categorical_Variables/organ_donation.csv, clear</span><span class="err">
+</span><span class="c1">
 * Create value-labeled version of quarter
 * So we can easily graph it
-g Qtr = 1
-replace Qtr = 2 if quarter == "Q12011"
-replace Qtr = 3 if quarter == "Q22011"
-replace Qtr = 4 if quarter == "Q32011"
-replace Qtr = 5 if quarter == "Q42011"
-replace Qtr = 6 if quarter == "Q12012"
+</span><span class="err">g</span> <span class="err">Qtr</span> <span class="o">=</span> <span class="err">1
+replace</span> <span class="err">Qtr</span> <span class="o">=</span> <span class="err">2</span> <span class="err">if</span> <span class="err">quarter</span> <span class="o">==</span> <span class="s2">"Q12011"</span><span class="err">
+replace</span> <span class="err">Qtr</span> <span class="o">=</span> <span class="err">3</span> <span class="err">if</span> <span class="err">quarter</span> <span class="o">==</span> <span class="s2">"Q22011"</span><span class="err">
+replace</span> <span class="err">Qtr</span> <span class="o">=</span> <span class="err">4</span> <span class="err">if</span> <span class="err">quarter</span> <span class="o">==</span> <span class="s2">"Q32011"</span><span class="err">
+replace</span> <span class="err">Qtr</span> <span class="o">=</span> <span class="err">5</span> <span class="err">if</span> <span class="err">quarter</span> <span class="o">==</span> <span class="s2">"Q42011"</span><span class="err">
+replace</span> <span class="err">Qtr</span> <span class="o">=</span> <span class="err">6</span> <span class="err">if</span> <span class="err">quarter</span> <span class="o">==</span> <span class="s2">"Q12012"</span><span class="err">
 
-label def quarters 1 "Q42010" 2 "Q12011" 3 "Q22011" 4 "Q32011" 5 "Q42011" 6 "Q12012"
-label values Qtr quarters
-
+label</span> <span class="err">def</span> <span class="err">quarters</span> <span class="err">1</span> <span class="s2">"Q42010"</span> <span class="err">2</span> <span class="s2">"Q12011"</span> <span class="err">3</span> <span class="s2">"Q22011"</span> <span class="err">4</span> <span class="s2">"Q32011"</span> <span class="err">5</span> <span class="s2">"Q42011"</span> <span class="err">6</span> <span class="s2">"Q12012"</span><span class="err">
+label</span> <span class="err">values</span> <span class="err">Qtr</span> <span class="err">quarters
+</span><span class="c1">
 * Interact being in the treated group
 * with Qtr, using ib3 to drop the third
 * quarter (the last one before treatment)
-g California = state == "California"
+</span><span class="err">g</span> <span class="err">California</span> <span class="o">=</span> <span class="err">state</span> <span class="o">==</span> <span class="s2">"California"</span><span class="err">
 
-reghdfe rate California##ib3.Qtr, a(state Qtr) vce(cluster state)
-
+reghdfe</span> <span class="err">rate</span> <span class="err">California##ib3.Qtr,</span> <span class="err">a(state</span> <span class="err">Qtr)</span> <span class="err">vce(cluster</span> <span class="err">state)
+</span><span class="c1">
 * Pull out the coefficients and SEs
-g coef = .
-g se = .
-forvalues i = 1(1)6 {
-	replace coef = _b[1.California#`i'.Qtr] if Qtr == `i'
-	replace se = _se[1.California#`i'.Qtr] if Qtr == `i'
+</span><span class="err">g</span> <span class="err">coef</span> <span class="o">=</span> <span class="err">.
+g</span> <span class="err">se</span> <span class="o">=</span> <span class="err">.
+forvalues</span> <span class="err">i</span> <span class="o">=</span> <span class="err">1(1)6</span> <span class="err">{
+</span>	<span class="err">replace</span> <span class="err">coef</span> <span class="o">=</span> <span class="err">_b[1.California#</span><span class="p">`</span><span class="si">i'.Qtr] if Qtr == `i</span><span class="p">'</span><span class="err">
+</span>	<span class="err">replace</span> <span class="err">se</span> <span class="o">=</span> <span class="err">_se[1.California#</span><span class="p">`</span><span class="si">i'.Qtr] if Qtr == `i</span><span class="p">'</span><span class="err">
 }
-
+</span><span class="c1">
 * Make confidence intervals
-g ci_top = coef+1.96*se
-g ci_bottom = coef - 1.96*se
-
+</span><span class="err">g</span> <span class="err">ci_top</span> <span class="o">=</span> <span class="err">coef</span><span class="o">+</span><span class="err">1.96</span><span class="o">*</span><span class="err">se
+g</span> <span class="err">ci_bottom</span> <span class="o">=</span> <span class="err">coef</span> <span class="o">-</span> <span class="err">1.96</span><span class="o">*</span><span class="err">se
+</span><span class="c1">
 * Limit ourselves to one observation per quarter
-keep Qtr coef se ci_*
-duplicates drop
-
+</span><span class="err">keep</span> <span class="err">Qtr</span> <span class="err">coef</span> <span class="err">se</span> <span class="err">ci_</span><span class="o">*</span><span class="err">
+duplicates</span> <span class="err">drop
+</span><span class="c1">
 * Create connected scatterplot of coefficients
 * with CIs included with rcap 
 * and a line at 0 from function
-twoway (sc coef Qtr, connect(line)) (rcap ci_top ci_bottom Qtr) (function y = 0, range(1 6)), xtitle("Quarter") caption("95% Confidence Intervals Shown")
-```
-
-![Categorical marginal effect plot in Stata](https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Images/Marginal_Effects_Plots_For_Interactions_With_Categorical_Variables/Stata_Categorical_Interaction_Effect.png)
+</span><span class="err">twoway</span> <span class="err">(sc</span> <span class="err">coef</span> <span class="err">Qtr,</span> <span class="err">connect(line))</span> <span class="err">(rcap</span> <span class="err">ci_top</span> <span class="err">ci_bottom</span> <span class="err">Qtr)</span> <span class="err">(function</span> <span class="err">y</span> <span class="o">=</span> <span class="err">0,</span> <span class="err">range(1</span> <span class="err">6)),</span> <span class="err">xtitle(</span><span class="s2">"Quarter"</span><span class="err">)</span> <span class="err">caption(</span><span class="s2">"95% Confidence Intervals Shown"</span><span class="err">)
+</span></code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Images/Marginal_Effects_Plots_For_Interactions_With_Categorical_Variables/Stata_Categorical_Interaction_Effect.png" alt="Categorical marginal effect plot in Stata" /></p>
+          <hr>
+          <footer>
+              <div class="d-flex mt-2">
+                  <p class="text-small text-grey-dk-000 mb-0">
+                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Presentation/Figures/marginal_effects_plots_for_interactions_with_categorical_variables.md" id="edit-this-page">Edit this page on GitHub.</a>
+                  </p>
+              </div>
+          </footer>
+      </div>
+    </div>
+      <div class="search-overlay"></div>
+  </div>
+</body>
+</html>
