@@ -1,20 +1,23 @@
-Moving Average Models are a common method for modeling linear processes
-that exhibit serial correlation. This can take many forms, but an easy
-example is weather patterns. Imagine we modelled Ski Lift Purchases over
-a 5 consecutive weekday period. Let weather shocks be identically and
-independently distributed. A weather shock with large amounts of snow
-would cause more individuals to go ski. This shock would have future
-impacts on ski ticket purchases; individuals tomorrow will go skiing due
-to the snowfall today. This means when we think of the process, we
-should account for previous shock effects on outcomes today:
+---
+title: MA Models
+parent: Time Series
+has_children: false
+mathjax: true
+nav_order: 1
+---
+
+# Moving Average (MA) Models
+
+Moving Average Models are a common method for modeling linear processes that exhibit serial correlation. This can take many forms, but an easy example is weather patterns. 
+
+Imagine we modelled Ski Lift Purchases over a 5 consecutive weekday period. Let weather shocks be identically and independently distributed. A weather shock with large amounts of snow would cause more individuals to go ski. This shock would have future impacts on ski ticket purchases; individuals tomorrow will go skiing due
+to the snowfall today. This means when we think of the process, we should account for previous shock effects on outcomes today:
 
 $$
 SkiTicketPurchases_t = \mu + \theta_1*Weather_t + \theta_2*Weather_{t-1}
 $$
 
-------------------------------------------------------------------------
-
-#### Definition
+## Definition
 
 Let $\epsilon_t \sim N(0, \sigma^2_{\epsilon})$. A moving average
 process, which is denoted MA(q), take the form as:
@@ -30,27 +33,27 @@ $$
 y_t = \mu + \epsilon_t + \theta_1 \epsilon_{t-1}
 $$
 
-------------------------------------------------------------------------
+## Properties of a MA(1) process:
 
-#### Properties of a MA(1) process:
+1. The mean is constant. 
 
-(1) The mean is constant. $$
-    E(y_t) = E(\mu + \epsilon_t + \theta_1 \epsilon_{t-1}) \\
-    = \mu
-    $$
+$$
+E(y_t) = E(\mu + \epsilon_t + \theta_1 \epsilon_{t-1}) = \mu
+$$
 
-(2) The variance is constant. $$
-    Var(y_t) = Var(\mu + \epsilon_t + \theta_1 \epsilon_{t-1}) \\
-    = (1 + \theta_1^2) * \sigma^2_{\epsilon}
-    $$
+2. The variance is constant. 
 
-(3) The covariance between $y_t$ and $y_{t-q}$ is decreasing as
-    $q \to \infty$. $$
-    Cov(y_t, y_{t-1}) = E(y_t*y_{t-1}) - E(y_t)E(y_{t-1}) \\
+$$
+Var(y_t) = Var(\mu + \epsilon_t + \theta_1 \epsilon_{t-1}) = (1 + \theta_1^2) * \sigma^2_{\epsilon}  $$
+
+3. The covariance between $y_t$ and $y_{t-q}$ is decreasing as $q \to \infty$. 
+
+$$
+Cov(y_t, y_{t-1}) = E(y_t*y_{t-1}) - E(y_t)E(y_{t-1}) \\
     = E([\mu + \epsilon_t + \theta_1 \epsilon_{t-1}] [\mu + \epsilon_{t-1} + \theta_1 \epsilon_{t-2}]) - \mu^2 \\
     = \mu^2 + \theta_1 \sigma_{\epsilon}^2 -\mu^2 \\
     = \theta_1 \sigma_{\epsilon}^2
-    $$
+$$
 
 $$
 Cov(y_t, y_{t-2}) = E(y_t*y_{t-2}) - E(y_t)E(y_{t-2}) \\
@@ -59,54 +62,38 @@ Cov(y_t, y_{t-2}) = E(y_t*y_{t-2}) - E(y_t)E(y_{t-2}) \\
 = 0
 $$
 
-Additional helpful information can be found at [Wikipedia: Moving
-Average Models](https://en.wikipedia.org/wiki/Moving-average_model)
+Additional helpful information can be found at [Wikipedia: Moving Average Models](https://en.wikipedia.org/wiki/Moving-average_model)
 
-Keep in Mind
-------------
+## Keep in Mind
 
--   Time series needs to be properly formatted (e.g. date columns should
-    be formatted into a time)
+- Time series data needs to be properly formatted (e.g. date columns should be formatted into a time)
+- Model Selection uses the Akaike Information Criterion (AIC), Bayesian Information Criterion (BIC), or the Akaike Information Criterion corrected (AICc) to determine the appropriate number of terms to include. Refer to [Wikipedia:Model Selection](https://en.wikipedia.org/wiki/Model_selection#Criteria) for further information.
 
--   Model Selection uses the Akaike Information Criterion (AIC),
-    Bayesian Information Criterion (BIC), or the Akaike Information
-    Criterion corrected (AICc) to determine the appropriate number of
-    terms to include. Refer to [Wikipedia:Model
-    Selection](https://en.wikipedia.org/wiki/Model_selection#Criteria)
-    for further information.
+# Implementations
 
-Implementations
-===============
+## R
 
-R
--
-
-``` {.r}
+```r
 #in the stats package we can simulate an ARIMA Model. ARIMA stands for Auto-Regressive Integrated Moving Average model. We will be setting the AR and I parts to 0 and only simulating a MA(q) model.
 set.seed(123)
 DT = arima.sim(n = 1000, model = list(ma = c(0.1, 0.3, 0.5)))
 ```
 
-``` {.r}
+```r
 plot(DT, ylab = "Value")
 ```
 
-![A plot of our data generating process; x-axis is time and y-axis is
-the values produced.](Images/MA_Model/plot1.png){width="70%"}
+![A plot of our data generating process; x-axis is time and y-axis is the values produced.](Images/MA_Model/plot1.png)
 
-``` {.r}
+```r
 #ACF stands for Autocorrelation Function
 #Here we can see that there may be potential for 3 lags in our MA process. (Note: This is due to property (3): the covariance of y_t and y_{t-3} is nonzero while the covariance of y_t and y_{t-4} is 0)
 acf(DT, type = "covariance")
 ```
 
-![A plot of the autocorrelation function: this shows the correlation
-between $y_t$ and different lagged values of $y_t$. The first four
-correlations (starting with the correlation of $y_t$ and $y_t$) are
-positive and then the rest are close to 0; this is what we would expect
-from the data generating process.](Images/MA_Model/ACF.png){width="70%"}
+![A plot of the autocorrelation function: this shows the correlation between $y_t$ and different lagged values of $y_t$. The first four correlations (starting with the correlation of $y_t$ and $y_t$) are positive and then the rest are close to 0; this is what we would expect from the data generating process.](Images/MA_Model/ACF.png)
 
-``` {.r}
+```r
 #Here I'm estimating an ARIMA(0,0,3) model which is a MA(3) model. Changing c(0,0,q) allows us to estimate a MA(q) process.
 arima(x = DT, order = c(0,0,3))
 ```
@@ -122,7 +109,7 @@ arima(x = DT, order = c(0,0,3))
     ## 
     ## sigma^2 estimated as 0.9825:  log likelihood = -1410.63,  aic = 2831.25
 
-``` {.r}
+```r
 #We can also estimate a MA(7) model and see that the ma4, ma5, ma6, and ma7 are close to 0 and insignificant.
 arima(x = DT, order = c(0,0,7))
 ```
@@ -138,7 +125,7 @@ arima(x = DT, order = c(0,0,7))
     ## 
     ## sigma^2 estimated as 0.9806:  log likelihood = -1409.65,  aic = 2837.3
 
-``` {.r}
+```r
 #fable is a package designed to estimate ARIMA models. We can use it to estimate our MA(3) model.
 library(fable) 
 #an extension of tidyverse to temporal data (this allows us to create time series data into tibbles which are needed for fable functionality)
@@ -147,7 +134,7 @@ library(tsibble)
 library(dplyr)
 ```
 
-``` {.r}
+```r
 #When using the fable package, we need to convert our object into a tsibble (a time series tibble). This gives us a data frame with values and an index for the time periods
 DT = DT %>%
   as_tsibble()
@@ -165,7 +152,7 @@ head(DT)
     ## 5     5 -0.640
     ## 6     6  0.182
 
-``` {.r}
+```r
 #Now we can use the dplyr package to pipe our dataset and create a fitted model
 #Note: the ARIMA function in the fable package uses an information criterion for model selection; these can be set as shown below; additional information is above in the Keep in Mind section (the default criterion is aicc)
 MAfit = DT %>%
@@ -186,7 +173,7 @@ report(MAfit)
     ## sigma^2 estimated as 0.9857:  log likelihood=-1410.73
     ## AIC=2829.47   AICc=2829.51   BIC=2849.1
 
-``` {.r}
+```r
 #if instead we want to specify the model manually, we need to specify it. For MA models, set the pdq(0,0,q) term to the MA(q) order you want to estimate. For example: Estimating a MA(7) would mean that I should put pdq(0,0,7). Additionally, you can add a constant if wanted; this is shown below
 
 #with constant
@@ -207,7 +194,7 @@ report(MAfit)
     ## sigma^2 estimated as 0.9865:  log likelihood=-1410.63
     ## AIC=2831.25   AICc=2831.31   BIC=2855.79
 
-``` {.r}
+```r
 #without constant
 MAfit = DT %>%
   model(arima = ARIMA(value ~ 0 + pdq(0,0,3), ic = "aicc"))
@@ -226,7 +213,7 @@ report(MAfit)
     ## sigma^2 estimated as 0.9857:  log likelihood=-1410.73
     ## AIC=2829.47   AICc=2829.51   BIC=2849.1
 
-``` {.r}
+```r
 #A faster, more compact way to write a code would be as follows:
 
 #Automatic estimation
@@ -247,7 +234,7 @@ DT %>%
     ## sigma^2 estimated as 0.9857:  log likelihood=-1410.73
     ## AIC=2829.47   AICc=2829.51   BIC=2849.1
 
-``` {.r}
+```r
 #Manual estimation
 DT %>%
   as_tsibble() %>%
