@@ -45,7 +45,7 @@ library(rdrobust)
 
 # Load RDD of house elections from the R package rddtools,
 # and originally from Lee (2008) https://www.sciencedirect.com/science/article/abs/pii/S0304407607001121
-df <- read.csv("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Estimation/Data/Regression_Discontinuity_Design/house.csv")
+df <- read.csv("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Regression_Discontinuity_Design/house.csv")
 
 # x is "vote margin in the previous election" and y is "vote margin in this election"
 
@@ -83,7 +83,7 @@ A standard package for performing regression discontinuity in Stata is **rdrobus
 
 * Load RDD of house elections from the R package rddtools,
 * and originally from Lee (2008) https://www.sciencedirect.com/science/article/abs/pii/S0304407607001121
-import delimited "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Estimation/Data/Regression_Discontinuity_Design/house.csv", clear
+import delimited "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Regression_Discontinuity_Design/house.csv", clear
 
 * x is "vote margin in the previous election" and y is "vote margin in this election"
 
