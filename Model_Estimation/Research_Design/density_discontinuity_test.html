@@ -10,14 +10,20 @@
   <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Tables | LOST</title>
+<title>Density Discontinuity Tests for Regression Discontinuity | LOST</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Tables" />
+<meta property="og:title" content="Density Discontinuity Tests for Regression Discontinuity" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"@type":"WebPage","url":"/Presentation/Tables/Tables.html","headline":"Tables","@context":"https://schema.org"}</script>
+{"@type":"WebPage","url":"/Model_Estimation/Research_Design/density_discontinuity_test.html","headline":"Density Discontinuity Tests for Regression Discontinuity","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML">
+  </script>
 </head>
 <body>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -70,7 +76,7 @@
                         <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="nav-list-link">Reshape Panel Data from Wide to Long</a>
                       </li><li class="nav-list-item ">
                         <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="nav-list-link">Reshape Panel Data from Long to Wide</a>
-                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/rowwise_calculations.html" class="nav-list-link">Rowwise Calculations</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Geo-Spatial/Geo-spatial.html" class="nav-list-link">Geo-Spatial</a><ul class="nav-list "><li class="nav-list-item "><a href="/Geo-Spatial/choropleths.html" class="nav-list-link">Choropleths</a></li><li class="nav-list-item "><a href="/Geo-Spatial/geocoding.html" class="nav-list-link">Geocoding</a></li><li class="nav-list-item "><a href="/Geo-Spatial/merging_shape_files.html" class="nav-list-link">Merging Shape Files</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_joins.html" class="nav-list-link">Spatial Joins</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_lag_model.html" class="nav-list-link">Spatial Lag Model</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Machine_Learning/Machine_Learning.html" class="nav-list-link">Machine Learning</a><ul class="nav-list "><li class="nav-list-item "><a href="/Machine_Learning/artificial_neural_network.html" class="nav-list-link">Artificial Neural Network</a></li><li class="nav-list-item "><a href="/Machine_Learning/boosted_regression_trees.html" class="nav-list-link">Boosted Regression Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/causal_forest.html" class="nav-list-link">Causal Forest</a></li><li class="nav-list-item "><a href="/Machine_Learning/decision_trees.html" class="nav-list-link">Decision Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/penalized_regression.html" class="nav-list-link">Penalized Regression</a></li><li class="nav-list-item "><a href="/Machine_Learning/random_forest.html" class="nav-list-link">Random Forest</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Model_Estimation.html" class="nav-list-link">Model Estimation</a><ul class="nav-list "><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/OLS/OLS.html" class="nav-list-link">Ordinary Least Squares</a><ul class="nav-list"><li class="nav-list-item ">
+                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/rowwise_calculations.html" class="nav-list-link">Rowwise Calculations</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Geo-Spatial/Geo-spatial.html" class="nav-list-link">Geo-Spatial</a><ul class="nav-list "><li class="nav-list-item "><a href="/Geo-Spatial/choropleths.html" class="nav-list-link">Choropleths</a></li><li class="nav-list-item "><a href="/Geo-Spatial/geocoding.html" class="nav-list-link">Geocoding</a></li><li class="nav-list-item "><a href="/Geo-Spatial/merging_shape_files.html" class="nav-list-link">Merging Shape Files</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_joins.html" class="nav-list-link">Spatial Joins</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_lag_model.html" class="nav-list-link">Spatial Lag Model</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Machine_Learning/Machine_Learning.html" class="nav-list-link">Machine Learning</a><ul class="nav-list "><li class="nav-list-item "><a href="/Machine_Learning/artificial_neural_network.html" class="nav-list-link">Artificial Neural Network</a></li><li class="nav-list-item "><a href="/Machine_Learning/boosted_regression_trees.html" class="nav-list-link">Boosted Regression Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/causal_forest.html" class="nav-list-link">Causal Forest</a></li><li class="nav-list-item "><a href="/Machine_Learning/decision_trees.html" class="nav-list-link">Decision Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/penalized_regression.html" class="nav-list-link">Penalized Regression</a></li><li class="nav-list-item "><a href="/Machine_Learning/random_forest.html" class="nav-list-link">Random Forest</a></li></ul></li><li class="nav-list-item active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Model_Estimation.html" class="nav-list-link">Model Estimation</a><ul class="nav-list "><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/OLS/OLS.html" class="nav-list-link">Ordinary Least Squares</a><ul class="nav-list"><li class="nav-list-item ">
                         <a href="/Model_Estimation/OLS/simple_linear_regression.html" class="nav-list-link">Simple Linear Regression</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/OLS/interaction_terms_and_polynomials.html" class="nav-list-link">Interaction Terms and Polynomials</a>
@@ -88,8 +94,8 @@
                         <a href="/Model_Estimation/Multilevel_Models/linear_mixed_effects_regression.html" class="nav-list-link">Linear Mixed-Effects Regression</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/Multilevel_Models/random_mixed_effects_estimation.html" class="nav-list-link">Random/Mixed Effects in Linear Regression</a>
-                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Research_Design/Research_Design.html" class="nav-list-link">Research Design</a><ul class="nav-list"><li class="nav-list-item ">
-                        <a href="/Model_Estimation/Research_Design/density_discontinuity_test.html" class="nav-list-link">Density Discontinuity Tests for Regression Discontinuity</a>
+                      </li></ul></li><li class="nav-list-item  active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Research_Design/Research_Design.html" class="nav-list-link">Research Design</a><ul class="nav-list"><li class="nav-list-item  active">
+                        <a href="/Model_Estimation/Research_Design/density_discontinuity_test.html" class="nav-list-link active">Density Discontinuity Tests for Regression Discontinuity</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/Research_Design/instrumental_variables.html" class="nav-list-link">Instrumental Variables</a>
                       </li><li class="nav-list-item ">
@@ -100,7 +106,7 @@
                         <a href="/Model_Estimation/Statistical_Inference/linear_hypothesis_tests.html" class="nav-list-link">Linear Hypothesis Tests</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/Statistical_Inference/Nonstandard_Errors/nonstandard_errors.html" class="nav-list-link">Nonstandard Errors</a>
-                      </li></ul></li></ul></li><li class="nav-list-item active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Presentation.html" class="nav-list-link">Presentation</a><ul class="nav-list "><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Figures/Figures.html" class="nav-list-link">Figures</a><ul class="nav-list"><li class="nav-list-item ">
+                      </li></ul></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Presentation.html" class="nav-list-link">Presentation</a><ul class="nav-list "><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Figures/Figures.html" class="nav-list-link">Figures</a><ul class="nav-list"><li class="nav-list-item ">
                         <a href="/Presentation/Figures/Scatterplots.html" class="nav-list-link">Scatterplots</a>
                       </li><li class="nav-list-item ">
                         <a href="/Presentation/Figures/Styling_Scatterplots.html" class="nav-list-link">Styling Scatterplots</a>
@@ -126,7 +132,7 @@
                         <a href="/Presentation/Figures/styling_line_graphs.html" class="nav-list-link">Styling Line Graphs</a>
                       </li><li class="nav-list-item ">
                         <a href="/Presentation/Figures/formatting_graph_legends.html" class="nav-list-link">Formatting Graph Legends</a>
-                      </li></ul></li><li class="nav-list-item  active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Tables/Tables.html" class="nav-list-link active">Tables</a><ul class="nav-list"><li class="nav-list-item ">
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Tables/Tables.html" class="nav-list-link">Tables</a><ul class="nav-list"><li class="nav-list-item ">
                         <a href="/Presentation/Tables/Balance_Tables.html" class="nav-list-link">Balance Tables</a>
                       </li><li class="nav-list-item ">
                         <a href="/Presentation/Tables/Regression_Tables.html" class="nav-list-link">Regression Tables</a>
@@ -151,32 +157,86 @@
     <div id="main-content-wrap" class="main-content-wrap">
           <nav aria-label="Breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb-nav-list">
-                <li class="breadcrumb-nav-list-item"><a href="/Presentation/Presentation.html">Presentation</a></li>
-              <li class="breadcrumb-nav-list-item"><span>Tables</span></li>
+                <li class="breadcrumb-nav-list-item"><a href="/Model_Estimation/Model_Estimation.html">Model Estimation</a></li>
+                <li class="breadcrumb-nav-list-item"><a href="/Model_Estimation/Research_Design/Research_Design.html">Research Design</a></li>
+              <li class="breadcrumb-nav-list-item"><span>Density Discontinuity Tests for Regression Discontinuity</span></li>
             </ol>
           </nav>
       <div id="main-content" class="main-content" role="main">
-          <h1 id="tables">
-          <a href="#tables" aria-labelledby="tables" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Tables
+          <h1 id="density-discontinuity-tests-for-regression-discontinuity">
+          <a href="#density-discontinuity-tests-for-regression-discontinuity" aria-labelledby="density-discontinuity-tests-for-regression-discontinuity" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Density Discontinuity Tests for Regression Discontinuity
       </h1>
-          <hr>
-          <h2 class="text-delta">Table of contents</h2>
-          <ul>
-              <li>
-                <a href="/Presentation/Tables/Balance_Tables.html">Balance Tables</a>
-              </li>
-              <li>
-                <a href="/Presentation/Tables/Regression_Tables.html">Regression Tables</a>
-              </li>
-              <li>
-                <a href="/Presentation/Tables/Summary_Statistics_Tables.html">Summary Statistics Tables</a>
-              </li>
-          </ul>
+<p>The <a href="/Model_Estimation/Research_Design/regression_discontinuity_design.html">Regression Discontinuity Design</a> can be applied in cases where a running variable (a.k.a. forcing variable) determines treatment, at least partially, and where the treatment assignment changes significantly at a cutoff variable. In sharp designs, there is no treatment if the running variable is to one side of the cutoff, but everyone with a running variable to the other side of the cutoff is treated.</p>
+<p>Regression discontinuity in all its forms (sharp, fuzzy, kink, etc.) relies on an assumption that the running variable is not being manipulated around the cutoff value. For example, imagine the running variable is a math test score, the treatment is getting to skip a grade in math, and treatment assignment is that you get to skip a grade if your score is above 90 (cutoff). If someone knows they’re about to get an 89 and so works extra hard because they know how close they are to the cutoff, or if a grader observes someone getting an 89, decides they’re close enough, and fudges their score to be a 90 so they can skip a grade, then the running variable is being manipulated. You can no longer assume that people just on either side of the cutoff are comparable, and the research design falls apart.</p>
+<p>Density discontinuity tests are intended to check for the presence of manipulation at the cutoff. Generally, they examine the density distribution of the running variable, and look for a discontinuity in the density function just to either side of the cutoff. If there is one (in our math score example, perhaps we see hardly anyone with an 88 or 89, but lots of people with 90 or 91), then the running variable is probably manipulated.</p>
+<p>There are several ways to perform this test, all of them descending from <a href="https://www.sciencedirect.com/science/article/pii/S0304407607001133">McCrary (2008)</a>. This page will also show the test based on <a href="https://rdpackages.github.io/references/Cattaneo-Jansson-Ma_2020_JASA.pdf">Cattaneo, Jansson, and Ma (2020)</a>, which requires fewer choices of tuning parameters, and takes fuller advantage of local polynomial regression.</p>
+      <h2 id="keep-in-mind">
+          <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
+      </h2>
+<ul>
+  <li>Density discontinuity tests can only detect the presence of manipulation that would change the distribution of the running variable. If manipulation takes the form of the person who <em>chooses the cutoff</em> intentionally placing it for their own benefit, or the running variable being manipulated in <em>both directions</em> (in our test score example, some strange test grader doesn’t just kick a few 88-89 scores up to 90-91, but instead manipulates people both in and out of treatment, also replacing some 90-91 scores with 88-89s), then the density distribution test will not detect this. As with any research design, carefully consider if your assumptions make sense, don’t rely only on a statistical test.</li>
+</ul>
+      <h2 id="also-consider">
+          <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
+      </h2>
+<ul>
+  <li>The page on <a href="/Model_Estimation/Research_Design/regression_discontinuity_design.html">Regression Discontinuity Design</a> and <a href="/Model_Estimation/Research_Design/regression_kink_design.html">Regression Kink Design</a></li>
+</ul>
+      <h1 id="implementations">
+          <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
+      </h1>
+      <h2 id="r">
+          <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
+      </h2>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary</span><span class="w">
+</span><span class="c1"># install.packages(c('rdd','rddensity'))</span><span class="w">
+
+</span><span class="c1"># Load RDD of house elections from the R package rddtools,</span><span class="w">
+</span><span class="c1"># and originally from Lee (2008) https://www.sciencedirect.com/science/article/abs/pii/S0304407607001121</span><span class="w">
+</span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Regression_Discontinuity_Design/house.csv"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">## Run McCrary (2008) version of the test</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">rdd</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Give it the running variable and the cutpoint</span><span class="w">
+</span><span class="c1"># it will automatically produce a plot and select the number of bins and the bandwidth</span><span class="w">
+</span><span class="c1"># The output will be hte p-value for the presence of a discontinuity</span><span class="w">
+</span><span class="n">DCdensity</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">## Run the Cattaneo, Jansson, and Ma (2020) estimator</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">rddensity</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Give it the running variable and the cutoff</span><span class="w">
+</span><span class="c1"># It will pick the bandwidth, and has default polynomials, kernel, and bias correction</span><span class="w">
+</span><span class="c1"># It doesn't have bins to pick</span><span class="w">
+</span><span class="n">denstest</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rddensity</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">denstest</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Not plot the density discontinuity</span><span class="w">
+</span><span class="c1"># It needs the density test object we just made</span><span class="w">
+</span><span class="n">rdplotdensity</span><span class="p">(</span><span class="n">denstest</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+      <h2 id="stata">
+          <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
+      </h2>
+<p>In Stata, code for the original McCrary (2008) test cannot be installed from the command line like most packages. If you wish to perform the original version of the test, you can find installation instructions and example code at <a href="https://eml.berkeley.edu/~jmccrary/DCdensity/">McCrary’s website</a>.</p>
+<p>The Cattaneo, Jansson, and Ma (2020) version is easier to install, and code follows:</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* if necessary
+* ssc install rddensity
+
+* Load RDD of house elections from the R package rddtools,
+* and originally from Lee (2008) https://www.sciencedirect.com/science/article/abs/pii/S0304407607001121
+</span><span class="err">import</span> <span class="err">delimited</span> <span class="s2">"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Regression_Discontinuity_Design/house.csv"</span><span class="err">,</span> <span class="err">clear
+</span><span class="c1">
+* We need a running variable and a cutoff, other defaults can be seen in hte help file
+* the "plot" option adds a plot while we're at it
+</span><span class="err">rddensity</span> <span class="err">x,</span> <span class="err">c(0)</span> <span class="err">plot
+</span></code></pre></div></div>
           <hr>
           <footer>
               <div class="d-flex mt-2">
                   <p class="text-small text-grey-dk-000 mb-0">
-                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Presentation/Tables/Tables.md" id="edit-this-page">Edit this page on GitHub.</a>
+                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Model_Estimation/Research_Design/density_discontinuity_test.md" id="edit-this-page">Edit this page on GitHub.</a>
                   </p>
               </div>
           </footer>
