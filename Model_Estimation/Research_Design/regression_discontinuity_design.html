@@ -190,36 +190,6 @@
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
-      <h2 id="stata">
-          <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
-      </h2>
-<p>A standard package for performing regression discontinuity in Stata is <strong>rdrobust</strong>, installable from <code class="language-plaintext highlighter-rouge">scc</code>.</p>
-<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* If necessary
-* ssc install rdrobust
-
-* Load RDD of house elections from the R package rddtools,
-* and originally from Lee (2008) https://www.sciencedirect.com/science/article/abs/pii/S0304407607001121
-</span><span class="err">import</span> <span class="err">delimited</span> <span class="s2">"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Estimation/Data/Regression_Discontinuity_Design/house.csv"</span><span class="err">,</span> <span class="err">clear
-</span><span class="c1">
-* x is "vote margin in the previous election" and y is "vote margin in this election"
-
-* If we want to specify options for bandwidth selection, we can run rdbwselect directly.
-* Otherwise, rdrobust will run it with default options by itself
-* c(0) indicates that treatment is assigned at 0 (i.e. someone gets more votes than the opponent)
-</span><span class="err">rdbwselect</span> <span class="err">y</span> <span class="err">x,</span> <span class="err">c(0)
-</span><span class="c1">
-* Run a sharp RDD with a second-order polynomial term
-</span><span class="err">rdrobust</span> <span class="err">y</span> <span class="err">x,</span> <span class="err">c(0)</span> <span class="err">p(2)
-</span><span class="c1">
-* Run a fuzzy RDD 
-* We don't have a fuzzy RDD in this data, but let's create one, where
-* probability of treatment jumps from 20% to 60% at the cutoff
-</span><span class="err">g</span> <span class="err">treatment</span> <span class="o">=</span> <span class="err">(runiform()</span> <span class="o">&lt;</span> <span class="err">.2)</span><span class="o">*</span><span class="err">(x</span> <span class="o">&lt;</span> <span class="err">0)</span> <span class="o">+</span> <span class="err">(runiform()</span> <span class="o">&lt;</span> <span class="err">.6)</span><span class="o">*</span><span class="err">(x</span> <span class="o">&gt;=</span> <span class="err">0)
-rdrobust</span> <span class="err">y</span> <span class="err">x,</span> <span class="err">c(0)</span> <span class="err">fuzzy(treatment)
-</span><span class="c1">
-* Generate a standard RDD plot with a polynomial of 2 (default is 4)
-</span><span class="err">rdplot</span> <span class="err">y</span> <span class="err">x,</span> <span class="err">c(0)</span> <span class="err">p(2)
-</span></code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
@@ -256,6 +226,36 @@ rdrobust</span> <span class="err">y</span> <span class="err">x,</span> <span cla
 </span><span class="c1"># Generate a standard RDD plot with a polynomial of 2 (default is 4)</span><span class="w">
 </span><span class="n">rdplot</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">x</span><span class="p">,</span><span class="w">
        </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+      <h2 id="stata">
+          <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
+      </h2>
+<p>A standard package for performing regression discontinuity in Stata is <strong>rdrobust</strong>, installable from <code class="language-plaintext highlighter-rouge">scc</code>.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* If necessary
+* ssc install rdrobust
+
+* Load RDD of house elections from the R package rddtools,
+* and originally from Lee (2008) https://www.sciencedirect.com/science/article/abs/pii/S0304407607001121
+</span><span class="err">import</span> <span class="err">delimited</span> <span class="s2">"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Estimation/Data/Regression_Discontinuity_Design/house.csv"</span><span class="err">,</span> <span class="err">clear
+</span><span class="c1">
+* x is "vote margin in the previous election" and y is "vote margin in this election"
+
+* If we want to specify options for bandwidth selection, we can run rdbwselect directly.
+* Otherwise, rdrobust will run it with default options by itself
+* c(0) indicates that treatment is assigned at 0 (i.e. someone gets more votes than the opponent)
+</span><span class="err">rdbwselect</span> <span class="err">y</span> <span class="err">x,</span> <span class="err">c(0)
+</span><span class="c1">
+* Run a sharp RDD with a second-order polynomial term
+</span><span class="err">rdrobust</span> <span class="err">y</span> <span class="err">x,</span> <span class="err">c(0)</span> <span class="err">p(2)
+</span><span class="c1">
+* Run a fuzzy RDD 
+* We don't have a fuzzy RDD in this data, but let's create one, where
+* probability of treatment jumps from 20% to 60% at the cutoff
+</span><span class="err">g</span> <span class="err">treatment</span> <span class="o">=</span> <span class="err">(runiform()</span> <span class="o">&lt;</span> <span class="err">.2)</span><span class="o">*</span><span class="err">(x</span> <span class="o">&lt;</span> <span class="err">0)</span> <span class="o">+</span> <span class="err">(runiform()</span> <span class="o">&lt;</span> <span class="err">.6)</span><span class="o">*</span><span class="err">(x</span> <span class="o">&gt;=</span> <span class="err">0)
+rdrobust</span> <span class="err">y</span> <span class="err">x,</span> <span class="err">c(0)</span> <span class="err">fuzzy(treatment)
+</span><span class="c1">
+* Generate a standard RDD plot with a polynomial of 2 (default is 4)
+</span><span class="err">rdplot</span> <span class="err">y</span> <span class="err">x,</span> <span class="err">c(0)</span> <span class="err">p(2)
 </span></code></pre></div></div>
           <hr>
           <footer>
