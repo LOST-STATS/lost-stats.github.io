@@ -29,6 +29,7 @@ Regression discontinuity receives a lot of attention because it relies on what s
 ## Also Consider
 
 - The [Regression Kink Design]({{ "/Model_Estimation/regression_kink_design.html" | relative_url }}) is an extension of RDD that looks for a change in *a relationship between the running variable and the outcome*, i.e. the slope, at the cutoff, rather than a change in the predicted outcome.
+- It is common to run a [Density Discontinuity Test]({{ "/Model_Estimation/density_discontinuity_test.html" | relative_url }}) to check for manipulation in the running vairiable before performing a regression discontinuity.
 - Regression discontinuity designs are often accompanied by placebo tests, where the same RDD is run again, but with a covariate or some other non-outcome measure used as the outcome. If the RDD shows a significant effect for the covariates, this suggests that balancing did not occur properly and there may be an issue with the RDD assumptions.
 - Part of performing an RDD is selecting a bandwidth around the cutoff to focus on. This can be done by context, but more commonly there are data-based methods for selecting a bandwidth Check your RDD command of choice to see what methods are available for selecting a bandwidth.
 
