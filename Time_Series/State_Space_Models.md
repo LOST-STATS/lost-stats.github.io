@@ -1,6 +1,6 @@
 
 ---
-title: ARIMA Models
+title: State Space Models
 parent: Time Series
 has_children: false
 nav_order: 1
