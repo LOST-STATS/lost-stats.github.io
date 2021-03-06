@@ -39,7 +39,9 @@ In other words, in the absence of restrictions, the parameters of the state spac
 
 # Also Consider 
 
--
+- Recall that a stationary ARMA process can be expressed as a state space model.
+This may not be necessary, however, unless the data in use has missing observations.
+If there are no missing data, then one can defer to the standard method of estimating ARMA models described on the [ARMA page]({{ "/Time_Series/ARMA-models.html" | relative_url }}).
 
 # Implementations
 
