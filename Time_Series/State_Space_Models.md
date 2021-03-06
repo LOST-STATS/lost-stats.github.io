@@ -14,7 +14,7 @@ It has two main components: (1) a hidden/latent $$x_t$$ process referred to as t
 Let us consider the most basic state space model -- the linear Gaussian model -- in which $$x_t$$ follows a linear autoregressive process and $$y_t$$ is a linear mapping of $x_t$ with added noise.
 The linear Gaussian state space model is characterized by the following state equation:
 
-$$ x_{t} + F \, x_{t-1} + u_t \, ,$$
+$$ x_{t+1} + F \, x_{t} + u_{t+1} \, ,$$
 
 where $$x_t$$ and $$u_t$$ are both $$p \times 1$$ vectors, such that $$u_t \sim i.i.d. N(0,Q)$$. 
 It is assumed that the initial state vector $$x_0$$ is drawn from a normal distribution. 
