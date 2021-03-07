@@ -28,6 +28,7 @@ For additional information about the state-space repsentation, refer to [Wikiped
 
 # Keep in Mind
 
+- Expressing a dynamic process in state-space form allows us to apply the Kalman filter and smoother.
 - The parameters of a linear Gaussian state space model can be estimated using a maximum likelihood approach.
 This is made possible by the fact that the innovation vectors $$u_t$$ and $$v_t$$ are assumed to be multivariate standard normal.
 The Kalman filter can be used to construct the likelihood function, which can be transformed into a log-likelihood function and simply optimized with respect to the parameters. 
@@ -44,6 +45,33 @@ This may not be necessary, however, unless the data in use has missing observati
 If there are no missing data, then one can defer to the standard method of estimating ARMA models described on the [ARMA page]({{ "/Time_Series/ARMA-models.html" | relative_url }}).
 
 # Implementations
+
+First, follow the [instructions]({{ "/Time_Series/creating_time_series_dataset.html" | relative_url }}) for creating and formatting time-series data using your software of choice. 
+We will again use quarterly US GDP data downloaded from [FRED](https://fred.stlouisfed.org/series/GDPC1) as an example.
+We estimate the quarterly log change in GDP using an ARMA(3,1) model in state space form to follow the [ARMA implementation]({{ "/Time_Series/ARMA-models.html" | relative_url }}). 
+
+An ARMA($$p,q$$) process 
+
+$$ y_t = c + \sum_{i = 1}^{3} \phi_i Y_{t-i} + \sum_{j = 1}^{1} \theta_j \varepsilon_{t-j} + \varepsilon_t $$
+
+may be expressed in state-space form in a variety of ways -- the following is an example of a common parsimonious approach.
+The state equation (also referred to as the transition equation) may be expressed as 
+
+$$ 
+\begin{bmatrix} y_t \\ y_{t-1} \\ y_{t-2} \\ \varepsilon_t \end{bmatrix}
+= 
+\begin{bmatrix} c \\ 0 \\ 0 \\ 0 \end{bmatrix} 
++
+\begin{bmatrix} \phi_1 & \phi_2 & \phi_3 & \theta \\ 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix}
+\, \begin{bmatrix} y_{t-1} \\ y_{t-2} \\ y_{t-3} \\ \varepsilon_{t-1} \end{bmatrix}
++
+\begin{bmatrix} \varepsilon_t \\ 0 \\ 0 \\ \varepsilon_t \end{bmatrix} \, ,
+$$
+
+while the observation equation (also referred to as the measurement equation) may be expressed as 
+$$ 
+y_t = \begin{bmatrix} 1&0&0&0 \end{bmatrix} \, \begin{bmatrix} y_t \\ y_{t-1} \\ y_{t-2} \\ \varepsilon_t \end{bmatrix} \, .
+$$
 
 ## R
 
