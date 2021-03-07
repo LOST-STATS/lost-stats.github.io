@@ -75,10 +75,66 @@ $$
 
 ## R
 
-Text.
+The following R implementation relies on the ``dlm`` package to build an ARMA(3,1) model and express it in state-space form.
+The ``dlm`` package is used to work with dynamic linear models (DLMs), which is an alternative name to linear state space models.
+To learn more about the package, check out its [CRAN page](https://cran.r-project.org/web/packages/dlm/index.html), as well as [this vignette](https://cran.r-project.org/web/packages/dlm/vignettes/dlm.pdf) written by the author of the package.
+First the ``tsibble`` and ``dlm`` packages are installed and loaded.
+Then US quarterly GDP data is loaded and log-differentiated in the same exact way as shown on the [ARMA page]({{ "/Time_Series/ARMA-models.html" | relative_url }}).
+Then an ARMA(3,1) model is built and implicitly put in state-space form using the ``dlm`` package, after which it is fit to the loaded series using a maximum likelihood approach.
+The parameters of the estimated model are stored in ``mod``, and the estimated observation and state error matrices are also stored in ``obs.error.var`` and ``state.error.var``, respectively.
+Lastly, both the Kalman filter and smoother are applied to the model, the results of which are stored in the ``filtered`` and ``smoothed`` objects, respectively.
 
 ```r
 
+## Install and load time series packages
+if (!require("tsibble")) install.packages("tsibble")
+library(tsibble)
+if (!require("dlm")) install.packages("dlm")
+library(dlm)
 
+# Prepare the data
+
+## Load data
+gdp = read.csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv")
+
+## Set our data up as a time-series
+gdp$DATE <- as.Date(gdp$DATE)
+
+gdp_ts <- as_tsibble(gdp,
+                     index = DATE,
+                     regular = FALSE) %>%
+  index_by(qtr = ~ yearquarter(.))
+
+## Construct our first difference of log gdp variable
+gdp_ts$lgdp=log(gdp_ts$GDPC1)
+
+gdp_ts$ldiffgdp=difference(gdp_ts$lgdp, lag=1, difference=1)
+
+# Estimate ARMA(3,1) using the above data
+
+## Define log-diff gdp as vector y
+y <- gdp_ts$ldiffgdp
+
+## Build ARMA(3,1) model
+fn <- function(parm) {
+  dlmModARMA(ar = c(parm[1], parm[2], parm[3]), 
+             ma = parm[4], 
+             sigma2 = parm[5])
+}
+
+## Fit the model to the data
+fit <- dlmMLE(y, c(rep(0, 4),1), build = fn, hessian = TRUE)
+(conv <- fit$convergence)
+
+## Store var-cov stats
+mod <- fn(fit$par)
+obs.error.var <- V(mod)
+state.error.var <- W(mod)
+
+# Apply the Kalman filter
+filtered <- dlmFilter(y, mod = mod)
+
+# Apply the Kalman smoother
+smoothed <- dlmSmooth(filtered)
 
 ```
