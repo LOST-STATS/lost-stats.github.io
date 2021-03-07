@@ -41,7 +41,7 @@ In other words, in the absence of restrictions, the parameters of the state spac
 # Also Consider 
 
 - Recall that a stationary ARMA process can be expressed as a state space model.
-This may not be necessary, however, unless the data in use has missing observations.
+This may not be necessary, however, unless the given data has missing observations.
 If there are no missing data, then one can defer to the standard method of estimating ARMA models described on the [ARMA page]({{ "/Time_Series/ARMA-models.html" | relative_url }}).
 
 # Implementations
@@ -72,6 +72,8 @@ while the observation equation (also referred to as the measurement equation) ma
 $$ 
 y_t = \begin{bmatrix} 1&0&0&0 \end{bmatrix} \, \begin{bmatrix} y_t \\ y_{t-1} \\ y_{t-2} \\ \varepsilon_t \end{bmatrix} \, .
 $$
+
+The observation matrix $$A_t$$ in our implementation will be time-invariant ($$A_t = A, \forall t$$). 
 
 ## R
 
