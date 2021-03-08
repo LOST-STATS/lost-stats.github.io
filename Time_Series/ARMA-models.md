@@ -1,9 +1,9 @@
 ---
-title: ARMA Models
-parent: Time Series
-has_children: false
-mathjax: true
+title: "ARMA Models"
+mathjax: yes
 nav_order: 1
+parent: Time Series
+has_children: no
 ---
 
 # Autoregressive Moving-Average (ARMA) Models
