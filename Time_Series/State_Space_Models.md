@@ -1,9 +1,9 @@
 ---
-title: "State Space Models"
+title: State Space Models
 parent: Time Series
 has_children: false
-nav_order: 1
 mathjax: true
+nav_order: 1
 ---
 
 # Linear Gaussian State Space Models
