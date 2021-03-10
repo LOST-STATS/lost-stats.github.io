@@ -189,14 +189,12 @@
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
 <p>R has multiple packages that can estimate a nested logit model. To show a simple example, we will use the <code class="language-plaintext highlighter-rouge">mlogit</code> package.</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Install mlogit and AER packages and load them.</span><span class="w">
-</span><span class="c1"># install.packages("mlogit","AER")</span><span class="w">
-</span><span class="n">library</span><span class="p">(</span><span class="s2">"mlogit"</span><span class="p">,</span><span class="s2">"AER"</span><span class="p">)</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Install mlogit and AER packages and load them. Latter is just for a dataset we'll be using.</span><span class="w">
+</span><span class="c1"># install.packages("mlogit", "AER")</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="s2">"mlogit"</span><span class="p">,</span><span class="w"> </span><span class="s2">"AER"</span><span class="p">)</span><span class="w">
 
 </span><span class="c1"># Load dataset TravelMode</span><span class="w">
-</span><span class="n">data</span><span class="p">(</span><span class="s2">"TravelMode"</span><span class="p">,</span><span class="n">package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"AER"</span><span class="p">)</span><span class="w">
-
-
+</span><span class="n">data</span><span class="p">(</span><span class="s2">"TravelMode"</span><span class="p">,</span><span class="w"> </span><span class="n">package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"AER"</span><span class="p">)</span><span class="w">
 
 </span><span class="c1"># Use the mlogit() function to run a nested logit estimation</span><span class="w">
 
@@ -204,14 +202,15 @@
 </span><span class="c1"># choose using cost and wait times</span><span class="w">
 
 </span><span class="n">nestedlogit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mlogit</span><span class="p">(</span><span class="w">
-  </span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">choice</span><span class="o">~</span><span class="n">gcost</span><span class="o">+</span><span class="n">wait</span><span class="p">,</span><span class="w">
+  </span><span class="n">choice</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">gcost</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">wait</span><span class="p">,</span><span class="w">
   </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TravelMode</span><span class="p">,</span><span class="w">
   </span><span class="c1">##The variable from which our nests are determined</span><span class="w">
   </span><span class="n">alt.var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'mode'</span><span class="p">,</span><span class="w">
   </span><span class="c1">#The variable that dictates the binary choice</span><span class="w">
   </span><span class="n">choice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'choice'</span><span class="p">,</span><span class="w">
   </span><span class="c1">#List of nests as named vectors</span><span class="w">
-  </span><span class="n">nests</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Fast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'air'</span><span class="p">,</span><span class="s1">'train'</span><span class="p">),</span><span class="w"> </span><span class="n">Slow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'car'</span><span class="p">,</span><span class="s1">'bus'</span><span class="p">)))</span><span class="w">
+  </span><span class="n">nests</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Fast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'air'</span><span class="p">,</span><span class="s1">'train'</span><span class="p">),</span><span class="w"> </span><span class="n">Slow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'car'</span><span class="p">,</span><span class="s1">'bus'</span><span class="p">))</span><span class="w">
+  </span><span class="p">)</span><span class="w">
 
 
 </span><span class="c1"># The results</span><span class="w">
