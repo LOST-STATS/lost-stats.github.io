@@ -34,14 +34,12 @@ R has multiple packages that can estimate a nested logit model. To show a simple
 
 
 ```r
-# Install mlogit and AER packages and load them.
-# install.packages("mlogit","AER")
-library("mlogit","AER")
+# Install mlogit and AER packages and load them. Latter is just for a dataset we'll be using.
+# install.packages("mlogit", "AER")
+library("mlogit", "AER")
 
 # Load dataset TravelMode
-data("TravelMode",package = "AER")
-
-
+data("TravelMode", package = "AER")
 
 # Use the mlogit() function to run a nested logit estimation
 
@@ -49,14 +47,15 @@ data("TravelMode",package = "AER")
 # choose using cost and wait times
 
 nestedlogit = mlogit(
-  formula = choice~gcost+wait,
+  choice ~ gcost + wait,
   data = TravelMode,
   ##The variable from which our nests are determined
   alt.var = 'mode',
   #The variable that dictates the binary choice
   choice = 'choice',
   #List of nests as named vectors
-  nests = list(Fast = c('air','train'), Slow = c('car','bus')))
+  nests = list(Fast = c('air','train'), Slow = c('car','bus'))
+  )
 
 
 # The results
