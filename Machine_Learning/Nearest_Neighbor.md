@@ -43,7 +43,7 @@ $$\bar{x}_k = \frac{1}{n}\sum_{i=1}^{n}x^i_k $$
 $$d_{WE}(i,j) = \biggl(\sum_{k=1}^{p}w_k(x^i_k - x^j_k)^2\biggr)^\frac{1}{2} $$
 
 4. Choosing k 
-   * Increasing k reduces variance and increases bias.  
+   * Increasing k reduces variance and increases bias.
   
 5. For high-dimensional space, problem that the nearest neighbor may not be very close at all.
 
@@ -54,7 +54,7 @@ $$d_{WE}(i,j) = \biggl(\sum_{k=1}^{p}w_k(x^i_k - x^j_k)^2\biggr)^\frac{1}{2} $$
 
 ## Python
 
-For KNN, it is not required to import packages other than **numpy**. You can do KNN basically with two packages because it is mostly about computing distance and normalization. You would need TensorFlow and Keras as you try more advanced algorithms such as convolutional neural network. 
+For KNN, it is not required to import packages other than **numpy**. You can basically do KNN with one package because it is mostly about computing distance and normalization. You would need TensorFlow and Keras as you try more advanced algorithms such as convolutional neural network. 
 
 ```c
 import argparse
