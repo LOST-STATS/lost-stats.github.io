@@ -19,14 +19,14 @@ $$
 
 ## Definition
 
-Let $\epsilon_t \sim N(0, \sigma^2_{\epsilon})$. A moving average
+Let $$\epsilon_t \sim N(0, \sigma^2_{\epsilon})$$. A moving average
 process, which is denoted MA(q), take the form as:
 
 $$
 y_t = \mu + \epsilon_t + \theta_1 \epsilon_{t-1} + ... + \theta_q \epsilon_{t-q}
 $$
 
-Note that a MA(q) process has *q lagged $\epsilon$ terms*. Thus a MA(1)
+Note that a MA(q) process has *q lagged $$\epsilon$$ terms*. Thus a MA(1)
 process would take the form:
 
 $$
@@ -46,7 +46,7 @@ $$
 $$
 Var(y_t) = Var(\mu + \epsilon_t + \theta_1 \epsilon_{t-1}) = (1 + \theta_1^2) * \sigma^2_{\epsilon}  $$
 
-3. The covariance between $y_t$ and $y_{t-q}$ is decreasing as $q \to \infty$. 
+3. The covariance between $$y_t$$ and $$y_{t-q}$$ is decreasing as $$q \to \infty$$. 
 
 $$
 Cov(y_t, y_{t-1}) = E(y_t*y_{t-1}) - E(y_t)E(y_{t-1}) \\
