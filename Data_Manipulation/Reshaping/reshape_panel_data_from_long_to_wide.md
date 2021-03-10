@@ -126,6 +126,19 @@ pop_wide <- pivot_wider(population,
                                names_prefix = "pop_")
 ```
 
+Another way to do this is using `data.table`.
+
+```r
+#install.packages('data.table')
+library(data.table)
+
+population = as.data.table(population)
+pop_wide = dcast(population,
+                 country ~ year,
+                 value.var = "population"
+                 )
+```
+
 ## Stata
 
 ```stata

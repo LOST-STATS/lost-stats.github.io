@@ -141,6 +141,21 @@ billboard_long <- pivot_longer(billboard,
 # If reshaping to create multiple variables, see the names_sep or names_pattern options.
 ```
 
+This task can also be done through `data.table`.
+
+```r
+#install.packages('data.table')
+library(data.table)
+
+billboard = as.data.table(billboard)
+billboard_long = melt(billboard, 
+                   id = 1:3, 
+                   na.rm=TRUE,
+                   variable.names = "Week",
+                   value.name = "Position"
+                   )
+```
+
 ## Stata
 
 ```stata
