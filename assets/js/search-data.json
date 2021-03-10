@@ -343,13 +343,13 @@
   },"57": {
     "doc": "MA Models",
     "title": "Definition",
-    "content": "Let $\\epsilon_t \\sim N(0, \\sigma^2_{\\epsilon})$. A moving average process, which is denoted MA(q), take the form as: . \\[y_t = \\mu + \\epsilon_t + \\theta_1 \\epsilon_{t-1} + ... + \\theta_q \\epsilon_{t-q}\\] Note that a MA(q) process has q lagged $\\epsilon$ terms. Thus a MA(1) process would take the form: . \\[y_t = \\mu + \\epsilon_t + \\theta_1 \\epsilon_{t-1}\\] ",
+    "content": "Let \\(\\epsilon_t \\sim N(0, \\sigma^2_{\\epsilon})\\). A moving average process, which is denoted MA(q), take the form as: . \\[y_t = \\mu + \\epsilon_t + \\theta_1 \\epsilon_{t-1} + ... + \\theta_q \\epsilon_{t-q}\\] Note that a MA(q) process has q lagged \\(\\epsilon\\) terms. Thus a MA(1) process would take the form: . \\[y_t = \\mu + \\epsilon_t + \\theta_1 \\epsilon_{t-1}\\] ",
     "url": "/Time_Series/MA_Model.html#definition",
     "relUrl": "/Time_Series/MA_Model.html#definition"
   },"58": {
     "doc": "MA Models",
     "title": "Properties of a MA(1) process:",
-    "content": ". | The mean is constant. | . \\[E(y_t) = E(\\mu + \\epsilon_t + \\theta_1 \\epsilon_{t-1}) = \\mu\\] . | The variance is constant. | . \\[Var(y_t) = Var(\\mu + \\epsilon_t + \\theta_1 \\epsilon_{t-1}) = (1 + \\theta_1^2) * \\sigma^2_{\\epsilon}\\] . | The covariance between $y_t$ and $y_{t-q}$ is decreasing as $q \\to \\infty$. | . \\[Cov(y_t, y_{t-1}) = E(y_t*y_{t-1}) - E(y_t)E(y_{t-1}) \\\\ = E([\\mu + \\epsilon_t + \\theta_1 \\epsilon_{t-1}] [\\mu + \\epsilon_{t-1} + \\theta_1 \\epsilon_{t-2}]) - \\mu^2 \\\\ = \\mu^2 + \\theta_1 \\sigma_{\\epsilon}^2 -\\mu^2 \\\\ = \\theta_1 \\sigma_{\\epsilon}^2\\] \\[Cov(y_t, y_{t-2}) = E(y_t*y_{t-2}) - E(y_t)E(y_{t-2}) \\\\ = E([\\mu + \\epsilon_t + \\theta_1 \\epsilon_{t-1}] [\\mu + \\epsilon_{t-2} + \\theta_1 \\epsilon_{t-3}]) - \\mu^2 \\\\ = \\mu^2 -\\mu^2 \\\\ = 0\\] Additional helpful information can be found at Wikipedia: Moving Average Models . ",
+    "content": ". | The mean is constant. | . \\[E(y_t) = E(\\mu + \\epsilon_t + \\theta_1 \\epsilon_{t-1}) = \\mu\\] . | The variance is constant. | . \\[Var(y_t) = Var(\\mu + \\epsilon_t + \\theta_1 \\epsilon_{t-1}) = (1 + \\theta_1^2) * \\sigma^2_{\\epsilon}\\] . | The covariance between \\(y_t\\) and \\(y_{t-q}\\) is decreasing as \\(q \\to \\infty\\). | . \\[Cov(y_t, y_{t-1}) = E(y_t*y_{t-1}) - E(y_t)E(y_{t-1}) \\\\ = E([\\mu + \\epsilon_t + \\theta_1 \\epsilon_{t-1}] [\\mu + \\epsilon_{t-1} + \\theta_1 \\epsilon_{t-2}]) - \\mu^2 \\\\ = \\mu^2 + \\theta_1 \\sigma_{\\epsilon}^2 -\\mu^2 \\\\ = \\theta_1 \\sigma_{\\epsilon}^2\\] \\[Cov(y_t, y_{t-2}) = E(y_t*y_{t-2}) - E(y_t)E(y_{t-2}) \\\\ = E([\\mu + \\epsilon_t + \\theta_1 \\epsilon_{t-1}] [\\mu + \\epsilon_{t-2} + \\theta_1 \\epsilon_{t-3}]) - \\mu^2 \\\\ = \\mu^2 -\\mu^2 \\\\ = 0\\] Additional helpful information can be found at Wikipedia: Moving Average Models . ",
     "url": "/Time_Series/MA_Model.html#properties-of-a-ma1-process",
     "relUrl": "/Time_Series/MA_Model.html#properties-of-a-ma1-process"
   },"59": {

@@ -172,10 +172,10 @@ to the snowfall today. This means when we think of the process, we should accoun
       <h2 id="definition">
           <a href="#definition" aria-labelledby="definition" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Definition
       </h2>
-<p>Let $\epsilon_t \sim N(0, \sigma^2_{\epsilon})$. A moving average
+<p>Let \(\epsilon_t \sim N(0, \sigma^2_{\epsilon})\). A moving average
 process, which is denoted MA(q), take the form as:</p>
 \[y_t = \mu + \epsilon_t + \theta_1 \epsilon_{t-1} + ... + \theta_q \epsilon_{t-q}\]
-<p>Note that a MA(q) process has <em>q lagged $\epsilon$ terms</em>. Thus a MA(1)
+<p>Note that a MA(q) process has <em>q lagged \(\epsilon\) terms</em>. Thus a MA(1)
 process would take the form:</p>
 \[y_t = \mu + \epsilon_t + \theta_1 \epsilon_{t-1}\]
       <h2 id="properties-of-a-ma1-process">
@@ -190,7 +190,7 @@ process would take the form:</p>
 </ol>
 \[Var(y_t) = Var(\mu + \epsilon_t + \theta_1 \epsilon_{t-1}) = (1 + \theta_1^2) * \sigma^2_{\epsilon}\]
 <ol>
-  <li>The covariance between $y_t$ and $y_{t-q}$ is decreasing as $q \to \infty$.</li>
+  <li>The covariance between \(y_t\) and \(y_{t-q}\) is decreasing as \(q \to \infty\).</li>
 </ol>
 \[Cov(y_t, y_{t-1}) = E(y_t*y_{t-1}) - E(y_t)E(y_{t-1}) \\
     = E([\mu + \epsilon_t + \theta_1 \epsilon_{t-1}] [\mu + \epsilon_{t-1} + \theta_1 \epsilon_{t-2}]) - \mu^2 \\
