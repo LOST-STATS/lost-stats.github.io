@@ -3,9 +3,6 @@ title: "Nested Logit Model"
 parent: Model Estimation
 has_children: false
 nav_order: 1
-output: 
-  html_document:
-    keep_md: TRUE
 mathjax: TRUE
 ---
 
