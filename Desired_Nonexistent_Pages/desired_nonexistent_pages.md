@@ -68,7 +68,6 @@ If you create one of these pages, please remove it from this list.
 
 * A-B Testing
 * Artificial Neural Networks
-* Nearest Neighbors Matching
 
 ## Presentation
 
