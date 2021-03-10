@@ -24,7 +24,7 @@ Lots of training data | Do not lose information
 
 1. Distance measure 
    * Most common: Euclidean distance
-   * Euclidean distance makes sens when different measurements are commensurate; each is variable measured in the same units.
+   * Euclidean distance makes sense when different measurements are commensurate; each is variable measured in the same units.
    * If the measurements are different, say length and weight, it is not clear.
   
 $$d_{E}(x^{i}, x^{j}) = (\sum_{k=1}^{p}(x^{i}_k - x^{j}_k)^2)^\frac{1}{2}$$
@@ -43,9 +43,9 @@ $$\bar{x}_k = \frac{1}{n}\sum_{i=1}^{n}x^i_k $$
 $$d_{WE}(i,j) = \biggl(\sum_{k=1}^{p}w_k(x^i_k - x^j_k)^2\biggr)^\frac{1}{2} $$
 
 4. Choosing k 
-   * Increasing k reduces variance and increases bias.  <p>&nbsp;</p>
+   * Increasing k reduces variance and increases bias.
   
-5. For high-dimensional space, problem that the nearest neighbor may not be very close at all.  <p>&nbsp;</p>
+5. For high-dimensional space, problem that the nearest neighbor may not be very close at all.
 
 6. Memory-based technique. Must make a pass through the data for each classification. This can be prohibitive for large data sets. 
 
@@ -54,7 +54,7 @@ $$d_{WE}(i,j) = \biggl(\sum_{k=1}^{p}w_k(x^i_k - x^j_k)^2\biggr)^\frac{1}{2} $$
 
 ## Python
 
-For KNN, it is not required to import packages other than **numpy**. You can do KNN basically with two packages because it is mostly about computing distance and normalization. You would need TensorFlow and Keras as you try more advanced algorithms such as convolutional neural network. 
+For KNN, it is not required to import packages other than **numpy**. You can do KNN basically with one package because it is mostly about computing distance and normalization. You would need TensorFlow and Keras as you try more advanced algorithms such as convolutional neural network. 
 
 ```c
 import argparse
