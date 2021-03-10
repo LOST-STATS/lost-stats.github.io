@@ -1,6 +1,6 @@
 ---
 title: Nested Logit Model
-parent: Generalized Least Squares
+parent: Generalised Least Squares
 has_children: false
 nav_order: 1
 mathjax: TRUE
