@@ -1,6 +1,6 @@
 ---
-title: "Nested Logit Model"
-parent: Model Estimation
+title: Nested Logit Model
+parent: Generalized Least Squares
 has_children: false
 nav_order: 1
 mathjax: TRUE
