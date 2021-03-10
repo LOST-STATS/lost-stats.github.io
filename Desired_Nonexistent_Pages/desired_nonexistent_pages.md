@@ -38,6 +38,7 @@ If you create one of these pages, please remove it from this list.
 * Mixed Logit
 * Endogenous Switching Model
 * Nonparametric Sample Selection Models
+* Treatment Effect Model
 
 ### Multilevel Models
 
@@ -57,7 +58,6 @@ If you create one of these pages, please remove it from this list.
 * Average Marginal Effects
 * Marginal Effects at the Mean
 * Nonlinear hypothesis tests
-* Treatment Effect Model
 
 #### Nonstandard Errors
 
@@ -73,7 +73,6 @@ If you create one of these pages, please remove it from this list.
 
 ### Figures
 
-* Marginal Effects Plots for Discrete Variables
 * Graph themes
 
 ### Tables
