@@ -347,6 +347,40 @@
 <span class="c"># GPU example (requires working CUDA installation)</span>
 <span class="n">reg</span><span class="x">(</span><span class="n">df</span><span class="x">,</span> <span class="nd">@formula</span><span class="x">(</span><span class="n">earnings_med</span> <span class="o">~</span> <span class="n">prop_working</span> <span class="o">+</span> <span class="n">fe</span><span class="x">(</span><span class="n">inst_name</span><span class="x">)</span> <span class="o">+</span> <span class="n">fe</span><span class="x">(</span><span class="n">year</span><span class="x">)),</span> <span class="n">Vcov</span><span class="o">.</span><span class="n">cluster</span><span class="x">(</span><span class="o">:</span><span class="n">inst_name</span><span class="x">),</span> <span class="n">method</span> <span class="o">=</span> <span class="o">:</span><span class="n">lsmr_gpu</span><span class="x">)</span>
 </code></pre></div></div>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<p>There are a few packages for doing the same task in Python, however, there is a well-known issue with these packages.That is, the calculation of standard deviation might be a little different.</p>
+<p>We are going to use <code class="language-plaintext highlighter-rouge">linearmodels</code> in python. Installation can be done through <code class="language-plaintext highlighter-rouge">pip install linearmodels</code> and the documentation is  <a href="https://bashtage.github.io/linearmodels/">here</a></p>
+<pre><code class="language-Python"># Import the packages
+import pandas as pd
+from linearmodels import PanelOLS
+import numpy as np
+
+
+# Load the data
+data = pd.read_csv(r"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv")
+
+# Set the index for fixed effects
+data = data.set_index(['inst_name', 'year'])
+
+# Calculate and drop the NA Values
+data['prop_working'] = data['count_working']/(data['count_working'] + data['count_not_working'])
+#data = data.dropna(subset=['earnings_med', 'prop_working'])
+
+# Regression
+FE = PanelOLS(data.earnings_med, data['prop_working'],
+              entity_effects = True,
+              time_effects=True
+              )
+              
+# Result
+result = FE.fit(cov_type = 'clustered',
+             cluster_entity=True,
+             # cluster_time=True
+             )
+</code></pre>
+<p>There are also other packages for fixed effect models, such as <code class="language-plaintext highlighter-rouge">econtools</code> (<a href="https://pypi.org/project/econtools/">link</a>), <code class="language-plaintext highlighter-rouge">FixedEffectModelPyHDFE</code> (<a href="https://pypi.org/project/FixedEffectModelPyHDFE/">link</a>), <code class="language-plaintext highlighter-rouge">regpyhdfe</code>(<a href="https://regpyhdfe.readthedocs.io/en/latest/intro.html">link</a>) and <code class="language-plaintext highlighter-rouge">econtools</code> (<a href="https://pypi.org/project/econtools/">link</a>).</p>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>

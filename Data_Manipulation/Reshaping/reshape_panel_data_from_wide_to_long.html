@@ -347,6 +347,18 @@
 </span><span class="c1"># values_drop_na says to drop any rows containing missing values of position.</span><span class="w">
 </span><span class="c1"># If reshaping to create multiple variables, see the names_sep or names_pattern options.</span><span class="w">
 </span></code></pre></div></div>
+<p>This task can also be done through <code class="language-plaintext highlighter-rouge">data.table</code>.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#install.packages('data.table')</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">data.table</span><span class="p">)</span><span class="w">
+
+</span><span class="n">billboard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.data.table</span><span class="p">(</span><span class="n">billboard</span><span class="p">)</span><span class="w">
+</span><span class="n">billboard_long</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">melt</span><span class="p">(</span><span class="n">billboard</span><span class="p">,</span><span class="w"> 
+                   </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span><span class="w"> 
+                   </span><span class="n">na.rm</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w">
+                   </span><span class="n">variable.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Week"</span><span class="p">,</span><span class="w">
+                   </span><span class="n">value.name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Position"</span><span class="w">
+                   </span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
       <h2 id="stata">
           <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
       </h2>

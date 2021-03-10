@@ -333,6 +333,21 @@
                                </span><span class="n">values_from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">population</span><span class="p">,</span><span class="w">
                                </span><span class="n">names_prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"pop_"</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
+<p>Another way to do this is using <code class="language-plaintext highlighter-rouge">data.table</code>.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#install.packages('data.table')</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">data.table</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># The second argument here is the formula describing the observation level of the data</span><span class="w">
+</span><span class="c1"># The full set of variables together is the current observation level (one row per country and year)</span><span class="w">
+</span><span class="c1"># The parts before the ~ are what we want the new observation level to be in the wide data (one row per country)</span><span class="w">
+</span><span class="c1"># The parts after the ~ are for the variables we want to no longer be part of the observation level (we no longer want a row per year)</span><span class="w">
+
+</span><span class="n">population</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.data.table</span><span class="p">(</span><span class="n">population</span><span class="p">)</span><span class="w">
+</span><span class="n">pop_wide</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dcast</span><span class="p">(</span><span class="n">population</span><span class="p">,</span><span class="w">
+                 </span><span class="n">country</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w">
+                 </span><span class="n">value.var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"population"</span><span class="w">
+                 </span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
       <h2 id="stata">
           <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
       </h2>
