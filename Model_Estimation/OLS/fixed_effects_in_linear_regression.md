@@ -55,7 +55,7 @@ reg(df, @formula(earnings_med ~ prop_working + fe(inst_name) + fe(year)), Vcov.c
 reg(df, @formula(earnings_med ~ prop_working + fe(inst_name) + fe(year)), Vcov.cluster(:inst_name), method = :lsmr_gpu)
 ```
 
-## python
+## Python
 
 There are a few packages for doing the same task in Python, however, there is a well-known issue with these packages.That is, the calculation of standard deviation might be a little different. 
 
