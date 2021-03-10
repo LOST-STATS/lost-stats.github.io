@@ -126,6 +126,24 @@ pop_wide <- pivot_wider(population,
                                names_prefix = "pop_")
 ```
 
+Another way to do this is using `data.table`.
+
+```r
+#install.packages('data.table')
+library(data.table)
+
+# The second argument here is the formula describing the observation level of the data
+# The full set of variables together is the current observation level (one row per country and year)
+# The parts before the ~ are what we want the new observation level to be in the wide data (one row per country)
+# The parts after the ~ are for the variables we want to no longer be part of the observation level (we no longer want a row per year)
+
+population = as.data.table(population)
+pop_wide = dcast(population,
+                 country ~ year,
+                 value.var = "population"
+                 )
+```
+
 ## Stata
 
 ```stata
