@@ -21,11 +21,11 @@ For a more thorough theoretical treatment, see  [SAS Documentation: Nested Logit
 
 ## Keep in Mind
 
-- Returned beta coefficients are not the marginal effects normally return from an OLS regression. They are maximum likelihood estimations. A beta coefficient can not be interpreted as "a unit increase in $X$ leads to a $\beta$ unit change in the probability of $Y$."
+- Returned beta coefficients are not the marginal effects normally returned from an OLS regression. They are maximum likelihood estimations. A beta coefficient can not be interpreted as "a unit increase in $X$ leads to a $\beta$ unit change in the probability of $Y$."
 
 - The marginal effect can be obtained by performing a transformation after you estimate. A rough estimation technique is to divide the beta coefficient by 4.
 
-- Another transformation is the odds ratio. This value is found by raising $e$ to the power of the beta coefficient. $e^\beta$ can be interpreted as : the percentage change in likelihood of $Y$, given a unit change in $X$.
+- Another transformation that may be helpful is the odds ratio. This value is found by raising $e$ to the power of the beta coefficient. $e^\beta$ can be interpreted as : the percentage change in likelihood of $Y$, given a unit change in $X$.
 
 <br>
 
@@ -73,5 +73,5 @@ summary(nestedlogit)
 # The elasticities for each cluster are displayed
 # as iv:Fast and iv:Slow
 ```
-Another set of more robust examples come from [Kenneth Train and Yves Croissant](https://cran.r-project.org/web/packages/mlogit/vignettes/e2nlogit.html)
+Another set of more robust examples comes from [Kenneth Train and Yves Croissant](https://cran.r-project.org/web/packages/mlogit/vignettes/e2nlogit.html)
 
