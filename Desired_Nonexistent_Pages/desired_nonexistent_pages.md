@@ -36,7 +36,6 @@ If you create one of these pages, please remove it from this list.
 * Ordered Logit
 * Conditional Logit
 * Mixed Logit
-* Nested Logit
 * Endogenous Switching Model
 * Nonparametric Sample Selection Models
 
