@@ -30,7 +30,6 @@ If you create one of these pages, please remove it from this list.
 
 * Nonlinear Instrumental Variables Estimation
 * Nonparametric regression
-* Generalized Method of Moments (GMM)
 * Tobit
 * Ordered Probit
 * Ordered Logit
