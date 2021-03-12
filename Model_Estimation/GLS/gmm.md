@@ -29,14 +29,14 @@ For more details, visit the [Wikipedia Page](https://en.wikipedia.org/wiki/Gener
   - **Rank Condition**: The $K \times L$ matrix of derivatives $\bar{G}_n(\theta_0)$ will have full column rank, $L$.
 - Any positive semi-definite weight matrix $\hat{W}$ will produce an asymptotically consistent estimator for $\theta$, but we want to choose the weight matrix that gives estimates the smallest asymptotic variance. There are various methods for choosing $\hat{W}$ outlined [here](https://en.wikipedia.org/wiki/Generalized_method_of_moments#Implementation), which are various iterative processes
 - [Sargan-Hansen J-Test](https://en.wikipedia.org/wiki/Generalized_method_of_moments#Sargan%E2%80%93Hansen_J-test) can be used to test the specification of the model, by determining whether the sample moments are sufficiently close to zero
-- The small sample properties of GMM are not great, consider (bootstrapping)[({{ "Model_Estimation/Statistical_Inference/Nonstandard_Errors/bootstrap_se.html" | relative_url }})] or set $\hat{W} = I$ (See Hayashi, Econometrica pg 215)
+- The small sample properties of GMM are not great, consider (bootstrapping)[({{ "Model_Estimation/Statistical_Inference/Nonstandard_Errors/bootstrap_se.html" | relative_url }})] or set $\hat{W} = I$ (See Hayashi, Econometrics pg 215)
 
 ## Also Consider
 
 - Under certain moment conditions, GMM is equivalent to many other estimators that are used more commonly. These include...
   - **[OLS]({{ "Model_Estimation/OLS/simple_linear_regression.html" | relative_url }})** if $E[x_i(y_i - x_i^\prime\beta)]=0$
   - **[Instrumental Variables]({{ "Model_Estimation/Research_Design/instrumental_variables.html" | relative_url }})** if $E[z_i(y_i - x_i^\prime\beta)]=0$ 
-- Maximum likelihood estimation is also a specific case of GMM that makes assumptions about the distributions of the parameters. This gives maximum likelihood better small sample properties
+- Maximum likelihood estimation is also a specific case of GMM that makes assumptions about the distributions of the parameters. This gives maximum likelihood better small sample properties, at the cost of the stronger assumptions  
 
 
 # Implementations
@@ -75,8 +75,8 @@ gmm_mod = gmm(
   g = g1,
   # Matrix of data
   x = x,
-  # Starting location
-  t0 = c(0,0)
+  # Starting location for minimization algorithm
+  t0 = c(0,0) # Required when g argument is a function
 )
 
 # Reporting results
@@ -84,12 +84,12 @@ summary(gmm_mod)
   
 ```
 
-Another common application of GMM is with linear moment restrictions. These can be specified by writing the regression formula as the `g` argument of the `gmm()` function and the matrix of instruments as the `x` argument. 
+Another common application of GMM is with linear moment restrictions. These can be specified by writing the regression formula as the `g` argument of the `gmm()` function and the matrix of instruments as the `x` argument. Suppose we have a model $y_i = \alpha + \beta x_i + \epsilon_i$, but $E[x_i(y_i - x_i^\prime\beta)]\neq 0$, so OLS would produce a biased estimate of $\beta$. If we have a vector of instruments $z_i$ that are correlated with $x_i$ and have moment conditions $E[z_i(y_i - x_i^\prime\beta)]=0$, then we can use GMM to estimate $\beta$. 
 
 ```r
 
 # library(gmm) # already loaded
-library(gmm)
+
 # Setting parameter values
 alpha = 1
 beta = 2
@@ -101,7 +101,7 @@ z2 = rnorm(n = 500,-1,1)
 e = rnorm(n = 500, 0, 1)
 
 # Collecting instruments
-H = cbind(h1, h2)
+Z = cbind(z1, z2)
 
 # Specifying model, where x is endogenous
 x = z1 + z2 + e
@@ -110,7 +110,7 @@ y = alpha + beta * x + e
 # Running GMM
 lin_gmm_mod = gmm(
   g = y ~ x,
-  x = H
+  x = Z
 )
 
 # Reporting results
