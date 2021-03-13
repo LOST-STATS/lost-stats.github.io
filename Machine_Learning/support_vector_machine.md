@@ -6,9 +6,11 @@ mathjax: true
 nav_order: 1
 ---
 
-# Support Vector Regression
+# Support Vector Machine
 
-A support vector machine (hereinafter, SVM) is one of the classification techniques. The idea is to separate two distinct groups by maximizing the distance between those points that are most hard to classify. To put it more formally, it maximizes the distance or margin between support vectors around the separating hyperplane. Support vectors here imply the data points that lie closest to the hyperplane. Hyperplanes are decision boundaries that are represented by a line (in two dimensional space) or a plane (in three dimensional space) that separate the two groups. 
+A support vector machine (hereinafter, SVM) is a supervised machine learning algorithm in that it is trained by a set of data and then classifies any new input data depending on what it learned during the training phase. SVM can be used both for classification and regression problems but here we focus on its use for classification. 
+
+The idea is to separate two distinct groups by maximizing the distance between those points that are most hard to classify. To put it more formally, it maximizes the distance or margin between support vectors around the separating hyperplane. Support vectors here imply the data points that lie closest to the hyperplane. Hyperplanes are decision boundaries that are represented by a line (in two dimensional space) or a plane (in three dimensional space) that separate the two groups. 
 
 Suppose a hypothetical problem of classifying apples from lemons. Support vectors in this case are apples that look closest to lemons and lemons that look closest to apples. They are the most difficult ones to classify. SVM draws a separating line or hyperplane that maximizes the distance or margin between support vectors, in this case the apples that look closest to the lemons and lemons that look closest to apples. Therefore support vectors are critical in determining the position as well as the slope of the hyperplane.  
 
@@ -28,7 +30,7 @@ For detailed information about derivation of the optimization problem, refer to 
 
 - If data points are not linearly separable, non-linear SVM introduces higher dimensional space that projects data points from original finite-dimensional space to gain linearly separation. Such process of mapping data points into a higher dimensional space is known as the Kernel Trick. There are numerous types of Kernels that can be used to create higher dimensional space including linear, polynomial, Sigmoid, and Radial Basis Function. 
 
-- Setting the right form of kernel is important as it determines the structure of the separator or hyperplane.
+- Setting the right form of Kernel is important as it determines the structure of the separator or hyperplane.
 
 # Also Consider 
 
@@ -37,18 +39,87 @@ For detailed information about derivation of the optimization problem, refer to 
 
 # Implementations
 
-TEXT.
+Following codes describe how to implement SVM in r. SVM relies on ``e1071`` package. To learn more about the package, check out its [CRAN page](https://cran.r-project.org/web/packages/e1071/index.html), as well as [this vignette](https://cran.r-project.org/web/packages/e1071/vignettes/svmdoc.pdf). Several other packages are also loaded to help us manipulate data (``dplyr``, ``tidyverse``) and plot the results (``ggplot2``). 
+
+Two examples are shown below that use linear SVM and non-linear SVM respectively. The first example shows how to implement linear SVM. We start by constructing data, separating them into training and test set. Using the training set, we fit the data using ``svm()`` function. Notice that kernel option for ``svm()`` function is specified as **linear** for our first example. Next, we predict the test data based on the model estimates using ``predict()`` function. The first example result suggests that only one out of 59 data points is incorrectly classified. 
+
+The second example shows how to implement non-linear SVM. The data in example two is generated in a way to have data points of one class centered around the middle whereas data points of the other class spread on two sides. Notice that kernel option for ``svm()`` function is specified as **radial** for our second example, based on the shape of the data. The second example result suggests that only two out of 58 data points are incorrectly classified. 
 
 ## R
 
-TEXT.
-
 ```r
-# Load the necessary packages
-## 
-## 
+# Install and load the packages
+if (!require("tidyverse")) install.packages("tidyverse")
+if (!require("e1071")) install.packages("e1071")
+if (!require("ggplot2")) install.packages("ggplot2")
+if (!require("dplyr")) install.packages("dplyr")
+library(tidyverse) # package for data manipulation
+library(e1071)     # package for SVM 
+library(ggplot2)   # package for plotting
+library(dplyr)     # package for data manipulation
 
-# Data Generating Process 
+###########################
+# Example 1: Linear SVM ###
+###########################
 
+# Construct a completely separable data set
+## Set seed for replication
+set.seed(0715) 
+## Make variable x 
+x = matrix(rnorm(200, mean = 0, sd = 1), nrow = 100, ncol = 2) 
+## Make variable y that labels x by either -1 or 1
+y = rep(c(-1, 1), c(50, 50)) 
+## Make x to have unilaterally higher value when y equals 1 
+x[y == 1,] = x[y == 1,] + 3.5 
+## Construct data set
+d1 = data.frame(x1 = x[,1], x2 = x[,2], y = as.factor(y))
+## Split it into training and test data
+flag = sample(c(0,1), size = nrow(d1), prob=c(0.5,0.5), replace = TRUE) 
+d1 = setNames(split(d1, flag), c("train", "test"))
+
+# Plot
+ggplot(data = d1$train, aes(x = x1, y = x2, color = y, shape = y)) +
+  geom_point(size = 2) + 
+  scale_color_manual(values = c("darkred", "steelblue"))
+
+# SVM classification 
+svmfit1 = svm(y ~ ., data = d1$train, kernel = "linear", cost = 10, scale = FALSE)
+print(svmfit1)
+plot(svmfit1, d1$train)
+
+# Predictability
+pred.d1 = predict(svmfit1, newdata = d1$test) 
+table(pred.d1, d1$test$y)
+
+###############################
+# Example 2: Non Linear SVM ###
+###############################
+
+# Construct less separable data set
+## Make variable x 
+x = matrix(rnorm(200, mean = 0, sd = 1), nrow = 100, ncol = 2) 
+## Make variable y that labels x by either -1 or 1
+y <- rep(c(-1, 1) , c(50, 50)) 
+## Make x to have extreme values when y equals 1 
+x[y == 1, ][1:25,] = x[y==1,][1:25,] + 3.5
+x[y == 1, ][26:50,] = x[y==1,][26:50,] - 3.5
+## Construct data set
+d2 = data.frame(x1 = x[,1], x2 = x[,2], y = as.factor(y)) 
+## Split it into training and test data
+d2 = setNames(split(d2, flag), c("train", "test"))
+
+# Plot data
+ggplot(data = d2$train, aes(x = x1, y = x2, color = y, shape = y)) +
+  geom_point(size = 2) + 
+  scale_color_manual(values = c("darkred", "steelblue"))
+
+# SVM classification
+svmfit2 = svm(y ~ ., data = d2$train, kernel = "radial", cost = 10, scale = FALSE)
+print(svmfit2)
+plot(svmfit2, d2$train)
+
+# Predictability
+pred.d2 = predict(svmfit2, newdata = d2$test) 
+table(pred.d2, d2$test$y)
 
 ```
