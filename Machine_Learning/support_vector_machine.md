@@ -39,13 +39,13 @@ For detailed information about derivation of the optimization problem, refer to 
 
 # Implementations
 
-Following codes describe how to implement SVM in r. SVM relies on ``e1071`` package. To learn more about the package, check out its [CRAN page](https://cran.r-project.org/web/packages/e1071/index.html), as well as [this vignette](https://cran.r-project.org/web/packages/e1071/vignettes/svmdoc.pdf). Several other packages are also loaded to help us manipulate data (``dplyr``, ``tidyverse``) and plot the results (``ggplot2``). 
-
-Two examples are shown below that use linear SVM and non-linear SVM respectively. The first example shows how to implement linear SVM. We start by constructing data, separating them into training and test set. Using the training set, we fit the data using ``svm()`` function. Notice that kernel argument for ``svm()`` function is specified as **linear** for our first example. Next, we predict the test data based on the model estimates using ``predict()`` function. The first example result suggests that only one out of 59 data points is incorrectly classified. 
-
-The second example shows how to implement non-linear SVM. The data in example two is generated in a way to have data points of one class centered around the middle whereas data points of the other class spread on two sides. Notice that kernel argument for ``svm()`` function is specified as **radial** for our second example, based on the shape of the data. The second example result suggests that only two out of 58 data points are incorrectly classified. 
-
 ## R
+
+Following codes describe how to implement SVM in R. SVM relies on ``e1071`` package. To learn more about the package, check out its [CRAN page](https://cran.r-project.org/web/packages/e1071/index.html), as well as [this vignette](https://cran.r-project.org/web/packages/e1071/vignettes/svmdoc.pdf). Several other packages are also loaded to help us manipulate data (**dplyr**, **tidyverse**) and plot the results (**ggplot2**). 
+
+Two examples are shown below that use linear SVM and non-linear SVM respectively. The first example shows how to implement linear SVM. We start by constructing data, separating them into training and test set. Using the training set, we fit the data using the `svm()` function. Notice that kernel argument for ``svm()`` function is specified as *linear* for our first example. Next, we predict the test data based on the model estimates using the `predict()` function. The first example result suggests that only one out of 59 data points is incorrectly classified. 
+
+The second example shows how to implement non-linear SVM. The data in example two is generated in a way to have data points of one class centered around the middle whereas data points of the other class spread on two sides. Notice that kernel argument for the `svm()` function is specified as **radial** for our second example, based on the shape of the data. The second example result suggests that only two out of 58 data points are incorrectly classified. 
 
 ```r
 # Install and load the packages
@@ -56,7 +56,6 @@ if (!require("dplyr")) install.packages("dplyr")
 library(tidyverse) # package for data manipulation
 library(e1071)     # package for SVM 
 library(ggplot2)   # package for plotting
-library(dplyr)     # package for data manipulation
 
 ###########################
 # Example 1: Linear SVM ###
