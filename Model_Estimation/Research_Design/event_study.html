@@ -1,0 +1,387 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/just-the-docs-default.css">
+    <script type="text/javascript" src="/assets/js/vendor/lunr.min.js"></script>
+  <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Difference-in-Difference Event Study | LOST</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Difference-in-Difference Event Study" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="LOST" />
+<script type="application/ld+json">
+{"@type":"WebPage","url":"/Model_Estimation/Research_Design/event_study.html","headline":"Difference-in-Difference Event Study","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML">
+  </script>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="svg-link" viewBox="0 0 24 24">
+      <title>Link</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+    </symbol>
+    <symbol id="svg-search" viewBox="0 0 24 24">
+      <title>Search</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </symbol>
+    <symbol id="svg-menu" viewBox="0 0 24 24">
+      <title>Menu</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+        <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </symbol>
+    <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+      <title>Expand</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </symbol>
+    <symbol id="svg-doc" viewBox="0 0 24 24">
+      <title>Document</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+      </svg>
+    </symbol>
+  </svg>
+  <div class="side-bar">
+    <div class="site-header">
+      <a href="/" class="site-title lh-tight">
+  LOST
+</a>
+      <a href="#" id="menu-button" class="site-button">
+        <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+      </a>
+    </div>
+    <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
+      <ul class="nav-list"><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/data_manipulation.html" class="nav-list-link">Data Manipulation</a><ul class="nav-list "><li class="nav-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="nav-list-link">Collapse a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="nav-list-link">Combining Datasets</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="nav-list-link">Vertical Combination</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="nav-list-link">Horizontal Combination (Deterministic)</a>
+                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/creating_a_variable_with_group_calculations.html" class="nav-list-link">Creating a Variable with Group Calculations</a></li><li class="nav-list-item "><a href="/Data_Manipulation/creating_categorical_variables.html" class="nav-list-link">Creating Categorical Variables</a></li><li class="nav-list-item "><a href="/Data_Manipulation/Creating_Dummy_Variables/creating_dummy_variables.html" class="nav-list-link">Creating Dummy Variables</a></li><li class="nav-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="nav-list-link">Determine the Observation Level of a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Reshaping/reshape.html" class="nav-list-link">Reshaping Data</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="nav-list-link">Reshape Panel Data from Wide to Long</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="nav-list-link">Reshape Panel Data from Long to Wide</a>
+                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/rowwise_calculations.html" class="nav-list-link">Rowwise Calculations</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Geo-Spatial/Geo-spatial.html" class="nav-list-link">Geo-Spatial</a><ul class="nav-list "><li class="nav-list-item "><a href="/Geo-Spatial/choropleths.html" class="nav-list-link">Choropleths</a></li><li class="nav-list-item "><a href="/Geo-Spatial/geocoding.html" class="nav-list-link">Geocoding</a></li><li class="nav-list-item "><a href="/Geo-Spatial/merging_shape_files.html" class="nav-list-link">Merging Shape Files</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_joins.html" class="nav-list-link">Spatial Joins</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_lag_model.html" class="nav-list-link">Spatial Lag Model</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Machine_Learning/Machine_Learning.html" class="nav-list-link">Machine Learning</a><ul class="nav-list "><li class="nav-list-item "><a href="/Machine_Learning/Nearest_Neighbor.html" class="nav-list-link">K-Nearest Neighbor Matching</a></li><li class="nav-list-item "><a href="/Machine_Learning/artificial_neural_network.html" class="nav-list-link">Artificial Neural Network</a></li><li class="nav-list-item "><a href="/Machine_Learning/boosted_regression_trees.html" class="nav-list-link">Boosted Regression Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/causal_forest.html" class="nav-list-link">Causal Forest</a></li><li class="nav-list-item "><a href="/Machine_Learning/decision_trees.html" class="nav-list-link">Decision Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/penalized_regression.html" class="nav-list-link">Penalized Regression</a></li><li class="nav-list-item "><a href="/Machine_Learning/random_forest.html" class="nav-list-link">Random Forest</a></li><li class="nav-list-item "><a href="/Machine_Learning/support_vector_machine.html" class="nav-list-link">Support Vector Machine</a></li></ul></li><li class="nav-list-item active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Model_Estimation.html" class="nav-list-link">Model Estimation</a><ul class="nav-list "><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/OLS/OLS.html" class="nav-list-link">Ordinary Least Squares</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/OLS/simple_linear_regression.html" class="nav-list-link">Simple Linear Regression</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/OLS/interaction_terms_and_polynomials.html" class="nav-list-link">Interaction Terms and Polynomials</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/OLS/fixed_effects_in_linear_regression.html" class="nav-list-link">Fixed Effects in Linear Regression</a>
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/GLS/GLS.html" class="nav-list-link">Generalised Least Squares</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/GLS/gmm.html" class="nav-list-link">Generalized Method of Moments</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/GLS/heckman_correction_model.html" class="nav-list-link">Heckman Correction Model</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/GLS/logit_model.html" class="nav-list-link">Logit Model</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/GLS/mcfaddens_choice_model.html" class="nav-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/GLS/probit_model.html" class="nav-list-link">Probit Model</a>
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Multilevel_Models/Multilevel_Models.html" class="nav-list-link">Multilevel Models</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Multilevel_Models/linear_mixed_effects_regression.html" class="nav-list-link">Linear Mixed-Effects Regression</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Multilevel_Models/random_mixed_effects_estimation.html" class="nav-list-link">Random/Mixed Effects in Linear Regression</a>
+                      </li></ul></li><li class="nav-list-item  active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Research_Design/Research_Design.html" class="nav-list-link">Research Design</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Research_Design/density_discontinuity_test.html" class="nav-list-link">Density Discontinuity Tests for Regression Discontinuity</a>
+                      </li><li class="nav-list-item  active">
+                        <a href="/Model_Estimation/Research_Design/event_study.html" class="nav-list-link active">Difference-in-Difference Event Study</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Research_Design/instrumental_variables.html" class="nav-list-link">Instrumental Variables</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Research_Design/regression_discontinuity_design.html" class="nav-list-link">Regression Discontinuity Design</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html" class="nav-list-link">2x2 Difference in Difference</a>
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Statistical_Inference/Statistical_Inference.html" class="nav-list-link">Statistical Inference</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Statistical_Inference/linear_hypothesis_tests.html" class="nav-list-link">Linear Hypothesis Tests</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Statistical_Inference/Nonstandard_Errors/nonstandard_errors.html" class="nav-list-link">Nonstandard Errors</a>
+                      </li></ul></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Presentation.html" class="nav-list-link">Presentation</a><ul class="nav-list "><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Figures/Figures.html" class="nav-list-link">Figures</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/Scatterplots.html" class="nav-list-link">Scatterplots</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/Styling_Scatterplots.html" class="nav-list-link">Styling Scatterplots</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/bar_graphs.html" class="nav-list-link">Bar Graphs</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/density_plots.html" class="nav-list-link">Density Plots</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/faceted_graphs.html" class="nav-list-link">Faceted Graphs</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/heatmap_colored_correlation_matrix.html" class="nav-list-link">Heatmap Colored Correlation Matrix</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/histograms.html" class="nav-list-link">Histograms</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/line_graph_with_labels_at_the_beginning_or_end.html" class="nav-list-link">Line Graph with Labels at the Beginning or End of Lines</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/line_graphs.html" class="nav-list-link">Line Graphs</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/marginal_effects_plots_for_interactions_with_continuous_variables.html" class="nav-list-link">Marginal Effects Plots for Interactions with Continuous Variables</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/scatterplot_by_group_on_shared_axes.html" class="nav-list-link">Scatterplot by Group on Shared Axes</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/styling_line_graphs.html" class="nav-list-link">Styling Line Graphs</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/formatting_graph_legends.html" class="nav-list-link">Formatting Graph Legends</a>
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Tables/Tables.html" class="nav-list-link">Tables</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Presentation/Tables/Balance_Tables.html" class="nav-list-link">Balance Tables</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Tables/Regression_Tables.html" class="nav-list-link">Regression Tables</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Tables/Summary_Statistics_Tables.html" class="nav-list-link">Summary Statistics Tables</a>
+                      </li></ul></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Time_Series/Time_Series.html" class="nav-list-link">Time Series</a><ul class="nav-list "><li class="nav-list-item "><a href="/Time_Series/AR-models.html" class="nav-list-link">AR Models</a></li><li class="nav-list-item "><a href="/Time_Series/ARCH_Model.html" class="nav-list-link">ARCH Model</a></li><li class="nav-list-item "><a href="/Time_Series/ARMA-models.html" class="nav-list-link">ARMA Models</a></li><li class="nav-list-item "><a href="/Time_Series/GARCH_Model.html" class="nav-list-link">GARCH Model</a></li><li class="nav-list-item "><a href="/Time_Series/Granger_Causality.html" class="nav-list-link">Granger Causality</a></li><li class="nav-list-item "><a href="/Time_Series/MA_Model.html" class="nav-list-link">MA Models</a></li><li class="nav-list-item "><a href="/Time_Series/State_Space_Models.html" class="nav-list-link">State Space Models</a></li><li class="nav-list-item "><a href="/Time_Series/creating_time_series_dataset.html" class="nav-list-link">Creating Time Series Dataset</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Other/Other.html" class="nav-list-link">Other</a><ul class="nav-list "><li class="nav-list-item "><a href="/Other/create_a_conda_package.html" class="nav-list-link">Create a Conda Package (Python)</a></li><li class="nav-list-item "><a href="/Other/get_a_list_of_files.html" class="nav-list-link">Get a List of Files</a></li><li class="nav-list-item "><a href="/Other/import_a_foreign_data_file.html" class="nav-list-link">Import a Foreign Data File</a></li><li class="nav-list-item "><a href="/Other/task_scheduling_with_github_actions.html" class="nav-list-link">Task Scheduling with Github Actions</a></li></ul></li><li class="nav-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="nav-list-link">Desired Nonexistent Pages</a></li><li class="nav-list-item"><a href="/Contributing/Contributing.html" class="nav-list-link">Contributing</a></li><li class="nav-list-item"><a href="/" class="nav-list-link">Home</a></li></ul>
+    </nav>
+    <footer class="site-footer">
+      This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+    </footer>
+  </div>
+  <div class="main" id="top">
+    <div id="main-header" class="main-header">
+        <div class="search">
+          <div class="search-input-wrap">
+            <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search LOST" aria-label="Search LOST" autocomplete="off">
+            <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+          </div>
+          <div id="search-results" class="search-results"></div>
+        </div>
+    </div>
+    <div id="main-content-wrap" class="main-content-wrap">
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list">
+                <li class="breadcrumb-nav-list-item"><a href="/Model_Estimation/Model_Estimation.html">Model Estimation</a></li>
+                <li class="breadcrumb-nav-list-item"><a href="/Model_Estimation/Research_Design/Research_Design.html">Research Design</a></li>
+              <li class="breadcrumb-nav-list-item"><span>Difference-in-Difference Event Study</span></li>
+            </ol>
+          </nav>
+      <div id="main-content" class="main-content" role="main">
+          <p>INTRODUCTION</p>
+<p>A Difference-in-Difference (DID) event study, or a Dynamic DID model, is a useful tool in evaluating treatment effects of the pre- and post- treatment periods in your respective study. However, since treatment can be staggered - where the treatment group are treated at different time periods - it might be challenging to create a clean event study.</p>
+<p>In the following code, we will learn how to create a DID event study when treatment is staggered. If there is only one treatment period, the same methodology as described below can be applied.</p>
+<p>###What is an event study with respect to DID?</p>
+<p>Mechanically, an event study is a graphical illustration of the point estimates and confidence intervals of the regression for each time period before and after the treatment period. It’s further relevant in the DID environment as the point estimates are the average mean differences between the treated and control groups, which provides further evidence of the credibility in assuming parallel trends. A great resource for learning more about DID and event study theory is at <a href="https://mixtape.scunning.com/difference-in-differences.html#providing-evidence-for-parallel-trends-through-event-studies-and-parallel-leads">Causal Inference: The Mixtape</a>.</p>
+      <h3 id="data">
+          <a href="#data" aria-labelledby="data" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Data
+      </h3>
+<p>The paper, <a href="http://ftp.iza.org/dp13524.pdf">Clarke &amp; Schythe (2020)</a>, provides tools to do the event study in STATA, which in this page I apply to R. The data used in the event study below is the same used in <a href="http://ftp.iza.org/dp13524.pdf">Clarke &amp; Schythe (2020)</a>, which originates from <a href="http://users.nber.org/~jwolfers/papers/bargaining_in_the_shadow_of_the_law.pdf">Stevenson and Wolfers (2006)</a>. This data is a balanced panel from 1964 through 1996 of the United States no-fault divorce reforms and female suicide rates. This data has been used in other papers, such as <a href="https://www.nber.org/papers/w25018">Goodman-Bacon (2018)</a>. You can directly download the data <a href="http://www.damianclarke.net/stata/bacon_example.dta">here</a>.</p>
+      <h2 id="the-regression">
+          <a href="#the-regression" aria-labelledby="the-regression" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> The Regression
+      </h2>
+<p>We will be estimating the following model:</p>
+\[asmrs_{st} = \alpha + \Sigma_{k=-21}^{-2}\beta_kI(lag_k)*treat_s+\Sigma_{k=0}^{27}\beta_kI(lead_k)*Treat_s+ X'_{st}\Gamma+\phi_s+\gamma_t+\epsilon_{st}\]
+<ul>
+  <li>
+    <p>$I(lag_k)$ is a dummy variable, equaling 1 if the observation’s <code class="language-plaintext highlighter-rouge">year_to_treat</code> is the same value as <code class="language-plaintext highlighter-rouge">k</code>; 0 otherwise. $I(lead_k)$ is analogous to $I(lag_k)$.</p>
+  </li>
+  <li>
+    <p>$Treat_s=1$ if the state is treated, 0 otherwise. This allows to compare the difference in means at each time period between the treated and the control.</p>
+  </li>
+  <li>
+    <p>The controls, $X<code class="language-plaintext highlighter-rouge">$, are the following: </code>pcinc<code class="language-plaintext highlighter-rouge">, </code>asmrh<code class="language-plaintext highlighter-rouge">, </code>cases`</p>
+  </li>
+  <li>
+    <p>$\phi$ and $\gamma$ are state and time fixed effects</p>
+  </li>
+  <li>
+    <p>Further, the standard errors will be clustered at the state level</p>
+  </li>
+</ul>
+<p>Important notes on the regression</p>
+<ul>
+  <li>
+    <p>The point of the regression is to show for each period before and after treatment that the coefficients on the pre-treated periods are statistically insignificant</p>
+  </li>
+  <li>
+    <p>Showing the control and treated groups are statistically the same ($\beta=0$) supports, though does not prove, the parallel trends assumption in DID estimation.</p>
+  </li>
+</ul>
+<p>In most event studies, the -1 time lag is used as the reference (or dropped from the regression). You can see in the model specification below that the first summation is from the “earliest” period, $k=-21$ to $k=-2$, and the second summation from $k=0$ to $k=27$.</p>
+      <h1 id="r">
+          <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
+      </h1>
+<p>First, load packages and the data</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">pacman</span><span class="p">)</span><span class="w">
+</span><span class="n">p_load</span><span class="p">(</span><span class="n">dplyr</span><span class="p">,</span><span class="w"> </span><span class="n">fixest</span><span class="p">,</span><span class="w"> </span><span class="n">tidyverse</span><span class="p">,</span><span class="w"> </span><span class="n">broom</span><span class="p">,</span><span class="w"> </span><span class="n">fastDummies</span><span class="p">,</span><span class="w"> </span><span class="n">haven</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">#Load data</span><span class="w">
+</span><span class="n">bacon_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_dta</span><span class="p">(</span><span class="s2">"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/bacon_example.dta"</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+      <h2 id="manipulate-data">
+          <a href="#manipulate-data" aria-labelledby="manipulate-data" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Manipulate Data
+      </h2>
+<p>Before we can run the regression or create the graphs, we need to edit and mutate the data.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bacon_df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bacon_df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="w">
+  </span><span class="c1">#create the lag/lead for treated states</span><span class="w">
+  </span><span class="c1">#fill in control obs with 0</span><span class="w">
+  </span><span class="n">time_to_treat</span><span class="w"> </span><span class="o">=</span><span class="n">ifelse</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">`_nfd`</span><span class="p">),</span><span class="m">0</span><span class="p">,</span><span class="n">year</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">`_nfd`</span><span class="p">),</span><span class="w">
+  </span><span class="c1">#this will determine the difference</span><span class="w">
+  </span><span class="c1">#btw controls and treated states </span><span class="w">
+  </span><span class="n">treat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">`_nfd`</span><span class="p">),</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">)</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p>A few notes on the code:</p>
+<ul>
+  <li>
+    <p>Column <code class="language-plaintext highlighter-rouge">_nfd</code> in the data  specifies the year in which the law went into effect for the respective state. We use this column to identify the lead and lags with respect to year of treatment.</p>
+  </li>
+  <li>
+    <p>Note that there are some states in which <code class="language-plaintext highlighter-rouge">_nfd</code> is empty. These states never received treatment, and thus exist as a control.</p>
+  </li>
+  <li>
+    <p>To ensure the control observations are contained in the event study, it’s important to fill in the the <code class="language-plaintext highlighter-rouge">time_to_treat</code> observations with 0s. This allows for the interaction between <code class="language-plaintext highlighter-rouge">treat</code> and <code class="language-plaintext highlighter-rouge">time_to_treat</code> to occur for each state. Otherwise, there may be some NAs and the estimations will be off.</p>
+    <ul>
+      <li>To illustrate this, run the code and analyze <code class="language-plaintext highlighter-rouge">time_to_treat</code>.</li>
+      <li>You should see a sequence of negative and positive numbers between -21 and 27 for each state.</li>
+      <li>States that were never treated will only have 0s.</li>
+      <li>What this means is that if a state, say State A, is treated in 1970, then in the <code class="language-plaintext highlighter-rouge">time_to_treat</code> column, for each year before 1970, the values will be -14,-13,…,-1.</li>
+      <li>Thus, in 1970, the value in <code class="language-plaintext highlighter-rouge">time_to_treat</code> is 0.</li>
+    </ul>
+  </li>
+</ul>
+<p>This is important because in the regression we want to compare for each state the mean values in each period before and after treatment.</p>
+<p>Further, if you’re interested in creating a dummy variable for each lead/lag in your data set, you can use the package <code class="language-plaintext highlighter-rouge">fastDummies</code>. The code to use is the following:</p>
+<p><code class="language-plaintext highlighter-rouge">bacon_df =dummy_cols(bacon_df, select_column = "time_to_treat")</code></p>
+<p>In this study, we don’t need to mutate the dataframe with individual dummies for each lead/lag value.  However, in the case you would like to, the <code class="language-plaintext highlighter-rouge">dummy_cols</code> function makes it effortless to create multiple dummies from a single or multiple columns.</p>
+      <h2 id="regression">
+          <a href="#regression" aria-labelledby="regression" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Regression
+      </h2>
+<p>There are many ways to run a regression in R. Note the following:</p>
+<ul>
+  <li>
+    <p>The regression here will use <code class="language-plaintext highlighter-rouge">feols()</code> from the <code class="language-plaintext highlighter-rouge">fixest</code> package.</p>
+  </li>
+  <li>
+    <p>In the regression, we create the dummy variables by using <code class="language-plaintext highlighter-rouge">i()</code>, highlighting the interaction between <strong>treat</strong> and <strong>time_to_treat</strong> with ref=-1.</p>
+  </li>
+  <li>
+    <p>One of the reasons <code class="language-plaintext highlighter-rouge">feols</code> is powerful is that it is quick, and allows the researcher to create fixed effects (FEs) and clusters seamlessly.</p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">tidy()</code> function wraps the regression in order to create a dataframe and easily estimate the confidence intervals. <strong>This is key</strong> as it makes creating the plot much easier.</p>
+  </li>
+  <li>
+    <p>Lastly, create a new column in the regression data.frame of the years. This way you’re not plotting the coefficient name (which is clunky).</p>
+  </li>
+</ul>
+      <h4 id="regression-code">
+          <a href="#regression-code" aria-labelledby="regression-code" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Regression Code
+      </h4>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">event_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tidy</span><span class="p">(</span><span class="n">feols</span><span class="p">(</span><span class="n">asmrs</span><span class="w"> </span><span class="o">~</span><span class="w">  </span><span class="n">i</span><span class="p">(</span><span class="n">treat</span><span class="p">,</span><span class="w"> </span><span class="n">time_to_treat</span><span class="p">,</span><span class="w"> </span><span class="n">ref</span><span class="o">=</span><span class="m">-1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">pcinc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">asmrh</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cases</span><span class="o">|</span><span class="w"> </span><span class="n">stfips</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">cluster</span><span class="o">=~</span><span class="n">stfips</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">bacon_df</span><span class="p">),</span><span class="w"> </span><span class="n">conf.int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">T</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">year</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">parse_number</span><span class="p">(</span><span class="n">term</span><span class="p">)))</span><span class="w">
+</span></code></pre></div></div>
+      <h3 id="plots">
+          <a href="#plots" aria-labelledby="plots" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Plots
+      </h3>
+<p>In the next two sections, I will show how you can create two types of event study graphs</p>
+<ul>
+  <li>Confidence Interval Lines</li>
+  <li>Confidence Interval Ribbon</li>
+</ul>
+<p>Some notes on the code for the two graphs:</p>
+<ul>
+  <li>
+    <p>Because the regression table includes the coefficients for the controls, you can directly filter those coefficients out of <code class="language-plaintext highlighter-rouge">event_1</code> by using <code class="language-plaintext highlighter-rouge">filter(!is.na(year))</code>.</p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">tidy()</code> allows you to create confidence intervals with the <code class="language-plaintext highlighter-rouge">conf.low</code> and <code class="language-plaintext highlighter-rouge">conf.high</code> estimates.  In the examples below, I used <code class="language-plaintext highlighter-rouge">geom_pointrange</code> and <code class="language-plaintext highlighter-rouge">geom_ribbon</code> to showcase the intervals.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">ggplot</code> provides multiple ways to customize the graph. I’ve included a version of what I personally like. Change up the code to meet your preferences.</p>
+  </li>
+  <li>
+    <p>Further, I added specific lines to highlight $y=0$, $time=0$, and $time=-1$ to communicate the pre- and post-trends.</p>
+  </li>
+</ul>
+      <h3 id="confidence-interval-lines">
+          <a href="#confidence-interval-lines" aria-labelledby="confidence-interval-lines" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Confidence Interval Lines
+      </h3>
+<p><img src="/Model_Estimation/Images/Event_Study/event1.png" alt="" /></p>
+<p>To recreate the graph, use the following code:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="n">event_1</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">year</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">ggplot</span><span class="p">(</span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">estimate</span><span class="p">,</span><span class="w"> </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf.low</span><span class="p">,</span><span class="w">
+         </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf.high</span><span class="p">))</span><span class="o">+</span><span class="w">
+             </span><span class="n">geom_pointrange</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">position_dodge</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="n">fatten</span><span class="o">=</span><span class="m">.5</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="m">.8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="c1">#all the code below is customizable</span><span class="w">
+             </span><span class="n">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="o">=</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.2</span><span class="p">)</span><span class="o">+</span><span class="w">
+             </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-1</span><span class="p">,</span><span class="w"> 
+                </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="m">0.4</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+             </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="o">=</span><span class="s2">"dotted"</span><span class="p">,</span><span class="w"> 
+                </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="m">0.2</span><span class="p">)</span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_bw</span><span class="p">()</span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="w">
+    </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bold"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+    </span><span class="n">legend.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">),</span><span class="w">
+    </span><span class="n">legend.justification</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">
+    </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">
+    </span><span class="n">axis.ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_line</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">),</span><span class="w">
+    </span><span class="n">panel.grid.major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_line</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.07</span><span class="p">),</span><span class="w">
+    </span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">()</span><span class="w">
+  </span><span class="p">)</span><span class="o">+</span><span class="w">
+    </span><span class="n">annotate</span><span class="p">(</span><span class="s2">"text"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">""</span><span class="p">,</span><span class="s2">"treat"</span><span class="p">))</span><span class="o">+</span><span class="w">
+     </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Event Study: Staggered Treatment"</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="s2">"Estimate"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="s2">"Time"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+      <h3 id="confidence-interval-ci-ribbon">
+          <a href="#confidence-interval-ci-ribbon" aria-labelledby="confidence-interval-ci-ribbon" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Confidence Interval (CI) Ribbon
+      </h3>
+<ul>
+  <li>
+    <p>Use <code class="language-plaintext highlighter-rouge">geom_ribbon</code> to show the area of the confidence interval and <code class="language-plaintext highlighter-rouge">geom_point</code> in the ggplot to show the point estimates.</p>
+  </li>
+  <li>
+    <p>If you wanted to combine both the <code class="language-plaintext highlighter-rouge">geom_ribbon</code> with <code class="language-plaintext highlighter-rouge">geom_pointrange</code> that is another possibility.</p>
+  </li>
+  <li>
+    <p>The only difference in this subsequent graph is the <code class="language-plaintext highlighter-rouge">geom_ribbon</code> and <code class="language-plaintext highlighter-rouge">geom_point</code> functions.</p>
+  </li>
+</ul>
+<p><img src="/Model_Estimation/Images/Event_Study/event2.png" alt="" /></p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">event_1</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">year</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">ggplot</span><span class="p">(</span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">estimate</span><span class="p">))</span><span class="w">
+    </span><span class="o">+</span><span class="n">geom_ribbon</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">ymin</span><span class="o">=</span><span class="n">conf.low</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="o">=</span><span class="n">conf.high</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="s2">"gray"</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+             </span><span class="n">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.3</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="o">=</span><span class="s2">"black"</span><span class="p">)</span><span class="o">+</span><span class="w">
+</span><span class="c1">#all the code below is customizable</span><span class="w">
+             </span><span class="n">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="o">=</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.2</span><span class="p">)</span><span class="o">+</span><span class="w">
+             </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-1</span><span class="p">,</span><span class="w"> 
+                </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="m">0.4</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+             </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="o">=</span><span class="s2">"dotted"</span><span class="p">,</span><span class="w"> 
+                </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="m">0.2</span><span class="p">)</span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_bw</span><span class="p">()</span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="w">
+    </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bold"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+    </span><span class="n">legend.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">),</span><span class="w">
+    </span><span class="n">legend.justification</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">
+    </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">
+    </span><span class="n">axis.ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_line</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">),</span><span class="w">
+    </span><span class="n">panel.grid.major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_line</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.07</span><span class="p">),</span><span class="w">
+    </span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">()</span><span class="w">
+  </span><span class="p">)</span><span class="o">+</span><span class="w">
+    </span><span class="n">annotate</span><span class="p">(</span><span class="s2">"text"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">""</span><span class="p">,</span><span class="s2">"treat"</span><span class="p">))</span><span class="o">+</span><span class="w">
+   </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Event Study: Staggered Treatment"</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="s2">"Estimate"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="s2">"Time"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+          <hr>
+          <footer>
+              <div class="d-flex mt-2">
+                  <p class="text-small text-grey-dk-000 mb-0">
+                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Model_Estimation/Research_Design/event_study.md" id="edit-this-page">Edit this page on GitHub.</a>
+                  </p>
+              </div>
+          </footer>
+      </div>
+    </div>
+      <div class="search-overlay"></div>
+  </div>
+</body>
+</html>
