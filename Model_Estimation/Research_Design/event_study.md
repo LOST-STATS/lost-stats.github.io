@@ -1,5 +1,5 @@
 ---
-title: Difference-in-Difference Event Study
+title: Difference in Differences Event Study
 grand_parent: Model Estimation
 parent: Research Design
 has_children: false
