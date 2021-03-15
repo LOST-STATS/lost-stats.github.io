@@ -35,7 +35,6 @@ If you create one of these pages, please remove it from this list.
 * Ordered Probit
 * Ordered Logit
 * Conditional Logit
-* Mixed Logit
 * Endogenous Switching Model
 * Nonparametric Sample Selection Models
 * Treatment Effect Model
