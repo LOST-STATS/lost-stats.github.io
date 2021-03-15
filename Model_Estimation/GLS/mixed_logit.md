@@ -7,7 +7,7 @@ nav_order: 1
 mathjax: TRUE
 ---
 
-A mixed logit model (sometimes referred to as a random parameters logit model) estimates distributional parameters that allow for individual-level heterogeneity in tastes that are not compatible with a traditional logit framework.  Mixed logit models can also provide for additional flexibility as it pertains to correlated random parameters.
+A mixed logit model (sometimes referred to as a random parameters logit model) estimates distributional parameters that allow for individual-level heterogeneity in tastes that are not compatible with a traditional logit framework.  Mixed logit models can also provide for additional flexibility as it pertains to correlated random parameters and can be used with panel data.
 
 For more information about mixed logit models, see [Wikipedia: Mixed Logit.](https://en.wikipedia.org/wiki/Mixed_logit)
 
