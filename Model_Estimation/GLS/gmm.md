@@ -1,6 +1,6 @@
 ---
 title: Generalized Method of Moments
-parent: Generalized Least Squares
+parent: Generalised Least Squares
 grand_parent: Model Estimation
 has_children: false
 nav_order: 1
@@ -31,7 +31,7 @@ For more details, visit the [Wikipedia Page](https://en.wikipedia.org/wiki/Gener
   - **Rank Condition**: The $$K \times L$$ matrix of derivatives $$\bar{G}_n(\theta_0)$$ will have full column rank, $$L$$.
 - Any positive semi-definite weight matrix $$\hat{W}$$ will produce an asymptotically consistent estimator for $$\theta$$, but we want to choose the weight matrix that gives estimates the smallest asymptotic variance. There are various methods for choosing $$\hat{W}$$ outlined [here](https://en.wikipedia.org/wiki/Generalized_method_of_moments#Implementation), which are various iterative processes
 - [Sargan-Hansen J-Test](https://en.wikipedia.org/wiki/Generalized_method_of_moments#Sargan%E2%80%93Hansen_J-test) can be used to test the specification of the model, by determining whether the sample moments are sufficiently close to zero
-- The small sample properties of GMM are not great, consider (bootstrapping)[({{ "Model_Estimation/Statistical_Inference/Nonstandard_Errors/bootstrap_se.html" | relative_url }})] or set $$\hat{W} = I$$ (See Hayashi, Econometrics pg 215)
+- The small sample properties of GMM are not great, consider [bootstrapping]({{ "Model_Estimation/Statistical_Inference/Nonstandard_Errors/bootstrap_se.html" | relative_url }}) or set $$\hat{W} = I$$ (See Hayashi, Econometrics pg 215)
 
 ## Also Consider
 
