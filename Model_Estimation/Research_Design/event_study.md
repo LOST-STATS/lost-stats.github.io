@@ -1,5 +1,5 @@
 ---
-title: Event Study Estimation
+title: Difference-in-Difference Event Study
 grand_parent: Model Estimation
 parent: Research Design
 has_children: false
@@ -10,13 +10,44 @@ mathjax: true
 
 INTRODUCTION 
 
-Event studies are a useful tool in evaluating pre-trends in difference-in-difference (DID) models. Since treatment in some DID models are staggered, it may be challenging to create a clean event study.  
+A Difference-in-Difference (DID) event study, or a Dynamic DID model, is a useful tool in evaluating treatment effects of the pre- and post- treatment periods in your respective study. However, since treatment can be staggered - where the treatment group are treated at different time periods - it might be challenging to create a clean event study.
 
-An event study is composed typically of a regression and a graph showing the point estimates and the confidence intervals. Depending on the panel data, one might have the case where different groups are treated at the same time (called a 2X2 DID) or at different times (staggered). In both cases, the methodology is similar. If one can do a staggered event study, then a 2x2 event study will be an easy follow-up. Thus, in this page the focus will be on an event study with staggard treatment. 
+In the following code, we will learn how to create a DID event study when treatment is staggered. If there is only one treatment period, the same methodology as described below can be applied.  
+
+###What is an event study with respect to DID? 
+
+Mechanically, an event study is a graphical illustration of the point estimates and confidence intervals of the regression for each time period before and after the treatment period. It's further relevant in the DID environment as the point estimates are the average mean differences between the treated and control groups, which provides further evidence of the credibility in assuming parallel trends. A great resource for learning more about DID and event study theory is at [Causal Inference: The Mixtape](https://mixtape.scunning.com/difference-in-differences.html#providing-evidence-for-parallel-trends-through-event-studies-and-parallel-leads). 
 
 ### Data
 
 The paper, [Clarke & Schythe (2020)](http://ftp.iza.org/dp13524.pdf), provides tools to do the event study in STATA, which in this page I apply to R. The data used in the event study below is the same used in [Clarke & Schythe (2020)](http://ftp.iza.org/dp13524.pdf), which originates from [Stevenson and Wolfers (2006)](http://users.nber.org/~jwolfers/papers/bargaining_in_the_shadow_of_the_law.pdf). This data is a balanced panel from 1964 through 1996 of the United States no-fault divorce reforms and female suicide rates. This data has been used in other papers, such as [Goodman-Bacon (2018)](https://www.nber.org/papers/w25018). You can directly download the data [here](http://www.damianclarke.net/stata/bacon_example.dta). 
+
+## The Regression
+
+We will be estimating the following model: 
+
+$$ 
+asmrs_{st} = \alpha + \Sigma_{k=-21}^{-2}\beta_kI(lag_k)*treat_s+\Sigma_{k=0}^{27}\beta_kI(lead_k)*Treat_s+ X'_{st}\Gamma+\phi_s+\gamma_t+\epsilon_{st}
+$$
+
+ - $I(lag_k)$ is a dummy variable, equaling 1 if the observation's `year_to_treat` is the same value as `k`; 0 otherwise. $I(lead_k)$ is analogous to $I(lag_k)$. 
+ 
+ - $Treat_s=1$ if the state is treated, 0 otherwise. This allows to compare the difference in means at each time period between the treated and the control. 
+ 
+ - The controls, $X`$, are the following: `pcinc`, `asmrh`, `cases` 
+ 
+ - $\phi$ and $\gamma$ are state and time fixed effects 
+ 
+ - Further, the standard errors will be clustered at the state level 
+
+
+Important notes on the regression
+
+- The point of the regression is to show for each period before and after treatment that the coefficients on the pre-treated periods are statistically insignificant
+
+- Showing the control and treated groups are statistically the same ($\beta=0$) supports, though does not prove, the parallel trends assumption in DID estimation.
+
+In most event studies, the -1 time lag is used as the reference (or dropped from the regression). You can see in the model specification below that the first summation is from the "earliest" period, $k=-21$ to $k=-2$, and the second summation from $k=0$ to $k=27$. 
 
 
 # R 
@@ -28,7 +59,7 @@ library(pacman)
 p_load(dplyr, fixest, tidyverse, broom, fastDummies, haven)
 
 #Load data
-bacon_df <- read_dta("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Data/bacon_example.dta"))
+bacon_df <- read_dta("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/bacon_example.dta"))
 ```
 
 ## Manipulate Data 
@@ -68,34 +99,6 @@ Further, if you're interested in creating a dummy variable for each lead/lag in 
 
 
 In this study, we don't need to mutate the dataframe with individual dummies for each lead/lag value.  However, in the case you would like to, the `dummy_cols` function makes it effortless to create multiple dummies from a single or multiple columns. 
-
-## The Regression
-
-We will be estimating the following model: 
-
-$$ 
-asmrs_{st} = \alpha + \Sigma_{k=-21}^{-2}\beta_kI(lag_k)*T+\Sigma_{k=0}^{27}\beta_kI(lead_k)*T+ X'_{st}\Gamma+\phi_s+\gamma_t+\epsilon_{st}
-$$
-
- - $I(lag_k)$ is a dummy variable, equaling 1 if the observation's `year_to_treat` is the same value as `k`; 0 otherwise. $I(lead_k)$ is analogous to $I(lag_k)$. 
- 
- - $T=1$ if the state is treated, 0 otherwise. This allows to compare the difference in means at each time period between the treated and the control. 
- 
- - The controls, $X`$, are the following: `pcinc`, `asmrh`, `cases` 
- 
- - $\phi$ and $\gamma$ are state and time fixed effects 
- 
- - Further, the standard errors will be clustered at the state level 
-
-
-Important notes on the regression
-
-- The point of the regression is to show for each period before and after treatment that the coefficients on the pre-treated periods are statistically insignificant
-
-- Showing the control and treated groups are statistically the same ($\beta=0$) supports the parallel trends assumption in DID estimation.
-
-In most event studies, the -1 time lag is used as the reference (or dropped from the regression). You can see in the model specification below that the first summation is from the "earliest" period, $k=-21$ to $k=-2$, and the second summation from $k=0$ to $k=27$. Thus, the earliest time a state was treated was in 1975. 
-
 
 
 ## Regression
