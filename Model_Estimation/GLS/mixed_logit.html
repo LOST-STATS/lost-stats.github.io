@@ -10,14 +10,20 @@
   <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Statistical Inference | LOST</title>
+<title>Mixed Logit Model | LOST</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Statistical Inference" />
+<meta property="og:title" content="Mixed Logit Model" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"@type":"WebPage","url":"/Model_Estimation/Statistical_Inference/Statistical_Inference.html","headline":"Statistical Inference","@context":"https://schema.org"}</script>
+{"@type":"WebPage","url":"/Model_Estimation/GLS/mixed_logit.html","headline":"Mixed Logit Model","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML">
+  </script>
 </head>
 <body>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -76,7 +82,7 @@
                         <a href="/Model_Estimation/OLS/interaction_terms_and_polynomials.html" class="nav-list-link">Interaction Terms and Polynomials</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/OLS/fixed_effects_in_linear_regression.html" class="nav-list-link">Fixed Effects in Linear Regression</a>
-                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/GLS/GLS.html" class="nav-list-link">Generalised Least Squares</a><ul class="nav-list"><li class="nav-list-item ">
+                      </li></ul></li><li class="nav-list-item  active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/GLS/GLS.html" class="nav-list-link">Generalised Least Squares</a><ul class="nav-list"><li class="nav-list-item ">
                         <a href="/Model_Estimation/GLS/gmm.html" class="nav-list-link">Generalized Method of Moments</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/GLS/heckman_correction_model.html" class="nav-list-link">Heckman Correction Model</a>
@@ -84,8 +90,8 @@
                         <a href="/Model_Estimation/GLS/logit_model.html" class="nav-list-link">Logit Model</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/GLS/mcfaddens_choice_model.html" class="nav-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a>
-                      </li><li class="nav-list-item ">
-                        <a href="/Model_Estimation/GLS/mixed_logit.html" class="nav-list-link">Mixed Logit Model</a>
+                      </li><li class="nav-list-item  active">
+                        <a href="/Model_Estimation/GLS/mixed_logit.html" class="nav-list-link active">Mixed Logit Model</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/GLS/probit_model.html" class="nav-list-link">Probit Model</a>
                       </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Multilevel_Models/Multilevel_Models.html" class="nav-list-link">Multilevel Models</a><ul class="nav-list"><li class="nav-list-item ">
@@ -102,7 +108,7 @@
                         <a href="/Model_Estimation/Research_Design/regression_discontinuity_design.html" class="nav-list-link">Regression Discontinuity Design</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html" class="nav-list-link">2x2 Difference in Difference</a>
-                      </li></ul></li><li class="nav-list-item  active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Statistical_Inference/Statistical_Inference.html" class="nav-list-link active">Statistical Inference</a><ul class="nav-list"><li class="nav-list-item ">
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Statistical_Inference/Statistical_Inference.html" class="nav-list-link">Statistical Inference</a><ul class="nav-list"><li class="nav-list-item ">
                         <a href="/Model_Estimation/Statistical_Inference/linear_hypothesis_tests.html" class="nav-list-link">Linear Hypothesis Tests</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/Statistical_Inference/Nonstandard_Errors/nonstandard_errors.html" class="nav-list-link">Nonstandard Errors</a>
@@ -158,28 +164,94 @@
           <nav aria-label="Breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb-nav-list">
                 <li class="breadcrumb-nav-list-item"><a href="/Model_Estimation/Model_Estimation.html">Model Estimation</a></li>
-              <li class="breadcrumb-nav-list-item"><span>Statistical Inference</span></li>
+                <li class="breadcrumb-nav-list-item"><a href="/Model_Estimation/GLS/GLS.html">Generalised Least Squares</a></li>
+              <li class="breadcrumb-nav-list-item"><span>Mixed Logit Model</span></li>
             </ol>
           </nav>
       <div id="main-content" class="main-content" role="main">
-          <h1 id="statistical-inference">
-          <a href="#statistical-inference" aria-labelledby="statistical-inference" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Statistical Inference
+          <p>A mixed logit model (sometimes referred to as a random parameters logit model) estimates distributional parameters that allow for individual-level heterogeneity in tastes that are not compatible with a traditional logit framework.  Mixed logit models can also provide for additional flexibility as it pertains to correlated random parameters and can be used with panel data.</p>
+<p>For more information about mixed logit models, see <a href="https://en.wikipedia.org/wiki/Mixed_logit">Wikipedia: Mixed Logit.</a></p>
+<p><br /></p>
+      <h2 id="keep-in-mind">
+          <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
+      </h2>
+<ul>
+  <li>
+    <p>The mixed logit model estimates a distribution.  Parameters are then generated from that distribution via a simulation with a specified number of draws.</p>
+  </li>
+  <li>
+    <p>The estimates from a mixed logit model cannot simply be interpreted as marginal effects, as they are maximum likelihood estimations.  Further, the variation at the individual level means estimated effects are relative to the individual.</p>
+  </li>
+</ul>
+      <h1 id="implementations">
+          <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
-          <hr>
-          <h2 class="text-delta">Table of contents</h2>
-          <ul>
-              <li>
-                <a href="/Model_Estimation/Statistical_Inference/linear_hypothesis_tests.html">Linear Hypothesis Tests</a>
-              </li>
-              <li>
-                <a href="/Model_Estimation/Statistical_Inference/Nonstandard_Errors/nonstandard_errors.html">Nonstandard Errors</a>
-              </li>
-          </ul>
+      <h2 id="r">
+          <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
+      </h2>
+<p>To estimate a mixed logit model in R, we will first transform the data using the <a href="https://cran.r-project.org/web/packages/dfidx/index.html">dfidx</a> package.  Then we will use the <a href="https://cran.r-project.org/web/packages/mlogit/">mlogit</a> package to carry out the estimation.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Install mlogit which also includes the Electricity dataset for the example.</span><span class="w">
+</span><span class="c1"># The package dfidx will be used to transform our data</span><span class="w">
+</span><span class="c1"># install.packages("mlogit", "dfidx")</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="s2">"mlogit"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dfidx"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Load the Electricity dataset</span><span class="w">
+</span><span class="n">data</span><span class="p">(</span><span class="s2">"Electricity"</span><span class="p">,</span><span class="w"> </span><span class="n">package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"mlogit"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># First, we need to coerce the data to a dfidx object</span><span class="w">
+</span><span class="c1"># This allows for a panel with multiple indices</span><span class="w">
+</span><span class="c1"># For further documentation, see dfidx.</span><span class="w">
+
+</span><span class="n">Electricity</span><span class="o">$</span><span class="n">index</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">Electricity</span><span class="p">)</span><span class="w">
+</span><span class="n">elec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfidx</span><span class="p">(</span><span class="n">Electricity</span><span class="p">,</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s2">"index"</span><span class="p">,</span><span class="w"> </span><span class="s2">"id"</span><span class="p">)),</span><span class="w">
+                </span><span class="n">choice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"choice"</span><span class="p">,</span><span class="w"> </span><span class="n">varying</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="o">:</span><span class="m">26</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># We then estimate individual choice over electricity providers for</span><span class="w">
+</span><span class="c1"># different cost and contract structures with a suppressed intercept</span><span class="w">
+
+</span><span class="n">my_mixed_logit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mlogit</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">elec</span><span class="p">,</span><span class="w"> 
+       </span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">choice</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">pf</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">loc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">wk</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tod</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">seas</span><span class="p">,</span><span class="w">
+       </span><span class="c1"># Specify distributions for random parameter estimates</span><span class="w">
+       </span><span class="c1"># "n" indicates we have specified a normal distribution</span><span class="w">
+       </span><span class="c1"># note pf is omitted from rpar, so it will not be estimated as random</span><span class="w">
+       </span><span class="n">rpar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">cl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"n"</span><span class="p">,</span><span class="w"> </span><span class="n">loc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"u"</span><span class="p">,</span><span class="w"> </span><span class="n">wk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"n"</span><span class="p">,</span><span class="w"> </span><span class="n">tod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"n"</span><span class="p">,</span><span class="w"> </span><span class="n">seas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"n"</span><span class="p">),</span><span class="w"> 
+       </span><span class="c1"># R is the number of simulation draws</span><span class="w">
+       </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> 
+       </span><span class="c1"># For simplicity, we won't include correlated parameter estimates</span><span class="w">
+       </span><span class="n">correlation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> 
+       </span><span class="c1"># This data is from a panel</span><span class="w">
+       </span><span class="n">panel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Results</span><span class="w">
+
+</span><span class="n">summary</span><span class="p">(</span><span class="n">my_mixed_logit</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Note that this output will include the simulated coefficient estimates, </span><span class="w">
+</span><span class="c1"># simulated standard error estimates, and distributional details for the</span><span class="w">
+</span><span class="c1"># random coefficients (all, in this case)</span><span class="w">
+</span><span class="c1"># Note also that pf is given as a point estimate, and mlogit does not generate</span><span class="w">
+</span><span class="c1"># a distribution for it as it does the others</span><span class="w">
+
+</span><span class="c1"># You can extract and summarize coefficient estimates using the rpar function</span><span class="w">
+
+</span><span class="n">marg_loc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rpar</span><span class="p">(</span><span class="n">my_mixed_logit</span><span class="p">,</span><span class="w"> </span><span class="s2">"loc"</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">marg_loc</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># You can also normalize coefficients and distributions by, say, price</span><span class="w">
+
+</span><span class="n">cl_by_pf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rpar</span><span class="p">(</span><span class="n">my_mixed_logit</span><span class="p">,</span><span class="w"> </span><span class="s2">"cl"</span><span class="p">,</span><span class="w"> </span><span class="n">norm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"pf"</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">cl_by_pf</span><span class="p">)</span><span class="w">
+
+
+
+</span></code></pre></div></div>
+<p>For further examples, visit the CRAN vignette <a href="https://cran.r-project.org/web/packages/mlogit/vignettes/c5.mxl.html">here.</a></p>
+<p>For a very detailed example using the Electricity dataset, see <a href="https://cran.r-project.org/web/packages/mlogit/vignettes/e3mxlogit.html">here.</a></p>
           <hr>
           <footer>
               <div class="d-flex mt-2">
                   <p class="text-small text-grey-dk-000 mb-0">
-                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Model_Estimation/Statistical_Inference/Statistical_Inference.md" id="edit-this-page">Edit this page on GitHub.</a>
+                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Model_Estimation/GLS/mixed_logit.md" id="edit-this-page">Edit this page on GitHub.</a>
                   </p>
               </div>
           </footer>
