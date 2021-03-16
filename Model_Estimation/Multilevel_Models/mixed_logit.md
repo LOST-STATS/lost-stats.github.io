@@ -1,6 +1,6 @@
 ---
 title: Mixed Logit Model
-parent: Generalised Least Squares
+parent: Multilevel Models
 grand_parent: Model Estimation ## Optional for indexing
 has_children: false
 nav_order: 1
