@@ -18,8 +18,6 @@ For more information about mixed logit models, see [Wikipedia: Mixed Logit.](htt
 
 - The estimates from a mixed logit model cannot simply be interpreted as marginal effects, as they are maximum likelihood estimations.  Further, the variation at the individual level means estimated effects are relative to the individual.
 
-<br>
-
 # Implementations
 
 ## R
@@ -84,6 +82,6 @@ summary(cl_by_pf)
 
 ```
 
-For further examples, visit the cran [here.](https://cran.r-project.org/web/packages/mlogit/vignettes/c5.mxl.html)
+For further examples, visit the CRAN vignette [here.](https://cran.r-project.org/web/packages/mlogit/vignettes/c5.mxl.html)
 
 For a very detailed example using the Electricity dataset, see [here.](https://cran.r-project.org/web/packages/mlogit/vignettes/e3mxlogit.html)
