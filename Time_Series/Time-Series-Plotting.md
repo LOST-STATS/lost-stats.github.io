@@ -43,3 +43,21 @@ a standard plotting package.
 # Implementations
 
 ## R
+
+Turning objects into time series objects is best done via the `ts()`
+function from the `stats` package, which is loaded by default in an R
+Studio terminal. Graphing `ts` objects can be done efficiently using
+`tsplot` from the package `tstools`.
+
+``` r
+if (!require("pacman")) install.packages("pacman")
+```
+
+    ## Loading required package: pacman
+
+``` r
+pacman::p_load(tstools)
+```
+
+For a complete description of `tsplot`, see `vignette("tstools")`. We
+will start with a short example.
