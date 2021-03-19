@@ -95,7 +95,8 @@ dataprep_out = dataprep(
 
 synth_out = dataprep_out %>% synth()
 
-# From here, we can plot the treatment variable and the synthetic control using Synth's plot function
+# From here, we can plot the treatment variable and the synthetic control using Synth's plot function.
+# The variable tr.intake is an optional variable if you want a dashed vertical line where the intervention takes place.
 
 synth_out %>% path.plot(dataprep.res = dataprep_out, tr.intake = 1990)
 
