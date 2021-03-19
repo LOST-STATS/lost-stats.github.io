@@ -55,27 +55,53 @@ As a last bit of intuition, below is a graph depicting the upshot of the method.
 # Implementations
 
 ## R
-To implement the synthetic control method in R, we will be using the package [Synth](https://cran.r-project.org/web/packages/Synth/Synth.pdf). As stated above, the key part of the synthetic control method is to estimate the weight matrix $$W*$$ in order to form accurate estimates of the treatment unit. 
 
+To implement the synthetic control method in R, we will be using the package [Synth](https://cran.r-project.org/web/packages/Synth/Synth.pdf). As stated above, the key part of the synthetic control method is to estimate the weight matrix $$W*$$ in order to form accurate estimates of the treatment unit. The Synth package provides you with the tools to find the weight matrix. From there, you can construct the synthetic control by interacting the $$W*$$ and the $Y$ values from the donor pool.
 
+```r
+# First we will load Synth and dplyr.
+# If you haven't already installed Synth, now would be the time to do so
 
-```identifier for language type, see this page: https://github.com/jmm/gfm-lang-ids/wiki/GitHub-Flavored-Markdown-%28GFM%29-language-IDs
-Commented code demonstrating the technique
+library(dplyr, Synth)
+
+# We're going to use simulated data included in the Synth package for our example.
+# This dataframe consists of panel data including 1 outcome variable and 3 predictor variables for 1 treatment unit and 7 control units (donor pool) over 21 years
+
+data("synth.data")
+
+# The primary function that we will use is the synth() function.
+# However, this function needs four particularly formed matrices as inputs, so it is highly recommended that you use the dataprep() function to generate the inputs.
+# Once we've gathered our dataprep() output, we can just use that as our sole input for synth() and we'll be good to go.
+# One important note is that your data must be in long format with id variables (integers) and name variables (character) for each unit.
+
+dataprep_out = dataprep(
+  foo = synth.data, # first input is our data
+  predictors = c("X1", "X2", "X3"), # identify our predictor variables
+  predictors.op = "mean", # operation to be performed on the predictor variables for when we form our X_1 and X_0 matrices.
+  time.predictors.prior = c(1984:1989), # pre-intervention window
+  dependent = "Y", # outcome variable
+  unit.variable = "unit.num", # identify our id variable
+  unit.names.variable = "name", # identify our name variable
+  time.variable = "year", # identify our time period variable
+  treatment.identifier = 7, # integer that indicates the id variable value for our treatment unit
+  controls.identifier = c(2, 13, 17, 29, 
+                          32, 36, 38), # vector that indicates the id variable values for the donor pool
+  time.optimize.ssr = c(1984:1990), # identify the time period you want to optimize over to find the W*. Includes pre-treatment period and the treatment year.
+  time.plot = c(1984:1996) # periods over which results are to be plotted with Synth's plot functions
+)
+
+# Now we have our data ready in the form of a list. We have all the matrices we need to run synth()
+# Our output from the synth() function will be a list that includes our optimal weight matrix W*
+
+synth_out = dataprep_out %>% synth()
+
+# From here, we can plot the treatment variable and the synthetic control using Synth's plot function
+
+synth_out %>% path.plot(dataprep.res = dataprep_out, tr.intake = 1990)
+
+# Finally, we can construct our synthetic control variable if we wanted to conduct difference-in-difference analysis on it to estimate the treatment effect.
+
+synth_control = dataprep_out$Y0plot %*% synth_out$solution.w
 
 ```
 
-## NAME OF LANGUAGE/SOFTWARE 2 WHICH HAS MULTIPLE APPROACHES
-
-There are two ways to perform this technique in language/software 2.
-
-First, explanation of what is different about the first way:
-
-```identifier for language type, see this page: https://github.com/jmm/gfm-lang-ids/wiki/GitHub-Flavored-Markdown-%28GFM%29-language-IDs
-Commented code demonstrating the technique
-```
-
-Second, explanation of what is different about the second way:
-
-```identifier for language type, see this page: https://github.com/jmm/gfm-lang-ids/wiki/GitHub-Flavored-Markdown-%28GFM%29-language-IDs
-Commented code demonstrating the technique
-```
