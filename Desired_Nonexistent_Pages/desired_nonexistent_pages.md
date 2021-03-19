@@ -47,7 +47,6 @@ If you create one of these pages, please remove it from this list.
 ### Research Design
 
 * Differences in Differences with treatment rollout (use updated methods!)
-* Propensity Score Matching
 * Event Study Estimation
 * Synethic Control Method
 
