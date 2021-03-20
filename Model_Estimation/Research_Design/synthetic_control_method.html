@@ -10,13 +10,13 @@
   <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Heckman Correction Model | LOST</title>
+<title>Synthetic Control | LOST</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Heckman Correction Model" />
+<meta property="og:title" content="Synthetic Control" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"@type":"WebPage","url":"/Model_Estimation/GLS/heckman_correction_model.html","headline":"Heckman Correction Model","@context":"https://schema.org"}</script>
+{"@type":"WebPage","url":"/Model_Estimation/Research_Design/synthetic_control_method.html","headline":"Synthetic Control","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
@@ -82,10 +82,10 @@
                         <a href="/Model_Estimation/OLS/interaction_terms_and_polynomials.html" class="nav-list-link">Interaction Terms and Polynomials</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/OLS/fixed_effects_in_linear_regression.html" class="nav-list-link">Fixed Effects in Linear Regression</a>
-                      </li></ul></li><li class="nav-list-item  active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/GLS/GLS.html" class="nav-list-link">Generalised Least Squares</a><ul class="nav-list"><li class="nav-list-item ">
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/GLS/GLS.html" class="nav-list-link">Generalised Least Squares</a><ul class="nav-list"><li class="nav-list-item ">
                         <a href="/Model_Estimation/GLS/gmm.html" class="nav-list-link">Generalized Method of Moments</a>
-                      </li><li class="nav-list-item  active">
-                        <a href="/Model_Estimation/GLS/heckman_correction_model.html" class="nav-list-link active">Heckman Correction Model</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/GLS/heckman_correction_model.html" class="nav-list-link">Heckman Correction Model</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/GLS/logit_model.html" class="nav-list-link">Logit Model</a>
                       </li><li class="nav-list-item ">
@@ -98,7 +98,7 @@
                         <a href="/Model_Estimation/Multilevel_Models/mixed_logit.html" class="nav-list-link">Mixed Logit Model</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/Multilevel_Models/random_mixed_effects_estimation.html" class="nav-list-link">Random/Mixed Effects in Linear Regression</a>
-                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Research_Design/Research_Design.html" class="nav-list-link">Research Design</a><ul class="nav-list"><li class="nav-list-item ">
+                      </li></ul></li><li class="nav-list-item  active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Research_Design/Research_Design.html" class="nav-list-link">Research Design</a><ul class="nav-list"><li class="nav-list-item ">
                         <a href="/Model_Estimation/Research_Design/density_discontinuity_test.html" class="nav-list-link">Density Discontinuity Tests for Regression Discontinuity</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/Research_Design/event_study.html" class="nav-list-link">Difference in Differences Event Study</a>
@@ -106,8 +106,8 @@
                         <a href="/Model_Estimation/Research_Design/instrumental_variables.html" class="nav-list-link">Instrumental Variables</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/Research_Design/regression_discontinuity_design.html" class="nav-list-link">Regression Discontinuity Design</a>
-                      </li><li class="nav-list-item ">
-                        <a href="/Model_Estimation/Research_Design/synthetic_control_method.html" class="nav-list-link">Synthetic Control</a>
+                      </li><li class="nav-list-item  active">
+                        <a href="/Model_Estimation/Research_Design/synthetic_control_method.html" class="nav-list-link active">Synthetic Control</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html" class="nav-list-link">2x2 Difference in Difference</a>
                       </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Statistical_Inference/Statistical_Inference.html" class="nav-list-link">Statistical Inference</a><ul class="nav-list"><li class="nav-list-item ">
@@ -166,104 +166,101 @@
           <nav aria-label="Breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb-nav-list">
                 <li class="breadcrumb-nav-list-item"><a href="/Model_Estimation/Model_Estimation.html">Model Estimation</a></li>
-                <li class="breadcrumb-nav-list-item"><a href="/Model_Estimation/GLS/GLS.html">Generalised Least Squares</a></li>
-              <li class="breadcrumb-nav-list-item"><span>Heckman Correction Model</span></li>
+                <li class="breadcrumb-nav-list-item"><a href="/Model_Estimation/Research_Design/Research_Design.html">Research Design</a></li>
+              <li class="breadcrumb-nav-list-item"><span>Synthetic Control</span></li>
             </ol>
           </nav>
       <div id="main-content" class="main-content" role="main">
-          <h1 id="heckman-correction-model">
-          <a href="#heckman-correction-model" aria-labelledby="heckman-correction-model" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Heckman Correction Model
+          <h1 id="synthetic-control-method-scm">
+          <a href="#synthetic-control-method-scm" aria-labelledby="synthetic-control-method-scm" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Synthetic Control Method (SCM)
       </h1>
-<p>The Heckman correction for sample selection is a method designed to be used in cases where the model can only be run on a subsample of the data that is not randomly selected. For example, a regression using \(Wage\) to predict \(Hours Worked\) cannot include people who don’t work, since we don’t observe their wage. The Heckman model views this sample selection process as a form of omitted variable bias. So, it (1) explicitly models the process of selecting into the sample, (2) transforms the predicted probability of being in the sample, and (3) adds a correction term to the model.</p>
-<p>For more information, see <a href="https://en.wikipedia.org/wiki/Heckman_correction">Wikipedia: Heckman correction</a>.</p>
+<p>Synthetic Control Method is a way of estimating the causal effect of an intervention in comparative case studies. It is typically used with a small number of large units (e.g. countries, states, counties) to estimate the effects of aggregate interventions. The idea is to construct a convex combination of similar untreated units (often referred to as the “donor pool”) to create a synthetic control that closely resembles the treatment subject and conduct counterfactual analysis with it.</p>
+<p>We have \(j = 1, 2, ..., J+1\) units, assuming without loss of generality that the first unit is the treated unit, \(Y_{1t}\). Denoting the potential outcome without intervention as \(Y_{1t}^N\), our goal is to estimate the treatment effect:</p>
+\[\tau_{1t} = Y_{1t} - Y_{1t}^N\]
+<p>We won’t have data for \(Y_{1t}^N\) but we can use synthetic controls to estimate it.</p>
+<p>Let the \(k\) x \(J\) matrix \(X_0 = [X_2 ... X_{J+1}]\) represent characteristics for the untreated units and the \(k\)-length vector \(X_1\) represent characteristics for the treatment unit. Last, define our \(J\times 1\) vector of weights as \(W = (w_2, ..., w_{J+1})'\). Recall, these weights are used to form a convex combination of the untreated units. Now we have our estimate for the treatment effect:</p>
+\[\hat{\tau_{1t}} = Y_{1t} - \hat{Y_{1t}^N}\]
+<p>where \(\hat{Y_{1t}^N} = \sum_{j=2}^{J+1} w_j Y_{jt}\).</p>
+<p>The matrix of weights is found by choosing \(W*\) to minimize 
+\(\|X_1 - X_0W\|\) 
+such that \(W &gt;&gt; 0\) and \(\sum_2^{J+2} w_j = 1\).</p>
+<p>Once you’ve found the \(W*\), you can put together an estimated \(\hat{Y_{1t}}\) (synthetic control) for all time periods \(t\). Because our synthetic control was constructed from untreated units, when the intervention occurs at time \(T_0\), the difference between the synthetic control and the treated unit gives us our estimated treatment effect.</p>
+<p>As a last bit of intuition, below is a graph depicting the upshot of the method. The synthetic control follows a very similar path to the treated unit pre-intervention. The difference between the two curves, post-intervention, gives us our estimated treatment effect. <img src="/Other/Images/scm-graph.jpg" alt="graph" /></p>
+<p><a href="https://economics.mit.edu/files/17847">Here</a> is an excellent resource by Alberto Abadie (the economist who developed the method) if you’re interested in getting a more comprehensive overview of synthetic controls.</p>
       <h2 id="keep-in-mind">
           <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
       </h2>
 <ul>
-  <li>Conceptually, the Heckman model uses the regression covariates to predict selection, transforms the prediction, and then includes that transformation in the model. If there are no variables in the selection model that are excluded from the regression model, then the Heckman model is perfectly collinear, and is only statistically identified because the transformation is nonlinear (you may have heard the phrase “identified by nonlinearity” or “identified by the normality assumption”). That’s not ideal! You want to find an exclusion restriction - a variable that predicts selection, but does not belong in the final regression model - to avoid this collinearity.</li>
+  <li>Unlike the <a href="https://lost-stats.github.io/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html">difference-in-difference</a> method, parallel trends aren’t a necessary assumption. However, the donor pool must still share similar characteristics to the treatment unit in order to construct an accurate estimate.</li>
+  <li>Panel data is necessary for the synthetic control method and, typically, requires observations over many time periods. Specifically, the pre-intervention time frame ought to be large enough to form an accurate estimate.</li>
+  <li>Aggregate data is required for this method. Examples include state-level per-capita GDP, country-level crime rates, and state-level alcohol consumption statistics. Additionally, if aggregate data doesn’t exist, you can sometimes aggregate micro-level data to estimate aggregate values.</li>
+  <li>As a caveat to the previous bullet point, be wary of structural breaks when using large pre-intervention periods.</li>
 </ul>
       <h2 id="also-consider">
           <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
       </h2>
 <ul>
-  <li>There are many ways to estimate a Heckman model. Maximum likelihood approaches generally have better statistical properties, but two-stage models are computationally simpler. Often you can look in the options of your Heckman estimator command to select an estimation method.</li>
-  <li>If your goal is to estimate the effect of a binary treatment by modeling selection into treatment, consider a <a href="/Model_Estimation/GLS/treatment_effect_model.html">Treatment Effect Model</a>, or an <a href="/Model_Estimation/GLS/endogenous_switching_model.html">Endogenous Switching Model</a> which also allows predictors to work differently in different settings.</li>
-  <li>Standard Heckman models rely heavily on assumptions about the normality of error terms. You may want to consider <a href="/Model_Estimation/GLS/nonparametric_sample_selecion_model.html">Nonparametric Sample Selection Models</a>.</li>
+  <li>As stated before, this technique can be compared to <a href="https://lost-stats.github.io/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html">difference-in-difference</a>. If you don’t have aggregate data or don’t have sufficient data for the pre-intervention window and you have a control that you can confidently assume has a parallel trend to the treatment unit, then diff-in-diff might be better suited than SCM.</li>
 </ul>
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
-      <h2 id="gretl">
-          <a href="#gretl" aria-labelledby="gretl" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Gretl
-      </h2>
-<p>See <a href="http://www.eco.uc3m.es/~ricmora/MICCUA/materials/S25T44_English_handout.pdf">here</a> for a demonstration.</p>
-      <h2 id="python">
-          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
-      </h2>
-<p>See <a href="https://rlhick.people.wm.edu/stories/econ_407_notes_heckman.html">here</a> for a demonstration.</p>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
-</span><span class="c1"># Install sampleSelection package if necessary</span><span class="w">
-</span><span class="c1"># install.packages('sampleSelection')</span><span class="w">
-</span><span class="n">library</span><span class="p">(</span><span class="n">sampleSelection</span><span class="p">)</span><span class="w">
+<p>To implement the synthetic control method in R, we will be using the package <a href="https://cran.r-project.org/web/packages/Synth/Synth.pdf">Synth</a>. While not used here, the <strong>SynthTools</strong> package also has a number of functions for making it easier to work with the <strong>Synth</strong> package. As stated above, the key part of the synthetic control method is to estimate the weight matrix \(W*\) in order to form accurate estimates of the treatment unit. The Synth package provides you with the tools to find the weight matrix. From there, you can construct the synthetic control by interacting the \(W*\) and the $Y$ values from the donor pool.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># First we will load Synth and dplyr.</span><span class="w">
+</span><span class="c1"># If you haven't already installed Synth, now would be the time to do so</span><span class="w">
 
-</span><span class="c1"># Get data from Mroz (1987, Econometrica)</span><span class="w">
-</span><span class="c1"># which has Panel Study of Income Dynamics data for married women</span><span class="w">
-</span><span class="n">data</span><span class="p">(</span><span class="s2">"Mroz87"</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">Synth</span><span class="p">)</span><span class="w">
 
-</span><span class="c1"># First consider our selection model</span><span class="w">
-</span><span class="c1"># We only observe wages for labor force participants (lfp == 1)</span><span class="w">
-</span><span class="c1"># So we model that as a function of work experience (linear and squared), </span><span class="w">
-</span><span class="c1"># income from the rest of the family, education, and number of kids 5 or younger.</span><span class="w">
-</span><span class="c1"># lfp ~ exper + I(exper^2) + faminc + educ + kids5</span><span class="w">
+</span><span class="c1"># We're going to use simulated data included in the Synth package for our example.</span><span class="w">
+</span><span class="c1"># This dataframe consists of panel data including 1 outcome variable and 3 predictor variables for 1 treatment unit and 7 control units (donor pool) over 21 years</span><span class="w">
 
-</span><span class="c1"># Then we model the regression of interest. We're interested in modeling</span><span class="w">
-</span><span class="c1"># wage as a function of work experience, education, and whether you're in a city</span><span class="w">
-</span><span class="c1"># Here, we don't include family income or number of kids, under the assumption that they</span><span class="w">
-</span><span class="c1"># do not belong in a wage model. These are our exclusion restrictions</span><span class="w">
-</span><span class="c1"># (note these particular exclusion restrictions might be a little dubious! But hey, this paper's from 1987.)</span><span class="w">
-</span><span class="c1"># wage ~ exper + I(exper^2) + educ + city</span><span class="w">
+</span><span class="n">data</span><span class="p">(</span><span class="s2">"synth.data"</span><span class="p">)</span><span class="w">
 
-</span><span class="c1"># Put them together in a selection() command</span><span class="w">
-</span><span class="n">heck_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">selection</span><span class="p">(</span><span class="n">lfp</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">exper</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">I</span><span class="p">(</span><span class="n">exper</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">faminc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">educ</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">kids5</span><span class="p">,</span><span class="w">
-                        </span><span class="n">wage</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">exper</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">I</span><span class="p">(</span><span class="n">exper</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">educ</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">city</span><span class="p">,</span><span class="w">
-                        </span><span class="n">Mroz87</span><span class="p">)</span><span class="w">
+</span><span class="c1"># The primary function that we will use is the synth() function.</span><span class="w">
+</span><span class="c1"># However, this function needs four particularly formed matrices as inputs, so it is highly recommended that you use the dataprep() function to generate the inputs.</span><span class="w">
+</span><span class="c1"># Once we've gathered our dataprep() output, we can just use that as our sole input for synth() and we'll be good to go.</span><span class="w">
+</span><span class="c1"># One important note is that your data must be in long format with id variables (integers) and name variables (character) for each unit.</span><span class="w">
 
-</span><span class="n">summary</span><span class="p">(</span><span class="n">heck_model</span><span class="p">)</span><span class="w">
-</span></code></pre></div></div>
-      <h2 id="stata">
-          <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
-      </h2>
-<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Get data from Mroz (1987, Econometrica)
-* which has Panel Study of Income Dynamics data for married women
-* (data via the sampleSelection package in R)
-</span><span class="err">import</span> <span class="err">delimited</span> <span class="s2">"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Estimation/Data/Heckman_Correction_Model/Mroz87.csv"</span><span class="err">,</span> <span class="err">clear
-</span><span class="c1">
-* First, consider the regression of interest. 
+</span><span class="n">dataprep_out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dataprep</span><span class="p">(</span><span class="w">
+  </span><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">synth.data</span><span class="p">,</span><span class="w"> </span><span class="c1"># first input is our data</span><span class="w">
+  </span><span class="n">predictors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"X1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"X2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"X3"</span><span class="p">),</span><span class="w"> </span><span class="c1"># identify our predictor variables</span><span class="w">
+  </span><span class="n">predictors.op</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"mean"</span><span class="p">,</span><span class="w"> </span><span class="c1"># operation to be performed on the predictor variables for when we form our X_1 and X_0 matrices.</span><span class="w">
+  </span><span class="n">time.predictors.prior</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1984</span><span class="o">:</span><span class="m">1989</span><span class="p">),</span><span class="w"> </span><span class="c1"># pre-intervention window</span><span class="w">
+  </span><span class="n">dependent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w"> </span><span class="c1"># outcome variable</span><span class="w">
+  </span><span class="n">unit.variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"unit.num"</span><span class="p">,</span><span class="w"> </span><span class="c1"># identify our id variable</span><span class="w">
+  </span><span class="n">unit.names.variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w"> </span><span class="c1"># identify our name variable</span><span class="w">
+  </span><span class="n">time.variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"year"</span><span class="p">,</span><span class="w"> </span><span class="c1"># identify our time period variable</span><span class="w">
+  </span><span class="n">treatment.identifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="c1"># integer that indicates the id variable value for our treatment unit</span><span class="w">
+  </span><span class="n">controls.identifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">13</span><span class="p">,</span><span class="w"> </span><span class="m">17</span><span class="p">,</span><span class="w"> </span><span class="m">29</span><span class="p">,</span><span class="w"> 
+                          </span><span class="m">32</span><span class="p">,</span><span class="w"> </span><span class="m">36</span><span class="p">,</span><span class="w"> </span><span class="m">38</span><span class="p">),</span><span class="w"> </span><span class="c1"># vector that indicates the id variable values for the donor pool</span><span class="w">
+  </span><span class="n">time.optimize.ssr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1984</span><span class="o">:</span><span class="m">1990</span><span class="p">),</span><span class="w"> </span><span class="c1"># identify the time period you want to optimize over to find the W*. Includes pre-treatment period and the treatment year.</span><span class="w">
+  </span><span class="n">time.plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1984</span><span class="o">:</span><span class="m">1996</span><span class="p">)</span><span class="w"> </span><span class="c1"># periods over which results are to be plotted with Synth's plot functions</span><span class="w">
+</span><span class="p">)</span><span class="w">
 
-* First consider our selection model
-* We only observe wages for labor force participants (lfp == 1)
-* So we model that as a function of work experience (linear and squared), 
-* income from the rest of the family, education, and number of kids 5 or younger.
-* select(lfp = c.exper##c.exper faminc educ kids5)
+</span><span class="c1"># Now we have our data ready in the form of a list. We have all the matrices we need to run synth()</span><span class="w">
+</span><span class="c1"># Our output from the synth() function will be a list that includes our optimal weight matrix W*</span><span class="w">
 
-* Then we model the regression of interest. We're interested in modeling
-* wage as a function of work experience, education, and whether you're in a city
-* Here, we don't include family income or number of kids, under the assumption that they
-* do not belong in a wage model. These are our exclusion restrictions
-* (note these particular exclusion restrictions might be a little dubious! But hey, 1987.)
-* wage c.exper##c.exper educ city
+</span><span class="n">synth_out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dataprep_out</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">synth</span><span class="p">()</span><span class="w">
 
-* Now we run our Heckman model!
-</span><span class="err">heckman</span> <span class="err">wage</span> <span class="err">c.exper##c.exper</span> <span class="err">educ</span> <span class="err">city,</span> <span class="err">select(lfp</span> <span class="o">=</span> <span class="err">c.exper##c.exper</span> <span class="err">faminc</span> <span class="err">educ</span> <span class="err">kids5)
+</span><span class="c1"># From here, we can plot the treatment variable and the synthetic control using Synth's plot function.</span><span class="w">
+</span><span class="c1"># The variable tr.intake is an optional variable if you want a dashed vertical line where the intervention takes place.</span><span class="w">
+
+</span><span class="n">synth_out</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">path.plot</span><span class="p">(</span><span class="n">dataprep.res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dataprep_out</span><span class="p">,</span><span class="w"> </span><span class="n">tr.intake</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1990</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Finally, we can construct our synthetic control variable if we wanted to conduct difference-in-difference analysis on it to estimate the treatment effect.</span><span class="w">
+
+</span><span class="n">synth_control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dataprep_out</span><span class="o">$</span><span class="n">Y0plot</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">synth_out</span><span class="o">$</span><span class="n">solution.w</span><span class="w">
+
 </span></code></pre></div></div>
           <hr>
           <footer>
               <div class="d-flex mt-2">
                   <p class="text-small text-grey-dk-000 mb-0">
-                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Model_Estimation/GLS/heckman_correction_model.md" id="edit-this-page">Edit this page on GitHub.</a>
+                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Model_Estimation/Research_Design/synthetic_control_method.md" id="edit-this-page">Edit this page on GitHub.</a>
                   </p>
               </div>
           </footer>
