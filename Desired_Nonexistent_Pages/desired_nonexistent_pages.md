@@ -84,7 +84,7 @@ If you create one of these pages, please remove it from this list.
 * Stationarity and Weak Dependence
 * Granger Causality
 * Moving Average Model
-* ARIMA Model 
+* Kalman Filtering/Smoothing 
 * ARIMAX Model
 * ARCH Model
 * GARCH Model
