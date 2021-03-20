@@ -30,13 +30,12 @@ a standard plotting package.
 
 ## Also Consider
 
-  - LIST OF OTHER TECHNIQUES THAT WILL COMMONLY BE USED ALONGSIDE THIS
-    PAGE’S TECHNIQUE
-  - Consider using standard plotting packages if your plots are just
-    downloaded data (e.g., if you have downloaded GDP data over time, a
-    basic plotter can be used)
+  - If your plots need not be turned into time series objects (e.g., if
+    you have downloaded GDP data over time), a basic plotter can be used
       - With that being said, these techniques will work for these types
         of plots as well
+      - Some plotting packages may be perfectly fine handling time
+        series objects
   - You can try to convert your objects back into an object type that is
     more suitable for other plotting
 
@@ -47,7 +46,9 @@ a standard plotting package.
 Turning objects into time series objects is best done via the `ts()`
 function from the `stats` package, which is loaded by default in an R
 Studio terminal. Graphing `ts` objects can be done efficiently using
-`tsplot` from the package `tstools`.
+`tsplot` from the package `tstools`. If one does not need to turn their
+data into a time series object, `base::plot()` or `ggplot2::ggplot()`
+are good alternatives.
 
 ``` r
 if (!require("pacman")) install.packages("pacman")
@@ -59,5 +60,14 @@ if (!require("pacman")) install.packages("pacman")
 pacman::p_load(tstools)
 ```
 
-For a complete description of `tsplot`, see `vignette("tstools")`. We
-will start with a short example.
+For a complete description of `tsplot`, see `vignette("tstools")`. To
+keep things simple and focus on the details of this package, I will use
+
+``` r
+gdp = read.csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv")
+
+GDPC1 = ts(gdp[ ,2], frequency = 4, start = c(1947, 01), end = c(2019, 04))
+y_level = log(GDPC1)*100
+dy = diff(y_level)
+T = length(dy)
+```
