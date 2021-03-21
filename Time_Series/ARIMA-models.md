@@ -19,23 +19,46 @@ $$p$$, which denotes the AR parameters, $$q$$, which denotes the MA
 parameters, and $$d$$, which represents the number of times an ARIMA
 model must be differenced in order to get an ARMA model. A univariate
 $$ARIMA(p, 1, q)$$ model can be specified by
-\[y_{t}=\alpha + \delta t +u_{t}\] where $$u_{t}$$ is an
-$$ARMA(p+1,q)$$. Particularly, \[\rho(L)u_{t}=\theta(L)\varepsilon_{t}\]
+
+$$y_{t}=\alpha + \delta t +u_{t}$$ 
+
+where $$u_{t}$$ is an
+$$ARMA(p+1,q)$$. Particularly, 
+
+$$\rho(L)u_{t}=\theta(L)\varepsilon_{t}$$
+
 where $$\varepsilon_{t}\sim WN(0,\sigma^{2})$$ and 
-(L)&=(1-*{1}L--*{p+1}L<sup>{p+1})\\ (L)&=1+*{1}L++*{q}L</sup>{q}
-\\end{align\*} Recall that $$L$$ is the lag operator and $$\theta(L)$$
+
+$$
+\beign{align*}
+\rho(L)&=(1-\rho_{1}L-\dots-\rho_{p+1}L^{p+1})\\
+\theta(L)&=1+\theta_{1}L+\dots+\theta_{q}L^{q}
+\end{align*}
+$$
+
+Recall that $$L$$ is the lag operator and $$\theta(L)$$
 must be invertible. If we factor
 $$\rho(L)=(1-\lambda_{1}L)\cdots(1-\lambda_{p+1}L)$$, where
 $$\{\lambda\}$$ are the eigenvalues of the $$F$$ matrix (see \[LOST:
 State-Space Models\]({{ “/Time\_Series/State\_Space\_Models.html” |
 relative\_url }})), then define
-$$\phi(L)=(1-\lambda_{1}L)\cdots(1-\lambda_{p}L)$$. It follows that 
+$$\phi(L)=(1-\lambda_{1}L)\cdots(1-\lambda_{p}L)$$. It follows that
+
+$$
+\begin{align*}
+\phi(L)(1-L)u_{t}&=\theta(L)\varepsilon_{t}
+\implies \phi(L)\Delta u_{t}&=\theta(L)\varepsilon_{t}
+\end{align*}
+$$
+
 Since $$\Delta u_{t}$$ is now a stationary $$ARMA(p,q)$$, it has a Wold
 form $$\Delta u_{t}=\phi^{-1}(L)\theta(L)\varepsilon_{t}$$, and so we
 can write  In the general case of an $$ARIMA(p,d,q)$$, a unit root of
 multiplicity $$d$$ leads to
-\[\phi(L)(1-L)^{d}y_{t}=\theta(L)\varepsilon_{t}\] which leads to
-$$\Delta^{d} y_{t}$$ being an $$ARMA(p,q)$$ process.
+
+$$\phi(L)(1-L)^{d}y_{t}=\theta(L)\varepsilon_{t}$$
+
+which leads to $$\Delta^{d} y_{t}$$ being an $$ARMA(p,q)$$ process.
 
 
 ## Keep in Mind
