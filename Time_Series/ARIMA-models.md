@@ -39,8 +39,8 @@ $$
 Recall that $$L$$ is the lag operator and $$\theta(L)$$
 must be invertible. If we factor
 $$\rho(L)=(1-\lambda_{1}L)\cdots(1-\lambda_{p+1}L)$$, where
-$$\{\lambda\}$$ are the eigenvalues of the $$F$$ matrix (see \[LOST:
-State-Space Models\]({{ “/Time\_Series/State\_Space\_Models.html” |
+$$\{\lambda\}$$ are the eigenvalues of the $$F$$ matrix (see [LOST:
+State-Space Models]({{ “/Time\_Series/State\_Space\_Models.html” |
 relative\_url }})), then define
 $$\phi(L)=(1-\lambda_{1}L)\cdots(1-\lambda_{p}L)$$. It follows that
 
@@ -77,19 +77,19 @@ which leads to $$\Delta^{d} y_{t}$$ being an $$ARMA(p,q)$$ process.
 
 ## Also Consider
 
-  - AR Models (\[LOST: AR models\]({{ “/Time\_Series/AR-models.html” |
+  - AR Models ([LOST: AR models]({{ “/Time\_Series/AR-models.html” |
     relative\_url }}))
 
-  - MA Models (\[LOST: MA models\]({{ “/Time\_Series/MA-Model.html” |
+  - MA Models ([LOST: MA models]({{ “/Time\_Series/MA-Model.html” |
     relative\_url }}))
 
-  - ARMA Models (\[LOST: ARMA models\]({{
+  - ARMA Models ([LOST: ARMA models]({{
     “/Time\_Series/ARMA-models.html” | relative\_url }}))
 
   - Seasonal ARIMA models, if you suspect the time series data you are
     trying to fit with is subject to seasonality
 
-  - If you are working with \[State-Space models\]({{
+  - If you are working with [State-Space models]({{
     “/Time\_Series/State\_Space\_Models.html” | relative\_url }}), you
     may be interested in trend-cycle decomposition with ARIMA. This
     involves breaking down the ARIMA into a “trend” component, which
@@ -107,7 +107,7 @@ includes the function `arima`, which allows one to estimate an arima
 model, if they know $$p,d,$$ and $$q$$ already.
 
 ``` r
-#load/generate data
+#load data
 gdp = read.csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv")
 gdp_ts = ts(gdp[ ,2], frequency = 4, start = c(1947, 01), end = c(2019, 04))
 y = log(gdp_ts)*100
