@@ -55,19 +55,24 @@ sns.lineplot(ax=ax, data=df, x="date", y=title, hue="name", legend=None)
 
 # Add the text--for each line, find the end, annotate it with a label, and
 # adjust the chart axes so that everything fits on.
-for line, name in zip(ax.lines, df['name'].unique()):
-    y = line.get_ydata()[-1]
-    x = line.get_xdata()[-1]
-    text = ax.annotate(name,
-                       xy=(x, y),
-                       xytext=(0, 0),
-                       color=line.get_color(),
-                       xycoords=(ax.get_xaxis_transform(),
-                                 ax.get_yaxis_transform()),
-                       textcoords="offset points")
-    text_width = (text.get_window_extent(
-        fig.canvas.get_renderer()).transformed(ax.transData.inverted()).width)
-    ax.set_xlim(ax.get_xlim()[0], text.xy[0] + text_width * 1.05)
+for line, name in zip(ax.lines, df.columns.tolist()):
+	y = line.get_ydata()[-1]
+	x = line.get_xdata()[-1]
+	if not np.isfinite(y):
+	    y=next(reversed(line.get_ydata()[~line.get_ydata().mask]),float("nan"))
+	if not np.isfinite(y) or not np.isfinite(x):
+	    continue     
+	text = ax.annotate(name,
+		       xy=(x, y),
+		       xytext=(0, 0),
+		       color=line.get_color(),
+		       xycoords=(ax.get_xaxis_transform(),
+				 ax.get_yaxis_transform()),
+		       textcoords="offset points")
+	text_width = (text.get_window_extent(
+	fig.canvas.get_renderer()).transformed(ax.transData.inverted()).width)
+	if np.isfinite(text_width):
+		ax.set_xlim(ax.get_xlim()[0], text.xy[0] + text_width * 1.05)
 
 # Format the date axis to be prettier.
 ax.xaxis.set_major_formatter(mdates.DateFormatter('%b-%d'))
