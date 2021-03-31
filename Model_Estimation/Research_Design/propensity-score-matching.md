@@ -47,7 +47,7 @@ To start with, let's call the below packages and read in the data (multiple ways
 
 ```r 
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(dplyr, MatchIt, here)
+pacman::p_load(dplyr, MatchIt, here, ggthemes)
 here::i_am("matching.R")
 ecls <- read.csv("ecls.csv")
 ```
