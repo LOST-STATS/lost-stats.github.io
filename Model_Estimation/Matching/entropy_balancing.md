@@ -11,7 +11,11 @@ mathjax: true ## Switch to false if this page has no equations or other math ren
 
 Entropy balancing is a method for matching treatment and control observations that comes from [Hainmueller (2012)](https://www.jstor.org/stable/41403737). It constructs a set of matching weights that, by design, forces certain balance metrics to hold. This means that, like with [Coarsened Exact Matching]({{ "/Model_Estimation/Matching/coarsened_exact_matching.html" | relative_url }}) there is no need to iterate on a matching model by performing the match, checking the balance, and trying different parameters to improve balance. However, unlike coarsened exact matching, entropy balancing does not require enormous data sets or drop large portions of the sample.
 
-Entropy balancing requires a set of balance conditions to be provided. These are often of the form "the mean of matching variable $A$ must be the same between treated and control observations," and similarly for other variables for which the mean should match. However, other conditions can also be included, such as matching to equalize the variance of a matching variable, or the skewness, and so on. This is sort of like the [Generalized Method of Moments]({{ "/Model_Estimation/GLS/gmm.html" | relative_url }})
+Entropy balancing requires a set of balance conditions to be provided. These are often of the form "the mean of matching variable $$A$$ must be the same between treated and control observations," i.e. 
+
+$$\sum_{i|D_i=0}w_iA_i = \sum_{i|D_i=1}A_i$$ 
+
+where $D_i$ indicates treatment status and $w_i$ are the matching weights, and similarly for other variables for which the mean should match. However, other conditions can also be included, such as matching to equalize the variance of a matching variable, or the skewness, and so on. This is sort of like the [Generalized Method of Moments]({{ "/Model_Estimation/GLS/gmm.html" | relative_url }})
 
 Then, the entropy balancing algorithm searches for a set of matching weights that best satisfies the set of balance conditions. These matching weights can then be used to weight an analysis comparing the treated and control groups to remove measured confounding between them.
 
