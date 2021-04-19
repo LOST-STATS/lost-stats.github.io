@@ -61,7 +61,7 @@ There are a few packages for doing the same task in Python, however, there is a 
 
 We are going to use `linearmodels` in python. Installation can be done through `pip install linearmodels` and the documentation is  [here](https://bashtage.github.io/linearmodels/)
 
-```Python
+```python
 # Import the packages
 import pandas as pd
 from linearmodels import PanelOLS
