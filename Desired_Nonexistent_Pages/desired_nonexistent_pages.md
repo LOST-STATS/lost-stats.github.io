@@ -44,10 +44,15 @@ If you create one of these pages, please remove it from this list.
 * Multilevel Regression with Poststratification
 * Nonlinear Mixed Effects Models
 
+### Matching
+
+* Propensity Score Matching
+* Nearest-Neighbor Distance Matching
+* Coarsened Exact Matching
+
 ### Research Design
 
 * Differences in Differences with treatment rollout (use updated methods!)
-* Propensity Score Matching
 * Event Study Estimation
 
 ### Statistical Inference
@@ -55,6 +60,7 @@ If you create one of these pages, please remove it from this list.
 * Average Marginal Effects
 * Marginal Effects at the Mean
 * Nonlinear hypothesis tests
+* Non-Standard Bootstrap Standard Errors (bootstrap standard errors that aren't built in to the command and must be done "by hand", i.e. for matching)
 
 #### Nonstandard Errors
 
