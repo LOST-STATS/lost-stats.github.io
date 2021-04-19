@@ -38,7 +38,7 @@ Important notes on the regression:
 
 - The point of the regression is to show for each period before and after treatment that the coefficients on the pre-treated periods are statistically insignificant
 
-- Showing the control and treated groups are statistically the same before treatment ($\beta=0$ in pre-treatment periods) supports, though does not prove, the parallel trends assumption in DID estimation.
+- Showing the control and treated groups are statistically the same before treatment ($$\beta_k=0$$ for $$k < 0$$) supports, though does not prove, the parallel trends assumption in DID estimation.
 
 - One of the time periods must be dropped to avoid perfect multicollinearity (as in most fixed-effects setups). In most event studies, the -1 time lag is used as the dropped reference.
 
@@ -53,7 +53,7 @@ Mechanically, an event study is a graphical illustration of the point estimates 
 
 # Implementations
 
-All implementations use the same data, which comes from [Stevenson and Wolfers (2006)](http://users.nber.org/~jwolfers/papers/bargaining_in_the_shadow_of_the_law.pdf) by way of [Clarke & Schythe (2020)](http://ftp.iza.org/dp13524.pdf). This data is a balanced panel from 1964 through 1996 of the United States no-fault divorce reforms and female suicide rates. You can directly download the data [here](http://www.damianclarke.net/stata/bacon_example.dta). 
+All implementations use the same data, which comes from [Stevenson and Wolfers (2006)](http://users.nber.org/~jwolfers/papers/bargaining_in_the_shadow_of_the_law.pdf) by way of [Clarke & Schythe (2020)](http://ftp.iza.org/dp13524.pdf), who use it as an example to demonstrate Goodman-Bacon effects. This data is a balanced panel from 1964 through 1996 of the United States no-fault divorce reforms and female suicide rates. You can directly download the data [here](http://www.damianclarke.net/stata/bacon_example.dta). 
 
 Column `_nfd` in the data  specifies the year in which the law went into effect for the respective state. We use this column to identify the lead and lags with respect to year of treatment. `pcinc`, `asmrh`, and `cases` are controls.
 
