@@ -15,9 +15,9 @@ Entropy balancing requires a set of balance conditions to be provided. These are
 
 $$\sum_{i|D_i=0}w_iA_i = \sum_{i|D_i=1}A_i$$ 
 
-where $D_i$ indicates treatment status and $w_i$ are the matching weights, and similarly for other variables for which the mean should match. However, other conditions can also be included, such as matching to equalize the variance of a matching variable, or the skewness, and so on. This is sort of like the [Generalized Method of Moments]({{ "/Model_Estimation/GLS/gmm.html" | relative_url }})
+where $$D_i$$ indicates treatment status and $$w_i$$ are the matching weights, and similarly for other variables for which the mean should match. However, other conditions can also be included, such as matching to equalize the variance of a matching variable, or the skewness, and so on. This is sort of like the [Generalized Method of Moments]({{ "/Model_Estimation/GLS/gmm.html" | relative_url }})
 
-Then, the entropy balancing algorithm searches for a set of matching weights that best satisfies the set of balance conditions. These matching weights can then be used to weight an analysis comparing the treated and control groups to remove measured confounding between them.
+Then, the entropy balancing algorithm searches for a set of matching weights $w_i$ that best satisfies the set of balance conditions. These matching weights can then be used to weight an analysis comparing the treated and control groups to remove measured confounding between them.
 
 ## Keep in Mind
 
