@@ -7,8 +7,7 @@ nav_order: 1
 mathjax: true ## Switch to false if this page has no equations or other math rendering.
 ---
 
-
-## INTRODUCTION
+## 2X2 Difference-in-Differences
 
 Causal inference with cross-sectional data is fundamentally tricky.
 
