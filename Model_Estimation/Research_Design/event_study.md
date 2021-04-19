@@ -19,20 +19,20 @@ In the following code, we will learn how to create a DID event study when treatm
 The regression that DID event studies are based aroud is:
 
 $$ 
-asmrs_{st} = \alpha + \Sigma_{k=-21}^{-2}\beta_kI(lag_k)*treat_s+\Sigma_{k=0}^{27}\beta_kI(lead_k)*Treat_s+ X'_{st}\Gamma+\phi_s+\gamma_t+\epsilon_{st}
+Y_{gt} = \alpha + \Sigma_{k=-T_0}^{-2}\beta_k\times treat_{sk}+\Sigma_{k=0}^{T_1}\beta_k\times treat_{sk}+ X_{st}\Gamma+\phi_s+\gamma_t+\epsilon_{st}
 $$
 
 Where: 
 
- - $$I(lag_k)$$ is a dummy variable, equaling 1 if the observation's `year_to_treat` is the same value as `k`; 0 otherwise. $$I(lead_k)$$ is analogous to $$I(lag_k)$$. 
+ - $$treat_{sk}$$ is a dummy variable, equaling 1 if the observation's periods to their first treated period is the same value as `k`; 0 otherwise (and 0 for all never-treated groups). 
+
+ - $$T_0$$ and $$T_1$$ are the beginning and end of the observation window, respectively.
  
- - $$Treat_s=1$$ if the state is treated, 0 otherwise. This allows to compare the difference in means at each time period between the treated and the control. 
+ - $$X`$$ are controls
  
- - $$X`$ are controls
+ - $$\phi$$ and $$\gamma$$ are state and time fixed effects 
  
- - $\phi$ and $\gamma$ are state and time fixed effects 
- 
- - Estimation is performed with standard errors clustered at the state level 
+ - Estimation is generally performed with standard errors clustered at the group level 
 
 Important notes on the regression:
 
