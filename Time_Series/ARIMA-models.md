@@ -21,7 +21,7 @@ $$\rho(L)u_{t}=\theta(L)\varepsilon_{t}$$
 where $$\varepsilon_{t}\sim WN(0,\sigma^{2})$$ and 
 
 $$
-\beign{align}
+\begin{align}
 \rho(L)&=(1-\rho_{1}L-\dots-\rho_{p+1}L^{p+1})\\
 \theta(L)&=1+\theta_{1}L+\dots+\theta_{q}L^{q}
 \end{align}
