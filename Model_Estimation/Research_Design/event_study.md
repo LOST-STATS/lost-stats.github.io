@@ -14,7 +14,7 @@ A Difference-in-Difference (DID) event study, or a Dynamic DID model, is a usefu
 
 In the following code, we will learn how to create a DID event study when treatment is staggered. If there is only one treatment period, the same methodology as described below can be applied. 
 
-**Importantly**, while this page uses data from a staggered-treatment design, [Sun and Abraham (2020)](https://www.sciencedirect.com/science/article/pii/S030440762030378X) showed that basic event-study estimation can be biased in this setup. The code below should be used only in cases where treatment occurs at a single time period. Where possible, the code will also show how to apply the Sun and Abraham estimator that fixes this problem, although keep in mind that Sun and Abraham does not allow covariates.
+**Importantly**, while this page uses data from a staggered-treatment design, [Sun and Abraham (2020)](https://www.sciencedirect.com/science/article/pii/S030440762030378X) showed that basic event-study estimation can be biased in this setup. The code below should be used only in cases where treatment occurs at a single time period. Where possible, the code will also show how to apply the Sun and Abraham estimator that fixes this problem.
 
 The regression that DID event studies are based aroud is:
 
