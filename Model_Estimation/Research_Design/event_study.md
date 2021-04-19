@@ -19,12 +19,12 @@ In the following code, we will learn how to create a DID event study when treatm
 The regression that DID event studies are based aroud is:
 
 $$ 
-Y_{gt} = \alpha + \Sigma_{k=T_0}^{-2}\beta_k\times treat_{sk}+\Sigma_{k=0}^{T_1}\beta_k\times treat_{sk}+ X_{st}\Gamma+\phi_s+\gamma_t+\epsilon_{st}
+Y_{gt} = \alpha + \Sigma_{k=T_0}^{-2}\beta_k\times treat_{gk}+\Sigma_{k=0}^{T_1}\beta_k\times treat_{gk}+ X_{st}\Gamma+\phi_s+\gamma_t+\epsilon_{st}
 $$
 
 Where: 
 
- - $$treat_{sk}$$ is a dummy variable, equaling 1 if the observation's periods to their first treated period is the same value as `k`; 0 otherwise (and 0 for all never-treated groups). 
+ - $$treat_{sk}$$ is a dummy variable, equaling 1 if the observation's periods relative to the group $$g$$'s first treated period is the same value as `k`; 0 otherwise (and 0 for all never-treated groups). 
 
  - $$T_0$$ and $$T_1$$ are the lowest and highest number of leads and lags to consider surrouning the treatment period, respectively.
  
