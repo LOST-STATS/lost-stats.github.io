@@ -205,7 +205,7 @@
     <p>The point of the regression is to show for each period before and after treatment that the coefficients on the pre-treated periods are statistically insignificant</p>
   </li>
   <li>
-    <p>Showing the control and treated groups are statistically the same before treatment ($\beta=0$ in pre-treatment periods) supports, though does not prove, the parallel trends assumption in DID estimation.</p>
+    <p>Showing the control and treated groups are statistically the same before treatment (\(\beta_k=0\) for \(k &lt; 0\)) supports, though does not prove, the parallel trends assumption in DID estimation.</p>
   </li>
   <li>
     <p>One of the time periods must be dropped to avoid perfect multicollinearity (as in most fixed-effects setups). In most event studies, the -1 time lag is used as the dropped reference.</p>
@@ -225,7 +225,7 @@
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
-<p>All implementations use the same data, which comes from <a href="http://users.nber.org/~jwolfers/papers/bargaining_in_the_shadow_of_the_law.pdf">Stevenson and Wolfers (2006)</a> by way of <a href="http://ftp.iza.org/dp13524.pdf">Clarke &amp; Schythe (2020)</a>. This data is a balanced panel from 1964 through 1996 of the United States no-fault divorce reforms and female suicide rates. You can directly download the data <a href="http://www.damianclarke.net/stata/bacon_example.dta">here</a>.</p>
+<p>All implementations use the same data, which comes from <a href="http://users.nber.org/~jwolfers/papers/bargaining_in_the_shadow_of_the_law.pdf">Stevenson and Wolfers (2006)</a> by way of <a href="http://ftp.iza.org/dp13524.pdf">Clarke &amp; Schythe (2020)</a>, who use it as an example to demonstrate Goodman-Bacon effects. This data is a balanced panel from 1964 through 1996 of the United States no-fault divorce reforms and female suicide rates. You can directly download the data <a href="http://www.damianclarke.net/stata/bacon_example.dta">here</a>.</p>
 <p>Column <code class="language-plaintext highlighter-rouge">_nfd</code> in the data  specifies the year in which the law went into effect for the respective state. We use this column to identify the lead and lags with respect to year of treatment. <code class="language-plaintext highlighter-rouge">pcinc</code>, <code class="language-plaintext highlighter-rouge">asmrh</code>, and <code class="language-plaintext highlighter-rouge">cases</code> are controls.</p>
 <p>Note that there are some states in which <code class="language-plaintext highlighter-rouge">_nfd</code> is empty. These states never received treatment, and thus exist as a control.</p>
       <h2 id="python">
