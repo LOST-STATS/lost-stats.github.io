@@ -170,7 +170,10 @@
             </ol>
           </nav>
       <div id="main-content" class="main-content" role="main">
-          <p>Decision trees are among the most common and useful machine learning methodologies. While they are a relatively simple method, they are incredibly easy to understand and implement for both classification and regression problems.</p>
+          <h1 id="decision-trees">
+          <a href="#decision-trees" aria-labelledby="decision-trees" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Decision Trees
+      </h1>
+<p>Decision trees are among the most common and useful machine learning methodologies. While they are a relatively simple method, they are incredibly easy to understand and implement for both classification and regression problems.</p>
 <p>A decision tree “grows” by creating a cutoff point (often called a split) at a single point in the data that maximizes accuracy. The tree’s prediction is then based on the mean of the region that results from the input data.</p>
 <p>For both regression and classification trees, it is important to optimize the number of splits that we allow the tree to make. If there is no limit, the trees would be able to create as many splits as the data will allow. This would mean the tree could perfectly “predict” every value from the training dataset, but would perform terribly out of sample (i.e., overfit the data). As such, it is important to keep a reasonable limit on the number of splits. This is achieved by creating a penalty that the algorithm has to pay in order to perform another split. If the increase in accuracy is worth more than the penalty, it will make the split.</p>
 <p>For regression trees, the decision to split along a continuum of values is often made by minimizing the residual sum of squares:</p>
