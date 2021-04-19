@@ -3120,10 +3120,10 @@
     "relUrl": "/Other/task_scheduling_with_github_actions.html"
   },"520": {
     "doc": "2x2 Difference in Difference",
-    "title": "INTRODUCTION",
+    "title": "2X2 Difference-in-Differences",
     "content": "Causal inference with cross-sectional data is fundamentally tricky. | People, firms, etc. are different from one another in lots of ways. | Can only get a clean comparison when you have a (quasi-)experimental setup, such as an experiment or an regression discontinuity. | . Difference-in-difference makes use of a treatment that was applied to one group at a given time but not another group. It compares how each of those groups changed over time (comparing them to themselves to eliminate between-group differences) and then compares the treatment group difference to the control group difference (both of which contain the same time gaps, eliminating differences over time). ",
-    "url": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#introduction",
-    "relUrl": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#introduction"
+    "url": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#2x2-difference-in-differences",
+    "relUrl": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#2x2-difference-in-differences"
   },"521": {
     "doc": "2x2 Difference in Difference",
     "title": "KEEP IN MIND",

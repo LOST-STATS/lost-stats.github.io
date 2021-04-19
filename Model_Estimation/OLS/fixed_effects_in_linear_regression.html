@@ -366,34 +366,34 @@
       </h2>
 <p>There are a few packages for doing the same task in Python, however, there is a well-known issue with these packages.That is, the calculation of standard deviation might be a little different.</p>
 <p>We are going to use <code class="language-plaintext highlighter-rouge">linearmodels</code> in python. Installation can be done through <code class="language-plaintext highlighter-rouge">pip install linearmodels</code> and the documentation is  <a href="https://bashtage.github.io/linearmodels/">here</a></p>
-<pre><code class="language-Python"># Import the packages
-import pandas as pd
-from linearmodels import PanelOLS
-import numpy as np
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Import the packages
+</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="nn">linearmodels</span> <span class="kn">import</span> <span class="n">PanelOLS</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 
 
-# Load the data
-data = pd.read_csv(r"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv")
+<span class="c1"># Load the data
+</span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">r"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv"</span><span class="p">)</span>
 
-# Set the index for fixed effects
-data = data.set_index(['inst_name', 'year'])
+<span class="c1"># Set the index for fixed effects
+</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">set_index</span><span class="p">([</span><span class="s">'inst_name'</span><span class="p">,</span> <span class="s">'year'</span><span class="p">])</span>
 
-# Calculate and drop the NA Values
-data['prop_working'] = data['count_working']/(data['count_working'] + data['count_not_working'])
-#data = data.dropna(subset=['earnings_med', 'prop_working'])
-
-# Regression
-FE = PanelOLS(data.earnings_med, data['prop_working'],
-              entity_effects = True,
-              time_effects=True
-              )
+<span class="c1"># Calculate and drop the NA Values
+</span><span class="n">data</span><span class="p">[</span><span class="s">'prop_working'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">'count_working'</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'count_working'</span><span class="p">]</span> <span class="o">+</span> <span class="n">data</span><span class="p">[</span><span class="s">'count_not_working'</span><span class="p">])</span>
+<span class="c1">#data = data.dropna(subset=['earnings_med', 'prop_working'])
+</span>
+<span class="c1"># Regression
+</span><span class="n">FE</span> <span class="o">=</span> <span class="n">PanelOLS</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">earnings_med</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s">'prop_working'</span><span class="p">],</span>
+              <span class="n">entity_effects</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span>
+              <span class="n">time_effects</span><span class="o">=</span><span class="bp">True</span>
+              <span class="p">)</span>
               
-# Result
-result = FE.fit(cov_type = 'clustered',
-             cluster_entity=True,
-             # cluster_time=True
-             )
-</code></pre>
+<span class="c1"># Result
+</span><span class="n">result</span> <span class="o">=</span> <span class="n">FE</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cov_type</span> <span class="o">=</span> <span class="s">'clustered'</span><span class="p">,</span>
+             <span class="n">cluster_entity</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+             <span class="c1"># cluster_time=True
+</span>             <span class="p">)</span>
+</code></pre></div></div>
 <p>There are also other packages for fixed effect models, such as <code class="language-plaintext highlighter-rouge">econtools</code> (<a href="https://pypi.org/project/econtools/">link</a>), <code class="language-plaintext highlighter-rouge">FixedEffectModelPyHDFE</code> (<a href="https://pypi.org/project/FixedEffectModelPyHDFE/">link</a>), <code class="language-plaintext highlighter-rouge">regpyhdfe</code>(<a href="https://regpyhdfe.readthedocs.io/en/latest/intro.html">link</a>) and <code class="language-plaintext highlighter-rouge">econtools</code> (<a href="https://pypi.org/project/econtools/">link</a>).</p>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
