@@ -180,23 +180,23 @@
 <p>In the following code, we will learn how to create a DID event study when treatment is staggered. If there is only one treatment period, the same methodology as described below can be applied.</p>
 <p><strong>Importantly</strong>, while this page uses data from a staggered-treatment design, <a href="https://www.sciencedirect.com/science/article/pii/S030440762030378X">Sun and Abraham (2020)</a> showed that basic event-study estimation can be biased in this setup. The code below should be used only in cases where treatment occurs at a single time period. Where possible, the code will also show how to apply the Sun and Abraham estimator that fixes this problem, although keep in mind that Sun and Abraham does not allow covariates.</p>
 <p>The regression that DID event studies are based aroud is:</p>
-\[asmrs_{st} = \alpha + \Sigma_{k=-21}^{-2}\beta_kI(lag_k)*treat_s+\Sigma_{k=0}^{27}\beta_kI(lead_k)*Treat_s+ X'_{st}\Gamma+\phi_s+\gamma_t+\epsilon_{st}\]
+\[Y_{gt} = \alpha + \Sigma_{k=-T_0}^{-2}\beta_k\times treat_{sk}+\Sigma_{k=0}^{T_1}\beta_k\times treat_{sk}+ X_{st}\Gamma+\phi_s+\gamma_t+\epsilon_{st}\]
 <p>Where:</p>
 <ul>
   <li>
-    <p>\(I(lag_k)\) is a dummy variable, equaling 1 if the observation’s <code class="language-plaintext highlighter-rouge">year_to_treat</code> is the same value as <code class="language-plaintext highlighter-rouge">k</code>; 0 otherwise. \(I(lead_k)\) is analogous to \(I(lag_k)\).</p>
+    <p>\(treat_{sk}\) is a dummy variable, equaling 1 if the observation’s periods to their first treated period is the same value as <code class="language-plaintext highlighter-rouge">k</code>; 0 otherwise (and 0 for all never-treated groups).</p>
   </li>
   <li>
-    <p>\(Treat_s=1\) if the state is treated, 0 otherwise. This allows to compare the difference in means at each time period between the treated and the control.</p>
+    <p>\(T_0\) and \(T_1\) are the beginning and end of the observation window, respectively.</p>
   </li>
   <li>
-    <p>$$X`$ are controls</p>
+    <p>\(X`\) are controls</p>
   </li>
   <li>
-    <p>$\phi$ and $\gamma$ are state and time fixed effects</p>
+    <p>\(\phi\) and \(\gamma\) are state and time fixed effects</p>
   </li>
   <li>
-    <p>Estimation is performed with standard errors clustered at the state level</p>
+    <p>Estimation is generally performed with standard errors clustered at the group level</p>
   </li>
 </ul>
 <p>Important notes on the regression:</p>
