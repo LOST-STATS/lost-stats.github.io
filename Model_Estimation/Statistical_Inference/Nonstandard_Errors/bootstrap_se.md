@@ -120,7 +120,7 @@ If your model uses weights, `bootstrap` prefix (or `vce(bootstrap)` ) will not b
 bootstrap, reps(200): reg mpg foreign length [pw=weight]
 ```
 
-`bootstrap`, however, can be used to estimate standard errors of more complex systems. This, however, require some programmin. Below an example for bootstrapping marginal effects for `ivprobit`.
+`bootstrap`, however, can be used to estimate standard errors of more complex systems. This, however, require some programming. Below an example for bootstrapping marginal effects for `ivprobit`.
 
 ```Stata
 webuse laborsup, clear
