@@ -277,6 +277,26 @@
 * Interact a variable with itself to create a polynomial term
 </span><span class="err">reg</span> <span class="err">mpg</span> <span class="err">c.weight##c.weight##c.weight</span> <span class="err">foreign
 </span></code></pre></div></div>
+<p>It is also possible to use other type of functions and obtain correct marginal effects. For example:
+Say that you want to estimate the model:</p>
+\[y = a_0 + a_1 * x + a_2 * 1/x + e\]
+<p>and you want to estimate the marginal effects with respect to $x$. You can do this as follows:</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* requires package f_able
+</span><span class="err">ssc</span> <span class="err">install</span> <span class="err">f_able
+</span><span class="c1">* Load auto data
+</span><span class="err">sysuse</span> <span class="err">auto.dta,</span> <span class="err">clear
+</span><span class="c1">* create function using "fgen"
+</span><span class="err">fgen</span> <span class="err">_1_price</span> <span class="o">=</span> <span class="err">1/price
+
+reg</span> <span class="err">mpg</span> <span class="err">_1_price</span> <span class="err">price
+</span><span class="c1">* indicates which variable is a "constructed" variable
+</span><span class="err">f_able</span> <span class="err">_1_price,</span> <span class="err">auto
+</span><span class="c1">* estimate marginal effects
+</span><span class="err">margins,</span> <span class="err">dydx(price)
+</span><span class="c1">* How do you know it works? Use NL to verify
+</span><span class="err">nl</span> <span class="err">(mpg</span> <span class="o">=</span> <span class="err">{a0}</span> <span class="o">+</span> <span class="err">{a1}</span> <span class="o">*</span> <span class="err">price</span> <span class="o">+</span> <span class="err">{a2}</span><span class="o">*</span><span class="err">1/price),</span> <span class="err">var(price)
+margins,</span> <span class="err">dydx(price)
+</span></code></pre></div></div>
           <hr>
           <footer>
               <div class="d-flex mt-2">
