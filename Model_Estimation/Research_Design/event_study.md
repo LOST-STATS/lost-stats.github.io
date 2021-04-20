@@ -264,6 +264,11 @@ sun_df <- bacon_df %>%
   # and a shared identifier for year treated and year
   mutate(id = paste0(year_treated, ':', year))
   
+# Don't include so many pre- and post-lags that you've got a lot of tiny periods
+table(sun_df$time_to_treat)
+sun_df <- sun_df %>%
+  filter(time_to_treat == -1000 | (time_to_treat >= -9 & time_to_treat <= 24))
+
 # Read the Sun and Abraham paper before including controls as I do here
 m_2 <- feols(asmrs ~ 
                # This time, interact time_to_treatment with year treated
@@ -271,12 +276,8 @@ m_2 <- feols(asmrs ~
                i(time_to_treat, f2 = year_treated, drop = c(-1, -1000)) +
                # Controls
                pcinc + asmrh + cases
-             # Fixed effects for year_treated-year and year
-             # IMPORTANT NOTE:
-             # the FE should actually be id + year here, but due to the sparseness
-             # of the example data, that won't run. But *do* do that in your analysis though
-             # See help(aggregate.fixest)
-             | year_treated + year, 
+             # Fixed effects for group and year
+             | stfips + year, 
              data=sun_df)
 # Aggregate the coefficients by group
 agg_coef = aggregate(m_2, "(time_to_treat)::(-?[[:digit:]]+)")
@@ -285,7 +286,7 @@ agg_coef %>%
   as_tibble() %>%
   mutate(conf.low = Estimate - 1.96*`Std. Error`,
          conf.high = Estimate + 1.96*`Std. Error`,
-         `Time to Treatment` = c(-21:-2, 0:27)) %>%
+         `Time to Treatment` = c(-9:-2, 0:24)) %>%
   ggplot(mapping = aes(x = `Time to Treatment`, y = Estimate, 
                        ymin = conf.low, ymax = conf.high))+
   geom_pointrange(position = position_dodge(width = 1), 
