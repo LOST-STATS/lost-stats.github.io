@@ -123,3 +123,27 @@ reg mpg c.weight#i.foreign
 reg mpg c.weight##c.weight##c.weight foreign
 ```
 
+It is also possible to use other type of functions and obtain correct marginal effects. For example:
+Say that you want to estimate the model:
+
+$$ y = a_0 + a_1 * x + a_2 * 1/x + e $$ 
+
+and you want to estimate the marginal effects with respect to $x$. You can do this as follows:
+
+```stata
+* requires package f_able
+ssc install f_able
+* Load auto data
+sysuse auto.dta, clear
+* create function using "fgen"
+fgen _1_price = 1/price
+
+reg mpg _1_price price
+* indicates which variable is a "constructed" variable
+f_able _1_price, auto
+* estimate marginal effects
+margins, dydx(price)
+* How do you know it works? Use NL to verify
+nl (mpg = {a0} + {a1} * price + {a2}*1/price), var(price)
+margins, dydx(price)
+```
