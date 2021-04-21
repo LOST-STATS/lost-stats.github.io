@@ -120,3 +120,110 @@ summary(lin_gmm_mod)
 
 ```
 
+
+## Stata
+
+Stata provides an official command `gmm`, which can be used for the estimation of models via this method if you provide moments of interest. 
+
+The first example will be in recovering the coefficients that determine the distribution of a variable, assuming that variable follows a normal distribution.
+
+First lets simulate some data, and set the parameters
+
+```stata
+**# Normal distribution
+
+*** Parameters to estimate
+local mu    = 3
+local sigma = 2
+
+*** Generate sample
+set seed 219
+clear
+set obs 500
+gen x = rnormal(`mu',`sigma')
+```
+
+In this code, I use `local` to identify the true parameters of interest. the mean `mu` and standard deviation `sigma`. Im also using `set seed`, to simulare data that can be replicated. The variable `x` is obtained based on a random draw from a normal distribution.
+
+The next step is to declare all the moment conditions. Here Im declaring them with `local` but could be written just as well with `global` or written directly instead of the ``m1'` expressions in the `gmm` command.
+
+Keep in mind that `locals` only stay in memory _locally_. Once you run the program, they dissapear. _Globals_ instead, can be used at any point after they are declared. For this reason, when using the code for this example, either copy it by hand into the console, or put it all in the *same* do file and run it together, so the locals are all in the same environment together.
+
+In the `gmm` syntax below, the coefficients of interest to be estimated, are written within curly brakets "{}". I can also declare within the brakets initial values for the coefficients. Here `mu=1` and `sigma=1`.
+
+Following the example above, we can declare 3 equations to define the moments for a normal distribution: the mean, the variance, and the kurtosis. However, because there are only 2 unknowns (mean and standard deviation), the model will be overidentified. This means that I can use either all 3 moments, or just any 2 of them.
+
+In this case, because the true distribution is normal, you only need two parameters to describe the distribution. Thus, you should get the same results, (or quite close), regardless of which pair of moments you use.
+
+```stata
+*** Declare moments restrictions
+local m1  {mu=1}-x
+local m2  {sigma=1}^2 - (x-{mu=1})^2
+local m3  x^3 - {mu=1}*({mu}^2+3*{sigma=1}^2)
+gmm (`m1') (`m2') (`m3'), winitial(identity) 
+est sto m1
+gmm (`m1') (`m2') , winitial(identity) 
+est sto m2
+gmm (`m1') (`m3') , winitial(identity) 
+est sto m3
+gmm (`m2') (`m3') , winitial(identity) 
+est sto m4
+est tab m1 m2 m3 m4, se
+```
+
+A second example for the use of `gmm` is for the estimation of standard linear regression models. 
+For this, lets create some data, where the variable of interest is $$X$$ 
+
+```stata
+**# LR estimation
+
+*** Parameters to estimate 
+local a0 1
+local a1 2
+clear
+set obs 500
+*** Exogenous variables
+gen z1 = rnormal(1,2)
+gen z2 = rnormal(-1,1)
+
+*** unobserved error
+gen e = rnormal()
+
+*** Data Generating process
+gen x = z1+z2+e     // X is endogenous to e
+gen y=`a0'+`a1'*x+e
+```
+
+Next, we can use `gmm` to estimate the model, under different assumptions
+
+```stata
+*** gmm ignoring endogeneity
+** this is your error
+local m1 y-{a0}-{a1}*x  
+** which implies First order condition E(m1)=0 
+** and E(x*m1)=0 
+gmm (`m1'), winitial(identity) instrument(x)
+
+*** gmm with endogeneity
+** here, it implies E(z*m1)=0 
+local m1 y-{a0}-{a1}*x
+gmm (`m1'), winitial(identity) instrument(z1)
+est sto m1
+gmm (`m1'), winitial(identity) instrument(z2)
+est sto m2
+gmm (`m1'), winitial(identity) instrument(z1 z2)
+est sto m3
+est tab m1 m2 m3, se
+
+** I could also write the moment conditions more explicitly
+local m1 y-{a0}-{a1}*x
+gmm (`m1') (z1*(`m1')), winitial(identity)
+est sto m1
+gmm (`m1') (z2*(`m1')), winitial(identity) 
+est sto m2
+gmm (`m1') (z1*(`m1')) (z2*(`m1')), winitial(identity)  
+est sto m3
+est tab m1 m2 m3, se
+** producing the same results as before
+```
+
