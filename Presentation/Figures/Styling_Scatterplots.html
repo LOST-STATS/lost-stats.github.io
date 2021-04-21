@@ -423,6 +423,146 @@ Using the function <code class="language-plaintext highlighter-rouge">p_load()</
       <h4 id="congratulations-you-just-make-your-own-style-of-scatterplots-if-you-are-following-all-the-steps-above-and-try-to-play-around-the-different-options">
           <a href="#congratulations-you-just-make-your-own-style-of-scatterplots-if-you-are-following-all-the-steps-above-and-try-to-play-around-the-different-options" aria-labelledby="congratulations-you-just-make-your-own-style-of-scatterplots-if-you-are-following-all-the-steps-above-and-try-to-play-around-the-different-options" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Congratulations!!! You just make your own style of scatterplots if you are following all the steps above and try to play around the different options.
       </h4>
+      <h2 id="stata">
+          <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
+      </h2>
+<p>For this Stata demonstration, I will use a combination of <code class="language-plaintext highlighter-rouge">scatter</code> and <code class="language-plaintext highlighter-rouge">twoway</code>, both native commands in Stata, to create all the figures trying to emulate the structure you see above in R.</p>
+<p>While I want to use only official commands within Stata, I will use Ben Jann’s <code class="language-plaintext highlighter-rouge">grstyle</code> to set some basic graph themes, although I’ll keep them minimalistic. see <code class="language-plaintext highlighter-rouge">help grstyle</code> for more options.</p>
+      <h3 id="setup">
+          <a href="#setup" aria-labelledby="setup" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Setup
+      </h3>
+<p>To replicate all figures here, you will need to make sure you have <code class="language-plaintext highlighter-rouge">grstyle</code> installed in your computer. To make things comparable to the R example, I will also use the <em>Iris</em> dataset.</p>
+<p>Other than that, I use the following setup:</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">ssc</span> <span class="err">install</span> <span class="err">grstyle
+grstyle</span> <span class="err">init
+grstyle</span> <span class="err">color</span> <span class="err">background</span> <span class="err">white
+grstyle</span> <span class="err">set</span> <span class="err">legend</span> <span class="err">,</span> <span class="err">nobox
+webuse</span> <span class="err">iris,</span> <span class="err">clear
+</span></code></pre></div></div>
+      <h3 id="basic-scatterplot">
+          <a href="#basic-scatterplot" aria-labelledby="basic-scatterplot" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Basic Scatterplot
+      </h3>
+<p>Let’s start with the basic scatterplot. Say we want to check the relationship between Sepal width and Sepal length of the iris species. Basic scatterplots can be obtained using the command <code class="language-plaintext highlighter-rouge">scatter</code>.</p>
+<p>The general syntax is as follows:</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">scatter</span> <span class="err">yvar1</span> <span class="err">[yvar2</span> <span class="err">yvar3</span> <span class="err">...]</span> <span class="err">xvar,</span> <span class="err">[options]
+</span></code></pre></div></div>
+<p>You can choose to use one or more variables that will be measured in the vertical axis <em>yvar</em>. The last variable <em>xvar</em> will be used for the horizontal axis. For the example, I will plot only two variables: Sepal width and Sepal length.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">
+</span></code></pre></div></div>
+<p><img src="/Presentation/Figures/Images/Styling_Scatterplots/stata_sc_1.png" alt="Basic Scatterplot in Stata" /></p>
+      <h3 id="scatterplot-by-groups">
+          <a href="#scatterplot-by-groups" aria-labelledby="scatterplot-by-groups" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Scatterplot by groups
+      </h3>
+<p>Something you may want to do when producing Scatterplots is to visually separate different groups within the same scatterplot. For example, in the Iris data, we would like to see how sepal dimensions change by Iris type. To be able to do this, you need to use <code class="language-plaintext highlighter-rouge">twoway</code> to overlap multiple graphs together.</p>
+<p>There are two ways to create multiple overalping plots. The easier one is this:</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">twoway</span>  <span class="err">scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">1</span> <span class="o">||</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">2</span> <span class="o">||</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">3
+</span></code></pre></div></div>
+<div class="table-wrapper"><table>
+  <tbody>
+    <tr>
+      <td>Where each subplot (by iris type) is separated using *</td>
+      <td> </td>
+      <td><em>. The tripple forward slash *///</em> is used to break the line, and avoid code that is too long to follow.</td>
+    </tr>
+  </tbody>
+</table></div>
+<p>The second option, my preferred option, is to separate each subplot, using parenthesis to encapsulate each subplot:</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">twoway</span>  <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">1)</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">2)</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">3)</span> 	<span class="err">
+</span></code></pre></div></div>
+<p>This is convenient because allows you to add and differentiate options that affect a subplot, vs options that affect the whole <em>twoway plot</em>.</p>
+<p>One more thing. The basic plot (as above) differentiates each plot by color, but uses generic labels for each subgroup. So lets add labels for the three types of Irises.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">twoway</span>  <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">1)</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">2)</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">3),</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">legend(order(1</span> <span class="s2">"Sectosa"</span> <span class="err">2</span> <span class="s2">"Versicolor"</span> <span class="err">3</span> <span class="s2">"Virginica"</span><span class="err">))</span> <span class="err">
+</span></code></pre></div></div>
+<p><img src="/Presentation/Figures/Images/Styling_Scatterplots/stata_sc_2.png" alt="Stata Grouped Scatterplot" /></p>
+      <h4 id="transparency">
+          <a href="#transparency" aria-labelledby="transparency" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Transparency
+      </h4>
+<p>Starting in Stata 15, it is possible to add transparency to a figure. See that this is done using the option `color()’. For fun, Im using the same color on each subgroup: “forest_green”.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">twoway</span>  <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">1,</span> <span class="err">color(forest_green%10))</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">2,</span> <span class="err">color(forest_green%40))</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">3,</span> <span class="err">color(forest_green%80)),</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">legend(order(1</span> <span class="s2">"Sectosa"</span> <span class="err">2</span> <span class="s2">"Versicolor"</span> <span class="err">3</span> <span class="s2">"Virginica"</span><span class="err">))</span> <span class="err">
+</span></code></pre></div></div>
+<p><img src="/Presentation/Figures/Images/Styling_Scatterplots/stata_sc_3.png" alt="Stata scatterplot with transparency" /></p>
+      <h4 id="shapesymbols">
+          <a href="#shapesymbols" aria-labelledby="shapesymbols" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Shape/symbols
+      </h4>
+<p>In Stata, you will use the word <code class="language-plaintext highlighter-rouge">symbol</code> rather than <code class="language-plaintext highlighter-rouge">shape</code> to differentiate the markers in a scatter plot. 
+<code class="language-plaintext highlighter-rouge">Symbols</code> can be modified using the option <code class="language-plaintext highlighter-rouge">symbol()</code>. To see all options for symbols, you can type <code class="language-plaintext highlighter-rouge">palette symbol</code>.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">twoway</span>  <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">1,</span> <span class="err">color(gold)</span> <span class="err">symbol(O))</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">2,</span> <span class="err">color(gold)</span> <span class="err">symbol(T))</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">3,</span> <span class="err">color(gold)</span> <span class="err">symbol(S)),</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">legend(order(1</span> <span class="s2">"Sectosa"</span> <span class="err">2</span> <span class="s2">"Versicolor"</span> <span class="err">3</span> <span class="s2">"Virginica"</span><span class="err">))</span> <span class="err">
+</span></code></pre></div></div>
+<p><img src="/Presentation/Figures/Images/Styling_Scatterplots/stata_sc_4.png" alt="Stata scatterplot with custom symbols" /></p>
+      <h4 id="size">
+          <a href="#size" aria-labelledby="size" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Size
+      </h4>
+<p>Size of a marker can be modified using the option <code class="language-plaintext highlighter-rouge">size()</code>. See <code class="language-plaintext highlighter-rouge">help markersizestyle</code> for all available size options.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">twoway</span>  <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">1,</span> <span class="err">color(red)</span> <span class="err">msize(small))</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">2,</span> <span class="err">color(red)</span> <span class="err">msize(medium))</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">3,</span> <span class="err">color(red)</span> <span class="err">msize(large)),</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">legend(order(1</span> <span class="s2">"Sectosa"</span> <span class="err">2</span> <span class="s2">"Versicolor"</span> <span class="err">3</span> <span class="s2">"Virginica"</span><span class="err">))
+</span></code></pre></div></div>
+<p><img src="/Presentation/Figures/Images/Styling_Scatterplots/stata_sc_5.png" alt="Stata scatterplot with different sized dots" /></p>
+      <h4 id="color">
+          <a href="#color" aria-labelledby="color" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Color
+      </h4>
+<p>This is the first option I applied earlier. However, this is a good opportunity to point out all the color options Stata has. See <code class="language-plaintext highlighter-rouge">help colorstyle##colorstyle</code> for options. In the example below I use the RBG approach to choose colors.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">twoway</span>  <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">1,</span> <span class="err">color(</span><span class="s2">"240 120 140"</span><span class="err">)</span> <span class="err">)</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">2,</span> <span class="err">color(</span><span class="s2">"100 190 150"</span><span class="err">)</span> <span class="err">)</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">3,</span> <span class="err">color(</span><span class="s2">"125 190 230"</span><span class="err">)</span> <span class="err">),</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">legend(order(1</span> <span class="s2">"Sectosa"</span> <span class="err">2</span> <span class="s2">"Versicolor"</span> <span class="err">3</span> <span class="s2">"Virginica"</span><span class="err">))</span> <span class="err">
+</span></code></pre></div></div>
+<p><img src="/Presentation/Figures/Images/Styling_Scatterplots/stata_sc_6.png" alt="Stata scatterplot with custom colors set by RBG" /></p>
+      <h3 id="labels-titles-and-subtitles">
+          <a href="#labels-titles-and-subtitles" aria-labelledby="labels-titles-and-subtitles" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Labels, Titles and Subtitles
+      </h3>
+<p>I mentioned this earlier. Stata uses a variable label for the plot axis titles. However, you can modify that using the options <code class="language-plaintext highlighter-rouge">xtitle()</code> and <code class="language-plaintext highlighter-rouge">ytitle()</code>.</p>
+<p>It is also possible to add a title and subtitle to the figure, using options <code class="language-plaintext highlighter-rouge">title()</code> and <code class="language-plaintext highlighter-rouge">subtitle()</code></p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">twoway</span>  <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">1,</span> <span class="err">color(</span><span class="s2">"72 27 109"</span><span class="err">)</span> <span class="err">symbol(O))</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">2,</span> <span class="err">color(</span><span class="s2">"33 144 140"</span><span class="err">)</span> <span class="err">symbol(T))</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">3,</span> <span class="err">color(</span><span class="s2">"253 231 37"</span><span class="err">)</span> <span class="err">symbol(s)),</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">legend(order(1</span> <span class="s2">"Sectosa"</span> <span class="err">2</span> <span class="s2">"Versicolor"</span> <span class="err">3</span> <span class="s2">"Virginica"</span><span class="err">)</span> <span class="err">col(3))</span> <span class="c1">///</span><span class="err">
+</span>		    <span class="err">title(Sepal</span> <span class="err">length</span> <span class="err">vs</span> <span class="err">Sepal</span> <span class="err">width)</span> <span class="err">subtitle(plot</span> <span class="err">within</span> <span class="err">different</span> <span class="err">Iris</span> <span class="err">Species)</span>	<span class="err">
+</span></code></pre></div></div>
+<p><img src="/Presentation/Figures/Images/Styling_Scatterplots/stata_sc_7.png" alt="Stata scatterplot with axis titles" /></p>
+      <h3 id="showing-some-patterns">
+          <a href="#showing-some-patterns" aria-labelledby="showing-some-patterns" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Showing some patterns
+      </h3>
+<p>Something else you may want to do is add bivarite fitted lines to emphasize particular relationships within pairs of variables. You can do this by adding additional subplots that will produce this information.</p>
+<p>In the example below, I add linear fitted values for all cases. I make sure to use the same line color, so they are consistent with the scatter plot.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">twoway</span>  <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">1,</span> <span class="err">color(</span><span class="s2">"72 27 109"</span><span class="err">)</span> <span class="err">symbol(O))</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">2,</span> <span class="err">color(</span><span class="s2">"33 144 140"</span><span class="err">)</span> <span class="err">symbol(T))</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">3,</span> <span class="err">color(</span><span class="s2">"253 231 37"</span><span class="err">)</span> <span class="err">symbol(s))</span> <span class="c1">///</span><span class="err">
+</span>		    <span class="err">(lfitci</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">1,</span> <span class="err">clcolor(</span><span class="s2">"72 27 109"</span><span class="err">)</span> <span class="err">clwidth(0.5)</span>  <span class="err">acolor(%50)</span> <span class="err">)</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(lfitci</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">2,</span> <span class="err">clcolor(</span><span class="s2">"33 144 140"</span><span class="err">)</span> <span class="err">clwidth(0.5)</span>  <span class="err">acolor(%50)</span> <span class="err">)</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(lfitci</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">3,</span> <span class="err">clcolor(</span><span class="s2">"253 231 37"</span><span class="err">)</span> <span class="err">clwidth(0.5)</span>  <span class="err">acolor(%50)</span> <span class="err">),</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">legend(order(1</span> <span class="s2">"Sectosa"</span> <span class="err">2</span> <span class="s2">"Versicolor"</span> <span class="err">3</span> <span class="s2">"Virginica"</span><span class="err">)</span> <span class="err">col(3))</span> <span class="c1">///</span><span class="err">
+</span>		    <span class="err">title(Sepal</span> <span class="err">length</span> <span class="err">vs</span> <span class="err">Sepal</span> <span class="err">width)</span> <span class="err">subtitle(plot</span> <span class="err">within</span> <span class="err">different</span> <span class="err">Iris</span> <span class="err">Species)</span>	<span class="c1">///</span><span class="err">
+</span>		    <span class="err">xtitle(Sepal</span> <span class="err">length</span> <span class="err">in</span> <span class="err">cm)</span> <span class="err">ytitle(Sepal</span> <span class="err">width</span> <span class="err">in</span> <span class="err">cm)
+</span></code></pre></div></div>
+<p><img src="/Presentation/Figures/Images/Styling_Scatterplots/stata_sc_8.png" alt="Stata scatterplot with best-fit lines" /></p>
+<p>Of course, you can be more sophisticated, and use a local polynomial to identify those relationships:</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">twoway</span>  <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">1,</span> <span class="err">color(</span><span class="s2">"72 27 109"</span><span class="err">)</span> <span class="err">symbol(O))</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">2,</span> <span class="err">color(</span><span class="s2">"33 144 140"</span><span class="err">)</span> <span class="err">symbol(T))</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(scatter</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">3,</span> <span class="err">color(</span><span class="s2">"253 231 37"</span><span class="err">)</span> <span class="err">symbol(s))</span> <span class="c1">///</span><span class="err">
+</span>		    <span class="err">(lpolyci</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">1,</span> <span class="err">clcolor(</span><span class="s2">"72 27 109"</span><span class="err">)</span> <span class="err">clwidth(0.5)</span>  <span class="err">acolor(%50)</span> <span class="err">)</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(lpolyci</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">2,</span> <span class="err">clcolor(</span><span class="s2">"33 144 140"</span><span class="err">)</span> <span class="err">clwidth(0.5)</span>  <span class="err">acolor(%50)</span> <span class="err">)</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">(lpolyci</span> <span class="err">sepwid</span> <span class="err">seplen</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">3,</span> <span class="err">clcolor(</span><span class="s2">"253 231 37"</span><span class="err">)</span> <span class="err">clwidth(0.5)</span>  <span class="err">acolor(%50)</span> <span class="err">),</span> <span class="c1">///</span><span class="err">
+</span>        <span class="err">legend(order(1</span> <span class="s2">"Sectosa"</span> <span class="err">2</span> <span class="s2">"Versicolor"</span> <span class="err">3</span> <span class="s2">"Virginica"</span><span class="err">)</span> <span class="err">col(3))</span> <span class="c1">///</span><span class="err">
+</span>		    <span class="err">title(Sepal</span> <span class="err">length</span> <span class="err">vs</span> <span class="err">Sepal</span> <span class="err">width)</span> <span class="err">subtitle(plot</span> <span class="err">within</span> <span class="err">different</span> <span class="err">Iris</span> <span class="err">Species)</span> <span class="c1">///</span><span class="err">
+</span>		    <span class="err">xtitle(Sepal</span> <span class="err">length</span> <span class="err">in</span> <span class="err">cm)</span> <span class="err">ytitle(Sepal</span> <span class="err">width</span> <span class="err">in</span> <span class="err">cm)
+</span></code></pre></div></div>
+<p><img src="/Presentation/Figures/Images/Styling_Scatterplots/stata_sc_9.png" alt="Stata scatterplot with local polynomial lines." /></p>
+<p>And done. You can use the above guide to modify your plots as needed.</p>
           <hr>
           <footer>
               <div class="d-flex mt-2">
