@@ -123,7 +123,7 @@ summary(lin_gmm_mod)
 
 ## Stata
 
-Stata also provides an official command named `gmm`, which can be used for the estimation of models via this method, assuming you provide moments of interest. The following code would help replicate the example you see above in R.
+Stata provides an official command `gmm`, which can be used for the estimation of models via this method if you provide moments of interest. 
 
 The first example will be in recovering the coefficients that determine the distribution of a variable, assuming that variable follows a normal distribution.
 
@@ -147,15 +147,15 @@ In this code, I use `local` to identify the true parameters of interest. the mea
 
 The next step is to declare all the moment conditions. Here Im declaring them with `local` but could be written just as well with `global` or written directly instead of the ``m1'` expressions in the `gmm` command.
 
-Keep in mind that `locals` only stay in memory _locally_. Once you run the program, they dissapear. _Globals_ instead, can be used at any point after they are declared. 
+Keep in mind that `locals` only stay in memory _locally_. Once you run the program, they dissapear. _Globals_ instead, can be used at any point after they are declared. For this reason, when using the code for this example, either copy it by hand into the console, or put it all in the *same* do file and run it together, so the locals are all in the same environment together.
 
-Also notice that the coefficients of interest, and that need to be estimated, are written within curly brakets "{}". I can also declare within the brakets initial values for the coefficients. Here `mu=1` and `sigma=1`.
+In the `gmm` syntax below, the coefficients of interest to be estimated, are written within curly brakets "{}". I can also declare within the brakets initial values for the coefficients. Here `mu=1` and `sigma=1`.
 
-Following the example above, we can declare 3 equations to define the moments for a normal distribution. The mean, the variance, and the kurtosis. However, because there are only 2 unknowns (mean and standard deviation), the model will be overidentified. For us it means that I can use either all 3 moments, or just any 2 of them.
+Following the example above, we can declare 3 equations to define the moments for a normal distribution: the mean, the variance, and the kurtosis. However, because there are only 2 unknowns (mean and standard deviation), the model will be overidentified. This means that I can use either all 3 moments, or just any 2 of them.
 
-In this case, because the true distribution is normal, you only need to parameters to describe the distribution. Thus, you should get the same results, (or quite close), regardless of which pair of moments you use.
+In this case, because the true distribution is normal, you only need two parameters to describe the distribution. Thus, you should get the same results, (or quite close), regardless of which pair of moments you use.
 
-```Stata
+```stata
 *** Declare moments restrictions
 local m1  {mu=1}-x
 local m2  {sigma=1}^2 - (x-{mu=1})^2
@@ -172,8 +172,9 @@ est tab m1 m2 m3 m4, se
 ```
 
 A second example for the use of `gmm` is for the estimation of standard linear regression models. 
-For this, lets create some data, where the variable of interest X 
-```Stata
+For this, lets create some data, where the variable of interest is $$X$$ 
+
+```stata
 **# LR estimation
 
 *** Parameters to estimate 
