@@ -297,7 +297,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
 
 For this Stata demonstration, I will use a combination of `scatter` and `twoway`, both native commands in Stata, to create all the figures trying to emulate the structure you see above in R.  
 
-While I want to use only official commands within Stata, I will use Ben Jann `grstyle` to set some basic graph themes. Although I'll keep them minimalistic. see `help grstyle` for more options.
+While I want to use only official commands within Stata, I will use Ben Jann's `grstyle` to set some basic graph themes, although I'll keep them minimalistic. see `help grstyle` for more options.
 
 ### Setup
 
@@ -305,7 +305,7 @@ To replicate all figures here, you will need to make sure you have `grstyle` ins
 
 Other than that, I use the following setup:
 
-```Stata
+```stata
 ssc install grstyle
 grstyle init
 grstyle color background white
@@ -319,17 +319,17 @@ Let's start with the basic scatterplot. Say we want to check the relationship be
 
 The general syntax is as follows:
 
-```Stata
+```stata
 scatter yvar1 [yvar2 yvar3 ...] xvar, [options]
 ```
 
-You can choose to use 1 or more variables that will be measured in the vertical axis _yvar_. The last variable _xvar_ will be used for the horizontal axis. For the example, I will plot only two variables: Sepal width and Sepal length. 
+You can choose to use one or more variables that will be measured in the vertical axis _yvar_. The last variable _xvar_ will be used for the horizontal axis. For the example, I will plot only two variables: Sepal width and Sepal length. 
 
-```Stata
+```stata
 scatter sepwid seplen 
 ```
 
-![Fig1](Images/Styling_Scatterplots/stata_sc_1.png)
+![Basic Scatterplot in Stata](Images/Styling_Scatterplots/stata_sc_1.png)
 
 
 ### Scatterplot by groups
@@ -338,7 +338,7 @@ Something you may want to do when producing Scatterplots is to visually separate
 
 There are two ways to create multiple overalping plots. The easier one is this:
 
-```Stata
+```stata
 twoway  scatter sepwid seplen if iris==1 || ///
         scatter sepwid seplen if iris==2 || ///
         scatter sepwid seplen if iris==3
@@ -346,39 +346,39 @@ twoway  scatter sepwid seplen if iris==1 || ///
 
 Where each subplot (by iris type) is separated using *||*. The tripple forward slash *///* is used to break the line, and avoid code that is too long to follow.
 
-The second option, my prefer option, is to separate each subplot, using parenthesis to encapsulate each subplot:
+The second option, my preferred option, is to separate each subplot, using parenthesis to encapsulate each subplot:
 
-```Stata
+```stata
 twoway  (scatter sepwid seplen if iris==1) ///
         (scatter sepwid seplen if iris==2) ///
         (scatter sepwid seplen if iris==3) 	
 ```
 
-This is convinient because allows you to add and differentiate options that affect a subplot, vs option that affect the whole *twoway plot*.
+This is convenient because allows you to add and differentiate options that affect a subplot, vs options that affect the whole *twoway plot*.
 
 One more thing. The basic plot (as above) differentiates each plot by color, but uses generic labels for each subgroup. So lets add labels for the three types of Irises.
 
-```Stata
+```stata
 twoway  (scatter sepwid seplen if iris==1) ///
         (scatter sepwid seplen if iris==2) ///
         (scatter sepwid seplen if iris==3), ///
         legend(order(1 "Sectosa" 2 "Versicolor" 3 "Virginica")) 
 ```
 
-![Fig2](Images/Styling_Scatterplots/stata_sc_2.png)
+![Stata Grouped Scatterplot](Images/Styling_Scatterplots/stata_sc_2.png)
 
 #### Transparency
 
 Starting in Stata 15, it is possible to add transparency to a figure. See that this is done using the option `color()'. For fun, Im using the same color on each subgroup: "forest_green".
 
-```Stata
+```stata
 twoway  (scatter sepwid seplen if iris==1, color(forest_green%10)) ///
         (scatter sepwid seplen if iris==2, color(forest_green%40)) ///
         (scatter sepwid seplen if iris==3, color(forest_green%80)), ///
         legend(order(1 "Sectosa" 2 "Versicolor" 3 "Virginica")) 
 ```
 
-![Fig3](Images/Styling_Scatterplots/stata_sc_3.png)
+![Stata scatterplot with transparency](Images/Styling_Scatterplots/stata_sc_3.png)
 
 
 #### Shape/symbols
@@ -387,39 +387,39 @@ In Stata, you will use the word `symbol` rather than `shape` to differentiate th
 `Symbols` can be modified using the option `symbol()`. To see all options for symbols, you can type `palette symbol`. 
 
   
-```Stata
+```stata
 twoway  (scatter sepwid seplen if iris==1, color(gold) symbol(O)) ///
         (scatter sepwid seplen if iris==2, color(gold) symbol(T)) ///
         (scatter sepwid seplen if iris==3, color(gold) symbol(S)), ///
         legend(order(1 "Sectosa" 2 "Versicolor" 3 "Virginica")) 
 ```
 
-![Fig4](Images/Styling_Scatterplots/stata_sc_4.png)
+![Stata scatterplot with custom symbols](Images/Styling_Scatterplots/stata_sc_4.png)
 
 #### Size
 
 Size of a marker can be modified using the option `size()`. See `help markersizestyle` for all available size options.
 
-```Stata
+```stata
 twoway  (scatter sepwid seplen if iris==1, color(red) msize(small)) ///
         (scatter sepwid seplen if iris==2, color(red) msize(medium)) ///
         (scatter sepwid seplen if iris==3, color(red) msize(large)), ///
         legend(order(1 "Sectosa" 2 "Versicolor" 3 "Virginica"))
 ```
 
-![Fig5](Images/Styling_Scatterplots/stata_sc_5.png)
+![Stata scatterplot with different sized dots](Images/Styling_Scatterplots/stata_sc_5.png)
 
 #### Color
 
-This is the first option I applied earlier. However, this is a good opportunity to point out all Color options Stata has to choose colors. See `help colorstyle##colorstyle` for options. In the example below I use the RBG approach to choose colors.
+This is the first option I applied earlier. However, this is a good opportunity to point out all the color options Stata has. See `help colorstyle##colorstyle` for options. In the example below I use the RBG approach to choose colors.
 
-```Stata
+```stata
 twoway  (scatter sepwid seplen if iris==1, color("240 120 140") ) ///
         (scatter sepwid seplen if iris==2, color("100 190 150") ) ///
         (scatter sepwid seplen if iris==3, color("125 190 230") ), ///
         legend(order(1 "Sectosa" 2 "Versicolor" 3 "Virginica")) 
 ```
-![Fig6](Images/Styling_Scatterplots/stata_sc_6.png)
+![Stata scatterplot with custom colors set by RBG](Images/Styling_Scatterplots/stata_sc_6.png)
  
 ### Labels, Titles and Subtitles
 
@@ -427,7 +427,7 @@ I mentioned this earlier. Stata uses a variable label for the plot axis titles. 
 
 It is also possible to add a title and subtitle to the figure, using options `title()` and `subtitle()`
 
-```Stata
+```stata
 twoway  (scatter sepwid seplen if iris==1, color("72 27 109") symbol(O)) ///
         (scatter sepwid seplen if iris==2, color("33 144 140") symbol(T)) ///
         (scatter sepwid seplen if iris==3, color("253 231 37") symbol(s)), ///
@@ -435,15 +435,15 @@ twoway  (scatter sepwid seplen if iris==1, color("72 27 109") symbol(O)) ///
 		    title(Sepal length vs Sepal width) subtitle(plot within different Iris Species)	
 ```
 
-![Fig7](Images/Styling_Scatterplots/stata_sc_7.png)
+![Stata scatterplot with axis titles](Images/Styling_Scatterplots/stata_sc_7.png)
 
 ### Showing some patterns
 
-Something else you may want to do, is add bivarite fitted lines, to emphasize on particular relationships within pair of variables. You can do this by adding additional subplots that will produce this information.
+Something else you may want to do is add bivarite fitted lines to emphasize particular relationships within pairs of variables. You can do this by adding additional subplots that will produce this information.
 
 In the example below, I add linear fitted values for all cases. I make sure to use the same line color, so they are consistent with the scatter plot.
   
-```Stata
+```stata
 twoway  (scatter sepwid seplen if iris==1, color("72 27 109") symbol(O)) ///
         (scatter sepwid seplen if iris==2, color("33 144 140") symbol(T)) ///
         (scatter sepwid seplen if iris==3, color("253 231 37") symbol(s)) ///
@@ -455,10 +455,11 @@ twoway  (scatter sepwid seplen if iris==1, color("72 27 109") symbol(O)) ///
 		    xtitle(Sepal length in cm) ytitle(Sepal width in cm)
 ```
 
-![Fig8](Images/Styling_Scatterplots/stata_sc_8.png)
+![Stata scatterplot with best-fit lines](Images/Styling_Scatterplots/stata_sc_8.png)
 
-Of course, you can be more sofisticated, and use a local polynomial to identify those relationships:
-```Stata
+Of course, you can be more sophisticated, and use a local polynomial to identify those relationships:
+
+```stata
 twoway  (scatter sepwid seplen if iris==1, color("72 27 109") symbol(O)) ///
         (scatter sepwid seplen if iris==2, color("33 144 140") symbol(T)) ///
         (scatter sepwid seplen if iris==3, color("253 231 37") symbol(s)) ///
@@ -470,6 +471,6 @@ twoway  (scatter sepwid seplen if iris==1, color("72 27 109") symbol(O)) ///
 		    xtitle(Sepal length in cm) ytitle(Sepal width in cm)
 ```
 
-![Fig9](Images/Styling_Scatterplots/stata_sc_9.png)
+![Stata scatterplot with local polynomial lines.](Images/Styling_Scatterplots/stata_sc_9.png)
 
 And done. You can use the above guide to modify your plots as needed. 
