@@ -144,7 +144,7 @@ Below, we can do that, plotting unemployment duration `uempmed` vs `date`.
 line uempmed date
 ```
 
-![Fig1](Images/Styling-Line-Graphs/stsc_1.png)
+![Simple Line Graph in Stata](Images/Styling-Line-Graphs/stsc_1.png)
 
 Something to keep in mind. If the dataset is not sorted by `date`, you may end up with a lineplot that is all over the place. For example:
 
@@ -152,14 +152,14 @@ Something to keep in mind. If the dataset is not sorted by `date`, you may end u
 sort uempmed
 line uempmed date
 ```
-![Fig2](Images/Styling-Line-Graphs/stsc_2.png)
+![Unsorted line graph in Stata](Images/Styling-Line-Graphs/stsc_2.png)
 
 To avoid this, it is recommended to use the option `sort`.
 
 ```stata
 line uempmed date, sort
 ```
-![Fig3](Images/Styling-Line-Graphs/stsc_3.png)
+![Simple Line Graph in Stata](Images/Styling-Line-Graphs/stsc_3.png)
 
 ### Adding titles, and axis titles
 
@@ -170,7 +170,7 @@ line  uempmed date, sort ///
       ytitle("# of weeks") xtitle("") ///
       title(Unemployment Duration)
 ```
-![Fig4](Images/Styling-Line-Graphs/stsc_4.png)
+![Stata line graph with title](Images/Styling-Line-Graphs/stsc_4.png)
 
 ### Changing Line characteristics.
 It is also possible to modify the line width `lwidth()`, line color `lcolor()`, and line pattern `lpattern()`. To show how this can affect the plot, below 4 examples are provided. 
@@ -200,7 +200,7 @@ lwidth(.5) lcolor(navy%50) lpattern(dash_dot) name(m4,replace)
 
 graph combine m1 m2 m3 m4
 ```
-![Fig5](Images/Styling-Line-Graphs/stsc_5.png)
+![Four styled line graphs in Stata](Images/Styling-Line-Graphs/stsc_5.png)
 
 ### Ploting Multiple Lines, and different axis
 You may also want to plot multiple variables in the same figure. There are two ways to do this:
@@ -214,7 +214,8 @@ line  uempmed psavert  date, sort lwidth(0.75 .25) lpattern(solid dash) ///
       legend(order(1 "Unemployment duration" 2 "Saving rate")) 
 ```   
 Both options provide the same figure, however, I prefer the first option since that allows for more flexibility.
-![Fig6](Images/Styling-Line-Graphs/stsc_6.png)
+
+![Stata line graph with multiple lines](Images/Styling-Line-Graphs/stsc_6.png)
 
 You can also choose to plot each variable in a different `axis`. Each axis can have its own title.
 
@@ -224,7 +225,7 @@ twoway  (line uempmed date, sort lwidth(.75) lpattern(solid) yaxis(1)) ///
     legend(order(1 "Unemployment duration" 2 "Saving rate")) ///
     ytitle(Weeks ,axis(1) ) ytitle(Interest rate,axis(2) ) 
 ```
-![Fig7](Images/Styling-Line-Graphs/stsc_7.png)
+![Stata line graph with multiple axes](Images/Styling-Line-Graphs/stsc_7.png)
 
 ### Adding informative Vertical lines.
 
@@ -239,5 +240,5 @@ twoway  (line uempmed date, sort lwidth(.75) lpattern(solid) yaxis(1)) ///
         note("Note:Grey Area marks the Great recession Period") ///
         title("Unemployement Duration and" "Saving Rate")
 ```
-![Fig8](Images/Styling-Line-Graphs/stsc_8.png)
+![Stata line graph with vertical line marker](Images/Styling-Line-Graphs/stsc_8.png)
 
