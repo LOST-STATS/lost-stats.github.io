@@ -43,8 +43,9 @@ As a last bit of intuition, below is a graph depicting the upshot of the method.
 
 - Unlike the [difference-in-difference](https://lost-stats.github.io/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html) method, parallel trends aren't a necessary assumption. However, the donor pool must still share similar characteristics to the treatment unit in order to construct an accurate estimate.
 - Panel data is necessary for the synthetic control method and, typically, requires observations over many time periods. Specifically, the pre-intervention time frame ought to be large enough to form an accurate estimate.
-- Aggregate data is required for this method. Examples include state-level per-capita GDP, country-level crime rates, and state-level alcohol consumption statistics. Additionally, if aggregate data doesn't exist, you can sometimes aggregate micro-level data to estimate aggregate values.
-- As a caveat to the previous bullet point, be wary of structural breaks when using large pre-intervention periods. 
+- Aggregate data is required for this method. Examples include state-level per-capita GDP, country-level crime rates, and state-level alcohol consumption statistics. Additionally, if aggregate data doesn't exist, you can sometimes aggregate micro-level data to estimate aggregate values. 
+- As a caveat to the previous bullet point, be wary of structural breaks when using large pre-intervention periods.
+- [Abadie and L'Hour (2020)](https://economics.mit.edu/files/18642) also proposes a penalization method for performing the synthetic control method on disaggregated data. 
 
 ## Also Consider
 
@@ -104,4 +105,70 @@ synth_out %>% path.plot(dataprep.res = dataprep_out, tr.intake = 1990)
 synth_control = dataprep_out$Y0plot %*% synth_out$solution.w
 
 ```
+
+## Stata
+
+To implement the synthetic control method in Stata, we will be using the [synth](https://web.stanford.edu/~jhain/synthpage.html) and [synth_runner](https://github.com/bquistorff/synth_runner) packages. For a short tutorial on how to carry out the synthetic control method in Stata by Jens Hainmueller, there is a useful video [here](https://web.stanford.edu/~jhain/Video/SynthDemo.mp4).
+
+```stata
+*Install plottig graph scheme used below
+ssc install blindschemes
+
+*Install synth and synth_runner
+ssc install synth, all 
+cap ado uninstall synth_runner //in-case already installed
+net install synth_runner, from(https://raw.github.com/bquistorff/synth_runner/master/) replace
+
+*Import Dataset 
+sysuse synth_smoking.dta, clear 
+
+*Need to set the data as time series, using tsset 
+tsset state year 
+
+** Run Synthetic Control analysis
+/* Note that this example uses the pre-treatment outcome for just three years (1988, 1980, and 1975), 
+    but any combination of pre-treatment outcome years can be specified. The nested option specifies 
+    a more computationally intensive but comprehensive method for estimating the synthetic ccontrol. The 
+    trunit() option specifies the ID of the treated entity (in this case, the state of California has
+    an ID of 3). The trperiod() option */
+synth cigsale beer lnincome retprice age15to24 cigsale(1988) ///
+  cigsale(1980) cigsale(1975), trunit(3) trperiod(1989) fig ///
+  nested keep(synth_results_data.dta) replace 	
+
+/*Keeping the synth_results_data.dta stores a dataset of all the time series values of cigsale for each 
+  year for California (observed) and synthetic California (constructed using a weighted average of
+  observed data from donor states). We can then import this dataset to create a synth plot whose 
+  attributes we can control. */
+use synth_results_data.dta, clear 
+drop _Co_Number _W_Weight // Drops the columns of the data that store the donor state weights
+twoway line (_Y_treated _Y_synthetic _time), scheme(plottig) xline(1989) ///
+  xtitle(Year) ytitle(Cigarette Sales) legend(pos(6) rows(1))
+
+** Run the analysis using synth_runner
+*Import Dataset 
+sysuse synth_smoking.dta, clear 
+
+*Need to set the data as time series, using tsset 
+tsset state year 
+
+*Estimate Synthetic Control using synth_runner
+synth_runner cigsale beer(1984(1)1988) lnincome(1972(1)1988) retprice age15to24 cigsale(1988) cigsale(1980) ///
+  cigsale(1975), trunit(3) trperiod(1989) gen_vars
+
+/*Plot the effects in two ways: displaying both the treated and synthetic time series
+	together and displaying the difference between the two over the time series. The
+	first plot is equivalent to the plot produced by specifying the "fig" option 
+	for synth, except you can control aspects of the figure. For both plots you can
+	control the plot appearence by specifying effect_options() or tc_options(), 
+	depending on which plot you would like to control. 
+*/
+effect_graphs, trlinediff(-1) effect_gname(cigsale1_effect) tc_gname(cigsale1_tc) ///
+	effect_options(scheme(plottig)) tc_options(scheme(plottig))
+  
+/*Graph the outcome paths of all units and (if there is only one treated unit) 
+	a second graph that shows prediction differences for all units
+*/
+single_treatment_graphs, trlinediff(-1) raw_gname(cigsale1_raw) ///
+	effects_gname(cigsale1_effects) effects_ylabels(-30(10)30) ///
+	effects_ymax(35) effects_ymin(-35)
 
