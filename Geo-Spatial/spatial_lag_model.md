@@ -54,7 +54,7 @@ x = df.copy().dropna(how='any')
 
 # tree object is the main input to nearest neighbors
 tree = KDTree(
-    data=zip(X.pop('longitude'), X.pop('latitude')), 
+    data=zip(x.pop('longitude'), x.pop('latitude')), 
     # default is euclidean, but we want to use arc or haversine distance
     distance_metric='arc',
     radius=RADIUS_EARTH_MILES
