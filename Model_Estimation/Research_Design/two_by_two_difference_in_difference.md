@@ -35,7 +35,6 @@ Difference-in-difference makes use of a treatment that was applied to one group 
 
 # Step 1: Load libraries and import data
 
-# load libraries
 import pandas as pd
 import statsmodels.api as sm
 
@@ -62,12 +61,14 @@ df['treatafter'] = df['after'] * df['treat']
 # use pandas basic built in plot functionality to get a visual
 # perspective of our parallel trends assumption
 ax = df.pivot(index='year', columns='treat', values='murder').plot(
-    figsize=(20, 10), 
+    figsize=(20, 10),
     marker='.', 
     markersize=20, 
     title='Murder and Time',
     xlabel='Year',
-    ylabel='Murder Rate'
+    ylabel='Murder Rate',
+    # to make sure each year is displayed on axis
+    xticks=df['year'].drop_duplicates().sort_values().astype('int')
 )
 # the function returns a matplotlib.pyplot.Axes object 
 # we can use this axis to add additional decoration to our plot
@@ -77,27 +78,27 @@ ax.legend(loc='upper left', title='treat', prop={'size': 20}) # move and label l
 # Step 4:
 
 # statsmodels has two separate APIs
-# the original API is more complete both in terms of functionality and
-# documentation
-X = sm.add_constant(df['treat', 'treatafter', 'after'].astype('float'))
+# the original API is more complete both in terms of functionality and documentation
+X = sm.add_constant(df[['treat', 'treatafter', 'after']].astype('float'))
 y = df['murder']
-sm_mod = sm.OLS(y, X).fit()
+sm_fit = sm.OLS(y, X).fit()
 
 # the formula API is more familiar for R users 
-# it can be accessed through alternate constructors
+# it can be accessed through an alternate constructor bound to each model class
 smff_fit = sm.OLS.from_formula('murder ~ 1 + treat + treatafter + after', data=df).fit()
 
 # it can also be accessed through a separate namespace
 import statsmodels.formula.api as smf
-smf_fit = sm.ols('murder ~ 1 + treat + treatafter + after', data=df).fit()
+smf_fit = smf.ols('murder ~ 1 + treat + treatafter + after', data=df).fit()
 
 # if using jupyter, rich output is displayed without the print function
 # we should see three identical outputs
-print(sm_alt_fit.summary())
 print(sm_fit.summary())
+print(smff_fit.summary())
 print(smf_fit.summary())
 ```
 
+![DID Python](../Images/Event_Study/did_py_plt.jpg)
 
 ## R
 
