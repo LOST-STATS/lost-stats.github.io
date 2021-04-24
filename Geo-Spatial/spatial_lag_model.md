@@ -33,6 +33,51 @@ This process requires estimation of which observations constitute neighbors, and
 
 These examples will use some data on US colleges from [IPEDS](https://nces.ed.gov/ipeds/), including their latitude, longitude, and the extent of distance learning they offered in 2018. It will then see if this distance learning predicts (and perhaps reduces?) the prevalence of COVID in the college's county by July 2020.
 
+## Python
+
+```python
+import pandas as pd
+# can install all below with:
+# !pip install pysal
+from libpysal.cg import KDTree, RADIUS_EARTH_MILES
+from libpysal.weights import KNN
+from spreg import ML_Lag
+
+url = ('https://github.com/LOST-STATS/lost-stats.github.io/raw/source'
+        '/Geo-Spatial/Data/Merging_Shape_Files/colleges_covid.csv')
+
+# specify index cols we need only for identification -- not modeling
+df = pd.read_csv(url, index_col=['unitid', 'instnm'])
+
+# we'll `pop` renaming columns so they're no longer in our dataframe
+x = df.copy().dropna(how='any')
+
+# tree object is the main input to nearest neighbors
+tree = KDTree(
+    data=zip(X.pop('longitude'), X.pop('latitude')), 
+    # default is euclidean, but we want to use arc or haversine distance
+    distance_metric='arc',
+    radius=RADIUS_EARTH_MILES
+)
+nn = KNN(tree, k=5)
+
+y = x.pop('covid_cases_per_cap_jul312020')
+
+# spreg only accepts numpy arrays or lists as arguments
+mod = ML_Lag(
+    y=y.to_numpy(),
+    x=x.to_numpy(), 
+    w=nn,
+    name_y=y.name,
+    name_x=x.columns.tolist()
+)
+
+# results
+print(mod.summary)
+
+
+```
+
 ## R
 
 ```r
