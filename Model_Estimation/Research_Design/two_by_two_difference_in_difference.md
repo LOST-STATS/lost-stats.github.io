@@ -28,6 +28,77 @@ Difference-in-difference makes use of a treatment that was applied to one group 
 
 # IMPLEMENTATIONS
 
+
+## Python
+
+```python
+
+# Step 1: Load libraries and import data
+
+# load libraries
+import pandas as pd
+import statsmodels.api as sm
+
+# for certain versions of jupyter:
+# %matplotlib inline
+
+url = (
+    "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS"
+    ".github.io/master/Model_Estimation/Data/"
+    "Two_by_Two_Difference_in_Difference/did_crime.xlsx"
+)
+
+df = pd.read_excel(url)
+
+# Step 2: indicator variables 
+
+# whether treatment has occured at all
+df['after'] = df['year'] >= 2014
+# whether it has occurred to this entity
+df['treatafter'] = df['after'] * df['treat']
+
+# Step 3:
+
+# use pandas basic built in plot functionality to get a visual
+# perspective of our parallel trends assumption
+ax = df.pivot(index='year', columns='treat', values='murder').plot(
+    figsize=(20, 10), 
+    marker='.', 
+    markersize=20, 
+    title='Murder and Time',
+    xlabel='Year',
+    ylabel='Murder Rate'
+)
+# the function returns a matplotlib.pyplot.Axes object 
+# we can use this axis to add additional decoration to our plot
+ax.axvline(x=2014, color='gray', linestyle='--') # treatment year
+ax.legend(loc='upper left', title='treat', prop={'size': 20}) # move and label legend
+
+# Step 4:
+
+# statsmodels has two separate APIs
+# the original API is more complete both in terms of functionality and
+# documentation
+X = sm.add_constant(df['treat', 'treatafter', 'after'].astype('float'))
+y = df['murder']
+sm_mod = sm.OLS(y, X).fit()
+
+# the formula API is more familiar for R users 
+# it can be accessed through alternate constructors
+smff_fit = sm.OLS.from_formula('murder ~ 1 + treat + treatafter + after', data=df).fit()
+
+# it can also be accessed through a separate namespace
+import statsmodels.formula.api as smf
+smf_fit = sm.ols('murder ~ 1 + treat + treatafter + after', data=df).fit()
+
+# if using jupyter, rich output is displayed without the print function
+# we should see three identical outputs
+print(sm_alt_fit.summary())
+print(sm_fit.summary())
+print(smf_fit.summary())
+```
+
+
 ## R
 
 In this case, we need to discover whether legalized marijuana could change the murder rate. Some states legalized marijuana in 2014. So we measure the how the murder rate changes from before 2014 to after between legalized states and states without legalization.
