@@ -212,3 +212,22 @@ ggplot(data=diamonds, aes(x=price,fill=cut)) +
 ```
 ![multiple](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/density_plot/5.png)
 :
+
+## Stata 
+
+For this demonstration, we will use the plottig scheme, a community-contributed color scheme for plots that greatly improves over Stata's default plot color schemes. For more on using schemes in Stata, see [here](https://blog.stata.com/2018/10/02/scheming-your-way-to-your-favorite-graph-style/).
+
+```stata
+clear all 
+set more off 
+
+ssc install blindschemes // Install the blindschemes set of color schemes, which includes plottig 
+graph query, schemes // Show the available schemes you have installed, to confirm plottig was installed
+
+*Pull in Stata's NHANES dataset 
+use http://www.stata-press.com/data/r16/nhanes2.dta, clear
+
+*Plot the kernel density 
+kdensity height, scheme(plottig) 
+
+
