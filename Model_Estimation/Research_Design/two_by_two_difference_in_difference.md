@@ -98,7 +98,7 @@ print(smff_fit.summary())
 print(smf_fit.summary())
 ```
 
-![DID Python](../Images/Event_Study/did_py_plt.jpg)
+![DID Python](../Images/Two_by_Two_Difference_in_Difference/did_py_plt.jpg)
 
 ## R
 
