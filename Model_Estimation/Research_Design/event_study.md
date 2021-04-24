@@ -61,12 +61,11 @@ Note that there are some states in which `_nfd` is empty. These states never rec
 
 ## Python
 
-Python makes dealing with lots of interaction terms like we have here a little painful, but we can iterate to do a lot of the work for us.
+Here we show how to dealing with interaction terms in python need not be painful.
 
 ```python
 import pandas as pd
 import numpy as np
-import matplotlib as plt
 import linearmodels as lm
 
 # Read in data
@@ -76,41 +75,50 @@ df = pd.read_stata("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.gith
 # fill in control obs with 0
 # This allows for the interaction between `treat` and `time_to_treat` to occur for each state. 
 # Otherwise, there may be some missingss and the estimations will be off.  
-df['time_to_treat'] = df['year'] - df['_nfd']
-df.loc[pd.isna(df['_nfd']), 'time_to_treat'] = 0
+df['time_to_treat'] = df['_nfd'].sub(df.year).fillna(0).astype('int')
 
-# this will determine the difference
-# btw controls and treated states 
-df['treat'] = ~pd.isna(df['_nfd'])
+df = (
+    # returns dataframe with dummy columns in place of the columns
+    # in the named argument, all other columns untouched
+    pd.get_dummies(df, columns=['time_to_treat'], prefix='INX')
+      # Be sure not to include the minuses in the name
+      .rename(columns=lambda x: x.replace('-', 'm'))
+      # Set our individual and time (index) for our data
+      .set_index(['stfips', 'year'])
+      # get_dummies has a `drop_first` argument, but if we want to
+      # refer to a specific level, we should return all levels and 
+      # drop out reference column manually
+      .drop(columns='INX_m1')
+)
 
+# collect our variables
+scalars = ['pcinc', 'asmrh', 'cases']
 
-# Create our interactions by hand,
-# skipping -1, the last one before treatment
-time_periods = pd.unique(df['time_to_treat'])
+# with the pandas api:
+factors = df.columns[df.columns.str.contains('INX')]
+exog = factors.union(scalars)
+    
+# a more pythonic equivalent is:
+factors = [column for column in df if 'INX' in column]
+exog = scalars + factors
 
-for i in time_periods:
-  if i != -1:
-	# Be sure not to include the decimal parts in the name
-	name = 'INX'+str(np.int64(i))
-	# or the minuses
-	name = name.replace('-','m')
-	df[name] = 1*df['treat']
-	df.loc[df['time_to_treat'] != i, name] = 0
-
-# Set our individual and time (index) for our data
-df = df.set_index(['stfips','year'])
+endog = 'asmrs'
 
 # Estimate the regression
-# We can save ourselves some time by creating the regression formula automatically
-inxnames = df.columns[range(13,df.shape[1])]
-formula = 'asmrs ~ ' + ' + '.join(inxnames) + ' + pcinc + asmrh + cases + EntityEffects + TimeEffects'
+    
+# with the standard api:
+mod = lm.PanelOLS(df[endog], df[exog], entity_effects=True, time_effects=True)
+fit = mod.fit(cov_type='clustered', cluster_entity=True)
+fit.summary
 
-mod = lm.PanelOLS.from_formula(formula,df)
-
-# Specify clustering when we fit the model
+# with the formula api:
+formula = '{} ~ {} + EntityEffects + TimeEffects'.format(
+    endog, '+'.join(exog), 
+)
+frm_mod = lm.PanelOLS.from_formula(formula, df)
 clfe = mod.fit(cov_type = 'clustered',
-	cluster_entity = True)
-
+    cluster_entity = True)
+    
 # Look at regression results
 clfe.summary
 ```
@@ -123,36 +131,34 @@ res = pd.concat([clfe.params, clfe.std_errors], axis = 1)
 # Scale standard error to 95% CI
 res['ci'] = res['std_error']*1.96
 
-# Add our time values
-res['time_to_treat'] = res.index
 # We only want time interactions
-res = res.iloc[range(0, res.shape[0]-3)]
+res = res.filter(like='INX', axis=0)
 # Turn the coefficient names back to numbers
-res['time_to_treat'] = res['time_to_treat'].apply(lambda x: x.replace('INX',''))
-res['time_to_treat'] = res['time_to_treat'].apply(lambda x: x.replace('m','-'))
-res['time_to_treat'] = res['time_to_treat'].astype(int)
+res.index = (
+    res.index
+        .str.replace('INX_', '')
+        .str.replace('m', '-')
+        .astype('int')
+        .rename('time_to_treat')
+)
 
 # And add our reference period back in
-reference = pd.DataFrame([[0,0,0,-1]],
-              columns = ['parameter',
-                         'std_error',
-                         'ci',
-                         'time_to_treat'])
-res = pd.concat([res, reference])
-
-# For plotting, sort
-res = res.sort_values('time_to_treat')
+res.reindex(range(res.index.min(), res.index.max()+1)).fillna(0)
 
 # Plot the estimates as connected lines with error bars
-
-plt.errorbar(x = 'time_to_treat', y = 'parameter',
-                    yerr = 'ci', data = res)
+ax = res.plot(
+    y='parameter', 
+    yerr='ci', 
+    xlabel='Time to Treatment', 
+    ylabel='Estimated Effect', 
+    legend=False
+)
 # Add a horizontal line at 0
-plt.axhline(0, linestyle = 'dashed')
+ax.axhline(0, linestyle='dashed')
 # And a vertical line at the treatment time
-plt.axvline(0)
-plt.xlabel('Time to Treatment')
-plt.ylabel('Estimated Effect')
+# some versions of pandas have bug return x-axis object with data_interval 
+# starting at 0. In that case change 0 to 21
+ax.axvline(0, linestyle='dashed')
 ```
 
 Which produces:
