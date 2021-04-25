@@ -233,8 +233,6 @@
       </h2>
 <p>Python makes dealing with lots of interaction terms like we have here a little painful, but we can iterate to do a lot of the work for us.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">import</span> <span class="nn">linearmodels</span> <span class="k">as</span> <span class="n">lm</span>
 
 <span class="c1"># Read in data
@@ -244,40 +242,53 @@
 # fill in control obs with 0
 # This allows for the interaction between `treat` and `time_to_treat` to occur for each state. 
 # Otherwise, there may be some missingss and the estimations will be off.  
-</span><span class="n">df</span><span class="p">[</span><span class="s">'time_to_treat'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'year'</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s">'_nfd'</span><span class="p">]</span>
-<span class="n">df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pd</span><span class="p">.</span><span class="n">isna</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'_nfd'</span><span class="p">]),</span> <span class="s">'time_to_treat'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="c1"># this will determine the difference
-# btw controls and treated states 
-</span><span class="n">df</span><span class="p">[</span><span class="s">'treat'</span><span class="p">]</span> <span class="o">=</span> <span class="o">~</span><span class="n">pd</span><span class="p">.</span><span class="n">isna</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'_nfd'</span><span class="p">])</span>
-
+</span><span class="n">df</span><span class="p">[</span><span class="s">'time_to_treat'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df</span><span class="p">[</span><span class="s">'_nfd'</span><span class="p">].</span><span class="n">sub</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'year'</span><span class="p">])</span>
+        <span class="c1"># missing values for _nfd implies no treatment
+</span>        <span class="p">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="c1"># so we don't have decimals in our factor names
+</span>        <span class="p">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int'</span><span class="p">)</span>
+<span class="p">)</span>
 
 <span class="c1"># Create our interactions by hand,
 # skipping -1, the last one before treatment
-</span><span class="n">time_periods</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'time_to_treat'</span><span class="p">])</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">time_periods</span><span class="p">:</span>
-  <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-	<span class="c1"># Be sure not to include the decimal parts in the name
-</span>	<span class="n">name</span> <span class="o">=</span> <span class="s">'INX'</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">int64</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-	<span class="c1"># or the minuses
-</span>	<span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'-'</span><span class="p">,</span><span class="s">'m'</span><span class="p">)</span>
-	<span class="n">df</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="n">df</span><span class="p">[</span><span class="s">'treat'</span><span class="p">]</span>
-	<span class="n">df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s">'time_to_treat'</span><span class="p">]</span> <span class="o">!=</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="c1"># Set our individual and time (index) for our data
-</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">set_index</span><span class="p">([</span><span class="s">'stfips'</span><span class="p">,</span><span class="s">'year'</span><span class="p">])</span>
+</span>
+<span class="n">df</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="c1"># returns dataframe with dummy columns in place of the columns
+</span>    <span class="c1"># in the named argument, all other columns untouched
+</span>    <span class="n">pd</span><span class="p">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">'time_to_treat'</span><span class="p">],</span> <span class="n">prefix</span><span class="o">=</span><span class="s">'INX'</span><span class="p">)</span>
+      <span class="c1"># Be sure not to include the minuses in the name
+</span>      <span class="p">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'-'</span><span class="p">,</span> <span class="s">'m'</span><span class="p">))</span>
+      <span class="c1"># get_dummies has a `drop_first` argument, but if we want to
+</span>      <span class="c1"># refer to a specific level, we should return all levels and 
+</span>      <span class="c1"># drop out reference column manually
+</span>      <span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s">'INX_m1'</span><span class="p">)</span>
+      <span class="c1"># Set our individual and time (index) for our data
+</span>      <span class="p">.</span><span class="n">set_index</span><span class="p">([</span><span class="s">'stfips'</span><span class="p">,</span> <span class="s">'year'</span><span class="p">])</span>
+<span class="p">)</span>
 
 <span class="c1"># Estimate the regression
+</span>
+<span class="n">scalars</span> <span class="o">=</span> <span class="p">[</span><span class="s">'pcinc'</span><span class="p">,</span> <span class="s">'asmrh'</span><span class="p">,</span> <span class="s">'cases'</span><span class="p">]</span>
+<span class="n">factors</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">columns</span><span class="p">[</span><span class="n">df</span><span class="p">.</span><span class="n">columns</span><span class="p">.</span><span class="nb">str</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="s">'INX'</span><span class="p">)]</span>
+<span class="n">exog</span> <span class="o">=</span> <span class="n">factors</span><span class="p">.</span><span class="n">union</span><span class="p">(</span><span class="n">scalars</span><span class="p">)</span>
+<span class="n">endog</span> <span class="o">=</span> <span class="s">'asmrs'</span>
+
+<span class="c1"># with the standard api:
+</span><span class="n">mod</span> <span class="o">=</span> <span class="n">lm</span><span class="p">.</span><span class="n">PanelOLS</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">endog</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">exog</span><span class="p">],</span> <span class="n">entity_effects</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">time_effects</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">fit</span> <span class="o">=</span> <span class="n">mod</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cov_type</span><span class="o">=</span><span class="s">'clustered'</span><span class="p">,</span> <span class="n">cluster_entity</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">fit</span><span class="p">.</span><span class="n">summary</span>
+
+<span class="c1"># with the formula api:
 # We can save ourselves some time by creating the regression formula automatically
 </span><span class="n">inxnames</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">columns</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="n">df</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
-<span class="n">formula</span> <span class="o">=</span> <span class="s">'asmrs ~ '</span> <span class="o">+</span> <span class="s">' + '</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">inxnames</span><span class="p">)</span> <span class="o">+</span> <span class="s">' + pcinc + asmrh + cases + EntityEffects + TimeEffects'</span>
+<span class="n">formula</span> <span class="o">=</span> <span class="s">'{} ~ {} + EntityEffects + TimeEffects'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">endog</span><span class="p">,</span> <span class="s">'+'</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">exog</span><span class="p">))</span>
 
 <span class="n">mod</span> <span class="o">=</span> <span class="n">lm</span><span class="p">.</span><span class="n">PanelOLS</span><span class="p">.</span><span class="n">from_formula</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span><span class="n">df</span><span class="p">)</span>
 
 <span class="c1"># Specify clustering when we fit the model
 </span><span class="n">clfe</span> <span class="o">=</span> <span class="n">mod</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cov_type</span> <span class="o">=</span> <span class="s">'clustered'</span><span class="p">,</span>
-	<span class="n">cluster_entity</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+    <span class="n">cluster_entity</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
 
 <span class="c1"># Look at regression results
 </span><span class="n">clfe</span><span class="p">.</span><span class="n">summary</span>
@@ -288,36 +299,35 @@
 <span class="c1"># Scale standard error to 95% CI
 </span><span class="n">res</span><span class="p">[</span><span class="s">'ci'</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s">'std_error'</span><span class="p">]</span><span class="o">*</span><span class="mf">1.96</span>
 
-<span class="c1"># Add our time values
-</span><span class="n">res</span><span class="p">[</span><span class="s">'time_to_treat'</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">index</span>
 <span class="c1"># We only want time interactions
-</span><span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">iloc</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">res</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">3</span><span class="p">)]</span>
+</span><span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s">'INX'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="c1"># Turn the coefficient names back to numbers
-</span><span class="n">res</span><span class="p">[</span><span class="s">'time_to_treat'</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s">'time_to_treat'</span><span class="p">].</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'INX'</span><span class="p">,</span><span class="s">''</span><span class="p">))</span>
-<span class="n">res</span><span class="p">[</span><span class="s">'time_to_treat'</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s">'time_to_treat'</span><span class="p">].</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'m'</span><span class="p">,</span><span class="s">'-'</span><span class="p">))</span>
-<span class="n">res</span><span class="p">[</span><span class="s">'time_to_treat'</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s">'time_to_treat'</span><span class="p">].</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</span><span class="n">res</span><span class="p">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">res</span><span class="p">.</span><span class="n">index</span>
+        <span class="p">.</span><span class="nb">str</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'INX_'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+        <span class="p">.</span><span class="nb">str</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'m'</span><span class="p">,</span> <span class="s">'-'</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int'</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">rename</span><span class="p">(</span><span class="s">'time_to_treat'</span><span class="p">)</span>
+<span class="p">)</span>
 
-<span class="c1"># And add our reference period back in
-</span><span class="n">reference</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span>
-              <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">'parameter'</span><span class="p">,</span>
-                         <span class="s">'std_error'</span><span class="p">,</span>
-                         <span class="s">'ci'</span><span class="p">,</span>
-                         <span class="s">'time_to_treat'</span><span class="p">])</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">res</span><span class="p">,</span> <span class="n">reference</span><span class="p">])</span>
-
-<span class="c1"># For plotting, sort
-</span><span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s">'time_to_treat'</span><span class="p">)</span>
+<span class="c1"># And add our reference period back in, and sort automatically
+</span><span class="n">res</span><span class="p">.</span><span class="n">reindex</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">index</span><span class="p">.</span><span class="nb">min</span><span class="p">(),</span> <span class="n">res</span><span class="p">.</span><span class="n">index</span><span class="p">.</span><span class="nb">max</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">)).</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># Plot the estimates as connected lines with error bars
 </span>
-<span class="n">plt</span><span class="p">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s">'time_to_treat'</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">'parameter'</span><span class="p">,</span>
-                    <span class="n">yerr</span> <span class="o">=</span> <span class="s">'ci'</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">res</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">y</span><span class="o">=</span><span class="s">'parameter'</span><span class="p">,</span> 
+    <span class="n">yerr</span><span class="o">=</span><span class="s">'ci'</span><span class="p">,</span> 
+    <span class="n">xlabel</span><span class="o">=</span><span class="s">'Time to Treatment'</span><span class="p">,</span> 
+    <span class="n">ylabel</span><span class="o">=</span><span class="s">'Estimated Effect'</span><span class="p">,</span> 
+    <span class="n">legend</span><span class="o">=</span><span class="bp">False</span>
+<span class="p">)</span>
 <span class="c1"># Add a horizontal line at 0
-</span><span class="n">plt</span><span class="p">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s">'dashed'</span><span class="p">)</span>
+</span><span class="n">ax</span><span class="p">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">'dashed'</span><span class="p">)</span>
 <span class="c1"># And a vertical line at the treatment time
-</span><span class="n">plt</span><span class="p">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time to Treatment'</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Estimated Effect'</span><span class="p">)</span>
+# some versions of pandas have bug return x-axis object with data_interval 
+# starting at 0. In that case change 0 to 21
+</span><span class="n">ax</span><span class="p">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">'dashed'</span><span class="p">)</span>
 </code></pre></div></div>
 <p>Which produces:</p>
 <p><img src="/Model_Estimation/Images/Event_Study/py_did_event_study.png" alt="DID Event Study Graph in Python" /></p>
