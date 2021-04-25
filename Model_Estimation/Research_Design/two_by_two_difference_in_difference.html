@@ -198,6 +198,75 @@
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> IMPLEMENTATIONS
       </h1>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1"># Step 1: Load libraries and import data
+</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="n">sm</span>
+
+<span class="c1"># for certain versions of jupyter:
+# %matplotlib inline
+</span>
+<span class="n">url</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS"</span>
+    <span class="s">".github.io/master/Model_Estimation/Data/"</span>
+    <span class="s">"Two_by_Two_Difference_in_Difference/did_crime.xlsx"</span>
+<span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="c1"># Step 2: indicator variables 
+</span>
+<span class="c1"># whether treatment has occured at all
+</span><span class="n">df</span><span class="p">[</span><span class="s">'after'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'year'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">2014</span>
+<span class="c1"># whether it has occurred to this entity
+</span><span class="n">df</span><span class="p">[</span><span class="s">'treatafter'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'after'</span><span class="p">]</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s">'treat'</span><span class="p">]</span>
+
+<span class="c1"># Step 3:
+</span>
+<span class="c1"># use pandas basic built in plot functionality to get a visual
+# perspective of our parallel trends assumption
+</span><span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s">'year'</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s">'treat'</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">'murder'</span><span class="p">).</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s">'.'</span><span class="p">,</span> 
+    <span class="n">markersize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> 
+    <span class="n">title</span><span class="o">=</span><span class="s">'Murder and Time'</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s">'Year'</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s">'Murder Rate'</span><span class="p">,</span>
+    <span class="c1"># to make sure each year is displayed on axis
+</span>    <span class="n">xticks</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s">'year'</span><span class="p">].</span><span class="n">drop_duplicates</span><span class="p">().</span><span class="n">sort_values</span><span class="p">().</span><span class="n">astype</span><span class="p">(</span><span class="s">'int'</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="c1"># the function returns a matplotlib.pyplot.Axes object 
+# we can use this axis to add additional decoration to our plot
+</span><span class="n">ax</span><span class="p">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">2014</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'gray'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">'--'</span><span class="p">)</span> <span class="c1"># treatment year
+</span><span class="n">ax</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">'upper left'</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">'treat'</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s">'size'</span><span class="p">:</span> <span class="mi">20</span><span class="p">})</span> <span class="c1"># move and label legend
+</span>
+<span class="c1"># Step 4:
+</span>
+<span class="c1"># statsmodels has two separate APIs
+# the original API is more complete both in terms of functionality and documentation
+</span><span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="p">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s">'treat'</span><span class="p">,</span> <span class="s">'treatafter'</span><span class="p">,</span> <span class="s">'after'</span><span class="p">]].</span><span class="n">astype</span><span class="p">(</span><span class="s">'float'</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'murder'</span><span class="p">]</span>
+<span class="n">sm_fit</span> <span class="o">=</span> <span class="n">sm</span><span class="p">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">).</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># the formula API is more familiar for R users 
+# it can be accessed through an alternate constructor bound to each model class
+</span><span class="n">smff_fit</span> <span class="o">=</span> <span class="n">sm</span><span class="p">.</span><span class="n">OLS</span><span class="p">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s">'murder ~ 1 + treat + treatafter + after'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">).</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># it can also be accessed through a separate namespace
+</span><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="n">smf</span>
+<span class="n">smf_fit</span> <span class="o">=</span> <span class="n">smf</span><span class="p">.</span><span class="n">ols</span><span class="p">(</span><span class="s">'murder ~ 1 + treat + treatafter + after'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">).</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># if using jupyter, rich output is displayed without the print function
+# we should see three identical outputs
+</span><span class="k">print</span><span class="p">(</span><span class="n">sm_fit</span><span class="p">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">smff_fit</span><span class="p">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">smf_fit</span><span class="p">.</span><span class="n">summary</span><span class="p">())</span>
+</code></pre></div></div>
+<p><img src="/Model_Estimation/Images/Two_by_Two_Difference_in_Difference/did_py_plt.jpg" alt="DID Python" /></p>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
