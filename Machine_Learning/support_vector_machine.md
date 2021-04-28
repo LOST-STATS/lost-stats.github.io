@@ -149,7 +149,7 @@ svmachines outcome group sex arm age distance y, prob // Specifiying the
 predict sv_outcome_predicted, probability
 ```
 
-Next we will Calculate the log loss for SVM.
+Next we will Calculate the [log loss (or cross-entropy loss)](https://ml-cheatsheet.readthedocs.io/en/latest/loss_functions.html) for SVM.
   
 Note: Predictions following svmachines generate three variables from the stub you provide in the predict command (in this case sv_outcome_predicted). The first is just the same as the stub and stores the best-guess classification (the group with the highest probability out of the possible options). The next n variables store the probability that the given observation will fall into each of the possible classes (in the binary case, this is just n=2 possible classes). These new variables are the stub + the value of each class. In the case below, the suffixes are `_0` and `_1`. We use `sv_outcome_predicted_1` because it produces probabilities that are equivalent in their intepretation (probability of having a class of 1) to the probabilities produced by the logit model and that can be used in calculating the log loss. Calculating loss functions for multi-class classifiers is more complicated, and you can read more about that at the link above. 
 
