@@ -344,6 +344,19 @@ Furthermore, you can also combine both histogram and density plots together.</p>
 </code></pre>
 <p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/density_plot/5.png" alt="multiple" />
 :</p>
+      <h2 id="stata">
+          <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
+      </h2>
+<p>For this demonstration, we will use the plottig scheme, a community-contributed color scheme for plots that greatly improves over Stata’s default plot color schemes. For more on using schemes in Stata, see <a href="https://blog.stata.com/2018/10/02/scheming-your-way-to-your-favorite-graph-style/">here</a>.</p>
+<p>```stata
+clear all 
+set more off</p>
+<p>ssc install blindschemes // Install the blindschemes set of color schemes, which includes plottig 
+graph query, schemes // Show the available schemes you have installed, to confirm plottig was installed</p>
+<p>*Pull in Stata’s NHANES dataset 
+use http://www.stata-press.com/data/r16/nhanes2.dta, clear</p>
+<p>*Plot the kernel density 
+kdensity height, scheme(plottig)</p>
           <hr>
           <footer>
               <div class="d-flex mt-2">
