@@ -277,7 +277,7 @@ such that \(W &gt;&gt; 0\) and \(\sum_2^{J+2} w_j = 1\).</p>
 *Need to set the data as time series, using tsset 
 </span><span class="err">tsset</span> <span class="err">state</span> <span class="err">year</span> <span class="err">
 </span></code></pre></div></div>
-<p>Next we will run the synthetic control analysis</p>
+<p>Next we will run the synthetic control analysis using synth_runner, which adds some useful options for estimation.</p>
 <p>Note that this example uses the pre-treatment outcome for just three years (1988, 1980, and 1975), but any combination of pre-treatment outcome years can be specified. The <code class="language-plaintext highlighter-rouge">nested</code> option specifies a more computationally intensive but comprehensive method for estimating the synthetic control. The <code class="language-plaintext highlighter-rouge">trunit()</code> option specifies the ID of the treated entity (in this case, the state of California has an ID of 3).</p>
 <div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">synth</span> <span class="err">cigsale</span> <span class="err">beer</span> <span class="err">lnincome</span> <span class="err">retprice</span> <span class="err">age15to24</span> <span class="err">cigsale(1988)</span> <span class="c1">///</span><span class="err">
 </span>  <span class="err">cigsale(1980)</span> <span class="err">cigsale(1975),</span> <span class="err">trunit(3)</span> <span class="err">trperiod(1989)</span> <span class="err">fig</span> <span class="c1">///</span><span class="err">
