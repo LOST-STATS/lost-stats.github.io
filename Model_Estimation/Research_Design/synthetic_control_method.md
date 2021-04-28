@@ -114,23 +114,23 @@ To implement the synthetic control method in Stata, we will be using the [synth]
 *Install plottig graph scheme used below
 ssc install blindschemes
 
-*Install synth and synth_runner
-ssc install synth, all 
-cap ado uninstall synth_runner //in-case already installed
-net install synth_runner, from(https://raw.github.com/bquistorff/synth_runner/master/) replace
+*Install synth and synth_runner if they're not already installed (uncomment these to install)
+* ssc install synth, all 
+* cap ado uninstall synth_runner //in-case already installed
+* net install synth_runner, from(https://raw.github.com/bquistorff/synth_runner/master/) replace
 
 *Import Dataset 
 sysuse synth_smoking.dta, clear 
 
 *Need to set the data as time series, using tsset 
 tsset state year 
+```
 
-** Run Synthetic Control analysis
-/* Note that this example uses the pre-treatment outcome for just three years (1988, 1980, and 1975), 
-    but any combination of pre-treatment outcome years can be specified. The nested option specifies 
-    a more computationally intensive but comprehensive method for estimating the synthetic ccontrol. The 
-    trunit() option specifies the ID of the treated entity (in this case, the state of California has
-    an ID of 3). The trperiod() option */
+Next we will run the synthetic control analysis
+
+Note that this example uses the pre-treatment outcome for just three years (1988, 1980, and 1975), but any combination of pre-treatment outcome years can be specified. The `nested` option specifies a more computationally intensive but comprehensive method for estimating the synthetic control. The `trunit()` option specifies the ID of the treated entity (in this case, the state of California has an ID of 3). 
+
+```stata
 synth cigsale beer lnincome retprice age15to24 cigsale(1988) ///
   cigsale(1980) cigsale(1975), trunit(3) trperiod(1989) fig ///
   nested keep(synth_results_data.dta) replace 	
@@ -154,14 +154,11 @@ tsset state year
 *Estimate Synthetic Control using synth_runner
 synth_runner cigsale beer(1984(1)1988) lnincome(1972(1)1988) retprice age15to24 cigsale(1988) cigsale(1980) ///
   cigsale(1975), trunit(3) trperiod(1989) gen_vars
+```
 
-/*Plot the effects in two ways: displaying both the treated and synthetic time series
-	together and displaying the difference between the two over the time series. The
-	first plot is equivalent to the plot produced by specifying the "fig" option 
-	for synth, except you can control aspects of the figure. For both plots you can
-	control the plot appearence by specifying effect_options() or tc_options(), 
-	depending on which plot you would like to control. 
-*/
+We can plot the effects in two ways: displaying both the treated and synthetic time series together and displaying the difference between the two over the time series. The first plot is equivalent to the plot produced by specifying the `fig` option for synth, except you can control aspects of the figure. For both plots you can control the plot appearence by specifying `effect_options()` or `tc_options()`, depending on which plot you would like to control. 
+
+```stata
 effect_graphs, trlinediff(-1) effect_gname(cigsale1_effect) tc_gname(cigsale1_tc) ///
 	effect_options(scheme(plottig)) tc_options(scheme(plottig))
   
@@ -171,4 +168,4 @@ effect_graphs, trlinediff(-1) effect_gname(cigsale1_effect) tc_gname(cigsale1_tc
 single_treatment_graphs, trlinediff(-1) raw_gname(cigsale1_raw) ///
 	effects_gname(cigsale1_effects) effects_ylabels(-30(10)30) ///
 	effects_ymax(35) effects_ymin(-35)
-
+```
