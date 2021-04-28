@@ -286,6 +286,37 @@ For detailed information about derivation of the optimization problem, refer to 
 </span><span class="n">table</span><span class="p">(</span><span class="n">pred.d2</span><span class="p">,</span><span class="w"> </span><span class="n">d2</span><span class="o">$</span><span class="n">test</span><span class="o">$</span><span class="n">y</span><span class="p">)</span><span class="w">
 
 </span></code></pre></div></div>
+      <h2 id="stata">
+          <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
+      </h2>
+<p>The below code shows how to implement support vector machines in Stata using the svmachines command. To learn more about this community contriuted command, you can read <a href="http://schonlau.net/publication/16svm_stata.pdf">this Stata Journal article.</a></p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">clear</span> <span class="err">all
+set</span> <span class="err">more</span> <span class="err">off</span> <span class="err">
+</span><span class="c1">
+*Install svmachines
+</span><span class="err">ssc</span> <span class="err">install</span> <span class="err">svmachines
+</span><span class="c1">
+*Import Data with a binary outcome for classification
+</span><span class="err">use</span> <span class="err">http:</span><span class="c1">//www.stata-press.com/data/r16/fvex.dta, clear</span><span class="err">
+</span><span class="c1">
+*First try logistic regression to benchmark the prediction quality of SVM against 
+</span><span class="err">logit</span> <span class="err">outcome</span> <span class="err">group</span> <span class="err">sex</span> <span class="err">arm</span> <span class="err">age</span> <span class="err">distance</span> <span class="err">y</span> <span class="c1">// Run the regression</span><span class="err">
+predict</span> <span class="err">outcome_predicted</span> <span class="c1">// Generate predictions from the regression</span><span class="err">
+</span><span class="c1">
+*Calculate the log loss - see https://ml-cheatsheet.readthedocs.io/en/latest/loss_functions.html for more info
+</span><span class="err">gen</span> <span class="err">log_loss</span> <span class="o">=</span> <span class="err">outcome</span><span class="o">*</span><span class="err">log(outcome_predicted)</span><span class="o">+</span><span class="err">(1</span><span class="o">-</span><span class="err">outcome)</span><span class="o">*</span><span class="err">log(1</span><span class="o">-</span><span class="err">outcome_predicted)
+</span><span class="c1">
+*Run SVM 
+</span><span class="err">svmachines</span> <span class="err">outcome</span> <span class="err">group</span> <span class="err">sex</span> <span class="err">arm</span> <span class="err">age</span> <span class="err">distance</span> <span class="err">y,</span> <span class="err">prob</span> <span class="c1">// Specifiying the </span><span class="err">
+predict</span> <span class="err">sv_outcome_predicted,</span> <span class="err">probability
+</span></code></pre></div></div>
+<p>Next we will Calculate the log loss for SVM.</p>
+<p>Note: Predictions following svmachines generate three variables from the stub you provide in the predict command (in this case sv_outcome_predicted). The first is just the same as the stub and stores the best-guess classification (the group with the highest probability out of the possible options). The next n variables store the probability that the given observation will fall into each of the possible classes (in the binary case, this is just n=2 possible classes). These new variables are the stub + the value of each class. In the case below, the suffixes are <code class="language-plaintext highlighter-rouge">_0</code> and <code class="language-plaintext highlighter-rouge">_1</code>. We use <code class="language-plaintext highlighter-rouge">sv_outcome_predicted_1</code> because it produces probabilities that are equivalent in their intepretation (probability of having a class of 1) to the probabilities produced by the logit model and that can be used in calculating the log loss. Calculating loss functions for multi-class classifiers is more complicated, and you can read more about that at the link above.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">gen</span> <span class="err">log_loss_svm</span> <span class="o">=</span> <span class="err">outcome</span><span class="o">*</span><span class="err">log(sv_outcome_predicted_1)</span><span class="o">+</span><span class="err">(1</span><span class="o">-</span><span class="err">outcome)</span><span class="o">*</span><span class="err">log(1</span><span class="o">-</span><span class="err">sv_outcome_predicted_1)
+</span><span class="c1">
+*Show log loss for both logit and SVM, remember lower is better
+</span><span class="err">sum</span> <span class="err">log_loss</span> <span class="err">log_loss_svm
+</span></code></pre></div></div>
           <hr>
           <footer>
               <div class="d-flex mt-2">
