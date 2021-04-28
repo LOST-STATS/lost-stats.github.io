@@ -126,7 +126,7 @@ sysuse synth_smoking.dta, clear
 tsset state year 
 ```
 
-Next we will run the synthetic control analysis
+Next we will run the synthetic control analysis using synth_runner, which adds some useful options for estimation. 
 
 Note that this example uses the pre-treatment outcome for just three years (1988, 1980, and 1975), but any combination of pre-treatment outcome years can be specified. The `nested` option specifies a more computationally intensive but comprehensive method for estimating the synthetic control. The `trunit()` option specifies the ID of the treated entity (in this case, the state of California has an ID of 3). 
 
