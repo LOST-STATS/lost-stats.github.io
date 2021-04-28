@@ -197,6 +197,7 @@ such that \(W &gt;&gt; 0\) and \(\sum_2^{J+2} w_j = 1\).</p>
   <li>Panel data is necessary for the synthetic control method and, typically, requires observations over many time periods. Specifically, the pre-intervention time frame ought to be large enough to form an accurate estimate.</li>
   <li>Aggregate data is required for this method. Examples include state-level per-capita GDP, country-level crime rates, and state-level alcohol consumption statistics. Additionally, if aggregate data doesn’t exist, you can sometimes aggregate micro-level data to estimate aggregate values.</li>
   <li>As a caveat to the previous bullet point, be wary of structural breaks when using large pre-intervention periods.</li>
+  <li><a href="https://economics.mit.edu/files/18642">Abadie and L’Hour (2020)</a> also proposes a penalization method for performing the synthetic control method on disaggregated data.</li>
 </ul>
       <h2 id="also-consider">
           <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
@@ -257,6 +258,61 @@ such that \(W &gt;&gt; 0\) and \(\sum_2^{J+2} w_j = 1\).</p>
 
 </span><span class="n">synth_control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dataprep_out</span><span class="o">$</span><span class="n">Y0plot</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">synth_out</span><span class="o">$</span><span class="n">solution.w</span><span class="w">
 
+</span></code></pre></div></div>
+      <h2 id="stata">
+          <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
+      </h2>
+<p>To implement the synthetic control method in Stata, we will be using the <a href="https://web.stanford.edu/~jhain/synthpage.html">synth</a> and <a href="https://github.com/bquistorff/synth_runner">synth_runner</a> packages. For a short tutorial on how to carry out the synthetic control method in Stata by Jens Hainmueller, there is a useful video <a href="https://web.stanford.edu/~jhain/Video/SynthDemo.mp4">here</a>.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">*Install plottig graph scheme used below
+</span><span class="err">ssc</span> <span class="err">install</span> <span class="err">blindschemes
+</span><span class="c1">
+*Install synth and synth_runner if they're not already installed (uncomment these to install)
+* ssc install synth, all 
+* cap ado uninstall synth_runner //in-case already installed
+* net install synth_runner, from(https://raw.github.com/bquistorff/synth_runner/master/) replace
+
+*Import Dataset 
+</span><span class="err">sysuse</span> <span class="err">synth_smoking.dta,</span> <span class="err">clear</span> <span class="err">
+</span><span class="c1">
+*Need to set the data as time series, using tsset 
+</span><span class="err">tsset</span> <span class="err">state</span> <span class="err">year</span> <span class="err">
+</span></code></pre></div></div>
+<p>Next we will run the synthetic control analysis</p>
+<p>Note that this example uses the pre-treatment outcome for just three years (1988, 1980, and 1975), but any combination of pre-treatment outcome years can be specified. The <code class="language-plaintext highlighter-rouge">nested</code> option specifies a more computationally intensive but comprehensive method for estimating the synthetic control. The <code class="language-plaintext highlighter-rouge">trunit()</code> option specifies the ID of the treated entity (in this case, the state of California has an ID of 3).</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">synth</span> <span class="err">cigsale</span> <span class="err">beer</span> <span class="err">lnincome</span> <span class="err">retprice</span> <span class="err">age15to24</span> <span class="err">cigsale(1988)</span> <span class="c1">///</span><span class="err">
+</span>  <span class="err">cigsale(1980)</span> <span class="err">cigsale(1975),</span> <span class="err">trunit(3)</span> <span class="err">trperiod(1989)</span> <span class="err">fig</span> <span class="c1">///</span><span class="err">
+</span>  <span class="err">nested</span> <span class="err">keep(synth_results_data.dta)</span> <span class="err">replace</span> 	<span class="err">
+
+</span><span class="cm">/*Keeping the synth_results_data.dta stores a dataset of all the time series values of cigsale for each 
+  year for California (observed) and synthetic California (constructed using a weighted average of
+  observed data from donor states). We can then import this dataset to create a synth plot whose 
+  attributes we can control. */</span><span class="err">
+use</span> <span class="err">synth_results_data.dta,</span> <span class="err">clear</span> <span class="err">
+drop</span> <span class="err">_Co_Number</span> <span class="err">_W_Weight</span> <span class="c1">// Drops the columns of the data that store the donor state weights</span><span class="err">
+twoway</span> <span class="err">line</span> <span class="err">(_Y_treated</span> <span class="err">_Y_synthetic</span> <span class="err">_time),</span> <span class="err">scheme(plottig)</span> <span class="err">xline(1989)</span> <span class="c1">///</span><span class="err">
+</span>  <span class="err">xtitle(Year)</span> <span class="err">ytitle(Cigarette</span> <span class="err">Sales)</span> <span class="err">legend(pos(6)</span> <span class="err">rows(1))
+</span><span class="c1">
+** Run the analysis using synth_runner
+*Import Dataset 
+</span><span class="err">sysuse</span> <span class="err">synth_smoking.dta,</span> <span class="err">clear</span> <span class="err">
+</span><span class="c1">
+*Need to set the data as time series, using tsset 
+</span><span class="err">tsset</span> <span class="err">state</span> <span class="err">year</span> <span class="err">
+</span><span class="c1">
+*Estimate Synthetic Control using synth_runner
+</span><span class="err">synth_runner</span> <span class="err">cigsale</span> <span class="err">beer(1984(1)1988)</span> <span class="err">lnincome(1972(1)1988)</span> <span class="err">retprice</span> <span class="err">age15to24</span> <span class="err">cigsale(1988)</span> <span class="err">cigsale(1980)</span> <span class="c1">///</span><span class="err">
+</span>  <span class="err">cigsale(1975),</span> <span class="err">trunit(3)</span> <span class="err">trperiod(1989)</span> <span class="err">gen_vars
+</span></code></pre></div></div>
+<p>We can plot the effects in two ways: displaying both the treated and synthetic time series together and displaying the difference between the two over the time series. The first plot is equivalent to the plot produced by specifying the <code class="language-plaintext highlighter-rouge">fig</code> option for synth, except you can control aspects of the figure. For both plots you can control the plot appearence by specifying <code class="language-plaintext highlighter-rouge">effect_options()</code> or <code class="language-plaintext highlighter-rouge">tc_options()</code>, depending on which plot you would like to control.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">effect_graphs,</span> <span class="err">trlinediff(</span><span class="o">-</span><span class="err">1)</span> <span class="err">effect_gname(cigsale1_effect)</span> <span class="err">tc_gname(cigsale1_tc)</span> <span class="c1">///</span><span class="err">
+</span>	<span class="err">effect_options(scheme(plottig))</span> <span class="err">tc_options(scheme(plottig))
+</span>  <span class="err">
+</span><span class="cm">/*Graph the outcome paths of all units and (if there is only one treated unit) 
+	a second graph that shows prediction differences for all units
+*/</span><span class="err">
+single_treatment_graphs,</span> <span class="err">trlinediff(</span><span class="o">-</span><span class="err">1)</span> <span class="err">raw_gname(cigsale1_raw)</span> <span class="c1">///</span><span class="err">
+</span>	<span class="err">effects_gname(cigsale1_effects)</span> <span class="err">effects_ylabels(</span><span class="o">-</span><span class="err">30(10)30)</span> <span class="c1">///</span><span class="err">
+</span>	<span class="err">effects_ymax(35)</span> <span class="err">effects_ymin(</span><span class="o">-</span><span class="err">35)
 </span></code></pre></div></div>
           <hr>
           <footer>
