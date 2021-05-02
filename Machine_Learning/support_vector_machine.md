@@ -145,7 +145,7 @@ predict outcome_predicted // Generate predictions from the regression
 gen log_loss = outcome*log(outcome_predicted)+(1-outcome)*log(1-outcome_predicted)
 
 *Run SVM 
-svmachines outcome group sex arm age distance y, prob // Specifiying the 
+svmachines outcome group sex arm age distance y, prob // Specifiying the prob option to generate predicted probabilities in the next line
 predict sv_outcome_predicted, probability
 ```
 
