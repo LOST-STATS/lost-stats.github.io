@@ -106,6 +106,7 @@ collapse (mean) temperature, by(latitude longitude)
 With really big data, Stata can be slow compared to other languages, [though they do seem to be trying to change that a bit.](https://www.stata.com/new-in-stata/faster-stata-speed-improvements/). The community-contributed Gtools suite can help a lot with speedups and, fortunately, has a faster version of collapse, called gcollapse. For small datasets (like the surface data above), gcollapse is generally not faster (and sometimes slower) than traditional collapse. So to see the speedup power of gcollapse, we will use the very large dataset of historical stock prices available from Kaggle [here](https://www.kaggle.com/ehallmar/daily-historical-stock-prices-1970-2018). The code below uses the CSV file you will find there called historical_stock_prices.csv.  
 
 ```stata
+
 *Import Data
 import delimited "historical_stock_prices.csv", clear
 set rmsg on // Set the return messages on, so we can see how much time it takes to run collapse and gcollapse
