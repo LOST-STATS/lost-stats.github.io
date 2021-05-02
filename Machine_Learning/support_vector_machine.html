@@ -307,7 +307,7 @@ predict</span> <span class="err">outcome_predicted</span> <span class="c1">// Ge
 </span><span class="err">gen</span> <span class="err">log_loss</span> <span class="o">=</span> <span class="err">outcome</span><span class="o">*</span><span class="err">log(outcome_predicted)</span><span class="o">+</span><span class="err">(1</span><span class="o">-</span><span class="err">outcome)</span><span class="o">*</span><span class="err">log(1</span><span class="o">-</span><span class="err">outcome_predicted)
 </span><span class="c1">
 *Run SVM 
-</span><span class="err">svmachines</span> <span class="err">outcome</span> <span class="err">group</span> <span class="err">sex</span> <span class="err">arm</span> <span class="err">age</span> <span class="err">distance</span> <span class="err">y,</span> <span class="err">prob</span> <span class="c1">// Specifiying the </span><span class="err">
+</span><span class="err">svmachines</span> <span class="err">outcome</span> <span class="err">group</span> <span class="err">sex</span> <span class="err">arm</span> <span class="err">age</span> <span class="err">distance</span> <span class="err">y,</span> <span class="err">prob</span> <span class="c1">// Specifiying the prob option to generate predicted probabilities in the next line</span><span class="err">
 predict</span> <span class="err">sv_outcome_predicted,</span> <span class="err">probability
 </span></code></pre></div></div>
 <p>Next we will Calculate the <a href="https://ml-cheatsheet.readthedocs.io/en/latest/loss_functions.html">log loss (or cross-entropy loss)</a> for SVM.</p>
