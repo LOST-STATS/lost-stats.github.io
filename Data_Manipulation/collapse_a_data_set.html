@@ -305,6 +305,19 @@
 * Stata what function to use to create the new collapsed value, here (mean)
 </span><span class="err">collapse</span> <span class="err">(mean)</span> <span class="err">temperature,</span> <span class="err">by(latitude</span> <span class="err">longitude)
 </span></code></pre></div></div>
+<p>With really big data, Stata can be slow compared to other languages, <a href="https://www.stata.com/new-in-stata/faster-stata-speed-improvements/">though they do seem to be trying to change that a bit.</a>. The community-contributed Gtools suite can help a lot with speedups and, fortunately, has a faster version of collapse, called gcollapse. For small datasets (like the surface data above), gcollapse is generally not faster (and sometimes slower) than traditional collapse. So to see the speedup power of gcollapse, we will use the very large dataset of historical stock prices available from Kaggle <a href="https://www.kaggle.com/ehallmar/daily-historical-stock-prices-1970-2018">here</a>. The code below uses the CSV file you will find there called historical_stock_prices.csv.</p>
+<p>```stata
+*Import Data
+import delimited “historical_stock_prices.csv”, clear
+set rmsg on // Set the return messages on, so we can see how much time it takes to run collapse and gcollapse</p>
+<p>*Use the traditional collapse command
+preserve
+collapse (mean) volume, by(ticker)
+restore</p>
+<p>*Use gcollapse 
+preserve
+gcollapse (mean) volume, by(ticker)
+restore</p>
           <hr>
           <footer>
               <div class="d-flex mt-2">
