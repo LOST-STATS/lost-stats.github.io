@@ -244,18 +244,29 @@
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
+<p>For our implementation examples, we’ll use the “storms” dataset that comes bundled with the <strong>dplyr</strong> R package and is also available as a downloadable CSV <a href="https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv">here</a>. This dataset contains hourly track data for 198 tropical storms from 1993 to 2006. Our task in each of the implementation examples will be the same: We want to collapse this hourly dataset to the daily level, and obtain the mean wind speed and pressure reading for each storm. Moreover, we’ll also get the first category listing of each storm, thereby demonstrating how we can combine multiple aggregation functions (<em>mean</em> and <em>first</em>) in a single operation.</p>
+      <h2 id="julia">
+          <a href="#julia" aria-labelledby="julia" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Julia
+      </h2>
+<p>Julia adopts a highly modular approach to package functionality. The main data wrangling operations are all bundled in the <a href="https://dataframes.juliadata.org/stable/"><strong>DataFrames.jl</strong></a> package. But for this example, we’ll also need to load the <a href="https://github.com/JuliaLang/Statistics.jl"><strong>Statistics.jl</strong></a> library (that comes bundled with the base Julia installation) for the <code class="language-plaintext highlighter-rouge">mean</code> and <code class="language-plaintext highlighter-rouge">first</code> aggregating functions. The <a href="https://github.com/JuliaStats/RDatasets.jl"><strong>RDatasets</strong></a> package simply provides a conveniet way to import R datasets, although we could also import the “storms” CSV manually from the web if desired.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#] add DataFrames, RDatasets</span>
+<span class="k">using</span> <span class="n">DataFrames</span><span class="x">,</span> <span class="n">Statistics</span><span class="x">,</span> <span class="n">RDatasets</span>
+
+<span class="n">storms</span> <span class="o">=</span> <span class="n">dataset</span><span class="x">(</span><span class="s">"dplyr"</span><span class="x">,</span> <span class="s">"storms"</span><span class="x">)</span>
+
+<span class="n">combine</span><span class="x">(</span><span class="n">groupby</span><span class="x">(</span><span class="n">storms</span><span class="x">,</span> <span class="x">[</span><span class="o">:</span><span class="n">name</span><span class="x">,</span> <span class="o">:</span><span class="n">year</span><span class="x">,</span> <span class="o">:</span><span class="n">month</span><span class="x">,</span> <span class="o">:</span><span class="n">day</span><span class="x">]),</span> 
+        <span class="x">[</span><span class="o">:</span><span class="n">wind</span><span class="x">,</span> <span class="o">:</span><span class="n">pressure</span><span class="x">]</span> <span class="o">.=&gt;</span> <span class="n">mean</span><span class="x">,</span> <span class="x">[</span><span class="o">:</span><span class="n">category</span><span class="x">]</span> <span class="o">.=&gt;</span> <span class="n">first</span><span class="x">)</span>
+</code></pre></div></div>
       <h2 id="python">
           <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
       </h2>
-<p>As in the R example below, we would like to collapse data on storms so that it is uniquely identified by name, year, month, and day. However, there are sometimes multiple observations within each combination of those so we need to collapse these. But to combine multiple variables requires an aggregation of some kind. So, in code, we groupby the variables that we would like to retain and give a dictionary of functions (of the form <code class="language-plaintext highlighter-rouge">'original column': 'function'</code>) to aggregate the other variables by.</p>
+<p>For our Python implementation we’ll use the very popular <a href="https://pandas.pydata.org/docs/"><strong>pandas</strong></a> library. Note that, after specifying the grouping variables, we’ll use dictionary of functions (of the form <code class="language-plaintext highlighter-rouge">'original column': 'function'</code>) to aggregate the other variables by.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
 
 <span class="c1"># Pull in data on storms
 </span><span class="n">storms</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv'</span><span class="p">)</span>
 
-<span class="c1"># Find the mean wind, mean pressure, and the first
-# category value by name, year, month, and day.
-# To do this, use a groupby, followed by an aggregation.
+<span class="c1"># We'll save the collapsed data as a new object called `storms_collapsed` (this is optional)
 </span><span class="n">storms_collapsed</span> <span class="o">=</span> <span class="p">(</span><span class="n">storms</span>
                     <span class="p">.</span><span class="n">groupby</span><span class="p">([</span><span class="s">'name'</span><span class="p">,</span> <span class="s">'year'</span><span class="p">,</span> <span class="s">'month'</span><span class="p">,</span> <span class="s">'day'</span><span class="p">])</span>
                     <span class="p">.</span><span class="n">agg</span><span class="p">({</span><span class="s">'wind'</span><span class="p">:</span> <span class="s">'mean'</span><span class="p">,</span>
@@ -265,59 +276,54 @@
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
+<p>R provides several package ecoystems for data wrangling and collapsing. We’ll show you three (in increasing order of speed for this particular task, although they’ll all complete quickly).</p>
+<p>First, <a href="https://dplyr.tidyverse.org/"><strong>dplyr</strong></a>:</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install dplyr</span><span class="w">
 </span><span class="c1"># install.packages('dplyr')</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
 
-</span><span class="c1"># Get data on storms from dplyr</span><span class="w">
+</span><span class="c1"># The storms dataset comes bundled with dplyr, so we can load it directly</span><span class="w">
 </span><span class="n">data</span><span class="p">(</span><span class="s2">"storms"</span><span class="p">)</span><span class="w">
 
-</span><span class="c1"># We would like each storm to be identified by</span><span class="w">
-</span><span class="c1"># name, year, month, and day</span><span class="w">
-</span><span class="c1"># However, currently, they are also identified by hour,</span><span class="w">
-</span><span class="c1"># And even then there are sometimes multiple observations per hour</span><span class="w">
-
-</span><span class="c1"># To construct the collapsed data, we start with the original</span><span class="w">
-</span><span class="n">storms_collapsed</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">storms</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
-  </span><span class="c1"># group by the variables that make the new observation level</span><span class="w">
+</span><span class="c1"># We'll save the collapsed data as a new object called `storms_collapsed` (this is optional)</span><span class="w">
+</span><span class="n">storms_collapsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">storms</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="n">group_by</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
-  </span><span class="c1"># And use summarize() to pick the variables to keep, as well as</span><span class="w">
-  </span><span class="c1"># the functions we want to use to collapse each variable.</span><span class="w">
-  </span><span class="c1"># Let's get the mean wind and pressure, and the first category value</span><span class="w">
-  </span><span class="n">summarize</span><span class="p">(</span><span class="n">wind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">wind</span><span class="p">),</span><span class="w">
-            </span><span class="n">pressure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">pressure</span><span class="p">),</span><span class="w">
-            </span><span class="n">category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first</span><span class="p">(</span><span class="n">category</span><span class="p">))</span><span class="w">
-</span><span class="c1"># Note that if we wanted to collapse every variable in the data with the </span><span class="w">
-</span><span class="c1"># same function, we could instead use summarize_all()</span><span class="w">
+  </span><span class="n">summarize</span><span class="p">(</span><span class="n">across</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">wind</span><span class="p">,</span><span class="w"> </span><span class="n">pressure</span><span class="p">),</span><span class="w"> </span><span class="n">mean</span><span class="p">),</span><span class="w"> </span><span class="n">category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first</span><span class="p">(</span><span class="n">category</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+<p>Second, <a href="https://rdatatable.gitlab.io/data.table/index.html"><strong>data.table</strong></a>:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># install.packages('data.table')</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">data.table</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Set the already-loaded storms dataset as a data.table</span><span class="w">
+</span><span class="n">setDT</span><span class="p">(</span><span class="n">storms</span><span class="p">)</span><span class="w">
+
+</span><span class="n">storms</span><span class="p">[,</span><span class="w"> 
+       </span><span class="n">.</span><span class="p">(</span><span class="n">wind</span><span class="o">=</span><span class="n">mean</span><span class="p">(</span><span class="n">wind</span><span class="p">),</span><span class="w"> </span><span class="n">pressure</span><span class="o">=</span><span class="n">mean</span><span class="p">(</span><span class="n">pressure</span><span class="p">),</span><span class="w"> </span><span class="n">category</span><span class="o">=</span><span class="n">first</span><span class="p">(</span><span class="n">category</span><span class="p">)),</span><span class="w"> 
+       </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="p">)]</span><span class="w">
+</span></code></pre></div></div>
+<p>Third: <a href="https://sebkrantz.github.io/collapse/"><strong>collapse</strong></a>:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># install.packages('collapse')</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">collapse</span><span class="p">)</span><span class="w">
+
+</span><span class="n">collap</span><span class="p">(</span><span class="n">storms</span><span class="p">,</span><span class="w"> 
+       </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">name</span><span class="o">+</span><span class="n">year</span><span class="o">+</span><span class="n">month</span><span class="o">+</span><span class="n">day</span><span class="p">,</span><span class="w"> 
+       </span><span class="n">custom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">fmean</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s1">'wind'</span><span class="p">,</span><span class="w"> </span><span class="s1">'pressure'</span><span class="p">),</span><span class="w"> </span><span class="n">ffirst</span><span class="o">=</span><span class="s1">'category'</span><span class="p">))</span><span class="w">
 </span></code></pre></div></div>
       <h2 id="stata">
           <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
       </h2>
-<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">** Load surface.dta, which contains temperature recordings in different locations
-</span><span class="err">sysuse</span> <span class="err">surface.dta,</span> <span class="err">clear
-</span><span class="c1">
-* Currently, there is one observation per latitude per longitude per date
-* I would like this to just be one observation per latitude/longitude
+<p>For Stata, we’ll use the generic <code class="language-plaintext highlighter-rouge">collapse</code> command.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">** Read in the data
+</span><span class="err">import</span> <span class="err">delimited</span> <span class="err">https:</span><span class="c1">//vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv</span><span class="err">
 
-* So I construct a collapse command.
-* I take my new target observation level and put it in by()
-* and then take each variable I'd like to keep around and tell
-* Stata what function to use to create the new collapsed value, here (mean)
-</span><span class="err">collapse</span> <span class="err">(mean)</span> <span class="err">temperature,</span> <span class="err">by(latitude</span> <span class="err">longitude)
+collapse</span> <span class="err">(mean)</span> <span class="err">wind</span> <span class="err">(mean)</span> <span class="err">pressure</span> <span class="err">(first)</span> <span class="err">category,</span> <span class="err">by(name</span> <span class="err">year</span> <span class="err">month</span> <span class="err">day)
 </span></code></pre></div></div>
-<p>With really big data, Stata can be slow compared to other languages, <a href="https://www.stata.com/new-in-stata/faster-stata-speed-improvements/">though they do seem to be trying to change that a bit.</a>. The community-contributed Gtools suite can help a lot with speedups and, fortunately, has a faster version of collapse, called gcollapse. For small datasets (like the surface data above), gcollapse is generally not faster (and sometimes slower) than traditional collapse. So to see the speedup power of gcollapse, we will use the very large dataset of historical stock prices available from Kaggle <a href="https://www.kaggle.com/ehallmar/daily-historical-stock-prices-1970-2018">here</a>. The code below uses the CSV file you will find there called historical_stock_prices.csv.</p>
-<p>```stata</p>
-<p>*Import Data
-import delimited “historical_stock_prices.csv”, clear
-set rmsg on // Set the return messages on, so we can see how much time it takes to run collapse and gcollapse</p>
-<p>*Use the traditional collapse command
-preserve
-collapse (mean) volume, by(ticker)
-restore</p>
-<p>*Use gcollapse 
-preserve
-gcollapse (mean) volume, by(ticker)
-restore</p>
+<p>With big datasets, Stata can be slow compared to other languages, though they do seem to be trying to <a href="https://www.stata.com/new-in-stata/faster-stata-speed-improvements/">change that</a> a bit. The community-contributed <a href="https://gtools.readthedocs.io/en/latest/usage/gtools/index.html"><strong>gtools</strong></a> suite can help a lot with speedups and, fortunately, has a faster version of collapse, called <code class="language-plaintext highlighter-rouge">gcollapse</code>. Note that we won’t necessarily see a benefit for small(ish) datasets like the one that we are using here. But note that the syntax is otherwise identical.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* ssc install gtools
+* gtools, upgrade
+</span><span class="err">
+gcollapse</span> <span class="err">(mean)</span> <span class="err">wind</span> <span class="err">(mean)</span> <span class="err">pressure</span> <span class="err">(first)</span> <span class="err">category,</span> <span class="err">by(name</span> <span class="err">year</span> <span class="err">month</span> <span class="err">day)
+</span></code></pre></div></div>
           <hr>
           <footer>
               <div class="d-flex mt-2">
