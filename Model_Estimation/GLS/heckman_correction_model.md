@@ -68,6 +68,8 @@ summary(heck_model)
 
 ## Stata
 
+Stata allows to estimate the Heckman selection model using two approaches. A Maximum Likelikehood approach, and the two-step approach.
+
 ```stata
 * Get data from Mroz (1987, Econometrica)
 * which has Panel Study of Income Dynamics data for married women
@@ -89,6 +91,8 @@ import delimited "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github
 * (note these particular exclusion restrictions might be a little dubious! But hey, 1987.)
 * wage c.exper##c.exper educ city
 
-* Now we run our Heckman model!
+* Now we run our Heckman model! This is based on the ML approach
 heckman wage c.exper##c.exper educ city, select(lfp = c.exper##c.exper faminc educ kids5)
+* And this would be estimating the model using a two step-approach, also known as Heckit.
+heckman wage c.exper##c.exper educ city, select(lfp = c.exper##c.exper faminc educ kids5) two
 ```

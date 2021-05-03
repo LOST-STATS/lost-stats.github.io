@@ -29,6 +29,7 @@ Regression discontinuity receives a lot of attention because it relies on what s
 ## Also Consider
 
 - The [Regression Kink Design]({{ "/Model_Estimation/regression_kink_design.html" | relative_url }}) is an extension of RDD that looks for a change in *a relationship between the running variable and the outcome*, i.e. the slope, at the cutoff, rather than a change in the predicted outcome.
+- It is common to run a [Density Discontinuity Test]({{ "/Model_Estimation/density_discontinuity_test.html" | relative_url }}) to check for manipulation in the running vairiable before performing a regression discontinuity.
 - Regression discontinuity designs are often accompanied by placebo tests, where the same RDD is run again, but with a covariate or some other non-outcome measure used as the outcome. If the RDD shows a significant effect for the covariates, this suggests that balancing did not occur properly and there may be an issue with the RDD assumptions.
 - Part of performing an RDD is selecting a bandwidth around the cutoff to focus on. This can be done by context, but more commonly there are data-based methods for selecting a bandwidth Check your RDD command of choice to see what methods are available for selecting a bandwidth.
 
@@ -104,3 +105,37 @@ summary(rddfuzzy)
 rdplot(df$y, df$x,
        c = 0, p = 2)
 ```
+
+## Stata
+
+A standard package for performing regression discontinuity in Stata is **rdrobust**, installable from `scc`.
+
+```stata
+* If necessary
+* ssc install rdrobust
+
+* Load RDD of house elections from the R package rddtools,
+* and originally from Lee (2008) https://www.sciencedirect.com/science/article/abs/pii/S0304407607001121
+import delimited "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Regression_Discontinuity_Design/house.csv", clear
+
+* x is "vote margin in the previous election" and y is "vote margin in this election"
+
+* If we want to specify options for bandwidth selection, we can run rdbwselect directly.
+* Otherwise, rdrobust will run it with default options by itself
+* c(0) indicates that treatment is assigned at 0 (i.e. someone gets more votes than the opponent)
+rdbwselect y x, c(0)
+
+* Run a sharp RDD with a second-order polynomial term
+rdrobust y x, c(0) p(2)
+
+* Run a fuzzy RDD
+* We don't have a fuzzy RDD in this data, but let's create one, where
+* probability of treatment jumps from 20% to 60% at the cutoff
+g treatment = (runiform() < .2)*(x < 0) + (runiform() < .6)*(x >= 0)
+rdrobust y x, c(0) fuzzy(treatment)
+
+* Generate a standard RDD plot with a polynomial of 2 (default is 4)
+rdplot y x, c(0) p(2)
+```
+
+

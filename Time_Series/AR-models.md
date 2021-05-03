@@ -23,16 +23,10 @@ Following the [instructions]({{ "/Time_Series/creating_time_series_dataset.html"
 
 ## Python
 
-In Python, the
-[**statsmodels**](https://www.statsmodels.org/stable/index.html) package
-provides a range of tools to fit models using maximum likelihood
-estimation. In the example below, we will use the `AutoReg` function. This
-can fit models of the form:
+In Python, the [**statsmodels**](https://www.statsmodels.org/stable/index.html) package provides a range of tools to fit models using maximum likelihood estimation. In the example below, we will use the `AutoReg` function. This can fit models of the form:
 
 $$
-
 y_t = \delta_0 + \delta_1 t + \phi_1 y_{t-1} + \ldots + \phi_p y_{t-p} + \sum_{i=1}^{s-1} \gamma_i d_i + \sum_{j=1}^{m} \kappa_j x_{t,j} + \epsilon_t.
-
 $$
 
 where $$d_i$$ are seasonal dummies, $$x_{t,j}$$ are exogenous regressors, and the $$\phi_p$$ are the coefficients of the auto-regressive components of the model.

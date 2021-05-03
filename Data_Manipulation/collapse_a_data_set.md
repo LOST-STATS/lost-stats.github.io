@@ -39,9 +39,25 @@ This can be one useful way to produce [summary statistics]({{ "/Presentation/Tab
 
 # Implementations
 
+For our implementation examples, we'll use the "storms" dataset that comes bundled with the **dplyr** R package and is also available as a downloadable CSV [here](https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv). This dataset contains hourly track data for 198 tropical storms from 1993 to 2006. Our task in each of the implementation examples will be the same: We want to collapse this hourly dataset to the daily level, and obtain the mean wind speed and pressure reading for each storm. Moreover, we'll also get the first category listing of each storm, thereby demonstrating how we can combine multiple aggregation functions (*mean* and *first*) in a single operation.
+
+## Julia
+
+Julia adopts a highly modular approach to package functionality. The main data wrangling operations are all bundled in the [**DataFrames.jl**](https://dataframes.juliadata.org/stable/) package. But for this example, we'll also need to load the [**Statistics.jl**](https://github.com/JuliaLang/Statistics.jl) library (that comes bundled with the base Julia installation) for the `mean` and `first` aggregating functions. The [**RDatasets**](https://github.com/JuliaStats/RDatasets.jl) package simply provides a conveniet way to import R datasets, although we could also import the "storms" CSV manually from the web if desired.
+
+```julia
+#] add DataFrames, RDatasets
+using DataFrames, Statistics, RDatasets
+
+storms = dataset("dplyr", "storms")
+
+combine(groupby(storms, [:name, :year, :month, :day]), 
+        [:wind, :pressure] .=> mean, [:category] .=> first)
+```
+
 ## Python
 
-As in the R example below, we would like to collapse data on storms so that it is uniquely identified by name, year, month, and day. However, there are sometimes multiple observations within each combination of those so we need to collapse these. But to combine multiple variables requires an aggregation of some kind. So, in code, we groupby the variables that we would like to retain and give a dictionary of functions (of the form `'original column': 'function'`) to aggregate the other variables by.
+For our Python implementation we'll use the very popular [**pandas**](https://pandas.pydata.org/docs/) library. Note that, after specifying the grouping variables, we'll use dictionary of functions (of the form `'original column': 'function'`) to aggregate the other variables by.
 
 ```python
 import pandas as pd
@@ -49,9 +65,7 @@ import pandas as pd
 # Pull in data on storms
 storms = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv')
 
-# Find the mean wind, mean pressure, and the first
-# category value by name, year, month, and day.
-# To do this, use a groupby, followed by an aggregation.
+# We'll save the collapsed data as a new object called `storms_collapsed` (this is optional)
 storms_collapsed = (storms
                     .groupby(['name', 'year', 'month', 'day'])
                     .agg({'wind': 'mean',
@@ -61,45 +75,63 @@ storms_collapsed = (storms
 
 ## R
 
+R provides several package ecoystems for data wrangling and collapsing. We'll show you three (in increasing order of speed for this particular task, although they'll all complete quickly).
+
+First, [**dplyr**](https://dplyr.tidyverse.org/):
+
 ```r
 # If necessary, install dplyr
 # install.packages('dplyr')
 library(dplyr)
 
-# Get data on storms from dplyr
+# The storms dataset comes bundled with dplyr, so we can load it directly
 data("storms")
 
-# We would like each storm to be identified by
-# name, year, month, and day
-# However, currently, they are also identified by hour,
-# And even then there are sometimes multiple observations per hour
-
-# To construct the collapsed data, we start with the original
-storms_collapsed <- storms %>%
-  # group by the variables that make the new observation level
+# We'll save the collapsed data as a new object called `storms_collapsed` (this is optional)
+storms_collapsed = storms %>%
   group_by(name, year, month, day) %>% 
-  # And use summarize() to pick the variables to keep, as well as
-  # the functions we want to use to collapse each variable.
-  # Let's get the mean wind and pressure, and the first category value
-  summarize(wind = mean(wind),
-            pressure = mean(pressure),
-            category = first(category))
-# Note that if we wanted to collapse every variable in the data with the 
-# same function, we could instead use summarize_all()
+  summarize(across(c(wind, pressure), mean), category = first(category))
+```
+
+Second, [**data.table**](https://rdatatable.gitlab.io/data.table/index.html):
+
+```r
+# install.packages('data.table')
+library(data.table)
+
+# Set the already-loaded storms dataset as a data.table
+setDT(storms)
+
+storms[, 
+       .(wind=mean(wind), pressure=mean(pressure), category=first(category)), 
+       by = .(name, year, month, day)]
+```
+Third: [**collapse**](https://sebkrantz.github.io/collapse/):
+
+```r
+# install.packages('collapse')
+library(collapse)
+
+collap(storms, 
+       by = ~name+year+month+day, 
+       custom = list(fmean=c('wind', 'pressure'), ffirst='category'))
 ```
 
 ## Stata
 
+For Stata, we'll use the generic `collapse` command.
+
 ```stata
-** Load surface.dta, which contains temperature recordings in different locations
-sysuse surface.dta, clear
+** Read in the data
+import delimited https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv
 
-* Currently, there is one observation per latitude per longitude per date
-* I would like this to just be one observation per latitude/longitude
+collapse (mean) wind (mean) pressure (first) category, by(name year month day)
+```
+With big datasets, Stata can be slow compared to other languages, though they do seem to be trying to [change that](https://www.stata.com/new-in-stata/faster-stata-speed-improvements/) a bit. The community-contributed [**gtools**](https://gtools.readthedocs.io/en/latest/usage/gtools/index.html) suite can help a lot with speedups and, fortunately, has a faster version of collapse, called `gcollapse`. Note that we won't necessarily see a benefit for small(ish) datasets like the one that we are using here. But note that the syntax is otherwise identical. 
 
-* So I construct a collapse command.
-* I take my new target observation level and put it in by()
-* and then take each variable I'd like to keep around and tell
-* Stata what function to use to create the new collapsed value, here (mean)
-collapse (mean) temperature, by(latitude longitude)
+```stata
+* ssc install gtools
+* gtools, upgrade
+
+gcollapse (mean) wind (mean) pressure (first) category, by(name year month day)
 ```

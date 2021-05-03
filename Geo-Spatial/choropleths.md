@@ -68,3 +68,56 @@ gplt.polyplot(world, facecolor='lightgray', edgecolor='None', ax=ax)
 plt.title("GDP per capita (USD)")
 plt.show()
 ```
+
+## R
+
+The [**sf**](https://github.com/r-spatial/sf/) is a fantastic package to make choropleths and more in R. In the following code, we will walk through an identical example of the python implementation above, with the same data from [rnaturalearth](https://cran.r-project.org/web/packages/rnaturalearth/README.html), but using R and and creating our plots with the wonderful [ggplot2](https://ggplot2.tidyverse.org/) package. In order to produce the cartogram plots, we use the [cartogram](https://cran.r-project.org/web/packages/cartogram/index.html) package.
+
+```r
+## Load and install the packages that we'll be using today
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(sf, tidyverse, ggplot2, rnaturalearth, viridis, cartogram, scales)
+
+world <- ne_download( scale = 110, type = 'countries' ) %>% 
+  st_as_sf()
+
+
+world = world %>% 
+  filter(POP_EST > 0,
+         NAME != "Antarctica") %>% 
+  mutate(gdp_per_capita = 1.0e6*(GDP_MD_EST / as.numeric(POP_EST)))
+
+## Simple choropleth plot
+ggplot(data = world) +
+    geom_sf(aes(fill = gdp_per_capita))
+
+
+## Much better looking choropleth with ggplot2
+world %>% 
+  st_transform(crs = "+proj=eqearth +wktext") %>% 
+  ggplot() +
+    geom_sf(aes(fill = gdp_per_capita)) +
+    theme_void() +
+    labs(title = "",
+         caption = "Data downloaded from www.naturalearthdata.com",
+         fill = "GDP per capita (USD)") +
+    scale_fill_viridis(labels = comma) +
+  theme(legend.position = "bottom",
+        legend.key.width = unit(1.5, "cm"))
+
+
+## Now let's try a cartogram using the cartogram package that was loaded above
+world_cartogram = world %>% 
+  st_transform(crs = "+proj=eqearth +wktext") %>%
+  cartogram_ncont("gdp_per_capita", k = 100, inplace = TRUE)
+
+ggplot() +
+  geom_sf(data = world, alpha = 1, color = "grey70", fill = "grey70") +
+  geom_sf(data = world_cartogram, aes(fill = gdp_per_capita),
+          alpha = 1, color = "black", size = 0.1) +
+  scale_fill_viridis(labels = comma) +
+  labs(title = "Cartogram - GDP per capita",
+       caption = "Data downloaded from www.naturalearthdata.com",
+       fill = "GDP per capita") +
+  theme_void()
+```

@@ -5,6 +5,9 @@ has_children: false
 nav_order: 1
 mathjax: true ## Switch to false if this page has no equations or other math rendering.
 ---
+
+# Decision Trees
+
 Decision trees are among the most common and useful machine learning methodologies. While they are a relatively simple method, they are incredibly easy to understand and implement for both classification and regression problems.
 
 A decision tree "grows" by creating a cutoff point (often called a split) at a single point in the data that maximizes accuracy. The tree's prediction is then based on the mean of the region that results from the input data.

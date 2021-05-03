@@ -209,4 +209,23 @@ For example, we want to make multiple densities plots for price based on the typ
 ggplot(data=diamonds, aes(x = price, fill = cut)) +
     geom_density(adjust = 1.5, alpha = .3)
 ```
+
 ![multiple]({{ "/Presentation/Figures/Images/density_plot/5.png" | relative_url }})
+
+## Stata
+
+For this demonstration, we will use the plottig scheme, a community-contributed color scheme for plots that greatly improves over Stata's default plot color schemes. For more on using schemes in Stata, see [here](https://blog.stata.com/2018/10/02/scheming-your-way-to-your-favorite-graph-style/).
+
+```stata
+clear all
+set more off
+
+ssc install blindschemes // Install the blindschemes set of color schemes, which includes plottig
+graph query, schemes // Show the available schemes you have installed, to confirm plottig was installed
+
+*Pull in Stata's NHANES dataset
+use http://www.stata-press.com/data/r16/nhanes2.dta, clear
+
+*Plot the kernel density
+kdensity height, scheme(plottig)
+```
