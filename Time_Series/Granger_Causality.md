@@ -88,7 +88,7 @@ ARsim2 <- function(rho, first, serieslength, distribution) {
 }
 
 # Error for Y model
-error < -ARsim2(rho, c(0, 0), n, "rnorm")
+error <- ARsim2(rho, c(0, 0), n, "rnorm")
 
 # times series X (simulation)
 X <- arima.sim(list(order = c(1, 0, 0), ar = c(0.2)), n)

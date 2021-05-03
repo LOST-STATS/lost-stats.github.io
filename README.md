@@ -33,10 +33,10 @@ You will first need to install [Docker](https://docs.docker.com/desktop/). You w
 ```bash
 python3 -m venv venv
 source venv/bin/activate
-pip install 'mistune==2.0.0a5' 'py.test==6.1.1' 'pytest-xdist==2.1.0'
+pip install 'mistune==2.0.0rc1' 'py.test==6.1.1' 'pytest-xdist==2.1.0'
 
-docker pull ghcr.io/khwilson/lost-docker-images/tester-r
-docker pull ghcr.io/khwilson/lost-docker-images/tester-python
+docker pull ghcr.io/lost-stats/lost-docker-images/tester-r
+docker pull ghcr.io/lost-stats/lost-docker-images/tester-python
 ```
 
 At this point, the docker images will _not_ be updated unless you explicitly repull them.
@@ -64,11 +64,11 @@ py.test test_samples.py -n 3 --mdpath Time_Series
 
 ### Adding dependencies
 
-The docker images in which these tests are run are managed in the [lost-docker-images](https://github.com/khwilson/lost-docker-images) repo. See instructions there for adding dependencies. After which, you will need to refresh your docker images with:
+The docker images in which these tests are run are managed in the [lost-docker-images](https://github.com/lost-stats/lost-docker-images) repo. See instructions there for adding dependencies. After which, you will need to refresh your docker images with:
 
 ```
-docker pull ghcr.io/khwilson/lost-docker-images/tester-r
-docker pull ghcr.io/khwilson/lost-docker-images/tester-python
+docker pull ghcr.io/lost-stats/lost-docker-images/tester-r
+docker pull ghcr.io/lost-stats/lost-docker-images/tester-python
 ```
 
 ### Connecting code samples

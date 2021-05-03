@@ -12,29 +12,28 @@ For more information on graphs see other articles such as: bar graphs, scatter p
 
 ## Keep in Mind
 
-- Title: A legend should be well-titled so you can tell what the different component elements, like any key symbols, colors, scale changes, lines or other compeents mean. 
+- Title: A legend should be well-titled so you can tell what the different component elements, like any key symbols, colors, scale changes, lines or other compeents mean.
 - Some more extended legends cal also include very brief information about methods or results, as simplified as possible.
 - Avoid clutter: It is important to keep these legends simple, an effective legend is there to help the graph stand alone.
 - Ask if a legend is *necessary*. You may be able to move labels for things like colors or shapes onto the graph itself where it is more closely tied to the data. Or you may be able to make things self-explanatory with a good graph title.
 
 ## Also Consider
 
-- Before finalizing your legend the graph itself should be completed. Deciding which type of graph is best suited for your data is a whole topic in itself. 
+- Before finalizing your legend the graph itself should be completed. Deciding which type of graph is best suited for your data is a whole topic in itself.
 - Some of the graphical implementations this page contains include are;
-[Bar Graphs]({{ "/Presentation/Figures/bar_graphs.html" | relative_url }}), [Histograms]({{ "/Presentation/Figures/histograms.html" | relative_url }}), and [Scatterplot by Group on Shared Axes]({{ "/Presentation/Figures/scatterplot_by_group_on_shared_axes.html" | relative_url }}). 
-- Check out [this article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4078179/) for a brief description of the relationships shown for different graph types . 
+[Bar Graphs]({{ "/Presentation/Figures/bar_graphs.html" | relative_url }}), [Histograms]({{ "/Presentation/Figures/histograms.html" | relative_url }}), and [Scatterplot by Group on Shared Axes]({{ "/Presentation/Figures/scatterplot_by_group_on_shared_axes.html" | relative_url }}).
+- Check out [this article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4078179/) for a brief description of the relationships shown for different graph types .
 
 # Graphs legends in R
 
 Here are some of the packages that will be used in this section:
-```r
-if (!require("pacman")) install.packages("pacman")
-pacman::p_load(ggplot2)
+```r?example=legends
+library(ggplot2)
 ```
 
 The dataset used in this article will be the ***mtcars*** dataset as it comes with base R. The functions here are `ggplot` and `geom_point` from the ***ggplot2*** package. `geom_point` creates a scatterplot while in `ggplot` we will assign the axis and the legend. More specifically, in `aes()` we color the point depending on the number of cylinders.
 
-```r
+```r?example=legends
 fig1 <- ggplot(mtcars, aes(wt, mpg, colour = factor(cyl))) +
        geom_point()
 fig1
@@ -42,23 +41,22 @@ fig1
 
 Now we can add another layor by giving each type of transition a different shape through shape in `aes()`. Additionally, you can augment the labels for both colour and shape with `labs()`.
 
-```r
-fig2 <- ggplot(mtcars, aes(wt, mpg, colour = factor(cyl), shape = factor(am) )) +
+```r?example=legends
+fig2 <- ggplot(mtcars, aes(wt, mpg, colour = factor(cyl), shape = factor(am))) +
   geom_point()
-  
-fig2 + labs(colour= "Number of Cylinders", shape = "Transmission Type")
+
+fig2 + labs(colour = "Number of Cylinders", shape = "Transmission Type")
 
 ```
 
 To change the legend position use the `theme()` modifier in ggplot. From there you can choose top, right, bottom, left, or none (removes the legend). To put the legends inside the plot create column vector of size 2 (the first value refers to the x coordinate. while the second refers to the y) where both elements are between 0 and 1. To ensure that the whole legends is within the graph use the `legend.justification` to set the corner where you want the legend.
 
-```r
-fig2 + 
-    theme(
-    legend.position = c(.95, .95),
-    legend.justification = c("right", "top")
-    )
-  
+```r?example=legends
+fig2 +
+  theme(
+    legend.justification = c(1, 1),
+    legend.position = c(.95, .95)
+  )
 ```
 
 There are other cool things you can do to the legend to better customize the visual experience by adding more to the ***theme*** modifier such as:
@@ -66,7 +64,8 @@ There are other cool things you can do to the legend to better customize the vis
 * The color of the box around the legend with `legend.box.background`
 * Changing the font size and color with `legend.text`
 * Changing the boxes of the legend key with `legend.key`
-```r
+
+```r?example=legends
 fig3 <- fig2 +
   theme(
     legend.box.background = element_rect(color="red", size=2),
@@ -80,19 +79,20 @@ fig3
 ![Modified Legend](Images/Formatting_Graph_Legends/R_modified_legend.png)
 
 Sometimes you may want to remove a legend for the sake of graph readability or to reduce clutter. You can remove a legend by changing its position to "none" within the `theme` modifier.
-```r
-fig4 <- fig2 +
-       theme(legend.postion="none")
+
+```r?example=legends
+fig4 <- fig2 + theme(legend.position = "none")
 fig4
 ```
 
 You can alternately remove legends (or components of legends) with `guides`
 
-```r
+```r?example=legends
 # Here we've removed the color legend, but the shape legend is still there.
 fig5 <- fig2 +
        guides(color = FALSE)
 fig5
+
 # This removes both
 fig6 <- fig2 +
        guides(color = FALSE, shape = FALSE)
@@ -102,7 +102,7 @@ fig6
 
 # Legend Formatting in Stata
 
-In Stata the legend is automatically added when you create a graph with multiple lines. However there may be instances where you would still prefer to have a legend on a single line graph or possibly no legend on your graph in general. For those times just add `legend(on)` or `legend(off)`. 
+In Stata the legend is automatically added when you create a graph with multiple lines. However there may be instances where you would still prefer to have a legend on a single line graph or possibly no legend on your graph in general. For those times just add `legend(on)` or `legend(off)`.
 
 ```stata
 * Let's use the US Life Expectancy data that comes with Stata
@@ -160,6 +160,6 @@ line le_wm year, yaxis(1 2) xaxis(1 2) ///
 ***Notice*** within the `label()` command nested within `legend()` you must specify which part of the graph  you're labeling first (the number denotes its order i.e. the first graph is 1) then the new label with a space between both items. Here they change the legend label for the first 2 lines.
 In regards to legend positioning, the same rules discussed above apply.
 
-#Sources
+### Sources
 Stata's manual on two-way graphs: https://www.stata.com/manuals13/g-2graphtwowayline.pdf
 Stata's manual on legends: https://www.stata.com/manuals13/g-3legend_options.pdf

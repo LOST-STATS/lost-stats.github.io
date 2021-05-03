@@ -61,9 +61,7 @@ There are numerous packages for estimating fixed effect models in R. We will lim
 
 We first demonstrate fixed effects in R using `felm` from the **lfe** package ([link](https://cran.r-project.org/web/packages/lfe/index.html)). `lfe::felm` uses the Method of Alternating Projections to "sweep out" the fixed effects and avoid estimating them directly. By default, this is automatically done in parallel, using all available cores on a user's machine to maximize performance. (It is also possible to change this behaviour.)
 
-```r
-# If necessary, install lfe
-# install.packages('lfe')
+```r?example=lfe
 library(lfe)
 
 # Read in data from the College Scorecard
@@ -75,7 +73,7 @@ df$prop_working <- df$count_working/(df$count_working + df$count_not_working)
 # outcome ~
 #   covariates |
 #   fixed effects |
-#   instrumental variables specification | 
+#   instrumental variables specification |
 #   cluster variables for standard errors
 
 # Here let's regress earnings_med on prop_working
@@ -87,9 +85,9 @@ felm_model <- felm(earnings_med ~ prop_working | inst_name + year | 0 | inst_nam
 summary(felm_model)
 ```
 
-Next, we consider `feols` from the **fixest** package ([link](https://github.com/lrberge/fixest/wiki)). The syntax is very similar to  `lfe::felm` and again the estimation will be done in parallel by default. However, rather than the method of alternating projections, `fixest::feols` uses a concentrated maximum likelihood method to efficiently estimate models with an arbitrary number of fixed effects. Current [benchmarks](https://github.com/lrberge/fixest/wiki#benchmarking) suggest that this can yield significant speed gains, especially for large problems. For the below example, we'll continue with the same College Scorecard dataset already loaded into memory. 
+Next, we consider `feols` from the **fixest** package ([link](https://github.com/lrberge/fixest/wiki)). The syntax is very similar to  `lfe::felm` and again the estimation will be done in parallel by default. However, rather than the method of alternating projections, `fixest::feols` uses a concentrated maximum likelihood method to efficiently estimate models with an arbitrary number of fixed effects. Current [benchmarks](https://github.com/lrberge/fixest/wiki#benchmarking) suggest that this can yield significant speed gains, especially for large problems. For the below example, we'll continue with the same College Scorecard dataset already loaded into memory.
 
-```r
+```r?example=lfe
 # If necessary, install fixest
 # install.packages('fixest')
 library(fixest)

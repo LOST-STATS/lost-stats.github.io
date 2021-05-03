@@ -56,7 +56,7 @@ rdbwselect y x, c(0)
 * Run a sharp RDD with a second-order polynomial term
 rdrobust y x, c(0) p(2)
 
-* Run a fuzzy RDD 
+* Run a fuzzy RDD
 * We don't have a fuzzy RDD in this data, but let's create one, where
 * probability of treatment jumps from 20% to 60% at the cutoff
 g treatment = (runiform() < .2)*(x < 0) + (runiform() < .6)*(x >= 0)
@@ -77,7 +77,7 @@ library(rdrobust)
 
 # Load RDD of house elections from the R package rddtools,
 # and originally from Lee (2008) https://www.sciencedirect.com/science/article/abs/pii/S0304407607001121
-df <- read.csv("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Estimation/Data/Regression_Discontinuity_Design/house.csv")
+df <- read.csv("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Regression_Discontinuity_Design/house.csv")
 
 # x is "vote margin in the previous election" and y is "vote margin in this election"
 
@@ -91,7 +91,7 @@ rdd <- rdrobust(df$y, df$x,
                 c=0, p=2)
 summary(rdd)
 
-# Run a fuzzy RDD 
+# Run a fuzzy RDD
 # We don't have a fuzzy RDD in this data, but let's create one, where
 # probability of treatment jumps from 20% to 60% at the cutoff
 N <- nrow(df)

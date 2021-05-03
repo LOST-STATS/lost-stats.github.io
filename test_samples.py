@@ -154,10 +154,11 @@ def pytest_generate_tests(metafunc):
         all_blocks.extend(blocks)
 
     # Skip the blocks labeled `skip`
+    # TODO(khw): Is there some way to explicitly call out the `skip` in pytest output?
     run_blocks = [
         block
         for block in all_blocks
-        if block.options.get("skip", "false").lower() != "true"
+        if block.options.get("skip", ["false"])[0].lower() != "true"
     ]
     if "python_code_block" in metafunc.fixturenames:
         metafunc.parametrize(

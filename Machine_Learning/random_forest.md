@@ -25,13 +25,17 @@ Random forest is one of the most popular and powerful machine learning algorithm
 
 There are a number of packages in R capable of training a random forest, including **randomForest** and **ranger**. Here we will use **randomForest**.
 
-We'll be using a built-in dataset in R, called "Iris". There are five variables in this dataset, including species, petal width and length as well as sepal length and width. 
+We'll be using a built-in dataset in R, called "Iris". There are five variables in this dataset, including species, petal width and length as well as sepal length and width.
 
 ```r
 #Load packages
-library(pacman)
-pacman::p_load(tidyverse, rvest, dplyr, caret, randomForest, Metrics,
-               readr)
+library(tidyverse)
+library(rvest)
+library(dplyr)
+library(caret)
+library(randomForest)
+library(Metrics)
+library(readr)
 
 #Read data in R
 data(iris)
@@ -73,35 +77,32 @@ print(sum(predictions==y_test)/length(y_test))
 
 Use iris features (sepal length and width, petal length and width) to predict iris species
 
-#Import libraries
 
-```
+```python
+# Import libraries
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-%matplotlib inline
 import seaborn as sns
-sns.set()
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score,confusion_matrix
 
-'imports ready for use'
-
 #Read data
-file='https://vincentarelbundock.github.io/Rdatasets/csv/datasets/iris.csv'
-iris = pd.read_csv(file)
+filename = 'https://vincentarelbundock.github.io/Rdatasets/csv/datasets/iris.csv'
+iris = pd.read_csv(filename)
 iris.head(5)
 
 #Check whether there are missing values to deal with
 iris.info()
 
-#Prepare data for training 
+#Prepare data for training
 X=iris[['SepalLengthCm','SepalWidthCm','PetalLengthCm','PetalWidthCm']]
 y=iris[['Species']]
 
 #Split data into training and test set
-X_train,X_test,y_train,y_test=train_test_split (X,y,test_size=0.3,random_state=1996)
+X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.3,random_state=1996)
 X_train.shape,X_test.shape,y_train.shape,y_test.shape
 
 #Creating model using random forest
@@ -114,6 +115,6 @@ y_pred=Model.predict(X_test)
 #Evaluate model prediction
 print("Accuracy is:”,accuracy_score(y_pred, y_test)*100,”%")
 
-#Predict what type of iris it is 
+#Predict what type of iris it is
 Model.predict([[3,4,5,2]])
 ```

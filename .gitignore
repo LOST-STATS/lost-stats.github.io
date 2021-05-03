@@ -5,9 +5,6 @@ _site/
 .jekyll-metadata
 .publish/
 
-# Node cruft
-node_modules/
-
 # R cruft
 .Rproj.user
 .Rhistory
