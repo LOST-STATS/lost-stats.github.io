@@ -44,7 +44,7 @@ jobs:
         run: "bundle exec htmlproofer --assume-extension --allow-hash-href ./_site || true"
 
       - name: Push to GH Pages
-        uses: JamesIves/github-pages-deploy-action@3.5.1
+        uses: JamesIves/github-pages-deploy-action@3.7.1
         if: github.ref == 'refs/heads/source' && github.event_name == 'push'
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

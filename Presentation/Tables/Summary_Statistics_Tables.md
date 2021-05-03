@@ -14,47 +14,48 @@ Before looking at relationships between variables, it is generally a good idea t
 ## Keep in Mind
 
 - Make sure that you are using the appropriate summary measures for the variables that you have. For example, if you have a variable indicating the country someone is from coded as that country's international calling code, don't include it in a table that reports the mean - you'd get an answer but that answer wouldn't make any sense.
-- If you have categorical variables, you can generally still incorporate them into a summary statistics table by [turning them into binary "dummy" variables]({{ "/Data_Manipulation/creating_dummies.html" | relative_url }}).
+- If you have categorical variables, you can generally still incorporate them into a summary statistics table by [turning them into binary "dummy" variables]({{ "/Data_Manipulation/Creating_Dummy_Variables/creating_dummy_variables.html" | relative_url }}).
 
 ## Also Consider
 
-- Graphs can be more informative ways of showing the distribution of a variable, and you may want to show a graph of your variable's distribution in addition to its inclusion on a summary statistics table. There are many ways to do this, but two common ones are [density plots]({{ "/Presentation/Tables/Density_Plots.html" | relative_url }}) or [histograms]({{ "/Presentation/Tables/Histograms.html" | relative_url }}) for continuous variables, or [bar plots]({{ "/Presentation/Tables/Bar_Plots.html" | relative_url }}) for categorical variables.
+- Graphs can be more informative ways of showing the distribution of a variable, and you may want to show a graph of your variable's distribution in addition to its inclusion on a summary statistics table. There are many ways to do this, but two common ones are [density plots]({{ "/Presentation/Figures/density_plots.html" | relative_url }}) or [histograms]({{ "/Presentation/Figures/histograms.html" | relative_url }}) for continuous variables, or [bar plots]({{ "/Presentation/Figures/bar_graphs.html" | relative_url }}) for categorical variables.
 
 # Implementations
 
 ## R
 
-Probably the most straightforward and simplest way to do a summary statistics table in R is with the **stargazer** package, which also has many options for customization. There are also other options like `summary_table()` in **qwraps2** or `table1()` in **table1**, both of which have more cross-tabulation and categorical-variable functionality but require more work to set up. See [this page](https://thatdatatho.com/2018/08/20/easily-create-descriptive-summary-statistic-tables-r-studio/) for a comparison of different packages other than **stargazer**.
+Probably the most straightforward and simplest way to do a summary statistics table in R is with the `sumtable` function in the **vtable** package, which also has many options for customization. There are also other options like `stargazer` in **stargazer**, `dfsummary()` in **summarytools**, `summary_table()` in **qwraps2** or `table1()` in **table1**. See [this page](https://thatdatatho.com/2018/08/20/easily-create-descriptive-summary-statistic-tables-r-studio/) for a comparison of different packages.
 
 ```r
 # If necessary
-# install.packages('stargazer')
-library(stargazer)
+# install.packages('vtable')
+library(vtable)
 data(mtcars)
 
-# Feed stargazer a data.frame with the variables you want summarized
+# Feed sumtable a data.frame with the variables you want summarized
 mt_tosum <- mtcars[,c('mpg','cyl','disp')]
-# Type = 'text' to print the table to screen, or 'latex' or 'html' to get LaTeX or HTML tables
-stargazer(mt_tosum, type = 'text')
+# By default, the table shows up in the Viewer pane (in RStudio) or your browser (otherwise)
+# (or if being run inside of RMarkdown, in the RMarkdown document format)
+sumtable(mt_tosum)
+# st() as a shortcut also works
+st(mt_tosum)
 
 # There are *many* options and customizations. For all of them, see
-# help(stargazer)
+# help(sumtable)
 # Some useful ones include out, which designates a file to send the table to
 # (note that HTML tables can be copied straight into Word from an output file)
-stargazer(mt_tosum, type = 'html', out = 'my_summary.html', median = TRUE)
+sumtable(mt_tosum, out = 'html', file = 'my_summary.html')
 
-# Also note that stargazer does not accept tibbles.
-# Use as.data.frame() to stargazer a tibble
-library(tidyverse)
-data("storms")
+# sumtable will handle factor variables as expected,
+# and you can replace variable names with "labels"
+mt_tosum$trans <- factor(mtcars$am, labels = c('Manual','Automatic'))
+st(mt_tosum, labels = c('Miles per Gallon','Cylinders','Displacement','Transmission'))
 
-storms %>%
-  select(year, wind, pressure, ts_diameter) %>%
-  as.data.frame() %>%
-  stargazer(type = 'text')  
+# Use group to get summary statistics by group
+st(mt_tosum, labels = c('Miles per Gallon','Cylinders','Displacement'), group = 'trans')
 ```
 
-But if you plan on maybe R Markdown instead of LaTeX formatting, there are a ton of summary statistic table packages for you to choose from. The package skimr is an excellent alternative to base::summary. skimr::skim takes different data types and outputs a summary statistic data frame. Numeric data gets miniature histograms and all types of data get information about the number of missing entries.
+Another good option is the package **skimr**, which is an excellent alternative to `base::summary()`. `skimr::skim()` takes different data types and outputs a summary statistic data frame. Numeric data gets miniature histograms and all types of data get information about the number of missing entries.
 
 ```r
 # If necessary
@@ -81,8 +82,6 @@ starwars %>%
     dplyr::filter(skim_variable == "height" & n > 1)
 
 ```
-
-Another alternative is summarytools::dfsummary. It's even more extended than skim(). dfsummary() can handle data in the forms of characters, factors, numerics, and dates, and outputs a data frame with statistics and graphs for all variables. That data frame can't be viewed from the console however, you'll open it in the viewer.
 
 ## Stata
 

@@ -24,7 +24,7 @@ $$\sigma_{t}^{2} = \alpha_{0} + \sum_{i=1}^{q}\alpha_{i}\epsilon_{t-i}^{2} + \su
 
 - GARCH can be used to help predict the volatility of returns on financial assets.
 - GARCH is useful to assess risk and expected returns for assets that exhibit clustered periods of volatility in returns.
-- If an autoregressive(AR) model is assumed for the error variance, the model is an autoregressive conditional heteroskedasticity (ARCH) model. For more information on GARCH models, see [Wikipedia: ARCH](https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity#ARCH(q)_model_specification). For information about estimating an ARCH model, see [LOST: ARCH models]({{ "/Time_Series/ARCH" | relative_url }}-models.html).
+- If an autoregressive(AR) model is assumed for the error variance, the model is an autoregressive conditional heteroskedasticity (ARCH) model. For more information on GARCH models, see [Wikipedia: ARCH](https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity#ARCH(q)_model_specification). For information about estimating an ARCH model, see [LOST: ARCH models]({{ "/Time_Series/ARCH_Model.html" | relative_url }}).
 
 
 # Implementations

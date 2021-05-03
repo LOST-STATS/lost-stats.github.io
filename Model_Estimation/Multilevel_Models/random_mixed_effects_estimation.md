@@ -9,7 +9,7 @@ mathjax: true ## Switch to false if this page has no equations or other math ren
 
 # Random/Mixed Effects in Linear Regression
 
-In panel data, we often have to deal with unobserved heterogeneity among the units of observation that are observed over time. If we assume that the unobserved heterogeneity is uncorrelated with the independent variables, we can use random effects model. Otherwise, we may consider [fixed effects]({{ "/Model_Estimation/fixed_effects_in_linear_regression.html" | relative_url }}). In practice, random effects and fixed effects are often combined to implement a mixed effects model. Mixed refers to the fact that these models contain both fixed, and random effects.
+In panel data, we often have to deal with unobserved heterogeneity among the units of observation that are observed over time. If we assume that the unobserved heterogeneity is uncorrelated with the independent variables, we can use random effects model. Otherwise, we may consider [fixed effects]({{ "/Model_Estimation/OLS/fixed_effects_in_linear_regression.html" | relative_url }}). In practice, random effects and fixed effects are often combined to implement a mixed effects model. Mixed refers to the fact that these models contain both fixed, and random effects.
 
 For more information, see [Wikipedia: Random Effects Model](https://en.wikipedia.org/wiki/Random_effects_model)
 
@@ -22,14 +22,14 @@ For more information, see [Wikipedia: Random Effects Model](https://en.wikipedia
 
 ## Also Consider
 
-  - Consider [Fixed effects]({{ "/Model_Estimation/fixed_effects_in_linear_regression.html" | relative_url }})
+  - Consider [Fixed effects]({{ "/Model_Estimation/OLS/fixed_effects_in_linear_regression.html" | relative_url }})
     if unobserved heterogeneity and independent variables are correlated or if only within-variation is desired.
   - [Hauman Tests](https://en.wikipedia.org/wiki/Durbin%E2%80%93Wu%E2%80%93Hausman_test) are often used to inform us about the appropiateness of fixed effects models vs. random effects models in which only the intercept is random.
-  - [Clustering your error]({{ "/Model_Estimation/Nonstandard_Errors/clustered_se.html" | relative_url }})
+  - [Clustering your error]({{ "Model_Estimation/Statistical_Inference/Nonstandard_Errors/clustered_se.html" | relative_url }})
 
 # Implementations
 
-We continue from our the example in [Fixed effects]({{ "/Model_Estimation/fixed_effects_in_linear_regression.html" | relative_url }}). In that example we estimated a fixed effect model of the form:
+We continue from our the example in [Fixed effects]({{ "/Model_Estimation/OLS/fixed_effects_in_linear_regression.html" | relative_url }}). In that example we estimated a fixed effect model of the form:
 
 $$ earnings_{it} = \beta_0 + \beta_1 prop\_ working_{it} + \delta_t + \delta_i + \epsilon_{it} $$
 

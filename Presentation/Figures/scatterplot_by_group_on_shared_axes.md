@@ -9,7 +9,7 @@ nav_order: 1
 
 # Scatterplot by Group on Shared Axes
 
-[Scatterplot]({{ "/Presentation/Figures/scatterplot.html" | relative_url }})s are a standard data visualization tool that allows you to look at the relationship between two variables $$X$$ and $$Y$$. If you want to see how the relationship between $$X$$ and $$Y$$ might be different for Group A as opposed to Group B, then you might want to plot the scatterplot for both groups on the same set of axes, so you can compare them.
+[Scatterplot]({{ "/Presentation/Figures/Scatterplots.html" | relative_url }})s are a standard data visualization tool that allows you to look at the relationship between two variables $$X$$ and $$Y$$. If you want to see how the relationship between $$X$$ and $$Y$$ might be different for Group A as opposed to Group B, then you might want to plot the scatterplot for both groups on the same set of axes, so you can compare them.
 
 ## Keep in Mind
 
@@ -18,7 +18,7 @@ nav_order: 1
 ## Also Consider
 
 - Sometimes, instead of putting both Group A and Group B on the same set of axes, it makes more sense to plot them separately, and put the plots next to each other. See [Faceted Graphs]({{ "/Presentation/Figures/faceted_graphs.html" | relative_url }}).
-- There are many ways to make the scatterplots of the two groups distinct. See [Styling Scatterplots]({{ "/Presentation/Figures/styling_scatterplots.html" | relative_url }}).
+- There are many ways to make the scatterplots of the two groups distinct. See [Styling Scatterplots]({{ "/Presentation/Figures/Styling_Scatterplots.html" | relative_url }}).
 
 # Implementations
 

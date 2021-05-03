@@ -21,6 +21,43 @@ Random forest is one of the most popular and powerful machine learning algorithm
 
 # Implementations
 
+## Python
+
+Random forests can be used to perform both regression and classification tasks. In the example below, we'll use the `RandomForestClassifier` from the popular [**sklearn**](https://scikit-learn.org/stable/index.html) machine learning library. `RandomForestClassifier` is an ensemble function that fits a number of decision tree classifiers on various sub-samples of the dataset and uses averaging to improve the predictive accuracy and control over-fitting. We'll use this classifier to predict the species of iris based on its properties, using data from the iris dataset.
+
+You may need to install packages on the command line, using `pip install package-name` or `conda install package-name`, to run these examples (if you don't already have them installed).
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+
+# Read data
+df = pd.read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/datasets/iris.csv")
+
+# Prepare data
+X = df[["Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width"]]
+y = df[["Species"]]
+
+# Split data into training and test set
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=1996
+)
+
+# Creating model using random forest
+model = RandomForestClassifier(max_depth=2)
+model.fit(X_train, y_train)
+
+# Predict values for test data
+y_pred = model.predict(X_test)
+
+# Evaluate model prediction
+print(f"Accuracy is {accuracy_score(y_pred, y_test)*100:.2f} %")
+
+```
+
 ## R
 
 There are a number of packages in R capable of training a random forest, including **randomForest** and **ranger**. Here we will use **randomForest**.
@@ -70,51 +107,4 @@ head(result)
 print(sum(predictions==y_test))
 print(length(y_test))
 print(sum(predictions==y_test)/length(y_test))
-```
-
-
-## Python
-
-Use iris features (sepal length and width, petal length and width) to predict iris species
-
-
-```python
-# Import libraries
-
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score,confusion_matrix
-
-#Read data
-filename = 'https://vincentarelbundock.github.io/Rdatasets/csv/datasets/iris.csv'
-iris = pd.read_csv(filename)
-iris.head(5)
-
-#Check whether there are missing values to deal with
-iris.info()
-
-#Prepare data for training
-X=iris[['SepalLengthCm','SepalWidthCm','PetalLengthCm','PetalWidthCm']]
-y=iris[['Species']]
-
-#Split data into training and test set
-X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.3,random_state=1996)
-X_train.shape,X_test.shape,y_train.shape,y_test.shape
-
-#Creating model using random forest
-Model=RandomForestClassifier(max_depth=2)
-Model.fit(X_train,y_train)
-
-#Predict values for test data
-y_pred=Model.predict(X_test)
-
-#Evaluate model prediction
-print("Accuracy is:”,accuracy_score(y_pred, y_test)*100,”%")
-
-#Predict what type of iris it is
-Model.predict([[3,4,5,2]])
 ```
