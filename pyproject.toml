@@ -11,6 +11,7 @@ python = "^3.8"
 pytest = "^6.2.3"
 mistune = "2.0.0rc1"
 pytest-xdist = "^2.2.1"
+black = "^21.4b2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

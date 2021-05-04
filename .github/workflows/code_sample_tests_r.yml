@@ -1,4 +1,4 @@
-name: Run monthly python tests
+name: Run monthly r tests
 on:
   schedule:
     - cron: "0 0 1 * *"
@@ -42,4 +42,4 @@ jobs:
         run: poetry install
 
       - name: Run tests
-        run: poetry run py.test --language python
+        run: poetry run py.test --language r

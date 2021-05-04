@@ -10,12 +10,10 @@ import mistune
 
 
 PYTHON_DOCKER_IMAGE = os.environ.get(
-    "LOST_PYTHON_DOCKER_IMAGE",
-    "ghcr.io/lost-stats/docker-images/tester-python:latest"
+    "LOST_PYTHON_DOCKER_IMAGE", "ghcr.io/lost-stats/docker-images/tester-python:latest"
 )
 R_DOCKER_IMAGE = os.environ.get(
-    "LOST_R_DOCKER_IMAGE",
-    "ghcr.io/lost-stats/docker-images/tester-r:latest"
+    "LOST_R_DOCKER_IMAGE", "ghcr.io/lost-stats/docker-images/tester-r:latest"
 )
 
 
@@ -36,7 +34,7 @@ class CodeBlock:
     location: Path
 
     def __repr__(self) -> str:
-        """ Modify the repr so that only the first several characters of code are printed """
+        """Modify the repr so that only the first several characters of code are printed"""
         if len(self.code) > 50:
             code = f"{self.code[:47]}..."
         else:
@@ -140,6 +138,10 @@ def pytest_generate_tests(metafunc):
 
     base_exclude_paths = list(map(Path, metafunc.config.getoption("xmdpath")))
 
+    languages = [
+        language.strip().lower() for language in metafunc.config.getoption("language")
+    ]
+
     # Expand and exclude paths on command line
     all_paths = _expand_paths(base_paths)
     exclude_paths = _expand_paths(base_exclude_paths)
@@ -160,16 +162,29 @@ def pytest_generate_tests(metafunc):
         for block in all_blocks
         if block.options.get("skip", ["false"])[0].lower() != "true"
     ]
+
     if "python_code_block" in metafunc.fixturenames:
-        metafunc.parametrize(
-            "python_code_block",
-            [block for block in run_blocks if block.language.startswith("py")],
-        )
+        if (not languages) or ("python" in languages):
+            metafunc.parametrize(
+                "python_code_block",
+                [block for block in run_blocks if block.language.startswith("py")],
+            )
+        else:
+            metafunc.parametrize(
+                "python_code_block",
+                [CodeBlock(language="python", code="1 + 1", options={}, location="")],
+            )
 
     if "r_code_block" in metafunc.fixturenames:
-        metafunc.parametrize(
-            "r_code_block", [block for block in run_blocks if block.language == "r"]
-        )
+        if (not languages) or ("r" in languages):
+            metafunc.parametrize(
+                "r_code_block", [block for block in run_blocks if block.language == "r"]
+            )
+        else:
+            metafunc.parametrize(
+                "r_code_block",
+                [CodeBlock(language="r", code="1 + 1", options={}, location="")],
+            )
 
 
 def run_docker_python(block: CodeBlock) -> Outcome:
