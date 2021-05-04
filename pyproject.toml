@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "lost-stats.github.io"
+version = "0.1.0"
+description = ""
+authors = ["Kevin Wilson <khwilson@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.3"
+mistune = "^0.8.4"
+pytest-xdist = "^2.2.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
