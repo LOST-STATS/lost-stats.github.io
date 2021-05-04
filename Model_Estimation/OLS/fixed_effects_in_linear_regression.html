@@ -289,6 +289,7 @@
 </li>
 <li class="nav-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="nav-list-link">Desired Nonexistent Pages</a></li>
 <li class="nav-list-item"><a href="/Contributing/Contributing.html" class="nav-list-link">Contributing</a></li>
+<li class="nav-list-item"><a href="/Presentation/Figures/Data/Bar_Graphs/" class="nav-list-link">Acknowledgments for Data</a></li>
 <li class="nav-list-item"><a href="/" class="nav-list-link">Home</a></li>
 </ul>
     </nav>
@@ -405,9 +406,7 @@
       </h2>
 <p>There are numerous packages for estimating fixed effect models in R. We will limit our examples here to the two fastest implementations — <code class="language-plaintext highlighter-rouge">lfe::felm</code> and <code class="language-plaintext highlighter-rouge">fixest::feols</code> — both of which support high-dimensional fixed effects and standard error correction (multiway clustering, etc.).</p>
 <p>We first demonstrate fixed effects in R using <code class="language-plaintext highlighter-rouge">felm</code> from the <strong>lfe</strong> package (<a href="https://cran.r-project.org/web/packages/lfe/index.html">link</a>). <code class="language-plaintext highlighter-rouge">lfe::felm</code> uses the Method of Alternating Projections to “sweep out” the fixed effects and avoid estimating them directly. By default, this is automatically done in parallel, using all available cores on a user’s machine to maximize performance. (It is also possible to change this behaviour.)</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install lfe</span><span class="w">
-</span><span class="c1"># install.packages('lfe')</span><span class="w">
-</span><span class="n">library</span><span class="p">(</span><span class="n">lfe</span><span class="p">)</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">lfe</span><span class="p">)</span><span class="w">
 
 </span><span class="c1"># Read in data from the College Scorecard</span><span class="w">
 </span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s1">'https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv'</span><span class="p">)</span><span class="w">
@@ -418,7 +417,7 @@
 </span><span class="c1"># outcome ~</span><span class="w">
 </span><span class="c1">#   covariates |</span><span class="w">
 </span><span class="c1">#   fixed effects |</span><span class="w">
-</span><span class="c1">#   instrumental variables specification | </span><span class="w">
+</span><span class="c1">#   instrumental variables specification |</span><span class="w">
 </span><span class="c1">#   cluster variables for standard errors</span><span class="w">
 
 </span><span class="c1"># Here let's regress earnings_med on prop_working</span><span class="w">

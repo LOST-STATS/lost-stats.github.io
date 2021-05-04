@@ -49,9 +49,6 @@
 <loc>/Machine_Learning/Nearest_Neighbor.html</loc>
 </url>
 <url>
-<loc>/NewPageTemplate.html</loc>
-</url>
-<url>
 <loc>/Model_Estimation/OLS/OLS.html</loc>
 </url>
 <url>
@@ -296,5 +293,8 @@
 </url>
 <url>
 <loc>/Data/</loc>
+</url>
+<url>
+<loc>/Presentation/Figures/Data/Bar_Graphs/</loc>
 </url>
 </urlset>
