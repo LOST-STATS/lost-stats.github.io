@@ -2,7 +2,7 @@ name: Run monthly python tests
 on:
   schedule:
     - cron: "0 0 1 * *"
-  repository_dispatch:
+  workflow_dispatch:
     types:
       - python_tests
 
