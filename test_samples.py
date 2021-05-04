@@ -173,6 +173,7 @@ def pytest_generate_tests(metafunc):
 
 
 def run_docker_python(block: CodeBlock) -> Outcome:
+    print(block)
     process = subprocess.run(
         [
             "docker",
