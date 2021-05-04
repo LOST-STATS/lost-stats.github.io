@@ -76,13 +76,26 @@ Boosting has three tuning parameters.
 
 data from:https://www.kaggle.com/kondla/carinsurance
 
-```r
-# Load necessary packages and set the seed
-library(pacman)
-p_load(tidyverse,janitor, caret, glmnet, magrittr, 
-       dummies, janitor, rpart.plot, e1071, dplyr, caTools, naniar,
-       forcats, ggplot2, MASS,creshape, pROC,ROCR,readr, gbm)
-set.seed(101) 
+```r?example=boosting
+library(tidyverse)
+library(janitor)
+library(caret)
+library(glmnet)
+library(magrittr)
+library(dummies)
+library(rpart.plot)
+library(e1071)
+library(caTools)
+library(naniar)
+library(forcats)
+library(ggplot2)
+library(MASS)
+library(pROC)
+library(ROCR)
+library(readr)
+library(gbm)
+
+set.seed(101)
 
 # Load in data
 carInsurance_train <- read_csv("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Machine_Learning/Data/boosted_regression_trees/carInsurance_train.csv")
@@ -98,31 +111,26 @@ gg_miss_upset(total)
 
 Step 1: Produce dummies as appropriate
 
-```r
-total$CallStart<-as.character(total$CallStart)
-
-total$CallStart<-strptime(total$CallStart,format=" %H:%M:%S")
-
-total$CallEnd<-as.character(total$CallEnd)
-
-total$CallEnd<-strptime(total$CallEnd,format=" %H:%M:%S")
-
-total$averagetimecall<-as.numeric(as.POSIXct(total$CallEnd)-as.POSIXct(total$CallStart),units="secs")
-
-time<-mean(total$averagetimecall,na.rm = TRUE)
+```r?example=boosting
+total$CallStart <- as.character(total$CallStart)
+total$CallStart <- strptime(total$CallStart,format=" %H:%M:%S")
+total$CallEnd <- as.character(total$CallEnd)
+total$CallEnd <- strptime(total$CallEnd,format=" %H:%M:%S")
+total$averagetimecall <- as.numeric(as.POSIXct(total$CallEnd)-as.POSIXct(total$CallStart),units="secs")
+time <- mean(total$averagetimecall,na.rm = TRUE)
 ```
 
 Produce dummy variables as appropriate
 
-```r
-total_df <- dummy.data.frame(total %>% 
+```r?example=boosting
+total_df <- dummy.data.frame(total %>%
                                 dplyr::select(-CallStart, -CallEnd, -Id, -Outcome))
 summary(total_df)
 ```
 
 Fill in missing values
 
-```r
+```r?example=boosting
 total_df$Job[is.na(total_df$Job)] <- "management"
 total_df$Education [is.na(total_df$Education)] <- "secondary"
 total_df$Marital[is.na(total_df$Marital)] <-"married"
@@ -132,7 +140,7 @@ total_df$LastContactMonth[is.na(total_df$LastContactMonth)] <- "may"
 
 Step 2: Preprocess data with median imputation and a central scaling
 
-```r
+```r?example=boosting
 clean_new <- preProcess(
   x = total_df %>% dplyr::select(-CarInsurance) %>% as.matrix(),
   method = c('medianImpute')
@@ -141,7 +149,7 @@ clean_new <- preProcess(
 
 Step 3: Divide the data into testing and training data
 
-```r
+```r?example=boosting
 trainclean <- head(clean_new, 3200) %>% as.data.frame()
 testclean <- tail(clean_new, 800) %>% as.data.frame()
 summary(trainclean)
@@ -158,7 +166,7 @@ Step 5: Train the boosted regression tree
 
 Notice that `trControl` is being set to select parameters using five-fold cross-validation (`"cv"`).
 
-```r
+```r?example=boosting
 carinsurance_boost = train(
   factor(CarInsurance)~.,
   data = trainclean,

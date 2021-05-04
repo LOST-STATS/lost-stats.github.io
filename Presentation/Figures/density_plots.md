@@ -153,81 +153,79 @@ sns.kdeplot(data=diamonds,
 
 ## R
 
-For this R demonstration, we are going to use **ggplot2** package to create a density plot. Additionally, we will use the dataset `diamonds` that is natively available in R. 
+For this R demonstration, we are going to use **ggplot2** package to create a density plot. Additionally, we will use the dataset `diamonds` that is made available by the **ggplot2** package.
 
-To begin with this R demonstration, make sure that we install and load all the useful packages that we need it. We use the function `p_load()` in `pacman` package to help us to install and load the packages at one time. 
+To begin with this R demonstration, make sure that we install and load all the useful packages that we need it.
 
-```{r}
-#install and load necessary packages
-if (!require("pacman")) install.packages("pacman")
-pacman::p_load(ggplot2,viridis,RColorBrewer,tidyverse,ggthemes,ggpubr,datasets)
+```r?example=density
+# load necessary packages
+library(ggplot2)
+library(viridis)
+library(RColorBrewer)
+library(tidyverse)
+library(ggthemes)
+library(ggpubr)
+library(datasets)
 ```
 
-Next, in order to make a density plot, we are going to use the `ggplot()` and `geom_density()` functions. We will specify `price` as our x-axis. 
+Next, in order to make a density plot, we are going to use the `ggplot()` and `geom_density()` functions. We will specify `price` as our x-axis.
 
-```{r,warning=FALSE}
-
-ggplot(diamonds, aes(x=price))+
+```r?example=density
+ggplot(diamonds, aes(x = price)) +
   geom_density()
 ```
-![Basic density plot](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/density_plot/1.png)
+![Basic density plot]({{ "/Presentation/Figures/Images/density_plot/1.png" | relative_url }})
 
-We can always change the color of the density plot using the `col` argument and fill the color inside the density plot using `fill` argument. Furthermore, we can specify the degree of transparency density fill area using the argument `alpha` where `alpha` ranges from 0 to 1. 
+We can always change the color of the density plot using the `col` argument and fill the color inside the density plot using `fill` argument. Furthermore, we can specify the degree of transparency density fill area using the argument `alpha` where `alpha` ranges from 0 to 1.
 
-```{r,warning=FALSE}
-ggplot(diamonds, aes(x=price))+
-  geom_density(fill="lightblue",
-               col='black',
-               alpha=0.6)
+```r?example=density
+ggplot(diamonds, aes(x = price))+
+  geom_density(fill = "lightblue", col = 'black', alpha = 0.6)
 ```
 
-![Colored density plot](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/density_plot/2.png)
+![Colored density plot]({{ "/Presentation/Figures/Images/density_plot/2.png" | relative_url }})
 We can also change the type of line of the density plot as well by adding `linetype=` inside `geom_density()`.
 
-```{r}
-ggplot(diamonds, aes(x=price))+
-  geom_density(fill="lightblue",
-               col='black',
-               linetype="dashed")
+```r?example=density
+ggplot(diamonds, aes(x = price)) +
+  geom_density(fill = "lightblue", col = 'black', linetype = "dashed")
 ```
 
-![Density plot with linetype](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/density_plot/3.png)
+![Density plot with linetype]({{ "/Presentation/Figures/Images/density_plot/3.png" | relative_url }})
 Furthermore, you can also combine both histogram and density plots together.
 
-```{r,warning=FALSE,message=FALSE}
-ggplot(diamonds, aes(x=price)) + 
- geom_histogram(aes(y=..density..), colour="black", fill="grey45")+
- geom_density(col="red",size=1,linetype='dashed') 
+```r?example=density
+ggplot(diamonds, aes(x = price)) +
+  geom_histogram(aes(y = ..density..), colour = "black", fill = "grey45") +
+  geom_density(col = "red", size = 1,linetype = "dashed")
 ```
-![Density Plot Overlaid on Histogram](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/density_plot/4.png)
+![Density Plot Overlaid on Histogram]({{ "/Presentation/Figures/Images/density_plot/4.png" | relative_url }})
 
-What happen if we want to make multiple densities? 
+What happen if we want to make multiple densities?
 
 For example, we want to make multiple densities plots for price based on the type of cut, all we need to do is adding `fill=cut` inside `aes()`.
 
-```{r}
-ggplot(data=diamonds, aes(x=price,fill=cut)) +
-    geom_density(adjust=1.5, 
-                 alpha=.3)
+```r?example=density
+ggplot(data=diamonds, aes(x = price, fill = cut)) +
+    geom_density(adjust = 1.5, alpha = .3)
 ```
-![multiple](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/density_plot/5.png)
-:
 
-## Stata 
+![multiple]({{ "/Presentation/Figures/Images/density_plot/5.png" | relative_url }})
+
+## Stata
 
 For this demonstration, we will use the plottig scheme, a community-contributed color scheme for plots that greatly improves over Stata's default plot color schemes. For more on using schemes in Stata, see [here](https://blog.stata.com/2018/10/02/scheming-your-way-to-your-favorite-graph-style/).
 
 ```stata
-clear all 
-set more off 
+clear all
+set more off
 
-ssc install blindschemes // Install the blindschemes set of color schemes, which includes plottig 
+ssc install blindschemes // Install the blindschemes set of color schemes, which includes plottig
 graph query, schemes // Show the available schemes you have installed, to confirm plottig was installed
 
-*Pull in Stata's NHANES dataset 
+*Pull in Stata's NHANES dataset
 use http://www.stata-press.com/data/r16/nhanes2.dta, clear
 
-*Plot the kernel density 
-kdensity height, scheme(plottig) 
-
-
+*Plot the kernel density
+kdensity height, scheme(plottig)
+```

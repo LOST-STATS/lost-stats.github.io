@@ -19,8 +19,8 @@ Scatterplots are a useful tool for visualizing data and the possible relationshi
 
 
 ## Also Consider
-* Scatterplots are not always the best presentation method for data. 
-  * If the independent variable that is being presented is categorical or discrete, a bar graph might be a better presentation method. A guide to implementing bar graphs can be found [here]({{ "/Presentation/Figures/bar_graphs.html" | relative_url }}). 
+* Scatterplots are not always the best presentation method for data.
+  * If the independent variable that is being presented is categorical or discrete, a bar graph might be a better presentation method. A guide to implementing bar graphs can be found [here]({{ "/Presentation/Figures/bar_graphs.html" | relative_url }}).
   * If the goal is to represent distributions of continuous variables, a [histogram]({{ "/Presentation/Figures/histograms.html" | relative_url }}) would be a good option for presentation.
 
 * Additional techniques for formatting scatterplots can by found [here]({{ "/Presentation/Figures/Styling_Scatterplots.html" | relative_url }}).
@@ -62,10 +62,9 @@ In R, one of the best tools for creating scatterplots is the function `ggplot()`
 
 To begin we will need to make sure we install and load `ggplot2` as well as any other packages that are useful.
 
-```r
+```r?example=ggplot
 #install and load necessary packages
-if(!require("pacman")) install.packages("pacman")
-pacman::p_load(ggplot2)
+library(ggplot2)
 
 #load the dataset
 data(mtcars)
@@ -73,7 +72,7 @@ data(mtcars)
 
 Next, we will use `ggplot()`, `aes()`, and `geom_point()` in order to create a basic scatterplot. For this plot, we will put car weight on the x-axis and miles-per-gallon on the y-axis.
 
-```r
+```r?example=ggplot
 #assign the mtcars dataset to the plot and set each axis
 ggplot(data = mtcars,aes(x=wt,y=mpg)) +
 #create points on the plot for each observation
@@ -86,7 +85,7 @@ It is important to remember to include the + after each line when creating a plo
 
 Labelling is also an important task. In order to give our scatterplot axis labels and title, we will use the `labs()` function, in conjunction with our previous code. Don't forget your +'s!
 
-```r
+```r?example=ggplot
 #assign our dataset and variables of interest to the plot
 ggplot(data = mtcars, aes(x = wt, y = mpg)) +
   #create the points
@@ -102,11 +101,11 @@ That is starting to look better, but our graph could still use a little variety 
 * To change the size of the points in our scatterplot, we need to use the option `size`. The default size of points in `ggplot` is 1.5. We're going to make the points 4, just in case someone is having trouble seeing them.
 * To change the color of our points, we will use `color`. In this example we will make our points blue.
 
-```r
+```r?example=ggplot
 #assign our dataset and variables of interest
 ggplot(data = mtcars, aes(x =wt, y = mpg)) +
   #create points and tell ggplot we want them to be size 4 and blue
-  geom_point(size = 4, color = blue) +
+  geom_point(size = 4, color = "blue") +
   #don't forget the labels
   labs(x = "Weight", y = "Miles Per Gallon",
        title = "Car MPG by Weight")
@@ -115,7 +114,7 @@ ggplot(data = mtcars, aes(x =wt, y = mpg)) +
 
 Finally, lets label our points. We can do this by adding a new element to our plot, `geom_text()`. For this example we will label the points on our plot with their horse power. This will allow us to see how horsepower is related to weight and miles-per-gallon. We are also going to set the size of our points to 0.5 to avoid cluttering the scatterplot too much. Just like we can change the color of our points, we can change the color of the labels we put on them. We'll make them red in this example, but feel free to choose another color.
 
-```r
+```r?example=ggplot
 #assign our dataset and variables of interest
 ggplot(data = mtcars, aes(x =wt, y = mpg)) +
   #create points and tell ggplot we want them to be size 0.5 and blue
@@ -128,4 +127,4 @@ ggplot(data = mtcars, aes(x =wt, y = mpg)) +
 ```
 ![Scatterplot with Labels Points](Images/Scatterplots/scatter_labels.png)
 
-Congrats!!! You're well on your way to becoming a scatterplot master! Don't forget to check out the LOST page on [styling scatterplots]({{ "/Presentation/Figures/Styling_Scatterplots.html" | relative_url }}) if you would like to learn more.
+Congrats! You're well on your way to becoming a scatterplot master! Don't forget to check out the LOST page on [styling scatterplots]({{ "/Presentation/Figures/Styling_Scatterplots.html" | relative_url }}) if you would like to learn more.

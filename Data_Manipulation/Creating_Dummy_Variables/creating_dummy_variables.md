@@ -13,7 +13,7 @@ Creating a dummy variable can be just like creating any other variable but dummy
 
 Factor class vectors are automatically treated as dummies in regression models in R (Stata and SW languages have similar capabilities). In order to transform a categorical vector to a factor class you can simply use `factor()` on the variable in regression in R, or `i.` in Stata. This means you don't have to create a different dummy vector for every value. If you are interested in looking behind the scenes you can use `model.matrix()` to see how R is creating dummies from these factor class variables.
 
-Note: `model.matrix()` creates a separate dummy column for all values in the vector. This is called one-hot encoding and, if you aren't careful, can lead to the dummy variable trap if an intercept is also included in the regression. The dummy variable trap arises because of perfect multicollinearity between the intercept term and the dummy variables (which row-wise all add up to 1). So one of the columns needs to be dropped from the regression in order for it to run. Typically, the first variable is the one which is dropped and effectively absorbed into the intercept term. If this happens then all the dummy estimates will be in reference to the dropped dummy. 
+Note: `model.matrix()` creates a separate dummy column for all values in the vector. This is called one-hot encoding and, if you aren't careful, can lead to the dummy variable trap if an intercept is also included in the regression. The dummy variable trap arises because of perfect multicollinearity between the intercept term and the dummy variables (which row-wise all add up to 1). So one of the columns needs to be dropped from the regression in order for it to run. Typically, the first variable is the one which is dropped and effectively absorbed into the intercept term. If this happens then all the dummy estimates will be in reference to the dropped dummy.
 
 # Implementations
 
@@ -25,7 +25,7 @@ Several python libraries have functions to turn categorical variables into dummi
 import pandas as pd
 
 # Create a dataframe
-df = pd.DataFrame({'colors': ['red', 'green', 'blue', 'red', 'blue'], 
+df = pd.DataFrame({'colors': ['red', 'green', 'blue', 'red', 'blue'],
                    'numbers': [5, 13, 1, 7, 5]})
 
 # Replace the colors column with a dummy column for each color
@@ -39,7 +39,7 @@ Turning a categorical variable into a set of dummies
 ```r
 data(iris)
 
-# To retain the column of dummies for the first 
+# To retain the column of dummies for the first
 # categorical value we remove the intercept
 model.matrix(~-1+Species, data=iris)
 
@@ -56,7 +56,7 @@ If you are only creating one dummy at a time rather than a set from a factor var
 
 Let's say that we want our dummy to indicate if variable_1 > variable_2. To do this we can use `mutate`:
 
-```r
+```r?example=dplyr
 # If necessary, install dplyr
 # install.packages('dplyr')
 library(dplyr)
@@ -75,21 +75,21 @@ mutated_data = iris %>%
 
 This will create a new column of logical (`TRUE`/`FALSE`) variables. This works just fine for most uses of dummy variables. However if you need the variables to be 1s and 0s you can now take
 
-```r
+```r?example=dplyr
 mutated_data <- mutated_data %>%
     mutate(Long.Petal = Long.Petal*1)
 ```
 
 You could also nest that operation inside the original creation of new_dummy like so:
 
-```r
+```r?example=dplyr
 mutated_data = iris %>%
   mutate(Long.Petal = (Petal.Length > Petal.Width)*1)
 ```
 
 ### Base R
 
-```r
+```r?example=baser
 #the following creates a 5 x 2 data frame
 letters = c("a","b","c", "d", "e")
 numbers = c(1,2,3,4,5)
@@ -98,7 +98,7 @@ df = data.frame(letters,numbers)
 
 Now I'll show several different ways to create a dummy indicating if the numbers variable is odd.
 
-```r
+```r?example=baser
 df$dummy = df$numbers%%2
 
 df$dummy = ifelse(df$numbers%%2==1,1,0)
@@ -157,7 +157,7 @@ regress mpg weight i.brand_n
 
 * Or create a set of dummies
 * specifying the prefix so it's easy to refer to
-* Note this actually does not require 
+* Note this actually does not require
 * numeric encoding
 xi i.brand, pre(b_)
 

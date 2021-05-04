@@ -17,10 +17,9 @@ Joins are typically interesections of objects, but can be expressed in different
 - Geospatial packages in R and Python tend to have a large number of complex dependencies, which can make installing them painful. Best practice is to install geospatial packages in a new virtual environment.
 - When it comes to the package we are using in R for the US boundaries, it is much easier to install via the [devtools](https://cran.r-project.org/web/packages/devtools/index.html).  This will save you the trouble of getting errors when installing the data packages for the boundaries.  Otherwise, your mileage may vary. When I installed USAboundariesData via USAboundaries, I received errors.
 
-```r
+```r?skip=True&skipReason=dont_install_packages
 devtools::install_github("ropensci/USAboundaries")
 devtools::install_github("ropensci/USAboundariesData")
-
 ```
 - Note: Even with the R installation via devtools, you may be prompted to install the "USAboundariesData" package and need to restart your session.
 
@@ -91,8 +90,7 @@ cities_with_country.head()
 
 We will need a few packages to do our analysis.  If you need to install any packages, do so with install.packages('name_of_package'), then load it if necessary.
 
-```r
-library(here)
+```r?example=spatial
 library(sf)
 library(dplyr)
 library(viridis)
@@ -105,7 +103,7 @@ library(GSODR)
 
 - We start with the boundaries of the United States to get desirable polygons to work with for our analysis.  To pay homage to the states of my alma maters, we will do some analysis with Oregon, Ohio, and Michigan.
 
-```r
+```r?example=spatial
 #Selecting the United States Boundaries, but omitting Alaska, Hawaii, and Puerto Rico for it to be scaled better
 
 usa <- us_boundaries(type="state", resolution = "low") %>%
@@ -148,7 +146,7 @@ mi_co <- USAboundaries::us_counties(resolution = "high", states = "MI")
 
 **Oregon highlighted**
 
-```r
+```r?example=spatial
 plot(usa$geometry)
 plot(or$geometry, add=T, col="gray50", border="black")
 plot(or_co$geometry, add=T, border="green", col=NA)
@@ -158,7 +156,7 @@ plot(or_box, add=T, border="yellow", col=NA, lwd=2)
 
 **Ohio highlighted**
 
-```r
+```r?example=spatial
 plot(usa$geometry)
 plot(oh$geometry, add=T, col="gray50", border="black")
 plot(oh_co$geometry, add=T, border="yellow", col=NA)
@@ -168,7 +166,7 @@ plot(oh_box, add=T, border="blue", col=NA, lwd=2)
 
 **Michigan highlighted**
 
-```r
+```r?example=spatial
 plot(usa$geometry)
 plot(mi$geometry, add=T, col="gray50", border="black")
 plot(mi_co$geometry, add=T, border="gray", col=NA)
@@ -178,7 +176,7 @@ plot(mi_box, add=T, border="green", col=NA, lwd=2)
 
 **All three highlighted at once.**
 
-```r
+```r?example=spatial
 plot(usa$geometry)
 plot(mi$geometry, add=T, col="gray50", border="black")
 plot(mi_co$geometry, add=T, border="gray", col=NA)
@@ -196,7 +194,7 @@ plot(or_box, add=T, border="yellow", col=NA, lwd=2)
 
 **We will take the metadata from the GSODR package via 'isd_history', make it spatial data, then filter out only those observations in our candidate states of Oregon, Ohio, and Michigan.**
 
-```r
+```r?example=spatial
 load(system.file("extdata", "isd_history.rda", package = "GSODR"))
 
 #We want this to be spatial data
@@ -216,7 +214,7 @@ isd_history_mi <- dplyr::filter(isd_history, CTRY=="US", STATE=="MI")
 
 **Oregon**
 
-```r
+```r?example=spatial
 plot(isd_history_or$geometry, cex=0.5)
 plot(or$geometry, col=alpha("gray", 0.5), border="#1F968BFF", lwd=1.5, add=TRUE)
 plot(isd_history_or$geometry, add=T, pch=21, bg="#FDE725FF", cex=0.7, col="black")
@@ -228,7 +226,7 @@ title("Oregon GSOD Climate Stations")
 
 **Ohio**
 
-```r
+```r?example=spatial
 plot(isd_history_oh$geometry, cex=0.5)
 plot(oh$geometry, col=alpha("red", 0.5), border="gray", lwd=1.5, add=TRUE)
 plot(isd_history_oh$geometry, add=T, pch=21, bg="black", cex=0.7, col="black")
@@ -239,7 +237,7 @@ title("Ohio GSOD Climate Stations")
 
 **Michigan**
 
-```r
+```r?example=spatial
 plot(isd_history_mi$geometry, cex=0.5)
 plot(mi$geometry, col=alpha("green", 0.5), border="blue", lwd=1.5, add=TRUE)
 plot(isd_history_mi$geometry, add=T, pch=21, bg="white", cex=0.7, col="black")
@@ -253,7 +251,7 @@ title("Michigan GSOD Climate Stations")
 
 **We will start by selecting the Oregon counties that have climate data stations within their boundaries:**
 
-```r
+```r?example=spatial
 or_co_isd_poly <- or_co[isd_history, ]
 plot(or_co_isd_poly$geometry, col=alpha("green",0.7))
 title("Oregon Counties with GSOD Climate Stations")
@@ -263,7 +261,7 @@ title("Oregon Counties with GSOD Climate Stations")
 
 **Now for all of our three candidate states:**
 
-```r
+```r?example=spatial
 cand_co <- USAboundaries::us_counties(resolution = "high", states = c("OR", "OH", "MI"))
 cand_co_isd_poly <- cand_co[isd_history, ]
 plot(cand_co_isd_poly$geometry, col=alpha("blue",0.7))
@@ -285,7 +283,7 @@ title("Counties in Candidate States with GSOD Climate Stations")
 **Let us join the county polygons with the climate station points and add the county names to the station data.  We do this using the st_join function, which comes from the sf package.**
 
 
-```r
+```r?example=spatial
 isd_or_co_pts <- st_join(isd_history, left = FALSE, or_co["name"])
 
 #Rename the county name variable county instead of name, since we already have NAME for the station location
@@ -306,7 +304,7 @@ plot(or_co$geometry, border="gray", col=NA, add=T)
 **You can join in any attribute you would like, or by leaving it as:**
 
 
-```r
+```r?example=spatial
 isd_or_co_pts <- st_join(isd_history, left = FALSE, or_co)
 ```
 

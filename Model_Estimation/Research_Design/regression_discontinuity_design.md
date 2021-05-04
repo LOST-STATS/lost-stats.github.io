@@ -35,6 +35,38 @@ Regression discontinuity receives a lot of attention because it relies on what s
 
 # Implementations
 
+## Stata
+
+A standard package for performing regression discontinuity in Stata is **rdrobust**, installable from `scc`.
+
+```stata
+* If necessary
+* ssc install rdrobust
+
+* Load RDD of house elections from the R package rddtools,
+* and originally from Lee (2008) https://www.sciencedirect.com/science/article/abs/pii/S0304407607001121
+import delimited "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Estimation/Data/Regression_Discontinuity_Design/house.csv", clear
+
+* x is "vote margin in the previous election" and y is "vote margin in this election"
+
+* If we want to specify options for bandwidth selection, we can run rdbwselect directly.
+* Otherwise, rdrobust will run it with default options by itself
+* c(0) indicates that treatment is assigned at 0 (i.e. someone gets more votes than the opponent)
+rdbwselect y x, c(0)
+
+* Run a sharp RDD with a second-order polynomial term
+rdrobust y x, c(0) p(2)
+
+* Run a fuzzy RDD
+* We don't have a fuzzy RDD in this data, but let's create one, where
+* probability of treatment jumps from 20% to 60% at the cutoff
+g treatment = (runiform() < .2)*(x < 0) + (runiform() < .6)*(x >= 0)
+rdrobust y x, c(0) fuzzy(treatment)
+
+* Generate a standard RDD plot with a polynomial of 2 (default is 4)
+rdplot y x, c(0) p(2)
+```
+
 ## R
 
 There are several packages in R designed for the estimation of RDD. Three prominent options are **rdd**, **rddtools**, and **rdrobust**. See [this article](https://files.eric.ed.gov/fulltext/EJ1141190.pdf) for comparisons between them in terms of their strengths and weaknesses. The article, considering the verisons of the packages available in 2017, recommends **rddtools** for assumption and sensitivity checks, and **rdrobust** for bandwidth selection and treatment effect estimation. We will consider **rdrobust** here. See [the rddtools walkthrough](https://github.com/bquast/rddtools-article) for a detailed example of the use of **rddtools**.
@@ -60,7 +92,7 @@ rdd <- rdrobust(df$y, df$x,
                 c=0, p=2)
 summary(rdd)
 
-# Run a fuzzy RDD 
+# Run a fuzzy RDD
 # We don't have a fuzzy RDD in this data, but let's create one, where
 # probability of treatment jumps from 20% to 60% at the cutoff
 N <- nrow(df)
@@ -96,7 +128,7 @@ rdbwselect y x, c(0)
 * Run a sharp RDD with a second-order polynomial term
 rdrobust y x, c(0) p(2)
 
-* Run a fuzzy RDD 
+* Run a fuzzy RDD
 * We don't have a fuzzy RDD in this data, but let's create one, where
 * probability of treatment jumps from 20% to 60% at the cutoff
 g treatment = (runiform() < .2)*(x < 0) + (runiform() < .6)*(x >= 0)

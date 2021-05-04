@@ -25,13 +25,13 @@ This should be highly reminiscent of ordinary least squares. Where this differs 
 The methodology behind classificiation is very similar, except the splits are decided by minimizing purity, such as the Gini index:
 
 $$
-G= 1 - \sum_{i = 1}^{C} (p_{i})^2 
+G= 1 - \sum_{i = 1}^{C} (p_{i})^2
 $$
 
 The goal here is to create regions with as of classifications as possible, as such, a smaller Gini index implies a more pure region.
 
 ## Keep in Mind
-* While decision trees are easy to interpret and understand, they often underpreform relative to other machine learning methodologies. 
+* While decision trees are easy to interpret and understand, they often underpreform relative to other machine learning methodologies.
 * Even though they may not offer the best predictions, decision trees excel at identifying key variables in the data.
 
 
@@ -112,10 +112,11 @@ plot_confusion_matrix(clf, test[regressors], test[y_var])
 ## R
 ```r
 # Load packages
-# install.packages("pacman") ## already installed
-library(pacman)
-p_load(rpart,rpart.plot,caret,rattle)
-# We will utilize data regarding passengers on their survival. We have multiple pieces of information on every passenger, including passenger age, sex, cabin number, and class. 
+library(rpart)
+library(rpart.plot)
+library(caret)
+library(rattle)
+# We will utilize data regarding passengers on their survival. We have multiple pieces of information on every passenger, including passenger age, sex, cabin number, and class.
 
 # Our goal is to build a decision tree that can predict whether or not passengers survived the wreck, making it a classification tree. These same methodologies can be used and applied to a regression tree framework.
 

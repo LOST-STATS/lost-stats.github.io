@@ -109,7 +109,7 @@ df_long = pd.wide_to_long(df, ["A", "B"], i="id", j="year")
 
 There are many ways to reshape in R, including base-R `reshape` and the deprecated `reshape2::melt` and `cast` and `tidyr::gather` and `spread`. There is also the incredibly fast `data.table::melt()`. We will be using the **tidyr** package function `pivot_longer`, which requires **tidyr** version 1.0.0 or later.
 
-```r
+```r?example=pivoting
 # install.packages('tidyr')
 library(tidyr)
 
@@ -130,7 +130,7 @@ Now we think:
 2. Think about what we want the new variables to be called. I'll call the week time variable "week" (this will be the `names_to` argument), and the data values currently stored in `wk1-wk76` is the "position" (`values_to`).
 3. Think about the values you want to be in your new time variable. The column names are `wk1-wk76` but we want the variable to have 1-76 instead, so we'll take out the "wk" with `names_prefix = "wk"`.
 
-```r
+```r?example=pivoting
 billboard_long <- pivot_longer(billboard,
                                col = starts_with("wk"),
                                names_to = "week",

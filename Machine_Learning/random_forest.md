@@ -62,13 +62,17 @@ print(f"Accuracy is {accuracy_score(y_pred, y_test)*100:.2f} %")
 
 There are a number of packages in R capable of training a random forest, including **randomForest** and **ranger**. Here we will use **randomForest**.
 
-We'll be using a built-in dataset in R, called "Iris". There are five variables in this dataset, including species, petal width and length as well as sepal length and width. 
+We'll be using a built-in dataset in R, called "Iris". There are five variables in this dataset, including species, petal width and length as well as sepal length and width.
 
 ```r
 #Load packages
-library(pacman)
-pacman::p_load(tidyverse, rvest, dplyr, caret, randomForest, Metrics,
-               readr)
+library(tidyverse)
+library(rvest)
+library(dplyr)
+library(caret)
+library(randomForest)
+library(Metrics)
+library(readr)
 
 #Read data in R
 data(iris)

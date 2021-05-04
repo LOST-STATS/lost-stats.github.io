@@ -22,7 +22,7 @@ For example, perhaps you have one data file per month, and want to compile them 
 Note that, because these code examples necessarily refer to files on disk, they might not run properly if copied and pasted. But they can be used as templates.
 
 ## Python
-The `glob` module finds all pathnames matching a specified pattern and stores them in a list. 
+The `glob` module finds all pathnames matching a specified pattern and stores them in a list.
 
 ```python
 
@@ -39,7 +39,7 @@ list_of_files = glob.glob('**/*.csv', recursive=True)
 
 The `list.files()` function can produce a list of files that can be looped over.
 
-```r
+```r?skip=true&skipReason=files_dont_exist
 # Get a list of all .csv files in the Data folder
 # (which sits inside our working directory)
 filelist <- list.files('Data','*.csv')
@@ -78,7 +78,7 @@ local firsttime = 1
 foreach f in `filelist' {
 	* import the data
 	import excel using "Data/`f'", clear firstrow
-	
+
 	* Append it to the data we've already imported
 	* Unless this is the first one we opened, in which
 	* case just start a new file

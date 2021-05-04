@@ -28,9 +28,7 @@ Because there are so many potential foreign formats, these implementations will 
 
 ## R
 
-```r
-# Load Excel files with the readxl package
-# install.packages('readxl')
+```r?skip=true&skipReason=files_dont_exist
 library(readxl)
 data <- read_excel('filename.xlsx')
 

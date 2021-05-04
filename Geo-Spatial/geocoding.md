@@ -23,14 +23,14 @@ There are many different types of locations one can geocode including:
 
 There are multiple ways to geocode. For instance, you could find the corrdinates of the Empire State building by flying to New York, riding an elevator to the top of the building, and then using your GPS to get the latitiude and longitude of where you were standing. A much more efficient way of geocoding is through **interpolation**. Interpolation uses other known geocoded locations to estimate the coordinates of the data that you wish to geocode. A computer uses an algorithm and the closest known geocodes to conduct this interpolation. However, the farther the "closest" known geocodes are to the data you are trying to geocode the less *accurate* the geocoding process is. [smartystreets](https://smartystreets.com/articles/what-are-geocodes), a geocode platform, has a good explanation of this.
 
-Additionally, **Reverse Geocoding**  takes a latitude-longitude pair (or other global coordinates) and converts it into an address or a place. Depending on the data that is available reverse geocoding can be very useful. Similar to regular geocoding, reverse geocoding uses other known reverse geocoded locations to estimate the address of the inputted coordinates. 
+Additionally, **Reverse Geocoding**  takes a latitude-longitude pair (or other global coordinates) and converts it into an address or a place. Depending on the data that is available reverse geocoding can be very useful. Similar to regular geocoding, reverse geocoding uses other known reverse geocoded locations to estimate the address of the inputted coordinates.
 
-## The Geocoding Process 
+## The Geocoding Process
 
-Whenever you geocode data there is a 3 step process that is undergone: 
+Whenever you geocode data there is a 3 step process that is undergone:
 
 * **Step 1: Input Data**
-      Descriptive or textual data is inputted to yield a desired corresponding spatial data 
+      Descriptive or textual data is inputted to yield a desired corresponding spatial data
 * **Step 2: Classification of Input Data**
       Input data is sorted into two groups *relative input data* and *absolute data*
 * **Step 3A: Relative Input Data**
@@ -39,12 +39,12 @@ Whenever you geocode data there is a 3 step process that is undergone:
       This is the sweet sweet data that geocoding platforms love. A spatial coordinate (lon, lat) can be defined for this data independently of other reference points. Examples:
       USPS ZIP codes; complete and partial postal addresses; PO boxes; cities; counties; intersections; and named places
 
-## Why is geocoding helpful? 
+## Why is geocoding helpful?
 
-Odds are if you are on this page then you already have a reason to use geocoding, but here is a brief motivation for how geocoding can help with a project. Geocoding is helpful when you want to do spatial work. For example, maybe you have data on voter addresses and want to visualize party allegiance. Perhaps, you are wondering who is affected by a certain watershed. If you are limited to postal addresses without being able to visualize the actual location of those addresses the inference is limited. Commuter habits, crime trends, pandemic evolution, and (fill in your example here) analyses are all improved with geocoding. Thanks, geocoding! 
+Odds are if you are on this page then you already have a reason to use geocoding, but here is a brief motivation for how geocoding can help with a project. Geocoding is helpful when you want to do spatial work. For example, maybe you have data on voter addresses and want to visualize party allegiance. Perhaps, you are wondering who is affected by a certain watershed. If you are limited to postal addresses without being able to visualize the actual location of those addresses the inference is limited. Commuter habits, crime trends, pandemic evolution, and (fill in your example here) analyses are all improved with geocoding. Thanks, geocoding!
 
 
-## Geocoding Services 
+## Geocoding Services
 
 It is important to recognize that there are many different geocoding platforms. There are others but here is a short list of platforms to consider:
 
@@ -53,7 +53,7 @@ It is important to recognize that there are many different geocoding platforms. 
 3. [IPUMS Geomarker](https://geomarker.ipums.org/)
 4. [ArcGIS](https://geocode.arcgis.com/arcgis/)
 
-When you are deciding which geocode platform to use some important things to keep in mind are **pricing structures** and other specific features of the platfrom like **bulk geocoding** and **coverage**. For example, Geocodio is much more suited to geocode big data sets than Google's platform. However, Geocodio is only able to geocode within the United States and Cananda whereas Google has international capabilities. Google is better at guessing what location you are trying to geocode ("the White House") than Geocodio, but Geocodio offers census appends. The pricing sturcture is also nuanced across platforms. [Here](https://www.geocod.io/compare/) is a comparison chart provided by Geocodio that gives a flavor of what to consider when deciding which service to use (although you should bear in mind that vendor evaluations may be biased...) Lots to consider! In the end, which platform works best will depend on your preferences and the nature of your project. 
+When you are deciding which geocode platform to use some important things to keep in mind are **pricing structures** and other specific features of the platfrom like **bulk geocoding** and **coverage**. For example, Geocodio is much more suited to geocode big data sets than Google's platform. However, Geocodio is only able to geocode within the United States and Cananda whereas Google has international capabilities. Google is better at guessing what location you are trying to geocode ("the White House") than Geocodio, but Geocodio offers census appends. The pricing sturcture is also nuanced across platforms. [Here](https://www.geocod.io/compare/) is a comparison chart provided by Geocodio that gives a flavor of what to consider when deciding which service to use (although you should bear in mind that vendor evaluations may be biased...) Lots to consider! In the end, which platform works best will depend on your preferences and the nature of your project.
 
 
 
@@ -100,7 +100,7 @@ print(scnd_location.address)
 
 ## rgeocodio (R + Geocodio)
 
-This example will talk specifically about Geocodio and how to use the Goecodio platform in **R studio**. 
+This example will talk specifically about Geocodio and how to use the Goecodio platform in **R studio**.
 
 ### Geocodio
 [Geocodio's website](https://www.geocod.io/) is very straight forward, but I will briefly walk through the process:
@@ -117,32 +117,35 @@ This example will talk specifically about Geocodio and how to use the Goecodio p
 
 ## Example
 
-rgeocodio allows you to access the Geocodio platform in R studio. Instead of the steps mentioned above you can use the rgeocodio to perform the same functions. 
+rgeocodio allows you to access the Geocodio platform in R studio. Instead of the steps mentioned above you can use the rgeocodio to perform the same functions.
 
 In order to install `rgeocodio` you will need to load the `devtools` package. Install it if you haven't already `install.packages("devtools")`. Once `devtools` is loaded run:`devtools::install_github('hrbrmstr/rgeocodio')`.
 
-rgeocodio uses an API that you can get from the geocodio website. To get an API visit [geocodio's website](https://www.geocod.io/features/api/). Then save it in your **Renviron**. 
+rgeocodio uses an API that you can get from the geocodio website. To get an API visit [geocodio's website](https://www.geocod.io/features/api/). Then save it in your **Renviron**.
 
 To save the API in your **Renvrion**:
-1. Open the **Renviron** by running `usethis::edit_r_environ()` 
+1. Open the **Renviron** by running `usethis::edit_r_environ()`
 2. Once you are in the **Renviron** name and save the API you got from Geocodio. Maybe something like:
-```r
+
+```r?example=rgeocodeio&skip=true&skipReason=requires_api_key
 #geocodio_API = 'your api`
 ```
 3. Save your **Renviron** and then restart your R session just to be sure that the API is saved.
 
-Now that you have your API saved in R you still need to authorize the API in your R session. Do so by running `gio_auth()`. 
-```r
+Now that you have your API saved in R you still need to authorize the API in your R session. Do so by running `gio_auth()`.
+
+```r?example=rgeocodeio&skip=true&skipReason=requires_api_key
 # If necessary
 # install.packages(c('rgeocodio','readxl','tidyverse'))
 
 library(rgeocodio)
-gio_auth(force = F) 
+gio_auth(force = F)
 
 ```
-A quick note, `force` makes you set a new geocodio API key for the current environment. In general you will want to run `force=F`. 
+A quick note, `force` makes you set a new geocodio API key for the current environment. In general you will want to run `force=F`.
 Lets try a regeocodio example. Say you want to get the coordinates of the White House. You could run:
-```r
+
+```r?example=rgeocodeio&skip=true&skipReason=requires_api_key
 rgeocodio::gio_geocode('1600 Pennsylvania Ave NW, Washington DC 20500')
 ```
 
@@ -152,9 +155,9 @@ Most of these variables are intuitive but I want to spend a few seconds on **acc
 
 2. Accuracy Type: interpolation uses the closest know geocodes. So if the closest geocodes are, for instance two ends of a street and you are trying to geocode a location somewhere on that street then the accuracy type will be "street." In this case the accuracy type is "rooftop" which means the buildings on either side of the location were used to interpolate your query. Again, [smartystreets](https://smartystreets.com/articles/what-are-geocodes) has a good explanation of this.
 
-What if we want to geocode a bunch of addresses at once? To geocode multiple addresses at once we will use `gio_batch_geocode`. The data that we enter will need to be a *character vector of addresses*. 
+What if we want to geocode a bunch of addresses at once? To geocode multiple addresses at once we will use `gio_batch_geocode`. The data that we enter will need to be a *character vector of addresses*.
 
-```r
+```r?example=rgeocodeio&skip=true&skipReason=requires_api_key
 library(readxl)
 library(tidyverse)
 
@@ -165,7 +168,7 @@ gio_batch_geocode(addresses)
 
 You will notice that the output is a list with dataframes of the results embedded. There are a number of ways to extract the relevant data but one approach would be:
 
-```r
+```r?example=rgeocodeio&skip=true&skipReason=requires_api_key
 addresses<- c('Yosemite National Park, California', '1600 Pennsylvania Ave NW, Washington DC 20500', '2975 Kincaide St Eugene, Oregon, 97405')
 
 extract_function<- function(addresses){
@@ -189,14 +192,14 @@ Reverse geocoding uses `gio_reverse` and `gio_batch_reverse`.
 
 For `gio_reverse` you submit a longitude-latitude pair:
 
-```r
+```r?example=rgeocodeio&skip=true&skipReason=requires_api_key
 gio_reverse(38.89767, -77.03655)
 ```
 
 For `gio_batch_reverse` we will submit a vector of numeric entries ordered by c(longitude, latitude):
 
-```r
-#make a dataset 
+```r?example=rgeocodeio&skip=true&skipReason=requires_api_key
+#make a dataset
 data<-data.frame(
   lat = c(35.9746000, 32.8793700, 33.8337100, 35.4171240),
   lon = c(-77.9658000, -96.6303900, -117.8362320, -80.6784760)
@@ -209,7 +212,7 @@ Notice that the output gives us multiple accuracy types.
 
 What about geocoding the rest of the world, chico?
 
-```r
+```r?example=rgeocodeio&skip=true&skipReason=requires_api_key
 rgeocodio::gio_batch_geocode('523-303, 350 Mokdongdong-ro, Yangcheon-Gu, Seoul, South Korea 07987')
 ```
 

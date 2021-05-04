@@ -7,7 +7,7 @@ nav_order: 1
 
 # Introduction
 
-Time-series estimators are, by definition, a function of the temporal ordering of the observations in the estimation sample. So a number of programmed time-series econometric routines can only be used if the software is instructed ahead of time that it is working with a time-series dataset. 
+Time-series estimators are, by definition, a function of the temporal ordering of the observations in the estimation sample. So a number of programmed time-series econometric routines can only be used if the software is instructed ahead of time that it is working with a time-series dataset.
 
 
 ## Keep in Mind
@@ -41,21 +41,20 @@ There are many different kinds of time series data set objects in R. Instead of 
 
 The **tsibble** package extends the **tidyverse** to temporal data and built on top of the `tibble`, and so is a data- and model-oriented object.
 
-For more detail information for using **tsibble** such as _key_ and _index_, check the [tsibble page](https://tsibble.tidyverts.org) and the [Introduction to tsibble](https://tsibble.tidyverts.org/articles/intro-tsibble.html). 
+For more detail information for using **tsibble** such as _key_ and _index_, check the [tsibble page](https://tsibble.tidyverts.org) and the [Introduction to tsibble](https://tsibble.tidyverts.org/articles/intro-tsibble.html).
 
 STEP 1) Load necessary packages
 
-```r
+```r?example=tsibble
 # If necessary
-# install.packages(c('here','tsibble','tidyverse'))
-library(here)
+# install.packages(c('tsibble','tidyverse'))
 library(tsibble)
 library(tidyverse)
 ```
 
-STEP 2) Import data into R. 
+STEP 2) Import data into R.
 
-```r
+```r?example=tsibble
 gdp <- read.csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv")
 
 # read.csv() has read in our date variable as a factor. We need a date!
@@ -65,20 +64,20 @@ gdp$DATE <- as.Date(gdp$DATE)
 
 STEP 3) Convert a date variable formats to quarter
 
-```r
+```r?example=tsibble
 gdp_ts <- as_tsibble(gdp,
                      index = DATE,
-                     regular = FALSE) %>% 
+                     regular = FALSE) %>%
     index_by(qtr = ~ yearquarter(.))
 ```
 
 By applying `yearmonth()` to the index variable (referred to as `.`), it creates new variable named `qtr` with a quarter interval which corresponds to the year-quarter for the original variable `DATE`.
-  
+
 Since the `tsibble` handles regularly-spaced temporal data whereas our data (`GDPC1`) has an irregular time interval (since it's not the exact same number of days between quarters every time), we set the option `regular = FALSE`.
 
 Now, we have a quarterly time-series dataset with the new variable `date`.
 
-References for more information: 
+References for more information:
 
 1. If you want to learn how to build various types of time-series forecasting models, [**Forecasting: Principles and Practice**](https://otexts.com/fpp3/index.html) provides very useful information to deal with time-series data in R.
 2. If you need more detail information on **tssible**, visit the [tsibble page](https://tsibble.tidyverts.org/) or [tsibble on RDRR.io](https://rdrr.io/cran/tsibble/man/tsibble.html).
@@ -99,7 +98,7 @@ STEP 2) Generate the new date variable
 generate date_index = tq(1947q1) + _n-1
 ```
 
-The function `tq()` converts a date variable for each of the above formats to an integer value (starting point of our data is `1947q1`). 
+The function `tq()` converts a date variable for each of the above formats to an integer value (starting point of our data is `1947q1`).
 
 `_n` is a Stata command gives the index number of the current row.
 
