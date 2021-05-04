@@ -39,6 +39,77 @@ For detailed information about derivation of the optimization problem, refer to 
 
 # Implementations
 
+## Python
+
+In this example, we will use [**scikit-learn**](https://scikit-learn.org/stable/index.html), which is a very popular Python library for machine learning. We will look at two support vector machine models: `LinearSVC`, which performs linear support vector classification (example 1); and `SVC`, which can accept several different kernels (including non-linear ones). For the latter case, we'll use the non-linear radial basis function kernel (example 2 below). The last part of the code example plots the decision boundary, ie the support vectors, for the second example.
+
+```python
+from sklearn.datasets import make_classification, make_gaussian_quantiles
+from sklearn.svm import LinearSVC, SVC
+from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+import numpy as np
+
+###########################
+# Example 1: Linear SVM ###
+###########################
+
+# Generate linearly separable data:
+X, y = make_classification(n_features=2, n_redundant=0, n_informative=1,
+                           n_clusters_per_class=1)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2)
+
+# Train linear SVM model
+svm = LinearSVC(tol=1e-5)
+svm.fit(X_train, y_train)
+
+# Test model
+test_score = svm.score(X_test, y_test)
+print(f'The test score is {test_score}')
+
+###############################
+# Example 2: Non-linear SVM ###
+###############################
+
+# Generate non-linearly separable data
+X, y = make_gaussian_quantiles(n_features=2, n_classes=2)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2)
+
+# Train non-linear SVM model
+nl_svm = SVC(kernel='rbf', C=50)
+nl_svm.fit(X_train, y_train)
+
+# Test model
+test_score = nl_svm.score(X_test, y_test)
+print(f'The non-linear test score is {test_score}')
+
+####################################
+# Plot non-linear SVM boundaries ###
+####################################
+plt.figure()
+decision_function = nl_svm.decision_function(X)
+support_vector_indices = np.where(
+    np.abs(decision_function) <= 1 + 1e-15)[0]
+support_vectors = X[support_vector_indices]
+plt.scatter(X[:, 0], X[:, 1], c=y, s=30, cmap=plt.cm.Paired)
+ax = plt.gca()
+xlim = ax.get_xlim()
+ylim = ax.get_ylim()
+xx, yy = np.meshgrid(np.linspace(xlim[0], xlim[1], 50),
+                     np.linspace(ylim[0], ylim[1], 50))
+Z = nl_svm.decision_function(np.c_[xx.ravel(), yy.ravel()])
+Z = Z.reshape(xx.shape)
+plt.contour(xx, yy, Z, colors='k', levels=[-1, 0, 1], alpha=0.5,
+            linestyles=['--', '-', '--'])
+plt.scatter(support_vectors[:, 0], support_vectors[:, 1], s=100,
+            linewidth=1, facecolors='none', edgecolors='k')
+plt.tight_layout()
+plt.show()
+```
+
+
 ## R
 
 Following codes describe how to implement SVM in R. SVM relies on ``e1071`` package. To learn more about the package, check out its [CRAN page](https://cran.r-project.org/web/packages/e1071/index.html), as well as [this vignette](https://cran.r-project.org/web/packages/e1071/vignettes/svmdoc.pdf). Several other packages are also loaded to help us manipulate data (**dplyr**, **tidyverse**) and plot the results (**ggplot2**). 
