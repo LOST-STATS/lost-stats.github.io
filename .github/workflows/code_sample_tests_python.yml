@@ -3,8 +3,6 @@ on:
   schedule:
     - cron: "0 0 1 * *"
   workflow_dispatch:
-    types:
-      - python_tests
 
 jobs:
   pull_data:
