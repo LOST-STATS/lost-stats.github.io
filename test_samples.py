@@ -172,7 +172,7 @@ def pytest_generate_tests(metafunc):
         else:
             metafunc.parametrize(
                 "python_code_block",
-                [CodeBlock(language="python", code="", options={}, location="")],
+                [CodeBlock(language="python", code="1 + 1", options={}, location="")],
             )
 
     if "r_code_block" in metafunc.fixturenames:
@@ -183,7 +183,7 @@ def pytest_generate_tests(metafunc):
         else:
             metafunc.parametrize(
                 "r_code_block",
-                [CodeBlock(language="r", code="", options={}, location="")],
+                [CodeBlock(language="r", code="1 + 1", options={}, location="")],
             )
 
 
