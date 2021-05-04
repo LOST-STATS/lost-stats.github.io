@@ -9,7 +9,7 @@ python = "^3.8"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.3"
-mistune = "^0.8.4"
+mistune = "2.0.0rc1"
 pytest-xdist = "^2.2.1"
 
 [build-system]

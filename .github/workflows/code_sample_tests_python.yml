@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  pull_data:
+  run_all_tests:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout code
@@ -41,5 +41,5 @@ jobs:
       - name: Install dependencies
         run: poetry install --no-dev
 
-      - name: Pull data
+      - name: Run tests
         run: poetry run py.test
