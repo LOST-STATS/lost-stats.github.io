@@ -39,7 +39,7 @@ jobs:
              ${{ runner.OS }}-
 
       - name: Install dependencies
-        run: poetry install --no-dev
+        run: poetry install
 
       - name: Run tests
         run: poetry run py.test -s
