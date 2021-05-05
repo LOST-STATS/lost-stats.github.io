@@ -112,7 +112,7 @@ plt.show()
 
 ## R
 
-There are a couple of ways to implement SVM in R. Here we'll demonstrate using the **e1071** package. To learn more about the package, check out its [CRAN page](https://cran.r-project.org/web/packages/e1071/index.html), as well as [this vignette](https://cran.r-project.org/web/packages/e1071/vignettes/svmdoc.pdf). Note that we'll also laod the **tidyverse** to help with some data wrangling and plotting. 
+There are a couple of ways to implement SVM in R. Here we'll demonstrate using the **e1071** package. To learn more about the package, check out its [CRAN page](https://cran.r-project.org/web/packages/e1071/index.html), as well as [this vignette](https://cran.r-project.org/web/packages/e1071/vignettes/svmdoc.pdf). Note that we'll also load the **tidyverse** to help with some data wrangling and plotting. 
 
 Two examples are shown below that use linear SVM and non-linear SVM respectively. The first example shows how to implement linear SVM. We start by constructing data, separating them into training and test set. Using the training set, we fit the data using the `svm()` function. Notice that kernel argument for ``svm()`` function is specified as *linear* for our first example. Next, we predict the test data based on the model estimates using the `predict()` function. The first example result suggests that only one out of 59 data points is incorrectly classified. 
 
