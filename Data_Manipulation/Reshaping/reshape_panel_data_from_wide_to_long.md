@@ -143,13 +143,13 @@ billboard_long <- pivot_longer(billboard,
 
 This task can also be done through `data.table`.
 
-```r
+```r?example=pivoting
 #install.packages('data.table')
 library(data.table)
 
 billboard = as.data.table(billboard)
-billboard_long = melt(billboard, 
-                   id = 1:3, 
+billboard_long = melt(billboard,
+                   id = 1:3,
                    na.rm=TRUE,
                    variable.names = "Week",
                    value.name = "Position"

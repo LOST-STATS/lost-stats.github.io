@@ -26,7 +26,7 @@ A density plot visualises the distribution of data over a continuous interval (o
 
 In this example, we'll use [**seaborn**](https://seaborn.pydata.org/index.html), a *declarative* plotting library that provides a quick and easy way to produce density plots. It builds on [**matplotlib**](https://matplotlib.org/).
 
-```python
+```python?example=densitypy
 # You may need to install seaborn on the command line using 'pip install seaborn' or 'conda install seaborn'
 import seaborn as sns
 
@@ -127,7 +127,7 @@ print(diamonds.head())
 </table>
 </div>
 
-```python
+```python?example=densitypy
 sns.kdeplot(data=diamonds, x="price", cut=0);
 ```
 
@@ -137,7 +137,7 @@ This is basic, but there are lots of ways to adjust it through keyword arguments
 
 Let's use further keyword arguments to enrich the plot, including different colours ('hues') for each cut of diamond. One keyword argument that may not be obvious is `hue_order`. The default function call would have arranged the `cut` types so that the 'Fair' cut obscured the other types, so the argument passed to the `hue_order` keyword below *reverses* the order of the unique list of diamond cuts via `[::-1]`.
 
-```python
+```python?example=densitypy
 sns.kdeplot(data=diamonds,
             x="price",
             hue="cut",
