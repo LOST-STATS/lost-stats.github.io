@@ -468,10 +468,10 @@ readr
 </ol>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
 
-<span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"API_KEY"</span><span class="p">,</span> <span class="n">some_other_way</span><span class="p">)</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"API_KEY"</span><span class="p">,</span> <span class="s">"some_other_way"</span><span class="p">)</span>
 </code></pre></div></div>
 <p>or in R you might do</p>
-<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">api_key</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s2">"API_KEY"</span><span class="p">,</span><span class="w"> </span><span class="n">unset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">some_other_way</span><span class="p">)</span><span class="w">
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">api_key</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s2">"API_KEY"</span><span class="p">,</span><span class="w"> </span><span class="n">unset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"some_other_way"</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 <ol>
   <li>Amend the <code class="language-plaintext highlighter-rouge">Pull data</code> step in your action to set the <code class="language-plaintext highlighter-rouge">API_KEY</code> environment variable. For instance, it might look like:</li>

@@ -227,157 +227,164 @@ process would take the form:</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#in the stats package we can simulate an ARIMA Model. ARIMA stands for Auto-Regressive Integrated Moving Average model. We will be setting the AR and I parts to 0 and only simulating a MA(q) model.</span><span class="w">
 </span><span class="n">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span><span class="w">
 </span><span class="n">DT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arima.sim</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">ma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="m">0.3</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">)))</span><span class="w">
-</span></code></pre></div></div>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">DT</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Value"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">plot</span><span class="p">(</span><span class="n">DT</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Value"</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 <p><img src="/Time_Series/Images/MA_Model/plot1.png" alt="A plot of our data generating process; x-axis is time and y-axis is the values produced." /></p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#ACF stands for Autocorrelation Function</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span><span class="w">
+</span><span class="n">DT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arima.sim</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">ma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="m">0.3</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">)))</span><span class="w">
+
+</span><span class="c1">#ACF stands for Autocorrelation Function</span><span class="w">
 </span><span class="c1">#Here we can see that there may be potential for 3 lags in our MA process. (Note: This is due to property (3): the covariance of y_t and y_{t-3} is nonzero while the covariance of y_t and y_{t-4} is 0)</span><span class="w">
 </span><span class="n">acf</span><span class="p">(</span><span class="n">DT</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"covariance"</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 <p><img src="/Time_Series/Images/MA_Model/ACF.png" alt="A plot of the autocorrelation function: this shows the correlation between $y_t$ and different lagged values of $y_t$. The first four correlations (starting with the correlation of $y_t$ and $y_t$) are positive and then the rest are close to 0; this is what we would expect from the data generating process." /></p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Here I'm estimating an ARIMA(0,0,3) model which is a MA(3) model. Changing c(0,0,q) allows us to estimate a MA(q) process.</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span><span class="w">
+</span><span class="n">DT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arima.sim</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">ma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="m">0.3</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">)))</span><span class="w">
+
+</span><span class="c1">#Here I'm estimating an ARIMA(0,0,3) model which is a MA(3) model. Changing c(0,0,q) allows us to estimate a MA(q) process.</span><span class="w">
 </span><span class="n">arima</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DT</span><span class="p">,</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">3</span><span class="p">))</span><span class="w">
-</span></code></pre></div></div>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## 
-## Call:
-## arima(x = DT, order = c(0, 0, 3))
-## 
-## Coefficients:
-##          ma1     ma2     ma3  intercept
-##       0.0722  0.2807  0.4781     0.0265
-## s.e.  0.0278  0.0255  0.0294     0.0573
-## 
-## sigma^2 estimated as 0.9825:  log likelihood = -1410.63,  aic = 2831.25
-</code></pre></div></div>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#We can also estimate a MA(7) model and see that the ma4, ma5, ma6, and ma7 are close to 0 and insignificant.</span><span class="w">
+
+    </span><span class="c1">##</span><span class="w">
+    </span><span class="c1">## Call:</span><span class="w">
+    </span><span class="c1">## arima(x = DT, order = c(0, 0, 3))</span><span class="w">
+    </span><span class="c1">##</span><span class="w">
+    </span><span class="c1">## Coefficients:</span><span class="w">
+    </span><span class="c1">##          ma1     ma2     ma3  intercept</span><span class="w">
+    </span><span class="c1">##       0.0722  0.2807  0.4781     0.0265</span><span class="w">
+    </span><span class="c1">## s.e.  0.0278  0.0255  0.0294     0.0573</span><span class="w">
+    </span><span class="c1">##</span><span class="w">
+    </span><span class="c1">## sigma^2 estimated as 0.9825:  log likelihood = -1410.63,  aic = 2831.25</span><span class="w">
+
+</span><span class="c1">#We can also estimate a MA(7) model and see that the ma4, ma5, ma6, and ma7 are close to 0 and insignificant.</span><span class="w">
 </span><span class="n">arima</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DT</span><span class="p">,</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">7</span><span class="p">))</span><span class="w">
-</span></code></pre></div></div>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## 
-## Call:
-## arima(x = DT, order = c(0, 0, 7))
-## 
-## Coefficients:
-##          ma1     ma2     ma3      ma4      ma5      ma6      ma7  intercept
-##       0.0714  0.2694  0.4607  -0.0119  -0.0380  -0.0256  -0.0219     0.0267
-## s.e.  0.0316  0.0321  0.0324   0.0363   0.0339   0.0332   0.0328     0.0533
-## 
-## sigma^2 estimated as 0.9806:  log likelihood = -1409.65,  aic = 2837.3
-</code></pre></div></div>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#fable is a package designed to estimate ARIMA models. We can use it to estimate our MA(3) model.</span><span class="w">
-</span><span class="n">library</span><span class="p">(</span><span class="n">fable</span><span class="p">)</span><span class="w"> 
+
+
+    </span><span class="c1">##</span><span class="w">
+    </span><span class="c1">## Call:</span><span class="w">
+    </span><span class="c1">## arima(x = DT, order = c(0, 0, 7))</span><span class="w">
+    </span><span class="c1">##</span><span class="w">
+    </span><span class="c1">## Coefficients:</span><span class="w">
+    </span><span class="c1">##          ma1     ma2     ma3      ma4      ma5      ma6      ma7  intercept</span><span class="w">
+    </span><span class="c1">##       0.0714  0.2694  0.4607  -0.0119  -0.0380  -0.0256  -0.0219     0.0267</span><span class="w">
+    </span><span class="c1">## s.e.  0.0316  0.0321  0.0324   0.0363   0.0339   0.0332   0.0328     0.0533</span><span class="w">
+    </span><span class="c1">##</span><span class="w">
+    </span><span class="c1">## sigma^2 estimated as 0.9806:  log likelihood = -1409.65,  aic = 2837.3</span><span class="w">
+
+</span><span class="c1">#fable is a package designed to estimate ARIMA models. We can use it to estimate our MA(3) model.</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">fable</span><span class="p">)</span><span class="w">
 </span><span class="c1">#an extension of tidyverse to temporal data (this allows us to create time series data into tibbles which are needed for fable functionality)</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">tsibble</span><span class="p">)</span><span class="w">
 </span><span class="c1">#visit https://dplyr.tidyverse.org/ to understand dplyr syntax; this package is important for fable functionality</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
-</span></code></pre></div></div>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#When using the fable package, we need to convert our object into a tsibble (a time series tibble). This gives us a data frame with values and an index for the time periods</span><span class="w">
+
+</span><span class="c1">#When using the fable package, we need to convert our object into a tsibble (a time series tibble). This gives us a data frame with values and an index for the time periods</span><span class="w">
 </span><span class="n">DT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DT</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="n">as_tsibble</span><span class="p">()</span><span class="w">
 
 </span><span class="n">head</span><span class="p">(</span><span class="n">DT</span><span class="p">)</span><span class="w">
-</span></code></pre></div></div>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## # A tsibble: 6 x 2 [1]
-##   index  value
-##   &lt;dbl&gt;  &lt;dbl&gt;
-## 1     1 -0.123
-## 2     2  0.489
-## 3     3  2.53 
-## 4     4  0.706
-## 5     5 -0.640
-## 6     6  0.182
-</code></pre></div></div>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Now we can use the dplyr package to pipe our dataset and create a fitted model</span><span class="w">
+
+    </span><span class="c1">## # A tsibble: 6 x 2 [1]</span><span class="w">
+    </span><span class="c1">##   index  value</span><span class="w">
+    </span><span class="c1">##   &lt;dbl&gt;  &lt;dbl&gt;</span><span class="w">
+    </span><span class="c1">## 1     1 -0.123</span><span class="w">
+    </span><span class="c1">## 2     2  0.489</span><span class="w">
+    </span><span class="c1">## 3     3  2.53</span><span class="w">
+    </span><span class="c1">## 4     4  0.706</span><span class="w">
+    </span><span class="c1">## 5     5 -0.640</span><span class="w">
+    </span><span class="c1">## 6     6  0.182</span><span class="w">
+
+</span><span class="c1">#Now we can use the dplyr package to pipe our dataset and create a fitted model</span><span class="w">
 </span><span class="c1">#Note: the ARIMA function in the fable package uses an information criterion for model selection; these can be set as shown below; additional information is above in the Keep in Mind section (the default criterion is aicc)</span><span class="w">
 </span><span class="n">MAfit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DT</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="n">model</span><span class="p">(</span><span class="n">arima</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ARIMA</span><span class="p">(</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">ic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"aicc"</span><span class="p">))</span><span class="w">
 
 </span><span class="c1">#report() is needed to view our model</span><span class="w">
 </span><span class="n">report</span><span class="p">(</span><span class="n">MAfit</span><span class="p">)</span><span class="w">
-</span></code></pre></div></div>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Series: value 
-## Model: ARIMA(0,0,3) 
-## 
-## Coefficients:
-##          ma1     ma2     ma3
-##       0.0723  0.2808  0.4782
-## s.e.  0.0278  0.0255  0.0294
-## 
-## sigma^2 estimated as 0.9857:  log likelihood=-1410.73
-## AIC=2829.47   AICc=2829.51   BIC=2849.1
-</code></pre></div></div>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#if instead we want to specify the model manually, we need to specify it. For MA models, set the pdq(0,0,q) term to the MA(q) order you want to estimate. For example: Estimating a MA(7) would mean that I should put pdq(0,0,7). Additionally, you can add a constant if wanted; this is shown below</span><span class="w">
+
+    </span><span class="c1">## Series: value</span><span class="w">
+    </span><span class="c1">## Model: ARIMA(0,0,3)</span><span class="w">
+    </span><span class="c1">##</span><span class="w">
+    </span><span class="c1">## Coefficients:</span><span class="w">
+    </span><span class="c1">##          ma1     ma2     ma3</span><span class="w">
+    </span><span class="c1">##       0.0723  0.2808  0.4782</span><span class="w">
+    </span><span class="c1">## s.e.  0.0278  0.0255  0.0294</span><span class="w">
+    </span><span class="c1">##</span><span class="w">
+    </span><span class="c1">## sigma^2 estimated as 0.9857:  log likelihood=-1410.73</span><span class="w">
+    </span><span class="c1">## AIC=2829.47   AICc=2829.51   BIC=2849.1</span><span class="w">
+
+</span><span class="c1">#if instead we want to specify the model manually, we need to specify it. For MA models, set the pdq(0,0,q) term to the MA(q) order you want to estimate. For example: Estimating a MA(7) would mean that I should put pdq(0,0,7). Additionally, you can add a constant if wanted; this is shown below</span><span class="w">
 
 </span><span class="c1">#with constant</span><span class="w">
 </span><span class="n">MAfit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DT</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="n">model</span><span class="p">(</span><span class="n">arima</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ARIMA</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">pdq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="n">ic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"aicc"</span><span class="p">))</span><span class="w">
 
 </span><span class="n">report</span><span class="p">(</span><span class="n">MAfit</span><span class="p">)</span><span class="w">
-</span></code></pre></div></div>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Series: value 
-## Model: ARIMA(0,0,3) w/ mean 
-## 
-## Coefficients:
-##          ma1     ma2     ma3  constant
-##       0.0722  0.2807  0.4781    0.0265
-## s.e.  0.0278  0.0255  0.0294    0.0573
-## 
-## sigma^2 estimated as 0.9865:  log likelihood=-1410.63
-## AIC=2831.25   AICc=2831.31   BIC=2855.79
-</code></pre></div></div>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#without constant</span><span class="w">
+
+    </span><span class="c1">## Series: value</span><span class="w">
+    </span><span class="c1">## Model: ARIMA(0,0,3) w/ mean</span><span class="w">
+    </span><span class="c1">##</span><span class="w">
+    </span><span class="c1">## Coefficients:</span><span class="w">
+    </span><span class="c1">##          ma1     ma2     ma3  constant</span><span class="w">
+    </span><span class="c1">##       0.0722  0.2807  0.4781    0.0265</span><span class="w">
+    </span><span class="c1">## s.e.  0.0278  0.0255  0.0294    0.0573</span><span class="w">
+    </span><span class="c1">##</span><span class="w">
+    </span><span class="c1">## sigma^2 estimated as 0.9865:  log likelihood=-1410.63</span><span class="w">
+    </span><span class="c1">## AIC=2831.25   AICc=2831.31   BIC=2855.79</span><span class="w">
+
+</span><span class="c1">#without constant</span><span class="w">
 </span><span class="n">MAfit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DT</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="n">model</span><span class="p">(</span><span class="n">arima</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ARIMA</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">pdq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="n">ic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"aicc"</span><span class="p">))</span><span class="w">
 
 </span><span class="n">report</span><span class="p">(</span><span class="n">MAfit</span><span class="p">)</span><span class="w">
-</span></code></pre></div></div>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Series: value 
-## Model: ARIMA(0,0,3) 
-## 
-## Coefficients:
-##          ma1     ma2     ma3
-##       0.0723  0.2808  0.4782
-## s.e.  0.0278  0.0255  0.0294
-## 
-## sigma^2 estimated as 0.9857:  log likelihood=-1410.73
-## AIC=2829.47   AICc=2829.51   BIC=2849.1
-</code></pre></div></div>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#A faster, more compact way to write a code would be as follows:</span><span class="w">
+
+    </span><span class="c1">## Series: value</span><span class="w">
+    </span><span class="c1">## Model: ARIMA(0,0,3)</span><span class="w">
+    </span><span class="c1">##</span><span class="w">
+    </span><span class="c1">## Coefficients:</span><span class="w">
+    </span><span class="c1">##          ma1     ma2     ma3</span><span class="w">
+    </span><span class="c1">##       0.0723  0.2808  0.4782</span><span class="w">
+    </span><span class="c1">## s.e.  0.0278  0.0255  0.0294</span><span class="w">
+    </span><span class="c1">##</span><span class="w">
+    </span><span class="c1">## sigma^2 estimated as 0.9857:  log likelihood=-1410.73</span><span class="w">
+    </span><span class="c1">## AIC=2829.47   AICc=2829.51   BIC=2849.1</span><span class="w">
+
+</span><span class="c1">#A faster, more compact way to write a code would be as follows:</span><span class="w">
 
 </span><span class="c1">#Automatic estimation</span><span class="w">
 </span><span class="n">DT</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="n">as_tsibble</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="n">model</span><span class="p">(</span><span class="n">arima</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ARIMA</span><span class="p">(</span><span class="n">value</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="n">report</span><span class="p">()</span><span class="w">
-</span></code></pre></div></div>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Series: value 
-## Model: ARIMA(0,0,3) 
-## 
-## Coefficients:
-##          ma1     ma2     ma3
-##       0.0723  0.2808  0.4782
-## s.e.  0.0278  0.0255  0.0294
-## 
-## sigma^2 estimated as 0.9857:  log likelihood=-1410.73
-## AIC=2829.47   AICc=2829.51   BIC=2849.1
-</code></pre></div></div>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Manual estimation</span><span class="w">
+
+    </span><span class="c1">## Series: value</span><span class="w">
+    </span><span class="c1">## Model: ARIMA(0,0,3)</span><span class="w">
+    </span><span class="c1">##</span><span class="w">
+    </span><span class="c1">## Coefficients:</span><span class="w">
+    </span><span class="c1">##          ma1     ma2     ma3</span><span class="w">
+    </span><span class="c1">##       0.0723  0.2808  0.4782</span><span class="w">
+    </span><span class="c1">## s.e.  0.0278  0.0255  0.0294</span><span class="w">
+    </span><span class="c1">##</span><span class="w">
+    </span><span class="c1">## sigma^2 estimated as 0.9857:  log likelihood=-1410.73</span><span class="w">
+    </span><span class="c1">## AIC=2829.47   AICc=2829.51   BIC=2849.1</span><span class="w">
+
+</span><span class="c1">#Manual estimation</span><span class="w">
 </span><span class="n">DT</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="n">as_tsibble</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="n">model</span><span class="p">(</span><span class="n">arima</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ARIMA</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">pdq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="n">report</span><span class="p">()</span><span class="w">
+
+    </span><span class="c1">## Series: value</span><span class="w">
+    </span><span class="c1">## Model: ARIMA(0,0,3)</span><span class="w">
+    </span><span class="c1">##</span><span class="w">
+    </span><span class="c1">## Coefficients:</span><span class="w">
+    </span><span class="c1">##          ma1     ma2     ma3</span><span class="w">
+    </span><span class="c1">##       0.0723  0.2808  0.4782</span><span class="w">
+    </span><span class="c1">## s.e.  0.0278  0.0255  0.0294</span><span class="w">
+    </span><span class="c1">##</span><span class="w">
+    </span><span class="c1">## sigma^2 estimated as 0.9857:  log likelihood=-1410.73</span><span class="w">
+    </span><span class="c1">## AIC=2829.47   AICc=2829.51   BIC=2849.1</span><span class="w">
 </span></code></pre></div></div>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Series: value 
-## Model: ARIMA(0,0,3) 
-## 
-## Coefficients:
-##          ma1     ma2     ma3
-##       0.0723  0.2808  0.4782
-## s.e.  0.0278  0.0255  0.0294
-## 
-## sigma^2 estimated as 0.9857:  log likelihood=-1410.73
-## AIC=2829.47   AICc=2829.51   BIC=2849.1
-</code></pre></div></div>
           <hr>
           <footer>
               <div class="d-flex mt-2">

@@ -199,7 +199,7 @@
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/PSID.csv"</span><span class="p">,</span>
                  <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="n">df</span><span class="p">[</span><span class="s">'earnings'</span><span class="p">].</span><span class="n">plot</span><span class="p">.</span><span class="n">hist</span><span class="p">();</span>
+<span class="n">df</span><span class="p">[</span><span class="s">'earnings'</span><span class="p">].</span><span class="n">plot</span><span class="p">.</span><span class="n">hist</span><span class="p">()</span>
 </code></pre></div></div>
 <p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/histogram_graphs/py_hist_1.png" alt="png" /></p>
 <p>Note that, by default, the <code class="language-plaintext highlighter-rouge">hist</code> function shows counts on the y-axis.</p>
@@ -212,7 +212,6 @@
 <span class="n">ax</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Earnings in the PSID'</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s">'left'</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'Density'</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'Earnings'</span><span class="p">);</span>
-
 </code></pre></div></div>
 <p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/histogram_graphs/py_hist_2.png" alt="png" /></p>
 <p>An alternative to the matplotlib-pandas combination is <a href=""><strong>seaborn</strong></a>, a declarative plotting library. Using <strong>seaborn</strong>, we can quickly compared histograms of different cuts of the data. In the example below, a binary variable that sorts individuals into two groups based on age is added and used as the ‘hue’ of the keyword argument.</p>

@@ -240,8 +240,8 @@
 
 <span class="c1"># create the lag/lead for treated states
 # fill in control obs with 0
-# This allows for the interaction between `treat` and `time_to_treat` to occur for each state. 
-# Otherwise, there may be some missingss and the estimations will be off.  
+# This allows for the interaction between `treat` and `time_to_treat` to occur for each state.
+# Otherwise, there may be some missingss and the estimations will be off.
 </span><span class="n">df</span><span class="p">[</span><span class="s">'time_to_treat'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
     <span class="n">df</span><span class="p">[</span><span class="s">'_nfd'</span><span class="p">].</span><span class="n">sub</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'year'</span><span class="p">])</span>
         <span class="c1"># missing values for _nfd implies no treatment
@@ -260,7 +260,7 @@
       <span class="c1"># Be sure not to include the minuses in the name
 </span>      <span class="p">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'-'</span><span class="p">,</span> <span class="s">'m'</span><span class="p">))</span>
       <span class="c1"># get_dummies has a `drop_first` argument, but if we want to
-</span>      <span class="c1"># refer to a specific level, we should return all levels and 
+</span>      <span class="c1"># refer to a specific level, we should return all levels and
 </span>      <span class="c1"># drop out reference column manually
 </span>      <span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s">'INX_m1'</span><span class="p">)</span>
       <span class="c1"># Set our individual and time (index) for our data
@@ -316,16 +316,16 @@
 <span class="c1"># Plot the estimates as connected lines with error bars
 </span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">y</span><span class="o">=</span><span class="s">'parameter'</span><span class="p">,</span> 
-    <span class="n">yerr</span><span class="o">=</span><span class="s">'ci'</span><span class="p">,</span> 
-    <span class="n">xlabel</span><span class="o">=</span><span class="s">'Time to Treatment'</span><span class="p">,</span> 
-    <span class="n">ylabel</span><span class="o">=</span><span class="s">'Estimated Effect'</span><span class="p">,</span> 
+    <span class="n">y</span><span class="o">=</span><span class="s">'parameter'</span><span class="p">,</span>
+    <span class="n">yerr</span><span class="o">=</span><span class="s">'ci'</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s">'Time to Treatment'</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s">'Estimated Effect'</span><span class="p">,</span>
     <span class="n">legend</span><span class="o">=</span><span class="bp">False</span>
 <span class="p">)</span>
 <span class="c1"># Add a horizontal line at 0
 </span><span class="n">ax</span><span class="p">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">'dashed'</span><span class="p">)</span>
 <span class="c1"># And a vertical line at the treatment time
-# some versions of pandas have bug return x-axis object with data_interval 
+# some versions of pandas have bug return x-axis object with data_interval
 # starting at 0. In that case change 0 to 21
 </span><span class="n">ax</span><span class="p">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">'dashed'</span><span class="p">)</span>
 </code></pre></div></div>
@@ -336,46 +336,49 @@
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
 <p>First, load packages and the data</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">pacman</span><span class="p">)</span><span class="w">
-</span><span class="n">p_load</span><span class="p">(</span><span class="n">dplyr</span><span class="p">,</span><span class="w"> </span><span class="n">fixest</span><span class="p">,</span><span class="w"> </span><span class="n">tidyverse</span><span class="p">,</span><span class="w"> </span><span class="n">broom</span><span class="p">,</span><span class="w"> </span><span class="n">haven</span><span class="p">)</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">fixest</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">broom</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">haven</span><span class="p">)</span><span class="w">
 
 </span><span class="c1">#Load and prepare data</span><span class="w">
 </span><span class="n">bacon_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_dta</span><span class="p">(</span><span class="s2">"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Event_Study_DiD/bacon_example.dta"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="n">mutate</span><span class="p">(</span><span class="w">
   </span><span class="c1"># create the lag/lead for treated states</span><span class="w">
   </span><span class="c1"># fill in control obs with 0</span><span class="w">
-  </span><span class="c1"># This allows for the interaction between `treat` and `time_to_treat` to occur for each state. </span><span class="w">
-  </span><span class="c1"># Otherwise, there may be some NAs and the estimations will be off.  </span><span class="w">
+  </span><span class="c1"># This allows for the interaction between `treat` and `time_to_treat` to occur for each state.</span><span class="w">
+  </span><span class="c1"># Otherwise, there may be some NAs and the estimations will be off.</span><span class="w">
   </span><span class="n">time_to_treat</span><span class="w"> </span><span class="o">=</span><span class="n">ifelse</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">`_nfd`</span><span class="p">),</span><span class="m">0</span><span class="p">,</span><span class="n">year</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">`_nfd`</span><span class="p">),</span><span class="w">
   </span><span class="c1"># this will determine the difference</span><span class="w">
-  </span><span class="c1"># btw controls and treated states </span><span class="w">
+  </span><span class="c1"># btw controls and treated states</span><span class="w">
   </span><span class="n">treat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">`_nfd`</span><span class="p">),</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">)</span><span class="w">
   </span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 <p>Also, while it’s not necessary given how we’re about to use the <strong>fixest</strong> package, if you’re interested in creating a dummy variable for each lead/lag in your data set, you can use the package <strong>fastDummies</strong> and <code class="language-plaintext highlighter-rouge">bacon_df &lt;- dummy_cols(bacon_df, select_column = "time_to_treat")</code>.</p>
 <p>We will run the event-study regression using <code class="language-plaintext highlighter-rouge">feols()</code> from the <strong>fixest</strong> package. <strong>fixest</strong> is very fast, contains support for complex fixed-effects interactions, selecting our own reference group like we need with <code class="language-plaintext highlighter-rouge">i()</code>, and will also help run the Sun and Abraham (2020) estimator.</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">feols</span><span class="p">(</span><span class="n">asmrs</span><span class="w"> </span><span class="o">~</span><span class="w"> 
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">feols</span><span class="p">(</span><span class="n">asmrs</span><span class="w"> </span><span class="o">~</span><span class="w">
     </span><span class="c1"># The time-treatment interaction terms</span><span class="w">
-	</span><span class="n">i</span><span class="p">(</span><span class="n">treat</span><span class="p">,</span><span class="w"> </span><span class="n">time_to_treat</span><span class="p">,</span><span class="w"> </span><span class="n">ref</span><span class="o">=</span><span class="m">-1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+	</span><span class="n">i</span><span class="p">(</span><span class="n">treat</span><span class="p">,</span><span class="w"> </span><span class="n">time_to_treat</span><span class="p">,</span><span class="w"> </span><span class="n">ref</span><span class="o">=</span><span class="m">-1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
 	</span><span class="c1"># Controls</span><span class="w">
-	</span><span class="n">pcinc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">asmrh</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cases</span><span class="w"> 
+	</span><span class="n">pcinc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">asmrh</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cases</span><span class="w">
 	</span><span class="c1"># State and year fixed effects</span><span class="w">
-	</span><span class="o">|</span><span class="w"> </span><span class="n">stfips</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> 
+	</span><span class="o">|</span><span class="w"> </span><span class="n">stfips</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w">
 	</span><span class="c1"># feols clusters by the first fixed effect anyway, just making that clear</span><span class="w">
 	</span><span class="n">cluster</span><span class="o">=~</span><span class="n">stfips</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">bacon_df</span><span class="p">)</span><span class="w">
 </span><span class="c1"># Now turn the results into a data frame with a year column for easy plotting</span><span class="w">
-</span><span class="n">event_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tidy</span><span class="p">(</span><span class="n">m_1</span><span class="p">,</span><span class="w"> </span><span class="n">conf.int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+</span><span class="n">event_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tidy</span><span class="p">(</span><span class="n">m_1</span><span class="p">,</span><span class="w"> </span><span class="n">conf.int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
 	</span><span class="c1"># For plotting purposes, we only want the terms that reference years</span><span class="w">
-	</span><span class="c1"># and not the controls </span><span class="w">
+	</span><span class="c1"># and not the controls</span><span class="w">
     </span><span class="n">mutate</span><span class="p">(</span><span class="n">year</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">parse_number</span><span class="p">(</span><span class="n">term</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
 	</span><span class="n">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">year</span><span class="p">))</span><span class="w">
 </span></code></pre></div></div>
 <p>Now we can plot the results with <strong>ggplot2</strong>. Two common approaches are to include vertical-line confidence intervals with <code class="language-plaintext highlighter-rouge">geom_pointrange()</code> or to include a confidence interval ribbon with <code class="language-plaintext highlighter-rouge">geom_ribbon()</code>. I’ll show the <code class="language-plaintext highlighter-rouge">geom_pointrange()</code> version, but this is easy to swap out.</p>
 <p>Now, you could just simply use <code class="language-plaintext highlighter-rouge">coefplot(m_1)</code> from <strong>fixest</strong> and be done with it! This will create the event-study plot for you. Done. But if you want to maybe do some <strong>ggplot2</strong> styling afterwards, or do some by-hand tweaks, you can do it yourself:</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">event_1</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
-    </span><span class="n">ggplot</span><span class="p">(</span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">estimate</span><span class="p">,</span><span class="w"> 
+    </span><span class="n">ggplot</span><span class="p">(</span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">estimate</span><span class="p">,</span><span class="w">
 	                     </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf.low</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf.high</span><span class="p">))</span><span class="o">+</span><span class="w">
-      </span><span class="n">geom_pointrange</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">position_dodge</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> 
+      </span><span class="n">geom_pointrange</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">position_dodge</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">
 	  </span><span class="c1"># Optional decoration:</span><span class="w">
 	  </span><span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="n">fatten</span><span class="o">=</span><span class="m">.5</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="m">.8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
 	  </span><span class="c1"># Add a line marker for y = 0 (to see if the CI overlaps 0)</span><span class="w">
@@ -419,21 +422,21 @@
   </span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="c1"># and a shared identifier for year treated and year</span><span class="w">
   </span><span class="n">mutate</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="n">year_treated</span><span class="p">,</span><span class="w"> </span><span class="s1">':'</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">))</span><span class="w">
-  
+
 </span><span class="c1"># Don't include so many pre- and post-lags that you've got a lot of tiny periods</span><span class="w">
 </span><span class="n">table</span><span class="p">(</span><span class="n">sun_df</span><span class="o">$</span><span class="n">time_to_treat</span><span class="p">)</span><span class="w">
 </span><span class="n">sun_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sun_df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="n">filter</span><span class="p">(</span><span class="n">time_to_treat</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">-1000</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">time_to_treat</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">-9</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time_to_treat</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">24</span><span class="p">))</span><span class="w">
 
 </span><span class="c1"># Read the Sun and Abraham paper before including controls as I do here</span><span class="w">
-</span><span class="n">m_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">feols</span><span class="p">(</span><span class="n">asmrs</span><span class="w"> </span><span class="o">~</span><span class="w"> 
+</span><span class="n">m_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">feols</span><span class="p">(</span><span class="n">asmrs</span><span class="w"> </span><span class="o">~</span><span class="w">
                </span><span class="c1"># This time, interact time_to_treatment with year treated</span><span class="w">
                </span><span class="c1"># Dropping as reference the -1 period and the never-treated</span><span class="w">
                </span><span class="n">i</span><span class="p">(</span><span class="n">time_to_treat</span><span class="p">,</span><span class="w"> </span><span class="n">f2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year_treated</span><span class="p">,</span><span class="w"> </span><span class="n">drop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="m">-1000</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
                </span><span class="c1"># Controls</span><span class="w">
                </span><span class="n">pcinc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">asmrh</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cases</span><span class="w">
              </span><span class="c1"># Fixed effects for group and year</span><span class="w">
-             </span><span class="o">|</span><span class="w"> </span><span class="n">stfips</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> 
+             </span><span class="o">|</span><span class="w"> </span><span class="n">stfips</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w">
              </span><span class="n">data</span><span class="o">=</span><span class="n">sun_df</span><span class="p">)</span><span class="w">
 </span><span class="c1"># Aggregate the coefficients by group</span><span class="w">
 </span><span class="n">agg_coef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aggregate</span><span class="p">(</span><span class="n">m_2</span><span class="p">,</span><span class="w"> </span><span class="s2">"(time_to_treat)::(-?[[:digit:]]+)"</span><span class="p">)</span><span class="w">
@@ -443,9 +446,9 @@
   </span><span class="n">mutate</span><span class="p">(</span><span class="n">conf.low</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Estimate</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1.96</span><span class="o">*</span><span class="n">`Std. Error`</span><span class="p">,</span><span class="w">
          </span><span class="n">conf.high</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Estimate</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1.96</span><span class="o">*</span><span class="n">`Std. Error`</span><span class="p">,</span><span class="w">
          </span><span class="n">`Time to Treatment`</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-9</span><span class="o">:</span><span class="m">-2</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="o">:</span><span class="m">24</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
-  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">`Time to Treatment`</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Estimate</span><span class="p">,</span><span class="w"> 
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">`Time to Treatment`</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Estimate</span><span class="p">,</span><span class="w">
                        </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf.low</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf.high</span><span class="p">))</span><span class="o">+</span><span class="w">
-  </span><span class="n">geom_pointrange</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">position_dodge</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> 
+  </span><span class="n">geom_pointrange</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">position_dodge</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">
                   </span><span class="c1"># Optional decoration:</span><span class="w">
                   </span><span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="n">fatten</span><span class="o">=</span><span class="m">.5</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="m">.8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
   </span><span class="n">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
@@ -467,12 +470,12 @@
 </span><span class="c1">
 * create the lag/lead for treated states
 * fill in control obs with 0
-* This allows for the interaction between `treat` and `time_to_treat` to occur for each state. 
-* Otherwise, there may be some NAs and the estimations will be off.  
+* This allows for the interaction between `treat` and `time_to_treat` to occur for each state.
+* Otherwise, there may be some NAs and the estimations will be off.
 </span><span class="err">g</span> <span class="err">time_to_treat</span> <span class="o">=</span> <span class="err">year</span> <span class="o">-</span> <span class="err">_nfd
 replace</span> <span class="err">time_to_treat</span> <span class="o">=</span> <span class="err">0</span> <span class="err">if</span> <span class="err">missing(_nfd)
 </span><span class="c1">* this will determine the difference
-* btw controls and treated states 
+* btw controls and treated states
 </span><span class="err">g</span> <span class="err">treat</span> <span class="o">=</span> <span class="o">!</span><span class="err">missing(_nfd)
 </span><span class="c1">
 * Stata won't allow factors with negative values, so let's shift
@@ -482,7 +485,7 @@ g</span> <span class="err">shifted_ttt</span> <span class="o">=</span> <span cla
 summ</span> <span class="err">shifted_ttt</span> <span class="err">if</span> <span class="err">time_to_treat</span> <span class="o">==</span> <span class="o">-</span><span class="err">1
 local</span> <span class="err">true_neg1</span> <span class="o">=</span> <span class="err">r(mean)
 </span><span class="c1">
-* Regress on our interaction terms with FEs for group and year, 
+* Regress on our interaction terms with FEs for group and year,
 * clustering at the group (state) level
 * use ib# to specify our reference group
 </span><span class="err">reghdfe</span> <span class="err">asmrs</span> <span class="err">ib</span><span class="p">`</span><span class="si">true_neg1</span><span class="p">'</span><span class="err">.shifted_ttt</span> <span class="err">pcinc</span> <span class="err">asmrh</span> <span class="err">cases,</span> <span class="err">a(stfips</span> <span class="err">year)</span> <span class="err">vce(cluster</span> <span class="err">stfips)
@@ -509,7 +512,7 @@ duplicates</span> <span class="err">drop
 sort</span> <span class="err">time_to_treat
 </span><span class="c1">
 * Create connected scatterplot of coefficients
-* with CIs included with rcap 
+* with CIs included with rcap
 * and a line at 0 both horizontally and vertically
 </span><span class="err">summ</span> <span class="err">ci_top
 local</span> <span class="err">top_range</span> <span class="o">=</span> <span class="err">r(max)
@@ -533,16 +536,16 @@ twoway</span> <span class="err">(sc</span> <span class="err">coef</span> <span c
 </span><span class="c1">
 * create the lag/lead for treated states
 * fill in control obs with 0
-* This allows for the interaction between `treat` and `time_to_treat` to occur for each state. 
-* Otherwise, there may be some NAs and the estimations will be off.  
+* This allows for the interaction between `treat` and `time_to_treat` to occur for each state.
+* Otherwise, there may be some NAs and the estimations will be off.
 </span><span class="err">g</span> <span class="err">time_to_treat</span> <span class="o">=</span> <span class="err">year</span> <span class="o">-</span> <span class="err">_nfd
 replace</span> <span class="err">time_to_treat</span> <span class="o">=</span> <span class="err">0</span> <span class="err">if</span> <span class="err">missing(_nfd)
 </span><span class="c1">* this will determine the difference
-* btw controls and treated states 
+* btw controls and treated states
 </span><span class="err">g</span> <span class="err">treat</span> <span class="o">=</span> <span class="o">!</span><span class="err">missing(_nfd)
 g</span> <span class="err">never_treat</span> <span class="o">=</span> <span class="err">missing(_nfd)
-</span><span class="c1">	
-	
+</span><span class="c1">
+
 * Create relative-time indicators for treated groups by hand
 * ignore distant leads and lags due to lack of observations
 * (note this assumes any effects outside these leads/lags is 0)
@@ -588,7 +591,7 @@ sort</span> <span class="err">time_to_treat
 keep</span> <span class="err">if</span> <span class="err">inrange(time_to_treat,</span> <span class="o">-</span><span class="err">9,</span> <span class="err">16)
 </span><span class="c1">
 * Create connected scatterplot of coefficients
-* with CIs included with rcap 
+* with CIs included with rcap
 * and a line at 0 both horizontally and vertically
 </span><span class="err">summ</span> <span class="err">ci_top
 local</span> <span class="err">top_range</span> <span class="o">=</span> <span class="err">r(max)

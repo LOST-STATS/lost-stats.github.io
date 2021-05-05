@@ -238,18 +238,17 @@ model must be differenced in order to get an ARMA model. A univariate \(ARIMA(p,
 </span><span class="c1">#To get only the AR and MA parameter estimates:</span><span class="w">
 </span><span class="n">lgdp_arima</span><span class="o">$</span><span class="n">coef</span><span class="w">
 
-</span><span class="c1">#To see the estimated model: </span><span class="w">
+</span><span class="c1">#To see the estimated model:</span><span class="w">
 </span><span class="n">lgdp_arima</span><span class="o">$</span><span class="n">model</span><span class="w">
 </span></code></pre></div></div>
 <p>The <code class="language-plaintext highlighter-rouge">forecast</code> package includes the ability to <em>auto-select</em> ARIMA models. This is of particular use when one would like to automate the selection of \(p,q\), and \(d\), without writing their own function. According to <a href="https://donskerclass.github.io/Forecasting/ARIMA.html#:~:text=Condition%20for%20stationarity%20or%20an%20ARMA%20model%20is,roots%2C%20differencing%20%5C%28y_t%5C%29%20d%20times%20can%20restore%20stationarity">David Childers</a>, <code class="language-plaintext highlighter-rouge">forecast::auto.arima()</code> takes the following steps: - Use the <a href="https://en.wikipedia.org/wiki/KPSS_test">KPSS</a> to test for unit roots,
 differencing the series unit stationary - Create likelihood functions at various orders of \(p,q\) - Use AIC to choose \(p,q\), then estimate via Maxmium Likelihood to select \(p,q\)</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">require</span><span class="p">(</span><span class="s2">"pacman"</span><span class="p">))</span><span class="w"> </span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"pacman"</span><span class="p">)</span><span class="w">
-</span><span class="n">pacman</span><span class="o">::</span><span class="n">p_load</span><span class="p">(</span><span class="n">forecast</span><span class="p">)</span><span class="w">
-</span></code></pre></div></div>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Finding optimal parameters for an ARIMA using the previous data</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">forecast</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">#Finding optimal parameters for an ARIMA using the previous data</span><span class="w">
 </span><span class="n">lgdp_auto</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">auto.arima</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w">
 
-</span><span class="c1">#A seasonal model was selected, with non-seasonal components (p,d,q)=(1,2,1), and seasonal components (P,D,Q)=(2,0,1) </span><span class="w">
+</span><span class="c1">#A seasonal model was selected, with non-seasonal components (p,d,q)=(1,2,1), and seasonal components (P,D,Q)=(2,0,1)</span><span class="w">
 </span></code></pre></div></div>
 <p><code class="language-plaintext highlighter-rouge">auto.arima()</code> contains a lot of flexibility. If one knows the value of \(d\), it can be passed to the function. Maximum and starting values for \(p,q,\) and \(d\) can be specified in the seasonal- and non-seasonal cases. If one would like to restrict themselves to a non-seasonal model, or use a different test, these can also be done. Some of these features are demonstrated below. The method for testing unit roots can also be specified. See <code class="language-plaintext highlighter-rouge">?auto.arima</code> or <a href="https://cran.r-project.org/web/packages/forecast/forecast.pdf">the package documentation</a> for more.</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Auto-estimate y, specifying:</span><span class="w">
@@ -258,11 +257,11 @@ differencing the series unit stationary - Create likelihood functions at various
 </span><span class="c1">## d=1</span><span class="w">
 </span><span class="c1">## p starts at 1 and does not exceed 4</span><span class="w">
 </span><span class="c1"># no drift</span><span class="w">
-</span><span class="n">lgdp_ns</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">auto.arima</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> 
-                      </span><span class="n">seasonal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">F</span><span class="p">,</span><span class="w"> 
-                      </span><span class="n">test</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"adf"</span><span class="p">,</span><span class="w"> 
+</span><span class="n">lgdp_ns</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">auto.arima</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w">
+                      </span><span class="n">seasonal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">F</span><span class="p">,</span><span class="w">
+                      </span><span class="n">test</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"adf"</span><span class="p">,</span><span class="w">
                       </span><span class="n">start.p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w">
-                      </span><span class="n">max.p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> 
+                      </span><span class="n">max.p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w">
                       </span><span class="n">allowdrift</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">F</span><span class="p">)</span><span class="w">
 </span><span class="c1">#An ARIMA(3,1,0) was specified</span><span class="w">
 </span><span class="n">lgdp_ns</span><span class="w">

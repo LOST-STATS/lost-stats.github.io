@@ -203,8 +203,8 @@
 </span><span class="n">library</span><span class="p">(</span><span class="n">reprex</span><span class="p">)</span><span class="w">
 
 </span><span class="c1">### Step 1: Read in nc file as a dataframe*</span><span class="w">
-</span><span class="n">pm2010</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nc_open</span><span class="p">(</span><span class="s2">"GlobalGWRwUni_PM25_GL_201001_201012-RH35_Median_NoDust_NoSalt.nc"</span><span class="p">)</span><span class="w">
-</span><span class="n">nc.brick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brick</span><span class="p">(</span><span class="s2">"GlobalGWRwUni_PM25_GL_201001_201012-RH35_Median_NoDust_NoSalt.nc"</span><span class="p">)</span><span class="w">
+</span><span class="n">pm2010</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nc_open</span><span class="p">(</span><span class="s2">"https://github.com/LOST-STATS/lost-stats.github.io/blob/master/Geo-Spatial/Data/Merging_Shape_Files/GlobalGWRwUni_PM25_GL_201001_201012-RH35_Median_NoDust_NoSalt.nc?raw=true"</span><span class="p">)</span><span class="w">
+</span><span class="n">nc.brick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brick</span><span class="p">(</span><span class="s2">"https://github.com/LOST-STATS/lost-stats.github.io/blob/master/Geo-Spatial/Data/Merging_Shape_Files/GlobalGWRwUni_PM25_GL_201001_201012-RH35_Median_NoDust_NoSalt.nc?raw=true"</span><span class="p">)</span><span class="w">
 </span><span class="c1"># Check the dimensions</span><span class="w">
 </span><span class="nf">dim</span><span class="p">(</span><span class="n">nc.brick</span><span class="p">)</span><span class="w">
 
@@ -225,7 +225,7 @@
 </span><span class="n">head</span><span class="p">(</span><span class="n">pm25_sf</span><span class="p">)</span><span class="w">
 
 </span><span class="c1">### Step 4: Read in the Brazil shp file. we plan to merge to</span><span class="w">
-</span><span class="n">Brazil_map_2010</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st_read</span><span class="p">(</span><span class="s2">"geo2_br2010.shp"</span><span class="p">)</span><span class="w">
+</span><span class="n">Brazil_map_2010</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st_read</span><span class="p">(</span><span class="s2">"https://github.com/LOST-STATS/lost-stats.github.io/blob/master/Geo-Spatial/Data/Merging_Shape_Files/geo2_br2010.shp?raw=true"</span><span class="p">)</span><span class="w">
 </span><span class="n">head</span><span class="p">(</span><span class="n">Brazil_map_2010</span><span class="p">)</span><span class="w">
 
 </span><span class="c1">### Step 5: Intersect pm25 sf object with the shp file.*</span><span class="w">
