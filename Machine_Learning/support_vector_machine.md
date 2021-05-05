@@ -112,7 +112,7 @@ plt.show()
 
 ## R
 
-Following codes describe how to implement SVM in R. SVM relies on ``e1071`` package. To learn more about the package, check out its [CRAN page](https://cran.r-project.org/web/packages/e1071/index.html), as well as [this vignette](https://cran.r-project.org/web/packages/e1071/vignettes/svmdoc.pdf). Several other packages are also loaded to help us manipulate data (**dplyr**, **tidyverse**) and plot the results (**ggplot2**). 
+There are a couple of ways to implement SVM in R. Here we'll demonstrate using the **e1071** package. To learn more about the package, check out its [CRAN page](https://cran.r-project.org/web/packages/e1071/index.html), as well as [this vignette](https://cran.r-project.org/web/packages/e1071/vignettes/svmdoc.pdf). Note that we'll also laod the **tidyverse** to help with some data wrangling and plotting. 
 
 Two examples are shown below that use linear SVM and non-linear SVM respectively. The first example shows how to implement linear SVM. We start by constructing data, separating them into training and test set. Using the training set, we fit the data using the `svm()` function. Notice that kernel argument for ``svm()`` function is specified as *linear* for our first example. Next, we predict the test data based on the model estimates using the `predict()` function. The first example result suggests that only one out of 59 data points is incorrectly classified. 
 
@@ -122,11 +122,8 @@ The second example shows how to implement non-linear SVM. The data in example tw
 # Install and load the packages
 if (!require("tidyverse")) install.packages("tidyverse")
 if (!require("e1071")) install.packages("e1071")
-if (!require("ggplot2")) install.packages("ggplot2")
-if (!require("dplyr")) install.packages("dplyr")
 library(tidyverse) # package for data manipulation
 library(e1071)     # package for SVM 
-library(ggplot2)   # package for plotting
 
 ###########################
 # Example 1: Linear SVM ###
