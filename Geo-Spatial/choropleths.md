@@ -75,16 +75,19 @@ The [**sf**](https://github.com/r-spatial/sf/) is a fantastic package to make ch
 
 ```r
 ## Load and install the packages that we'll be using today
-if (!require("pacman")) install.packages("pacman")
-pacman::p_load(sf, tidyverse, ggplot2, rnaturalearth, viridis, cartogram, scales)
+library(sf)
+library(tidyverse)
+library(ggplot2)
+library(rnaturalearth)
+library(viridis)
+library(cartogram)
+library(scales)
 
-world <- ne_download( scale = 110, type = 'countries' ) %>% 
-  st_as_sf()
+world <- ne_download() %>% st_as_sf()
 
-
-world = world %>% 
+world = world %>%
   filter(POP_EST > 0,
-         NAME != "Antarctica") %>% 
+         NAME != "Antarctica") %>%
   mutate(gdp_per_capita = 1.0e6*(GDP_MD_EST / as.numeric(POP_EST)))
 
 ## Simple choropleth plot
@@ -93,8 +96,8 @@ ggplot(data = world) +
 
 
 ## Much better looking choropleth with ggplot2
-world %>% 
-  st_transform(crs = "+proj=eqearth +wktext") %>% 
+world %>%
+  st_transform(crs = "+proj=eqearth +wktext") %>%
   ggplot() +
     geom_sf(aes(fill = gdp_per_capita)) +
     theme_void() +
@@ -107,7 +110,7 @@ world %>%
 
 
 ## Now let's try a cartogram using the cartogram package that was loaded above
-world_cartogram = world %>% 
+world_cartogram = world %>%
   st_transform(crs = "+proj=eqearth +wktext") %>%
   cartogram_ncont("gdp_per_capita", k = 100, inplace = TRUE)
 
