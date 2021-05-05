@@ -39,17 +39,19 @@ This can be one useful way to produce [summary statistics]({{ "/Presentation/Tab
 
 # Implementations
 
-For our implementation examples, we'll use the "storms" dataset that comes bundled with the **dplyr** R package and is also available as a downloadable CSV [here](https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv). This dataset contains hourly track data for 198 tropical storms from 1993 to 2006. Our task in each of the implementation examples will be the same: We want to collapse this hourly dataset to the daily level, and obtain the mean wind speed and pressure reading for each storm. Moreover, we'll also get the first category listing of each storm, thereby demonstrating how we can combine multiple aggregation functions (*mean* and *first*) in a single operation.
+For our implementation examples, we'll use the "storms" dataset that comes bundled with the **dplyr** R package and is also available as a downloadable CSV [here](https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv). This dataset contains hourly track data for 198 tropical storms from 1993 to 2006, which amounts to just over 10,000 observations in total. Our task for each of the implementation examples will be the same: We want to collapse this hourly dataset to the daily level, and obtain the mean wind speed and pressure reading for each storm. Moreover, we'll also get the first category listing of each storm, thereby demonstrating how we can combine multiple aggregation functions (*mean* and *first*) in a single operation.
 
 ## Julia
 
-Julia adopts a highly modular approach to package functionality. The main data wrangling operations are all bundled in the [**DataFrames.jl**](https://dataframes.juliadata.org/stable/) package. But for this example, we'll also need to load the [**Statistics.jl**](https://github.com/JuliaLang/Statistics.jl) library (that comes bundled with the base Julia installation) for the `mean` and `first` aggregating functions. The [**RDatasets**](https://github.com/JuliaStats/RDatasets.jl) package simply provides a conveniet way to import R datasets, although we could also import the "storms" CSV manually from the web if desired.
+Julia adopts a highly modular approach to package functionality. The main data wrangling operations are all provided by the [**DataFrames.jl**](https://dataframes.juliadata.org/stable/) package. But for this example, we'll also need to load the [**Statistics.jl**](https://github.com/JuliaLang/Statistics.jl) library (that comes bundled with the base Julia installation) for the `mean` and `first` aggregating functions. We'll also be using the **CSV.jl** (and **HTTP.jl**) packages, but that's just to import the dataset from the web.
 
 ```julia
-#] add DataFrames, RDatasets
-using DataFrames, Statistics, RDatasets
+#] add DataFrames, CSV, HTTP
+using DataFrames, Statistics, CSV, HTTP
 
-storms = dataset("dplyr", "storms")
+# Read in the file from the web and convert to a DataFrame
+url = "https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv"
+storms = DataFrame(CSV.File(HTTP.get(url).body))
 
 combine(groupby(storms, [:name, :year, :month, :day]), 
         [:wind, :pressure] .=> mean, [:category] .=> first)
