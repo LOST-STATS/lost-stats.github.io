@@ -24,14 +24,14 @@ This page will explore how to consider a set of conditions and assigning a categ
 
 We can use the filtering operation in **pandas** to only assign the categorical value to the rows that satisfy the condition.
 
-```python
+```python?example=catpy
 import pandas as pd
 
 # and purely for the dataset
 import statsmodels.api as sm
 mtcars = sm.datasets.get_rdataset('mtcars').data
 
-# Now we go through each pair of conditions and group assignments, 
+# Now we go through each pair of conditions and group assignments,
 # using loc to only send that group assignment to observations
 # satisfying the given condition
 mtcars.loc[(mtcars.mpg <= 19) & (mtcars.hp <= 123), 'classification'] = 'Efficient and Non-Powerful'
@@ -42,8 +42,8 @@ mtcars.loc[(mtcars.mpg > 19) & (mtcars.hp > 123), 'classification'] = 'Inefficie
 
 There's another way to achieve the same outcome using *lambda functions*. In this case, we'll create a dictionary of pairs of classification names and conditions, for example `'Efficient': lambda x: x['mpg'] <= 19`. We'll then find the first case where the condition is true for each row and create a new column with the paired classification name.
 
-```python
-# Dictionary of classification names and conditions expressed as lambda functions 
+```python?example=catpy
+# Dictionary of classification names and conditions expressed as lambda functions
 conds_dict = {
     'Efficient and Non-Powerful': lambda x: (x['mpg'] <= 19) & (x['hp'] <= 123),
     'Inefficient and Non-Powerful': lambda x: (x['mpg'] > 19) & (x['hp'] <= 123),
@@ -106,7 +106,7 @@ There are several ways to turn conditionals into a categorical variable in Stata
 ```stata
 sysuse auto.dta, clear
 
-* Use if on each step, including generate, so that 
+* Use if on each step, including generate, so that
 * observations that satisfy none of the conditions end up missing
 g classification = "Efficient and Non-Powerful" if mpg <= 19 & gear_ratio <= 2.9
 replace classification = "Inefficient and Non-Powerful" if mpg > 19 & gear_ratio <= 2.9

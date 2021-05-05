@@ -34,7 +34,7 @@ What you'll be able to tell Github to do is run a series of commands. It is best
 
 For instance, if you're using `python`, you will probably want to have a file called `main.py` that looks something like this:
 
-```python
+```python?skip=true&reason=fake_urls
 import csv
 import sys
 from datetime import datetime
@@ -91,7 +91,7 @@ python3 main.py
 
 Similarly, if you're using `R`, you'll want to create a `main.R` file to similar effect. For instance, it might look something like:
 
-```R
+```R?skip=true&reason=fake_urls
 library(readr)
 library(httr)
 
@@ -162,7 +162,7 @@ readr
 
 If you're using `R`, you'll also need to add the following script in a file called `install.R` to your project:
 
-```R
+```R?skip=true&skipReason=installing_packages
 CRAN <- "https://mirror.las.iastate.edu/CRAN/"
 
 process_file <- function(filepath) {
@@ -339,13 +339,13 @@ To get your API key to your script, follow these steps:
 ```python
 import os
 
-api_key = os.environ.get("API_KEY", some_other_way)
+api_key = os.environ.get("API_KEY", "some_other_way")
 ```
 
 or in R you might do
 
 ```R
-api_key <- Sys.getenv("API_KEY", unset = some_other_way)
+api_key <- Sys.getenv("API_KEY", unset = "some_other_way")
 ```
 
   3. Amend the `Pull data` step in your action to set the `API_KEY` environment variable. For instance, it might look like:

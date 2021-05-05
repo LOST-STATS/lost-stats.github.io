@@ -38,8 +38,8 @@ library(ggplot2)
 library(reprex)
 
 ### Step 1: Read in nc file as a dataframe*
-pm2010 = nc_open("GlobalGWRwUni_PM25_GL_201001_201012-RH35_Median_NoDust_NoSalt.nc")
-nc.brick = brick("GlobalGWRwUni_PM25_GL_201001_201012-RH35_Median_NoDust_NoSalt.nc")
+pm2010 = nc_open("https://github.com/LOST-STATS/lost-stats.github.io/blob/master/Geo-Spatial/Data/Merging_Shape_Files/GlobalGWRwUni_PM25_GL_201001_201012-RH35_Median_NoDust_NoSalt.nc?raw=true")
+nc.brick = brick("https://github.com/LOST-STATS/lost-stats.github.io/blob/master/Geo-Spatial/Data/Merging_Shape_Files/GlobalGWRwUni_PM25_GL_201001_201012-RH35_Median_NoDust_NoSalt.nc?raw=true")
 # Check the dimensions
 dim(nc.brick)
 
@@ -60,7 +60,7 @@ rm(nc.brazil)
 head(pm25_sf)
 
 ### Step 4: Read in the Brazil shp file. we plan to merge to
-Brazil_map_2010 = st_read("geo2_br2010.shp")
+Brazil_map_2010 = st_read("https://github.com/LOST-STATS/lost-stats.github.io/blob/master/Geo-Spatial/Data/Merging_Shape_Files/geo2_br2010.shp?raw=true")
 head(Brazil_map_2010)
 
 ### Step 5: Intersect pm25 sf object with the shp file.*

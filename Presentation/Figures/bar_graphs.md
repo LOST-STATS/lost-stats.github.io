@@ -22,7 +22,7 @@ In the example below, we'll explore several different options for plotting bar c
 By far the quickest way to plot a bar chart is to use data analysis package [**pandas**](https://pandas.pydata.org/)' built-in bar chart option.
 
 
-```python
+```python?example=barpy
 import pandas as pd
 
 df = pd.read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/DAAG/Manitoba.lakes.csv", index_col=0)
@@ -36,7 +36,7 @@ This produces a functional, if not hugely attractive, plot. Calling the function
 
 **pandas** uses the plotting library [**matplotlib**](https://matplotlib.org/) under the hood. Many extra configuration options are available using **matplotlib**. In this case, let's just tidy the plot up a bit by applying a style, adding in a label, and putting the title on the left.
 
-```python
+```python?example=barpy
 import matplotlib.pyplot as plt
 
 plt.style.use('seaborn')
@@ -55,7 +55,7 @@ Note that if seaborn finds more than one row per category for the bar chart, it 
 Although it is declarative, **seaborn** is built on **matplotlib** (like **pandas** built-in plots), so finer control of plots is available should it be needed. (Like `df.plot.bar`, `sns.barplot` returns an `ax` object when not used with the `;` character.)
 
 
-```python
+```python?example=barpy
 import seaborn as sns
 
 tips = sns.load_dataset("tips")
@@ -69,7 +69,7 @@ sns.barplot(x="day", y="total_bill", hue="sex", data=tips);
 Yet another declarative option comes from [**plotnine**](https://plotnine.readthedocs.io/en/stable/index.html), which is a port of R's **ggplot** and so has nearly identical syntax that library.
 
 
-```python
+```python?example=barpy
 from plotnine import ggplot, geom_bar, aes, labs
 
 (

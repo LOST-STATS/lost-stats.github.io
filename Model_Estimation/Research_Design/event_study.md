@@ -4,7 +4,7 @@ grand_parent: Model Estimation
 parent: Research Design
 has_children: false
 nav_order: 1
-mathjax: true 
+mathjax: true
 ---
 
 
@@ -12,27 +12,27 @@ mathjax: true
 
 A Difference-in-Difference (DID) event study, or a Dynamic DID model, is a useful tool in evaluating treatment effects of the pre- and post- treatment periods in your respective study. However, since treatment can be staggered - where the treatment group are treated at different time periods - it might be challenging to create a clean event study.
 
-In the following code, we will learn how to create a DID event study when treatment is staggered. If there is only one treatment period, the same methodology as described below can be applied. 
+In the following code, we will learn how to create a DID event study when treatment is staggered. If there is only one treatment period, the same methodology as described below can be applied.
 
 **Importantly**, while this page uses data from a staggered-treatment design, [Sun and Abraham (2020)](https://www.sciencedirect.com/science/article/pii/S030440762030378X) showed that basic event-study estimation can be biased in this setup. The code below should be used only in cases where treatment occurs at a single time period. Where possible, the code will also show how to apply the Sun and Abraham estimator that fixes this problem.
 
 The regression that DID event studies are based aroud is:
 
-$$ 
+$$
 Y_{gt} = \alpha + \Sigma_{k=T_0}^{-2}\beta_k\times treat_{gk}+\Sigma_{k=0}^{T_1}\beta_k\times treat_{gk}+ X_{st}\Gamma+\phi_s+\gamma_t+\epsilon_{st}
 $$
 
-Where: 
+Where:
 
- - $$treat_{sk}$$ is a dummy variable, equaling 1 if the observation's periods relative to the group $$g$$'s first treated period is the same value as `k`; 0 otherwise (and 0 for all never-treated groups). 
+ - $$treat_{sk}$$ is a dummy variable, equaling 1 if the observation's periods relative to the group $$g$$'s first treated period is the same value as `k`; 0 otherwise (and 0 for all never-treated groups).
 
  - $$T_0$$ and $$T_1$$ are the lowest and highest number of leads and lags to consider surrouning the treatment period, respectively.
- 
+
  - $$X`$$ are controls
- 
- - $$\phi$$ and $$\gamma$$ are state and time fixed effects 
- 
- - Estimation is generally performed with standard errors clustered at the group level 
+
+ - $$\phi$$ and $$\gamma$$ are state and time fixed effects
+
+ - Estimation is generally performed with standard errors clustered at the group level
 
 Important notes on the regression:
 
@@ -44,26 +44,26 @@ Important notes on the regression:
 
 ## Keep in Mind
 
-Mechanically, an event study is a graphical illustration of the point estimates and confidence intervals of the regression for each time period before and after the treatment period. It's especially relevant in the DID environment as the point estimates are the average mean differences between the treated and control groups, which provides further evidence of the credibility in assuming parallel trends. 
+Mechanically, an event study is a graphical illustration of the point estimates and confidence intervals of the regression for each time period before and after the treatment period. It's especially relevant in the DID environment as the point estimates are the average mean differences between the treated and control groups, which provides further evidence of the credibility in assuming parallel trends.
 
 ## Also Consider
 
 - [2x2 Difference-in-Differences]({{ "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html" | relative_url }})
-- A great resource for learning more about DID and event study theory is at [Causal Inference: The Mixtape](https://mixtape.scunning.com/difference-in-differences.html#providing-evidence-for-parallel-trends-through-event-studies-and-parallel-leads). 
+- A great resource for learning more about DID and event study theory is at [Causal Inference: The Mixtape](https://mixtape.scunning.com/difference-in-differences.html#providing-evidence-for-parallel-trends-through-event-studies-and-parallel-leads).
 
 # Implementations
 
-All implementations use the same data, which comes from [Stevenson and Wolfers (2006)](http://users.nber.org/~jwolfers/papers/bargaining_in_the_shadow_of_the_law.pdf) by way of [Clarke & Schythe (2020)](http://ftp.iza.org/dp13524.pdf), who use it as an example to demonstrate Goodman-Bacon effects. This data is a balanced panel from 1964 through 1996 of the United States no-fault divorce reforms and female suicide rates. You can directly download the data [here](http://www.damianclarke.net/stata/bacon_example.dta). 
+All implementations use the same data, which comes from [Stevenson and Wolfers (2006)](http://users.nber.org/~jwolfers/papers/bargaining_in_the_shadow_of_the_law.pdf) by way of [Clarke & Schythe (2020)](http://ftp.iza.org/dp13524.pdf), who use it as an example to demonstrate Goodman-Bacon effects. This data is a balanced panel from 1964 through 1996 of the United States no-fault divorce reforms and female suicide rates. You can directly download the data [here](http://www.damianclarke.net/stata/bacon_example.dta).
 
 Column `_nfd` in the data  specifies the year in which the law went into effect for the respective state. We use this column to identify the lead and lags with respect to year of treatment. `pcinc`, `asmrh`, and `cases` are controls.
 
-Note that there are some states in which `_nfd` is empty. These states never received treatment, and thus exist as a control. 
+Note that there are some states in which `_nfd` is empty. These states never received treatment, and thus exist as a control.
 
 ## Python
 
 Python makes dealing with lots of interaction terms like we have here a little painful, but we can iterate to do a lot of the work for us.
 
-```python
+```python?example=pyevent
 import pandas as pd
 import linearmodels as lm
 
@@ -72,8 +72,8 @@ df = pd.read_stata("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.gith
 
 # create the lag/lead for treated states
 # fill in control obs with 0
-# This allows for the interaction between `treat` and `time_to_treat` to occur for each state. 
-# Otherwise, there may be some missingss and the estimations will be off.  
+# This allows for the interaction between `treat` and `time_to_treat` to occur for each state.
+# Otherwise, there may be some missingss and the estimations will be off.
 df['time_to_treat'] = (
     df['_nfd'].sub(df['year'])
         # missing values for _nfd implies no treatment
@@ -92,7 +92,7 @@ df = (
       # Be sure not to include the minuses in the name
       .rename(columns=lambda x: x.replace('-', 'm'))
       # get_dummies has a `drop_first` argument, but if we want to
-      # refer to a specific level, we should return all levels and 
+      # refer to a specific level, we should return all levels and
       # drop out reference column manually
       .drop(columns='INX_m1')
       # Set our individual and time (index) for our data
@@ -128,7 +128,7 @@ clfe.summary
 
 Now we can plot the results with **matplotlib**. Two common approaches are to include vertical-line confidence intervals with `errorbar()` or to include a confidence interval ribbon with `fill_between()`. I'll show the `errorbar()` version.
 
-```python
+```python?example=pyevent
 # Get coefficients and CIs
 res = pd.concat([clfe.params, clfe.std_errors], axis = 1)
 # Scale standard error to 95% CI
@@ -151,16 +151,16 @@ res.reindex(range(res.index.min(), res.index.max()+1)).fillna(0)
 # Plot the estimates as connected lines with error bars
 
 ax = res.plot(
-    y='parameter', 
-    yerr='ci', 
-    xlabel='Time to Treatment', 
-    ylabel='Estimated Effect', 
+    y='parameter',
+    yerr='ci',
+    xlabel='Time to Treatment',
+    ylabel='Estimated Effect',
     legend=False
 )
 # Add a horizontal line at 0
 ax.axhline(0, linestyle='dashed')
 # And a vertical line at the treatment time
-# some versions of pandas have bug return x-axis object with data_interval 
+# some versions of pandas have bug return x-axis object with data_interval
 # starting at 0. In that case change 0 to 21
 ax.axvline(0, linestyle='dashed')
 ```
@@ -171,24 +171,27 @@ Which produces:
 
 Of course, as earlier mentioned, this analysis is subject to the critique by Sun and Abraham (2020). You want to calculate effects separately by time-when-treated, and then aggregate to the time-to-treatment level properly, avoiding the way these estimates can "contaminate" each other in the regular model. You are on your own for this process in Python, though. Read the paper (and the back-end code from the R or Stata implementations listed below).
 
-## R 
+## R
 
-First, load packages and the data 
+First, load packages and the data
 
-```r
-library(pacman)
-p_load(dplyr, fixest, tidyverse, broom, haven)
+```r?example=event_study
+library(dplyr)
+library(fixest)
+library(tidyverse)
+library(broom)
+library(haven)
 
 #Load and prepare data
 bacon_df <- read_dta("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Event_Study_DiD/bacon_example.dta") %>%
   mutate(
   # create the lag/lead for treated states
   # fill in control obs with 0
-  # This allows for the interaction between `treat` and `time_to_treat` to occur for each state. 
-  # Otherwise, there may be some NAs and the estimations will be off.  
+  # This allows for the interaction between `treat` and `time_to_treat` to occur for each state.
+  # Otherwise, there may be some NAs and the estimations will be off.
   time_to_treat =ifelse(is.na(`_nfd`),0,year - `_nfd`),
   # this will determine the difference
-  # btw controls and treated states 
+  # btw controls and treated states
   treat = ifelse(is.na(`_nfd`),0,1)
   )
 ```
@@ -197,33 +200,33 @@ Also, while it's not necessary given how we're about to use the **fixest** packa
 
 We will run the event-study regression using `feols()` from the **fixest** package. **fixest** is very fast, contains support for complex fixed-effects interactions, selecting our own reference group like we need with `i()`, and will also help run the Sun and Abraham (2020) estimator.
 
-```r
-m_1 <- feols(asmrs ~ 
+```r?example=event_study
+m_1 <- feols(asmrs ~
     # The time-treatment interaction terms
-	i(treat, time_to_treat, ref=-1) + 
+	i(treat, time_to_treat, ref=-1) +
 	# Controls
-	pcinc + asmrh + cases 
+	pcinc + asmrh + cases
 	# State and year fixed effects
-	| stfips + year, 
+	| stfips + year,
 	# feols clusters by the first fixed effect anyway, just making that clear
 	cluster=~stfips, data=bacon_df)
 # Now turn the results into a data frame with a year column for easy plotting
-event_1 <- tidy(m_1, conf.int = TRUE) %>% 
+event_1 <- tidy(m_1, conf.int = TRUE) %>%
 	# For plotting purposes, we only want the terms that reference years
-	# and not the controls 
+	# and not the controls
     mutate(year =  as.numeric(parse_number(term))) %>%
 	filter(!is.na(year))
 ```
 
-Now we can plot the results with **ggplot2**. Two common approaches are to include vertical-line confidence intervals with `geom_pointrange()` or to include a confidence interval ribbon with `geom_ribbon()`. I'll show the `geom_pointrange()` version, but this is easy to swap out. 
+Now we can plot the results with **ggplot2**. Two common approaches are to include vertical-line confidence intervals with `geom_pointrange()` or to include a confidence interval ribbon with `geom_ribbon()`. I'll show the `geom_pointrange()` version, but this is easy to swap out.
 
 Now, you could just simply use `coefplot(m_1)` from **fixest** and be done with it! This will create the event-study plot for you. Done. But if you want to maybe do some **ggplot2** styling afterwards, or do some by-hand tweaks, you can do it yourself:
 
-```r
+```r?example=event_study
 event_1 %>%
-    ggplot(mapping = aes(x = year, y = estimate, 
+    ggplot(mapping = aes(x = year, y = estimate,
 	                     ymin = conf.low, ymax = conf.high))+
-      geom_pointrange(position = position_dodge(width = 1), 
+      geom_pointrange(position = position_dodge(width = 1),
 	  # Optional decoration:
 	  color="black", fatten=.5, alpha=.8) +
 	  # Add a line marker for y = 0 (to see if the CI overlaps 0)
@@ -255,7 +258,7 @@ Another common option in these graphs is to link all the individual point estima
 
 Of course, as earlier mentioned, this analysis is subject to the critique by Sun and Abraham (2020). We can also use **fixest** to estimate the Sun and Abraham estimator to calculate effects separately by time-when-treated, and then aggregate to the time-to-treatment level properly, avoiding the way these estimates can "contaminate" each other in the regular model.
 
-```r
+```r?example=event_study
 # see help(aggregate.fixest)
 # As Sun and Abraham indicate, drop any always-treated groups
 sun_df <- bacon_df %>%
@@ -273,21 +276,21 @@ sun_df <- bacon_df %>%
   )) %>%
   # and a shared identifier for year treated and year
   mutate(id = paste0(year_treated, ':', year))
-  
+
 # Don't include so many pre- and post-lags that you've got a lot of tiny periods
 table(sun_df$time_to_treat)
 sun_df <- sun_df %>%
   filter(time_to_treat == -1000 | (time_to_treat >= -9 & time_to_treat <= 24))
 
 # Read the Sun and Abraham paper before including controls as I do here
-m_2 <- feols(asmrs ~ 
+m_2 <- feols(asmrs ~
                # This time, interact time_to_treatment with year treated
                # Dropping as reference the -1 period and the never-treated
                i(time_to_treat, f2 = year_treated, drop = c(-1, -1000)) +
                # Controls
                pcinc + asmrh + cases
              # Fixed effects for group and year
-             | stfips + year, 
+             | stfips + year,
              data=sun_df)
 # Aggregate the coefficients by group
 agg_coef = aggregate(m_2, "(time_to_treat)::(-?[[:digit:]]+)")
@@ -297,9 +300,9 @@ agg_coef %>%
   mutate(conf.low = Estimate - 1.96*`Std. Error`,
          conf.high = Estimate + 1.96*`Std. Error`,
          `Time to Treatment` = c(-9:-2, 0:24)) %>%
-  ggplot(mapping = aes(x = `Time to Treatment`, y = Estimate, 
+  ggplot(mapping = aes(x = `Time to Treatment`, y = Estimate,
                        ymin = conf.low, ymax = conf.high))+
-  geom_pointrange(position = position_dodge(width = 1), 
+  geom_pointrange(position = position_dodge(width = 1),
                   # Optional decoration:
                   color="black", fatten=.5, alpha=.8) +
   geom_line() +
@@ -325,12 +328,12 @@ use "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Mo
 
 * create the lag/lead for treated states
 * fill in control obs with 0
-* This allows for the interaction between `treat` and `time_to_treat` to occur for each state. 
-* Otherwise, there may be some NAs and the estimations will be off.  
+* This allows for the interaction between `treat` and `time_to_treat` to occur for each state.
+* Otherwise, there may be some NAs and the estimations will be off.
 g time_to_treat = year - _nfd
 replace time_to_treat = 0 if missing(_nfd)
 * this will determine the difference
-* btw controls and treated states 
+* btw controls and treated states
 g treat = !missing(_nfd)
 
 * Stata won't allow factors with negative values, so let's shift
@@ -340,7 +343,7 @@ g shifted_ttt = time_to_treat - r(min)
 summ shifted_ttt if time_to_treat == -1
 local true_neg1 = r(mean)
 
-* Regress on our interaction terms with FEs for group and year, 
+* Regress on our interaction terms with FEs for group and year,
 * clustering at the group (state) level
 * use ib# to specify our reference group
 reghdfe asmrs ib`true_neg1'.shifted_ttt pcinc asmrh cases, a(stfips year) vce(cluster stfips)
@@ -370,7 +373,7 @@ duplicates drop
 sort time_to_treat
 
 * Create connected scatterplot of coefficients
-* with CIs included with rcap 
+* with CIs included with rcap
 * and a line at 0 both horizontally and vertically
 summ ci_top
 local top_range = r(max)
@@ -402,16 +405,16 @@ use "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Mo
 
 * create the lag/lead for treated states
 * fill in control obs with 0
-* This allows for the interaction between `treat` and `time_to_treat` to occur for each state. 
-* Otherwise, there may be some NAs and the estimations will be off.  
+* This allows for the interaction between `treat` and `time_to_treat` to occur for each state.
+* Otherwise, there may be some NAs and the estimations will be off.
 g time_to_treat = year - _nfd
 replace time_to_treat = 0 if missing(_nfd)
 * this will determine the difference
-* btw controls and treated states 
+* btw controls and treated states
 g treat = !missing(_nfd)
 g never_treat = missing(_nfd)
-	
-	
+
+
 * Create relative-time indicators for treated groups by hand
 * ignore distant leads and lags due to lack of observations
 * (note this assumes any effects outside these leads/lags is 0)
@@ -457,7 +460,7 @@ sort time_to_treat
 keep if inrange(time_to_treat, -9, 16)
 
 * Create connected scatterplot of coefficients
-* with CIs included with rcap 
+* with CIs included with rcap
 * and a line at 0 both horizontally and vertically
 summ ci_top
 local top_range = r(max)

@@ -128,7 +128,7 @@ pop_wide <- pivot_wider(population,
 
 Another way to do this is using `data.table`.
 
-```r
+```r?example=pivot_wider
 #install.packages('data.table')
 library(data.table)
 

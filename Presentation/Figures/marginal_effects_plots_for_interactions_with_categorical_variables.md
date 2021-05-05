@@ -8,7 +8,7 @@ mathjax: true ## Switch to false if this page has no equations or other math ren
 
 # Marginal effects plots for interactions with categorical variables
 
-In many contexts, the effect of one variable on another might be allowed to vary. For example, the relationship between income and mortality might be different between someone with no degree, a high school degree, or a college degree. 
+In many contexts, the effect of one variable on another might be allowed to vary. For example, the relationship between income and mortality might be different between someone with no degree, a high school degree, or a college degree.
 
 A marginal effects plot for a categorical interaction displays the effect of $X$ on $Y$ on the y-axis for different values of a categorical variable $Z$ on the x-axis. The plot will often include confidence intervals as well. In some cases the categorical variable may be ordered, so you'd want the $Z$ values to show up in that order.
 
@@ -23,7 +23,7 @@ A marginal effects plot for a categorical interaction displays the effect of $X$
 
 # Implementations
 
-In each of these examples, we will be using data on organ donation rates by state from [Kessler & Roth 2014](https://www.nber.org/papers/w20378). The example is of a [2x2 difference-in-difference model]({{ "/Research_Design/two_by_two_difference_in_difference.html" | relative_url }}) extended to estimate dynamic treatment effects, where treatment is interacted with the number of time periods until/since treatment goes into effect. 
+In each of these examples, we will be using data on organ donation rates by state from [Kessler & Roth 2014](https://www.nber.org/papers/w20378). The example is of a [2x2 difference-in-difference model]({{ "/Research_Design/two_by_two_difference_in_difference.html" | relative_url }}) extended to estimate dynamic treatment effects, where treatment is interacted with the number of time periods until/since treatment goes into effect.
 
 All of these examples directly retrieve effect and confidence interval information from the regression by hand rather than relying on a package; packages for graphing interactions often focus on continuous interactions. The original code snippets for the Python, R, and Stata examples comes from the textbook [The Effect](http://nickchk.com/causalitybook.html).
 
@@ -32,7 +32,7 @@ All of these examples directly retrieve effect and confidence interval informati
 ```python
 # PYTHON CODE
 import pandas as pd
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import linearmodels as lm
 
 # Read in data
@@ -51,16 +51,16 @@ od.loc[od['Quarter'] == 'Q12012', 'Qtr'] = 6
 
 # Create our interactions by hand,
 # skipping quarter 3, the last one before treatment
-for i in [1, 2, 4, 5, 6]:
-	name = 'INX'+str(i)
-	od[name] = 1*od['California']
+for i in range(1, 7):
+	name = f"INX{i}"
+	od[name] = 1 * od['California']
 	od.loc[od['Qtr'] != i, name] = 0
 
 # Set our individual and time (index) for our data
 od = od.set_index(['State','Qtr'])
 
-mod = lm.PanelOLS.from_formula('''Rate ~ 
-INX1 + INX2 + INX4 + INX5 + INX6 + 
+mod = lm.PanelOLS.from_formula('''Rate ~
+INX1 + INX2 + INX4 + INX5 + INX6 +
 EntityEffects + TimeEffects''',od)
 
 # Specify clustering when we fit the model
@@ -90,10 +90,10 @@ res['Quarter'] = ['Q42010','Q12011',
 
 # Plot the estimates as connected lines with error bars
 
-plt.pyplot.errorbar(x = 'Quarter', y = 'parameter',
+plt.errorbar(x = 'Quarter', y = 'parameter',
 					yerr = 'ci', data = res)
 # Add a horizontal line at 0
-plt.pyplot.axhline(0, linestyle = 'dashed')
+plt.axhline(0, linestyle = 'dashed')
 ```
 
 ![Categorical marginal effect plot in Python](https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Images/Marginal_Effects_Plots_For_Interactions_With_Categorical_Variables/Python_Categorical_Interaction_Effect.png)
@@ -104,16 +104,16 @@ If you happen to be using the **fixest** package to run your model, there is act
 
 First, prepare the data:
 
-```r
-# install.packages(c('tidyverse','fixest','broom'))
-
-library(tidyverse); library(fixest); library(broom)
+```r?example=categorical
+library(tidyverse)
+library(fixest)
+library(broom)
 
 od <- read_csv('https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Data/Marginal_Effects_Plots_For_Interactions_With_Categorical_Variables/organ_donation.csv')
 
 # Treatment variable
 od <- od %>%
-  mutate(Treated = State == 'California' & 
+  mutate(Treated = State == 'California' &
            Quarter %in% c('Q32011','Q42011','Q12012')) %>%
   # Create an ordered version of Quarter so we can graph it
   # and make sure we drop the last pre-treatment interaction,
@@ -126,20 +126,20 @@ od <- od %>%
 
 Next, our steps to do the **fixest**-specific method:
 
-```r
+```r?example=categorical
 # in the *specific example* of fixest, there is a simple and easy method:
 od <- od %>% mutate(fQuarter = factor(Quarter,
                         levels = c('Q42010','Q12011','Q22011',
                                    'Q32011','Q42011','Q12012')))
-femethod <- feols(Rate ~ i(California, fQuarter, drop = 'Q22011') | 
+femethod <- feols(Rate ~ i(California, fQuarter, drop = 'Q22011') |
                     State + Quarter, data = od)
 
-coefplot(femethod, ref = c('Q22011' = 3), pt.join = TRUE) 
+coefplot(femethod, ref = c('Q22011' = 3), pt.join = TRUE)
 ```
 
 However, for other packages this may not work, so I will also do it by hand in a way that will work with models more generally (even though we'll still run the model in fixest):
 
-```r
+```rr?example=categorical
 # Interact quarter with being in the treated group
 clfe <- feols(Rate ~ California*Quarter | State,
               data = od)
@@ -153,7 +153,7 @@ res <- tidy(clfe) %>%
   # Pull the quarter out of the term
   mutate(Quarter = str_sub(term, -6)) %>%
   # Add in the term we dropped as 0
-  add_row(estimate = 0, std.error = 0, 
+  add_row(estimate = 0, std.error = 0,
           Quarter = 'Q22011') %>%
   # and add 95% confidence intervals
   mutate(ci_bottom = estimate - 1.96*std.error,
@@ -167,14 +167,14 @@ res <- tidy(clfe) %>%
 # And graph
 # "group = 1" is necessary to get ggplot to add the line graph
 # when the x-axis is a factor
-ggplot(res, aes(x = Quarter, y = estimate, group = 1)) + 
+ggplot(res, aes(x = Quarter, y = estimate, group = 1)) +
   # Add points for each estimate and connect them
-  geom_point() + 
+  geom_point() +
   geom_line() +
   # Add confidence intervals
   geom_linerange(aes(ymin = ci_bottom, ymax = ci_top)) +
   # Add a line so we know where 0 is
-  geom_hline(aes(yintercept = 0), linetype = 'dashed') + 
+  geom_hline(aes(yintercept = 0), linetype = 'dashed') +
   # Always label!
   labs(caption = '95% Confidence Intervals Shown')
 ```
@@ -225,7 +225,7 @@ keep Qtr coef se ci_*
 duplicates drop
 
 * Create connected scatterplot of coefficients
-* with CIs included with rcap 
+* with CIs included with rcap
 * and a line at 0 from function
 twoway (sc coef Qtr, connect(line)) (rcap ci_top ci_bottom Qtr) (function y = 0, range(1 6)), xtitle("Quarter") caption("95% Confidence Intervals Shown")
 ```
