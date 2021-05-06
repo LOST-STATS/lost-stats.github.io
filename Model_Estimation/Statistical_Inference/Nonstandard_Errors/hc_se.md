@@ -28,9 +28,9 @@ Many regression models assume homoskedasticity (i.e. constant variance of the er
 
 ## R
 
-The easiest way to obtain robust standard errors in R is with the **estimatr** package ([link](https://declaredesign.org/r/estimatr/)) and its family of `lm_robust` functions. These will default to "HC2" errors, but users can specify a variety of other options. 
+The easiest way to obtain robust standard errors in R is with the **estimatr** package ([link](https://declaredesign.org/r/estimatr/)) and its family of `lm_robust` functions. These will default to "HC2" errors, but users can specify a variety of other options.
 
-```R
+```r
 # If necessary, install estimatr
 # install.packages(c('estimatr'))
 library(estimatr)
@@ -45,7 +45,7 @@ summary(m1)
 
 Alternately, users may consider the `vcovHC` function from the **sandwich** package ([link](https://cran.r-project.org/web/packages/sandwich/index.html)), which is very flexible and supports a wide variety of generic regression objects. For inference (t-tests, etc.), use in conjunction with the `coeftest` function from the **lmtest** package ([link](https://cran.r-project.org/web/packages/lmtest/index.html)).
 
-```R
+```r
 # If necessary, install lmtest and sandwich
 # install.packages(c('lmtest','sandwich'))
 library(sandwich)
@@ -54,8 +54,8 @@ library(lmtest)
 # Create a normal regression model (i.e. without robust standard errors)
 m2 <- lm(mpg ~ cyl + disp + hp, data = mtcars)
 
-# Get the robust VCOV matrix using sandwich::vcovHC(). We can pick the kind of robust errors 
-# with the "type" argument. Note that, unlike estimatr::lm_robust(), the default this time  
+# Get the robust VCOV matrix using sandwich::vcovHC(). We can pick the kind of robust errors
+# with the "type" argument. Note that, unlike estimatr::lm_robust(), the default this time
 # is "HC3". I'll specify it here anyway just to illustrate.
 vcovHC(m2, type = "HC3")
 sqrt(diag(vcovHC(m2))) ## HAC SEs
@@ -79,3 +79,4 @@ regress price mpg gear_ratio foreign, robust
 * For other kinds of robust standard errors use vce()
 regress price mpg gear_ratio foreign, vce(hc3)
 ```
+

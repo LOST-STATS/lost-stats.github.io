@@ -3,7 +3,7 @@ title: K-Nearest Neighbor Matching
 parent: Machine Learning
 has_children: false
 nav_order: 1
-mathjax: true 
+mathjax: true
 ---
 
 ## Introduction
@@ -13,48 +13,48 @@ K-Nearest Neighbor Matching is to classify a new input vector x, examine the k-c
 
 ## Keep in Mind
 
-When to Consider | Advantages | Disadvantages 
+When to Consider | Advantages | Disadvantages
 ---------------- | ---------- | -------------
 Instances map to points in $R^{n}$ | **Traning is very fast** | **Slow at query time**
-Less than 20 attributes per instance | Learn complex target functions | Easily fooled by irrelevant attributes 
-Lots of training data | Do not lose information 
+Less than 20 attributes per instance | Learn complex target functions | Easily fooled by irrelevant attributes
+Lots of training data | Do not lose information
 
 
 ## Also Consider
 
-1. Distance measure 
+1. Distance measure
    * Most common: Euclidean distance
    * Euclidean distance makes sense when different measurements are commensurate; each is variable measured in the same units.
    * If the measurements are different, say length and weight, it is not clear.
-  
+
 $$d_{E}(x^{i}, x^{j}) = (\sum_{k=1}^{p}(x^{i}_k - x^{j}_k)^2)^\frac{1}{2}$$
 
 2. Standardization
-   * When variables are not commensurate, we want to standardize them by dividing by the sample standard deviation. This makes them all equally important. 
+   * When variables are not commensurate, we want to standardize them by dividing by the sample standard deviation. This makes them all equally important.
    * The estimate for the standard deviation of $x_k$:
 $$\hat{\sigma}_k = \biggl(\frac{1}{n}\sum_{i=1}^{n}(x^{i}_k - \bar{x}_k)^2\biggr)^\frac{1}{2}$$
 
-      where $\bar{x}_k$ is the sample mean: 
+      where $\bar{x}_k$ is the sample mean:
 $$\bar{x}_k = \frac{1}{n}\sum_{i=1}^{n}x^i_k $$
 
 3. Weighted Euclidean Distance
    * Finally, if we have some idea of the relative importance of each variable, we can weight them:
-  
+
 $$d_{WE}(i,j) = \biggl(\sum_{k=1}^{p}w_k(x^i_k - x^j_k)^2\biggr)^\frac{1}{2} $$
 
-4. Choosing k 
+4. Choosing k
    * Increasing k reduces variance and increases bias.
-  
+
 5. For high-dimensional space, problem that the nearest neighbor may not be very close at all.
 
-6. Memory-based technique. Must make a pass through the data for each classification. This can be prohibitive for large data sets. 
+6. Memory-based technique. Must make a pass through the data for each classification. This can be prohibitive for large data sets.
 
 
 # Implementations
 
 ## Python
 
-For KNN, it is not required to import packages other than **numpy**. You can basically do KNN with one package because it is mostly about computing distance and normalization. You would need TensorFlow and Keras as you try more advanced algorithms such as convolutional neural network. 
+For KNN, it is not required to import packages other than **numpy**. You can basically do KNN with one package because it is mostly about computing distance and normalization. You would need TensorFlow and Keras as you try more advanced algorithms such as convolutional neural network.
 
 ```c
 import argparse
@@ -148,9 +148,9 @@ def main():
   (test_x, test_y)   = read_data(args.test)
 
   # Normalize the training data
-  (train_x, test_x) = normalize_data(train_x, test_x, 
+  (train_x, test_x) = normalize_data(train_x, test_x,
                           args.rangenorm, args.varnorm, args.exnorm)
-    
+
   acc = runTest(test_x, test_y,train_x, train_y,args.k)
   print("Accuracy: ",acc)
 

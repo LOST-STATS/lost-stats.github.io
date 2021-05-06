@@ -32,7 +32,6 @@ Difference-in-difference makes use of a treatment that was applied to one group 
 ## Python
 
 ```python
-
 # Step 1: Load libraries and import data
 
 import pandas as pd
@@ -49,47 +48,48 @@ url = (
 
 df = pd.read_excel(url)
 
-# Step 2: indicator variables 
+# Step 2: indicator variables
 
 # whether treatment has occured at all
-df['after'] = df['year'] >= 2014
+df["after"] = df["year"] >= 2014
 # whether it has occurred to this entity
-df['treatafter'] = df['after'] * df['treat']
+df["treatafter"] = df["after"] * df["treat"]
 
 # Step 3:
 
 # use pandas basic built in plot functionality to get a visual
 # perspective of our parallel trends assumption
-ax = df.pivot(index='year', columns='treat', values='murder').plot(
+ax = df.pivot(index="year", columns="treat", values="murder").plot(
     figsize=(20, 10),
-    marker='.', 
-    markersize=20, 
-    title='Murder and Time',
-    xlabel='Year',
-    ylabel='Murder Rate',
+    marker=".",
+    markersize=20,
+    title="Murder and Time",
+    xlabel="Year",
+    ylabel="Murder Rate",
     # to make sure each year is displayed on axis
-    xticks=df['year'].drop_duplicates().sort_values().astype('int')
+    xticks=df["year"].drop_duplicates().sort_values().astype("int"),
 )
-# the function returns a matplotlib.pyplot.Axes object 
+# the function returns a matplotlib.pyplot.Axes object
 # we can use this axis to add additional decoration to our plot
-ax.axvline(x=2014, color='gray', linestyle='--') # treatment year
-ax.legend(loc='upper left', title='treat', prop={'size': 20}) # move and label legend
+ax.axvline(x=2014, color="gray", linestyle="--")  # treatment year
+ax.legend(loc="upper left", title="treat", prop={"size": 20})  # move and label legend
 
 # Step 4:
 
 # statsmodels has two separate APIs
 # the original API is more complete both in terms of functionality and documentation
-X = sm.add_constant(df[['treat', 'treatafter', 'after']].astype('float'))
-y = df['murder']
+X = sm.add_constant(df[["treat", "treatafter", "after"]].astype("float"))
+y = df["murder"]
 sm_fit = sm.OLS(y, X).fit()
 
-# the formula API is more familiar for R users 
+# the formula API is more familiar for R users
 # it can be accessed through an alternate constructor bound to each model class
-smff_fit = sm.OLS.from_formula('murder ~ 1 + treat + treatafter + after', data=df).fit()
+smff_fit = sm.OLS.from_formula("murder ~ 1 + treat + treatafter + after", data=df).fit()
 
 # it can also be accessed through a separate namespace
 import statsmodels.formula.api as smf
-smf_fit = smf.ols('murder ~ 1 + treat + treatafter + after', data=df).fit()
+
+smf_fit = smf.ols("murder ~ 1 + treat + treatafter + after", data=df).fit()
 
 # if using jupyter, rich output is displayed without the print function
 # we should see three identical outputs
@@ -133,7 +133,7 @@ If the year is after 2014 **and** the state decided to legalize marijuana, the i
 ```r?example=did
 DiD <- DiD %>%
   mutate(after = year >= 2014) %>%
-  mutate(treatafter = after*treat)
+  mutate(treatafter = after * treat)
 ```
 
 Step 3:
@@ -141,10 +141,11 @@ Step 3:
 Then we need to plot the graph to visualize the impact of legalize marijuana on murder rate by using `ggplot`.
 
 ```r?example=did
-mt <- ggplot(DiD,aes(x=year, y=murder, color = treat)) +
-        geom_point(size=3)+geom_line() +
-        geom_vline(xintercept=2014,lty=4) +
-        labs(title="Murder and Time", x="Year", y="Murder Rate")
+mt <- ggplot(DiD, aes(x = year, y = murder, color = treat)) +
+  geom_point(size = 3) +
+  geom_line() +
+  geom_vline(xintercept = 2014, lty = 4) +
+  labs(title = "Murder and Time", x = "Year", y = "Murder Rate")
 mt
 ```
 ![Diff-in-Diff](../Images/Two_by_Two_Difference_in_Difference/difindif.jpg)
@@ -156,8 +157,9 @@ Step 4:
 We need to measure the impact of impact of legalize marijuana. If we include `treat`, `after`, and `treatafter` in a regression, the coefficient on `treatafter` can be interpreted as "how much bigger was the before-after difference for the treated group?" which is the DiD estimate.
 
 ```r?example=did
-reg<-lm(murder ~ treat+treatafter+after, data = DiD)
+reg <- lm(murder ~ treat + treatafter + after, data = DiD)
 summary(reg)
 ```
 
 After legalization, the murder rate dropped by 0.3% more in treated than untreated states, suggesting that legalization reduced the murder rate.
+

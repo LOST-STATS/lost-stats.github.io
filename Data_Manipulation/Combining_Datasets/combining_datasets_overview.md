@@ -39,3 +39,4 @@ Alternatively, the below example has two datasets that collect the same informat
 | Donald Akliberti | B72197 | 34 |
 
 These ways of combining data are referred to by different names across different programming languages, but will largely be referred to by one common set of terms (used by Stata and Python’s Pandas): merge for horizontal combination and append for for vertical combination.
+

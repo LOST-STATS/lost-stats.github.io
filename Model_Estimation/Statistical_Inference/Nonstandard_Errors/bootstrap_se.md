@@ -16,8 +16,8 @@ Bootstrap is commonly used to calculate standard errors. If you produce many boo
 
 ## Keep in Mind
 
-- Although it feels entirely data-driven, bootstrap standard errors rely on assumptions just like everything else. It assumes your original model is correctly specified, for example. Basic bootstrapping assumes observations are independent of each other. 
-- It is possible to allow for correlations across units by using block-bootstrap. 
+- Although it feels entirely data-driven, bootstrap standard errors rely on assumptions just like everything else. It assumes your original model is correctly specified, for example. Basic bootstrapping assumes observations are independent of each other.
+- It is possible to allow for correlations across units by using block-bootstrap.
 - Bootstrapping can also be used to calculate other features of the parameter's sample distribution, like the percentile, not just the standard error.
 
 ## Also Consider
@@ -43,10 +43,10 @@ library(lmtest)
 data(mtcars)
 
 # Run a regression with normal (iid) errors
- m <- lm(hp~mpg + cyl, data = mtcars) 
- 
- # Obtain the boostrapped SEs
- coeftest(m, vcov = vcovBS(m)) 
+m <- lm(hp ~ mpg + cyl, data = mtcars)
+
+# Obtain the boostrapped SEs
+coeftest(m, vcov = vcovBS(m))
 ```
 
 Another approach to obtaining bootstrapping standard errors in R is to use the **boot** package ([link](https://cran.r-project.org/web/packages/boot/)). This is typcally more hands-on, but gives the user a lot of control over how the bootrapping procedure will execute.
@@ -62,8 +62,8 @@ library(boot)
 # A dataset and indices as input, and then
 # performs analysis and returns a parameter of interest
 regboot <- function(data, indices) {
-  m1 <- lm(hp~mpg + cyl, data = data[indices,])
-  
+  m1 <- lm(hp ~ mpg + cyl, data = data[indices, ])
+
   return(coefficients(m1))
 }
 
@@ -86,8 +86,8 @@ library(broom)
 tidy_results <- tidy(boot_results)
 
 library(stargazer)
-m1 <- lm(hp~mpg + cyl, data = mtcars)
-stargazer(m1, se = list(tidy_results$std.error), type = 'text')
+m1 <- lm(hp ~ mpg + cyl, data = mtcars)
+stargazer(m1, se = list(tidy_results$std.error), type = "text")
 ```
 
 ## Stata
@@ -107,35 +107,36 @@ reg mpg weight length, vce(bootstrap, reps(200))
 ```
 Alternatively, most commands will also accept using the `bootstrap` prefix. Even if they do not allow the option `vce(bootstrap)`.
 
-```Stata
+```stata
 * If a command does not support vce(bootstrap), there's a good chance it will
 * work with a bootstrap: prefix, which works similarly
-bootstrap, reps(200): reg mpg weight length 
+bootstrap, reps(200): reg mpg weight length
 ```
 
 If your model uses weights, `bootstrap` prefix (or `vce(bootstrap)` ) will not be appropriate, and the above command may give you an error:
 
-```Stata
+```stata
 *This should give you an error
 bootstrap, reps(200): reg mpg foreign length [pw=weight]
 ```
 
 `bootstrap`, however, can be used to estimate standard errors of more complex systems. This, however, require some programming. Below an example for bootstrapping marginal effects for `ivprobit`.
 
-```Stata
+```stata
 webuse laborsup, clear
 ** Start creating a small program
 program two_ivp, eclass
 * estimate first stage
   reg other_inc male_educ fem_educ kids
-* estimate residuals  
+* estimate residuals
   capture drop res
   predict res, res
 * add them to the probit first stage
-* This is what ivprobit two step does. 
+* This is what ivprobit two step does.
   probit fem_work fem_educ kids other_inc res
   margins, dydx(fem_educ kids other_inc) post
 end
 ** now simply bootstrap the program:
 bootstrap, reps(100):two_ivp
 ```
+

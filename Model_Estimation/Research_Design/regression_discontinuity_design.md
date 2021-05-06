@@ -85,25 +85,28 @@ df <- read.csv("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.i
 # If we want to specify options for bandwidth selection, we can run rdbwselect directly.
 # Otherwise, rdrobust will run it with default options by itself
 # c(0) indicates that treatment is assigned at 0 (i.e. someone gets more votes than the opponent)
-bandwidth <- rdbwselect(df$y, df$x, c=0)
+bandwidth <- rdbwselect(df$y, df$x, c = 0)
 
 # Run a sharp RDD with a second-order polynomial term
 rdd <- rdrobust(df$y, df$x,
-                c=0, p=2)
+  c = 0, p = 2
+)
 summary(rdd)
 
 # Run a fuzzy RDD
 # We don't have a fuzzy RDD in this data, but let's create one, where
 # probability of treatment jumps from 20% to 60% at the cutoff
 N <- nrow(df)
-df$treatment <- (runif(N) < .2)*(df$x < 0) + (runif(N) < .6)*(df$x >= 0)
+df$treatment <- (runif(N) < .2) * (df$x < 0) + (runif(N) < .6) * (df$x >= 0)
 rddfuzzy <- rdrobust(df$y, df$x,
-                     c=0, p=2, fuzzy = df$treatment)
+  c = 0, p = 2, fuzzy = df$treatment
+)
 summary(rddfuzzy)
 
 # Generate a standard RDD plot with a polynomial of 2 (default is 4)
 rdplot(df$y, df$x,
-       c = 0, p = 2)
+  c = 0, p = 2
+)
 ```
 
 ## Stata
@@ -137,5 +140,4 @@ rdrobust y x, c(0) fuzzy(treatment)
 * Generate a standard RDD plot with a polynomial of 2 (default is 4)
 rdplot y x, c(0) p(2)
 ```
-
 

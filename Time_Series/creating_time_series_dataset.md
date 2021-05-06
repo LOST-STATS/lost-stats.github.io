@@ -26,13 +26,15 @@ Time-series estimators are, by definition, a function of the temporal ordering o
 import pandas as pd
 
 # Read in data
-gdp = pd.read_csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv")
+gdp = pd.read_csv(
+    "https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv"
+)
 
 # Convert date column to be of data type datetime64
-gdp['DATE'] = pd.to_datetime(gdp['DATE'])
+gdp["DATE"] = pd.to_datetime(gdp["DATE"])
 
 # Create a column with quarter-year combinations
-gdp['yr-qtr'] = gdp['DATE'].apply(lambda x: str(x.year) + '-' + str(x.quarter))
+gdp["yr-qtr"] = gdp["DATE"].apply(lambda x: str(x.year) + "-" + str(x.quarter))
 ```
 
 ## R
@@ -66,9 +68,10 @@ STEP 3) Convert a date variable formats to quarter
 
 ```r?example=tsibble
 gdp_ts <- as_tsibble(gdp,
-                     index = DATE,
-                     regular = FALSE) %>%
-    index_by(qtr = ~ yearquarter(.))
+  index = DATE,
+  regular = FALSE
+) %>%
+  index_by(qtr = ~ yearquarter(.))
 ```
 
 By applying `yearmonth()` to the index variable (referred to as `.`), it creates new variable named `qtr` with a quarter interval which corresponds to the year-quarter for the original variable `DATE`.
@@ -117,3 +120,4 @@ tsset date_index
 ```
 
 Now, we have a quarterly Stata time-series dataset. Any data you add to this file in the future will be interpreted as time-series data.
+

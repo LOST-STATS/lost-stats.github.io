@@ -42,19 +42,23 @@ library(interplot)
 data(txhousing)
 
 # Estimate a regression with a nonlinear term
-cubic_model <- lm(sales ~ listings + I(listings^2) + 
-                    I(listings^3), 
-                  data = txhousing)
+cubic_model <- lm(sales ~ listings + I(listings^2) +
+  I(listings^3),
+data = txhousing
+)
 
 # Get the marginal effect of var1 (listings)
 # at different values of var2 (listings), with confidence ribbon.
-# This will return a ggplot object, so you can 
+# This will return a ggplot object, so you can
 # customize using ggplot elements like labs().
-interplot(cubic_model, 
-          var1 = "listings",
-          var2 = "listings")+
-  labs(x = "Number of Listings",
-       y = "Marginal Effect of Listings")
+interplot(cubic_model,
+  var1 = "listings",
+  var2 = "listings"
+) +
+  labs(
+    x = "Number of Listings",
+    y = "Marginal Effect of Listings"
+  )
 # Try setting adding listings*date to the regression model
 # and then in interplot set var2 = "date" to get the effect of listings at different values of date
 ```
@@ -77,7 +81,7 @@ regress wage c.tenure##c.tenure
 * Put the variable we're interested in getting the effect of in dydx()
 * And the values we want to evaluate it at in at()
 margins, dydx(tenure) at(tenure = (0(1)26))
-* (If we had interacted with another variable, say age, we would specify similarly, 
+* (If we had interacted with another variable, say age, we would specify similarly,
 * with at(age = (start(count-by)end)))
 
 * Then, marginsplot
@@ -88,3 +92,4 @@ marginsplot, xtitle("Tenure") ytitle("Marginal Effect of Tenure") recast(line) r
 This results in:
 
 ![Marginal effect of tenure varying over tenure, produced with Stata.](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Marginal-Effects-Plots-for-Interactions-with-Continuous-Variables/stata_marginal_effects_continuous_interaction.png)
+

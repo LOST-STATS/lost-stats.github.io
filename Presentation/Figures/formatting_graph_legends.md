@@ -35,7 +35,7 @@ The dataset used in this article will be the ***mtcars*** dataset as it comes wi
 
 ```r?example=legends
 fig1 <- ggplot(mtcars, aes(wt, mpg, colour = factor(cyl))) +
-       geom_point()
+  geom_point()
 fig1
 ```
 
@@ -46,7 +46,6 @@ fig2 <- ggplot(mtcars, aes(wt, mpg, colour = factor(cyl), shape = factor(am))) +
   geom_point()
 
 fig2 + labs(colour = "Number of Cylinders", shape = "Transmission Type")
-
 ```
 
 To change the legend position use the `theme()` modifier in ggplot. From there you can choose top, right, bottom, left, or none (removes the legend). To put the legends inside the plot create column vector of size 2 (the first value refers to the x coordinate. while the second refers to the y) where both elements are between 0 and 1. To ensure that the whole legends is within the graph use the `legend.justification` to set the corner where you want the legend.
@@ -68,7 +67,7 @@ There are other cool things you can do to the legend to better customize the vis
 ```r?example=legends
 fig3 <- fig2 +
   theme(
-    legend.box.background = element_rect(color="red", size=2),
+    legend.box.background = element_rect(color = "red", size = 2),
     legend.box.margin = margin(116, 6, 6, 6),
     legend.key = element_rect(fill = "white", colour = "black"),
     legend.text = element_text(size = 8, colour = "red")
@@ -90,12 +89,12 @@ You can alternately remove legends (or components of legends) with `guides`
 ```r?example=legends
 # Here we've removed the color legend, but the shape legend is still there.
 fig5 <- fig2 +
-       guides(color = FALSE)
+  guides(color = FALSE)
 fig5
 
 # This removes both
 fig6 <- fig2 +
-       guides(color = FALSE, shape = FALSE)
+  guides(color = FALSE, shape = FALSE)
 fig6
 ```
 
@@ -163,3 +162,4 @@ In regards to legend positioning, the same rules discussed above apply.
 ### Sources
 Stata's manual on two-way graphs: https://www.stata.com/manuals13/g-2graphtwowayline.pdf
 Stata's manual on legends: https://www.stata.com/manuals13/g-3legend_options.pdf
+

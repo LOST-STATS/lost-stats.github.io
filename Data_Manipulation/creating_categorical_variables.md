@@ -29,15 +29,24 @@ import pandas as pd
 
 # and purely for the dataset
 import statsmodels.api as sm
-mtcars = sm.datasets.get_rdataset('mtcars').data
+
+mtcars = sm.datasets.get_rdataset("mtcars").data
 
 # Now we go through each pair of conditions and group assignments,
 # using loc to only send that group assignment to observations
 # satisfying the given condition
-mtcars.loc[(mtcars.mpg <= 19) & (mtcars.hp <= 123), 'classification'] = 'Efficient and Non-Powerful'
-mtcars.loc[(mtcars.mpg > 19) & (mtcars.hp <= 123), 'classification'] = 'Inefficient and Non-Powerful'
-mtcars.loc[(mtcars.mpg <= 19) & (mtcars.hp > 123), 'classification'] = 'Efficient and Powerful'
-mtcars.loc[(mtcars.mpg > 19) & (mtcars.hp > 123), 'classification'] = 'Inefficient and Powerful'
+mtcars.loc[
+    (mtcars.mpg <= 19) & (mtcars.hp <= 123), "classification"
+] = "Efficient and Non-Powerful"
+mtcars.loc[
+    (mtcars.mpg > 19) & (mtcars.hp <= 123), "classification"
+] = "Inefficient and Non-Powerful"
+mtcars.loc[
+    (mtcars.mpg <= 19) & (mtcars.hp > 123), "classification"
+] = "Efficient and Powerful"
+mtcars.loc[
+    (mtcars.mpg > 19) & (mtcars.hp > 123), "classification"
+] = "Inefficient and Powerful"
 ```
 
 There's another way to achieve the same outcome using *lambda functions*. In this case, we'll create a dictionary of pairs of classification names and conditions, for example `'Efficient': lambda x: x['mpg'] <= 19`. We'll then find the first case where the condition is true for each row and create a new column with the paired classification name.
@@ -45,18 +54,16 @@ There's another way to achieve the same outcome using *lambda functions*. In thi
 ```python?example=catpy
 # Dictionary of classification names and conditions expressed as lambda functions
 conds_dict = {
-    'Efficient and Non-Powerful': lambda x: (x['mpg'] <= 19) & (x['hp'] <= 123),
-    'Inefficient and Non-Powerful': lambda x: (x['mpg'] > 19) & (x['hp'] <= 123),
-    'Efficient and Powerful': lambda x: (x['mpg'] <= 19) & (x['hp'] > 123),
-    'Inefficient and Powerful': lambda x: (x['mpg'] > 19) & (x['hp'] > 123),
+    "Efficient and Non-Powerful": lambda x: (x["mpg"] <= 19) & (x["hp"] <= 123),
+    "Inefficient and Non-Powerful": lambda x: (x["mpg"] > 19) & (x["hp"] <= 123),
+    "Efficient and Powerful": lambda x: (x["mpg"] <= 19) & (x["hp"] > 123),
+    "Inefficient and Powerful": lambda x: (x["mpg"] > 19) & (x["hp"] > 123),
 }
 
 # Find name of first condition that evaluates to True
-mtcars['classification'] = mtcars.apply(lambda x: next(key for
-                                                       key, value in
-                                                       conds_dict.items()
-                                                       if value(x)),
-                                        axis=1)
+mtcars["classification"] = mtcars.apply(
+    lambda x: next(key for key, value in conds_dict.items() if value(x)), axis=1
+)
 ```
 There's quite a bit to unpack here! `.apply(lambda x: ..., axis=1)` applies a lambda function rowwise to the entire dataframe, with individual columns accessed by, for example, `x['mpg']`. (You can apply functions on an index using `axis=0`.) The `next` keyword returns the next entry in a list that evaluates to true or exists (so in this case it will just return the first entry that exists). Finally, `key for key, value in conds_dict.items() if value(x)` iterates over the pairs in the dictionary and returns only the condition names (the 'keys' in the dictionary) for conditions (the 'values' in the dictionary) that evaluate to true.
 
@@ -71,10 +78,10 @@ data(mtcars)
 
 mtcars <- mtcars %>%
   mutate(classification = case_when(
-    mpg <= 19 & hp <= 123 ~ 'Efficient and Non-Powerful', # Here we list each pair of conditions and group assignments
-    mpg > 19 & hp <= 123 ~ 'Inefficient and Non-Powerful',
-    mpg <= 19 & hp > 123 ~ 'Efficient and Powerful',
-    mpg > 19 & hp > 123 ~ 'Inefficient and Powerful'
+    mpg <= 19 & hp <= 123 ~ "Efficient and Non-Powerful", # Here we list each pair of conditions and group assignments
+    mpg > 19 & hp <= 123 ~ "Inefficient and Non-Powerful",
+    mpg <= 19 & hp > 123 ~ "Efficient and Powerful",
+    mpg > 19 & hp > 123 ~ "Inefficient and Powerful"
   )) %>%
   mutate(classification = as.factor(classification)) # Storing categorical variables as factors often makes sense
 ```
@@ -89,10 +96,10 @@ data(mtcars)
 mtcars <- as.data.table(mtcars)
 
 mtcars[, classification := fcase(
-  mpg <= 19 & hp <= 123, 'Efficient and Non-Powerful', # Here we list each pair of conditions and group assignments
-  mpg > 19 & hp <= 123, 'Inefficient and Non-Powerful',
-  mpg <= 19 & hp > 123, 'Efficient and Powerful',
-  mpg > 19 & hp > 123, 'Inefficient and Powerful'
+  mpg <= 19 & hp <= 123, "Efficient and Non-Powerful", # Here we list each pair of conditions and group assignments
+  mpg > 19 & hp <= 123, "Inefficient and Non-Powerful",
+  mpg <= 19 & hp > 123, "Efficient and Powerful",
+  mpg > 19 & hp > 123, "Inefficient and Powerful"
 )]
 
 # Storing categorical variables as factors often makes sense
@@ -113,3 +120,4 @@ replace classification = "Inefficient and Non-Powerful" if mpg > 19 & gear_ratio
 replace classification = "Efficient and Powerful" if mpg <= 19 & gear_ratio > 2.9
 replace classification = "Inefficient and Powerful" if mpg > 19 & gear_ratio > 2.9
 ```
+

@@ -49,10 +49,9 @@ X_train, X_test, y_train, y_test = train_test_split(X, y)
 # The number of trees is set by n_estimators; there are many other options that
 # you should experiment with. Typically the defaults will be sensible but are
 # unlikely to be perfect for your use case. Let's create the empty model:
-reg = GradientBoostingRegressor(n_estimators=100,
-                                max_depth=3,
-                                learning_rate=0.1,
-                                min_samples_split=3)
+reg = GradientBoostingRegressor(
+    n_estimators=100, max_depth=3, learning_rate=0.1, min_samples_split=3
+)
 # Fit the model
 reg.fit(X_train, y_train)
 
@@ -102,10 +101,10 @@ carInsurance_train <- read_csv("https://raw.githubusercontent.com/LOST-STATS/LOS
 summary(carInsurance_train)
 
 # Produce a training and a testing subset of the data
-sample = sample.split(carInsurance_train$Id, SplitRatio = .8)
-train = subset(carInsurance_train, sample == TRUE)
-test  = subset(carInsurance_train, sample == FALSE)
-total <- rbind(train ,test)
+sample <- sample.split(carInsurance_train$Id, SplitRatio = .8)
+train <- subset(carInsurance_train, sample == TRUE)
+test <- subset(carInsurance_train, sample == FALSE)
+total <- rbind(train, test)
 gg_miss_upset(total)
 ```
 
@@ -113,18 +112,18 @@ Step 1: Produce dummies as appropriate
 
 ```r?example=boosting
 total$CallStart <- as.character(total$CallStart)
-total$CallStart <- strptime(total$CallStart,format=" %H:%M:%S")
+total$CallStart <- strptime(total$CallStart, format = " %H:%M:%S")
 total$CallEnd <- as.character(total$CallEnd)
-total$CallEnd <- strptime(total$CallEnd,format=" %H:%M:%S")
-total$averagetimecall <- as.numeric(as.POSIXct(total$CallEnd)-as.POSIXct(total$CallStart),units="secs")
-time <- mean(total$averagetimecall,na.rm = TRUE)
+total$CallEnd <- strptime(total$CallEnd, format = " %H:%M:%S")
+total$averagetimecall <- as.numeric(as.POSIXct(total$CallEnd) - as.POSIXct(total$CallStart), units = "secs")
+time <- mean(total$averagetimecall, na.rm = TRUE)
 ```
 
 Produce dummy variables as appropriate
 
 ```r?example=boosting
 total_df <- dummy.data.frame(total %>%
-                                dplyr::select(-CallStart, -CallEnd, -Id, -Outcome))
+  dplyr::select(-CallStart, -CallEnd, -Id, -Outcome))
 summary(total_df)
 ```
 
@@ -132,8 +131,8 @@ Fill in missing values
 
 ```r?example=boosting
 total_df$Job[is.na(total_df$Job)] <- "management"
-total_df$Education [is.na(total_df$Education)] <- "secondary"
-total_df$Marital[is.na(total_df$Marital)] <-"married"
+total_df$Education[is.na(total_df$Education)] <- "secondary"
+total_df$Marital[is.na(total_df$Marital)] <- "married"
 total_df$Communication[is.na(total_df$Communication)] <- "cellular"
 total_df$LastContactMonth[is.na(total_df$LastContactMonth)] <- "may"
 ```
@@ -143,7 +142,7 @@ Step 2: Preprocess data with median imputation and a central scaling
 ```r?example=boosting
 clean_new <- preProcess(
   x = total_df %>% dplyr::select(-CarInsurance) %>% as.matrix(),
-  method = c('medianImpute')
+  method = c("medianImpute")
 ) %>% predict(total_df)
 ```
 
@@ -167,8 +166,8 @@ Step 5: Train the boosted regression tree
 Notice that `trControl` is being set to select parameters using five-fold cross-validation (`"cv"`).
 
 ```r?example=boosting
-carinsurance_boost = train(
-  factor(CarInsurance)~.,
+carinsurance_boost <- train(
+  factor(CarInsurance) ~ .,
   data = trainclean,
   method = "gbm",
   trControl = trainControl(
@@ -179,6 +178,8 @@ carinsurance_boost = train(
     "n.trees" = seq(25, 200, by = 25),
     "interaction.depth" = 1:3,
     "shrinkage" = c(0.1, 0.01, 0.001),
-    "n.minobsinnode" = 5)
+    "n.minobsinnode" = 5
+  )
 )
 ```
+

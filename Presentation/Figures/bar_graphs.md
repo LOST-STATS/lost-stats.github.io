@@ -25,9 +25,12 @@ By far the quickest way to plot a bar chart is to use data analysis package [**p
 ```python?example=barpy
 import pandas as pd
 
-df = pd.read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/DAAG/Manitoba.lakes.csv", index_col=0)
+df = pd.read_csv(
+    "https://vincentarelbundock.github.io/Rdatasets/csv/DAAG/Manitoba.lakes.csv",
+    index_col=0,
+)
 
-df.plot.bar(y='area', legend=False, title='Area of lakes in Manitoba');
+df.plot.bar(y="area", legend=False, title="Area of lakes in Manitoba")
 ```
 
 ![png](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/bar_plot_graphs/bar_py_1.png)
@@ -39,10 +42,10 @@ This produces a functional, if not hugely attractive, plot. Calling the function
 ```python?example=barpy
 import matplotlib.pyplot as plt
 
-plt.style.use('seaborn')
+plt.style.use("seaborn")
 
-ax = df.plot.bar(y='area', legend=False, ylabel='Area', rot=15)
-ax.set_title('Area of lakes in Manitoba', loc='left');
+ax = df.plot.bar(y="area", legend=False, ylabel="Area", rot=15)
+ax.set_title("Area of lakes in Manitoba", loc="left")
 ```
 
 
@@ -60,7 +63,7 @@ import seaborn as sns
 
 tips = sns.load_dataset("tips")
 
-sns.barplot(x="day", y="total_bill", hue="sex", data=tips);
+sns.barplot(x="day", y="total_bill", hue="sex", data=tips)
 ```
 
 ![png](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/bar_plot_graphs/bar_py_3.png)
@@ -74,8 +77,8 @@ from plotnine import ggplot, geom_bar, aes, labs
 
 (
     ggplot(tips)
-    + geom_bar(aes(x='day'), colour='black', fill='blue')
-    + labs(x = "Day", y = "Number", title = "Number of diners")
+    + geom_bar(aes(x="day"), colour="black", fill="blue")
+    + labs(x="Day", y="Number", title="Number of diners")
 )
 ```
 
@@ -101,17 +104,8 @@ This tutorial will use a dataset that already exists in R, so no need to load an
 - Next we want to tell `ggplot` what we want to map. We use the mapping function to do this. We set mapping to the aesthetic function. `(mapping = aes(x = species))` Within the `aes` function we want to specify what we want our `x` value to be, in this case `species`. Copy the code below to make your first bar graph!
 
 ```r?example=bargraph
-starwars <- read.csv("https://github.com/LOST-STATS/LOST-STATS.github.io/raw/source/Presentation/Figures/Data/Bar_Graphs/star_wars_characters.csv")
 
- ggplot() +
-    geom_bar(data = starwars, mapping = aes(x = species))
- ```
-
-![Unstyled R Bar Graph](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/bar_plot_graphs/r_bar_graph_1.png)
-
-As you can see, there are some issues. We can't tell what the individual species are on the `x` axis. We also might want to give our graph a title, maybe give it some color, etc. How do we do this? By adding additional functions to our graph!
-
-```r?example=bargraph
+```
 ggplot(data = starwars) +
   geom_bar( mapping = aes(x = species), color = "black", fill = "blue") +
   labs(x = "Species", y = "Total", title = "Character Appearences in Movies by Species") +
@@ -130,7 +124,7 @@ Stata, like R, also has pre-installed datasets available for use. To find them, 
 
 This is fictionalized blood pressure data. In your variables column you should have five variables (`patient, sex, agegrp, when, bp`). Let's make a bar chart that looks at the patients within our dataset by gender and age. To make a bar chart type into your stata command console:
 
-```stata
+```
 graph bar, over(sex) over(agegrp)
 ```
 and the following output should appear in another window.
@@ -139,7 +133,7 @@ and the following output should appear in another window.
 
 Congratulations, you've made your first bar chart in Stata! We can now visually see the make-up of our dataset by gender and age. We might want to change the axis labels or give this a title. To do so type the following in your command window:
 
-```stata
+```
 graph bar, over(sex) over(agegrp) title(Our Graph) ytitle(Percent)
 ```
 
@@ -149,12 +143,6 @@ and the following graph shoud appear
 
 Notice we gave our graph a title and capitalized the y axis. Lets add some color next. To do so type
 
-```stata
-graph bar, over(sex) over(agegrp) title(Our Graph) ytitle(Percent) bar(1, fcolor(red)) bar(2, fcolor(blue))
 ```
-and the following graph should appear
+graph bar, over(sex) over(agegrp) title(Our Graph) ytitle(Percent) bar(1, fcolor(red)) bar(2, fcolor(blue))
 
-
-![Colored and Styled Stata Bar Graph](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/bar_plot_graphs/bar_graph_3.png)
-
-Our bars are now red with a blue outline. Pretty neat! There are many sources of Stata help on the internet and many different way to customize your bar graphs. There is an official [Stata support](http://www.stata.com/support/) page that can answer queries regarding Stata.

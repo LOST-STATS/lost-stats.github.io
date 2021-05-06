@@ -38,10 +38,11 @@ By far the quickest way to plot a histogram is to use data analysis package [**p
 ```python?example=histopy
 import pandas as pd
 
-df = pd.read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/PSID.csv",
-                 index_col=0)
+df = pd.read_csv(
+    "https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/PSID.csv", index_col=0
+)
 
-df['earnings'].plot.hist()
+df["earnings"].plot.hist()
 ```
 
 ![png](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/histogram_graphs/py_hist_1.png)
@@ -53,12 +54,12 @@ We can make this plot a bit more appealing by calling on the customisation featu
 ```python?example=histopy
 import matplotlib.pyplot as plt
 
-plt.style.use('seaborn')
+plt.style.use("seaborn")
 
-ax = df['earnings'].plot.hist(density=True, log=True, bins=80)
-ax.set_title('Earnings in the PSID', loc='left')
-ax.set_ylabel('Density')
-ax.set_xlabel('Earnings');
+ax = df["earnings"].plot.hist(density=True, log=True, bins=80)
+ax.set_title("Earnings in the PSID", loc="left")
+ax.set_ylabel("Density")
+ax.set_xlabel("Earnings")
 ```
 
 ![png](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/histogram_graphs/py_hist_2.png)
@@ -70,10 +71,12 @@ An alternative to the matplotlib-pandas combination is [**seaborn**](), a declar
 import seaborn as sns
 
 age_cut_off = 45
-df[f'Older than {age_cut_off}'] = df['age']>age_cut_off
+df[f"Older than {age_cut_off}"] = df["age"] > age_cut_off
 
-ax = sns.histplot(df, x="earnings", hue=f"Older than {age_cut_off}", element="step", stat="density")
-ax.set_yscale('log')
+ax = sns.histplot(
+    df, x="earnings", hue=f"Older than {age_cut_off}", element="step", stat="density"
+)
+ax.set_yscale("log")
 ```
 
 ![png](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/histogram_graphs/py_hist_3.png)
@@ -83,11 +86,7 @@ Finally, let's look at a different declarative library, [**plotnine**](https://p
 ```python?example=histopy
 from plotnine import ggplot, aes, geom_histogram
 
-(
-    ggplot(df, aes(x='earnings', y='stat(density)')
-          )
-    + geom_histogram(bins=80)
-)
+(ggplot(df, aes(x="earnings", y="stat(density)")) + geom_histogram(bins=80))
 ```
 
 ![png](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/histogram_graphs/py_hist_4.png)
@@ -101,7 +100,7 @@ Histograms can be represented using base `R`, or more elegantly with `ggplot`. `
 
 # loading the data
 
-incomes = data.frame(income = state.x77[,'Income'])
+incomes <- data.frame(income = state.x77[, "Income"])
 
 # first using base R
 
@@ -149,3 +148,4 @@ histogram mpg, bin(15) frequency
 
 hist mpg, width(2) frequency
 ```
+

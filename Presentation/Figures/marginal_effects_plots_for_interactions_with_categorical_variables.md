@@ -36,64 +36,61 @@ import matplotlib.pyplot as plt
 import linearmodels as lm
 
 # Read in data
-od = pd.read_csv('https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Data/Marginal_Effects_Plots_For_Interactions_With_Categorical_Variables/organ_donation.csv')
+od = pd.read_csv(
+    "https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Data/Marginal_Effects_Plots_For_Interactions_With_Categorical_Variables/organ_donation.csv"
+)
 
 # Create Treatment Variable
-od['California'] = od['State'] == 'California'
+od["California"] = od["State"] == "California"
 
 # PanelOLS requires a numeric time variable
-od['Qtr'] = 1
-od.loc[od['Quarter'] == 'Q12011', 'Qtr'] = 2
-od.loc[od['Quarter'] == 'Q22011', 'Qtr'] = 3
-od.loc[od['Quarter'] == 'Q32011', 'Qtr'] = 4
-od.loc[od['Quarter'] == 'Q42011', 'Qtr'] = 5
-od.loc[od['Quarter'] == 'Q12012', 'Qtr'] = 6
+od["Qtr"] = 1
+od.loc[od["Quarter"] == "Q12011", "Qtr"] = 2
+od.loc[od["Quarter"] == "Q22011", "Qtr"] = 3
+od.loc[od["Quarter"] == "Q32011", "Qtr"] = 4
+od.loc[od["Quarter"] == "Q42011", "Qtr"] = 5
+od.loc[od["Quarter"] == "Q12012", "Qtr"] = 6
 
 # Create our interactions by hand,
 # skipping quarter 3, the last one before treatment
 for i in range(1, 7):
-	name = f"INX{i}"
-	od[name] = 1 * od['California']
-	od.loc[od['Qtr'] != i, name] = 0
+    name = f"INX{i}"
+    od[name] = 1 * od["California"]
+    od.loc[od["Qtr"] != i, name] = 0
 
 # Set our individual and time (index) for our data
-od = od.set_index(['State','Qtr'])
+od = od.set_index(["State", "Qtr"])
 
-mod = lm.PanelOLS.from_formula('''Rate ~
+mod = lm.PanelOLS.from_formula(
+    """Rate ~
 INX1 + INX2 + INX4 + INX5 + INX6 +
-EntityEffects + TimeEffects''',od)
+EntityEffects + TimeEffects""",
+    od,
+)
 
 # Specify clustering when we fit the model
-clfe = mod.fit(cov_type = 'clustered',
-	cluster_entity = True)
+clfe = mod.fit(cov_type="clustered", cluster_entity=True)
 
 # Get coefficients and CIs
-res = pd.concat([clfe.params, clfe.std_errors], axis = 1)
+res = pd.concat([clfe.params, clfe.std_errors], axis=1)
 # Scale standard error to CI
-res['ci'] = res['std_error']*1.96
+res["ci"] = res["std_error"] * 1.96
 
 # Add our quarter values
-res['Qtr'] = [1, 2, 4, 5, 6]
+res["Qtr"] = [1, 2, 4, 5, 6]
 # And add our reference period back in
-reference = pd.DataFrame([[0,0,0,3]],
-			  columns = ['parameter',
-						 'lower',
-						 'upper',
-						 'Qtr'])
+reference = pd.DataFrame([[0, 0, 0, 3]], columns=["parameter", "lower", "upper", "Qtr"])
 res = pd.concat([res, reference])
 
 # For plotting, sort and add labels
-res = res.sort_values('Qtr')
-res['Quarter'] = ['Q42010','Q12011',
-				  'Q22011','Q32011',
-				  'Q42011','Q12012']
+res = res.sort_values("Qtr")
+res["Quarter"] = ["Q42010", "Q12011", "Q22011", "Q32011", "Q42011", "Q12012"]
 
 # Plot the estimates as connected lines with error bars
 
-plt.errorbar(x = 'Quarter', y = 'parameter',
-					yerr = 'ci', data = res)
+plt.errorbar(x="Quarter", y="parameter", yerr="ci", data=res)
 # Add a horizontal line at 0
-plt.axhline(0, linestyle = 'dashed')
+plt.axhline(0, linestyle="dashed")
 ```
 
 ![Categorical marginal effect plot in Python](https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Images/Marginal_Effects_Plots_For_Interactions_With_Categorical_Variables/Python_Categorical_Interaction_Effect.png)
@@ -109,19 +106,19 @@ library(tidyverse)
 library(fixest)
 library(broom)
 
-od <- read_csv('https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Data/Marginal_Effects_Plots_For_Interactions_With_Categorical_Variables/organ_donation.csv')
+od <- read_csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Data/Marginal_Effects_Plots_For_Interactions_With_Categorical_Variables/organ_donation.csv")
 
 # Treatment variable
 od <- od %>%
-  mutate(Treated = State == 'California' &
-           Quarter %in% c('Q32011','Q42011','Q12012')) %>%
+  mutate(Treated = State == "California" &
+    Quarter %in% c("Q32011", "Q42011", "Q12012")) %>%
   # Create an ordered version of Quarter so we can graph it
   # and make sure we drop the last pre-treatment interaction,
   # which is quarter 2 of 2011
-  mutate(Quarter = relevel(factor(Quarter), ref = 'Q22011')) %>%
+  mutate(Quarter = relevel(factor(Quarter), ref = "Q22011")) %>%
   # The treated group is the state of California
   # The 1* is only necessary for the first fixest method below; optional for the second, more general method
-  mutate(California = 1*(State == 'California'))
+  mutate(California = 1 * (State == "California"))
 ```
 
 Next, our steps to do the **fixest**-specific method:
@@ -129,39 +126,50 @@ Next, our steps to do the **fixest**-specific method:
 ```r?example=categorical
 # in the *specific example* of fixest, there is a simple and easy method:
 od <- od %>% mutate(fQuarter = factor(Quarter,
-                        levels = c('Q42010','Q12011','Q22011',
-                                   'Q32011','Q42011','Q12012')))
-femethod <- feols(Rate ~ i(California, fQuarter, drop = 'Q22011') |
-                    State + Quarter, data = od)
+  levels = c(
+    "Q42010", "Q12011", "Q22011",
+    "Q32011", "Q42011", "Q12012"
+  )
+))
+femethod <- feols(Rate ~ i(California, fQuarter, drop = "Q22011") |
+  State + Quarter, data = od)
 
-coefplot(femethod, ref = c('Q22011' = 3), pt.join = TRUE)
+coefplot(femethod, ref = c("Q22011" = 3), pt.join = TRUE)
 ```
 
 However, for other packages this may not work, so I will also do it by hand in a way that will work with models more generally (even though we'll still run the model in fixest):
 
 ```rr?example=categorical
 # Interact quarter with being in the treated group
-clfe <- feols(Rate ~ California*Quarter | State,
-              data = od)
+clfe <- feols(Rate ~ California * Quarter | State,
+  data = od
+)
 
-coefplot(clfe, ref = 'Q22011')
+coefplot(clfe, ref = "Q22011")
 
 # Use broom::tidy to get the coefficients and SEs
 res <- tidy(clfe) %>%
   # Keep only the interactions
-  filter(str_detect(term, ':')) %>%
+  filter(str_detect(term, ":")) %>%
   # Pull the quarter out of the term
   mutate(Quarter = str_sub(term, -6)) %>%
   # Add in the term we dropped as 0
-  add_row(estimate = 0, std.error = 0,
-          Quarter = 'Q22011') %>%
+  add_row(
+    estimate = 0, std.error = 0,
+    Quarter = "Q22011"
+  ) %>%
   # and add 95% confidence intervals
-  mutate(ci_bottom = estimate - 1.96*std.error,
-         ci_top = estimate + 1.96*std.error) %>%
+  mutate(
+    ci_bottom = estimate - 1.96 * std.error,
+    ci_top = estimate + 1.96 * std.error
+  ) %>%
   # And put the quarters in order
   mutate(Quarter = factor(Quarter,
-                          levels = c('Q42010','Q12011','Q22011',
-                                     'Q32011','Q42011','Q12012')))
+    levels = c(
+      "Q42010", "Q12011", "Q22011",
+      "Q32011", "Q42011", "Q12012"
+    )
+  ))
 
 
 # And graph
@@ -174,9 +182,9 @@ ggplot(res, aes(x = Quarter, y = estimate, group = 1)) +
   # Add confidence intervals
   geom_linerange(aes(ymin = ci_bottom, ymax = ci_top)) +
   # Add a line so we know where 0 is
-  geom_hline(aes(yintercept = 0), linetype = 'dashed') +
+  geom_hline(aes(yintercept = 0), linetype = "dashed") +
   # Always label!
-  labs(caption = '95% Confidence Intervals Shown')
+  labs(caption = "95% Confidence Intervals Shown")
 ```
 
 ![Categorical marginal effect plot in R/ggplot2](https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Images/Marginal_Effects_Plots_For_Interactions_With_Categorical_Variables/R_Categorical_Interaction_Effect.png)
@@ -231,3 +239,4 @@ twoway (sc coef Qtr, connect(line)) (rcap ci_top ci_bottom Qtr) (function y = 0,
 ```
 
 ![Categorical marginal effect plot in Stata](https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Images/Marginal_Effects_Plots_For_Interactions_With_Categorical_Variables/Stata_Categorical_Interaction_Effect.png)
+

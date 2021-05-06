@@ -17,7 +17,7 @@ The *observation level* of a data set is the set of case-identifying variables w
 | 2 | 1 | 2 |
 | 2 | 2 | 4.5 |
 
-the variables $$I$$ and $$J$$ uniquely identify rows. The first row has $$I = 1$$ and $$J = 1$$, and there is no other row with that combination. We could also say that $$X$$ uniquely identifies rows, but in this example $$X$$ is not a case-identifying variable, it's actual data. 
+the variables $$I$$ and $$J$$ uniquely identify rows. The first row has $$I = 1$$ and $$J = 1$$, and there is no other row with that combination. We could also say that $$X$$ uniquely identifies rows, but in this example $$X$$ is not a case-identifying variable, it's actual data.
 
 It is common to want to *collapse* a data set from one level to another, coarser level. For example, perhaps instead of one row per combination of $$I$$ and $$J$$, we simply want one row per $$I$$, perhaps with the average $$X$$ across all $$I$$ observations. This would result in:
 
@@ -53,7 +53,7 @@ using DataFrames, Statistics, CSV, HTTP
 url = "https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv"
 storms = DataFrame(CSV.File(HTTP.get(url).body))
 
-combine(groupby(storms, [:name, :year, :month, :day]), 
+combine(groupby(storms, [:name, :year, :month, :day]),
         [:wind, :pressure] .=> mean, [:category] .=> first)
 ```
 
@@ -65,14 +65,14 @@ For our Python implementation we'll use the very popular [**pandas**](https://pa
 import pandas as pd
 
 # Pull in data on storms
-storms = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv')
+storms = pd.read_csv(
+    "https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv"
+)
 
 # We'll save the collapsed data as a new object called `storms_collapsed` (this is optional)
-storms_collapsed = (storms
-                    .groupby(['name', 'year', 'month', 'day'])
-                    .agg({'wind': 'mean',
-                          'pressure': 'mean',
-                          'category': 'first'}))
+storms_collapsed = storms.groupby(["name", "year", "month", "day"]).agg(
+    {"wind": "mean", "pressure": "mean", "category": "first"}
+)
 ```
 
 ## R
@@ -90,8 +90,8 @@ library(dplyr)
 data("storms")
 
 # We'll save the collapsed data as a new object called `storms_collapsed` (this is optional)
-storms_collapsed = storms %>%
-  group_by(name, year, month, day) %>% 
+storms_collapsed <- storms %>%
+  group_by(name, year, month, day) %>%
   summarize(across(c(wind, pressure), mean), category = first(category))
 ```
 
@@ -104,9 +104,10 @@ library(data.table)
 # Set the already-loaded storms dataset as a data.table
 setDT(storms)
 
-storms[, 
-       .(wind=mean(wind), pressure=mean(pressure), category=first(category)), 
-       by = .(name, year, month, day)]
+storms[,
+  .(wind = mean(wind), pressure = mean(pressure), category = first(category)),
+  by = .(name, year, month, day)
+]
 ```
 Third: [**collapse**](https://sebkrantz.github.io/collapse/):
 
@@ -114,9 +115,10 @@ Third: [**collapse**](https://sebkrantz.github.io/collapse/):
 # install.packages('collapse')
 library(collapse)
 
-collap(storms, 
-       by = ~name+year+month+day, 
-       custom = list(fmean=c('wind', 'pressure'), ffirst='category'))
+collap(storms,
+  by = ~ name + year + month + day,
+  custom = list(fmean = c("wind", "pressure"), ffirst = "category")
+)
 ```
 
 ## Stata
@@ -129,7 +131,7 @@ import delimited https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms
 
 collapse (mean) wind (mean) pressure (first) category, by(name year month day)
 ```
-With big datasets, Stata can be slow compared to other languages, though they do seem to be trying to [change that](https://www.stata.com/new-in-stata/faster-stata-speed-improvements/) a bit. The community-contributed [**gtools**](https://gtools.readthedocs.io/en/latest/usage/gtools/index.html) suite can help a lot with speedups and, fortunately, has a faster version of collapse, called `gcollapse`. Note that we won't necessarily see a benefit for small(ish) datasets like the one that we are using here. But note that the syntax is otherwise identical. 
+With big datasets, Stata can be slow compared to other languages, though they do seem to be trying to [change that](https://www.stata.com/new-in-stata/faster-stata-speed-improvements/) a bit. The community-contributed [**gtools**](https://gtools.readthedocs.io/en/latest/usage/gtools/index.html) suite can help a lot with speedups and, fortunately, has a faster version of collapse, called `gcollapse`. Note that we won't necessarily see a benefit for small(ish) datasets like the one that we are using here. But note that the syntax is otherwise identical.
 
 ```stata
 * ssc install gtools
@@ -137,3 +139,4 @@ With big datasets, Stata can be slow compared to other languages, though they do
 
 gcollapse (mean) wind (mean) pressure (first) category, by(name year month day)
 ```
+

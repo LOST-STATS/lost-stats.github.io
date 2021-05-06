@@ -25,11 +25,12 @@ Several python libraries have functions to turn categorical variables into dummi
 import pandas as pd
 
 # Create a dataframe
-df = pd.DataFrame({'colors': ['red', 'green', 'blue', 'red', 'blue'],
-                   'numbers': [5, 13, 1, 7, 5]})
+df = pd.DataFrame(
+    {"colors": ["red", "green", "blue", "red", "blue"], "numbers": [5, 13, 1, 7, 5]}
+)
 
 # Replace the colors column with a dummy column for each color
-df = pd.get_dummies(df, columns=['colors'])
+df = pd.get_dummies(df, columns=["colors"])
 ```
 
 ## R
@@ -41,10 +42,10 @@ data(iris)
 
 # To retain the column of dummies for the first
 # categorical value we remove the intercept
-model.matrix(~-1+Species, data=iris)
+model.matrix(~ -1 + Species, data = iris)
 
 # Then we can add the dummies to the original data
-iris <- cbind(iris, model.matrix(~-1+Species, data=iris))
+iris <- cbind(iris, model.matrix(~ -1 + Species, data = iris))
 
 # Of course, in a regression we can skip this process
 summary(lm(Sepal.Length ~ Petal.Length + Species, data = iris))
@@ -69,7 +70,7 @@ data(iris)
 # mutated_data.
 # Note: new variables do not have to be based on old
 # variables
-mutated_data = iris %>%
+mutated_data <- iris %>%
   mutate(Long.Petal = Petal.Length > Petal.Width)
 ```
 
@@ -77,42 +78,41 @@ This will create a new column of logical (`TRUE`/`FALSE`) variables. This works 
 
 ```r?example=dplyr
 mutated_data <- mutated_data %>%
-    mutate(Long.Petal = Long.Petal*1)
+  mutate(Long.Petal = Long.Petal * 1)
 ```
 
 You could also nest that operation inside the original creation of new_dummy like so:
 
 ```r?example=dplyr
-mutated_data = iris %>%
-  mutate(Long.Petal = (Petal.Length > Petal.Width)*1)
+mutated_data <- iris %>%
+  mutate(Long.Petal = (Petal.Length > Petal.Width) * 1)
 ```
 
 ### Base R
 
 ```r?example=baser
-#the following creates a 5 x 2 data frame
-letters = c("a","b","c", "d", "e")
-numbers = c(1,2,3,4,5)
-df = data.frame(letters,numbers)
+# the following creates a 5 x 2 data frame
+letters <- c("a", "b", "c", "d", "e")
+numbers <- c(1, 2, 3, 4, 5)
+df <- data.frame(letters, numbers)
 ```
 
 Now I'll show several different ways to create a dummy indicating if the numbers variable is odd.
 
 ```r?example=baser
-df$dummy = df$numbers%%2
+df$dummy <- df$numbers %% 2
 
-df$dummy = ifelse(df$numbers%%2==1,1,0)
+df$dummy <- ifelse(df$numbers %% 2 == 1, 1, 0)
 
-df$dummy = df$numbers%%2==1
+df$dummy <- df$numbers %% 2 == 1
 
 # the last one created a logical outcome to convert to numerical we can either
 
-df$dummy = df$dummy * 1
+df$dummy <- df$dummy * 1
 
 # or
 
-df$dummy = (df$numbers%%2==1) *1
-
+df$dummy <- (df$numbers %% 2 == 1) * 1
 ```
 
 ## MATLAB
@@ -121,7 +121,7 @@ df$dummy = (df$numbers%%2==1) *1
 
 The equivalent of `model.matrix()` in MATLAB is `dummyvar` which creates columns of one-hot encoded dummies from categorical variables. The following example is taken from MathWorks documentation.
 
-```MATLAB
+```matlab
 Colors = {'Red';'Blue';'Green';'Red';'Green';'Blue'};
 Colors = categorical(Colors);
 
@@ -132,7 +132,7 @@ D = dummyvar(Colors)
 
 In MATLAB you can store variables as columns in arrays. If you know you are going to add columns multiple times to the same array it is best practice to pre-allocate the final size of the array for computational efficiency. If you do this you can simply select the column you are designating for your dummy variable and story the dummys in that column.
 
-```MATLAB
+```matlab
 arr = [1,2,3;5,2,6;1,8,3];
 dum = sum(data(:,:),2) <10;
 data = horzcat(arr,dum);
@@ -167,3 +167,4 @@ regress mpg weight b_*
 * Create a logical variable
 gen highmpg = mpg > 30
 ```
+

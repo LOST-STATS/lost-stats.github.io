@@ -15,7 +15,7 @@ $$
 Y = \beta_0+\beta_1X_1+\beta_2X_2
 $$
 
-However, if the independent variables have a nonlinear effect on the outcome, the model will be incorrectly specified. This is fine as long as that nonlinearity is modeled by including those nonlinear terms in the index. 
+However, if the independent variables have a nonlinear effect on the outcome, the model will be incorrectly specified. This is fine as long as that nonlinearity is modeled by including those nonlinear terms in the index.
 
 The two most common ways this occurs is by including interactions or polynomial terms. With an interaction, the effect of one variable varies according to the value of another:
 
@@ -56,25 +56,27 @@ import statsmodels.formula.api as sms
 from matplotlib import pyplot as plt
 
 # Load the R mtcars dataset from a URL
-df = pd.read_csv('https://raw.githubusercontent.com/LOST-STATS/lost-stats.github.io/source/Data/mtcars.csv')
+df = pd.read_csv(
+    "https://raw.githubusercontent.com/LOST-STATS/lost-stats.github.io/source/Data/mtcars.csv"
+)
 
 # Include a linear, squared, and cubic term using the I() function.
 # N.B. Python uses ** for exponentiation (^ means bitwise xor)
-model1 = sms.ols('mpg ~ hp + I(hp**2) + I(hp**3) + cyl', data=df)
+model1 = sms.ols("mpg ~ hp + I(hp**2) + I(hp**3) + cyl", data=df)
 print(model1.fit().summary())
 
 # Include an interaction term and the variables by themselves using *
 # The interaction term is represented by hp:cyl
-model2 = sms.ols('mpg ~ hp * cyl', data=df)
+model2 = sms.ols("mpg ~ hp * cyl", data=df)
 print(model2.fit().summary())
 
 # Equivalently, you can request "all quadratic interaction terms" by doing
-model3 = sms.ols('mpg ~ (hp + cyl) ** 2', data=df)
+model3 = sms.ols("mpg ~ (hp + cyl) ** 2", data=df)
 print(model3.fit().summary())
 
 # Include only the interaction term and not the variables themselves with :
 # Hard to interpret! Occasionally useful though.
-model4 = sms.ols('mpg ~ hp : cyl', data=df)
+model4 = sms.ols("mpg ~ hp : cyl", data=df)
 print(model4.fit().summary())
 ```
 
@@ -94,7 +96,7 @@ model1 <- lm(mpg ~ hp + I(hp^2) + I(hp^3) + cyl, data = mtcars)
 model2 <- lm(mpg ~ poly(hp, 3, raw = TRUE) + cyl, data = mtcars)
 
 # Include an interaction term and the variables by themselves using *
-model3 <- lm(mpg ~ hp*cyl, data = mtcars)
+model3 <- lm(mpg ~ hp * cyl, data = mtcars)
 
 # Include only the interaction term and not the variables themselves with :
 # Hard to interpret! Occasionally useful though.
@@ -126,7 +128,7 @@ reg mpg c.weight##c.weight##c.weight foreign
 It is also possible to use other type of functions and obtain correct marginal effects. For example:
 Say that you want to estimate the model:
 
-$$ y = a_0 + a_1 * x + a_2 * 1/x + e $$ 
+$$ y = a_0 + a_1 * x + a_2 * 1/x + e $$
 
 and you want to estimate the marginal effects with respect to $x$. You can do this as follows:
 
@@ -147,3 +149,4 @@ margins, dydx(price)
 nl (mpg = {a0} + {a1} * price + {a2}*1/price), var(price)
 margins, dydx(price)
 ```
+

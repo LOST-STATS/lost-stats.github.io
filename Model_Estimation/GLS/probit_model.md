@@ -9,7 +9,7 @@ nav_order: 1
 
 # Probit Regressions
 
-A Probit regression is a statistical method for a best-fit line between a binary [0/1] outcome variable $$Y$$ and any number of independent variables. Probit regressions follow a [standard normal probability distribution](https://en.wikipedia.org/wiki/Normal_distribution) and the predicted values are bounded between 0 and 1. 
+A Probit regression is a statistical method for a best-fit line between a binary [0/1] outcome variable $$Y$$ and any number of independent variables. Probit regressions follow a [standard normal probability distribution](https://en.wikipedia.org/wiki/Normal_distribution) and the predicted values are bounded between 0 and 1.
 
 For more information about Probit, see [Wikipedia: Probit](https://en.wikipedia.org/wiki/Probit_model).
 
@@ -40,11 +40,13 @@ import pandas as pd
 import statsmodels.formula.api as smf
 
 # Read in the data
-df = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/datasets/mtcars.csv',
-                 index_col=0)
+df = pd.read_csv(
+    "https://vincentarelbundock.github.io/Rdatasets/csv/datasets/mtcars.csv",
+    index_col=0,
+)
 
 # Specify the model
-mod = smf.probit('vs ~ mpg + cyl', data=df)
+mod = smf.probit("vs ~ mpg + cyl", data=df)
 
 # Fit the model
 res = mod.fit()
@@ -53,7 +55,7 @@ res = mod.fit()
 res.summary()
 
 # Compute marginal effects
-marge_effect = res.get_margeff(at='mean', method='dydx')
+marge_effect = res.get_margeff(at="mean", method="dydx")
 
 # Show marginal effects
 marge_effect.summary()
@@ -72,10 +74,12 @@ library(mfx)
 data(mtcars)
 
 # Use the glm() function to run probit
-# Here we are predicting engine type using 
+# Here we are predicting engine type using
 # miles per gallon and number of cylinders as predictors
-my_probit <- glm(vs ~ mpg + cyl, data = mtcars,
-                family = binomial(link = 'probit'))
+my_probit <- glm(vs ~ mpg + cyl,
+  data = mtcars,
+  family = binomial(link = "probit")
+)
 # The family argument says we are working with binary data
 # and using a probit link function (rather than, say, logit)
 
@@ -98,3 +102,4 @@ probit foreign mpg weight headroom trunk
 * Recover the Marginal Effects (Beta Coefficient in OLS)
 margins, dydx(*)
 ```
+

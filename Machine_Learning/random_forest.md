@@ -55,7 +55,6 @@ y_pred = model.predict(X_test)
 
 # Evaluate model prediction
 print(f"Accuracy is {accuracy_score(y_pred, y_test)*100:.2f} %")
-
 ```
 
 ## R
@@ -65,7 +64,7 @@ There are a number of packages in R capable of training a random forest, includi
 We'll be using a built-in dataset in R, called "Iris". There are five variables in this dataset, including species, petal width and length as well as sepal length and width.
 
 ```r
-#Load packages
+# Load packages
 library(tidyverse)
 library(rvest)
 library(dplyr)
@@ -74,37 +73,38 @@ library(randomForest)
 library(Metrics)
 library(readr)
 
-#Read data in R
+# Read data in R
 data(iris)
 iris
 
-#Create features and target
+# Create features and target
 X <- iris %>%
   select(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width)
 y <- iris$Species
 
-#Split data into training and test sets
-index <- createDataPartition(y, p=0.75, list=FALSE)
-X_train <- X[ index, ]
+# Split data into training and test sets
+index <- createDataPartition(y, p = 0.75, list = FALSE)
+X_train <- X[index, ]
 X_test <- X[-index, ]
 y_train <- y[index]
-y_test<-y[-index]
+y_test <- y[-index]
 
-#Train the model
-iris_rf <- randomForest(x = X_train, y = y_train , maxnodes = 10, ntree = 10)
+# Train the model
+iris_rf <- randomForest(x = X_train, y = y_train, maxnodes = 10, ntree = 10)
 print(iris_rf)
 
-#Make predictions
+# Make predictions
 predictions <- predict(iris_rf, X_test)
 
 result <- X_test
-result['Species'] <- y_test
-result['Prediction']<-  predictions
+result["Species"] <- y_test
+result["Prediction"] <- predictions
 
 head(result)
 
-#Check the classification accuracy (number of correct predictions out of total datapoints used to test the prediction)
-print(sum(predictions==y_test))
+# Check the classification accuracy (number of correct predictions out of total datapoints used to test the prediction)
+print(sum(predictions == y_test))
 print(length(y_test))
-print(sum(predictions==y_test)/length(y_test))
+print(sum(predictions == y_test) / length(y_test))
 ```
+

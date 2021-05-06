@@ -39,30 +39,34 @@ data("Electricity", package = "mlogit")
 # For further documentation, see dfidx.
 
 Electricity$index <- 1:nrow(Electricity)
-elec = dfidx(Electricity, idx = list(c("index", "id")),
-                choice = "choice", varying = 3:26, sep = "")
+elec <- dfidx(Electricity,
+  idx = list(c("index", "id")),
+  choice = "choice", varying = 3:26, sep = ""
+)
 
 # We then estimate individual choice over electricity providers for
 # different cost and contract structures with a suppressed intercept
 
-my_mixed_logit = mlogit(data = elec, 
-       formula = choice ~ 0 + pf + cl + loc + wk + tod + seas,
-       # Specify distributions for random parameter estimates
-       # "n" indicates we have specified a normal distribution
-       # note pf is omitted from rpar, so it will not be estimated as random
-       rpar = c(cl = "n", loc = "u", wk = "n", tod = "n", seas = "n"), 
-       # R is the number of simulation draws
-       R = 100, 
-       # For simplicity, we won't include correlated parameter estimates
-       correlation = FALSE, 
-       # This data is from a panel
-       panel = TRUE)
+my_mixed_logit <- mlogit(
+  data = elec,
+  formula = choice ~ 0 + pf + cl + loc + wk + tod + seas,
+  # Specify distributions for random parameter estimates
+  # "n" indicates we have specified a normal distribution
+  # note pf is omitted from rpar, so it will not be estimated as random
+  rpar = c(cl = "n", loc = "u", wk = "n", tod = "n", seas = "n"),
+  # R is the number of simulation draws
+  R = 100,
+  # For simplicity, we won't include correlated parameter estimates
+  correlation = FALSE,
+  # This data is from a panel
+  panel = TRUE
+)
 
 # Results
 
 summary(my_mixed_logit)
 
-# Note that this output will include the simulated coefficient estimates, 
+# Note that this output will include the simulated coefficient estimates,
 # simulated standard error estimates, and distributional details for the
 # random coefficients (all, in this case)
 # Note also that pf is given as a point estimate, and mlogit does not generate
@@ -70,18 +74,16 @@ summary(my_mixed_logit)
 
 # You can extract and summarize coefficient estimates using the rpar function
 
-marg_loc = rpar(my_mixed_logit, "loc")
+marg_loc <- rpar(my_mixed_logit, "loc")
 summary(marg_loc)
 
 # You can also normalize coefficients and distributions by, say, price
 
-cl_by_pf = rpar(my_mixed_logit, "cl", norm = "pf")
+cl_by_pf <- rpar(my_mixed_logit, "cl", norm = "pf")
 summary(cl_by_pf)
-
-
-
 ```
 
 For further examples, visit the CRAN vignette [here.](https://cran.r-project.org/web/packages/mlogit/vignettes/c5.mxl.html)
 
 For a very detailed example using the Electricity dataset, see [here.](https://cran.r-project.org/web/packages/mlogit/vignettes/e3mxlogit.html)
+
