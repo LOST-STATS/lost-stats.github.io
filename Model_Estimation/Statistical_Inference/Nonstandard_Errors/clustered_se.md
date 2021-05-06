@@ -32,9 +32,9 @@ For cluster-robust estimation of (high-dimensional) fixed effect models in R, se
 
 Cluster-robust standard errors for many different kinds of regression objects in R can be obtained using the `vcovCL` or `vcovBS` functions from the **sandwich** package ([link](http://sandwich.r-forge.r-project.org/index.html)). To perform statistical inference, we combine these with the `coeftest` function from the **lmtest** package. This approach allows users to adjust the standard errors for a model "[on-the-fly](https://grantmcdermott.com/better-way-adjust-SEs/)" (i.e. post-estimation) and is thus very flexible.
 
-```R?example=clustered
+```r?example=clustered
 # Read in data from the College Scorecard
-df <- read.csv('https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv')
+df <- read.csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv")
 
 # Create a regression model with normal (iid) errors
 my_model <- lm(repay_rate ~ earnings_med + state_abbr, data = df)
@@ -47,15 +47,17 @@ coeftest(my_model, vcov = vcovCL(my_model, cluster = ~inst_name))
 
 Alternately, users can specify clustered standard errors directly in the model call using the `lm_robust` function from the **estimatr** package ([link](https://github.com/DeclareDesign/estimatr)). This latter approach is very similar to how errors are clustered in Stata, for example.
 
-```R?example=clustered
+```r?example=clustered
 # Alternately, use estimator::lm_robust to specify clustered SEs in the original model call.
 # Standard error types are referred to as CR0, CR1 ("stata"), CR2 here.
 # Here, CR2 is the default
 library(estimatr)
 
-my_model2 <- lm_robust(repay_rate ~ earnings_med + state_abbr, data = df,
-						clusters = inst_name,
-                       se_type = "stata")
+my_model2 <- lm_robust(repay_rate ~ earnings_med + state_abbr,
+  data = df,
+  clusters = inst_name,
+  se_type = "stata"
+)
 summary(my_model2)
 ```
 
@@ -78,3 +80,4 @@ encode state_abbr, g(state_encoded)
 * This will give you CR1
 regress repay_rate earnings_med i.state_encoded, vce(cluster inst_name_encoded)
 ```
+

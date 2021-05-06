@@ -13,7 +13,7 @@ In the regression model
 
 $$ Y = \beta_0 + \beta_1 X + \epsilon $$
 
-where $$\epsilon$$ is an error term, the estimated $$\hat{\beta}_1$$ will not give the causal effect of $$X$$ on $$Y$$ if $$X$$ is *endogenous* - that is, if $$X$$ is related to $$\epsilon$$ and so determined by forces *within the model* (endogenous). 
+where $$\epsilon$$ is an error term, the estimated $$\hat{\beta}_1$$ will not give the causal effect of $$X$$ on $$Y$$ if $$X$$ is *endogenous* - that is, if $$X$$ is related to $$\epsilon$$ and so determined by forces *within the model* (endogenous).
 
 One way to recover the causal effect of $$X$$ on $$Y$$ is to use instrumental variables. If there exists a variable $$Z$$ that is related to $$X$$ but is completely unrelated to $$\epsilon$$ (perhaps after adding some controls), then you can use instrumental variables estimation to isolate only the part of the variation in $$X$$ that is explained by $$Z$$. Naturally, then, this part of the variation is unrelated to $$\epsilon$$ because $$Z$$ is unrelated to $$\epsilon$$, and you can get the causal effect of that part of $$X$$.
 
@@ -45,21 +45,23 @@ from linearmodels.iv import IV2SLS
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/AER/CigarettesSW.csv',
-                 index_col=0)
+df = pd.read_csv(
+    "https://vincentarelbundock.github.io/Rdatasets/csv/AER/CigarettesSW.csv",
+    index_col=0,
+)
 
 # We will use cigarette taxes as an instrument for cigarette prices
 # to evaluate the effect of cigarette price on log number of packs smoked
 # With income per capita as a control
 
 # Adjust everything for inflation
-df['rprice'] = df['price']/df['cpi']
-df['rincome'] = df['income']/df['population']/df['cpi']
-df['tdiff'] = (df['taxs'] - df['tax'])/df['cpi']
+df["rprice"] = df["price"] / df["cpi"]
+df["rincome"] = df["income"] / df["population"] / df["cpi"]
+df["tdiff"] = (df["taxs"] - df["tax"]) / df["cpi"]
 
 # Specify formula in format of 'y ~ exog + [endog ~ instruments]'.
 # The '1' on the right-hand side of the formula adds a constant.
-formula = 'np.log(packs) ~ 1 + np.log(rincome) + [np.log(rprice) ~ tdiff]'
+formula = "np.log(packs) ~ 1 + np.log(rincome) + [np.log(rprice) ~ tdiff]"
 
 # Specify model and data
 mod = IV2SLS.from_formula(formula, df)
@@ -69,7 +71,6 @@ res = mod.fit()
 
 # Show model summary
 res.summary
-
 ```
 
 ## R
@@ -89,14 +90,15 @@ data(CigarettesSW)
 # With income per capita as a control
 
 # Adjust everything for inflation
-CigarettesSW$rprice <- CigarettesSW$price/CigarettesSW$cpi
-CigarettesSW$rincome <- CigarettesSW$income/CigarettesSW$population/CigarettesSW$cpi
-CigarettesSW$tdiff <- (CigarettesSW$taxs - CigarettesSW$tax)/CigarettesSW$cpi
+CigarettesSW$rprice <- CigarettesSW$price / CigarettesSW$cpi
+CigarettesSW$rincome <- CigarettesSW$income / CigarettesSW$population / CigarettesSW$cpi
+CigarettesSW$tdiff <- (CigarettesSW$taxs - CigarettesSW$tax) / CigarettesSW$cpi
 
 # The regression formula takes the format
 # dependent.variable ~ endogenous.variables + controls | instrumental.variables + controls
 ivmodel <- ivreg(log(packs) ~ log(rprice) + log(rincome) | tdiff + log(rincome),
-                 data = CigarettesSW)
+  data = CigarettesSW
+)
 summary(ivmodel)
 
 
@@ -104,23 +106,25 @@ summary(ivmodel)
 library(lfe)
 
 # The regression formula takes the format
-# dependent vairable ~ 
+# dependent vairable ~
 #    controls |
-#    fixed.effects | 
+#    fixed.effects |
 #    (endogenous.variables ~ instruments) |
 #    clusters.for.standard.errors
 # So if need be it is straightforward to adjust this example to account for
 # fixed effects and clustering.
 # Note the 0 indicating no fixed effects
 ivmodel2 <- felm(log(packs) ~ log(rincome) | 0 | (log(rprice) ~ tdiff),
-                     data = CigarettesSW)
+  data = CigarettesSW
+)
 summary(ivmodel2)
 
 # felm can also use several k-class estimation methods; see help(felm) for the full list.
-# Let's run it with a limited-information maximum likelihood estimator with 
+# Let's run it with a limited-information maximum likelihood estimator with
 # the fuller adjustment set to minimize squared error (4).
 ivmodel3 <- felm(log(packs) ~ log(rincome) | 0 | (log(rprice) ~ tdiff),
-                 data = CigarettesSW, kclass = 'liml', fuller = 4)
+  data = CigarettesSW, kclass = "liml", fuller = 4
+)
 summary(ivmodel3)
 ```
 
@@ -144,12 +148,13 @@ g lrprice = ln(rprice)
 
 * The syntax for the regression is
 * name_of_estimator dependent_variable controls (endogenous_variable = instruments)
-* where name_of_estimator can be two stage least squares (2sls), 
-* limited information maximum likelihood (liml, note that ivregress doesn't support k-class estimators), 
+* where name_of_estimator can be two stage least squares (2sls),
+* limited information maximum likelihood (liml, note that ivregress doesn't support k-class estimators),
 * or generalized method of moments (gmm)
 * Here we can run two stage least squares
 ivregress 2sls lpacks rincome (lrprice = tdiff)
 
-* Or gmm. 
+* Or gmm.
 ivregress gmm lpacks rincome (lrprice = tdiff)
 ```
+

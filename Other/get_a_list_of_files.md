@@ -25,33 +25,32 @@ Note that, because these code examples necessarily refer to files on disk, they 
 The `glob` module finds all pathnames matching a specified pattern and stores them in a list.
 
 ```python
-
 import glob
 
 # Retrieve all csvs in the working directory
-list_of_files = glob.glob('*.csv')
+list_of_files = glob.glob("*.csv")
 
 # Retrieve all csvs in the working directory and all sub-directories
-list_of_files = glob.glob('**/*.csv', recursive=True)
+list_of_files = glob.glob("**/*.csv", recursive=True)
 ```
 
 ## R
 
 The `list.files()` function can produce a list of files that can be looped over.
 
-```r?skip=true&skipReason=files_dont_exist
+```r?skip=true&skipreason=files_dont_exist
 # Get a list of all .csv files in the Data folder
 # (which sits inside our working directory)
-filelist <- list.files('Data','*.csv')
+filelist <- list.files("Data", "*.csv")
 
 # filelist just contains file names now. If we want it to
 # open them up from the Data folder we must say so
-filelist <- paste0('Data/',filelist)
+filelist <- paste0("Data/", filelist)
 
 # Read them all in and then row-bind them together
 # (assuming they're all the same format and can be rbind-ed)
-datasets <- lapply(filelist,read.csv)
-data <- do.call(rbind,datasets)
+datasets <- lapply(filelist, read.csv)
+data <- do.call(rbind, datasets)
 
 # Or, use the tidyverse with purrr
 # (assuming they're all the same format and can be rbind-ed)
@@ -89,3 +88,4 @@ foreach f in `filelist' {
 	local firsttime = 0
 }
 ```
+

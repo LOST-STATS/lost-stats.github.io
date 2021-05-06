@@ -78,11 +78,15 @@ alpha <- 0.5 # Intercept of the model Y
 
 # Function to create the error of Y
 ARsim2 <- function(rho, first, serieslength, distribution) {
-  if(distribution=="runif"){a <- runif(serieslength,min=0,max=1)}
-  else {a <- rnorm(serieslength,0,1)}
+  if (distribution == "runif") {
+    a <- runif(serieslength, min = 0, max = 1)
+  }
+  else {
+    a <- rnorm(serieslength, 0, 1)
+  }
   Y <- first
-  for (i in (length(rho)+1):serieslength){
-    Y[i] <- rho*Y[i-1]+(sqrt(1-(rho^2)))*a[i]
+  for (i in (length(rho) + 1):serieslength) {
+    Y[i] <- rho * Y[i - 1] + (sqrt(1 - (rho^2))) * a[i]
   }
   return(Y)
 }
@@ -104,8 +108,8 @@ for (i in 2:200) {
 ### Data
 
 ```r?example=grangertest
-data <- as.data.frame(cbind(1:200,X,as.ts(Y)))
-colnames(data) <- c("time", "X","Y")
+data <- as.data.frame(cbind(1:200, X, as.ts(Y)))
+colnames(data) <- c("time", "X", "Y")
 ```
 
 ### Graph
@@ -118,16 +122,16 @@ colnames(data) <- c("time", "X","Y")
 library(tidyr)
 library(ggplot2)
 
-graphdata <- data[2:200,] %>%
+graphdata <- data[2:200, ] %>%
   pivot_longer(
-    cols = -c(time), names_to="variable", values_to="value"
+    cols = -c(time), names_to = "variable", values_to = "value"
   )
 
-ggplot(graphdata, aes(x = time, y = value, group=variable)) +
+ggplot(graphdata, aes(x = time, y = value, group = variable)) +
   geom_line(aes(color = variable), size = 0.7) +
   scale_color_manual(values = c("#00AFBB", "#E7B800")) +
-  theme_minimal()+
-  labs(title = "Simulated ADL models")+
+  theme_minimal() +
+  labs(title = "Simulated ADL models") +
   theme(text = element_text(size = 15))
 ```
 
@@ -144,8 +148,8 @@ ggplot(graphdata, aes(x = time, y = value, group=variable)) +
 library(tseries)
 
 ## ADF test
-adf.test(X, k=3)
-adf.test(na.omit(Y), k=3) #na.omit() to delete the first 2 periods of lag
+adf.test(X, k = 3)
+adf.test(na.omit(Y), k = 3) # na.omit() to delete the first 2 periods of lag
 ```
 
 * With a p-value of 0.01 and 0.01 for series X, and Y, we assure that both are stationary.
@@ -203,3 +207,4 @@ Granger, C. W. (1969). Investigating Causal Relations by Econometric Models and 
 
 Pierce, D.A. (1977). $R^2$ Measures for Time Series. Special Studies Paper
 No. 93, Washington, D.C.: Federal Reserve Board.
+

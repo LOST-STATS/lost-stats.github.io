@@ -37,45 +37,42 @@ These examples will use some data on US colleges from [IPEDS](https://nces.ed.go
 
 ```python
 import pandas as pd
+
 # can install all below with:
 # !pip install pysal
 from libpysal.cg import KDTree, RADIUS_EARTH_MILES
 from libpysal.weights import KNN
 from spreg import ML_Lag
 
-url = ('https://github.com/LOST-STATS/lost-stats.github.io/raw/source'
-        '/Geo-Spatial/Data/Merging_Shape_Files/colleges_covid.csv')
+url = (
+    "https://github.com/LOST-STATS/lost-stats.github.io/raw/source"
+    "/Geo-Spatial/Data/Merging_Shape_Files/colleges_covid.csv"
+)
 
 # specify index cols we need only for identification -- not modeling
-df = pd.read_csv(url, index_col=['unitid', 'instnm'])
+df = pd.read_csv(url, index_col=["unitid", "instnm"])
 
 # we'll `pop` renaming columns so they're no longer in our dataframe
-x = df.copy().dropna(how='any')
+x = df.copy().dropna(how="any")
 
 # tree object is the main input to nearest neighbors
 tree = KDTree(
-    data=zip(x.pop('longitude'), x.pop('latitude')), 
+    data=zip(x.pop("longitude"), x.pop("latitude")),
     # default is euclidean, but we want to use arc or haversine distance
-    distance_metric='arc',
-    radius=RADIUS_EARTH_MILES
+    distance_metric="arc",
+    radius=RADIUS_EARTH_MILES,
 )
 nn = KNN(tree, k=5)
 
-y = x.pop('covid_cases_per_cap_jul312020')
+y = x.pop("covid_cases_per_cap_jul312020")
 
 # spreg only accepts numpy arrays or lists as arguments
 mod = ML_Lag(
-    y=y.to_numpy(),
-    x=x.to_numpy(), 
-    w=nn,
-    name_y=y.name,
-    name_x=x.columns.tolist()
+    y=y.to_numpy(), x=x.to_numpy(), w=nn, name_y=y.name, name_x=x.columns.tolist()
 )
 
 # results
 print(mod.summary)
-
-
 ```
 
 ## R
@@ -90,7 +87,7 @@ library(spdep)
 library(spatialreg)
 
 # Load data
-df <- read.csv('https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Geo-Spatial/Data/Merging_Shape_Files/colleges_covid.csv')
+df <- read.csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Geo-Spatial/Data/Merging_Shape_Files/colleges_covid.csv")
 
 # Use latitude and longitude to determine the list of neighbors
 # Here we're using K-nearest-neighbors to find 5 neighbors for each college
@@ -98,7 +95,7 @@ df <- read.csv('https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Ge
 
 # Get latitude and longitude into a matrix
 # Make sure longitude comes first
-loc_matrix <- as.matrix(df[, c('longitude','latitude')])
+loc_matrix <- as.matrix(df[, c("longitude", "latitude")])
 
 # Get 5 nearest neighbors
 kn <- knearneigh(loc_matrix, 5)
@@ -112,9 +109,10 @@ listw <- nb2listw(nb)
 
 # Use a spatial regression
 # This uses the method from Bivand & Piras (2015) https://www.jstatsoft.org/v63/i18/.
-m <- lagsarlm(covid_cases_per_cap_jul312020 ~ pctdesom + pctdenon, 
-              data = df, 
-              listw = listw)
+m <- lagsarlm(covid_cases_per_cap_jul312020 ~ pctdesom + pctdenon,
+  data = df,
+  listw = listw
+)
 
 # Note that, whlie summary(m) will show rho below the regression results,
 # most regression-table functions like modelsummary::msummary() or jtools::export_summs()
@@ -149,3 +147,4 @@ spregress covid_cases_per_cap_jul312020 pctdesom pctdenon, ml dvarlag(M)
 * Get impact of each predictor, including spillovers, with estat impact
 estat impact
 ```
+

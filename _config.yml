@@ -13,8 +13,11 @@ heading_anchors: true
 
 exclude:
   - NewPageTemplate.md
-  - test_samples.py
   - conftest.py
+  - lostutils
+  - tests
+  - pyproject.toml
+  - poetry.lock
 
 plugins:
   - jekyll-sitemap

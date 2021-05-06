@@ -8,7 +8,7 @@ mathjax: true ## Switch to false if this page has no equations or other math ren
 
 # Penalized Regression
 
-When running a regression, especially one with many predictors, the results have a tendency to overfit the data, reducing out-of-sample predictive properties. 
+When running a regression, especially one with many predictors, the results have a tendency to overfit the data, reducing out-of-sample predictive properties.
 
 Penalized regression eases this problem by forcing the regression estimator to shrink its coefficients towards 0 in order to avoid the "penalty" term imposed on the coefficients. This process is closely related to the idea of Bayesian shrinkage, and indeed standard penalized regression results are equivalent to regression performed using [certain Bayesian priors](https://amstat.tandfonline.com/doi/abs/10.1198/016214508000000337?casa_token=DE6O93Bz7uUAAAAA:Ff_MiPXvPH32NA2hnGtZtqb8grXEiEqF0fdO3B0p_a6wOaqRciCZ4ASwxn69gdOb93Lbt-HSyK1o4As).
 
@@ -24,7 +24,7 @@ $$
 \min\left(\sum_i(y_i - X_i\hat{\beta})^2 + \lambda\left\lVert\beta\right\rVert_p \right)
 $$
 
-Typically $$p$$ is set to 1 for LASSO regression (least absolute shrinkage and selection operator), which has the effect of tending to set coefficients to 0, i.e. model selection, or to 2 for Ridge Regression. Elastic net regression provides a weighted mix of LASSO and Ridge penalties, commonly referring to the weight as $$\alpha$$. 
+Typically $$p$$ is set to 1 for LASSO regression (least absolute shrinkage and selection operator), which has the effect of tending to set coefficients to 0, i.e. model selection, or to 2 for Ridge Regression. Elastic net regression provides a weighted mix of LASSO and Ridge penalties, commonly referring to the weight as $$\alpha$$.
 
 ## Keep in Mind
 
@@ -55,13 +55,13 @@ library(glmnet)
 data(iris)
 
 # Create a matrix with all variables other than our dependent vairable, Sepal.Length
-# and interactions. 
+# and interactions.
 # -1 to omit the intercept
 M <- model.matrix(lm(Sepal.Length ~ (.)^2 - 1, data = iris))
 # Add squared terms of numeric variables
 numeric.var.names <- names(iris)[2:4]
-M <- cbind(M,as.matrix(iris[,numeric.var.names]^2))
-colnames(M)[16:18] <- paste(numeric.var.names,'squared')
+M <- cbind(M, as.matrix(iris[, numeric.var.names]^2))
+colnames(M)[16:18] <- paste(numeric.var.names, "squared")
 
 # Create a matrix for our dependent variable too
 Y <- as.matrix(iris$Sepal.Length)
@@ -80,7 +80,7 @@ Y <- scale(Y)
 cv.lasso <- cv.glmnet(M, Y, family = "gaussian", nfolds = 20, alpha = 1)
 # We might want to see how the choice of lambda relates to out-of-sample error with a plot
 plot(cv.lasso)
-# After doing CV, we commonly pick the lambda.min for lambda, 
+# After doing CV, we commonly pick the lambda.min for lambda,
 # which is the lambda that minimizes out-of-sample error
 # or lambda.1se, which is one standard error above lambda.min,
 # which penalizes more harshly. The choice depends on context.
@@ -151,3 +151,4 @@ lassocoef
 * By default, alpha will be selected by cross-validation as well
 elasticnet linear wage `numeric_vars' f*_* interact_*, sel(cv)
 ```
+

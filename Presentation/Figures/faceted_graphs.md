@@ -39,9 +39,15 @@ df = sns.load_dataset("penguins")
 # Plot a scatter of bill properties with
 # columns (facets) given by island and colour
 # given by the species of Penguin
-sns.relplot(x="bill_depth_mm", y="bill_length_mm",
-            hue="species", col="island",
-            alpha=.5, palette="muted", data=df)
+sns.relplot(
+    x="bill_depth_mm",
+    y="bill_length_mm",
+    hue="species",
+    col="island",
+    alpha=0.5,
+    palette="muted",
+    data=df,
+)
 ```
 
 Results in:
@@ -54,10 +60,12 @@ If you have used R for plotting, you might be familiar with the **ggplot** packa
 from plotnine import *
 from plotnine.data import mtcars
 
-(ggplot(mtcars, aes('wt', 'mpg', color='factor(gear)'))
- + geom_point()
- + stat_smooth(method='lm')
- + facet_wrap('~gear'))
+(
+    ggplot(mtcars, aes("wt", "mpg", color="factor(gear)"))
+    + geom_point()
+    + stat_smooth(method="lm")
+    + facet_wrap("~gear")
+)
 ```
 
 Results in:
@@ -75,26 +83,24 @@ x = np.linspace(0, 2 * np.pi, 400)
 y = np.sin(x ** 2)
 
 fig, (ax1, ax2) = plt.subplots(2, sharex=True)
-fig.suptitle('Two sine waves')
+fig.suptitle("Two sine waves")
 ax1.plot(x, y)
-ax2.scatter(x + 1, -y, color='red')
+ax2.scatter(x + 1, -y, color="red")
 ```
 
 (NB: no figure shown in this case.) Note how everything is specified. While `plt.subplots(nrows, ncols, ...)` allows for a rectangular facet grid, even more complex facets can be constructed using the [mosaic option](https://matplotlib.org/3.3.0/tutorials/provisional/mosaic.html) in **matplotlib** version 3.3.0+. The arrangment of facets can be specified either through text, as in the example below, or with lists of lists:
 
 ```python
-
 import matplotlib.pyplot as plt
 
 axd = plt.figure(constrained_layout=True).subplot_mosaic(
     """
     TTE
     L.E
-    """)
+    """
+)
 for k, ax in axd.items():
-    ax.text(0.5, 0.5, k,
-            ha='center', va='center', fontsize=36,
-            color='darkgrey')
+    ax.text(0.5, 0.5, k, ha="center", va="center", fontsize=36, color="darkgrey")
 ```
 
 Results in:
@@ -129,7 +135,7 @@ Additionally, one can create faceted graph using two variables with `facet_grid(
 library(tidyverse)
 
 ggplot(data = mpg) +
-  geom_point(mapping = aes(x = displ, y = hwy))+
+  geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_grid(drv ~ cyl)
 ```
 The code reults in the follwing panel of subplots:
@@ -147,3 +153,4 @@ twoway (scatter mpg length), by(foreign)
 
 The code generates the following graph:
 ![Faceted Graph by Origin of Car](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Faceted_Graphs/stata_faceted_graph.png)
+

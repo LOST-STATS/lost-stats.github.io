@@ -29,15 +29,20 @@ There are three main ways to join datasets horizontally in python using the `mer
 ```python
 import pandas as pd
 
-gdp_2018 = pd.DataFrame({'country': ['UK', 'USA', 'France'],
-                         'currency': ['GBP', 'USD', 'EUR'],
-                         'gdp_trillions': [2.1, 20.58, 2.78]})
+gdp_2018 = pd.DataFrame(
+    {
+        "country": ["UK", "USA", "France"],
+        "currency": ["GBP", "USD", "EUR"],
+        "gdp_trillions": [2.1, 20.58, 2.78],
+    }
+)
 
-dollar_value_2018 = pd.DataFrame({'currency': ['EUR', 'GBP', 'YEN', 'USD'],
-                                  'in_dollars': [1.104, 1.256, .00926, 1]})
+dollar_value_2018 = pd.DataFrame(
+    {"currency": ["EUR", "GBP", "YEN", "USD"], "in_dollars": [1.104, 1.256, 0.00926, 1]}
+)
 
 # Perform a left merge, which discards 'YEN'
-GDPandExchange = pd.merge(gdp_2018, dollar_value_2018, how='left', on='currency')
+GDPandExchange = pd.merge(gdp_2018, dollar_value_2018, how="left", on="currency")
 ```
 
 ## R
@@ -50,12 +55,16 @@ There are several ways to combine data sets horizontally in R, including base-R 
 library(dplyr)
 
 # This data set contains information on GDP in local currency
-GDP2018 <- data.frame(Country = c("UK", "USA", "France"),
-                  Currency = c("Pound", "Dollar", "Euro"),
-                  GDPTrillions = c(2.1, 20.58, 2.78))
+GDP2018 <- data.frame(
+  Country = c("UK", "USA", "France"),
+  Currency = c("Pound", "Dollar", "Euro"),
+  GDPTrillions = c(2.1, 20.58, 2.78)
+)
 # This data set contains dollar exchange rates
-DollarValue2018 <- data.frame(Currency = c("Euro", "Pound", "Yen", "Dollar"),
-                              InDollars = c(1.104, 1.256, .00926, 1))
+DollarValue2018 <- data.frame(
+  Currency = c("Euro", "Pound", "Yen", "Dollar"),
+  InDollars = c(1.104, 1.256, .00926, 1)
+)
 ```
 
 Next we want to join together `GDP2018` and `DollarValue2018` so we can convert all the GDPs to dollars and compare them. There are three kinds of observations we could get - observations in `GDP2018` but not `DollarValue2018`, observations in `DollarValue2018` but not `GDP2018`, and observations in both. Use `help(join)` to pick the variant of `join` that keeps the observations we want. The "Yen" observation won't have a match, and we don't need to keep it. So let's do a `left_join` and list `GDP2018` first, so it keeps matched observations, plus any observations only in `GDP2018`.
@@ -117,3 +126,4 @@ A one-to-many merge is the opposite of a many to one merge, with multiple observ
 #### Many-to-Many
 
 A many-to-many merge is intended for use when there are multiple observations for each combination of the set of merging variables in both master and using data. However, `merge m:m` has strange behavior that is effectively never what you want, and it is not recommended.
+

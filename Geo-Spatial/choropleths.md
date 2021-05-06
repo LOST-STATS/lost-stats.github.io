@@ -30,26 +30,27 @@ The [**geopandas**](https://geopandas.org/) package is the easiest way to start 
 import matplotlib.pyplot as plt
 import geopandas as gpd
 
-world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+world = gpd.read_file(gpd.datasets.get_path("naturalearth_lowres"))
 
 world = world[(world.pop_est > 0) & (world.name != "Antarctica")]
 
-world['gdp_per_cap'] = 1.0e6 * world.gdp_md_est / world.pop_est
+world["gdp_per_cap"] = 1.0e6 * world.gdp_md_est / world.pop_est
 
 # Simple choropleth
-world.plot(column='gdp_per_cap')
+world.plot(column="gdp_per_cap")
 
 # Much better looking choropleth
-plt.style.use('seaborn-paper')
+plt.style.use("seaborn-paper")
 fig, ax = plt.subplots(1, 1)
-world.plot(column='gdp_per_cap',
-           ax=ax,
-           cmap='plasma',
-           legend=True,
-           vmin=0.,
-           legend_kwds={'label': "GDP per capita (USD)",
-                        'orientation': "horizontal"})
-plt.axis('off')
+world.plot(
+    column="gdp_per_cap",
+    ax=ax,
+    cmap="plasma",
+    legend=True,
+    vmin=0.0,
+    legend_kwds={"label": "GDP per capita (USD)", "orientation": "horizontal"},
+)
+plt.axis("off")
 
 # Now let's try a cartogram
 # If you don't have it already, geoplot can be installed by runnning
@@ -58,13 +59,13 @@ import geoplot as gplt
 
 ax = gplt.cartogram(
     world,
-    scale='gdp_per_cap',
-    hue='gdp_per_cap',
-    cmap='plasma',
+    scale="gdp_per_cap",
+    hue="gdp_per_cap",
+    cmap="plasma",
     linewidth=0.5,
-    figsize=(8, 12)
+    figsize=(8, 12),
 )
-gplt.polyplot(world, facecolor='lightgray', edgecolor='None', ax=ax)
+gplt.polyplot(world, facecolor="lightgray", edgecolor="None", ax=ax)
 plt.title("GDP per capita (USD)")
 plt.show()
 ```
@@ -78,46 +79,57 @@ The [**sf**](https://github.com/r-spatial/sf/) is a fantastic package to make ch
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(sf, tidyverse, ggplot2, rnaturalearth, viridis, cartogram, scales)
 
-world <- ne_download( scale = 110, type = 'countries' ) %>% 
+world <- ne_download(scale = 110, type = "countries") %>%
   st_as_sf()
 
 
-world = world %>% 
-  filter(POP_EST > 0,
-         NAME != "Antarctica") %>% 
-  mutate(gdp_per_capita = 1.0e6*(GDP_MD_EST / as.numeric(POP_EST)))
+world <- world %>%
+  filter(
+    POP_EST > 0,
+    NAME != "Antarctica"
+  ) %>%
+  mutate(gdp_per_capita = 1.0e6 * (GDP_MD_EST / as.numeric(POP_EST)))
 
 ## Simple choropleth plot
 ggplot(data = world) +
-    geom_sf(aes(fill = gdp_per_capita))
+  geom_sf(aes(fill = gdp_per_capita))
 
 
 ## Much better looking choropleth with ggplot2
-world %>% 
-  st_transform(crs = "+proj=eqearth +wktext") %>% 
+world %>%
+  st_transform(crs = "+proj=eqearth +wktext") %>%
   ggplot() +
-    geom_sf(aes(fill = gdp_per_capita)) +
-    theme_void() +
-    labs(title = "",
-         caption = "Data downloaded from www.naturalearthdata.com",
-         fill = "GDP per capita (USD)") +
-    scale_fill_viridis(labels = comma) +
-  theme(legend.position = "bottom",
-        legend.key.width = unit(1.5, "cm"))
+  geom_sf(aes(fill = gdp_per_capita)) +
+  theme_void() +
+  labs(
+    title = "",
+    caption = "Data downloaded from www.naturalearthdata.com",
+    fill = "GDP per capita (USD)"
+  ) +
+  scale_fill_viridis(labels = comma) +
+  theme(
+    legend.position = "bottom",
+    legend.key.width = unit(1.5, "cm")
+  )
 
 
 ## Now let's try a cartogram using the cartogram package that was loaded above
-world_cartogram = world %>% 
+world_cartogram <- world %>%
   st_transform(crs = "+proj=eqearth +wktext") %>%
   cartogram_ncont("gdp_per_capita", k = 100, inplace = TRUE)
 
 ggplot() +
   geom_sf(data = world, alpha = 1, color = "grey70", fill = "grey70") +
-  geom_sf(data = world_cartogram, aes(fill = gdp_per_capita),
-          alpha = 1, color = "black", size = 0.1) +
+  geom_sf(
+    data = world_cartogram, aes(fill = gdp_per_capita),
+    alpha = 1, color = "black", size = 0.1
+  ) +
   scale_fill_viridis(labels = comma) +
-  labs(title = "Cartogram - GDP per capita",
-       caption = "Data downloaded from www.naturalearthdata.com",
-       fill = "GDP per capita") +
+  labs(
+    title = "Cartogram - GDP per capita",
+    caption = "Data downloaded from www.naturalearthdata.com",
+    fill = "GDP per capita"
+  ) +
   theme_void()
 ```
+

@@ -41,15 +41,16 @@ To check for duplicate rows when using [**pandas**](https://pandas.pydata.org/) 
 
 import pandas as pd
 
-storms = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv')
+storms = pd.read_csv(
+    "https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv"
+)
 
 # Find the duplicates by name, year, month, day, and hour
-level_variables = ['name', 'year', 'month', 'day', 'hour']
+level_variables = ["name", "year", "month", "day", "hour"]
 storms[storms.duplicated(subset=level_variables)]
 
 # Drop these duplicates, but retain the first occurrence of each
-storms = storms.drop_duplicates(subset=level_variables, keep='first')
-
+storms = storms.drop_duplicates(subset=level_variables, keep="first")
 ```
 
 ## R
@@ -68,12 +69,12 @@ data("storms")
 # name, year, month, day, and hour
 # anyDuplicated will return 0 if there are no duplicate combinations of these
 # so if we get 0, the variables in c() are our observation level.
-anyDuplicated(storms[,c('name','year','month','day','hour')])
+anyDuplicated(storms[, c("name", "year", "month", "day", "hour")])
 
 # We get 2292, telling us that row 2292 is a duplicate (and possibly others!)
 # We can pick just the rows that are duplicates of other rows for inspection
 # (note this won't get the first time that duplicate shows up, just the subsequent times)
-duplicated_rows <- storms[duplicated(storms[,c('name','year','month','day','hour')]),]
+duplicated_rows <- storms[duplicated(storms[, c("name", "year", "month", "day", "hour")]), ]
 
 
 # Alternately, we can use dplyr
@@ -126,3 +127,4 @@ For especially large datasets the [**Gtools**](https://gtools.readthedocs.io/en/
 gduplicates report latitude longitude
 gduplicates tag latitude longitude, g(g_duplicated_data)
 ```
+

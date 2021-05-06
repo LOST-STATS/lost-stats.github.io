@@ -57,7 +57,7 @@ reg(df, @formula(earnings_med ~ prop_working + fe(inst_name) + fe(year)), Vcov.c
 
 ## Python
 
-There are a few packages for doing the same task in Python, however, there is a well-known issue with these packages.That is, the calculation of standard deviation might be a little different. 
+There are a few packages for doing the same task in Python, however, there is a well-known issue with these packages.That is, the calculation of standard deviation might be a little different.
 
 We are going to use `linearmodels` in python. Installation can be done through `pip install linearmodels` and the documentation is  [here](https://bashtage.github.io/linearmodels/)
 
@@ -69,26 +69,30 @@ import numpy as np
 
 
 # Load the data
-data = pd.read_csv(r"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv")
+data = pd.read_csv(
+    r"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv"
+)
 
 # Set the index for fixed effects
-data = data.set_index(['inst_name', 'year'])
+data = data.set_index(["inst_name", "year"])
 
 # Calculate and drop the NA Values
-data['prop_working'] = data['count_working']/(data['count_working'] + data['count_not_working'])
-#data = data.dropna(subset=['earnings_med', 'prop_working'])
+data["prop_working"] = data["count_working"] / (
+    data["count_working"] + data["count_not_working"]
+)
+# data = data.dropna(subset=['earnings_med', 'prop_working'])
 
 # Regression
-FE = PanelOLS(data.earnings_med, data['prop_working'],
-              entity_effects = True,
-              time_effects=True
-              )
-              
+FE = PanelOLS(
+    data.earnings_med, data["prop_working"], entity_effects=True, time_effects=True
+)
+
 # Result
-result = FE.fit(cov_type = 'clustered',
-             cluster_entity=True,
-             # cluster_time=True
-             )
+result = FE.fit(
+    cov_type="clustered",
+    cluster_entity=True,
+    # cluster_time=True
+)
 ```
 
 There are also other packages for fixed effect models, such as `econtools` ([link](https://pypi.org/project/econtools/)), `FixedEffectModelPyHDFE` ([link](https://pypi.org/project/FixedEffectModelPyHDFE/)), `regpyhdfe`([link](https://regpyhdfe.readthedocs.io/en/latest/intro.html)) and `econtools` ([link](https://pypi.org/project/econtools/)).
@@ -105,9 +109,9 @@ We first demonstrate fixed effects in R using `felm` from the **lfe** package ([
 library(lfe)
 
 # Read in data from the College Scorecard
-df <- read.csv('https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv')
+df <- read.csv("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Fixed_Effects_in_Linear_Regression/Scorecard.csv")
 # Calculate proportion of graduates working
-df$prop_working <- df$count_working/(df$count_working + df$count_not_working)
+df$prop_working <- df$count_working / (df$count_working + df$count_not_working)
 
 # A felm formula is constructed as:
 # outcome ~
@@ -181,3 +185,4 @@ xtset, clear
 * We specify both sets of fixed effects in absorb()
 reghdfe earnings_med prop_working, absorb(name_number year) vce(cluster inst_name)
 ```
+

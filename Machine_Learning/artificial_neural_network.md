@@ -42,9 +42,9 @@ X, y = make_regression(n_samples=1000, n_features=10)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1)
 
 # Create and fit model
-regr = MLPRegressor(hidden_layer_sizes=(100,),
-                    activation='relu').fit(X_train, y_train)
+regr = MLPRegressor(hidden_layer_sizes=(100,), activation="relu").fit(X_train, y_train)
 
 # Compute R^2 score
 regr.score(X_test, y_test)
 ```
+

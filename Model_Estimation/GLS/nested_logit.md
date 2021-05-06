@@ -6,7 +6,7 @@ nav_order: 1
 mathjax: TRUE
 ---
 
-A nested logistical regression (nested logit, for short) is a statistical method for finding a best-fit line when the the outcome variable $Y$ is a binary variable, taking values of 0 or 1. Logit regressions, in general, follow a [logistical distribution](https://en.wikipedia.org/wiki/Logistical_distribution) and restrict predicted probabilities between 0 and 1. 
+A nested logistical regression (nested logit, for short) is a statistical method for finding a best-fit line when the the outcome variable $Y$ is a binary variable, taking values of 0 or 1. Logit regressions, in general, follow a [logistical distribution](https://en.wikipedia.org/wiki/Logistical_distribution) and restrict predicted probabilities between 0 and 1.
 
 Traditional logit models require that the [Independence of Irrelevant Alternatives(IIA)](https://en.wikipedia.org/wiki/Independence_of_irrelevant_alternatives) property holds for all possible outcomes of some process. Nested logit models differ by allowing 'nests' of outcomes that satisfy IIA within them, but not requiring that all outcomes jointly satisfy IIA.
 
@@ -30,7 +30,7 @@ For a more thorough theoretical treatment, see  [SAS Documentation: Nested Logit
 
 ## R
 
-R has multiple packages that can estimate a nested logit model. To show a simple example, we will use the `mlogit` package. 
+R has multiple packages that can estimate a nested logit model. To show a simple example, we will use the `mlogit` package.
 
 
 ```r
@@ -46,16 +46,16 @@ data("TravelMode", package = "AER")
 # Here, we will predict what mode of travel individuals
 # choose using cost and wait times
 
-nestedlogit = mlogit(
+nestedlogit <- mlogit(
   choice ~ gcost + wait,
   data = TravelMode,
-  ##The variable from which our nests are determined
-  alt.var = 'mode',
-  #The variable that dictates the binary choice
-  choice = 'choice',
-  #List of nests as named vectors
-  nests = list(Fast = c('air','train'), Slow = c('car','bus'))
-  )
+  ## The variable from which our nests are determined
+  alt.var = "mode",
+  # The variable that dictates the binary choice
+  choice = "choice",
+  # List of nests as named vectors
+  nests = list(Fast = c("air", "train"), Slow = c("car", "bus"))
+)
 
 
 # The results

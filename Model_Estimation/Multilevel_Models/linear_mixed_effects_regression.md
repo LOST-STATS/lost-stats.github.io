@@ -19,7 +19,7 @@ $$
 
 The intercept $$\beta_{0j}$$ has a $j$ subscript and is allowed to vary over the sample at the $$j$$ level, where $$j$$ may indicate individual or group, depending on context. The slope on $$X_{1ij}$$, $$\beta_{1j}$$, is similarly allowed to vary over the sample. These are random effects. $$\beta_{2}$$ is not allowed to vary over the sample and so is fixed.
 
-The random parameters have their own "level-two" equations, which may or may not include level-two covariates. 
+The random parameters have their own "level-two" equations, which may or may not include level-two covariates.
 
 $$
 \beta_{0j} = \gamma_{00} + \gamma_{01}W_j + u_{0j}
@@ -93,7 +93,7 @@ sysuse nlsw88.dta, clear
 reg wage tenure married
 
 * Now we will allow the intercept to vary with occupation
-mixed wage tenure married || occupation: 
+mixed wage tenure married || occupation:
 
 * Next we will allow the slope on tenure to vary with occupation
 mixed wage tenure married || occupation: tenure, nocons
@@ -105,3 +105,4 @@ mixed wage tenure married || occupation: tenure
 * and age
 mixed wage tenure married || occupation: tenure || age: tenure
 ```
+

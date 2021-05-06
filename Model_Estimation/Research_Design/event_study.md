@@ -68,18 +68,20 @@ import pandas as pd
 import linearmodels as lm
 
 # Read in data
-df = pd.read_stata("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Event_Study_DiD/bacon_example.dta")
+df = pd.read_stata(
+    "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Event_Study_DiD/bacon_example.dta"
+)
 
 # create the lag/lead for treated states
 # fill in control obs with 0
 # This allows for the interaction between `treat` and `time_to_treat` to occur for each state.
 # Otherwise, there may be some missingss and the estimations will be off.
-df['time_to_treat'] = (
-    df['_nfd'].sub(df['year'])
-        # missing values for _nfd implies no treatment
-        .fillna(0)
-        # so we don't have decimals in our factor names
-        .astype('int')
+df["time_to_treat"] = (
+    df["_nfd"].sub(df["year"])
+    # missing values for _nfd implies no treatment
+    .fillna(0)
+    # so we don't have decimals in our factor names
+    .astype("int")
 )
 
 # Create our interactions by hand,
@@ -88,39 +90,38 @@ df['time_to_treat'] = (
 df = (
     # returns dataframe with dummy columns in place of the columns
     # in the named argument, all other columns untouched
-    pd.get_dummies(df, columns=['time_to_treat'], prefix='INX')
-      # Be sure not to include the minuses in the name
-      .rename(columns=lambda x: x.replace('-', 'm'))
-      # get_dummies has a `drop_first` argument, but if we want to
-      # refer to a specific level, we should return all levels and
-      # drop out reference column manually
-      .drop(columns='INX_m1')
-      # Set our individual and time (index) for our data
-      .set_index(['stfips', 'year'])
+    pd.get_dummies(df, columns=["time_to_treat"], prefix="INX")
+    # Be sure not to include the minuses in the name
+    .rename(columns=lambda x: x.replace("-", "m"))
+    # get_dummies has a `drop_first` argument, but if we want to
+    # refer to a specific level, we should return all levels and
+    # drop out reference column manually
+    .drop(columns="INX_m1")
+    # Set our individual and time (index) for our data
+    .set_index(["stfips", "year"])
 )
 
 # Estimate the regression
 
-scalars = ['pcinc', 'asmrh', 'cases']
-factors = df.columns[df.columns.str.contains('INX')]
+scalars = ["pcinc", "asmrh", "cases"]
+factors = df.columns[df.columns.str.contains("INX")]
 exog = factors.union(scalars)
-endog = 'asmrs'
+endog = "asmrs"
 
 # with the standard api:
 mod = lm.PanelOLS(df[endog], df[exog], entity_effects=True, time_effects=True)
-fit = mod.fit(cov_type='clustered', cluster_entity=True)
+fit = mod.fit(cov_type="clustered", cluster_entity=True)
 fit.summary
 
 # with the formula api:
 # We can save ourselves some time by creating the regression formula automatically
-inxnames = df.columns[range(13,df.shape[1])]
-formula = '{} ~ {} + EntityEffects + TimeEffects'.format(endog, '+'.join(exog))
+inxnames = df.columns[range(13, df.shape[1])]
+formula = "{} ~ {} + EntityEffects + TimeEffects".format(endog, "+".join(exog))
 
-mod = lm.PanelOLS.from_formula(formula,df)
+mod = lm.PanelOLS.from_formula(formula, df)
 
 # Specify clustering when we fit the model
-clfe = mod.fit(cov_type = 'clustered',
-    cluster_entity = True)
+clfe = mod.fit(cov_type="clustered", cluster_entity=True)
 
 # Look at regression results
 clfe.summary
@@ -130,39 +131,38 @@ Now we can plot the results with **matplotlib**. Two common approaches are to in
 
 ```python?example=pyevent
 # Get coefficients and CIs
-res = pd.concat([clfe.params, clfe.std_errors], axis = 1)
+res = pd.concat([clfe.params, clfe.std_errors], axis=1)
 # Scale standard error to 95% CI
-res['ci'] = res['std_error']*1.96
+res["ci"] = res["std_error"] * 1.96
 
 # We only want time interactions
-res = res.filter(like='INX', axis=0)
+res = res.filter(like="INX", axis=0)
 # Turn the coefficient names back to numbers
 res.index = (
-    res.index
-        .str.replace('INX_', '')
-        .str.replace('m', '-')
-        .astype('int')
-        .rename('time_to_treat')
+    res.index.str.replace("INX_", "")
+    .str.replace("m", "-")
+    .astype("int")
+    .rename("time_to_treat")
 )
 
 # And add our reference period back in, and sort automatically
-res.reindex(range(res.index.min(), res.index.max()+1)).fillna(0)
+res.reindex(range(res.index.min(), res.index.max() + 1)).fillna(0)
 
 # Plot the estimates as connected lines with error bars
 
 ax = res.plot(
-    y='parameter',
-    yerr='ci',
-    xlabel='Time to Treatment',
-    ylabel='Estimated Effect',
-    legend=False
+    y="parameter",
+    yerr="ci",
+    xlabel="Time to Treatment",
+    ylabel="Estimated Effect",
+    legend=False,
 )
 # Add a horizontal line at 0
-ax.axhline(0, linestyle='dashed')
+ax.axhline(0, linestyle="dashed")
 # And a vertical line at the treatment time
 # some versions of pandas have bug return x-axis object with data_interval
 # starting at 0. In that case change 0 to 21
-ax.axvline(0, linestyle='dashed')
+ax.axvline(0, linestyle="dashed")
 ```
 
 Which produces:
@@ -182,17 +182,17 @@ library(tidyverse)
 library(broom)
 library(haven)
 
-#Load and prepare data
+# Load and prepare data
 bacon_df <- read_dta("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Event_Study_DiD/bacon_example.dta") %>%
   mutate(
-  # create the lag/lead for treated states
-  # fill in control obs with 0
-  # This allows for the interaction between `treat` and `time_to_treat` to occur for each state.
-  # Otherwise, there may be some NAs and the estimations will be off.
-  time_to_treat =ifelse(is.na(`_nfd`),0,year - `_nfd`),
-  # this will determine the difference
-  # btw controls and treated states
-  treat = ifelse(is.na(`_nfd`),0,1)
+    # create the lag/lead for treated states
+    # fill in control obs with 0
+    # This allows for the interaction between `treat` and `time_to_treat` to occur for each state.
+    # Otherwise, there may be some NAs and the estimations will be off.
+    time_to_treat = ifelse(is.na(`_nfd`), 0, year - `_nfd`),
+    # this will determine the difference
+    # btw controls and treated states
+    treat = ifelse(is.na(`_nfd`), 0, 1)
   )
 ```
 
@@ -201,21 +201,7 @@ Also, while it's not necessary given how we're about to use the **fixest** packa
 We will run the event-study regression using `feols()` from the **fixest** package. **fixest** is very fast, contains support for complex fixed-effects interactions, selecting our own reference group like we need with `i()`, and will also help run the Sun and Abraham (2020) estimator.
 
 ```r?example=event_study
-m_1 <- feols(asmrs ~
-    # The time-treatment interaction terms
-	i(treat, time_to_treat, ref=-1) +
-	# Controls
-	pcinc + asmrh + cases
-	# State and year fixed effects
-	| stfips + year,
-	# feols clusters by the first fixed effect anyway, just making that clear
-	cluster=~stfips, data=bacon_df)
-# Now turn the results into a data frame with a year column for easy plotting
-event_1 <- tidy(m_1, conf.int = TRUE) %>%
-	# For plotting purposes, we only want the terms that reference years
-	# and not the controls
-    mutate(year =  as.numeric(parse_number(term))) %>%
-	filter(!is.na(year))
+
 ```
 
 Now we can plot the results with **ggplot2**. Two common approaches are to include vertical-line confidence intervals with `geom_pointrange()` or to include a confidence interval ribbon with `geom_ribbon()`. I'll show the `geom_pointrange()` version, but this is easy to swap out.
@@ -224,30 +210,34 @@ Now, you could just simply use `coefplot(m_1)` from **fixest** and be done with 
 
 ```r?example=event_study
 event_1 %>%
-    ggplot(mapping = aes(x = year, y = estimate,
-	                     ymin = conf.low, ymax = conf.high))+
-      geom_pointrange(position = position_dodge(width = 1),
-	  # Optional decoration:
-	  color="black", fatten=.5, alpha=.8) +
-	  # Add a line marker for y = 0 (to see if the CI overlaps 0)
-      geom_hline(yintercept=0, color = "red",alpha=0.2)+
-	  # A marker for the last pre-event period
-      geom_vline(xintercept = -1, color = "black", size=0.5, alpha=0.4) +
-	  # And the event period
-      geom_vline(xintercept = 0, linetype="dotted", color = "black", size=0.5, alpha=0.2)+
-	  # Additional decoration:
-	  theme_bw()+
-	  theme(
-		plot.title = element_text(face = "bold", size = 12),
-		legend.background = element_rect(fill = "white", size = 4, colour = "white"),
-		legend.justification = c(0, 1),
-		legend.position = c(0, 1),
-		axis.ticks = element_line(colour = "white", size = 0.1),
-		panel.grid.major = element_line(colour = "white", size = 0.07),
-		panel.grid.minor = element_blank()
-	  )+
-		annotate("text", x = c(0,2), y=30, label = c("","treat"))+
-		 labs(title="Event Study: Staggered Treatment", y="Estimate", x="Time")
+  ggplot(mapping = aes(
+    x = year, y = estimate,
+    ymin = conf.low, ymax = conf.high
+  )) +
+  geom_pointrange(
+    position = position_dodge(width = 1),
+    # Optional decoration:
+    color = "black", fatten = .5, alpha = .8
+  ) +
+  # Add a line marker for y = 0 (to see if the CI overlaps 0)
+  geom_hline(yintercept = 0, color = "red", alpha = 0.2) +
+  # A marker for the last pre-event period
+  geom_vline(xintercept = -1, color = "black", size = 0.5, alpha = 0.4) +
+  # And the event period
+  geom_vline(xintercept = 0, linetype = "dotted", color = "black", size = 0.5, alpha = 0.2) +
+  # Additional decoration:
+  theme_bw() +
+  theme(
+    plot.title = element_text(face = "bold", size = 12),
+    legend.background = element_rect(fill = "white", size = 4, colour = "white"),
+    legend.justification = c(0, 1),
+    legend.position = c(0, 1),
+    axis.ticks = element_line(colour = "white", size = 0.1),
+    panel.grid.major = element_line(colour = "white", size = 0.07),
+    panel.grid.minor = element_blank()
+  ) +
+  annotate("text", x = c(0, 2), y = 30, label = c("", "treat")) +
+  labs(title = "Event Study: Staggered Treatment", y = "Estimate", x = "Time")
 ```
 
 This results in:
@@ -259,62 +249,7 @@ Another common option in these graphs is to link all the individual point estima
 Of course, as earlier mentioned, this analysis is subject to the critique by Sun and Abraham (2020). We can also use **fixest** to estimate the Sun and Abraham estimator to calculate effects separately by time-when-treated, and then aggregate to the time-to-treatment level properly, avoiding the way these estimates can "contaminate" each other in the regular model.
 
 ```r?example=event_study
-# see help(aggregate.fixest)
-# As Sun and Abraham indicate, drop any always-treated groups
-sun_df <- bacon_df %>%
-  filter(`_nfd` > min(year) | !treat) %>%
-  # and set time_to_treat to -1000 for untreated groups
-  mutate(time_to_treat = case_when(
-    treat == 0 ~ -1000,
-    treat == 1 ~ time_to_treat
-  )) %>%
-  # and create a new year-treated variable that's impossibly far in the future
-  # for untreated groups
-  mutate(year_treated = case_when(
-    treat == 0 ~ 10000,
-    treat == 1 ~ `_nfd`
-  )) %>%
-  # and a shared identifier for year treated and year
-  mutate(id = paste0(year_treated, ':', year))
 
-# Don't include so many pre- and post-lags that you've got a lot of tiny periods
-table(sun_df$time_to_treat)
-sun_df <- sun_df %>%
-  filter(time_to_treat == -1000 | (time_to_treat >= -9 & time_to_treat <= 24))
-
-# Read the Sun and Abraham paper before including controls as I do here
-m_2 <- feols(asmrs ~
-               # This time, interact time_to_treatment with year treated
-               # Dropping as reference the -1 period and the never-treated
-               i(time_to_treat, f2 = year_treated, drop = c(-1, -1000)) +
-               # Controls
-               pcinc + asmrh + cases
-             # Fixed effects for group and year
-             | stfips + year,
-             data=sun_df)
-# Aggregate the coefficients by group
-agg_coef = aggregate(m_2, "(time_to_treat)::(-?[[:digit:]]+)")
-# And plot
-agg_coef %>%
-  as_tibble() %>%
-  mutate(conf.low = Estimate - 1.96*`Std. Error`,
-         conf.high = Estimate + 1.96*`Std. Error`,
-         `Time to Treatment` = c(-9:-2, 0:24)) %>%
-  ggplot(mapping = aes(x = `Time to Treatment`, y = Estimate,
-                       ymin = conf.low, ymax = conf.high))+
-  geom_pointrange(position = position_dodge(width = 1),
-                  # Optional decoration:
-                  color="black", fatten=.5, alpha=.8) +
-  geom_line() +
-  # Add a line marker for y = 0 (to see if the CI overlaps 0)
-  geom_hline(yintercept=0, color = "red",alpha=0.2)+
-  # A marker for the last pre-event period
-  geom_vline(xintercept = -1, color = "black", size=0.5, alpha=0.4) +
-  # And the event period
-  geom_vline(xintercept = 0, linetype="dotted", color = "black", size=0.5, alpha=0.2)+
-  # Additional decoration:
-  theme_bw()+
-  labs(title="Event Study: Staggered Treatment with Sun and Abraham (2020) Estimation", y="Estimate", x="Time")
 ```
 
 
@@ -473,3 +408,4 @@ twoway (sc coef time_to_treat, connect(line)) ///
 	(function y = 0, range(`bottom_range' `top_range') horiz), ///
 	xtitle("Time to Treatment with Sun and Abraham (2020) Estimation") caption("95% Confidence Intervals Shown")
 ```
+

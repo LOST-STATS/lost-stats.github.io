@@ -59,7 +59,8 @@ If you have questions about how to use `ggplot` and `aes`, check [Here]({{ "/Pre
 ```r?example=ggplot
 ggplot(data = iris, aes(
   ## Put Sepal.Length on the x-axis, Sepal.Width on the y-axis
-  x=Sepal.Length, y=Sepal.Width))+
+  x = Sepal.Length, y = Sepal.Width
+)) +
   ## Make it a scatterplot with geom_point()
   geom_point()
 ```
@@ -79,10 +80,12 @@ Notice that attributes set *outside* of `aes()` apply to *all* points (like `siz
   We can distinguish the `Species` by `alpha` (transparency).
 
 ```r?example=ggplot
-ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
-                 ## Where transparency comes in
-                 alpha=Species)) +
-    geom_point(size =4, color="seagreen")
+ggplot(iris, aes(
+  x = Sepal.Length, y = Sepal.Width,
+  ## Where transparency comes in
+  alpha = Species
+)) +
+  geom_point(size = 4, color = "seagreen")
 ```
 ![Scatterplot with Transparency](Images/Styling_Scatterplots/R_transparency.png)
 
@@ -93,10 +96,12 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
 
 
 ```r?example=ggplot
-ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
-                 ## Where shape comes in
-                 shape=Species)) +
-    geom_point(size = 4,color="orange")
+ggplot(iris, aes(
+  x = Sepal.Length, y = Sepal.Width,
+  ## Where shape comes in
+  shape = Species
+)) +
+  geom_point(size = 4, color = "orange")
 ```
 
 ![Scatterplot with Different Shapes](Images/Styling_Scatterplots/R_shape.png)
@@ -107,10 +112,12 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
  `size` is a great option that we can take a look at as well. However, note that `size` will work better with continuous variables.
 
 ```r?example=ggplot
-ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
-                 ## Where size comes in
-                 size=Species)) +
-    geom_point(shape = 18, color = "#FC4E07")
+ggplot(iris, aes(
+  x = Sepal.Length, y = Sepal.Width,
+  ## Where size comes in
+  size = Species
+)) +
+  geom_point(shape = 18, color = "#FC4E07")
 ```
 
 ![Scatterplot With Different Sizes](Images/Styling_Scatterplots/R_size.png)
@@ -128,9 +135,11 @@ Last but not least, let's `color` these points depends on the variable `Species`
 ## iris$Species <- as.factor(iris$Species)
 
 ## Then, we are ready to plot
-ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width,
-                        ## distinguish the species by color
-                        color=Species))+
+ggplot(data = iris, aes(
+  x = Sepal.Length, y = Sepal.Width,
+  ## distinguish the species by color
+  color = Species
+)) +
   geom_point()
 ```
 ![Scatterplot with different colors](Images/Styling_Scatterplots/R_color.png)
@@ -141,15 +150,15 @@ ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width,
     * If you do not like all the options that the  **RColorBrewer** and **viridis** packages provide, see [here](http://www.sthda.com/english/wiki/ggplot2-colors-how-to-change-colors-automatically-and-manually) to work with color in the **ggplot2** package.
 
 ```r?example=ggplot
-ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
-  geom_point()+
+ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point() +
   ## Where RColorBrewer package comes in
   scale_colour_brewer(palette = "Set1") ## There are more options available for palette
 
-ggplot(data = iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
-  geom_point()+
+ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point() +
   ## Where viridis package comes in
-  scale_color_viridis(discrete=TRUE,option = "D")  ## There are more options to choose
+  scale_color_viridis(discrete = TRUE, option = "D") ## There are more options to choose
 ```
 
 This first graph is using `RColorBrewer` package,and the second graph is using `viridis` package.
@@ -172,11 +181,13 @@ The next step that we can do is to figure out what the most fittable themes to m
 In fact, **ggplot2** package has many cool themes available alreay such as `theme_classic()`, `theme_minimal()` and `theme_bw()`. Another famous theme is the dark theme: `theme_dark()`. Let's check out some of them.
 
 ```r?example=ggplot
-ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
-                 col=Species,
-                 shape=Species)) +
-  geom_point(size=3) +
-  scale_color_viridis(discrete=TRUE,option = "D") +
+ggplot(iris, aes(
+  x = Sepal.Length, y = Sepal.Width,
+  col = Species,
+  shape = Species
+)) +
+  geom_point(size = 3) +
+  scale_color_viridis(discrete = TRUE, option = "D") +
   theme_minimal(base_size = 12)
 ```
 
@@ -188,11 +199,13 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
 `ggthemes` package is also worth to check out for working any plots (maps,time-series data, and any other plots) that you are working on. `theme_gdocs()`, `theme_tufte()`, and `theme_calc()` all work very well. See [here](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/) to get more cool themes.
 
 ```r?example=ggplot
-ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
-                 col=Species,
-                 shape=Species)) +
-  geom_point(size=3) +
-  scale_color_viridis(discrete=TRUE,option = "D") +
+ggplot(iris, aes(
+  x = Sepal.Length, y = Sepal.Width,
+  col = Species,
+  shape = Species
+)) +
+  geom_point(size = 3) +
+  scale_color_viridis(discrete = TRUE, option = "D") +
   ## Using the theme_tufte()
   theme_tufte()
 ```
@@ -213,17 +226,19 @@ Both `labs()` and `ggtitle()` are great tools to deal with labelling information
 
 
 ```r?example=ggplot
-ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
-                 col=Species,
-                 shape=Species)) +
-  geom_point(size=3) +
-  scale_color_viridis(discrete=TRUE,option = "D") +
-  theme_minimal(base_size = 12)+
+ggplot(iris, aes(
+  x = Sepal.Length, y = Sepal.Width,
+  col = Species,
+  shape = Species
+)) +
+  geom_point(size = 3) +
+  scale_color_viridis(discrete = TRUE, option = "D") +
+  theme_minimal(base_size = 12) +
   ## Where the labelling comes in
   labs(
     ## Tell people what x and y variables are
-    x="Sepal Length",
-    y="Sepal Width",
+    x = "Sepal Length",
+    y = "Sepal Width",
     ## Title of the plot
     title = "Sepal length vs. Sepal width",
     subtitle = " plot within different Iris Species"
@@ -238,25 +253,30 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
 After the basic labelling, we want to make them nicer by playing around the postion and appearance (text size, color and faces).
 
 ```r?example=ggplot
-ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
-                 col=Species,
-                 shape=Species)) +
-  geom_point(size=3) +
-  scale_color_viridis(discrete=TRUE,option = "D") +
+ggplot(iris, aes(
+  x = Sepal.Length, y = Sepal.Width,
+  col = Species,
+  shape = Species
+)) +
+  geom_point(size = 3) +
+  scale_color_viridis(discrete = TRUE, option = "D") +
   labs(
-    x="Sepal Length",
-    y="Sepal Width",
+    x = "Sepal Length",
+    y = "Sepal Width",
     title = "Sepal length vs. Sepal width",
     subtitle = "plot within different Iris Species"
-  )+
+  ) +
   theme_minimal(base_size = 12) +
   ## Change the title and subtitle position to the center
-  theme(plot.title = element_text(hjust = 0.5),
-        plot.subtitle = element_text(hjust = 0.5))+
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  ) +
   ## Change the appearance of the title and subtitle
-  theme (plot.title = element_text(color = "black", size = 14, face = "bold"),
-         plot.subtitle = element_text(color = "grey40",size = 10, face = 'italic')
-         )
+  theme(
+    plot.title = element_text(color = "black", size = 14, face = "bold"),
+    plot.subtitle = element_text(color = "grey40", size = 10, face = "italic")
+  )
 ```
 
 ![Scatterplot with Elements Moved](Images/Styling_Scatterplots/R_label_2.png)
@@ -271,24 +291,30 @@ After done with step 4, you should end with a very neat and unquie plot. Let's e
  According to the plot, it seems like there exists a linear relationship between sepal length and sepal width. Thus, let's add a linear trend to our scattplot to help readers see the pattern more directly using `geom_smooth()`. Note that the `method` argument in `geom_smooth()` allows to apply different smoothing method like glm, loess and more. See the [doc](https://ggplot2.tidyverse.org/reference/geom_smooth.html) for more.
 
 ```r?example=ggplot
-ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width,
-                 col=Species,
-                 shape=Species)) +
-  geom_point(size=3) +
-  scale_color_viridis(discrete=TRUE,option = "D") +
+ggplot(iris, aes(
+  x = Sepal.Length, y = Sepal.Width,
+  col = Species,
+  shape = Species
+)) +
+  geom_point(size = 3) +
+  scale_color_viridis(discrete = TRUE, option = "D") +
   labs(
-    x="Sepal Length",
-    y="Sepal Width",
+    x = "Sepal Length",
+    y = "Sepal Width",
     title = "Sepal length vs. Sepal width",
     subtitle = "plot within different Iris Species"
-  )+
+  ) +
   theme_minimal(base_size = 12) +
-  theme(plot.title = element_text(hjust = 0.5),
-        plot.subtitle = element_text(hjust = 0.5))+
-  theme (plot.title = element_text(color = "black", size = 14, face = "bold"),
-         plot.subtitle = element_text(color = "grey40",size = 10, face = 'italic')) +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  ) +
+  theme(
+    plot.title = element_text(color = "black", size = 14, face = "bold"),
+    plot.subtitle = element_text(color = "grey40", size = 10, face = "italic")
+  ) +
   ## Where linear trend + confidence interval come in
-  geom_smooth(method = 'lm',se=TRUE)
+  geom_smooth(method = "lm", se = TRUE)
 ```
 
 ![Scatterplot with Linear Trend](Images/Styling_Scatterplots/R_linear_trend.png)
@@ -477,3 +503,4 @@ twoway  (scatter sepwid seplen if iris==1, color("72 27 109") symbol(O)) ///
 ![Stata scatterplot with local polynomial lines.](Images/Styling_Scatterplots/stata_sc_9.png)
 
 And done. You can use the above guide to modify your plots as needed.
+

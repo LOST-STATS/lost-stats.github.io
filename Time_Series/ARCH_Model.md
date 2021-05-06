@@ -33,7 +33,7 @@ For additional information, see [Wikipedia: Autoregressive conditional heteroske
 
 ## Also Consider
 
-- ARCH models can be univariate (scalar) or multivariate (vector). 
+- ARCH models can be univariate (scalar) or multivariate (vector).
 - ARCH models are commonly employed in modeling financial time series that exhibit time-varying volatility and volatility clustering, i.e. periods of swings interspersed with periods of relative calm.
 - If an autoregressive moving average (ARMA) model is assumed for the error variance, the model is a generalized autoregressive conditional heteroskedasticity (GARCH) model. For more information on GARCH models, see [Wikipedia: GARCH](https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity#GARCH). For information about estimating an GARCH models, see [LOST: GARCH models]({{ "/Time_Series/GARCH_Model.html" | relative_url }}).
 
@@ -47,18 +47,19 @@ from random import seed
 from matplotlib import pyplot
 from arch import arch_model
 import numpy as np
+
 # seed the process
 np.random.seed(1)
 # Simulating a ARCH(1) process
 a0 = 1
-a1 = .5
+a1 = 0.5
 w = np.random.normal(size=1000)
 e = np.random.normal(size=1000)
 Y = np.empty_like(w)
 for t in range(1, len(w)):
-    Y[t] = w[t] * np.sqrt((a0 + a1*Y[t-1]**2))
+    Y[t] = w[t] * np.sqrt((a0 + a1 * Y[t - 1] ** 2))
 # fit model
-model = arch_model(Y, vol = "ARCH", rescale = "FALSE")
+model = arch_model(Y, vol="ARCH", rescale="FALSE")
 model_fit = model.fit()
 print(model_fit.summary)
 ```
@@ -74,9 +75,11 @@ set.seed(1)
 e <- NULL
 obs <- 1000
 e[1] <- rnorm(1)
-for (i in 2:obs) {e[i] <- rnorm(1)*(1+0.5*(e[i-1])^2)^0.5}
+for (i in 2:obs) {
+  e[i] <- rnorm(1) * (1 + 0.5 * (e[i - 1])^2)^0.5
+}
 # fit the model
-arch.fit <- garchFit(~garch(1,0), data = e, trace = F)
+arch.fit <- garchFit(~ garch(1, 0), data = e, trace = F)
 summary(arch.fit)
 ```
 
@@ -92,6 +95,7 @@ tsset time
 gen e=.
 replace e=rnormal() if time==1
 replace e=rnormal()*(1 + .5*(e[_n-1])^2)^.5 if time>=2 & time<=2000
-* Estimate arch parameters.. 
+* Estimate arch parameters..
 arch e, arch(1)
 ```
+

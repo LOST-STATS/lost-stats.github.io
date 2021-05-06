@@ -56,8 +56,10 @@ import pandas as pd
 
 # Load WHO data on population as an example, which has 'country', 'year',
 # and 'population' columns.
-df = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/tidyr/population.csv',
-                 index_col=0)
+df = pd.read_csv(
+    "https://vincentarelbundock.github.io/Rdatasets/csv/tidyr/population.csv",
+    index_col=0,
+)
 
 # In this example, we would like to have one row per country but the data have
 # multiple rows per country, each corresponding with
@@ -69,9 +71,7 @@ print(df.head())
 # the pivot function and set 'country' as the index. As we'd like to
 # split out years into different columns, we set columns to 'years', and the
 # values within this new dataframe will be population:
-df_wide = df.pivot(index='country',
-                   columns='year',
-                   values='population')
+df_wide = df.pivot(index="country", columns="year", values="population")
 
 # What if there are multiple year-country pairs? Pivot can't work
 # because it needs unique combinations. In this case, we can use
@@ -81,20 +81,19 @@ df_wide = df.pivot(index='country',
 # 5% higher values for all years.
 
 # Copy the data for France
-synth_fr_data = df.loc[df['country'] == 'France']
+synth_fr_data = df.loc[df["country"] == "France"]
 
 # Add 5% for all years
-synth_fr_data['population'] = synth_fr_data['population']*1.05
+synth_fr_data["population"] = synth_fr_data["population"] * 1.05
 
 # Append it to the end of the original data
 df = pd.concat([df, synth_fr_data], axis=0)
 
 # Compute the wide data - averaging over the two estimates for France for each
 # year.
-df_wide = df.pivot_table(index='country',
-                         columns='year',
-                         values='population',
-                         aggfunc='mean')
+df_wide = df.pivot_table(
+    index="country", columns="year", values="population", aggfunc="mean"
+)
 ```
 
 ## R
@@ -121,15 +120,16 @@ Now we think:
 
 ```r?example=pivot_wider
 pop_wide <- pivot_wider(population,
-                               names_from = year,
-                               values_from = population,
-                               names_prefix = "pop_")
+  names_from = year,
+  values_from = population,
+  names_prefix = "pop_"
+)
 ```
 
 Another way to do this is using `data.table`.
 
 ```r?example=pivot_wider
-#install.packages('data.table')
+# install.packages('data.table')
 library(data.table)
 
 # The second argument here is the formula describing the observation level of the data
@@ -137,11 +137,11 @@ library(data.table)
 # The parts before the ~ are what we want the new observation level to be in the wide data (one row per country)
 # The parts after the ~ are for the variables we want to no longer be part of the observation level (we no longer want a row per year)
 
-population = as.data.table(population)
-pop_wide = dcast(population,
-                 country ~ year,
-                 value.var = "population"
-                 )
+population <- as.data.table(population)
+pop_wide <- dcast(population,
+  country ~ year,
+  value.var = "population"
+)
 ```
 
 ## Stata
@@ -210,3 +210,4 @@ restore
 ```
 
 Note: there is much more guidance to the usage of greshape on the [Gtools reshape page](https://gtools.readthedocs.io/en/latest/usage/greshape/index.html).
+

@@ -38,8 +38,10 @@ Using GDP data, let’s fit an auto-regressive model of order 1, an AR(1), with 
 import pandas as pd
 from statsmodels.tsa.ar_model import AutoReg, ar_select_order
 
-gdp = pd.read_csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv",
-                    index_col=0)
+gdp = pd.read_csv(
+    "https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv",
+    index_col=0,
+)
 ar1_model = AutoReg(gdp, 1)
 results = ar1_model.fit()
 print(results.summary())
@@ -112,17 +114,17 @@ print(results_p.summary())
 ## R
 
 ```r
-#load data
-gdp = read.csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv")
+# load data
+gdp <- read.csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv")
 
-#estimation via ols: pay attention to the selection of the 'GDPC1' column.
-#if the column is not specified, the function call also interprets the date column as a time series variable!
-ar_gdp = ar.ols(gdp$GDPC1)
+# estimation via ols: pay attention to the selection of the 'GDPC1' column.
+# if the column is not specified, the function call also interprets the date column as a time series variable!
+ar_gdp <- ar.ols(gdp$GDPC1)
 ar_gdp
 
-#lag order is automatically selected by minimizing AIC
-#disable this feature with the optional command 'aic = F'. Note: you will also likely wish to specify the argument 'order.max'.
-#ar.ols() defaults to demeaning the data automatically. Also consider taking logs and first differencing for statistically meaningful results.
+# lag order is automatically selected by minimizing AIC
+# disable this feature with the optional command 'aic = F'. Note: you will also likely wish to specify the argument 'order.max'.
+# ar.ols() defaults to demeaning the data automatically. Also consider taking logs and first differencing for statistically meaningful results.
 ```
 
 ## STATA
@@ -146,3 +148,4 @@ tsset date_index
 reg gdpc1 L.gdpc1 L2.gdpc1
 *variables are not demeaned automatically by STATA. Also consider taking logs and first differencing for statistically meaningful results.
 ```
+

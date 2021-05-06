@@ -76,10 +76,10 @@ from geopy.geocoders import Nominatim
 
 # Create a geolocator using Open Street Map (aka Nominatim)
 # Use your own user agent identifier here
-geolocator = Nominatim(user_agent='LOST_geocoding_page')
+geolocator = Nominatim(user_agent="LOST_geocoding_page")
 
 # Pass an address to retrieve full location information:
-location = geolocator.geocode('Bank of England')
+location = geolocator.geocode("Bank of England")
 
 print(location.address)
 # >> Bank of England, 8AH, Threadneedle Street, Bishopsgate, City of London,
@@ -127,26 +127,25 @@ To save the API in your **Renvrion**:
 1. Open the **Renviron** by running `usethis::edit_r_environ()`
 2. Once you are in the **Renviron** name and save the API you got from Geocodio. Maybe something like:
 
-```r?example=rgeocodeio&skip=true&skipReason=requires_api_key
-#geocodio_API = 'your api`
+```r?example=rgeocodeio&skip=true&skipreason=requires_api_key
+# geocodio_API = 'your api`
 ```
 3. Save your **Renviron** and then restart your R session just to be sure that the API is saved.
 
 Now that you have your API saved in R you still need to authorize the API in your R session. Do so by running `gio_auth()`.
 
-```r?example=rgeocodeio&skip=true&skipReason=requires_api_key
+```r?example=rgeocodeio&skip=true&skipreason=requires_api_key
 # If necessary
 # install.packages(c('rgeocodio','readxl','tidyverse'))
 
 library(rgeocodio)
 gio_auth(force = F)
-
 ```
 A quick note, `force` makes you set a new geocodio API key for the current environment. In general you will want to run `force=F`.
 Lets try a regeocodio example. Say you want to get the coordinates of the White House. You could run:
 
-```r?example=rgeocodeio&skip=true&skipReason=requires_api_key
-rgeocodio::gio_geocode('1600 Pennsylvania Ave NW, Washington DC 20500')
+```r?example=rgeocodeio&skip=true&skipreason=requires_api_key
+rgeocodio::gio_geocode("1600 Pennsylvania Ave NW, Washington DC 20500")
 ```
 
 Most of these variables are intuitive but I want to spend a few seconds on **accuracy** and **accuracy type** which we can learn more about [here](https://www.geocod.io/docs/#accuracy-score).
@@ -157,32 +156,31 @@ Most of these variables are intuitive but I want to spend a few seconds on **acc
 
 What if we want to geocode a bunch of addresses at once? To geocode multiple addresses at once we will use `gio_batch_geocode`. The data that we enter will need to be a *character vector of addresses*.
 
-```r?example=rgeocodeio&skip=true&skipReason=requires_api_key
+```r?example=rgeocodeio&skip=true&skipreason=requires_api_key
 library(readxl)
 library(tidyverse)
 
-addresses<- c('Yosemite National Park, California', '1600 Pennsylvania Ave NW, Washington DC 20500', '2975 Kincaide St Eugene, Oregon, 97405')
+addresses <- c("Yosemite National Park, California", "1600 Pennsylvania Ave NW, Washington DC 20500", "2975 Kincaide St Eugene, Oregon, 97405")
 
 gio_batch_geocode(addresses)
 ```
 
 You will notice that the output is a list with dataframes of the results embedded. There are a number of ways to extract the relevant data but one approach would be:
 
-```r?example=rgeocodeio&skip=true&skipReason=requires_api_key
-addresses<- c('Yosemite National Park, California', '1600 Pennsylvania Ave NW, Washington DC 20500', '2975 Kincaide St Eugene, Oregon, 97405')
+```r?example=rgeocodeio&skip=true&skipreason=requires_api_key
+addresses <- c("Yosemite National Park, California", "1600 Pennsylvania Ave NW, Washington DC 20500", "2975 Kincaide St Eugene, Oregon, 97405")
 
-extract_function<- function(addresses){
+extract_function <- function(addresses) {
+  data <- gio_batch_geocode(addresses)
+  vector <- (1:length(addresses))
 
-data<-gio_batch_geocode(addresses)
-vector<- (1: length(addresses))
+  df_function <- function(vector) {
+    df <- data$response_results[vector]
+    df <- df %>% as.data.frame()
+  }
 
-df_function<-function(vector){
-  df<-data$response_results[vector]
-  df<-df%>%as.data.frame()
-}
-
-geocode_data<-do.call(bind_rows, lapply(vector, df_function))
-return(geocode_data)
+  geocode_data <- do.call(bind_rows, lapply(vector, df_function))
+  return(geocode_data)
 }
 
 extract_function(addresses)
@@ -192,15 +190,15 @@ Reverse geocoding uses `gio_reverse` and `gio_batch_reverse`.
 
 For `gio_reverse` you submit a longitude-latitude pair:
 
-```r?example=rgeocodeio&skip=true&skipReason=requires_api_key
+```r?example=rgeocodeio&skip=true&skipreason=requires_api_key
 gio_reverse(38.89767, -77.03655)
 ```
 
 For `gio_batch_reverse` we will submit a vector of numeric entries ordered by c(longitude, latitude):
 
-```r?example=rgeocodeio&skip=true&skipReason=requires_api_key
-#make a dataset
-data<-data.frame(
+```r?example=rgeocodeio&skip=true&skipreason=requires_api_key
+# make a dataset
+data <- data.frame(
   lat = c(35.9746000, 32.8793700, 33.8337100, 35.4171240),
   lon = c(-77.9658000, -96.6303900, -117.8362320, -80.6784760)
 )
@@ -212,8 +210,9 @@ Notice that the output gives us multiple accuracy types.
 
 What about geocoding the rest of the world, chico?
 
-```r?example=rgeocodeio&skip=true&skipReason=requires_api_key
-rgeocodio::gio_batch_geocode('523-303, 350 Mokdongdong-ro, Yangcheon-Gu, Seoul, South Korea 07987')
+```r?example=rgeocodeio&skip=true&skipreason=requires_api_key
+rgeocodio::gio_batch_geocode("523-303, 350 Mokdongdong-ro, Yangcheon-Gu, Seoul, South Korea 07987")
 ```
 
 *gasp* Geocodio only works, from my understanding, in the United States and Canada. We would need to use a different service like **Google's geocoder** to do the rest of the world.
+

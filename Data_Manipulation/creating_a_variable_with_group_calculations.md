@@ -17,7 +17,7 @@ Many data sets have hierarchical structures, where individual observations belon
 | 2 | 1 | 2 |
 | 2 | 2 | 5 |
 
-Here, we have data where each group $$I$$ has multiple rows, one for each $$J$$. 
+Here, we have data where each group $$I$$ has multiple rows, one for each $$J$$.
 
 We often might want to create a new variable that performs a calculation *within* each group, and assigns the result to each value in that group. For example, perhaps we want to calculate the mean of $$X$$ within each group $$I$$, so we can know how far above or below the group average each observation is. Our goal is:
 
@@ -26,7 +26,7 @@ We often might want to create a new variable that performs a calculation *within
 | - | - | - | -    |
 | 1 | 1 | 3 | 3.25 |
 | 1 | 2 | 3.5 | 3.25 |
-| 2 | 1 | 2 | 3.5 | 
+| 2 | 1 | 2 | 3.5 |
 | 2 | 2 | 5 | 3.5 |
 
 
@@ -44,20 +44,22 @@ We often might want to create a new variable that performs a calculation *within
 import pandas as pd
 
 # Pull in data on storms
-storms = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv')
+storms = pd.read_csv(
+    "https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv"
+)
 
 # Use groupby and agg to perform a group calculation
 # Here it's a mean, but it could be anything
-meanwind = (storms.groupby(['name', 'year', 'month', 'day'])
-            .agg({'wind': 'mean'})
-            # Rename so that when we merge it in it has a 
-            # different name
-           .rename({'wind': 'mean_wind'}))
-            # make sure it's a data frame so we can join it  
-    
+meanwind = (
+    storms.groupby(["name", "year", "month", "day"]).agg({"wind": "mean"})
+    # Rename so that when we merge it in it has a
+    # different name
+    .rename({"wind": "mean_wind"})
+)
+# make sure it's a data frame so we can join it
+
 # Use merge to bring the result back into the data
-storms = pd.merge(storms,meanwind,
-                    on = ['name', 'year', 'month', 'day'])
+storms = pd.merge(storms, meanwind, on=["name", "year", "month", "day"])
 ```
 
 ## R
@@ -88,3 +90,4 @@ import delimited "https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storm
 * Use bysort to determine the grouping, and egen to do the calculation
 bysort name year month day: egen mean_wind = mean(wind)
 ```
+

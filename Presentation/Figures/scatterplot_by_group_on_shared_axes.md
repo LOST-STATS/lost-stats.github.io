@@ -13,7 +13,7 @@ nav_order: 1
 
 ## Keep in Mind
 
-- Scatterplots may not work well if the data is discrete, or if there are a large number of data points. 
+- Scatterplots may not work well if the data is discrete, or if there are a large number of data points.
 
 ## Also Consider
 
@@ -32,15 +32,18 @@ data(mtcars)
 
 # Make sure that our grouping variable is a factor
 # and labeled properly
-mtcars$Transmission <- factor(mtcars$am, 
-                              labels = c("Automatic", "Manual"))
+mtcars$Transmission <- factor(mtcars$am,
+  labels = c("Automatic", "Manual")
+)
 
-# Put wt on the x-axis, mpg on the y-axis, 
-ggplot(mtcars, aes(x = wt, y = mpg, 
-                   # distinguish the Transmission values by color,
-                   color = Transmission)) + 
+# Put wt on the x-axis, mpg on the y-axis,
+ggplot(mtcars, aes(
+  x = wt, y = mpg,
+  # distinguish the Transmission values by color,
+  color = Transmission
+)) +
   # make it a scatterplot with geom_point()
-  geom_point()+
+  geom_point() +
   # And label properly
   labs(x = "Car Weight", y = "MPG")
 ```
@@ -66,3 +69,4 @@ twoway (scatter weight mpg if foreign == 0, mcolor(black)) (scatter weight mpg i
 This results in:
 
 ![Scatterplot of car weight against MPG, differentiated by foreign, in Stata](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Scatterplot-by-Groups-on-Shared-Axes/stata_scatterplot_by_group.png)
+

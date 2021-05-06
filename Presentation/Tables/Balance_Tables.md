@@ -8,7 +8,7 @@ nav_order: 1
 
 # Balance Tables
 
-Balance Tables are a method by which you can statistically compare differences in characteristics between a treatment and control group. Common in experimental work and when using matching estimators, balance tables show if the treatment and control group are 'balanced' and can be seen as similarly 'identical' for comparison of a causal effect. 
+Balance Tables are a method by which you can statistically compare differences in characteristics between a treatment and control group. Common in experimental work and when using matching estimators, balance tables show if the treatment and control group are 'balanced' and can be seen as similarly 'identical' for comparison of a causal effect.
 
 ## Keep in Mind
 
@@ -36,24 +36,25 @@ Another approach provides an omnibus summary of overall balance on many covariat
 
 ```r
 library(RItools)
-options(show.signif.stars=FALSE,digits=3)
-xb_res <- xBalance(am~mpg+hp+cyl+wt,strata=list(nostrat=NULL,vsstrat=~vs),data=mtcars,report="all")
+options(show.signif.stars = FALSE, digits = 3)
+xb_res <- xBalance(am ~ mpg + hp + cyl + wt, strata = list(nostrat = NULL, vsstrat = ~vs), data = mtcars, report = "all")
 xb_res$overall
-xb_res$results[,c(1:3,6:7),]
+xb_res$results[, c(1:3, 6:7), ]
 ```
 
 ## Stata
 
 ```stata
-* Import Dependency: 'ssc install table1' 
+* Import Dependency: 'ssc install table1'
 * Load Data
 sysuse auto, clear
 
 * Create Balance Table
-* You need to declare the kind of variable for each, as well as the variable by which you define treatment and control. 
+* You need to declare the kind of variable for each, as well as the variable by which you define treatment and control.
 * Adding test gives the statistical difference between the two groups. The ending saves your output as an .xls file
 
 table1, by(foreign) vars(price conts \ mpg conts \ weight contn \ length conts) test saving(bal_tab.xls, replace)
 ```
 #### Also Consider
 The World Bank's very useful [ietoolkit](https://blogs.worldbank.org/impactevaluations/ie-analytics-introducing-ietoolkit) for Stata has a very flexible command for creating balance tables, iebaltab. You can learn more about how to use it on their [Wiki page on the command](https://dimewiki.worldbank.org/wiki/Iebaltab).
+

@@ -66,25 +66,25 @@ which leads to $$\Delta^{d} y_{t}$$ being an $$ARMA(p,q)$$ process.
 The `stats` package, which comes standard-loaded on an RStudio workspace, includes the function `arima`, which allows one to estimate an arima model, if they know $$p,d,$$ and $$q$$ already.
 
 ```r?example=rarima
-#load data
-gdp = read.csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv")
-gdp_ts = ts(gdp[ ,2], frequency = 4, start = c(1947, 01), end = c(2019, 04))
-y = log(gdp_ts)*100
+# load data
+gdp <- read.csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv")
+gdp_ts <- ts(gdp[, 2], frequency = 4, start = c(1947, 01), end = c(2019, 04))
+y <- log(gdp_ts) * 100
 ```
 
 The output for `arima()` is a list. Use `$coef` to get only the AR and MA estimates. Use `$model` to get the entire estimated model. If you want to see the maximized log-likelihood value, $$sigma^{2}$$, and AIC, simply run the function on the data:
 
 ```r?example=rarima
-#estimate an ARIMA(2,1,2) model
-lgdp_arima <- arima(y, c(2,1,2))
+# estimate an ARIMA(2,1,2) model
+lgdp_arima <- arima(y, c(2, 1, 2))
 
-#To see maximized log-likelihood value, $sigma^{2}$, and AIC:
+# To see maximized log-likelihood value, $sigma^{2}$, and AIC:
 lgdp_arima
 
-#To get only the AR and MA parameter estimates:
+# To get only the AR and MA parameter estimates:
 lgdp_arima$coef
 
-#To see the estimated model:
+# To see the estimated model:
 lgdp_arima$model
 ```
 
@@ -94,10 +94,10 @@ differencing the series unit stationary - Create likelihood functions at various
 ```r?example=rarima
 library(forecast)
 
-#Finding optimal parameters for an ARIMA using the previous data
+# Finding optimal parameters for an ARIMA using the previous data
 lgdp_auto <- auto.arima(y)
 
-#A seasonal model was selected, with non-seasonal components (p,d,q)=(1,2,1), and seasonal components (P,D,Q)=(2,0,1)
+# A seasonal model was selected, with non-seasonal components (p,d,q)=(1,2,1), and seasonal components (P,D,Q)=(2,0,1)
 ```
 
 `auto.arima()` contains a lot of flexibility. If one knows the value of $$d$$, it can be passed to the function. Maximum and starting values for $$p,q,$$ and $$d$$ can be specified in the seasonal- and non-seasonal cases. If one would like to restrict themselves to a non-seasonal model, or use a different test, these can also be done. Some of these features are demonstrated below. The method for testing unit roots can also be specified. See `?auto.arima` or [the package documentation](https://cran.r-project.org/web/packages/forecast/forecast.pdf) for more.
@@ -110,12 +110,13 @@ lgdp_auto <- auto.arima(y)
 ## p starts at 1 and does not exceed 4
 # no drift
 lgdp_ns <- auto.arima(y,
-                      seasonal = F,
-                      test = "adf",
-                      start.p = 1,
-                      max.p = 4,
-                      allowdrift = F)
-#An ARIMA(3,1,0) was specified
+  seasonal = F,
+  test = "adf",
+  start.p = 1,
+  max.p = 4,
+  allowdrift = F
+)
+# An ARIMA(3,1,0) was specified
 lgdp_ns
 ```
 
@@ -125,8 +126,9 @@ given an ARIMA model. Note that the input here should come from either
 `stats::arima()`.
 
 ```r?example=rarima
-#Simulate data using a non-seasonal ARIMA()
-arima_222 <- Arima(y, c(2,2,2))
+# Simulate data using a non-seasonal ARIMA()
+arima_222 <- Arima(y, c(2, 2, 2))
 sim_arima <- forecast:::simulate.Arima(arima_222)
 tail(sim_arima, 20)
 ```
+

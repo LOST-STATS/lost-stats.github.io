@@ -47,7 +47,7 @@ data("Mroz87")
 
 # First consider our selection model
 # We only observe wages for labor force participants (lfp == 1)
-# So we model that as a function of work experience (linear and squared), 
+# So we model that as a function of work experience (linear and squared),
 # income from the rest of the family, education, and number of kids 5 or younger.
 # lfp ~ exper + I(exper^2) + faminc + educ + kids5
 
@@ -59,9 +59,11 @@ data("Mroz87")
 # wage ~ exper + I(exper^2) + educ + city
 
 # Put them together in a selection() command
-heck_model <- selection(lfp ~ exper + I(exper^2) + faminc + educ + kids5,
-                        wage ~ exper + I(exper^2) + educ + city,
-                        Mroz87)
+heck_model <- selection(
+  lfp ~ exper + I(exper^2) + faminc + educ + kids5,
+  wage ~ exper + I(exper^2) + educ + city,
+  Mroz87
+)
 
 summary(heck_model)
 ```
@@ -76,11 +78,11 @@ Stata allows to estimate the Heckman selection model using two approaches. A Max
 * (data via the sampleSelection package in R)
 import delimited "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Estimation/Data/Heckman_Correction_Model/Mroz87.csv", clear
 
-* First, consider the regression of interest. 
+* First, consider the regression of interest.
 
 * First consider our selection model
 * We only observe wages for labor force participants (lfp == 1)
-* So we model that as a function of work experience (linear and squared), 
+* So we model that as a function of work experience (linear and squared),
 * income from the rest of the family, education, and number of kids 5 or younger.
 * select(lfp = c.exper##c.exper faminc educ kids5)
 
@@ -96,3 +98,4 @@ heckman wage c.exper##c.exper educ city, select(lfp = c.exper##c.exper faminc ed
 * And this would be estimating the model using a two step-approach, also known as Heckit.
 heckman wage c.exper##c.exper educ city, select(lfp = c.exper##c.exper faminc educ kids5) two
 ```
+

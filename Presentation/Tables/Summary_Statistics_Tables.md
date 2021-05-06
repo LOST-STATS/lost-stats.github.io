@@ -33,7 +33,7 @@ library(vtable)
 data(mtcars)
 
 # Feed sumtable a data.frame with the variables you want summarized
-mt_tosum <- mtcars[,c('mpg','cyl','disp')]
+mt_tosum <- mtcars[, c("mpg", "cyl", "disp")]
 # By default, the table shows up in the Viewer pane (in RStudio) or your browser (otherwise)
 # (or if being run inside of RMarkdown, in the RMarkdown document format)
 sumtable(mt_tosum)
@@ -44,15 +44,15 @@ st(mt_tosum)
 # help(sumtable)
 # Some useful ones include out, which designates a file to send the table to
 # (note that HTML tables can be copied straight into Word from an output file)
-sumtable(mt_tosum, out = 'html', file = 'my_summary.html')
+sumtable(mt_tosum, out = "html", file = "my_summary.html")
 
 # sumtable will handle factor variables as expected,
 # and you can replace variable names with "labels"
-mt_tosum$trans <- factor(mtcars$am, labels = c('Manual','Automatic'))
-st(mt_tosum, labels = c('Miles per Gallon','Cylinders','Displacement','Transmission'))
+mt_tosum$trans <- factor(mtcars$am, labels = c("Manual", "Automatic"))
+st(mt_tosum, labels = c("Miles per Gallon", "Cylinders", "Displacement", "Transmission"))
 
 # Use group to get summary statistics by group
-st(mt_tosum, labels = c('Miles per Gallon','Cylinders','Displacement'), group = 'trans')
+st(mt_tosum, labels = c("Miles per Gallon", "Cylinders", "Displacement"), group = "trans")
 ```
 
 Another good option is the package **skimr**, which is an excellent alternative to `base::summary()`. `skimr::skim()` takes different data types and outputs a summary statistic data frame. Numeric data gets miniature histograms and all types of data get information about the number of missing entries.
@@ -66,21 +66,20 @@ library(skimr)
 
 skim(starwars)
 
-#If you're wondering which columns have missing values, you can use skim() in a pipeline.
+# If you're wondering which columns have missing values, you can use skim() in a pipeline.
 starwars %>%
   skim() %>%
   dplyr::filter(n_missing > 0) %>%
   dplyr::select(skim_variable, n_missing, complete_rate)
-  
-#You can analyze grouped data with skimr. You can also easily customize the output table using skim_with().
+
+# You can analyze grouped data with skimr. You can also easily customize the output table using skim_with().
 my_skim <- skim_with(base = sfl(
-    n = length
+  n = length
 ))
 starwars %>%
-    group_by(species) %>%
-    my_skim() %>%
-    dplyr::filter(skim_variable == "height" & n > 1)
-
+  group_by(species) %>%
+  my_skim() %>%
+  dplyr::filter(skim_variable == "height" & n > 1)
 ```
 
 ## Stata
@@ -106,7 +105,7 @@ estpost summarize price mpg rep78 f_*
 
 * We can then use esttab and cells() to pick columns
 * Now it's nicely formatted
-* The quotes around the statistics put all the statistics in one row 
+* The quotes around the statistics put all the statistics in one row
 esttab, cells("count mean sd min max")
 
 * If we want to limit the number of significant digits we must do this stat by stat
@@ -131,3 +130,4 @@ outreg2 using mysmalltable.doc, word sum(log) eqkeep(N mean) dec(3) replace
 
 restore
 ```
+

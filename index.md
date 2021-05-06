@@ -19,3 +19,4 @@ allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen></iframe>
 
 LOST was originated in 2019 by Nick Huntington-Klein and is maintained by volunteer contributors. The project's GitHub page is [here](https://github.com/LOST-STATS/lost-stats.github.io).
+

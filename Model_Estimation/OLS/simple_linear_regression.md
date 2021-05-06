@@ -17,7 +17,7 @@ For more information about OLS, see [Wikipedia: Ordinary Least Squares](https://
 
 - OLS assumes that you have specified a true linear relationship.
 - OLS results are not guaranteed to have a causal interpretation. Just because OLS estimates a positive relationship between $$X_1$$ and $$Y$$ does not necessarily mean that an increase in $$X_1$$ will cause $$Y$$ to increase.
-- OLS does *not* require that your variables follow a normal distribution. 
+- OLS does *not* require that your variables follow a normal distribution.
 
 ## Also Consider
 
@@ -68,11 +68,10 @@ import statsmodels.formula.api as smf
 mtcars = sm.datasets.get_rdataset("mtcars").data
 
 # Fit OLS regression model to mtcars
-ols = smf.ols(formula='mpg ~ cyl + hp + wt', data=mtcars).fit()
+ols = smf.ols(formula="mpg ~ cyl + hp + wt", data=mtcars).fit()
 
 # Look at the OLS results
 print(ols.summary())
-
 ```
 
 ## R
@@ -93,13 +92,13 @@ summary(olsmodel)
 
 ```sas
 /* Load Data */
-proc import datafile="C:mtcars.dbf" 
+proc import datafile="C:mtcars.dbf"
    out=fromr dbms=dbf;
 run;
 /* OLS regression */
 proc reg;
    model mpg = cyl hp wt;
-run; 
+run;
 ```
 
 ## Stata
@@ -112,3 +111,4 @@ sysuse https://github.com/LOST-STATS/lost-stats.github.io/blob/master/Data/auto.
 * and headroom, trunk, and weight as predictors
 regress mpg headroom trunk weight
 ```
+

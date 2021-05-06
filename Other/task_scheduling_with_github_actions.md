@@ -44,6 +44,7 @@ import requests
 
 URL = "https://whereveryourdatais.com/"
 
+
 def process_page(html: str) -> List[List[Union[int, str]]]:
     """
     This is the meat of your web scraper:
@@ -55,7 +56,7 @@ def pull_data(url: str) -> List[List[Union[int, str]]]:
     resp = requests.get(url)
     resp.raise_for_status()
 
-    content = resp.content.decode('utf8')
+    content = resp.content.decode("utf8")
     return process_page(content)
 
 
@@ -73,7 +74,7 @@ def main():
     print(f"Done pulling data.")
 
     print("Writing data...")
-    with open(filename, 'wt') as outfile:
+    with open(filename, "wt") as outfile:
         writer = csv.writer(outfile)
         writer.writerows(data)
     print("Done writing data.")
@@ -91,7 +92,7 @@ python3 main.py
 
 Similarly, if you're using `R`, you'll want to create a `main.R` file to similar effect. For instance, it might look something like:
 
-```R?skip=true&reason=fake_urls
+```r?skip=true&reason=fake_urls
 library(readr)
 library(httr)
 
@@ -100,40 +101,40 @@ URL <- "https://whereveryourdatais.com/"
 #' This hte meat of your web scraper:
 #' Pulling out the data you want from the HTML of the web page
 process_page <- function(html) {
-    # Process html
+  # Process html
 }
 
 #' Pull data from a single URL and return a tibble with it nice and ordered
 pull_data <- function(url) {
-    resp <- GET(url)
-    if (resp$status_code >= 400) {
-        stop(paste0("Something bad occurred in trying to pull ", URL))
-    }
+  resp <- GET(url)
+  if (resp$status_code >= 400) {
+    stop(paste0("Something bad occurred in trying to pull ", URL))
+  }
 
-    return(process_page(content(resp)))
+  return(process_page(content(resp)))
 }
 
 main <- function() {
-    # The program takes 1 optional argument: an output filename. If not present,
-    # we will write the output a default filename, which is:
-    date <- Sys.time()
-    attr(date, "tzone") <- "UTC"
-    filename <- paste0("data/output-", as.Date(date, format = "%Y-%m-%d"))
+  # The program takes 1 optional argument: an output filename. If not present,
+  # we will write the output a default filename, which is:
+  date <- Sys.time()
+  attr(date, "tzone") <- "UTC"
+  filename <- paste0("data/output-", as.Date(date, format = "%Y-%m-%d"))
 
-    args <- commandArgs(trailingOnly = TRUE)
-    if (length(args) > 0) {
-        filename <- args[1]
-    }
+  args <- commandArgs(trailingOnly = TRUE)
+  if (length(args) > 0) {
+    filename <- args[1]
+  }
 
-    print(paste0("Will write data to ", filename))
+  print(paste0("Will write data to ", filename))
 
-    print(paste0("Pulling data from ", URL))
-    data <- pull_data(URL)
-    print("Done pulling data")
+  print(paste0("Pulling data from ", URL))
+  data <- pull_data(URL)
+  print("Done pulling data")
 
-    print("Writing data...")
-    write_csv(data, filename)
-    print("Done writing data.")
+  print("Writing data...")
+  write_csv(data, filename)
+  print("Done writing data.")
 }
 ```
 
@@ -162,7 +163,7 @@ readr
 
 If you're using `R`, you'll also need to add the following script in a file called `install.R` to your project:
 
-```R?skip=true&skipReason=installing_packages
+```r?skip=true&skipreason=installing_packages
 CRAN <- "https://mirror.las.iastate.edu/CRAN/"
 
 process_file <- function(filepath) {
@@ -344,7 +345,7 @@ api_key = os.environ.get("API_KEY", "some_other_way")
 
 or in R you might do
 
-```R
+```r
 api_key <- Sys.getenv("API_KEY", unset = "some_other_way")
 ```
 
@@ -356,3 +357,4 @@ api_key <- Sys.getenv("API_KEY", unset = "some_other_way")
   env:
     API_KEY: {% raw %}${{ secrets.API_KEY }}{% endraw %}
 ```
+
