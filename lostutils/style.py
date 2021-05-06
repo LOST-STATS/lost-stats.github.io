@@ -79,14 +79,11 @@ def format_file(
                 fenced_lines.append(line)
 
             else:
-                final_lines.append(line)
+                final_lines.append(line.rstrip())
 
-    # Merge lines together
-    output = "\n".join(final_lines)
+    # Merge lines together and remove extra whitespace
+    output = "\n".join(final_lines).rstrip()
 
     # Make sure the file ends in a newline
-    if not output:
-        return "\n"
-    if not output[-1] == "\n":
-        output += "\n"
+    output += "\n"
     return output
