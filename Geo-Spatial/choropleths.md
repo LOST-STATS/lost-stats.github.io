@@ -83,6 +83,7 @@ library(viridis)
 library(cartogram)
 library(scales)
 
+# N.B. rnaturalearth is currently broken: https://github.com/ropensci/rnaturalearth/issues/29
 world <- ne_download() %>% st_as_sf()
 
 world = world %>%
