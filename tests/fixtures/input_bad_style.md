@@ -9,7 +9,7 @@ df['a'] +=3
 ```
 
 ```r?something
-library(dpylr)
+library(dplyr)
 data(mtcars)
 
 mtcars %>% filter(a == b) %>% mutate(b = 10, c = 20, d=30)

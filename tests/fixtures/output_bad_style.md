@@ -9,7 +9,7 @@ df["a"] += 3
 ```
 
 ```r?something
-library(dpylr)
+library(dplyr)
 data(mtcars)
 
 mtcars %>%

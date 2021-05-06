@@ -128,7 +128,7 @@ def _expand_paths(paths: List[Path]) -> List[Path]:
 
 def pytest_generate_tests(metafunc):
     base_paths = list(map(Path, metafunc.config.getoption("mdpath")))
-    base_paths = base_paths or [Path(__file__).parent]
+    base_paths = base_paths or [Path(__file__).parent.parent]
 
     base_exclude_paths = list(map(Path, metafunc.config.getoption("xmdpath")))
 
