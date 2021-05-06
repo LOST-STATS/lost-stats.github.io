@@ -1,3 +1,8 @@
+from pathlib import Path
+
+import pytest
+
+
 def pytest_addoption(parser):
     parser.addoption(
         "--mdpath",
@@ -19,3 +24,8 @@ def pytest_addoption(parser):
         default=[],
         help="List of languages whose code samples to run (default is all)",
     )
+
+
+@pytest.fixture(scope="session")
+def fixtures_path() -> Path:
+    return Path(__file__).parent / "tests" / "fixtures"

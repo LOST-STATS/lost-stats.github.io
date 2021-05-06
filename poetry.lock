@@ -99,7 +99,7 @@ python-versions = "*"
 name = "isort"
 version = "5.8.0"
 description = "A Python utility / library to sort Python imports."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6,<4.0"
 
@@ -252,7 +252,7 @@ telegram = ["requests"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "0f305946ecdf1f07f0413cf8cb741f06848ae504b1f72d4becb5765d234d6ed5"
+content-hash = "c937c3d305ddfc235fdfdc7e73ccc48291d29c3682a824cde716844dec8ee103"
 
 [metadata.files]
 apipkg = [

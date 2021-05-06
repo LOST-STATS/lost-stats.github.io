@@ -11,6 +11,7 @@ packages = [
 python = "^3.8"
 click = "^7.1.2"
 tqdm = "^4.60.0"
+isort = "^5.8.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.3"

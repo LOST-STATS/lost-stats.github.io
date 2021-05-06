@@ -27,6 +27,7 @@ def format_str(
                 "docker",
                 "run",
                 "--rm",
+                "-i",
                 r_docker_image,
                 "Rscript",
                 "--vanilla",
@@ -80,4 +81,12 @@ def format_file(
             else:
                 final_lines.append(line)
 
-    return "\n".join(final_lines)
+    # Merge lines together
+    output = "\n".join(final_lines)
+
+    # Make sure the file ends in a newline
+    if not output:
+        return "\n"
+    if not output[-1] == "\n":
+        output += "\n"
+    return output
