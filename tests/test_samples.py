@@ -8,13 +8,7 @@ from urllib import parse
 
 import mistune
 
-
-PYTHON_DOCKER_IMAGE = os.environ.get(
-    "LOST_PYTHON_DOCKER_IMAGE", "ghcr.io/lost-stats/docker-images/tester-python:latest"
-)
-R_DOCKER_IMAGE = os.environ.get(
-    "LOST_R_DOCKER_IMAGE", "ghcr.io/lost-stats/docker-images/tester-r:latest"
-)
+from lostutils.constants import PYTHON_DOCKER_IMAGE, R_DOCKER_IMAGE
 
 
 @dataclass(frozen=True)
