@@ -28,12 +28,10 @@ We have some facilities for testing to make sure that all the code samples in th
 
 ### Requirements
 
-You will first need to install [Docker](https://docs.docker.com/desktop/). You will also need Python 3.8 or above. After this, you will need to run the following commands:
+You will first need to install [Docker](https://docs.docker.com/desktop/). You will also need Python 3.8 or above and [poetry](https://python-poetry.org). After this, you will need to run the following commands:
 
 ```bash
-python3 -m venv venv
-source venv/bin/activate
-pip install 'mistune==2.0.0rc1' 'py.test==6.1.1' 'pytest-xdist==2.1.0'
+poetry install
 
 docker pull ghcr.io/lost-stats/lost-docker-images/tester-r
 docker pull ghcr.io/lost-stats/lost-docker-images/tester-python
@@ -46,20 +44,19 @@ At this point, the docker images will _not_ be updated unless you explicitly rep
 After completing the setup, you can simply run
 
 ```
-source venv/bin/activate
-py.test test_samples.py
+poetry run py.test -k test_samples
 ```
 
 Note that this will take a _long_ time to run. You can reduce the set of tests run using the `--mdpath` option. For instance, to find and run all the code samples in the `Time_Series` and `Presentation` folders, you can run
 
 ```
-py.test test_samples.py --mdpath Time_Series --mdpath Presentation
+poetry run py.test -k test_samples --mdpath Time_Series --mdpath Presentation
 ```
 
 Furthermore, you can run tests in parallel by adding the `-n` parameter:
 
 ```
-py.test test_samples.py -n 3 --mdpath Time_Series
+poetry run py.test -k test_samples -n 3 --mdpath Time_Series
 ```
 
 ### Adding dependencies
@@ -74,3 +71,17 @@ docker pull ghcr.io/lost-stats/lost-docker-images/tester-python
 ### Connecting code samples
 
 Note that a lot of code samples in this repository are broken up by raw markdown text. If you would like to connect these in a single runtime, you should specify the language as `language?example=some_id` for each code sample in the chain. For instance, a Python example might be specified as `python?example=seaborn` as you can see in the [Line Graphs Example](https://github.com/LOST-STATS/lost-stats.github.io/blob/source/Presentation/Figures/line_graphs.md).
+
+### Style code samples
+
+In order to keep all of our code samples styled consistently, we use [black](https://github.com/psf/black) for Python and [styler](https://styler.r-lib.org/) for R. To style an individual file, run
+
+```
+poetry run lost style path/to/file.md
+```
+
+To style _all_ files, run
+
+```
+poetry run lost style . --skip tests --skip README.md
+```
