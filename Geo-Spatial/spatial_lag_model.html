@@ -203,9 +203,7 @@
           <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
       </h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
-<span class="c1"># can install all below with:
-# !pip install pysal
-</span><span class="kn">from</span> <span class="nn">libpysal.cg</span> <span class="kn">import</span> <span class="n">KDTree</span><span class="p">,</span> <span class="n">RADIUS_EARTH_MILES</span>
+<span class="kn">from</span> <span class="nn">libpysal.cg</span> <span class="kn">import</span> <span class="n">KDTree</span><span class="p">,</span> <span class="n">RADIUS_EARTH_MILES</span>
 <span class="kn">from</span> <span class="nn">libpysal.weights</span> <span class="kn">import</span> <span class="n">KNN</span>
 <span class="kn">from</span> <span class="nn">spreg</span> <span class="kn">import</span> <span class="n">ML_Lag</span>
 
@@ -220,7 +218,7 @@
 
 <span class="c1"># tree object is the main input to nearest neighbors
 </span><span class="n">tree</span> <span class="o">=</span> <span class="n">KDTree</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="s">'longitude'</span><span class="p">),</span> <span class="n">x</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="s">'latitude'</span><span class="p">)),</span> 
+    <span class="n">data</span><span class="o">=</span><span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="s">'longitude'</span><span class="p">),</span> <span class="n">x</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="s">'latitude'</span><span class="p">)),</span>
     <span class="c1"># default is euclidean, but we want to use arc or haversine distance
 </span>    <span class="n">distance_metric</span><span class="o">=</span><span class="s">'arc'</span><span class="p">,</span>
     <span class="n">radius</span><span class="o">=</span><span class="n">RADIUS_EARTH_MILES</span>
@@ -232,7 +230,7 @@
 <span class="c1"># spreg only accepts numpy arrays or lists as arguments
 </span><span class="n">mod</span> <span class="o">=</span> <span class="n">ML_Lag</span><span class="p">(</span>
     <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">.</span><span class="n">to_numpy</span><span class="p">(),</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">.</span><span class="n">to_numpy</span><span class="p">(),</span> 
+    <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">.</span><span class="n">to_numpy</span><span class="p">(),</span>
     <span class="n">w</span><span class="o">=</span><span class="n">nn</span><span class="p">,</span>
     <span class="n">name_y</span><span class="o">=</span><span class="n">y</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
     <span class="n">name_x</span><span class="o">=</span><span class="n">x</span><span class="p">.</span><span class="n">columns</span><span class="p">.</span><span class="n">tolist</span><span class="p">()</span>
@@ -240,8 +238,6 @@
 
 <span class="c1"># results
 </span><span class="k">print</span><span class="p">(</span><span class="n">mod</span><span class="p">.</span><span class="n">summary</span><span class="p">)</span>
-
-
 </code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
@@ -277,8 +273,8 @@
 
 </span><span class="c1"># Use a spatial regression</span><span class="w">
 </span><span class="c1"># This uses the method from Bivand &amp; Piras (2015) https://www.jstatsoft.org/v63/i18/.</span><span class="w">
-</span><span class="n">m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lagsarlm</span><span class="p">(</span><span class="n">covid_cases_per_cap_jul312020</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">pctdesom</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">pctdenon</span><span class="p">,</span><span class="w"> 
-              </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="p">,</span><span class="w"> 
+</span><span class="n">m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lagsarlm</span><span class="p">(</span><span class="n">covid_cases_per_cap_jul312020</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">pctdesom</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">pctdenon</span><span class="p">,</span><span class="w">
+              </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="p">,</span><span class="w">
               </span><span class="n">listw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listw</span><span class="p">)</span><span class="w">
 
 </span><span class="c1"># Note that, whlie summary(m) will show rho below the regression results,</span><span class="w">

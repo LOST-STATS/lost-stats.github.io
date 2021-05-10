@@ -215,21 +215,18 @@
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
 <p>The <code class="language-plaintext highlighter-rouge">gmm</code> package (<a href="https://cran.r-project.org/web/packages/gmm/index.html">link</a>) can be used to implement GMM in <code class="language-plaintext highlighter-rouge">R</code>, with the key function being <code class="language-plaintext highlighter-rouge">gmm()</code>. The first example recovers the parameters of a normal distribution, where the moment conditions are derived from the <a href="https://en.wikipedia.org/wiki/Normal_distribution#Moments">normal distribution</a>.</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
-</span><span class="c1"># Loading the gmm package</span><span class="w">
-</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">require</span><span class="p">(</span><span class="s2">"pacman"</span><span class="p">))</span><span class="w"> </span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"pacman"</span><span class="p">)</span><span class="w">
-</span><span class="n">pacman</span><span class="o">::</span><span class="n">p_load</span><span class="p">(</span><span class="n">gmm</span><span class="p">)</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">gmm</span><span class="p">)</span><span class="w">
 
 </span><span class="c1"># Parameters we are going to estimate</span><span class="w">
 </span><span class="n">mu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="w">
 </span><span class="n">sigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="w">
 
-</span><span class="c1"># Generating random numbers </span><span class="w">
+</span><span class="c1"># Generating random numbers</span><span class="w">
 </span><span class="n">set.seed</span><span class="p">(</span><span class="m">0219</span><span class="p">)</span><span class="w">
 </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">500</span><span class="w">
 </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sigma</span><span class="p">)</span><span class="w">
 
-</span><span class="c1"># Moment restrictions </span><span class="w">
+</span><span class="c1"># Moment restrictions</span><span class="w">
 </span><span class="n">g1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
   </span><span class="n">m1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="w">
   </span><span class="n">m2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">theta</span><span class="p">[</span><span class="m">1</span><span class="p">])</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="w">
@@ -238,9 +235,9 @@
  </span><span class="nf">return</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span><span class="c1"># Running GMM </span><span class="w">
+</span><span class="c1"># Running GMM</span><span class="w">
 </span><span class="n">gmm_mod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gmm</span><span class="p">(</span><span class="w">
-  </span><span class="c1"># Moment restriction equations </span><span class="w">
+  </span><span class="c1"># Moment restriction equations</span><span class="w">
   </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g1</span><span class="p">,</span><span class="w">
   </span><span class="c1"># Matrix of data</span><span class="w">
   </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w">
@@ -250,13 +247,10 @@
 
 </span><span class="c1"># Reporting results</span><span class="w">
 </span><span class="n">summary</span><span class="p">(</span><span class="n">gmm_mod</span><span class="p">)</span><span class="w">
-  
+
 </span></code></pre></div></div>
 <p>Another common application of GMM is with linear moment restrictions. These can be specified by writing the regression formula as the <code class="language-plaintext highlighter-rouge">g</code> argument of the <code class="language-plaintext highlighter-rouge">gmm()</code> function and the matrix of instruments as the <code class="language-plaintext highlighter-rouge">x</code> argument. Suppose we have a model \(y_i = \alpha + \beta x_i + \epsilon_i\), but \(E[x_i(y_i - x_i^\prime\beta)]\neq 0\), so OLS would produce a biased estimate of \(\beta\). If we have a vector of instruments \(z_i\) that are correlated with \(x_i\) and have moment conditions \(E[z_i(y_i - x_i^\prime\beta)]=0\), then we can use GMM to estimate \(\beta\).</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
-</span><span class="c1"># library(gmm) # already loaded</span><span class="w">
-
-</span><span class="c1"># Setting parameter values</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Setting parameter values</span><span class="w">
 </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="w">
 </span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="w">
 
@@ -281,7 +275,6 @@
 
 </span><span class="c1"># Reporting results</span><span class="w">
 </span><span class="n">summary</span><span class="p">(</span><span class="n">lin_gmm_mod</span><span class="p">)</span><span class="w">
-
 </span></code></pre></div></div>
       <h2 id="stata">
           <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
@@ -311,21 +304,21 @@ gen</span> <span class="err">x</span> <span class="o">=</span> <span class="err"
 </span><span class="err">local</span> <span class="err">m1</span>  <span class="err">{mu</span><span class="o">=</span><span class="err">1}</span><span class="o">-</span><span class="err">x
 local</span> <span class="err">m2</span>  <span class="err">{sigma</span><span class="o">=</span><span class="err">1}</span><span class="o">^</span><span class="err">2</span> <span class="o">-</span> <span class="err">(x</span><span class="o">-</span><span class="err">{mu</span><span class="o">=</span><span class="err">1})</span><span class="o">^</span><span class="err">2
 local</span> <span class="err">m3</span>  <span class="err">x</span><span class="o">^</span><span class="err">3</span> <span class="o">-</span> <span class="err">{mu</span><span class="o">=</span><span class="err">1}</span><span class="o">*</span><span class="err">({mu}</span><span class="o">^</span><span class="err">2</span><span class="o">+</span><span class="err">3</span><span class="o">*</span><span class="err">{sigma</span><span class="o">=</span><span class="err">1}</span><span class="o">^</span><span class="err">2)
-gmm</span> <span class="err">(</span><span class="p">`</span><span class="si">m1') (`m2') (`m3</span><span class="p">'</span><span class="err">),</span> <span class="err">winitial(identity)</span> <span class="err">
+gmm</span> <span class="err">(</span><span class="p">`</span><span class="si">m1') (`m2') (`m3</span><span class="p">'</span><span class="err">),</span> <span class="err">winitial(identity)
 est</span> <span class="err">sto</span> <span class="err">m1
-gmm</span> <span class="err">(</span><span class="p">`</span><span class="si">m1') (`m2</span><span class="p">'</span><span class="err">)</span> <span class="err">,</span> <span class="err">winitial(identity)</span> <span class="err">
+gmm</span> <span class="err">(</span><span class="p">`</span><span class="si">m1') (`m2</span><span class="p">'</span><span class="err">)</span> <span class="err">,</span> <span class="err">winitial(identity)
 est</span> <span class="err">sto</span> <span class="err">m2
-gmm</span> <span class="err">(</span><span class="p">`</span><span class="si">m1') (`m3</span><span class="p">'</span><span class="err">)</span> <span class="err">,</span> <span class="err">winitial(identity)</span> <span class="err">
+gmm</span> <span class="err">(</span><span class="p">`</span><span class="si">m1') (`m3</span><span class="p">'</span><span class="err">)</span> <span class="err">,</span> <span class="err">winitial(identity)
 est</span> <span class="err">sto</span> <span class="err">m3
-gmm</span> <span class="err">(</span><span class="p">`</span><span class="si">m2') (`m3</span><span class="p">'</span><span class="err">)</span> <span class="err">,</span> <span class="err">winitial(identity)</span> <span class="err">
+gmm</span> <span class="err">(</span><span class="p">`</span><span class="si">m2') (`m3</span><span class="p">'</span><span class="err">)</span> <span class="err">,</span> <span class="err">winitial(identity)
 est</span> <span class="err">sto</span> <span class="err">m4
 est</span> <span class="err">tab</span> <span class="err">m1</span> <span class="err">m2</span> <span class="err">m3</span> <span class="err">m4,</span> <span class="err">se
 </span></code></pre></div></div>
-<p>A second example for the use of <code class="language-plaintext highlighter-rouge">gmm</code> is for the estimation of standard linear regression models. 
+<p>A second example for the use of <code class="language-plaintext highlighter-rouge">gmm</code> is for the estimation of standard linear regression models.
 For this, lets create some data, where the variable of interest is \(X\)</p>
 <div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">**# LR estimation
 
-*** Parameters to estimate 
+*** Parameters to estimate
 </span><span class="err">local</span> <span class="err">a0</span> <span class="err">1
 local</span> <span class="err">a1</span> <span class="err">2
 clear
@@ -344,13 +337,13 @@ gen</span> <span class="err">y</span><span class="o">=</span><span class="p">`</
 <p>Next, we can use <code class="language-plaintext highlighter-rouge">gmm</code> to estimate the model, under different assumptions</p>
 <div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">*** gmm ignoring endogeneity
 ** this is your error
-</span><span class="err">local</span> <span class="err">m1</span> <span class="err">y</span><span class="o">-</span><span class="err">{a0}</span><span class="o">-</span><span class="err">{a1}</span><span class="o">*</span><span class="err">x</span>  <span class="err">
-</span><span class="c1">** which implies First order condition E(m1)=0 
-** and E(x*m1)=0 
+</span><span class="err">local</span> <span class="err">m1</span> <span class="err">y</span><span class="o">-</span><span class="err">{a0}</span><span class="o">-</span><span class="err">{a1}</span><span class="o">*</span><span class="err">x
+</span><span class="c1">** which implies First order condition E(m1)=0
+** and E(x*m1)=0
 </span><span class="err">gmm</span> <span class="err">(</span><span class="p">`</span><span class="si">m1</span><span class="p">'</span><span class="err">),</span> <span class="err">winitial(identity)</span> <span class="err">instrument(x)
 </span><span class="c1">
 *** gmm with endogeneity
-** here, it implies E(z*m1)=0 
+** here, it implies E(z*m1)=0
 </span><span class="err">local</span> <span class="err">m1</span> <span class="err">y</span><span class="o">-</span><span class="err">{a0}</span><span class="o">-</span><span class="err">{a1}</span><span class="o">*</span><span class="err">x
 gmm</span> <span class="err">(</span><span class="p">`</span><span class="si">m1</span><span class="p">'</span><span class="err">),</span> <span class="err">winitial(identity)</span> <span class="err">instrument(z1)
 est</span> <span class="err">sto</span> <span class="err">m1
@@ -364,9 +357,9 @@ est</span> <span class="err">tab</span> <span class="err">m1</span> <span class=
 </span><span class="err">local</span> <span class="err">m1</span> <span class="err">y</span><span class="o">-</span><span class="err">{a0}</span><span class="o">-</span><span class="err">{a1}</span><span class="o">*</span><span class="err">x
 gmm</span> <span class="err">(</span><span class="p">`</span><span class="si">m1') (z1*(`m1</span><span class="p">'</span><span class="err">)),</span> <span class="err">winitial(identity)
 est</span> <span class="err">sto</span> <span class="err">m1
-gmm</span> <span class="err">(</span><span class="p">`</span><span class="si">m1') (z2*(`m1</span><span class="p">'</span><span class="err">)),</span> <span class="err">winitial(identity)</span> <span class="err">
+gmm</span> <span class="err">(</span><span class="p">`</span><span class="si">m1') (z2*(`m1</span><span class="p">'</span><span class="err">)),</span> <span class="err">winitial(identity)
 est</span> <span class="err">sto</span> <span class="err">m2
-gmm</span> <span class="err">(</span><span class="p">`</span><span class="si">m1') (z1*(`m1')) (z2*(`m1</span><span class="p">'</span><span class="err">)),</span> <span class="err">winitial(identity)</span>  <span class="err">
+gmm</span> <span class="err">(</span><span class="p">`</span><span class="si">m1') (z1*(`m1')) (z2*(`m1</span><span class="p">'</span><span class="err">)),</span> <span class="err">winitial(identity)
 est</span> <span class="err">sto</span> <span class="err">m3
 est</span> <span class="err">tab</span> <span class="err">m1</span> <span class="err">m2</span> <span class="err">m3,</span> <span class="err">se
 </span><span class="c1">** producing the same results as before
