@@ -224,30 +224,45 @@ Now, you could just simply use `coefplot(m_1)` from **fixest** and be done with 
 
 ```r?example=event_study
 event_1 %>%
-    ggplot(mapping = aes(x = year, y = estimate,
-	                     ymin = conf.low, ymax = conf.high))+
-      geom_pointrange(position = position_dodge(width = 1),
-	  # Optional decoration:
-	  color="black", fatten=.5, alpha=.8) +
-	  # Add a line marker for y = 0 (to see if the CI overlaps 0)
-      geom_hline(yintercept=0, color = "red",alpha=0.2)+
-	  # A marker for the last pre-event period
-      geom_vline(xintercept = -1, color = "black", size=0.5, alpha=0.4) +
-	  # And the event period
-      geom_vline(xintercept = 0, linetype="dotted", color = "black", size=0.5, alpha=0.2)+
-	  # Additional decoration:
-	  theme_bw()+
-	  theme(
-		plot.title = element_text(face = "bold", size = 12),
-		legend.background = element_rect(fill = "white", size = 4, colour = "white"),
-		legend.justification = c(0, 1),
-		legend.position = c(0, 1),
-		axis.ticks = element_line(colour = "white", size = 0.1),
-		panel.grid.major = element_line(colour = "white", size = 0.07),
-		panel.grid.minor = element_blank()
-	  )+
-		annotate("text", x = c(0,2), y=30, label = c("","treat"))+
-		 labs(title="Event Study: Staggered Treatment", y="Estimate", x="Time")
+  ggplot(
+    mapping = aes(
+      x = year,
+      y = estimate,
+	    ymin = conf.low,
+      ymax = conf.high
+    )
+  ) +
+  geom_pointrange(
+    position = position_dodge(width = 1),
+
+    # Optional decoration:
+	  color="black",
+    fatten=.5,
+    alpha=.8
+  ) +
+
+  # Add a line marker for y = 0 (to see if the CI overlaps 0)
+  geom_hline(yintercept = 0, color = "red", alpha = 0.2) +
+
+  # A marker for the last pre-event period
+  geom_vline(xintercept = -1, color = "black", size = 0.5, alpha = 0.4) +
+
+  # And the event period
+  geom_vline(xintercept = 0, linetype="dotted", color = "black", size = 0.5, alpha = 0.2) +
+
+  # Additional decoration:
+  theme_bw() +
+  theme(
+    plot.title = element_text(face = "bold", size = 12),
+	  legend.background = element_rect(fill = "white", size = 4, colour = "white"),
+	  legend.justification = c(0, 1),
+	  legend.position = c(0, 1),
+	  axis.ticks = element_line(colour = "white", size = 0.1),
+	  panel.grid.major = element_line(colour = "white", size = 0.07),
+	  panel.grid.minor = element_blank()
+	) +
+  annotate("text", x = c(0, 2), y = 30, label = c("", "treat")) +
+	labs(title = "Event Study: Staggered Treatment", y = "Estimate", x = "Time")
 ```
 
 This results in:

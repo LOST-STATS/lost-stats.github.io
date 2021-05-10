@@ -37,8 +37,6 @@ These examples will use some data on US colleges from [IPEDS](https://nces.ed.go
 
 ```python
 import pandas as pd
-# can install all below with:
-# !pip install pysal
 from libpysal.cg import KDTree, RADIUS_EARTH_MILES
 from libpysal.weights import KNN
 from spreg import ML_Lag
@@ -54,7 +52,7 @@ x = df.copy().dropna(how='any')
 
 # tree object is the main input to nearest neighbors
 tree = KDTree(
-    data=zip(x.pop('longitude'), x.pop('latitude')), 
+    data=zip(x.pop('longitude'), x.pop('latitude')),
     # default is euclidean, but we want to use arc or haversine distance
     distance_metric='arc',
     radius=RADIUS_EARTH_MILES
@@ -66,7 +64,7 @@ y = x.pop('covid_cases_per_cap_jul312020')
 # spreg only accepts numpy arrays or lists as arguments
 mod = ML_Lag(
     y=y.to_numpy(),
-    x=x.to_numpy(), 
+    x=x.to_numpy(),
     w=nn,
     name_y=y.name,
     name_x=x.columns.tolist()
@@ -74,8 +72,6 @@ mod = ML_Lag(
 
 # results
 print(mod.summary)
-
-
 ```
 
 ## R
@@ -112,8 +108,8 @@ listw <- nb2listw(nb)
 
 # Use a spatial regression
 # This uses the method from Bivand & Piras (2015) https://www.jstatsoft.org/v63/i18/.
-m <- lagsarlm(covid_cases_per_cap_jul312020 ~ pctdesom + pctdenon, 
-              data = df, 
+m <- lagsarlm(covid_cases_per_cap_jul312020 ~ pctdesom + pctdenon,
+              data = df,
               listw = listw)
 
 # Note that, whlie summary(m) will show rho below the regression results,
