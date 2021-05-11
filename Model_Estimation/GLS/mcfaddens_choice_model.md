@@ -51,13 +51,16 @@ This might be referred to as "long" choice data. "Wide" choice data is also comm
 We will implement McFadden's choice model in R using the **mlogit** package, which can accept "wide" or "long" data in the `mlogit.data` function.
 
 ```R
-# If necessary, install mlogit package
-# install.packages('mlogit')
 library(mlogit)
 
 # Get Car data, in "wide" choice format
 data(Car)
 
+# If we look at the data, the choice-specific variables are named
+# e.g. "speed1" "speed2" "speed3" and so on.
+# So we need our choice variable to be 1, 2, 3 ,to match
+# Right now instead it's choice1, choice2, choice3. So we edit.
+Car$choice <- substr(Car$choice, 7, 7)
 
 # For this we need to specify the choice variable with choice
 # whether it's currently in wide or long format with shape
@@ -74,7 +77,6 @@ mlogit.Car <- mlogit.data(Car,
                           choice = 'choice',
                           shape = 'wide',
                           varying = 5:70,
-                          alt.levels = 1:6,
                           sep="")
 # mlogit.Car is now in "long" format
 # Note that if we did start with "long" format we could probably skip the mlogit.data() step.
