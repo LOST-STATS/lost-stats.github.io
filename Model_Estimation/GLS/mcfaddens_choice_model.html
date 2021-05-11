@@ -288,13 +288,16 @@
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
 <p>We will implement McFadden’s choice model in R using the <strong>mlogit</strong> package, which can accept “wide” or “long” data in the <code class="language-plaintext highlighter-rouge">mlogit.data</code> function.</p>
-<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install mlogit package</span><span class="w">
-</span><span class="c1"># install.packages('mlogit')</span><span class="w">
-</span><span class="n">library</span><span class="p">(</span><span class="n">mlogit</span><span class="p">)</span><span class="w">
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">mlogit</span><span class="p">)</span><span class="w">
 
 </span><span class="c1"># Get Car data, in "wide" choice format</span><span class="w">
 </span><span class="n">data</span><span class="p">(</span><span class="n">Car</span><span class="p">)</span><span class="w">
 
+</span><span class="c1"># If we look at the data, the choice-specific variables are named</span><span class="w">
+</span><span class="c1"># e.g. "speed1" "speed2" "speed3" and so on.</span><span class="w">
+</span><span class="c1"># So we need our choice variable to be 1, 2, 3 ,to match</span><span class="w">
+</span><span class="c1"># Right now instead it's choice1, choice2, choice3. So we edit.</span><span class="w">
+</span><span class="n">Car</span><span class="o">$</span><span class="n">choice</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">substr</span><span class="p">(</span><span class="n">Car</span><span class="o">$</span><span class="n">choice</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">)</span><span class="w">
 
 </span><span class="c1"># For this we need to specify the choice variable with choice</span><span class="w">
 </span><span class="c1"># whether it's currently in wide or long format with shape</span><span class="w">
@@ -311,7 +314,6 @@
                           </span><span class="n">choice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'choice'</span><span class="p">,</span><span class="w">
                           </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'wide'</span><span class="p">,</span><span class="w">
                           </span><span class="n">varying</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="o">:</span><span class="m">70</span><span class="p">,</span><span class="w">
-                          </span><span class="n">alt.levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">,</span><span class="w">
                           </span><span class="n">sep</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span><span class="w">
 </span><span class="c1"># mlogit.Car is now in "long" format</span><span class="w">
 </span><span class="c1"># Note that if we did start with "long" format we could probably skip the mlogit.data() step.</span><span class="w">
