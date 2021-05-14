@@ -73,7 +73,7 @@ plt.show()
 
 The [**sf**](https://github.com/r-spatial/sf/) is a fantastic package to make choropleths and more in R. In the following code, we will walk through an identical example of the python implementation above, with the same data from [rnaturalearth](https://cran.r-project.org/web/packages/rnaturalearth/README.html), but using R and and creating our plots with the wonderful [ggplot2](https://ggplot2.tidyverse.org/) package. In order to produce the cartogram plots, we use the [cartogram](https://cran.r-project.org/web/packages/cartogram/index.html) package.
 
-```r
+```r?skip=true&skipReason=rnaturalearth_currently_broken
 ## Load and install the packages that we'll be using today
 library(sf)
 library(tidyverse)
