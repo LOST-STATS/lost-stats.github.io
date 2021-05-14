@@ -25,7 +25,7 @@ Unusually for LOST, the example data files cannot be accessed from the code dire
 
 It is also **strongly recommended** that you find a high-powered computer or cloud service before attempting to run this code, as it requires a lot of memory.
 
-```r
+```r?skip=true&skipReason=data_too_large_to_run
 # If necesary
 # install.packages(c('ncdf4','sp','raster','dplyr','sf','ggplot2','reprex','ggsn'))
 # Load packages
