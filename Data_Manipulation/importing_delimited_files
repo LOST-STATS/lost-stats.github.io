@@ -51,6 +51,22 @@ import pandas as pd # Make pandas available to your Python session
 df = pd.read_csv("https://projects.fivethirtyeight.com/mlb-api/mlb_elo.csv")
 ```
 
+## R
+
+```r
+* Import a CSV file with the base-R (utils package) read.csv function
+df <- read.csv('mlb_elo.csv')
+
+* If you are working in the tidyverse, there is the improved read_csv
+library(tidyverse)
+df <- read_csv('mlb_elo.csv')
+
+* The fastest way to read in large CSV files is fread() in the data.table package
+library(data.table)
+df <- fread('mlb_elo.csv')
+```
+
+
 ## Stata
 
 ```stata
