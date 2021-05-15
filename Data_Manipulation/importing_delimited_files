@@ -6,11 +6,9 @@ nav_order: 1
 mathjax: false ## Switch to false if this page has no equations or other math rendering.
 ---
 
-# Name of Page
+# Import a Delimited Data File (CSV, TSV)
 
-INTRODUCTION SECTION
-
-Often, data is stored in [delimited files](https://en.wikipedia.org/wiki/Delimiter-separated_values). In delimited files, each record has its own line, but the columns or variables are separated by a character, or delimiter. Likely to most common of these files is these delimiters is a comma. As a result, you will often encounter comma-delimited files by their more common-name, comma-separated values or CSV files. Importing these files is often the first step of any data analysis project, so we show you how to import CSVs (and other delimited files) below. 
+Often, data is stored in [delimited files](https://en.wikipedia.org/wiki/Delimiter-separated_values). In delimited files, each record has its own line, but the columns or variables are separated by a character, or delimiter. The most common delimiter used is a comma. As a result, you will often encounter comma-delimited files by their more common name, comma-separated values or CSV files. Importing these files is often the first step of any data analysis project, so we show you how to import CSVs (and other delimited files) below. 
 
 ## Keep in Mind
 
