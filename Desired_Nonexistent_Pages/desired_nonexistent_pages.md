@@ -120,7 +120,6 @@ This is a list of pages that exist but only have an example in one language, and
 
 ## Currently R Only
 
-* Model Estimation: [Synthetic Control]({{ "/Model_Estimation/Research_Design/synthetic_control_method.html" | relative_url }})
 * Geospatial: [Merging Shape Files]({{ "/Geo-Spatial/merging_shape_files.html" | relative_url }})
 * Model Estimation: [Mixed Logit Model]({{ "/Model_Estimation/Multilevel_Models/mixed_logit.html" | relative_url }})
 * Model Estimation: [2x2 Difference-in-Differences]({{ "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html" | relative_url }})
