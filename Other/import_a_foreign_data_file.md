@@ -15,6 +15,7 @@ This page is specifically about importing data files from formats specific to pa
 ## Keep in Mind
 
 - Check your data after it's imported to make sure it worked properly. Sometimes special characters will have trouble converting, or variable name formats are inconsistent, and so on. It never hurts to check!
+- Before doing this you will probably find it useful to [Set a Working Directory]({{ "/Other/set_a_working_directory.html" | relative_url }})
 
 ## Also Consider
 
