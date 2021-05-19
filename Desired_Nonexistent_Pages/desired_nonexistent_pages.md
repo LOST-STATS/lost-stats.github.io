@@ -103,7 +103,6 @@ If you create one of these pages, please remove it from this list.
 
 ## Other
 
-* Import a Delimited Data File (CSV, TSV)
 * Import a Fixed-Width Data File
 * Export Data to a Foreign Format
 * Set a Working Directory
