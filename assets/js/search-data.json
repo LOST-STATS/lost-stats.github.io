@@ -2041,7 +2041,7 @@
   },"340": {
     "doc": "Import a Foreign Data File",
     "title": "Keep in Mind",
-    "content": ". | Check your data after it’s imported to make sure it worked properly. Sometimes special characters will have trouble converting, or variable name formats are inconsistent, and so on. It never hurts to check! | . ",
+    "content": ". | Check your data after it’s imported to make sure it worked properly. Sometimes special characters will have trouble converting, or variable name formats are inconsistent, and so on. It never hurts to check! | Before doing this you will probably find it useful to Set a Working Directory | . ",
     "url": "/Other/import_a_foreign_data_file.html#keep-in-mind",
     "relUrl": "/Other/import_a_foreign_data_file.html#keep-in-mind"
   },"341": {
