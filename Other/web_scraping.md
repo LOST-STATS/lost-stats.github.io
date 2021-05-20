@@ -5,7 +5,7 @@ tremendous amount of versatility, as well as being easy to use. For this
 specific task, of web scrapping though pages on a website, we will be
 using read\_html(), html\_elements(), and html\_text(). I will also make
 use of the selector gadget tool,(link for the download:
-[Selector Gaget](https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb>)
+[Selector Gaget](https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb)
 to find the html elements.
 
 ## Keep in Mind
