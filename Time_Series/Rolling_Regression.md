@@ -21,7 +21,7 @@ Rolling regressions are one of the best and simplest models to to analyze changi
 
 ## R
 
-In R the **roll_regress** package has a fast and efficient way to compute rolling regressions while being able to specify the linear regression, window size, whether you want a rolling or expanding window, the minimum number of observations required in a window and others.
+In R the **rollRegres** (one s, not two) package has a fast and efficient way to compute rolling regressions while being able to specify the linear regression, window size, whether you want a rolling or expanding window, the minimum number of observations required in a window and others.
 
 ```r?example=roll_regress
 #Load in the packages
@@ -29,7 +29,7 @@ library(pacman)
 p_load(rollRegres,tidyr,dplyr)
 ```
 
-The data will be manually created where x can be interpreted as any independent variable over a fixed timer period and y as any outcome variable.
+The data will be manually created where x can be interpreted as any independent variable over a fixed time period, and y is an outcome variable.
 ```r?example=roll_regress
 #Simulate data
 set.seed(29132867)
