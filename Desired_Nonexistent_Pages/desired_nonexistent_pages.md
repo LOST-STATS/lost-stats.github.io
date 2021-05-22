@@ -127,4 +127,5 @@ This is a list of pages that exist but only have an example in one language, and
 * Time Series: [Granger Causality]({{ "/Time_Series/Granger_Causality.html" | relative_url }})
 * Time Series: [MA Models]({{ "/Time_Series/MA_Model.html" | relative_url }})
 * Time Series: [Linear Gaussian State Space Models]({{ "/Time_Series/State_Space_Models.html" | relative_url }})
+* * Time Series: [Rolling Regression]({{ "/Time_Series/Rolling_Regression.html" | relative_url }})
 
