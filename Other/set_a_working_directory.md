@@ -56,7 +56,7 @@ If you are using RStudio, there are several other ways to set the working direct
 
 ![Rstudio working directory selection from Session menu](https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Other/Images/rstudio_session_wd.png)
 
-You can also navigate to the folder you want in the Files pane (which is in the bottom-right by default) and select More $\rightarrow$ Set as Working Directory.
+You can also navigate to the folder you want in the Files pane (which is in the bottom-right by default) and select More $$\rightarrow$$ Set as Working Directory.
 
 ![Rstudio working directory selection from Files pane](https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Other/Images/rstudio_pane_wd.PNG)
 
@@ -68,6 +68,6 @@ In Stata, you can use the `cd` command to change working directories.
 cd "C:/My/New/Working/Directory/"
 ```
 
-You can also change the working directory in the File $\rightarrow$ Change Working Directory menu, which will pull up your standard operating system folder-picker.
+You can also change the working directory in the File $$\rightarrow$$ Change Working Directory menu, which will pull up your standard operating system folder-picker.
 
 Additionally, if you open Stata by clicking on a `.do` file saved on your computer, the working directory will automatically be set to whatever folder that `.do` file is saved in.
