@@ -196,6 +196,79 @@
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<p>The most convenient package for showing multiple regressions together is <a href="https://github.com/mwburke/stargazer"><strong>stargazer</strong></a>. In the code below, we’ll see an example of using <strong>stargazer</strong> and a couple of its most basic customisation options. Note that in order to run this example yourself, you may need to run ‘pip install packagename’ on the command line on your computer to install the <strong>pandas</strong>, <strong>stargazer</strong>, and <strong>statsmodels</strong> packages (if you don’t already have these packages installed).</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="n">smf</span>
+<span class="kn">from</span> <span class="nn">stargazer.stargazer</span> <span class="kn">import</span> <span class="n">Stargazer</span>
+</code></pre></div></div>
+<p>Get the mtcars data</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mtcars</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'https://raw.githubusercontent.com/LOST-STATS/lost-stats.github.io/source/Data/mtcars.csv'</span><span class="p">,</span>
+                      <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s">'model'</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s">'mpg'</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s">'hp'</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s">'disp'</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s">'cyl'</span><span class="p">:</span> <span class="s">"float"</span><span class="p">}))</span>
+</code></pre></div></div>
+<p>Let’s run two separate regressions that will be added to our summary table</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">results1</span> <span class="o">=</span> <span class="n">smf</span><span class="p">.</span><span class="n">ols</span><span class="p">(</span><span class="s">'mpg ~ cyl'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mtcars</span><span class="p">).</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">results2</span> <span class="o">=</span> <span class="n">smf</span><span class="p">.</span><span class="n">ols</span><span class="p">(</span><span class="s">'mpg ~ cyl + hp'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mtcars</span><span class="p">).</span><span class="n">fit</span><span class="p">()</span>
+</code></pre></div></div>
+<p>To see the results table for an individual reg, use</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">results1</span><span class="p">.</span><span class="n">summary</span><span class="p">())</span>
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    mpg   R-squared:                       0.726
+Model:                            OLS   Adj. R-squared:                  0.717
+Method:                 Least Squares   F-statistic:                     79.56
+Date:                Sat, 22 May 2021   Prob (F-statistic):           6.11e-10
+Time:                        10:09:14   Log-Likelihood:                -81.653
+No. Observations:                  32   AIC:                             167.3
+Df Residuals:                      30   BIC:                             170.2
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept     37.8846      2.074     18.268      0.000      33.649      42.120
+cyl           -2.8758      0.322     -8.920      0.000      -3.534      -2.217
+==============================================================================
+Omnibus:                        1.007   Durbin-Watson:                   1.670
+Prob(Omnibus):                  0.604   Jarque-Bera (JB):                0.874
+Skew:                           0.380   Prob(JB):                        0.646
+Kurtosis:                       2.720   Cond. No.                         24.1
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</code></pre></div></div>
+<p>Now let’s create a table with both regressions in</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stargazer_tab</span> <span class="o">=</span> <span class="n">Stargazer</span><span class="p">([</span><span class="n">results1</span><span class="p">,</span> <span class="n">results2</span><span class="p">])</span>
+<span class="c1"># Using a Python interactive window, simply run the 
+# name of the object to display the table
+</span><span class="n">stargazer_tab</span>
+</code></pre></div></div>
+<div class="table-wrapper"><table style="text-align:center"><tr><td colspan="3" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="2"><em>Dependent variable:mpg</em></td></tr><tr><td style="text-align:left"></td><tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td></tr><tr><td colspan="3" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Intercept</td><td>37.885<sup>***</sup></td><td>36.908<sup>***</sup></td></tr><tr><td style="text-align:left"></td><td>(2.074)</td><td>(2.191)</td></tr><tr><td style="text-align:left">cyl</td><td>-2.876<sup>***</sup></td><td>-2.265<sup>***</sup></td></tr><tr><td style="text-align:left"></td><td>(0.322)</td><td>(0.576)</td></tr><tr><td style="text-align:left">hp</td><td></td><td>-0.019<sup></sup></td></tr><tr><td style="text-align:left"></td><td></td><td>(0.015)</td></tr><td colspan="3" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align: left">Observations</td><td>32</td><td>32</td></tr><tr><td style="text-align: left">R<sup>2</sup></td><td>0.726</td><td>0.741</td></tr><tr><td style="text-align: left">Adjusted R<sup>2</sup></td><td>0.717</td><td>0.723</td></tr><tr><td style="text-align: left">Residual Std. Error</td><td>3.206 (df=30)</td><td>3.173 (df=29)</td></tr><tr><td style="text-align: left">F Statistic</td><td>79.561<sup>***</sup> (df=1; 30)</td><td>41.422<sup>***</sup> (df=2; 29)</td></tr><tr><td colspan="3" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align: left">Note:</td>
+ <td colspan="2" style="text-align: right">
+  <sup>*</sup>p&lt;0.1;
+  <sup>**</sup>p&lt;0.05;
+  <sup>***</sup>p&lt;0.01
+ </td></tr></table></div>
+<p>To export to a file, use, for example:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">open</span><span class="p">(</span><span class="s">'regression.tex'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">).</span><span class="n">write</span><span class="p">(</span><span class="n">stargazer_tab</span><span class="p">.</span><span class="n">render_latex</span><span class="p">())</span>  <span class="c1"># for latex
+</span><span class="nb">open</span><span class="p">(</span><span class="s">'regression.html'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">).</span><span class="n">write</span><span class="p">(</span><span class="n">stargazer_tab</span><span class="p">.</span><span class="n">render_html</span><span class="p">())</span>  <span class="c1"># for html
+</span></code></pre></div></div>
+<p>Finally, it’s good practice to use informative names for variables</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stargazer_tab</span><span class="p">.</span><span class="n">rename_covariates</span><span class="p">({</span><span class="s">'cyl'</span><span class="p">:</span> <span class="s">'Cylinders'</span><span class="p">,</span> <span class="s">'hp'</span><span class="p">:</span> <span class="s">'Horsepower'</span><span class="p">})</span>
+<span class="n">stargazer_tab</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Regressions of miles per gallon (mpg) on engine properties'</span><span class="p">)</span>
+<span class="n">stargazer_tab</span>
+</code></pre></div></div>
+<p>Regressions of miles per gallon (mpg) on engine properties<br />&lt;table style="text-align:center"&gt;&lt;tr&gt;&lt;td colspan="3" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td colspan="2"&gt;<em>Dependent variable:mpg</em>&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(1)&lt;/td&gt;&lt;td&gt;(2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Intercept&lt;/td&gt;&lt;td&gt;37.885<sup>***</sup>&lt;/td&gt;&lt;td&gt;36.908<sup>***</sup>&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(2.074)&lt;/td&gt;&lt;td&gt;(2.191)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Cylinders&lt;/td&gt;&lt;td&gt;-2.876<sup>***</sup>&lt;/td&gt;&lt;td&gt;-2.265<sup>***</sup>&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(0.322)&lt;/td&gt;&lt;td&gt;(0.576)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Horsepower&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;-0.019<sup></sup>&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.015)&lt;/td&gt;&lt;/tr&gt;&lt;td colspan="3" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align: left"&gt;Observations&lt;/td&gt;&lt;td&gt;32&lt;/td&gt;&lt;td&gt;32&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align: left"&gt;R<sup>2</sup>&lt;/td&gt;&lt;td&gt;0.726&lt;/td&gt;&lt;td&gt;0.741&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align: left"&gt;Adjusted R<sup>2</sup>&lt;/td&gt;&lt;td&gt;0.717&lt;/td&gt;&lt;td&gt;0.723&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align: left"&gt;Residual Std. Error&lt;/td&gt;&lt;td&gt;3.206 (df=30)&lt;/td&gt;&lt;td&gt;3.173 (df=29)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align: left"&gt;F Statistic&lt;/td&gt;&lt;td&gt;79.561<sup>***</sup> (df=1; 30)&lt;/td&gt;&lt;td&gt;41.422<sup>***</sup> (df=2; 29)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align: left"&gt;Note:&lt;/td&gt;</p>
+<td colspan="2" style="text-align: right">
+  <sup>*</sup>p&lt;0.1;
+  <sup>**</sup>p&lt;0.05;
+  <sup>***</sup>p&lt;0.01
+ </td>
+<p>&lt;/tr&gt;&lt;/table&gt;</p>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
