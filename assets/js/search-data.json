@@ -3037,13 +3037,13 @@
   },"506": {
     "doc": "Set a Working Directory",
     "title": "R",
-    "content": "In R, the setwd() function can change the working directory. setwd('C:/My/New/Working/Directory/') . If you are using RStudio, there are several other ways to set the working directory. In the Session menu, you can choose to set the working directory to the Source File location (whatever folder the active code tab file is saved in), to the File Pane location (whatever folder the Files pane, in the bottom-right by default, has navigated to), or you can choose it using your standard operating system folder-picker. You can also navigate to the folder you want in the Files pane (which is in the bottom-right by default) and select More $\\rightarrow$ Set as Working Directory. ",
+    "content": "In R, the setwd() function can change the working directory. setwd('C:/My/New/Working/Directory/') . If you are using RStudio, there are several other ways to set the working directory. In the Session menu, you can choose to set the working directory to the Source File location (whatever folder the active code tab file is saved in), to the File Pane location (whatever folder the Files pane, in the bottom-right by default, has navigated to), or you can choose it using your standard operating system folder-picker. You can also navigate to the folder you want in the Files pane (which is in the bottom-right by default) and select More \\(\\rightarrow\\) Set as Working Directory. ",
     "url": "/Other/set_a_working_directory.html#r",
     "relUrl": "/Other/set_a_working_directory.html#r"
   },"507": {
     "doc": "Set a Working Directory",
     "title": "Stata",
-    "content": "In Stata, you can use the cd command to change working directories. cd \"C:/My/New/Working/Directory/\" . You can also change the working directory in the File $\\rightarrow$ Change Working Directory menu, which will pull up your standard operating system folder-picker. Additionally, if you open Stata by clicking on a .do file saved on your computer, the working directory will automatically be set to whatever folder that .do file is saved in. ",
+    "content": "In Stata, you can use the cd command to change working directories. cd \"C:/My/New/Working/Directory/\" . You can also change the working directory in the File \\(\\rightarrow\\) Change Working Directory menu, which will pull up your standard operating system folder-picker. Additionally, if you open Stata by clicking on a .do file saved on your computer, the working directory will automatically be set to whatever folder that .do file is saved in. ",
     "url": "/Other/set_a_working_directory.html#stata",
     "relUrl": "/Other/set_a_working_directory.html#stata"
   },"508": {
