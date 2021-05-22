@@ -52,6 +52,15 @@ In R, the `setwd()` function can change the working directory.
 setwd('C:/My/New/Working/Directory/')
 ```
 
+If you are working in an R project, there is also the **here** package.
+
+```r?skip=true&skipReason=folder_does_not_exist
+library(here)
+here()
+```
+
+`here()` will start in whatever your current working directory and look upwards into parent folders until it finds something that indicates that it's found a folder containing a project: an `.Rproj` (R Project) file, a `.git` or `.svn` folder, or any of the files `.here`, `.projectile`, `remake.yml`, or `DESCRIPTION`, and will set the working directory to that folder. This won't work if you haven't set up a proper project folder structure.
+
 If you are using RStudio, there are several other ways to set the working directory. In the Session menu, you can choose to set the working directory to the Source File location (whatever folder the active code tab file is saved in), to the File Pane location (whatever folder the Files pane, in the bottom-right by default, has navigated to), or you can choose it using your standard operating system folder-picker.
 
 ![Rstudio working directory selection from Session menu](https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Other/Images/rstudio_session_wd.png)
