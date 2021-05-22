@@ -40,6 +40,160 @@ Typically $$p$$ is set to 1 for LASSO regression (least absolute shrinkage and s
 
 # Implementations
 
+## Python
+
+This is an example of running penalised regressions in Python. The main takeaways are that the ubiquitous machine learning package [**sklearn**](https://scikit-learn.org/stable/index.html) can perform lasso, ridge, and elastic net regressions. In the example below, we'll see all three in action. The level of penalisation will be set automatically by cross-validation, although a user may also supply the number directly.
+
+This example will use the seaborn package (for data), the patsy package (to create matrices from formulae), the matplotlib package (for plotting), the pandas package (for data manipulation), and the [**sklearn**](https://scikit-learn.org/stable/index.html) package (for machine learning). To run the example below, you may need to first install these packages. First, we need to import these packages for use.
+
+
+```python?example=penreg
+import seaborn as sns
+from patsy import dmatrices, dmatrix
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LassoCV, ElasticNetCV, RidgeCV
+import matplotlib.pyplot as plt
+import pandas as pd
+```
+
+
+Now let's load the data and transform it into a vector of endogeneous variables, and a matrix of exogenous variables. Using patsy, we'll ask for all interaction variables among sepal width, petal length, and petal width (and exclude having an intercept).
+
+
+```python?example=penreg
+iris = sns.load_dataset("iris")
+formula = ("sepal_length ~ (sepal_width + petal_length + petal_width)**2 - 1")
+y, X = dmatrices(formula, iris)
+```
+
+Some machine learning algorithms are more performant with data that are scaled before being used. One should be careful when scaling data if using test and training sets; here, we're not worried about a test set though, so we just use the standard scaler (which transforms data to have 0 mean and unit standard deviation) on all of the $X$ and $y$ data.
+
+
+```python?example=penreg
+scale_X = StandardScaler().fit(X).transform(X)
+scale_y = StandardScaler().fit(y).transform(y)
+scale_y = scale_y.ravel()  # ravel collapses a (150, 1) vector to (150,)
+```
+
+Now we run lasso with cross-validation.
+
+
+```python?example=penreg
+reg_lasso = LassoCV(cv=10).fit(scale_X, scale_y)
+```
+
+Let's display the results so we can see for which value of $\alpha$ the lowest mean squared error occurred. Note that sklearn uses the convention that $\alpha$ (rather than $\lambda$) is the shrinkage parameter.
+
+
+```python?example=penreg
+EPSILON = 1e-4  # This is to avoid division by zero while taking the base 10 logarithm
+plt.figure()
+plt.semilogx(reg_lasso.alphas_ + EPSILON, reg_lasso.mse_path_, ':')
+plt.plot(reg_lasso.alphas_ + EPSILON, reg_lasso.mse_path_.mean(axis=-1), 'k',
+         label='Average across the folds', linewidth=2)
+plt.axvline(reg_lasso.alpha_ + EPSILON, linestyle='--', color='k',
+            label=r'$\alpha$: CV estimate')
+plt.legend()
+plt.xlabel(r'$\alpha$')
+plt.ylabel('Mean square error')
+plt.title('Mean square error on each fold: coordinate descent ')
+plt.axis('tight')
+plt.show()
+```
+
+![png](Images/penalised_reg_example_py.png)
+
+
+Let's look at the coefficients that are selected with this optimal value of $\alpha$ (which you can access via `reg_lasso.alpha_`):
+
+
+```python?example=penreg
+for coef, name in zip(reg_lasso.coef_, dmatrix(formula.split('~')[1], iris).design_info.term_names):
+    print(f'Coeff {name} = {coef:.2f}')
+```
+
+    Coeff sepal_width = 0.36
+    Coeff petal_length = 1.38
+    Coeff petal_width = -0.39
+    Coeff sepal_width:petal_length = -0.00
+    Coeff sepal_width:petal_width = -0.32
+    Coeff petal_length:petal_width = 0.33
+
+
+Now let's see what coefficients we get with ridge regression and elastic net (a mixture between ridge and lasso; here we use the default setting of a half-mixture between the two).
+
+
+```python?example=penreg
+reg_elastic = ElasticNetCV(cv=10).fit(scale_X, scale_y)
+reg_ridge = RidgeCV(cv=10).fit(scale_X, scale_y)
+# For convenient comparison, let's pop these into a dataframe
+df = pd.DataFrame({'Lasso': reg_lasso.coef_,
+                   'Elastic Net (0.5)': reg_elastic.coef_,
+                   'Ridge': reg_ridge.coef_},
+                  index=dmatrix(formula.split('~')[1], iris).design_info.term_names).T
+df[r'$\alpha$'] = [reg_lasso.alpha_, reg_elastic.alpha_, reg_ridge.alpha_]
+df = df.T
+df
+```
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Lasso</th>
+      <th>Elastic Net (0.5)</th>
+      <th>Ridge</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>sepal_width</th>
+      <td>0.362891</td>
+      <td>0.357877</td>
+      <td>0.288003</td>
+    </tr>
+    <tr>
+      <th>petal_length</th>
+      <td>1.383851</td>
+      <td>1.321840</td>
+      <td>0.931508</td>
+    </tr>
+    <tr>
+      <th>petal_width</th>
+      <td>-0.386780</td>
+      <td>-0.320669</td>
+      <td>-0.148416</td>
+    </tr>
+    <tr>
+      <th>sepal_width:petal_length</th>
+      <td>-0.000000</td>
+      <td>0.039810</td>
+      <td>0.363751</td>
+    </tr>
+    <tr>
+      <th>sepal_width:petal_width</th>
+      <td>-0.322053</td>
+      <td>-0.362515</td>
+      <td>-0.497244</td>
+    </tr>
+    <tr>
+      <th>petal_length:petal_width</th>
+      <td>0.327846</td>
+      <td>0.321951</td>
+      <td>0.326384</td>
+    </tr>
+    <tr>
+      <th>α</th>
+      <td>0.000901</td>
+      <td>0.001802</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 ## R
 
 We will use the **glmnet** package.
