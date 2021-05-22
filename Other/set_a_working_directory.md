@@ -54,7 +54,7 @@ setwd('C:/My/New/Working/Directory/')
 
 If you are using RStudio, there are several other ways to set the working directory. In the Session menu, you can choose to set the working directory to the Source File location (whatever folder the active code tab file is saved in), to the File Pane location (whatever folder the Files pane, in the bottom-right by default, has navigated to), or you can choose it using your standard operating system folder-picker.
 
-![Rstudio working directory selection from Session menu](https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Other/Images/rstudio_session_wd.PNG)
+![Rstudio working directory selection from Session menu](https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Other/Images/rstudio_session_wd.png)
 
 You can also navigate to the folder you want in the Files pane (which is in the bottom-right by default) and select More $\rightarrow$ Set as Working Directory.
 
