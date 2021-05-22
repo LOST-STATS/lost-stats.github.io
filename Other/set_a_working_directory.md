@@ -38,6 +38,9 @@ In Python, the `os.chdir()` function will let you change working directories.
 ```python?skip=true&skipReason=folder_does_not_exist
 import os
 os.chdir('C:/My/New/Working/Directory/')
+
+# Or if you want to change the directory to your "Home" directory, you can use os.path.expanduser("~")
+os.chdir(os.path.expanduser("~"))
 ```
 
 In the Spyder IDE, the working directory is listed by default in the top-right, and you can edit it directly.
