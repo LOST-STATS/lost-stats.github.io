@@ -105,7 +105,6 @@ If you create one of these pages, please remove it from this list.
 
 * Import a Fixed-Width Data File
 * Export Data to a Foreign Format
-* Set a Working Directory
 * Power Analysis of Interaction Terms
 
 # List of One-Language Pages
