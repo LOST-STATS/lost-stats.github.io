@@ -101,7 +101,7 @@ plt.axis('tight')
 plt.show()
 ```
 
-![png](Images/penalised_reg_example_py.png)
+![Finding_alpha_from_CV](Images/penalised_reg_example_py.png)
 
 
 Let's look at the coefficients that are selected with this optimal value of $\alpha$ (which you can access via `reg_lasso.alpha_`):
