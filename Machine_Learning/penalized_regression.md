@@ -66,7 +66,7 @@ formula = ("sepal_length ~ (sepal_width + petal_length + petal_width)**2 - 1")
 y, X = dmatrices(formula, iris)
 ```
 
-Some machine learning algorithms are more performant with data that are scaled before being used. One should be careful when scaling data if using test and training sets; here, we're not worried about a test set though, so we just use the standard scaler (which transforms data to have 0 mean and unit standard deviation) on all of the $X$ and $y$ data.
+Some machine learning algorithms are more performant with data that are scaled before being used. One should be careful when scaling data if using test and training sets; here, we're not worried about a test set though, so we just use the standard scaler (which transforms data to have 0 mean and unit standard deviation) on all of the $$X$$ and $$y$$ data.
 
 
 ```python?example=penreg
@@ -82,7 +82,7 @@ Now we run lasso with cross-validation.
 reg_lasso = LassoCV(cv=10).fit(scale_X, scale_y)
 ```
 
-Let's display the results so we can see for which value of $\alpha$ the lowest mean squared error occurred. Note that sklearn uses the convention that $\alpha$ (rather than $\lambda$) is the shrinkage parameter.
+Let's display the results so we can see for which value of $$\alpha$$ the lowest mean squared error occurred. Note that sklearn uses the convention that $\alpha$ (rather than $$\lambda$$) is the shrinkage parameter.
 
 
 ```python?example=penreg
@@ -104,7 +104,7 @@ plt.show()
 ![Finding_alpha_from_CV](Images/penalised_reg_example_py.png)
 
 
-Let's look at the coefficients that are selected with this optimal value of $\alpha$ (which you can access via `reg_lasso.alpha_`):
+Let's look at the coefficients that are selected with this optimal value of $$\alpha$$ (which you can access via `reg_lasso.alpha_`):
 
 
 ```python?example=penreg
