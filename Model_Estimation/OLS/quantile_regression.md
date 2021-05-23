@@ -9,7 +9,7 @@ mathjax: true
 
 # Quantile Regression
   
-Quantile Regression is an extension of linear regression analysis. Quantile Regression differs from OLS in how it estimates the response variable. OLS estimates the conditional mean of the $$Y$$ across the predictor variables ($$X_1, X_2, X_3...$$), whereas quantile regression estimates the conditional median (or quantiles) of the $$Y$$ across the predictor variables ($$X_1, X_2, X_3...$$). It is useful in situations where OLS assumptions are not met (heteroskedasticity, bi-modal or skewed distribution). To specify the desired quantile, select a $$\tau$$ value between 0 to 1 (.5 gives median).
+Quantile Regression is an extension of linear regression analysis. Quantile Regression differs from OLS in how it estimates the response variable. OLS estimates the conditional mean of $$Y$$ across the predictor variables ($$X_1, X_2, X_3...$$), whereas quantile regression estimates the conditional median (or quantiles) of $$Y$$ across the predictor variables ($$X_1, X_2, X_3...$$). It is useful in situations where OLS assumptions are not met (heteroskedasticity, bi-modal or skewed distributions). To specify the desired quantile, select a $$\tau$$ value between 0 to 1 (.5 gives the median).
   
 For more information on Quantile Regression, see [Wikipedia: Quantile Regression](https://en.wikipedia.org/wiki/Quantile_regression)
   
@@ -19,7 +19,7 @@ For more information on Quantile Regression, see [Wikipedia: Quantile Regression
 - This method is robust to outliers, so there is no need to remove outlier observations.
 - Either the intercept term or at least one predictor is required to run an analysis.
 - [LASSO](https://en.wikipedia.org/wiki/Lasso_(statistics)) regression cannot be used for feature selection in this framework due to it requiring OLS assumptions to be satisfied.
-- This method does not restrict the use of polynomial or interaction terms, a unique functional form can be specified.
+- This method does not restrict the use of polynomial or interaction terms. A unique functional form can be specified.
   
 ## Also Consider
   
