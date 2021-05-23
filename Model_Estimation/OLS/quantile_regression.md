@@ -29,7 +29,24 @@ For more information on Quantile Regression, see [Wikipedia: Quantile Regression
   
 # Implementations
   
+## Python  
+  
+The `quantreg` function in **statsmodels** allows for quantile regression.
+
+```python
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+
+mtcars = sm.datasets.get_rdataset("mtcars", "datasets").data
+
+mod = smf.quantreg('mpg ~ cyl + hp + wt', mtcars)
+# Specify the quantile when you fit
+res = mod.fit(q=.2)
+print(res.summary())
+```
+  
 ## R
+
 The main package to implement Quantile Regression in R is through the `quantreg` package. The main function in this package is `qr()`, which fits a Quantile Regression model with a default $$\tau$$ value of .5 but can be changed.
 
 ```r
@@ -48,3 +65,11 @@ quantreg_model = rq(mpg ~ cyl + hp + wt, data = mtcars, tau = .2)
 summary(quantreg_model)
 ```
 
+## Stata
+
+Quantile regression can be performed in Stata using the `qreg` function. By default it fits a median (`q(.5)`). See `help qreg` for some variants, including a bootstrapped quantile regression `bsqreg`.
+
+```stata
+sysuse auto
+qreg mpg price trunk weight, q(.2)
+```
