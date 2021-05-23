@@ -185,6 +185,188 @@
       <h1 id="implementation">
           <a href="#implementation" aria-labelledby="implementation" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementation
       </h1>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<p>This example will make use of the <a href="https://www.statsmodels.org/stable/index.html"><strong>statsmodels</strong></a> package, and some of the description of rolling regression has benefitted from the documentation of that package.</p>
+<p>Rolling ordinary least squares applies OLS (ordinary least squares) across a fixed window of observations and then rolls (moves or slides) that window across the data set. The key parameter is <code class="language-plaintext highlighter-rouge">window</code>, which determines the number of observations used in each OLS regression.</p>
+<p>First, let’s import the packages we’ll be using. If you don’t already have these installed, open up your terminal (aka command line) and use the command <code class="language-plaintext highlighter-rouge">pip install packagename</code> where ‘packagename’ is the package you want to install.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">statsmodels.regression.rolling</span> <span class="kn">import</span> <span class="n">RollingOLS</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="n">sm</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_regression</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+</code></pre></div></div>
+<p>Next we’ll create some random numbers to do our regression on</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_regression</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span>
+                       <span class="n">bias</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">).</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s">'feature0'</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s">'feature1'</span><span class="p">})</span>
+<span class="n">df</span><span class="p">[</span><span class="s">'target'</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+<span class="n">df</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div></div>
+<div>
+<div class="table-wrapper"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>feature0</th>
+      <th>feature1</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.955945</td>
+      <td>-0.345982</td>
+      <td>-36.740556</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-1.225436</td>
+      <td>0.844363</td>
+      <td>7.190031</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.692050</td>
+      <td>1.536377</td>
+      <td>44.389018</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.010500</td>
+      <td>1.785870</td>
+      <td>57.019515</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.895467</td>
+      <td>0.386902</td>
+      <td>-16.088554</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<p>Now let’s fit the model using a formula and a <code class="language-plaintext highlighter-rouge">window</code> of 25 steps.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">roll_reg</span> <span class="o">=</span> <span class="n">RollingOLS</span><span class="p">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s">'target ~ feature0 + feature1 -1'</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">roll_reg</span><span class="p">.</span><span class="n">fit</span><span class="p">()</span>
+</code></pre></div></div>
+<p>Note that -1 just suppresses the intercept. We can see the parameters using <code class="language-plaintext highlighter-rouge">model.params</code>. Here are the params for time steps 20 to 30:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span><span class="p">.</span><span class="n">params</span><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">30</span><span class="p">]</span>
+</code></pre></div></div>
+<div>
+<div class="table-wrapper"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>feature0</th>
+      <th>feature1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>20</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>20.736214</td>
+      <td>35.287604</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>20.351719</td>
+      <td>35.173493</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>20.368027</td>
+      <td>35.095621</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>20.532655</td>
+      <td>34.919468</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>20.470171</td>
+      <td>35.365235</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>20.002261</td>
+      <td>35.666997</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<p>Note that there aren’t parameters for entries between 0 and 23 because our window is 25 steps wide. We can easily look at how any of the coefficients are changing over time. Here’s an example for ‘feature0’.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">plot_recursive_coefficient</span><span class="p">(</span><span class="n">variables</span><span class="o">=</span><span class="p">[</span><span class="s">'feature0'</span><span class="p">])</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time step'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Coefficient value'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+<p><img src="/Time_Series/Images/py_rolling_estimation.png" alt="Rolling_estimation_python" /></p>
+      <h3 id="recursive-ordinary-least-squares-aka-expanding-window-rolling-regression">
+          <a href="#recursive-ordinary-least-squares-aka-expanding-window-rolling-regression" aria-labelledby="recursive-ordinary-least-squares-aka-expanding-window-rolling-regression" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Recursive ordinary least squares (aka expanding window rolling regression)
+      </h3>
+<p>A rolling regression with an <em>expanding</em> (rather than <em>moving</em>) window is effectively a recursive least squares model. We can perform this kind of estimation using the <code class="language-plaintext highlighter-rouge">RecursiveLS</code> function from <strong>statsmodels</strong>. Let’s fit this to the whole dataset:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">reg_rls</span> <span class="o">=</span> <span class="n">sm</span><span class="p">.</span><span class="n">RecursiveLS</span><span class="p">.</span><span class="n">from_formula</span><span class="p">(</span>
+    <span class="s">'target ~ feature0 + feature1 -1'</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+<span class="n">model_rls</span> <span class="o">=</span> <span class="n">reg_rls</span><span class="p">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">model_rls</span><span class="p">.</span><span class="n">summary</span><span class="p">())</span>
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                           Statespace Model Results                           
+==============================================================================
+Dep. Variable:                 target   No. Observations:                  200
+Model:                    RecursiveLS   Log Likelihood                -570.923
+Date:                Sun, 23 May 2021   R-squared:                       0.988
+Time:                        17:05:03   AIC                           1145.847
+Sample:                             0   BIC                           1152.444
+                                - 200   HQIC                          1148.516
+Covariance Type:            nonrobust   Scale                           17.413
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+feature0      20.6872      0.296     69.927      0.000      20.107      21.267
+feature1      34.0655      0.302    112.870      0.000      33.474      34.657
+===================================================================================
+Ljung-Box (Q):                       40.19   Jarque-Bera (JB):                 3.93
+Prob(Q):                              0.46   Prob(JB):                         0.14
+Heteroskedasticity (H):               1.17   Skew:                            -0.31
+Prob(H) (two-sided):                  0.51   Kurtosis:                         3.31
+===================================================================================
+
+Warnings:
+[1] Parameters and covariance matrix estimates are RLS estimates conditional on the entire sample.
+</code></pre></div></div>
+<p>But now we can look back at how the values of the coefficients changed in real time:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span> <span class="o">=</span> <span class="n">model_rls</span><span class="p">.</span><span class="n">plot_recursive_coefficient</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">reg_rls</span><span class="p">.</span><span class="n">k_exog</span><span class="p">),</span> <span class="n">legend_loc</span><span class="o">=</span><span class="s">'upper right'</span><span class="p">)</span>
+<span class="n">ax_list</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="n">axes</span>
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">ax_list</span><span class="p">:</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+<span class="n">ax_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'Time step'</span><span class="p">)</span>
+<span class="n">ax_list</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Coefficient value'</span><span class="p">);</span>
+</code></pre></div></div>
+<p><img src="/Time_Series/Images/py_recursive.png" alt="Recursive_estimation_python" /></p>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
