@@ -1,6 +1,6 @@
 ---
 title: Quantile Regression
-parent: Generalized Least Squares
+parent: Generalised Least Squares
 grand_parent: Model Estimation ## Optional for indexing
 has_children: false
 nav_order: 4
