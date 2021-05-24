@@ -243,12 +243,11 @@ ax_list[-1].set_xlabel('Time step')
 ax_list[0].set_title('Coefficient value');
 ```
 
-
 ![Recursive_estimation_python](Images/py_recursive.png)
 
 ## R
 
-In R the **rollRegres** (one s, not two) package has a fast and efficient way to compute rolling regressions while being able to specify the linear regression, window size, whether you want a rolling or expanding window, the minimum number of observations required in a window and others.
+In R the **rollRegres** (one s, not two) package can compute rolling regressions while being able to specify the linear regression, window size, whether you want a rolling or expanding window, the minimum number of observations required in a window, and other options.
 
 ```r?example=roll_regress
 #Load in the packages
@@ -257,6 +256,7 @@ p_load(rollRegres,tidyr,dplyr)
 ```
 
 The data will be manually created where x can be interpreted as any independent variable over a fixed time period, and y is an outcome variable.
+
 ```r?example=roll_regress
 #Simulate data
 set.seed(29132867)
@@ -273,15 +273,70 @@ roll_rolling <- roll_regres(y ~ X1, df_1, width = 25L,do_downdates = TRUE)
 roll_rolling$coefs %>% tail(25)
 ```
 
+    ##     (Intercept)         X1
+    ## 176    1.467609 -1.1887381
+    ## 177    1.561271 -1.0356878
+    ## 178    1.598559 -1.0142755
+    ## 179    1.615713 -0.8161185
+    ## 180    1.680253 -0.8814448
+    ## 181    1.593962 -0.8878947
+    ## 182    1.623287 -1.0246186
+    ## 183    1.596735 -1.0535530
+    ## 184    1.761971 -0.9466231
+    ## 185    1.703679 -0.8138562
+    ## 186    1.619849 -0.8948204
+    ## 187    1.729696 -0.9266218
+    ## 188    1.606376 -1.0624713
+    ## 189    1.676579 -0.9823355
+    ## 190    1.657288 -1.0377997
+    ## 191    1.579115 -1.1432474
+    ## 192    1.586334 -1.1829136
+    ## 193    1.393517 -1.1447650
+    ## 194    1.250160 -1.0244144
+    ## 195    1.243020 -1.0232251
+    ## 196    1.205068 -1.0201693
+    ## 197    1.273287 -0.9792404
+    ## 198    1.336927 -0.9346933
+    ## 199    1.343452 -0.9316855
+    ## 200    1.284072 -0.9379035
 
-To demonstrate the note about a starting position for your analysis, these are all blank because there aren't enough lags in the data for them to be included.
+To demonstrate the point about a starting position for your analysis, the entries up to 24 are null because of the choice of window size.
 
 ```?example=roll_regress
 #Check the first 25 coefficients
 roll_rolling$coefs %>% head(25)
 ```
 
-Finally, we can show the different results when using an expanding window
+    ##    (Intercept)        X1
+    ## 1           NA        NA
+    ## 2           NA        NA
+    ## 3           NA        NA
+    ## 4           NA        NA
+    ## 5           NA        NA
+    ## 6           NA        NA
+    ## 7           NA        NA
+    ## 8           NA        NA
+    ## 9           NA        NA
+    ## 10          NA        NA
+    ## 11          NA        NA
+    ## 12          NA        NA
+    ## 13          NA        NA
+    ## 14          NA        NA
+    ## 15          NA        NA
+    ## 16          NA        NA
+    ## 17          NA        NA
+    ## 18          NA        NA
+    ## 19          NA        NA
+    ## 20          NA        NA
+    ## 21          NA        NA
+    ## 22          NA        NA
+    ## 23          NA        NA
+    ## 24          NA        NA
+    ## 25    1.401621 -1.127908
+
+
+
+Finally, here are the results when using an expanding window (also known as recursive regression)
 
 ```?example=roll_regress
 #Run the rolling regression (Rolling window)
@@ -291,5 +346,16 @@ roll_expanding <- roll_regres(y ~ X1, df_1, width = 25L,do_downdates = FALSE)
 roll_expanding$coefs %>% tail(10)
 ```
 
+    ##     (Intercept)        X1
+    ## 191    1.189651 -1.066285
+    ## 192    1.196722 -1.077508
+    ## 193    1.180968 -1.068470
+    ## 194    1.178508 -1.064603
+    ## 195    1.177739 -1.064419
+    ## 196    1.170369 -1.063868
+    ## 197    1.172466 -1.064678
+    ## 198    1.179917 -1.056945
+    ## 199    1.181876 -1.056017
+    ## 200    1.178556 -1.054890
 
 
