@@ -334,51 +334,44 @@ Let’s fit this to the whole dataset:
 But now we can look back at how the values of the coefficients changed
 in real time:
 
-    fig = model_rls.plot_recursive_coefficient(range(reg_rls.k_exog), legend_loc='upper right')
-    ax_list = fig.axes
-    for ax in ax_list:
-        ax.set_xlim(0, None)
-    ax_list[-1].set_xlabel('Time step')
-    ax_list[0].set_title('Coefficient value');
+```python?example=rolling
+fig = model_rls.plot_recursive_coefficient(range(reg_rls.k_exog), legend_loc='upper right')
+ax_list = fig.axes
+for ax in ax_list:
+    ax.set_xlim(0, None)
+ax_list[-1].set_xlabel('Time step')
+ax_list[0].set_title('Coefficient value');
+```
 
-![Recursive\_estimation\_python](Images/py_recursive.png)
-
-## R
-
-In R the **rollRegres** (one s, not two) package has a fast and
-efficient way to compute rolling regressions while being able to specify
-the linear regression, window size, whether you want a rolling or
-expanding window, the minimum number of observations required in a
-window and others.
+![Recursive_estimation_python](Images/py_recursive.png)
 
 ## R
 
-In R the roll\_regress package has a fast and efficient way to compute
-rolling regressions while being able to specify the linear regression,
-window size, whether you want a rolling or expanding window, the minimum
-number of observations required in a window and others.
+In R the **rollRegres** (one s, not two) package can compute rolling regressions while being able to specify the linear regression, window size, whether you want a rolling or expanding window, the minimum number of observations required in a window, and other options.
 
-    #Load in the packages
-    library(pacman)
-    p_load(rollRegres,tidyr,dplyr)
+```r?example=roll_regress
+#Load in the packages
+library(pacman)
+p_load(rollRegres,tidyr,dplyr)
+```
 
-The data will be manually created where x can be interpreted as any
-independent variable over a fixed timer period and y as any outcome
-variable.
+The data will be manually created where x can be interpreted as any independent variable over a fixed time period, and y is an outcome variable.
 
-    #Simulate data
-    set.seed(29132867)
-    n <- 200
-    p <- 2
-    X <- cbind(1, matrix(rnorm(p * n), ncol = p))
-    y <- drop(X %*% c(1, -1, 1)) + rnorm(n)
-    df_1 <- data.frame(y, X[, -1])
+```r?example=roll_regress
+#Simulate data
+set.seed(29132867)
+n <- 200
+p <- 2
+X <- cbind(1, matrix(rnorm(p * n), ncol = p))
+y <- drop(X %*% c(1, -1, 1)) + rnorm(n)
+df_1 <- data.frame(y, X[, -1])
 
-    #Run the rolling regression (Rolling window)
-    roll_rolling <- roll_regres(y ~ X1, df_1, width = 25L,do_downdates = TRUE)
+#Run the rolling regression (Rolling window)
+roll_rolling <- roll_regres(y ~ X1, df_1, width = 25L,do_downdates = TRUE)
 
-    #Check the first 10 coefficients
-    roll_rolling$coefs %>% tail(25)
+#Check the first 10 coefficients
+roll_rolling$coefs %>% tail(25)
+```
 
     ##     (Intercept)         X1
     ## 176    1.467609 -1.1887381
@@ -407,10 +400,12 @@ variable.
     ## 199    1.343452 -0.9316855
     ## 200    1.284072 -0.9379035
 
-To demonstrate the second note
+To demonstrate the point about a starting position for your analysis, the entries up to 24 are null because of the choice of window size.
 
-    #Check the first 25 coefficients
-    roll_rolling$coefs %>% head(25)
+```?example=roll_regress
+#Check the first 25 coefficients
+roll_rolling$coefs %>% head(25)
+```
 
     ##    (Intercept)        X1
     ## 1           NA        NA
@@ -439,13 +434,17 @@ To demonstrate the second note
     ## 24          NA        NA
     ## 25    1.401621 -1.127908
 
-Finally to show off the different results when using an expanding window
 
-    #Run the rolling regression (Rolling window)
-    roll_expanding <- roll_regres(y ~ X1, df_1, width = 25L,do_downdates = FALSE)
 
-    #Check the last 10 coefficients
-    roll_expanding$coefs %>% tail(10)
+Finally, here are the results when using an expanding window (also known as recursive regression)
+
+```?example=roll_regress
+#Run the rolling regression (Rolling window)
+roll_expanding <- roll_regres(y ~ X1, df_1, width = 25L,do_downdates = FALSE)
+
+#Check the last 10 coefficients
+roll_expanding$coefs %>% tail(10)
+```
 
     ##     (Intercept)        X1
     ## 191    1.189651 -1.066285
