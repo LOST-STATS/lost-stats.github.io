@@ -1,3 +1,11 @@
+---
+title: Simple Web Scraping
+parent: Other
+has_children: false
+nav_order: 1
+mathjax: true ## Switch to false if this page has no equations or other math rendering.
+---
+
 # Introduction
 
   The “rvest” package is a webscraping package in R that provides a
