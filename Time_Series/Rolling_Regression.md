@@ -1,15 +1,21 @@
+---
+title: Rolling Regression
+parent: Time Series
+has_children: false
+mathjax: true
+nav_order: 1
+---
+
 # Rolling Regression
 
-Rolling regressions are one of the best and simplest models to to
-analyze changing relationships among variables overtime. It utilize the
-linear regression but allows certain parts of the data set used to
-constantly change. In most linear regression models parameters are
+Rolling regressions are one of the simplest models for
+analysing changing relationships among variables overtime. They use linear regression but allow the data set used to change over time. In most linear regression models, parameters are
 assumed to be time-invariant and thus should not change overtime.
-Rolling regression can test this by finding a models parameters using a
+Rolling regressions estimate model parameters using a
 fixed window of time over the entire data set. A larger sample size, or
-window, used will result in less less parameter estimates but utilize
+window, used will result in fewer parameter estimates but use
 more observations. For more information, see [Base on
-Rolling](https://factorpad.com/fin/glossary/rolling-regression.html#:~:text=Rolling%20Regression%20is%20an%20analysis,generated%20from%20a%20linear%20regression.&text=For%20context%2C%20recall%20that%20measures,in%20Finance%20change%20over%20time.)
+Rolling](https://factorpad.com/fin/glossary/rolling-regression.html#:~:text=Rolling%20Regression%20is%20an%20analysis,generated%20from%20a%20linear%20regression.&text=For%20context%2C%20recall%20that%20measures,in%20Finance%20change%20over%20time.).
 
 ## Keep in Mind
 
