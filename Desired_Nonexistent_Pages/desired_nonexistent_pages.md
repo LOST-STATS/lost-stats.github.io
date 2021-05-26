@@ -125,4 +125,5 @@ This is a list of pages that exist but only have an example in one language, and
 * Time Series: [Granger Causality]({{ "/Time_Series/Granger_Causality.html" | relative_url }})
 * Time Series: [MA Models]({{ "/Time_Series/MA_Model.html" | relative_url }})
 * Time Series: [Linear Gaussian State Space Models]({{ "/Time_Series/State_Space_Models.html" | relative_url }})
+* Other: [Simple Web Scraping]({{"Other/simple_web_scrape.html" | relative_url }}) - this one is also R-centric in the intro, please change that when you add another language!
 
