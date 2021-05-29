@@ -190,7 +190,7 @@ model must be differenced in order to get an ARMA model. A univariate \(ARIMA(p,
 \rho(L)&amp;=(1-\rho_{1}L-\dots-\rho_{p+1}L^{p+1})\\
 \theta(L)&amp;=1+\theta_{1}L+\dots+\theta_{q}L^{q}
 \end{align}\]
-<p>Recall that \(L\) is the lag operator and \(\theta(L)\) must be invertible. If we factor \(\rho(L)=(1-\lambda_{1}L)\cdots(1-\lambda_{p+1}L)\), where \(\{\lambda\}\) are the eigenvalues of the \(F\) matrix (see <a href="/Time\_Series/State\_Space\_Models.html">LOST: State-Space Models</a>), then define\(\phi(L)=(1-\lambda_{1}L)\cdots(1-\lambda_{p}L)\). It follows that</p>
+<p>Recall that \(L\) is the lag operator and \(\theta(L)\) must be invertible. If we factor \(\rho(L)=(1-\lambda_{1}L)\cdots(1-\lambda_{p+1}L)\), where \(\{\lambda\}\) are the eigenvalues of the \(F\) matrix (see <a href="/Time%5C_Series/State%5C_Space%5C_Models.html">LOST: State-Space Models</a>), then define\(\phi(L)=(1-\lambda_{1}L)\cdots(1-\lambda_{p}L)\). It follows that</p>
 \[\begin{align*}
 \phi(L)(1-L)u_{t}&amp;=\theta(L)\varepsilon_{t}
 \implies \phi(L)\Delta u_{t}&amp;=\theta(L)\varepsilon_{t}
@@ -212,11 +212,11 @@ model must be differenced in order to get an ARMA model. A univariate \(ARIMA(p,
           <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
       </h2>
 <ul>
-  <li>AR Models (<a href="/Time\_Series/AR-models.html">LOST: AR models</a>)</li>
-  <li>MA Models (<a href="/Time\_Series/MA-Model.html">LOST: MA models</a>)</li>
-  <li>ARMA Models (<a href="/Time\_Series/ARMA-models.html">LOST: ARMA models</a>)</li>
+  <li>AR Models (<a href="/Time%5C_Series/AR-models.html">LOST: AR models</a>)</li>
+  <li>MA Models (<a href="/Time%5C_Series/MA-Model.html">LOST: MA models</a>)</li>
+  <li>ARMA Models (<a href="/Time%5C_Series/ARMA-models.html">LOST: ARMA models</a>)</li>
   <li>Seasonal ARIMA models, if you suspect the time series data you are trying to fit with is subject to seasonality</li>
-  <li>If you are working with <a href="/Time\_Series/State\_Space\_Models.html">State-Space models</a>, you may be interested in trend-cycle decomposition with ARIMA. This involves breaking down the ARIMA into a “trend” component, which encapsulates permanent effects (stochastic and deterministic), and a “cyclical” effect, which encapsulates transitory, non-permanent variation in the model. One extension of this is the Unobserved Components ARIMA, or UC-ARIMA</li>
+  <li>If you are working with <a href="/Time%5C_Series/State%5C_Space%5C_Models.html">State-Space models</a>, you may be interested in trend-cycle decomposition with ARIMA. This involves breaking down the ARIMA into a “trend” component, which encapsulates permanent effects (stochastic and deterministic), and a “cyclical” effect, which encapsulates transitory, non-permanent variation in the model. One extension of this is the Unobserved Components ARIMA, or UC-ARIMA</li>
 </ul>
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
