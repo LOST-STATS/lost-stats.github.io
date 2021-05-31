@@ -25,7 +25,6 @@ For more information on Quantile Regression, see [Wikipedia: Quantile Regression
   
 - While Quantile Regression can be useful in applications where OLS assumptions are not met, it can actually be used to detect heteroskedasticity. This makes is a useful tool to ensure this assumption is met for OLS.
 - Several different standard error calculations can be used with this method, however [bootstrapped standard errors](https://en.wikipedia.org/wiki/Bootstrapping_(statistics)) are generally the best for complex modeling situations. [Clustered standard errors](https://en.wikipedia.org/wiki/Clustered_standard_errors) are also possible by estimating a quantile regression with pooled OLS clustered errors.
-- Quantile regression works with baysnian methods as well.
   
 # Implementations
   
