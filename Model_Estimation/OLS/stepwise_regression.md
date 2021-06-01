@@ -1,6 +1,6 @@
 ---
 title: Stepwise Regression
-parent: Generalised Least Squares
+parent: Ordinary Least Squares
 has_children: false
 nav_order: 1
 mathjax: true 
@@ -8,40 +8,29 @@ mathjax: true
 
 # Stepwise Regression
 
-When we use multiple explanatory variables to perform regression analysis on a dependent variable, there is a great possibility that the problem of multicollinearity will occur. However, multiple linear regression requires that the correlation between the independent variables is not too high, so we need a method to eliminate multicollinearity and select the "optimal" regression equation. That is stepwise regression. It can automatically help us retain the most important explanatory variables and remove relatively unimportant variables from the model. 
-
+When we use multiple explanatory variables to perform regression analysis on a dependent variable, there is a possibility that the problem of multicollinearity will occur. However, multiple linear regression requires that the correlation between the independent variables is not too high, so there is value in a method to eliminate multicollinearity and select the "optimal" regression equation. Stepwise regression is one approach to this. It can automatically help us retain the most important explanatory variables and remove relatively unimportant variables from the model. 
 
 The idea of stepwise regression is to introduce independent variables one by one, and after each independent variable is introduced, the selected variables are tested one by one. If the originally introduced variable is no longer significant due to the introduction of subsequent variables, then delete it. Repeat this process until the regression equation does not introduce insignificant independent variables and does not remove significant independent variables, then the optimal regression equation can be obtained.
 
 ## Keep in Mind
 
-
 - The purpose of stepwise regression is to find which combination of variables can explain more changes in dependent variables.
-
-- Stepwise regression is to observe statistical values, such as R-square, t-stats, and AIC indicators to identify important variables. 
-
+- Stepwise regression uses statistical measures such as R-square, t-stats, and AIC indicators to identify important variables. 
 - There are three methods of stepwise regression: Forward Selection, Backward Elimination and Stepwise Selection.
-
 - Forward selection starts from the most important independent variable in the model, and then increases the variable in each step. 
-
 - Backward elimination starts with all the independent variables of the model, and then removes the least significant variable at each step.
-
 - The standard stepwise selection combines the above two methods, adding or removing independent variables in each step.
+- Standard stepwise regression approaches use statistical significance to make decisions about model design, which is not the typical purpose of statistical significance
 
 ## Also Consider
 
-- When our model has an overfitting problem, penalized regression is a good model-selection method. 
-
-- The idea is penalizing the model for coefficients as they move away from zero, so so we can force the regression estimator to shrink its coefficient to 0.
-
-- The optimal penalty will balance reduced model's variance with increased bias.
-
+- [Penalized regression]({{ "/Machine_Learning/penalized_regression.html" | relative_url }}), specifically the LASSO approach to model selection.
 
 # Implementations
 
 ## R
 
-We will use the build-in mtcars dataset, and the step() function in package "stats" can help us to do the stepwise regression. 
+We will use the built-in mtcars dataset. The step() function in package **stats** can perform the stepwise regression. 
 
 ### Set up
 
@@ -74,6 +63,7 @@ intercept <- lm(mpg ~ 1, data=mtcars)
 ```r
 # Stepwise selection
 
+# The direction argument can be changed to perform forwards or backwards selection
 stepwise <- step(intercept, direction = c("both"), scope=formula(reg_mpg))
 
 # Start:  AIC=115.94
@@ -122,15 +112,8 @@ tidy(stepwise)
 # 2 wt           -3.17      0.741      -4.28 1.99e- 4
 # 3 cyl          -0.942     0.551      -1.71 9.85e- 2
 # 4 hp           -0.0180    0.0119     -1.52 1.40e- 1
-
-
 ```
 
 The optimal equation we get from stepwise selection is 
-$$mpg = 38.752 - 3.167*wt - 0.942*cyl - 0.018*hyp
-$$
 
-
-### Forward Selection And Backward Selection
-
-The standard function for step is step(object, direction, scope, trace..). To use forward selection or backward selection, we just need to switch the object (regression) and choose the direction (forward or backward). 
+$$ mpg = 38.752 - 3.167*wt - 0.942*cyl - 0.018*hyp $$
