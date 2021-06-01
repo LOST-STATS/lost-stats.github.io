@@ -120,6 +120,7 @@ This is a list of pages that exist but only have an example in one language, and
 * Geospatial: [Merging Shape Files]({{ "/Geo-Spatial/merging_shape_files.html" | relative_url }})
 * Model Estimation: [Mixed Logit Model]({{ "/Model_Estimation/Multilevel_Models/mixed_logit.html" | relative_url }})
 * Model Estimation: [2x2 Difference-in-Differences]({{ "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html" | relative_url }})
+* Model Estimation: [Stepwise Regression]({{ "/Model_Estimation/OLS/stepwise_regression.html" | relative_url }})
 * Presentation: [Styling Line Graphs]({{ "/Presentation/Figures/styling_line_graphs.html" | relative_url }})
 * Time Series: [ARIMA]({{ "/Time_Series/ARIMA-models.html" | relative_url }})
 * Time Series: [Granger Causality]({{ "/Time_Series/Granger_Causality.html" | relative_url }})
