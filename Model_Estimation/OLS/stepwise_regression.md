@@ -1,6 +1,7 @@
 ---
 title: Stepwise Regression
 parent: Ordinary Least Squares
+grand_parent: Model Estimation
 has_children: false
 nav_order: 1
 mathjax: true 
