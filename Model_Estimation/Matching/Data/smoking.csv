@@ -1,0 +1,1692 @@
+gender,age,marital_status,highest_qualification,nationality,ethnicity,gross_income,region,smoke,amt_weekends,amt_weekdays,type
+Male,38,Divorced,No Qualification,British,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,42,Single,No Qualification,British,White,"Under 2,600",The North,Yes,12,12,Packets
+Male,40,Married,Degree,English,White,"28,600 to 36,400",The North,No,NA,NA,
+Female,40,Married,Degree,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,39,Married,GCSE/O Level,British,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,37,Married,GCSE/O Level,British,White,"15,600 to 20,800",The North,No,NA,NA,
+Male,53,Married,Degree,British,White,"Above 36,400",The North,Yes,6,6,Packets
+Male,44,Single,Degree,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Male,40,Single,GCSE/CSE,English,White,"2,600 to 5,200",The North,Yes,8,8,Hand-Rolled
+Female,41,Married,No Qualification,English,White,"5,200 to 10,400",The North,Yes,15,12,Packets
+Male,72,Widowed,No Qualification,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Male,49,Married,No Qualification,British,White,Refused,The North,No,NA,NA,
+Male,29,Married,Degree,English,White,"Above 36,400",The North,No,NA,NA,
+Female,79,Widowed,No Qualification,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Male,25,Single,Degree,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,27,Single,Degree,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,30,Single,Degree,English,White,"20,800 to 28,600",The North,No,NA,NA,
+Male,47,Divorced,No Qualification,British,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,69,Single,Other/Sub Degree,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Male,55,Married,No Qualification,English,White,"20,800 to 28,600",The North,No,NA,NA,
+Female,34,Married,GCSE/CSE,British,White,"2,600 to 5,200",The North,Yes,6,12,Packets
+Female,36,Married,GCSE/O Level,English,White,"5,200 to 10,400",The North,Yes,5,2,Packets
+Female,56,Married,No Qualification,English,White,"2,600 to 5,200",The North,Yes,20,20,Packets
+Male,71,Divorced,No Qualification,English,White,Unknown,The North,No,NA,NA,
+Female,38,Married,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,79,Married,No Qualification,English,White,"Under 2,600",The North,No,NA,NA,
+Female,58,Divorced,No Qualification,English,White,"5,200 to 10,400",The North,Yes,25,20,Packets
+Female,69,Married,No Qualification,British,White,"Under 2,600",The North,No,NA,NA,
+Male,83,Widowed,No Qualification,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,73,Widowed,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,42,Married,GCSE/O Level,British,White,Refused,The North,Yes,40,15,Packets
+Female,31,Married,GCSE/CSE,English,White,"Under 2,600",The North,Yes,15,15,Both/Mainly Packets
+Male,26,Single,GCSE/CSE,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,27,Separated,Degree,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,57,Married,Higher/Sub Degree,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,30,Married,ONC/BTEC,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,22,Single,A Levels,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,78,Widowed,No Qualification,English,White,"Under 2,600",The North,Yes,20,20,Packets
+Female,49,Married,ONC/BTEC,English,Mixed,"15,600 to 20,800",The North,No,NA,NA,
+Male,74,Married,Other/Sub Degree,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Male,85,Widowed,Degree,Scottish,White,"20,800 to 28,600",The North,No,NA,NA,
+Male,75,Married,Other/Sub Degree,English,White,Refused,The North,No,NA,NA,
+Female,80,Widowed,GCSE/O Level,British,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,37,Married,Degree,British,White,"Under 2,600",The North,No,NA,NA,
+Female,33,Single,Degree,British,White,"10,400 to 15,600",The North,No,NA,NA,
+Male,41,Divorced,A Levels,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,81,Widowed,No Qualification,British,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,76,Widowed,No Qualification,English,White,"2,600 to 5,200",The North,Yes,6,6,Packets
+Female,58,Married,A Levels,British,White,"10,400 to 15,600",The North,No,NA,NA,
+Male,59,Married,Other/Sub Degree,English,White,"15,600 to 20,800",The North,Yes,25,25,Packets
+Female,40,Divorced,GCSE/O Level,English,White,"5,200 to 10,400",The North,Yes,4,4,Packets
+Female,54,Divorced,GCSE/O Level,British,White,"10,400 to 15,600",The North,No,NA,NA,
+Male,49,Married,Degree,Scottish,White,"Above 36,400",The North,No,NA,NA,
+Female,79,Widowed,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,28,Married,Other/Sub Degree,British,White,"20,800 to 28,600",The North,Yes,20,20,Packets
+Male,44,Married,Other/Sub Degree,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,42,Single,GCSE/CSE,British,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,36,Single,GCSE/CSE,British,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,89,Widowed,No Qualification,British,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,64,Married,No Qualification,British,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,76,Married,No Qualification,English,White,"Under 2,600",The North,No,NA,NA,
+Female,76,Married,No Qualification,English,White,"Under 2,600",The North,No,NA,NA,
+Female,61,Married,No Qualification,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,81,Widowed,GCSE/O Level,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,20,Single,No Qualification,British,White,"2,600 to 5,200",The North,Yes,20,10,Packets
+Female,82,Widowed,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,23,Single,GCSE/O Level,British,White,"5,200 to 10,400",The North,Yes,20,10,Packets
+Male,41,Married,GCSE/O Level,English,White,"Above 36,400",The North,No,NA,NA,
+Female,31,Single,A Levels,British,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,44,Married,A Levels,English,White,"20,800 to 28,600",The North,Yes,5,0,Packets
+Female,42,Married,Degree,Scottish,White,"10,400 to 15,600",The North,No,NA,NA,
+Male,67,Widowed,No Qualification,British,White,"5,200 to 10,400",The North,Yes,20,20,Packets
+Male,53,Married,Degree,English,White,"20,800 to 28,600",The North,No,NA,NA,
+Male,76,Married,No Qualification,English,Black,"10,400 to 15,600",The North,No,NA,NA,
+Male,40,Married,Other/Sub Degree,English,White,"2,600 to 5,200",The North,Yes,30,30,Hand-Rolled
+Male,44,Married,A Levels,British,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,31,Separated,GCSE/O Level,British,White,"15,600 to 20,800",The North,Yes,20,20,Packets
+Male,43,Divorced,Other/Sub Degree,English,White,"2,600 to 5,200",The North,Yes,20,20,Hand-Rolled
+Female,36,Separated,A Levels,British,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,34,Divorced,GCSE/O Level,British,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,18,Single,GCSE/O Level,English,White,"2,600 to 5,200",The North,Yes,10,3,Packets
+Male,56,Married,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,73,Married,No Qualification,British,White,"Under 2,600",The North,No,NA,NA,
+Female,22,Single,GCSE/CSE,English,White,"2,600 to 5,200",The North,Yes,20,20,Packets
+Female,33,Single,GCSE/CSE,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Male,27,Single,ONC/BTEC,British,White,"15,600 to 20,800",The North,Yes,10,0,Packets
+Female,33,Married,GCSE/O Level,British,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,63,Married,No Qualification,English,White,"Under 2,600",The North,No,NA,NA,
+Female,64,Married,A Levels,British,White,"2,600 to 5,200",The North,No,NA,NA,
+Male,54,Married,Degree,British,White,"Above 36,400",The North,No,NA,NA,
+Female,34,Married,Degree,English,White,"Under 2,600",The North,No,NA,NA,
+Male,78,Married,No Qualification,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,54,Married,No Qualification,British,White,"Under 2,600",The North,No,NA,NA,
+Male,56,Separated,GCSE/CSE,English,White,"28,600 to 36,400",The North,No,NA,NA,
+Male,78,Widowed,No Qualification,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,37,Married,A Levels,British,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,54,Married,Degree,British,White,"28,600 to 36,400",The North,No,NA,NA,
+Female,40,Married,GCSE/O Level,British,White,"20,800 to 28,600",The North,Yes,15,15,Hand-Rolled
+Female,64,Divorced,No Qualification,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,42,Married,GCSE/O Level,Other,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,34,Married,Higher/Sub Degree,British,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,64,Married,No Qualification,English,White,"Under 2,600",The North,No,NA,NA,
+Female,50,Divorced,Other/Sub Degree,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,31,Married,ONC/BTEC,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,37,Married,Degree,English,White,"Above 36,400",The North,No,NA,NA,
+Male,81,Married,Degree,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Male,57,Separated,No Qualification,Welsh,White,"5,200 to 10,400",The North,Yes,10,10,Hand-Rolled
+Female,59,Married,Higher/Sub Degree,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Male,66,Married,Degree,English,White,"20,800 to 28,600",The North,No,NA,NA,
+Male,57,Married,No Qualification,English,White,"20,800 to 28,600",The North,No,NA,NA,
+Female,78,Widowed,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,49,Married,Degree,English,White,"20,800 to 28,600",The North,No,NA,NA,
+Female,62,Married,GCSE/O Level,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,17,Single,GCSE/CSE,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,36,Single,GCSE/O Level,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,31,Single,No Qualification,English,White,Refused,The North,Yes,7,7,Packets
+Female,61,Married,Higher/Sub Degree,English,White,"15,600 to 20,800",The North,Yes,25,25,Packets
+Male,71,Widowed,No Qualification,English,White,"15,600 to 20,800",The North,Yes,40,40,Packets
+Female,75,Widowed,No Qualification,English,White,"5,200 to 10,400",The North,Yes,12,12,Packets
+Female,43,Married,Higher/Sub Degree,English,White,"Above 36,400",The North,No,NA,NA,
+Female,68,Widowed,No Qualification,English,White,Refused,The North,No,NA,NA,
+Female,65,Widowed,Degree,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,85,Widowed,No Qualification,British,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,35,Separated,GCSE/O Level,English,White,"5,200 to 10,400",The North,Yes,20,20,Both/Mainly Hand-Rolled
+Female,52,Married,Higher/Sub Degree,British,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,28,Single,ONC/BTEC,English,White,"5,200 to 10,400",The North,Yes,15,15,Packets
+Male,52,Single,ONC/BTEC,English,White,"20,800 to 28,600",The North,No,NA,NA,
+Male,67,Widowed,No Qualification,Irish,White,"5,200 to 10,400",The North,Yes,25,25,Hand-Rolled
+Female,35,Divorced,No Qualification,English,White,"5,200 to 10,400",The North,Yes,30,30,Both/Mainly Hand-Rolled
+Female,68,Married,No Qualification,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,34,Married,Higher/Sub Degree,Other,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,57,Divorced,No Qualification,British,White,"2,600 to 5,200",The North,Yes,20,12,Hand-Rolled
+Male,37,Married,Higher/Sub Degree,English,White,"15,600 to 20,800",The North,Yes,8,8,Hand-Rolled
+Female,37,Divorced,No Qualification,English,White,"5,200 to 10,400",The North,Yes,15,15,Packets
+Male,43,Divorced,No Qualification,British,White,"10,400 to 15,600",The North,Yes,15,15,Packets
+Male,59,Widowed,GCSE/O Level,British,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,28,Single,Degree,Scottish,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,60,Married,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,16,Single,GCSE/O Level,British,White,"Under 2,600",The North,No,NA,NA,
+Male,37,Single,No Qualification,British,White,"2,600 to 5,200",The North,Yes,40,40,Hand-Rolled
+Male,34,Married,No Qualification,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,73,Married,No Qualification,British,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,24,Single,GCSE/O Level,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,36,Single,Higher/Sub Degree,British,White,"15,600 to 20,800",The North,No,NA,NA,
+Male,39,Separated,GCSE/O Level,British,White,"10,400 to 15,600",The North,Yes,20,20,Both/Mainly Packets
+Female,74,Married,No Qualification,English,White,Refused,The North,No,NA,NA,
+Female,32,Married,GCSE/CSE,English,White,"Under 2,600",The North,Yes,15,15,Packets
+Female,30,Married,Degree,Other,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,68,Married,GCSE/O Level,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,49,Married,No Qualification,Refused,Refused,Refused,The North,No,NA,NA,
+Female,47,Married,Higher/Sub Degree,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Male,30,Single,Higher/Sub Degree,British,White,"10,400 to 15,600",The North,Yes,30,30,Hand-Rolled
+Male,60,Divorced,No Qualification,English,White,"10,400 to 15,600",The North,Yes,15,8,Hand-Rolled
+Male,72,Single,Other/Sub Degree,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Male,73,Married,Degree,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,48,Widowed,GCSE/O Level,English,White,"10,400 to 15,600",The North,Yes,20,4,Packets
+Male,53,Divorced,Degree,English,White,"Above 36,400",The North,No,NA,NA,
+Male,17,Single,GCSE/O Level,English,White,Refused,The North,No,NA,NA,
+Female,58,Married,GCSE/O Level,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,34,Married,ONC/BTEC,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Male,44,Single,GCSE/O Level,British,White,"15,600 to 20,800",The North,No,NA,NA,
+Male,23,Single,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,49,Married,Degree,British,White,"20,800 to 28,600",The North,No,NA,NA,
+Male,30,Married,Degree,British,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,61,Widowed,GCSE/O Level,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,38,Separated,A Levels,British,White,"10,400 to 15,600",The North,Yes,9,9,Hand-Rolled
+Male,30,Single,Degree,British,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,44,Married,A Levels,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Male,91,Widowed,No Qualification,English,White,"Under 2,600",The North,No,NA,NA,
+Male,40,Divorced,GCSE/O Level,British,White,"Above 36,400",The North,No,NA,NA,
+Female,63,Married,Degree,British,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,61,Divorced,No Qualification,British,White,"2,600 to 5,200",The North,Yes,30,30,Packets
+Female,40,Married,Higher/Sub Degree,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,57,Married,No Qualification,British,White,"Under 2,600",The North,Yes,15,15,Both/Mainly Packets
+Female,41,Married,Degree,British,White,"28,600 to 36,400",The North,No,NA,NA,
+Female,32,Single,No Qualification,English,White,"2,600 to 5,200",The North,Yes,7,5,Hand-Rolled
+Male,76,Married,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,35,Divorced,GCSE/O Level,English,White,"10,400 to 15,600",The North,Yes,2,2,Packets
+Male,70,Married,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,75,Widowed,No Qualification,British,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,74,Widowed,No Qualification,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Male,49,Married,Degree,British,White,"Above 36,400",The North,No,NA,NA,
+Female,56,Married,GCSE/O Level,British,White,"Under 2,600",The North,No,NA,NA,
+Male,60,Married,Degree,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,72,Widowed,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,17,Single,GCSE/O Level,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,23,Single,Degree,English,White,"20,800 to 28,600",The North,No,NA,NA,
+Male,79,Married,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,65,Separated,No Qualification,British,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,57,Married,Degree,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,37,Married,GCSE/O Level,British,White,"15,600 to 20,800",The North,No,NA,NA,
+Male,79,Single,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,71,Single,No Qualification,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,87,Widowed,No Qualification,Refused,Refused,Unknown,The North,No,NA,NA,
+Male,59,Married,Degree,English,White,"28,600 to 36,400",The North,Yes,40,40,Packets
+Male,21,Single,ONC/BTEC,English,White,"10,400 to 15,600",The North,Yes,20,8,Packets
+Female,66,Married,No Qualification,English,White,"Under 2,600",The North,No,NA,NA,
+Male,58,Married,Higher/Sub Degree,Welsh,White,"28,600 to 36,400",The North,No,NA,NA,
+Male,38,Married,GCSE/O Level,English,White,"Above 36,400",The North,Yes,30,15,Both/Mainly Packets
+Male,61,Widowed,Other/Sub Degree,Scottish,White,"15,600 to 20,800",The North,No,NA,NA,
+Male,37,Separated,Degree,English,White,"Above 36,400",The North,No,NA,NA,
+Female,38,Married,GCSE/O Level,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,34,Married,Degree,English,White,"28,600 to 36,400",The North,No,NA,NA,
+Female,34,Married,Higher/Sub Degree,British,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,20,Single,GCSE/O Level,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,77,Widowed,No Qualification,English,White,"5,200 to 10,400",The North,Yes,20,20,Packets
+Female,31,Single,GCSE/O Level,English,White,"2,600 to 5,200",The North,Yes,20,15,Hand-Rolled
+Male,28,Single,No Qualification,English,White,"2,600 to 5,200",The North,Yes,2,2,Packets
+Female,36,Married,GCSE/CSE,British,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,16,Single,GCSE/O Level,British,White,"5,200 to 10,400",The North,Yes,12,12,Packets
+Male,42,Married,GCSE/O Level,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,47,Married,Higher/Sub Degree,English,White,"Under 2,600",The North,No,NA,NA,
+Male,42,Married,GCSE/CSE,British,White,"28,600 to 36,400",The North,No,NA,NA,
+Female,67,Widowed,No Qualification,British,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,72,Single,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,40,Divorced,GCSE/O Level,English,White,"10,400 to 15,600",The North,Yes,25,30,Packets
+Female,34,Single,Degree,English,White,"Above 36,400",The North,No,NA,NA,
+Male,75,Married,No Qualification,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,35,Married,GCSE/O Level,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,40,Separated,No Qualification,British,White,"5,200 to 10,400",The North,Yes,10,10,Packets
+Female,46,Married,No Qualification,British,White,"15,600 to 20,800",The North,No,NA,NA,
+Male,23,Married,GCSE/O Level,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Male,42,Married,GCSE/O Level,British,White,"10,400 to 15,600",The North,No,NA,NA,
+Male,63,Married,No Qualification,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,33,Married,A Levels,British,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,31,Married,GCSE/O Level,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Male,54,Single,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,33,Single,ONC/BTEC,British,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,24,Single,Degree,English,White,"15,600 to 20,800",The North,Yes,12,8,Hand-Rolled
+Female,80,Widowed,No Qualification,British,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,77,Single,No Qualification,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Male,51,Married,No Qualification,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Male,16,Single,GCSE/O Level,English,White,Refused,The North,No,NA,NA,
+Male,27,Single,ONC/BTEC,English,White,Refused,The North,Yes,15,15,Packets
+Female,75,Single,No Qualification,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,24,Single,Degree,Other,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,78,Widowed,No Qualification,English,White,"5,200 to 10,400",The North,Yes,50,50,Both/Mainly Packets
+Female,20,Single,GCSE/O Level,British,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,18,Single,GCSE/CSE,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,25,Separated,ONC/BTEC,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,55,Separated,No Qualification,English,Mixed,"5,200 to 10,400",The North,Yes,10,7,Both/Mainly Hand-Rolled
+Female,29,Married,Higher/Sub Degree,English,White,"10,400 to 15,600",The North,Yes,10,5,Packets
+Female,67,Divorced,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,79,Widowed,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,44,Single,No Qualification,British,White,"20,800 to 28,600",The North,No,NA,NA,
+Male,47,Married,Degree,British,White,"20,800 to 28,600",The North,No,NA,NA,
+Female,41,Divorced,GCSE/O Level,British,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,31,Married,GCSE/O Level,British,White,"10,400 to 15,600",The North,Yes,5,0,Packets
+Male,32,Married,Other/Sub Degree,Scottish,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,68,Widowed,No Qualification,English,White,Refused,The North,No,NA,NA,
+Female,84,Widowed,No Qualification,British,White,"Under 2,600",The North,No,NA,NA,
+Male,67,Married,No Qualification,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Male,49,Married,No Qualification,British,White,"10,400 to 15,600",The North,No,NA,NA,
+Male,69,Married,No Qualification,English,White,"5,200 to 10,400",The North,Yes,6,8,Hand-Rolled
+Male,64,Married,Higher/Sub Degree,English,White,"28,600 to 36,400",The North,Yes,16,18,Packets
+Male,62,Married,No Qualification,English,White,"20,800 to 28,600",The North,No,NA,NA,
+Male,52,Divorced,No Qualification,British,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,45,Married,ONC/BTEC,English,White,"28,600 to 36,400",The North,No,NA,NA,
+Female,28,Divorced,No Qualification,English,White,"10,400 to 15,600",The North,Yes,15,15,Packets
+Female,36,Single,GCSE/O Level,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,73,Divorced,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,48,Widowed,No Qualification,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Male,67,Widowed,No Qualification,British,White,"10,400 to 15,600",The North,Yes,10,10,Both/Mainly Hand-Rolled
+Female,38,Divorced,GCSE/O Level,British,White,"20,800 to 28,600",The North,No,NA,NA,
+Female,40,Divorced,GCSE/CSE,English,White,"10,400 to 15,600",The North,Yes,5,0,Packets
+Male,43,Single,Other/Sub Degree,British,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,30,Single,Degree,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,70,Widowed,No Qualification,British,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,82,Widowed,No Qualification,British,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,78,Widowed,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,21,Single,GCSE/O Level,English,White,"Under 2,600",The North,Yes,20,10,Packets
+Male,67,Widowed,No Qualification,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Male,16,Single,GCSE/O Level,English,White,Refused,The North,No,NA,NA,
+Female,21,Single,GCSE/CSE,English,White,"5,200 to 10,400",The North,Yes,40,15,Packets
+Male,68,Separated,No Qualification,English,White,"5,200 to 10,400",The North,Yes,8,8,Packets
+Male,41,Married,No Qualification,British,White,"2,600 to 5,200",The North,Yes,20,10,Packets
+Male,33,Single,GCSE/O Level,British,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,28,Married,No Qualification,British,White,"Under 2,600",The North,No,NA,NA,
+Female,75,Married,No Qualification,British,White,"2,600 to 5,200",The North,Yes,5,5,Packets
+Female,21,Single,Other/Sub Degree,English,White,"5,200 to 10,400",The North,Yes,5,10,Packets
+Female,69,Divorced,GCSE/CSE,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,38,Married,GCSE/O Level,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,33,Single,GCSE/O Level,English,White,"5,200 to 10,400",The North,Yes,10,4,Packets
+Female,47,Married,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,44,Single,GCSE/CSE,English,White,"2,600 to 5,200",The North,Yes,35,35,Hand-Rolled
+Female,74,Married,No Qualification,English,White,"Under 2,600",The North,No,NA,NA,
+Female,29,Married,GCSE/O Level,English,White,"Under 2,600",The North,No,NA,NA,
+Female,23,Married,A Levels,Other,Asian,"Under 2,600",The North,No,NA,NA,
+Female,72,Widowed,No Qualification,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,31,Widowed,No Qualification,English,Asian,"5,200 to 10,400",The North,Yes,10,8,Packets
+Female,48,Married,No Qualification,British,Asian,"Under 2,600",The North,No,NA,NA,
+Female,29,Married,GCSE/O Level,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,72,Married,Other/Sub Degree,English,Black,"5,200 to 10,400",The North,No,NA,NA,
+Female,52,Married,No Qualification,English,White,Unknown,The North,No,NA,NA,
+Female,68,Single,Degree,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,48,Married,Other/Sub Degree,British,Chinese,"15,600 to 20,800",The North,Yes,40,40,Both/Mainly Packets
+Female,55,Married,GCSE/O Level,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,23,Married,ONC/BTEC,British,White,"10,400 to 15,600",The North,Yes,7,7,Packets
+Female,66,Widowed,No Qualification,British,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,33,Single,ONC/BTEC,British,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,37,Married,GCSE/CSE,British,White,"Under 2,600",The North,Yes,10,10,Packets
+Male,42,Married,Degree,English,White,"20,800 to 28,600",The North,No,NA,NA,
+Female,46,Married,No Qualification,British,White,"10,400 to 15,600",The North,Yes,20,20,Hand-Rolled
+Male,57,Married,Other/Sub Degree,English,White,"28,600 to 36,400",The North,No,NA,NA,
+Female,36,Married,GCSE/O Level,English,White,"Under 2,600",The North,No,NA,NA,
+Female,51,Married,GCSE/O Level,Scottish,White,"20,800 to 28,600",The North,No,NA,NA,
+Female,18,Single,GCSE/O Level,British,White,Refused,The North,Yes,8,8,Hand-Rolled
+Female,69,Married,GCSE/O Level,English,White,"Under 2,600",The North,No,NA,NA,
+Male,30,Single,Degree,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Male,51,Married,Higher/Sub Degree,English,White,"28,600 to 36,400",The North,No,NA,NA,
+Female,63,Married,No Qualification,British,Asian,"5,200 to 10,400",The North,No,NA,NA,
+Female,31,Single,Degree,English,White,"28,600 to 36,400",The North,No,NA,NA,
+Male,58,Single,No Qualification,British,White,"10,400 to 15,600",The North,No,NA,NA,
+Male,50,Married,GCSE/CSE,English,White,"20,800 to 28,600",The North,Yes,15,15,Packets
+Female,67,Divorced,No Qualification,English,White,"2,600 to 5,200",The North,Yes,20,20,Hand-Rolled
+Male,20,Single,A Levels,English,White,Refused,The North,No,NA,NA,
+Female,45,Single,Degree,British,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,26,Married,GCSE/O Level,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,30,Single,Degree,British,White,"28,600 to 36,400",The North,No,NA,NA,
+Female,43,Married,Degree,Other,White,Refused,The North,No,NA,NA,
+Male,73,Widowed,Other/Sub Degree,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,52,Married,Higher/Sub Degree,British,White,"Under 2,600",The North,No,NA,NA,
+Male,18,Single,No Qualification,British,White,"10,400 to 15,600",The North,Yes,15,10,Both/Mainly Hand-Rolled
+Male,52,Married,No Qualification,English,White,"28,600 to 36,400",The North,No,NA,NA,
+Male,33,Divorced,GCSE/O Level,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,56,Divorced,GCSE/O Level,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,65,Married,No Qualification,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,30,Single,No Qualification,British,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,40,Married,No Qualification,British,White,"5,200 to 10,400",The North,Yes,10,1,Both/Mainly Hand-Rolled
+Female,26,Single,GCSE/CSE,English,White,"5,200 to 10,400",The North,Yes,20,20,Packets
+Male,74,Single,No Qualification,Refused,Refused,Refused,The North,No,NA,NA,
+Female,44,Married,Degree,Welsh,White,"28,600 to 36,400",The North,No,NA,NA,
+Female,80,Widowed,No Qualification,British,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,67,Married,No Qualification,English,White,"Under 2,600",The North,No,NA,NA,
+Female,59,Married,No Qualification,British,White,Refused,The North,No,NA,NA,
+Female,28,Single,Higher/Sub Degree,English,White,"5,200 to 10,400",The North,Yes,15,10,Packets
+Female,31,Married,ONC/BTEC,British,White,"15,600 to 20,800",The North,No,NA,NA,
+Male,25,Single,GCSE/CSE,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,64,Married,No Qualification,English,White,"Under 2,600",The North,No,NA,NA,
+Male,68,Married,Other/Sub Degree,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,61,Widowed,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,50,Divorced,No Qualification,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Male,43,Married,Higher/Sub Degree,British,Chinese,"Above 36,400",The North,No,NA,NA,
+Female,19,Single,No Qualification,Other,Asian,"Under 2,600",The North,No,NA,NA,
+Female,21,Married,GCSE/O Level,Other,Asian,"Under 2,600",The North,No,NA,NA,
+Male,51,Divorced,Degree,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Male,65,Single,Other/Sub Degree,British,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,50,Separated,No Qualification,Other,Asian,"2,600 to 5,200",The North,No,NA,NA,
+Female,38,Single,Other/Sub Degree,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,78,Widowed,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,74,Widowed,No Qualification,Other,Asian,"2,600 to 5,200",The North,No,NA,NA,
+Female,22,Single,Degree,Other,Asian,"2,600 to 5,200",The North,No,NA,NA,
+Male,66,Married,No Qualification,British,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,48,Single,No Qualification,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,59,Married,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,69,Widowed,No Qualification,English,White,Unknown,The North,No,NA,NA,
+Female,76,Widowed,No Qualification,British,White,"5,200 to 10,400",The North,Yes,20,20,Packets
+Female,21,Single,ONC/BTEC,British,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,47,Married,GCSE/O Level,British,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,77,Widowed,No Qualification,British,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,25,Single,GCSE/O Level,English,White,"10,400 to 15,600",The North,Yes,10,10,Packets
+Female,71,Widowed,No Qualification,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,24,Single,GCSE/O Level,British,White,"2,600 to 5,200",The North,Yes,10,10,Packets
+Female,90,Widowed,No Qualification,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,41,Divorced,GCSE/O Level,British,White,"5,200 to 10,400",The North,Yes,10,10,Packets
+Female,69,Married,No Qualification,English,White,"Under 2,600",The North,No,NA,NA,
+Female,35,Married,GCSE/O Level,British,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,32,Single,No Qualification,English,White,"5,200 to 10,400",The North,Yes,12,7,Packets
+Female,48,Single,GCSE/O Level,British,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,34,Married,No Qualification,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,28,Married,GCSE/O Level,English,White,"5,200 to 10,400",The North,Yes,10,4,Packets
+Male,66,Married,No Qualification,English,White,Unknown,The North,No,NA,NA,
+Male,56,Married,GCSE/CSE,English,White,"20,800 to 28,600",The North,No,NA,NA,
+Male,51,Married,Other/Sub Degree,British,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,63,Married,No Qualification,British,White,"2,600 to 5,200",The North,No,NA,NA,
+Male,44,Married,Degree,English,White,"28,600 to 36,400",The North,No,NA,NA,
+Female,45,Married,Higher/Sub Degree,British,White,"10,400 to 15,600",The North,No,NA,NA,
+Male,55,Married,No Qualification,British,White,"10,400 to 15,600",The North,Yes,20,20,Packets
+Female,55,Married,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,55,Married,A Levels,Scottish,White,Refused,The North,No,NA,NA,
+Female,57,Married,GCSE/O Level,British,White,"2,600 to 5,200",The North,No,NA,NA,
+Male,76,Married,A Levels,Scottish,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,59,Married,No Qualification,British,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,46,Married,No Qualification,British,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,56,Married,No Qualification,British,White,"Under 2,600",The North,No,NA,NA,
+Male,67,Married,No Qualification,British,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,73,Single,Other/Sub Degree,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,82,Widowed,No Qualification,English,White,Refused,The North,No,NA,NA,
+Male,75,Married,ONC/BTEC,English,White,Refused,The North,No,NA,NA,
+Female,41,Married,Other/Sub Degree,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,40,Married,A Levels,British,White,"15,600 to 20,800",The North,No,NA,NA,
+Male,37,Married,GCSE/O Level,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Male,53,Married,ONC/BTEC,English,White,"20,800 to 28,600",The North,No,NA,NA,
+Female,35,Married,No Qualification,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,39,Married,GCSE/O Level,English,White,"20,800 to 28,600",The North,No,NA,NA,
+Female,31,Separated,Other/Sub Degree,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Male,38,Married,ONC/BTEC,British,White,"Above 36,400",The North,No,NA,NA,
+Female,34,Divorced,GCSE/O Level,British,White,"10,400 to 15,600",The North,Yes,25,10,Packets
+Female,36,Married,A Levels,English,White,"10,400 to 15,600",The North,Yes,20,20,Packets
+Male,31,Single,Degree,English,White,"20,800 to 28,600",The North,No,NA,NA,
+Female,31,Single,GCSE/CSE,British,White,"Under 2,600",The North,Yes,10,10,Hand-Rolled
+Male,35,Married,Degree,English,White,"20,800 to 28,600",The North,No,NA,NA,
+Male,42,Married,No Qualification,British,White,"20,800 to 28,600",The North,No,NA,NA,
+Male,30,Single,GCSE/CSE,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,39,Divorced,GCSE/O Level,British,White,"10,400 to 15,600",The North,No,NA,NA,
+Female,47,Married,GCSE/O Level,Scottish,White,"10,400 to 15,600",The North,No,NA,NA,
+Male,38,Married,Higher/Sub Degree,English,White,"20,800 to 28,600",The North,No,NA,NA,
+Female,29,Divorced,A Levels,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Male,75,Widowed,No Qualification,British,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,47,Married,Higher/Sub Degree,British,White,Refused,The North,No,NA,NA,
+Male,55,Married,No Qualification,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Male,42,Married,Higher/Sub Degree,Other,White,"Above 36,400",The North,No,NA,NA,
+Female,39,Married,Degree,English,White,"Above 36,400",The North,No,NA,NA,
+Male,64,Married,GCSE/O Level,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Female,84,Widowed,No Qualification,English,White,"2,600 to 5,200",The North,No,NA,NA,
+Female,49,Married,Higher/Sub Degree,British,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,24,Single,Higher/Sub Degree,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Male,38,Single,GCSE/O Level,Scottish,White,"10,400 to 15,600",The North,Yes,30,30,Hand-Rolled
+Female,45,Married,Degree,Other,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,47,Divorced,GCSE/O Level,British,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,37,Divorced,Higher/Sub Degree,English,White,"28,600 to 36,400",The North,No,NA,NA,
+Male,59,Married,Higher/Sub Degree,English,White,"5,200 to 10,400",The North,No,NA,NA,
+Male,25,Single,Degree,Other,White,"28,600 to 36,400",The North,No,NA,NA,
+Male,56,Married,No Qualification,English,White,"15,600 to 20,800",The North,No,NA,NA,
+Female,71,Divorced,GCSE/CSE,British,White,"2,600 to 5,200",The North,No,NA,NA,
+Male,81,Widowed,Higher/Sub Degree,English,White,"10,400 to 15,600",The North,No,NA,NA,
+Male,55,Married,A Levels,English,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Male,42,Married,GCSE/CSE,English,White,"Above 36,400",Midlands & East Anglia,No,NA,NA,
+Male,73,Married,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,43,Married,A Levels,English,White,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Female,57,Divorced,No Qualification,English,White,"10,400 to 15,600",Midlands & East Anglia,Yes,15,10,Packets
+Female,47,Married,Degree,English,White,"Above 36,400",Midlands & East Anglia,No,NA,NA,
+Female,29,Married,No Qualification,English,White,"10,400 to 15,600",Midlands & East Anglia,Yes,15,15,Packets
+Female,30,Widowed,GCSE/CSE,British,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,58,Married,No Qualification,English,White,"15,600 to 20,800",Midlands & East Anglia,Yes,30,25,Packets
+Female,58,Married,Degree,English,White,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Male,70,Widowed,No Qualification,British,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,18,Single,A Levels,British,White,Refused,Midlands & East Anglia,No,NA,NA,
+Female,45,Single,No Qualification,British,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,37,Single,GCSE/O Level,English,White,"15,600 to 20,800",Midlands & East Anglia,Yes,15,10,Both/Mainly Packets
+Female,44,Separated,GCSE/O Level,British,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,46,Married,Degree,British,White,"Above 36,400",Midlands & East Anglia,No,NA,NA,
+Male,29,Married,Degree,British,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Male,50,Married,GCSE/O Level,English,White,"Above 36,400",Midlands & East Anglia,No,NA,NA,
+Female,51,Married,No Qualification,British,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,80,Widowed,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,85,Married,A Levels,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,49,Married,No Qualification,British,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Male,52,Married,No Qualification,British,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Female,58,Married,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,49,Married,Degree,British,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,39,Single,Degree,British,White,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Female,53,Married,Degree,British,White,"5,200 to 10,400",Midlands & East Anglia,Yes,15,15,Both/Mainly Hand-Rolled
+Female,71,Married,GCSE/O Level,British,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,29,Single,Higher/Sub Degree,British,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Female,66,Married,No Qualification,British,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Male,75,Married,Other/Sub Degree,English,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Female,45,Divorced,Degree,British,White,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Female,69,Married,No Qualification,English,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Female,49,Divorced,Degree,British,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Male,63,Married,No Qualification,English,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Male,61,Married,Other/Sub Degree,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,55,Married,Higher/Sub Degree,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,57,Married,Higher/Sub Degree,British,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,60,Married,Degree,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,58,Married,GCSE/O Level,English,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Female,76,Widowed,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,Yes,10,6,Packets
+Male,29,Single,Higher/Sub Degree,British,White,"20,800 to 28,600",Midlands & East Anglia,Yes,20,20,Packets
+Female,50,Married,GCSE/O Level,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,40,Married,GCSE/O Level,English,White,Refused,Midlands & East Anglia,No,NA,NA,
+Female,34,Married,Higher/Sub Degree,British,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,77,Widowed,No Qualification,Irish,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,47,Married,Degree,British,White,"Above 36,400",Midlands & East Anglia,No,NA,NA,
+Female,68,Married,No Qualification,British,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Male,31,Married,Higher/Sub Degree,English,White,"Above 36,400",Midlands & East Anglia,No,NA,NA,
+Male,41,Married,Degree,British,Asian,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Female,55,Married,Higher/Sub Degree,British,White,"5,200 to 10,400",Midlands & East Anglia,Yes,25,15,Packets
+Male,66,Married,A Levels,British,Asian,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,80,Married,No Qualification,British,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Female,45,Married,Degree,British,Asian,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,63,Married,Degree,English,White,"Above 36,400",Midlands & East Anglia,No,NA,NA,
+Male,62,Married,Degree,Scottish,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Female,49,Married,No Qualification,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,33,Married,ONC/BTEC,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,16,Single,GCSE/O Level,English,White,Refused,Midlands & East Anglia,No,NA,NA,
+Male,58,Married,Degree,British,White,"Above 36,400",Midlands & East Anglia,No,NA,NA,
+Female,33,Separated,ONC/BTEC,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,65,Married,Degree,British,White,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Female,39,Single,Degree,Irish,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Female,57,Married,Higher/Sub Degree,British,White,"15,600 to 20,800",Midlands & East Anglia,Yes,6,4,Packets
+Female,31,Married,A Levels,British,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,79,Married,No Qualification,British,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,16,Single,GCSE/CSE,British,White,"Under 2,600",Midlands & East Anglia,Yes,2,2,Packets
+Female,54,Married,No Qualification,British,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,37,Divorced,GCSE/O Level,English,White,"10,400 to 15,600",Midlands & East Anglia,Yes,12,12,Packets
+Female,87,Widowed,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,32,Single,Degree,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,72,Married,No Qualification,British,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,20,Married,GCSE/O Level,English,Mixed,"10,400 to 15,600",Midlands & East Anglia,Yes,30,15,Hand-Rolled
+Male,77,Married,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,63,Married,No Qualification,English,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Male,56,Married,No Qualification,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,34,Single,GCSE/O Level,British,White,"15,600 to 20,800",Midlands & East Anglia,Yes,10,5,Hand-Rolled
+Female,24,Married,A Levels,English,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Female,42,Single,GCSE/O Level,British,White,"15,600 to 20,800",Midlands & East Anglia,Yes,10,3,Hand-Rolled
+Male,71,Married,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,48,Married,GCSE/O Level,English,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Male,38,Separated,ONC/BTEC,British,White,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Female,55,Divorced,A Levels,English,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Male,50,Married,GCSE/CSE,English,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Male,30,Single,ONC/BTEC,English,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Female,72,Married,No Qualification,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,59,Married,Other/Sub Degree,English,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Female,68,Married,Higher/Sub Degree,English,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Male,48,Married,No Qualification,British,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Male,42,Widowed,GCSE/O Level,English,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Female,72,Divorced,Other/Sub Degree,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,54,Married,Other/Sub Degree,English,White,Refused,Midlands & East Anglia,No,NA,NA,
+Female,53,Divorced,GCSE/O Level,English,White,Unknown,Midlands & East Anglia,Yes,7,12,Packets
+Female,86,Married,No Qualification,English,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Female,57,Divorced,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,Yes,20,15,Both/Mainly Packets
+Female,30,Single,Degree,British,Chinese,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Male,35,Single,No Qualification,Other,White,Refused,Midlands & East Anglia,Yes,20,20,Hand-Rolled
+Female,25,Separated,GCSE/O Level,English,White,"10,400 to 15,600",Midlands & East Anglia,Yes,20,20,Packets
+Male,67,Married,Other/Sub Degree,British,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,33,Divorced,GCSE/O Level,English,White,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Female,51,Married,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,Yes,15,3,Packets
+Female,54,Married,No Qualification,English,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Male,86,Married,No Qualification,English,White,Unknown,Midlands & East Anglia,No,NA,NA,
+Female,69,Married,No Qualification,British,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Female,23,Married,Higher/Sub Degree,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,33,Single,Degree,English,White,"15,600 to 20,800",Midlands & East Anglia,Yes,18,12,Packets
+Male,79,Married,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,21,Single,A Levels,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,37,Divorced,GCSE/O Level,British,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,40,Married,GCSE/O Level,English,White,"5,200 to 10,400",Midlands & East Anglia,Yes,20,20,Both/Mainly Packets
+Male,79,Single,No Qualification,English,White,Refused,Midlands & East Anglia,No,NA,NA,
+Female,34,Divorced,Higher/Sub Degree,English,White,"5,200 to 10,400",Midlands & East Anglia,Yes,10,10,Hand-Rolled
+Male,28,Single,GCSE/O Level,English,White,"10,400 to 15,600",Midlands & East Anglia,Yes,10,10,Hand-Rolled
+Female,44,Married,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,Yes,15,10,Packets
+Female,64,Married,GCSE/O Level,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,51,Separated,No Qualification,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,21,Single,ONC/BTEC,English,White,"10,400 to 15,600",Midlands & East Anglia,Yes,20,10,Packets
+Male,40,Single,GCSE/O Level,English,White,"2,600 to 5,200",Midlands & East Anglia,Yes,1,2,Hand-Rolled
+Female,42,Single,GCSE/O Level,British,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,47,Divorced,No Qualification,British,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,73,Widowed,Other/Sub Degree,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,18,Single,Higher/Sub Degree,British,White,"2,600 to 5,200",Midlands & East Anglia,Yes,15,15,Packets
+Male,24,Single,GCSE/O Level,British,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,69,Widowed,GCSE/O Level,British,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,61,Married,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,83,Single,No Qualification,Refused,Refused,Refused,Midlands & East Anglia,No,NA,NA,
+Female,80,Widowed,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,80,Married,No Qualification,English,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Female,26,Single,GCSE/O Level,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,34,Separated,GCSE/O Level,British,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,34,Married,Degree,British,White,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Female,39,Single,GCSE/O Level,English,White,"15,600 to 20,800",Midlands & East Anglia,Yes,10,7,Hand-Rolled
+Male,33,Married,Other/Sub Degree,English,White,"5,200 to 10,400",Midlands & East Anglia,Yes,40,20,Packets
+Male,36,Married,GCSE/O Level,English,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Female,39,Divorced,No Qualification,British,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,35,Married,GCSE/O Level,English,White,"15,600 to 20,800",Midlands & East Anglia,Yes,10,7,Hand-Rolled
+Female,89,Widowed,No Qualification,British,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,23,Married,Degree,British,Asian,"5,200 to 10,400",Midlands & East Anglia,Yes,10,10,Packets
+Female,32,Divorced,GCSE/O Level,English,Asian,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,32,Married,No Qualification,Other,Asian,"5,200 to 10,400",Midlands & East Anglia,Yes,10,6,Packets
+Male,35,Married,GCSE/O Level,British,Asian,"2,600 to 5,200",Midlands & East Anglia,Yes,5,5,Packets
+Female,18,Single,A Levels,British,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,44,Divorced,Degree,English,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Female,75,Married,GCSE/CSE,Other,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,65,Married,GCSE/O Level,English,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Female,54,Married,ONC/BTEC,British,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Male,32,Married,GCSE/O Level,English,White,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Female,57,Married,Higher/Sub Degree,British,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,50,Married,Other/Sub Degree,British,White,"10,400 to 15,600",Midlands & East Anglia,Yes,20,15,Packets
+Female,58,Married,Other/Sub Degree,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,30,Married,Degree,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,57,Married,Higher/Sub Degree,English,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Female,60,Married,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,Yes,15,15,Hand-Rolled
+Female,78,Separated,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,44,Married,No Qualification,English,White,"10,400 to 15,600",Midlands & East Anglia,Yes,20,20,Packets
+Male,32,Single,ONC/BTEC,British,White,"Above 36,400",Midlands & East Anglia,Yes,20,10,Packets
+Female,56,Separated,Higher/Sub Degree,English,White,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Male,51,Married,Other/Sub Degree,Scottish,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Male,71,Married,Other/Sub Degree,British,Black,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,74,Widowed,Other/Sub Degree,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,56,Single,Degree,English,White,"15,600 to 20,800",Midlands & East Anglia,Yes,35,25,Packets
+Female,80,Widowed,No Qualification,English,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Female,51,Married,ONC/BTEC,English,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Female,53,Widowed,GCSE/O Level,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,80,Married,No Qualification,English,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Male,42,Married,Degree,British,White,"20,800 to 28,600",Midlands & East Anglia,Yes,0,2,Packets
+Female,82,Widowed,Other/Sub Degree,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,58,Married,A Levels,British,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,78,Married,Degree,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,61,Married,No Qualification,English,White,"20,800 to 28,600",Midlands & East Anglia,Yes,20,20,Packets
+Female,49,Single,No Qualification,British,White,"10,400 to 15,600",Midlands & East Anglia,Yes,20,15,Packets
+Female,51,Divorced,GCSE/CSE,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,48,Married,Other/Sub Degree,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,37,Married,GCSE/O Level,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,51,Married,GCSE/CSE,British,Asian,"10,400 to 15,600",Midlands & East Anglia,Yes,5,5,Packets
+Male,55,Married,GCSE/O Level,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,48,Married,No Qualification,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,82,Widowed,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,56,Married,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,71,Widowed,GCSE/O Level,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,30,Single,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,73,Widowed,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,35,Married,GCSE/O Level,English,White,"Under 2,600",Midlands & East Anglia,Yes,10,8,Packets
+Male,79,Married,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,75,Widowed,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,Yes,2,1,Packets
+Female,49,Married,ONC/BTEC,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,74,Married,No Qualification,English,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Male,33,Married,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,81,Widowed,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,63,Married,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,78,Widowed,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,68,Widowed,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,Yes,18,18,Packets
+Male,73,Married,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,34,Married,A Levels,English,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Female,36,Divorced,No Qualification,English,White,"10,400 to 15,600",Midlands & East Anglia,Yes,15,15,Hand-Rolled
+Female,16,Single,No Qualification,English,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Male,72,Widowed,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,66,Married,Higher/Sub Degree,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,41,Married,No Qualification,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,49,Married,Other/Sub Degree,English,White,"10,400 to 15,600",Midlands & East Anglia,Yes,20,15,Packets
+Male,42,Single,No Qualification,British,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Female,54,Separated,GCSE/CSE,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,70,Married,Higher/Sub Degree,British,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,29,Married,GCSE/CSE,British,Asian,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Male,43,Married,No Qualification,British,Asian,Refused,Midlands & East Anglia,Yes,5,10,Packets
+Female,19,Single,A Levels,Refused,Chinese,Refused,Midlands & East Anglia,No,NA,NA,
+Male,44,Married,Higher/Sub Degree,English,White,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Male,27,Single,Degree,English,White,"20,800 to 28,600",Midlands & East Anglia,Yes,10,10,Packets
+Male,68,Married,No Qualification,English,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Female,80,Widowed,GCSE/O Level,English,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Male,85,Widowed,No Qualification,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,65,Married,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,88,Widowed,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,76,Widowed,No Qualification,English,White,Unknown,Midlands & East Anglia,No,NA,NA,
+Male,81,Married,GCSE/O Level,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,44,Separated,Degree,British,White,"5,200 to 10,400",Midlands & East Anglia,Yes,1,1,Packets
+Female,34,Married,Other/Sub Degree,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,55,Married,Higher/Sub Degree,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,77,Widowed,No Qualification,English,White,Refused,Midlands & East Anglia,No,NA,NA,
+Female,33,Married,Degree,Refused,Chinese,Refused,Midlands & East Anglia,No,NA,NA,
+Male,82,Single,No Qualification,British,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,77,Widowed,Higher/Sub Degree,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,19,Single,GCSE/O Level,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,70,Widowed,Other/Sub Degree,British,White,Refused,Midlands & East Anglia,No,NA,NA,
+Female,74,Widowed,No Qualification,British,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,57,Married,Other/Sub Degree,British,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,44,Divorced,GCSE/CSE,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,38,Single,Degree,British,White,Refused,Midlands & East Anglia,No,NA,NA,
+Male,43,Married,Degree,British,White,"Above 36,400",Midlands & East Anglia,No,NA,NA,
+Female,57,Separated,No Qualification,Welsh,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,54,Divorced,GCSE/O Level,Unknown,Chinese,"2,600 to 5,200",Midlands & East Anglia,Yes,20,20,Both/Mainly Packets
+Male,17,Single,GCSE/O Level,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,60,Married,No Qualification,British,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,50,Married,No Qualification,British,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Female,24,Single,GCSE/CSE,British,White,"10,400 to 15,600",Midlands & East Anglia,Yes,8,2,Packets
+Female,78,Widowed,No Qualification,British,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,60,Single,Other/Sub Degree,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,85,Widowed,Other/Sub Degree,English,White,"5,200 to 10,400",Midlands & East Anglia,Yes,6,6,Packets
+Male,59,Married,No Qualification,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,65,Married,Degree,English,White,"Above 36,400",Midlands & East Anglia,No,NA,NA,
+Female,55,Married,Other/Sub Degree,English,White,Refused,Midlands & East Anglia,No,NA,NA,
+Female,32,Married,ONC/BTEC,British,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Male,41,Single,Higher/Sub Degree,English,Mixed,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Female,31,Single,Higher/Sub Degree,British,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,45,Married,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,Yes,20,20,Both/Mainly Packets
+Female,30,Single,Degree,British,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Female,19,Single,A Levels,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,76,Widowed,GCSE/O Level,British,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,73,Married,No Qualification,British,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,19,Single,GCSE/O Level,English,White,Refused,Midlands & East Anglia,Yes,5,2,Packets
+Male,34,Married,Degree,English,White,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Female,59,Married,No Qualification,British,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,22,Single,GCSE/CSE,English,White,"5,200 to 10,400",Midlands & East Anglia,Yes,40,10,Packets
+Female,27,Single,Degree,British,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,45,Married,A Levels,British,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Female,69,Widowed,Other/Sub Degree,Other,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,76,Married,Degree,Other,White,"Above 36,400",Midlands & East Anglia,No,NA,NA,
+Female,54,Married,Degree,British,White,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Male,72,Married,Degree,British,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,89,Widowed,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,78,Widowed,No Qualification,Refused,Refused,Refused,Midlands & East Anglia,Yes,6,6,Packets
+Female,60,Married,GCSE/O Level,English,White,Refused,Midlands & East Anglia,No,NA,NA,
+Female,39,Married,A Levels,British,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,28,Single,GCSE/O Level,British,White,"5,200 to 10,400",Midlands & East Anglia,Yes,5,5,Both/Mainly Packets
+Male,23,Single,GCSE/CSE,English,White,"Under 2,600",Midlands & East Anglia,Yes,30,10,Both/Mainly Packets
+Male,26,Single,A Levels,British,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,52,Married,Other/Sub Degree,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,54,Married,Other/Sub Degree,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,20,Single,A Levels,British,White,"10,400 to 15,600",Midlands & East Anglia,Yes,10,10,Packets
+Female,59,Married,Other/Sub Degree,English,White,Refused,Midlands & East Anglia,No,NA,NA,
+Male,30,Married,ONC/BTEC,British,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Male,41,Married,GCSE/O Level,Scottish,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,26,Single,GCSE/O Level,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,27,Married,GCSE/O Level,Welsh,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,49,Married,No Qualification,Refused,Refused,Refused,Midlands & East Anglia,Yes,20,20,Packets
+Male,29,Single,ONC/BTEC,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,36,Divorced,GCSE/O Level,British,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,43,Divorced,GCSE/CSE,English,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Male,29,Single,ONC/BTEC,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,34,Separated,GCSE/O Level,English,White,"5,200 to 10,400",Midlands & East Anglia,Yes,15,10,Packets
+Female,81,Married,No Qualification,Refused,Chinese,Refused,Midlands & East Anglia,No,NA,NA,
+Female,30,Single,GCSE/O Level,British,White,"10,400 to 15,600",Midlands & East Anglia,Yes,5,10,Hand-Rolled
+Male,25,Single,Degree,English,White,"20,800 to 28,600",Midlands & East Anglia,Yes,20,20,Packets
+Male,59,Divorced,No Qualification,English,White,"10,400 to 15,600",Midlands & East Anglia,Yes,35,35,Packets
+Female,44,Widowed,No Qualification,British,Asian,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,64,Married,GCSE/O Level,Refused,Chinese,Refused,Midlands & East Anglia,No,NA,NA,
+Female,35,Married,A Levels,Refused,Chinese,Refused,Midlands & East Anglia,No,NA,NA,
+Male,40,Single,GCSE/O Level,English,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Female,65,Single,A Levels,Other,Black,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,17,Single,GCSE/O Level,British,Asian,Refused,Midlands & East Anglia,No,NA,NA,
+Male,72,Married,No Qualification,Other,Black,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Female,29,Married,Degree,British,Black,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Male,39,Married,No Qualification,British,Asian,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Male,70,Widowed,No Qualification,British,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,73,Married,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,46,Single,GCSE/O Level,British,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Male,59,Married,ONC/BTEC,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,77,Widowed,No Qualification,British,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,42,Married,GCSE/O Level,British,White,"10,400 to 15,600",Midlands & East Anglia,Yes,20,20,Packets
+Male,41,Married,GCSE/O Level,British,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Male,49,Married,A Levels,British,White,"15,600 to 20,800",Midlands & East Anglia,Yes,20,15,Packets
+Male,67,Single,Degree,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,65,Single,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,40,Single,No Qualification,English,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Male,49,Separated,GCSE/O Level,English,White,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Male,34,Single,GCSE/CSE,English,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Female,64,Married,No Qualification,English,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Female,44,Widowed,Degree,Other,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,72,Widowed,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,32,Married,A Levels,English,White,"20,800 to 28,600",Midlands & East Anglia,Yes,20,20,Packets
+Female,53,Married,No Qualification,British,White,Refused,Midlands & East Anglia,No,NA,NA,
+Female,50,Married,A Levels,British,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Female,63,Divorced,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,57,Married,Degree,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,40,Married,Degree,English,White,Refused,Midlands & East Anglia,No,NA,NA,
+Female,88,Divorced,Other/Sub Degree,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,57,Married,Degree,British,White,"Above 36,400",Midlands & East Anglia,No,NA,NA,
+Female,54,Married,Degree,British,White,"Above 36,400",Midlands & East Anglia,No,NA,NA,
+Female,58,Widowed,No Qualification,English,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Female,77,Divorced,Higher/Sub Degree,British,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,45,Divorced,GCSE/CSE,Other,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,31,Single,GCSE/O Level,British,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Male,31,Married,ONC/BTEC,English,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Male,80,Widowed,Degree,British,White,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Male,67,Widowed,Degree,English,White,"20,800 to 28,600",Midlands & East Anglia,Yes,30,30,Packets
+Male,40,Single,GCSE/O Level,English,White,Refused,Midlands & East Anglia,Yes,20,10,Packets
+Female,70,Widowed,No Qualification,English,White,Refused,Midlands & East Anglia,No,NA,NA,
+Female,28,Single,GCSE/CSE,English,White,"Under 2,600",Midlands & East Anglia,Yes,30,10,Packets
+Male,30,Married,GCSE/CSE,Other,White,"Above 36,400",Midlands & East Anglia,No,NA,NA,
+Female,70,Divorced,Other/Sub Degree,English,White,Refused,Midlands & East Anglia,No,NA,NA,
+Male,57,Married,Degree,British,White,"Above 36,400",Midlands & East Anglia,No,NA,NA,
+Female,76,Widowed,GCSE/O Level,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,89,Widowed,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,81,Married,No Qualification,British,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,30,Single,ONC/BTEC,British,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Female,39,Single,Higher/Sub Degree,British,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,73,Married,No Qualification,English,White,"Under 2,600",Midlands & East Anglia,Yes,15,15,Packets
+Female,39,Married,A Levels,Other,White,Refused,Midlands & East Anglia,No,NA,NA,
+Female,76,Widowed,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,62,Single,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,66,Married,A Levels,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,53,Separated,Degree,British,White,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Male,60,Married,Degree,British,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,36,Married,GCSE/O Level,British,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,40,Single,GCSE/CSE,British,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,57,Separated,No Qualification,English,White,"28,600 to 36,400",Midlands & East Anglia,Yes,15,15,Packets
+Male,16,Single,No Qualification,English,White,"Under 2,600",Midlands & East Anglia,Yes,25,20,Hand-Rolled
+Female,25,Single,GCSE/O Level,English,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Male,58,Single,No Qualification,English,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Female,49,Divorced,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,48,Single,Degree,English,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Female,76,Widowed,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,88,Widowed,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,35,Married,A Levels,British,Chinese,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,43,Married,Degree,British,Black,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Female,69,Widowed,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,64,Widowed,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,Yes,20,20,Packets
+Female,40,Divorced,GCSE/O Level,English,White,"10,400 to 15,600",Midlands & East Anglia,Yes,20,20,Packets
+Male,78,Married,Degree,British,White,Refused,Midlands & East Anglia,No,NA,NA,
+Male,58,Married,Degree,British,White,"Above 36,400",Midlands & East Anglia,No,NA,NA,
+Female,34,Married,Degree,British,White,"Under 2,600",Midlands & East Anglia,Yes,3,0,Packets
+Female,46,Married,Degree,British,Mixed,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Female,65,Married,No Qualification,English,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Female,34,Single,GCSE/O Level,British,White,"10,400 to 15,600",Midlands & East Anglia,Yes,20,10,Both/Mainly Packets
+Female,40,Separated,GCSE/CSE,British,Asian,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,79,Married,No Qualification,English,White,Refused,Midlands & East Anglia,No,NA,NA,
+Male,36,Married,No Qualification,British,Asian,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,39,Married,No Qualification,Other,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,24,Married,GCSE/CSE,English,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Female,28,Single,Other/Sub Degree,English,White,"2,600 to 5,200",Midlands & East Anglia,Yes,20,10,Both/Mainly Packets
+Female,26,Single,A Levels,English,Asian,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,45,Widowed,GCSE/CSE,English,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Female,24,Single,GCSE/O Level,English,White,"5,200 to 10,400",Midlands & East Anglia,Yes,18,10,Packets
+Male,77,Divorced,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,78,Married,Higher/Sub Degree,Welsh,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Male,25,Single,Degree,Scottish,White,Refused,Midlands & East Anglia,No,NA,NA,
+Male,36,Married,GCSE/CSE,British,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Male,17,Single,GCSE/O Level,English,White,Refused,Midlands & East Anglia,No,NA,NA,
+Male,55,Married,GCSE/O Level,British,White,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Female,70,Married,Other/Sub Degree,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,43,Single,GCSE/O Level,English,White,"20,800 to 28,600",Midlands & East Anglia,Yes,15,8,Hand-Rolled
+Female,59,Divorced,No Qualification,British,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,32,Married,Other/Sub Degree,British,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Female,34,Married,Degree,British,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Male,58,Single,Degree,British,White,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Male,44,Married,GCSE/O Level,British,White,"Above 36,400",Midlands & East Anglia,No,NA,NA,
+Male,64,Married,No Qualification,British,White,Refused,Midlands & East Anglia,Yes,0,0,Packets
+Female,34,Married,GCSE/CSE,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,32,Single,GCSE/CSE,English,White,Refused,Midlands & East Anglia,No,NA,NA,
+Male,38,Married,Degree,British,White,"Above 36,400",Midlands & East Anglia,No,NA,NA,
+Male,28,Single,GCSE/CSE,British,White,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Male,42,Married,GCSE/CSE,English,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Female,34,Single,Degree,Other,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Male,23,Single,ONC/BTEC,English,White,"5,200 to 10,400",Midlands & East Anglia,Yes,15,5,Both/Mainly Packets
+Male,55,Separated,Degree,British,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Male,65,Married,Other/Sub Degree,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,62,Married,GCSE/O Level,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,66,Married,Higher/Sub Degree,English,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Female,73,Married,No Qualification,English,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Male,34,Single,Other/Sub Degree,English,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Female,33,Married,Degree,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,76,Widowed,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,55,Married,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,Yes,1,0,Packets
+Female,39,Married,Degree,English,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Female,26,Single,Degree,British,Asian,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Male,61,Married,GCSE/O Level,English,White,"15,600 to 20,800",Midlands & East Anglia,Yes,25,25,Packets
+Female,78,Married,Other/Sub Degree,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,42,Married,Degree,English,White,"Above 36,400",Midlands & East Anglia,No,NA,NA,
+Female,72,Married,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,62,Widowed,No Qualification,English,White,"20,800 to 28,600",Midlands & East Anglia,Yes,30,30,Both/Mainly Packets
+Female,46,Married,GCSE/O Level,British,White,"10,400 to 15,600",Midlands & East Anglia,Yes,20,20,Packets
+Male,24,Single,A Levels,British,White,"15,600 to 20,800",Midlands & East Anglia,No,NA,NA,
+Male,27,Single,Degree,British,Black,"10,400 to 15,600",Midlands & East Anglia,Yes,6,4,Both/Mainly Packets
+Female,64,Married,GCSE/O Level,British,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,86,Married,Degree,English,White,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Female,46,Married,Degree,British,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Male,20,Single,ONC/BTEC,British,White,"10,400 to 15,600",Midlands & East Anglia,Yes,20,15,Both/Mainly Packets
+Male,35,Divorced,Higher/Sub Degree,Other,White,"28,600 to 36,400",Midlands & East Anglia,No,NA,NA,
+Female,46,Married,Higher/Sub Degree,Irish,White,"28,600 to 36,400",Midlands & East Anglia,Yes,30,30,Packets
+Female,39,Married,Higher/Sub Degree,Irish,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Female,28,Married,GCSE/O Level,English,White,"Above 36,400",Midlands & East Anglia,No,NA,NA,
+Female,33,Married,Higher/Sub Degree,Refused,Refused,Refused,Midlands & East Anglia,No,NA,NA,
+Female,39,Divorced,GCSE/O Level,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,45,Divorced,GCSE/CSE,British,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,37,Separated,Higher/Sub Degree,British,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Male,29,Married,ONC/BTEC,English,White,"15,600 to 20,800",Midlands & East Anglia,Yes,10,5,Packets
+Male,76,Widowed,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,26,Married,Degree,English,White,"20,800 to 28,600",Midlands & East Anglia,No,NA,NA,
+Female,47,Divorced,Degree,English,White,"20,800 to 28,600",Midlands & East Anglia,Yes,20,10,Packets
+Male,72,Divorced,No Qualification,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,72,Married,No Qualification,English,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Female,65,Widowed,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Female,69,Married,No Qualification,English,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Female,61,Married,A Levels,English,White,Unknown,Midlands & East Anglia,No,NA,NA,
+Female,63,Married,No Qualification,English,White,Refused,Midlands & East Anglia,No,NA,NA,
+Male,16,Single,No Qualification,British,White,Refused,Midlands & East Anglia,No,NA,NA,
+Male,61,Divorced,No Qualification,English,White,"2,600 to 5,200",Midlands & East Anglia,No,NA,NA,
+Male,18,Single,GCSE/O Level,English,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Male,76,Single,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,65,Married,GCSE/O Level,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Female,52,Married,No Qualification,English,White,"5,200 to 10,400",Midlands & East Anglia,No,NA,NA,
+Male,64,Widowed,No Qualification,English,White,"10,400 to 15,600",Midlands & East Anglia,No,NA,NA,
+Female,42,Married,GCSE/CSE,British,White,"Under 2,600",Midlands & East Anglia,No,NA,NA,
+Male,40,Married,Degree,Other,White,"Above 36,400",London,No,NA,NA,
+Female,28,Married,Other/Sub Degree,English,Mixed,"20,800 to 28,600",London,No,NA,NA,
+Male,40,Married,Degree,Welsh,White,"Above 36,400",London,No,NA,NA,
+Male,48,Married,GCSE/O Level,British,White,"28,600 to 36,400",London,No,NA,NA,
+Male,35,Separated,Degree,Other,White,"20,800 to 28,600",London,No,NA,NA,
+Female,30,Single,Degree,British,Black,"5,200 to 10,400",London,Yes,3,3,Packets
+Female,26,Single,Degree,British,White,"5,200 to 10,400",London,No,NA,NA,
+Male,81,Widowed,No Qualification,English,White,"5,200 to 10,400",London,No,NA,NA,
+Male,77,Divorced,A Levels,English,White,"10,400 to 15,600",London,No,NA,NA,
+Female,25,Single,Degree,British,White,"15,600 to 20,800",London,No,NA,NA,
+Female,66,Married,No Qualification,British,Asian,"Under 2,600",London,No,NA,NA,
+Male,18,Single,A Levels,British,White,"5,200 to 10,400",London,Yes,15,15,Packets
+Male,43,Married,GCSE/O Level,British,Black,"15,600 to 20,800",London,No,NA,NA,
+Male,49,Divorced,Other/Sub Degree,English,White,"5,200 to 10,400",London,Yes,20,6,Both/Mainly Packets
+Male,29,Married,Degree,English,White,"Above 36,400",London,No,NA,NA,
+Female,20,Single,No Qualification,English,White,"5,200 to 10,400",London,No,NA,NA,
+Female,75,Widowed,Other/Sub Degree,English,White,"Under 2,600",London,Yes,25,25,Packets
+Male,40,Married,No Qualification,Other,Chinese,"20,800 to 28,600",London,No,NA,NA,
+Female,64,Single,Higher/Sub Degree,Irish,White,"5,200 to 10,400",London,No,NA,NA,
+Male,66,Single,Degree,British,Chinese,Refused,London,No,NA,NA,
+Female,34,Single,Degree,British,White,"5,200 to 10,400",London,No,NA,NA,
+Female,76,Divorced,Degree,British,White,"28,600 to 36,400",London,No,NA,NA,
+Male,30,Married,Degree,English,White,"Above 36,400",London,Yes,1,0,Packets
+Male,55,Married,Degree,Other,Mixed,"Above 36,400",London,No,NA,NA,
+Female,49,Single,GCSE/O Level,English,White,"5,200 to 10,400",London,No,NA,NA,
+Male,38,Separated,Degree,English,Chinese,"10,400 to 15,600",London,No,NA,NA,
+Male,23,Single,A Levels,Other,Refused,Refused,London,Yes,10,10,Packets
+Male,77,Married,Degree,Welsh,White,"15,600 to 20,800",London,No,NA,NA,
+Male,46,Single,Degree,Other,White,"10,400 to 15,600",London,Yes,8,8,Hand-Rolled
+Female,26,Separated,Higher/Sub Degree,British,White,"Under 2,600",London,No,NA,NA,
+Female,26,Single,Degree,Other,White,"28,600 to 36,400",London,Yes,10,8,Packets
+Male,45,Single,Degree,Irish,White,"Above 36,400",London,Yes,7,2,Packets
+Female,45,Single,No Qualification,Other,Black,"2,600 to 5,200",London,No,NA,NA,
+Female,61,Married,No Qualification,English,White,Refused,London,No,NA,NA,
+Female,47,Married,GCSE/O Level,English,White,"5,200 to 10,400",London,No,NA,NA,
+Female,75,Widowed,Other/Sub Degree,English,White,"10,400 to 15,600",London,Yes,10,10,Packets
+Female,36,Divorced,No Qualification,English,White,"2,600 to 5,200",London,Yes,30,20,Packets
+Male,26,Single,Degree,British,Chinese,"2,600 to 5,200",London,No,NA,NA,
+Male,71,Widowed,No Qualification,English,White,"2,600 to 5,200",London,Yes,25,25,Packets
+Male,69,Married,No Qualification,British,White,"5,200 to 10,400",London,Yes,10,10,Hand-Rolled
+Male,38,Single,A Levels,Irish,White,"28,600 to 36,400",London,Yes,10,6,Hand-Rolled
+Female,21,Single,GCSE/O Level,British,Black,Refused,London,No,NA,NA,
+Male,26,Single,No Qualification,British,Chinese,"10,400 to 15,600",London,No,NA,NA,
+Female,83,Widowed,No Qualification,English,White,Unknown,London,No,NA,NA,
+Female,56,Divorced,No Qualification,Other,White,"5,200 to 10,400",London,No,NA,NA,
+Male,34,Single,Degree,English,White,"Above 36,400",London,Yes,20,20,Packets
+Female,66,Widowed,No Qualification,English,White,"5,200 to 10,400",London,No,NA,NA,
+Female,32,Single,GCSE/O Level,English,White,"5,200 to 10,400",London,Yes,3,3,Hand-Rolled
+Female,77,Single,No Qualification,English,White,"5,200 to 10,400",London,No,NA,NA,
+Female,70,Married,No Qualification,English,White,"Under 2,600",London,No,NA,NA,
+Male,24,Single,GCSE/O Level,English,White,"Under 2,600",London,Yes,10,10,Both/Mainly Packets
+Female,81,Widowed,No Qualification,British,White,"5,200 to 10,400",London,No,NA,NA,
+Male,37,Separated,Other/Sub Degree,Other,White,"2,600 to 5,200",London,No,NA,NA,
+Male,90,Married,No Qualification,English,White,"2,600 to 5,200",London,No,NA,NA,
+Female,29,Single,GCSE/O Level,Other,Black,"5,200 to 10,400",London,Yes,6,0,Hand-Rolled
+Female,24,Single,A Levels,Other,White,"5,200 to 10,400",London,No,NA,NA,
+Male,81,Widowed,No Qualification,English,White,"2,600 to 5,200",London,No,NA,NA,
+Female,38,Separated,ONC/BTEC,Other,Black,"5,200 to 10,400",London,No,NA,NA,
+Male,22,Single,GCSE/O Level,Irish,White,"20,800 to 28,600",London,Yes,0,7,Packets
+Male,31,Married,GCSE/CSE,British,Asian,"5,200 to 10,400",London,No,NA,NA,
+Female,77,Widowed,No Qualification,Other,White,"2,600 to 5,200",London,No,NA,NA,
+Female,61,Divorced,No Qualification,Other,White,"10,400 to 15,600",London,Yes,5,4,Packets
+Male,54,Single,No Qualification,English,White,"2,600 to 5,200",London,No,NA,NA,
+Female,72,Widowed,No Qualification,British,White,"5,200 to 10,400",London,No,NA,NA,
+Male,66,Single,No Qualification,British,White,"5,200 to 10,400",London,Yes,30,30,Packets
+Male,47,Single,ONC/BTEC,British,White,"20,800 to 28,600",London,No,NA,NA,
+Female,76,Widowed,No Qualification,English,White,"5,200 to 10,400",London,No,NA,NA,
+Male,41,Married,A Levels,English,White,"20,800 to 28,600",London,No,NA,NA,
+Female,80,Widowed,No Qualification,English,White,"5,200 to 10,400",London,No,NA,NA,
+Female,63,Married,No Qualification,English,White,"2,600 to 5,200",London,No,NA,NA,
+Male,29,Married,No Qualification,English,White,"15,600 to 20,800",London,No,NA,NA,
+Female,40,Single,GCSE/O Level,Other,White,"15,600 to 20,800",London,No,NA,NA,
+Female,54,Married,No Qualification,English,White,"10,400 to 15,600",London,No,NA,NA,
+Male,66,Married,Degree,British,Asian,"10,400 to 15,600",London,Yes,5,55,Packets
+Male,69,Married,Other/Sub Degree,Other,Asian,"10,400 to 15,600",London,No,NA,NA,
+Male,51,Married,No Qualification,British,White,"15,600 to 20,800",London,No,NA,NA,
+Male,70,Widowed,No Qualification,English,White,"5,200 to 10,400",London,No,NA,NA,
+Female,36,Married,GCSE/O Level,British,White,"2,600 to 5,200",London,Yes,10,1,Packets
+Female,73,Married,No Qualification,English,White,"Under 2,600",London,No,NA,NA,
+Male,72,Married,Other/Sub Degree,British,White,"2,600 to 5,200",London,No,NA,NA,
+Female,18,Single,GCSE/O Level,English,White,"Under 2,600",London,No,NA,NA,
+Female,57,Married,Other/Sub Degree,British,White,"Under 2,600",London,No,NA,NA,
+Male,21,Single,A Levels,British,White,Refused,London,No,NA,NA,
+Male,64,Married,Degree,British,Asian,"5,200 to 10,400",London,No,NA,NA,
+Female,39,Married,GCSE/CSE,English,White,"20,800 to 28,600",London,No,NA,NA,
+Female,37,Divorced,GCSE/CSE,British,White,"5,200 to 10,400",London,No,NA,NA,
+Female,36,Married,GCSE/CSE,British,White,"Under 2,600",London,Yes,5,1,Packets
+Female,37,Married,Degree,English,White,"10,400 to 15,600",London,No,NA,NA,
+Male,79,Married,No Qualification,English,White,"2,600 to 5,200",London,No,NA,NA,
+Female,49,Married,GCSE/CSE,English,White,"5,200 to 10,400",London,No,NA,NA,
+Female,30,Married,GCSE/O Level,English,White,"5,200 to 10,400",London,No,NA,NA,
+Female,27,Single,Degree,Welsh,White,"20,800 to 28,600",London,No,NA,NA,
+Male,16,Single,GCSE/O Level,English,White,"Under 2,600",London,No,NA,NA,
+Male,40,Married,GCSE/O Level,English,White,"Above 36,400",London,No,NA,NA,
+Female,45,Separated,GCSE/O Level,English,White,"15,600 to 20,800",London,No,NA,NA,
+Female,78,Widowed,Other/Sub Degree,English,White,"5,200 to 10,400",London,No,NA,NA,
+Female,59,Married,Other/Sub Degree,English,White,"5,200 to 10,400",London,No,NA,NA,
+Female,93,Widowed,Other/Sub Degree,English,White,"5,200 to 10,400",London,Yes,0,3,Packets
+Female,33,Married,A Levels,English,White,"10,400 to 15,600",London,No,NA,NA,
+Female,57,Divorced,No Qualification,British,White,"15,600 to 20,800",London,No,NA,NA,
+Female,53,Single,No Qualification,English,White,"2,600 to 5,200",London,Yes,4,4,Packets
+Female,54,Divorced,Higher/Sub Degree,English,White,"2,600 to 5,200",London,No,NA,NA,
+Female,33,Married,A Levels,Irish,White,"Above 36,400",London,No,NA,NA,
+Female,52,Single,Other/Sub Degree,Irish,White,"2,600 to 5,200",London,No,NA,NA,
+Male,31,Single,Higher/Sub Degree,English,White,"10,400 to 15,600",London,No,NA,NA,
+Female,54,Married,Degree,British,White,"28,600 to 36,400",London,No,NA,NA,
+Female,41,Married,Higher/Sub Degree,British,White,"20,800 to 28,600",London,Yes,10,10,Packets
+Female,23,Single,GCSE/O Level,English,White,"10,400 to 15,600",London,No,NA,NA,
+Female,81,Widowed,GCSE/CSE,British,White,"Under 2,600",London,No,NA,NA,
+Female,17,Single,A Levels,British,White,Refused,London,No,NA,NA,
+Male,73,Married,No Qualification,British,White,"Above 36,400",London,No,NA,NA,
+Male,62,Married,No Qualification,English,White,"20,800 to 28,600",London,No,NA,NA,
+Female,73,Married,Degree,Scottish,White,"10,400 to 15,600",London,Yes,16,16,Packets
+Male,22,Single,ONC/BTEC,English,White,"20,800 to 28,600",London,Yes,15,15,Both/Mainly Packets
+Female,18,Single,A Levels,English,White,"Under 2,600",London,No,NA,NA,
+Female,86,Widowed,GCSE/O Level,Irish,White,"10,400 to 15,600",London,Yes,7,7,Packets
+Female,54,Married,Degree,British,White,"20,800 to 28,600",London,Yes,20,20,Packets
+Female,55,Married,Degree,British,White,"20,800 to 28,600",London,No,NA,NA,
+Female,22,Single,Degree,English,Mixed,"20,800 to 28,600",London,Yes,15,15,Packets
+Female,30,Married,ONC/BTEC,British,Asian,"5,200 to 10,400",London,No,NA,NA,
+Female,25,Single,Degree,Other,Black,"2,600 to 5,200",London,No,NA,NA,
+Female,54,Divorced,Other/Sub Degree,British,Chinese,"Under 2,600",London,Yes,15,10,Packets
+Male,36,Single,GCSE/O Level,English,White,"15,600 to 20,800",London,No,NA,NA,
+Female,40,Married,Other/Sub Degree,Other,White,"Under 2,600",London,No,NA,NA,
+Female,51,Divorced,GCSE/O Level,British,White,"2,600 to 5,200",London,Yes,10,2,Packets
+Male,44,Married,Degree,British,White,"10,400 to 15,600",London,No,NA,NA,
+Female,26,Single,Degree,Other,White,"Under 2,600",London,Yes,5,0,Packets
+Male,73,Married,ONC/BTEC,English,White,"5,200 to 10,400",London,No,NA,NA,
+Female,36,Married,GCSE/O Level,English,White,"15,600 to 20,800",London,No,NA,NA,
+Male,69,Widowed,No Qualification,Irish,White,"5,200 to 10,400",London,No,NA,NA,
+Female,41,Married,Degree,British,White,"10,400 to 15,600",London,No,NA,NA,
+Male,40,Married,Degree,Other,White,"Above 36,400",London,No,NA,NA,
+Male,82,Married,Other/Sub Degree,Other,White,"2,600 to 5,200",London,Yes,3,3,Packets
+Male,27,Single,Degree,British,White,"15,600 to 20,800",London,No,NA,NA,
+Female,35,Single,Degree,English,White,"20,800 to 28,600",London,No,NA,NA,
+Male,35,Married,Degree,English,White,"Above 36,400",London,No,NA,NA,
+Male,33,Married,Other/Sub Degree,Other,White,"28,600 to 36,400",London,No,NA,NA,
+Female,41,Divorced,No Qualification,British,White,"2,600 to 5,200",London,Yes,20,20,Packets
+Female,26,Separated,Other/Sub Degree,British,Black,"5,200 to 10,400",London,No,NA,NA,
+Female,55,Married,No Qualification,English,White,Refused,London,No,NA,NA,
+Male,18,Single,GCSE/O Level,Other,Black,"Under 2,600",London,No,NA,NA,
+Female,68,Married,GCSE/O Level,British,Black,"5,200 to 10,400",London,No,NA,NA,
+Female,43,Single,GCSE/O Level,Other,Black,"10,400 to 15,600",London,No,NA,NA,
+Male,58,Married,No Qualification,English,Mixed,"20,800 to 28,600",London,No,NA,NA,
+Female,39,Married,GCSE/O Level,British,White,"5,200 to 10,400",London,No,NA,NA,
+Female,54,Separated,No Qualification,English,White,"2,600 to 5,200",London,No,NA,NA,
+Female,62,Married,No Qualification,British,White,"28,600 to 36,400",London,No,NA,NA,
+Female,40,Married,A Levels,English,White,"10,400 to 15,600",London,Yes,2,0,Both/Mainly Packets
+Female,59,Single,GCSE/O Level,English,White,"2,600 to 5,200",London,No,NA,NA,
+Female,57,Divorced,GCSE/O Level,British,White,"20,800 to 28,600",London,No,NA,NA,
+Female,42,Single,GCSE/O Level,Other,Black,"5,200 to 10,400",London,Yes,25,10,Packets
+Female,48,Separated,GCSE/O Level,Scottish,White,"20,800 to 28,600",London,Yes,25,25,Packets
+Female,45,Divorced,GCSE/O Level,British,Black,"20,800 to 28,600",London,Yes,15,10,Packets
+Female,24,Single,GCSE/CSE,British,White,"2,600 to 5,200",London,No,NA,NA,
+Female,66,Widowed,GCSE/CSE,British,Black,"10,400 to 15,600",London,No,NA,NA,
+Male,63,Single,Higher/Sub Degree,English,White,"10,400 to 15,600",London,Yes,20,20,Packets
+Male,28,Single,GCSE/O Level,Refused,Refused,Refused,London,No,NA,NA,
+Male,59,Divorced,No Qualification,English,White,"20,800 to 28,600",London,No,NA,NA,
+Male,50,Married,Higher/Sub Degree,Other,Black,"20,800 to 28,600",London,No,NA,NA,
+Female,41,Separated,GCSE/CSE,English,White,"10,400 to 15,600",London,No,NA,NA,
+Female,76,Single,No Qualification,British,White,"5,200 to 10,400",London,No,NA,NA,
+Male,24,Single,ONC/BTEC,British,White,"15,600 to 20,800",London,Yes,15,20,Packets
+Female,25,Single,Other/Sub Degree,British,Chinese,"20,800 to 28,600",London,Yes,5,2,Packets
+Female,33,Widowed,Degree,Other,Chinese,"5,200 to 10,400",London,No,NA,NA,
+Male,31,Single,ONC/BTEC,Other,Black,"28,600 to 36,400",London,No,NA,NA,
+Female,33,Single,Degree,British,Black,"5,200 to 10,400",London,Yes,10,8,Packets
+Female,37,Single,No Qualification,Other,White,"5,200 to 10,400",London,No,NA,NA,
+Male,81,Divorced,No Qualification,British,Black,"5,200 to 10,400",London,No,NA,NA,
+Female,36,Single,No Qualification,Other,Black,"20,800 to 28,600",London,No,NA,NA,
+Female,64,Married,No Qualification,British,White,"10,400 to 15,600",London,Yes,15,7,Hand-Rolled
+Male,51,Married,Other/Sub Degree,British,Asian,"5,200 to 10,400",London,No,NA,NA,
+Female,19,Single,A Levels,British,Mixed,"10,400 to 15,600",London,No,NA,NA,
+Female,18,Single,A Levels,British,Black,Refused,London,No,NA,NA,
+Male,31,Married,Degree,English,White,"Above 36,400",London,Yes,10,5,Both/Mainly Packets
+Female,24,Single,ONC/BTEC,English,White,"5,200 to 10,400",London,No,NA,NA,
+Male,18,Single,No Qualification,Other,Chinese,"Under 2,600",London,Yes,20,10,Packets
+Male,22,Single,Degree,Other,Asian,"2,600 to 5,200",London,No,NA,NA,
+Female,26,Single,Other/Sub Degree,Other,Black,"10,400 to 15,600",London,No,NA,NA,
+Female,33,Single,Degree,British,Black,"2,600 to 5,200",London,No,NA,NA,
+Male,17,Single,GCSE/CSE,British,Asian,"Under 2,600",London,Yes,20,10,Packets
+Male,37,Single,ONC/BTEC,British,Black,"10,400 to 15,600",London,Yes,20,10,Packets
+Male,60,Married,No Qualification,British,Chinese,"2,600 to 5,200",London,No,NA,NA,
+Male,80,Married,No Qualification,British,White,"2,600 to 5,200",South East,No,NA,NA,
+Male,68,Married,ONC/BTEC,British,White,"10,400 to 15,600",South East,Yes,7,7,Packets
+Female,65,Married,GCSE/O Level,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Male,42,Married,No Qualification,British,Chinese,"10,400 to 15,600",South East,No,NA,NA,
+Female,48,Married,GCSE/O Level,British,White,"15,600 to 20,800",South East,No,NA,NA,
+Male,46,Married,A Levels,Scottish,White,"Above 36,400",South East,No,NA,NA,
+Male,44,Married,ONC/BTEC,English,White,"28,600 to 36,400",South East,No,NA,NA,
+Female,29,Married,A Levels,English,White,"10,400 to 15,600",South East,Yes,10,5,Packets
+Male,38,Married,Higher/Sub Degree,English,White,"15,600 to 20,800",South East,No,NA,NA,
+Female,52,Married,No Qualification,Irish,White,Refused,South East,No,NA,NA,
+Male,48,Divorced,Degree,English,White,"Above 36,400",South East,No,NA,NA,
+Male,65,Married,GCSE/CSE,British,White,"10,400 to 15,600",South East,No,NA,NA,
+Male,27,Single,Degree,English,White,"10,400 to 15,600",South East,No,NA,NA,
+Female,37,Married,GCSE/O Level,English,White,"2,600 to 5,200",South East,No,NA,NA,
+Female,42,Married,GCSE/O Level,British,White,"Under 2,600",South East,No,NA,NA,
+Male,53,Single,No Qualification,British,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,66,Widowed,No Qualification,English,White,Refused,South East,Yes,20,20,Packets
+Female,20,Single,ONC/BTEC,English,White,"15,600 to 20,800",South East,No,NA,NA,
+Female,62,Married,No Qualification,Refused,Refused,Refused,South East,No,NA,NA,
+Male,18,Single,Other/Sub Degree,English,White,"2,600 to 5,200",South East,No,NA,NA,
+Male,69,Married,No Qualification,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Male,63,Divorced,ONC/BTEC,English,White,"Above 36,400",South East,Yes,2,1,Packets
+Male,41,Married,Degree,British,Chinese,"28,600 to 36,400",South East,No,NA,NA,
+Male,74,Married,Higher/Sub Degree,English,White,"Above 36,400",South East,No,NA,NA,
+Female,20,Single,Other/Sub Degree,Other,White,"2,600 to 5,200",South East,No,NA,NA,
+Female,18,Single,GCSE/O Level,British,White,"2,600 to 5,200",South East,No,NA,NA,
+Male,28,Single,GCSE/O Level,English,Black,"5,200 to 10,400",South East,Yes,10,10,Hand-Rolled
+Male,49,Married,Degree,British,Chinese,"Above 36,400",South East,No,NA,NA,
+Male,64,Married,Higher/Sub Degree,British,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,69,Widowed,GCSE/O Level,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,33,Separated,No Qualification,British,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,22,Single,GCSE/CSE,English,White,"10,400 to 15,600",South East,Yes,15,7,Packets
+Female,63,Married,No Qualification,English,White,"10,400 to 15,600",South East,No,NA,NA,
+Female,93,Widowed,No Qualification,Welsh,White,"2,600 to 5,200",South East,No,NA,NA,
+Female,65,Married,No Qualification,English,White,"Under 2,600",South East,No,NA,NA,
+Female,33,Married,GCSE/O Level,British,White,"10,400 to 15,600",South East,Yes,20,10,Packets
+Female,38,Married,No Qualification,British,White,"2,600 to 5,200",South East,No,NA,NA,
+Female,29,Single,GCSE/O Level,English,White,"Under 2,600",South East,Yes,10,10,Packets
+Male,59,Married,A Levels,British,White,"Above 36,400",South East,No,NA,NA,
+Male,37,Single,Degree,English,Mixed,"Above 36,400",South East,No,NA,NA,
+Male,51,Single,No Qualification,British,White,"20,800 to 28,600",South East,Yes,20,20,Packets
+Female,33,Married,GCSE/O Level,English,White,Refused,South East,No,NA,NA,
+Female,80,Single,Higher/Sub Degree,English,White,"2,600 to 5,200",South East,No,NA,NA,
+Male,49,Married,A Levels,English,White,"15,600 to 20,800",South East,No,NA,NA,
+Female,38,Married,Degree,English,White,"20,800 to 28,600",South East,No,NA,NA,
+Male,45,Single,GCSE/O Level,English,White,"Above 36,400",South East,Yes,10,20,Packets
+Female,58,Married,Higher/Sub Degree,Scottish,White,"20,800 to 28,600",South East,No,NA,NA,
+Female,63,Married,Degree,English,White,"2,600 to 5,200",South East,No,NA,NA,
+Female,69,Married,Other/Sub Degree,English,White,"2,600 to 5,200",South East,No,NA,NA,
+Male,86,Widowed,Other/Sub Degree,British,White,"20,800 to 28,600",South East,No,NA,NA,
+Female,66,Widowed,Higher/Sub Degree,English,White,"20,800 to 28,600",South East,No,NA,NA,
+Male,61,Married,No Qualification,British,Unknown,"5,200 to 10,400",South East,No,NA,NA,
+Female,62,Separated,Higher/Sub Degree,English,White,"15,600 to 20,800",South East,No,NA,NA,
+Female,89,Widowed,No Qualification,British,White,"2,600 to 5,200",South East,No,NA,NA,
+Female,72,Widowed,Degree,British,White,"20,800 to 28,600",South East,No,NA,NA,
+Male,64,Married,Other/Sub Degree,British,White,"Above 36,400",South East,No,NA,NA,
+Female,58,Married,A Levels,English,White,"28,600 to 36,400",South East,No,NA,NA,
+Female,80,Widowed,No Qualification,English,White,"10,400 to 15,600",South East,No,NA,NA,
+Female,61,Married,Higher/Sub Degree,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,34,Married,Higher/Sub Degree,Irish,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,36,Married,GCSE/O Level,British,White,"Under 2,600",South East,Yes,5,3,Packets
+Female,34,Divorced,GCSE/O Level,British,White,"10,400 to 15,600",South East,Yes,20,10,Packets
+Female,40,Single,A Levels,English,White,"Above 36,400",South East,No,NA,NA,
+Male,53,Single,No Qualification,English,White,"20,800 to 28,600",South East,No,NA,NA,
+Female,31,Single,Degree,English,White,"20,800 to 28,600",South East,No,NA,NA,
+Female,86,Separated,No Qualification,English,White,"2,600 to 5,200",South East,No,NA,NA,
+Female,46,Married,No Qualification,English,White,"5,200 to 10,400",South East,Yes,20,20,Packets
+Male,34,Single,GCSE/O Level,Scottish,White,"15,600 to 20,800",South East,No,NA,NA,
+Female,44,Single,Degree,English,White,"28,600 to 36,400",South East,No,NA,NA,
+Female,69,Widowed,A Levels,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,56,Widowed,No Qualification,British,White,"15,600 to 20,800",South East,No,NA,NA,
+Male,79,Single,No Qualification,English,White,"2,600 to 5,200",South East,No,NA,NA,
+Female,41,Separated,GCSE/CSE,English,White,"5,200 to 10,400",South East,Yes,30,15,Packets
+Male,34,Divorced,ONC/BTEC,English,White,"Above 36,400",South East,Yes,30,15,Packets
+Male,47,Single,GCSE/CSE,English,White,"2,600 to 5,200",South East,Yes,40,40,Packets
+Male,46,Married,No Qualification,British,White,"15,600 to 20,800",South East,No,NA,NA,
+Female,30,Single,No Qualification,English,White,"10,400 to 15,600",South East,No,NA,NA,
+Female,19,Single,A Levels,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Male,45,Married,Degree,Welsh,White,"28,600 to 36,400",South East,No,NA,NA,
+Female,24,Single,Higher/Sub Degree,Other,White,"10,400 to 15,600",South East,No,NA,NA,
+Male,42,Married,GCSE/O Level,English,White,"20,800 to 28,600",South East,No,NA,NA,
+Male,32,Married,Other/Sub Degree,English,White,"15,600 to 20,800",South East,No,NA,NA,
+Male,32,Single,GCSE/CSE,English,White,"10,400 to 15,600",South East,Yes,20,20,Packets
+Female,28,Single,A Levels,British,White,"Under 2,600",South East,Yes,5,5,Packets
+Female,78,Widowed,No Qualification,British,White,"10,400 to 15,600",South East,No,NA,NA,
+Male,42,Divorced,GCSE/O Level,English,White,"15,600 to 20,800",South East,Yes,20,20,Hand-Rolled
+Female,27,Married,Degree,English,White,"28,600 to 36,400",South East,No,NA,NA,
+Female,57,Married,Other/Sub Degree,English,White,Refused,South East,No,NA,NA,
+Female,24,Single,Degree,Refused,Refused,Refused,South East,No,NA,NA,
+Female,71,Married,GCSE/O Level,English,White,"2,600 to 5,200",South East,No,NA,NA,
+Male,51,Married,GCSE/O Level,English,White,"20,800 to 28,600",South East,No,NA,NA,
+Male,66,Widowed,No Qualification,English,White,"10,400 to 15,600",South East,No,NA,NA,
+Female,73,Separated,No Qualification,British,White,"2,600 to 5,200",South East,No,NA,NA,
+Male,18,Single,No Qualification,Refused,Refused,Refused,South East,Yes,10,10,Packets
+Male,50,Divorced,A Levels,English,White,"20,800 to 28,600",South East,Yes,10,5,Packets
+Female,79,Widowed,No Qualification,English,White,"5,200 to 10,400",South East,Yes,5,5,Packets
+Female,22,Single,GCSE/O Level,English,White,"Under 2,600",South East,Yes,10,5,Packets
+Male,45,Divorced,No Qualification,English,White,"10,400 to 15,600",South East,No,NA,NA,
+Female,53,Married,No Qualification,English,White,Refused,South East,No,NA,NA,
+Male,77,Married,No Qualification,English,White,"2,600 to 5,200",South East,Yes,15,15,Packets
+Female,64,Widowed,No Qualification,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Male,39,Married,A Levels,British,White,"Under 2,600",South East,No,NA,NA,
+Male,54,Widowed,No Qualification,English,White,"5,200 to 10,400",South East,Yes,10,20,Both/Mainly Packets
+Male,17,Single,GCSE/CSE,English,White,Refused,South East,No,NA,NA,
+Male,78,Married,No Qualification,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Male,50,Single,Degree,British,White,"20,800 to 28,600",South East,Yes,12,6,Packets
+Male,41,Married,Higher/Sub Degree,English,White,"Above 36,400",South East,No,NA,NA,
+Female,48,Divorced,No Qualification,Irish,Mixed,"2,600 to 5,200",South East,Yes,40,20,Packets
+Male,25,Married,GCSE/O Level,English,White,"15,600 to 20,800",South East,No,NA,NA,
+Male,18,Married,ONC/BTEC,British,White,"2,600 to 5,200",South East,No,NA,NA,
+Female,58,Married,GCSE/O Level,English,White,"10,400 to 15,600",South East,No,NA,NA,
+Female,79,Widowed,Higher/Sub Degree,English,White,"20,800 to 28,600",South East,No,NA,NA,
+Male,62,Married,No Qualification,English,White,"2,600 to 5,200",South East,Yes,10,10,Hand-Rolled
+Female,36,Married,GCSE/CSE,British,White,"Under 2,600",South East,No,NA,NA,
+Female,38,Divorced,No Qualification,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Male,19,Single,Other/Sub Degree,British,White,"10,400 to 15,600",South East,No,NA,NA,
+Female,45,Separated,No Qualification,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Male,54,Married,Degree,English,White,"Above 36,400",South East,No,NA,NA,
+Female,69,Widowed,GCSE/O Level,Scottish,White,"15,600 to 20,800",South East,No,NA,NA,
+Female,65,Widowed,Higher/Sub Degree,British,White,"10,400 to 15,600",South East,No,NA,NA,
+Male,31,Married,GCSE/CSE,English,White,"20,800 to 28,600",South East,No,NA,NA,
+Female,31,Married,Degree,British,White,"2,600 to 5,200",South East,No,NA,NA,
+Female,46,Single,No Qualification,English,White,"2,600 to 5,200",South East,Yes,20,20,Packets
+Male,37,Single,ONC/BTEC,Other,White,"20,800 to 28,600",South East,No,NA,NA,
+Female,72,Married,No Qualification,English,White,Unknown,South East,No,NA,NA,
+Male,59,Married,GCSE/O Level,English,White,"20,800 to 28,600",South East,No,NA,NA,
+Female,82,Widowed,GCSE/O Level,English,White,Refused,South East,No,NA,NA,
+Male,81,Widowed,Degree,English,White,"28,600 to 36,400",South East,No,NA,NA,
+Female,65,Widowed,GCSE/O Level,English,White,"2,600 to 5,200",South East,No,NA,NA,
+Female,48,Divorced,No Qualification,English,White,"15,600 to 20,800",South East,Yes,5,5,Hand-Rolled
+Male,49,Divorced,ONC/BTEC,British,White,"Above 36,400",South East,Yes,15,10,Packets
+Male,35,Single,GCSE/O Level,British,White,"2,600 to 5,200",South East,Yes,60,40,Packets
+Female,73,Married,No Qualification,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,80,Divorced,No Qualification,British,White,"5,200 to 10,400",South East,No,NA,NA,
+Male,55,Married,ONC/BTEC,English,White,"28,600 to 36,400",South East,No,NA,NA,
+Male,78,Widowed,No Qualification,English,White,Refused,South East,No,NA,NA,
+Female,45,Single,GCSE/O Level,English,White,Refused,South East,Yes,20,20,Packets
+Male,39,Married,A Levels,English,White,"20,800 to 28,600",South East,Yes,20,10,Packets
+Male,75,Married,No Qualification,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Male,65,Married,Other/Sub Degree,English,Chinese,"5,200 to 10,400",South East,No,NA,NA,
+Male,79,Divorced,No Qualification,Refused,Refused,"2,600 to 5,200",South East,No,NA,NA,
+Male,75,Married,GCSE/O Level,English,Chinese,"20,800 to 28,600",South East,No,NA,NA,
+Female,69,Married,No Qualification,British,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,57,Single,No Qualification,British,White,"15,600 to 20,800",South East,No,NA,NA,
+Female,29,Single,Degree,English,White,"20,800 to 28,600",South East,No,NA,NA,
+Male,54,Married,No Qualification,English,White,"20,800 to 28,600",South East,Yes,30,30,Packets
+Male,29,Married,Degree,British,White,"20,800 to 28,600",South East,No,NA,NA,
+Male,42,Divorced,No Qualification,British,White,"10,400 to 15,600",South East,No,NA,NA,
+Male,28,Single,Degree,British,White,"15,600 to 20,800",South East,Yes,5,5,Hand-Rolled
+Female,65,Widowed,No Qualification,British,White,"15,600 to 20,800",South East,No,NA,NA,
+Male,37,Married,Degree,English,White,"Above 36,400",South East,Yes,0,4,Packets
+Female,35,Single,Degree,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,33,Single,Degree,English,Mixed,"15,600 to 20,800",South East,Yes,10,6,Both/Mainly Packets
+Male,52,Married,Degree,Other,White,"5,200 to 10,400",South East,Yes,40,40,Packets
+Male,57,Single,Higher/Sub Degree,British,White,"20,800 to 28,600",South East,No,NA,NA,
+Female,31,Single,Degree,English,White,"15,600 to 20,800",South East,No,NA,NA,
+Male,73,Married,No Qualification,British,White,"5,200 to 10,400",South East,No,NA,NA,
+Male,43,Married,Degree,British,White,"Above 36,400",South East,No,NA,NA,
+Male,38,Single,Degree,English,Black,"28,600 to 36,400",South East,No,NA,NA,
+Female,43,Married,No Qualification,British,White,"Above 36,400",South East,Yes,12,12,Packets
+Female,55,Married,Higher/Sub Degree,English,White,"20,800 to 28,600",South East,No,NA,NA,
+Male,59,Married,Degree,British,White,"Above 36,400",South East,No,NA,NA,
+Female,33,Married,Degree,British,White,"20,800 to 28,600",South East,No,NA,NA,
+Female,41,Married,GCSE/O Level,British,White,"5,200 to 10,400",South East,Yes,20,20,Packets
+Female,46,Married,GCSE/CSE,British,White,"5,200 to 10,400",South East,Yes,20,20,Packets
+Male,57,Married,Degree,British,White,"Above 36,400",South East,Yes,35,35,Packets
+Male,40,Single,A Levels,English,White,"15,600 to 20,800",South East,No,NA,NA,
+Male,57,Married,GCSE/O Level,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,39,Married,GCSE/O Level,British,White,"10,400 to 15,600",South East,Yes,10,7,Packets
+Male,67,Married,Other/Sub Degree,British,White,"5,200 to 10,400",South East,Yes,5,5,Hand-Rolled
+Female,46,Single,No Qualification,English,White,"2,600 to 5,200",South East,No,NA,NA,
+Male,39,Married,Higher/Sub Degree,British,White,"28,600 to 36,400",South East,No,NA,NA,
+Female,55,Married,GCSE/O Level,British,White,Refused,South East,No,NA,NA,
+Male,50,Married,Other/Sub Degree,English,White,"15,600 to 20,800",South East,Yes,15,10,Hand-Rolled
+Female,70,Widowed,ONC/BTEC,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,44,Married,Higher/Sub Degree,Other,White,"Under 2,600",South East,No,NA,NA,
+Female,33,Married,ONC/BTEC,English,White,"Under 2,600",South East,No,NA,NA,
+Male,69,Divorced,Other/Sub Degree,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,70,Married,No Qualification,English,White,"Under 2,600",South East,Yes,10,10,Packets
+Female,62,Widowed,No Qualification,British,White,Refused,South East,No,NA,NA,
+Female,31,Married,GCSE/O Level,British,White,"Under 2,600",South East,No,NA,NA,
+Male,70,Married,Other/Sub Degree,English,White,"10,400 to 15,600",South East,No,NA,NA,
+Male,32,Married,No Qualification,British,White,"28,600 to 36,400",South East,No,NA,NA,
+Female,75,Divorced,A Levels,British,White,Refused,South East,No,NA,NA,
+Male,47,Married,Higher/Sub Degree,British,White,"20,800 to 28,600",South East,No,NA,NA,
+Male,57,Married,No Qualification,English,White,"20,800 to 28,600",South East,No,NA,NA,
+Male,86,Widowed,No Qualification,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,32,Single,GCSE/O Level,English,White,"2,600 to 5,200",South East,No,NA,NA,
+Male,46,Single,GCSE/O Level,British,White,"10,400 to 15,600",South East,Yes,15,15,Packets
+Male,51,Single,No Qualification,English,White,"Under 2,600",South East,Yes,10,10,Packets
+Female,69,Married,GCSE/O Level,English,White,"10,400 to 15,600",South East,No,NA,NA,
+Female,73,Married,GCSE/O Level,British,White,"2,600 to 5,200",South East,No,NA,NA,
+Female,32,Single,Higher/Sub Degree,English,White,"15,600 to 20,800",South East,Yes,20,20,Packets
+Female,75,Married,GCSE/O Level,English,White,Unknown,South East,No,NA,NA,
+Female,54,Widowed,GCSE/CSE,English,White,"20,800 to 28,600",South East,Yes,25,25,Packets
+Female,51,Married,Higher/Sub Degree,English,White,"10,400 to 15,600",South East,No,NA,NA,
+Female,35,Married,Degree,British,White,"10,400 to 15,600",South East,No,NA,NA,
+Male,38,Married,Degree,English,White,"Above 36,400",South East,No,NA,NA,
+Female,72,Married,GCSE/O Level,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,66,Married,A Levels,English,White,Refused,South East,No,NA,NA,
+Female,59,Married,GCSE/CSE,English,White,"2,600 to 5,200",South East,No,NA,NA,
+Male,70,Married,Degree,British,White,"20,800 to 28,600",South East,No,NA,NA,
+Male,44,Single,GCSE/CSE,English,White,Refused,South East,No,NA,NA,
+Female,67,Married,GCSE/CSE,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Male,35,Married,GCSE/O Level,English,White,"20,800 to 28,600",South East,No,NA,NA,
+Female,33,Married,GCSE/O Level,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Male,17,Single,GCSE/CSE,English,White,"2,600 to 5,200",South East,No,NA,NA,
+Female,45,Married,GCSE/O Level,British,White,"Under 2,600",South East,No,NA,NA,
+Female,57,Married,GCSE/O Level,British,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,18,Single,A Levels,British,White,"Under 2,600",South East,No,NA,NA,
+Male,68,Separated,A Levels,English,White,"15,600 to 20,800",South East,No,NA,NA,
+Female,27,Single,Higher/Sub Degree,Other,White,"15,600 to 20,800",South East,Yes,12,15,Hand-Rolled
+Female,40,Married,GCSE/CSE,British,White,"Under 2,600",South East,Yes,30,18,Packets
+Male,77,Single,GCSE/CSE,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,77,Married,GCSE/O Level,British,White,"2,600 to 5,200",South East,No,NA,NA,
+Male,75,Married,ONC/BTEC,English,White,"Above 36,400",South East,No,NA,NA,
+Male,39,Married,ONC/BTEC,British,White,"15,600 to 20,800",South East,Yes,15,15,Packets
+Female,21,Single,GCSE/O Level,British,White,"2,600 to 5,200",South East,No,NA,NA,
+Female,59,Divorced,Degree,British,White,"5,200 to 10,400",South East,No,NA,NA,
+Male,27,Single,GCSE/CSE,British,White,"20,800 to 28,600",South East,No,NA,NA,
+Female,67,Married,No Qualification,English,White,"2,600 to 5,200",South East,No,NA,NA,
+Female,50,Single,Higher/Sub Degree,English,White,"20,800 to 28,600",South East,No,NA,NA,
+Female,64,Divorced,GCSE/O Level,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,79,Widowed,No Qualification,English,Chinese,"5,200 to 10,400",South East,No,NA,NA,
+Male,31,Single,GCSE/O Level,English,White,"10,400 to 15,600",South East,Yes,10,20,Both/Mainly Packets
+Female,19,Single,A Levels,British,Chinese,"10,400 to 15,600",South East,No,NA,NA,
+Male,42,Married,Degree,British,White,"28,600 to 36,400",South East,No,NA,NA,
+Male,36,Married,GCSE/CSE,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Male,36,Married,GCSE/CSE,English,White,"20,800 to 28,600",South East,No,NA,NA,
+Female,64,Widowed,GCSE/O Level,British,White,"2,600 to 5,200",South East,No,NA,NA,
+Female,53,Single,No Qualification,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,39,Married,GCSE/CSE,Irish,White,"15,600 to 20,800",South East,Yes,20,20,Packets
+Female,39,Married,Degree,English,White,"28,600 to 36,400",South East,No,NA,NA,
+Female,28,Married,Degree,British,White,"5,200 to 10,400",South East,Yes,7,7,Packets
+Male,81,Married,No Qualification,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,79,Married,No Qualification,English,White,"Under 2,600",South East,No,NA,NA,
+Female,72,Married,No Qualification,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,18,Single,GCSE/O Level,English,White,"2,600 to 5,200",South East,Yes,25,25,Both/Mainly Hand-Rolled
+Female,76,Married,No Qualification,British,White,"2,600 to 5,200",South East,No,NA,NA,
+Female,68,Widowed,No Qualification,British,White,"5,200 to 10,400",South East,Yes,8,8,Packets
+Female,28,Single,GCSE/CSE,English,White,"10,400 to 15,600",South East,Yes,20,15,Packets
+Female,42,Divorced,GCSE/O Level,English,White,"2,600 to 5,200",South East,No,NA,NA,
+Female,26,Single,GCSE/O Level,British,White,"5,200 to 10,400",South East,Yes,15,15,Both/Mainly Packets
+Female,19,Single,No Qualification,Welsh,White,"2,600 to 5,200",South East,Yes,5,5,Packets
+Female,41,Divorced,Other/Sub Degree,Welsh,White,"5,200 to 10,400",South East,Yes,30,30,Packets
+Female,82,Widowed,No Qualification,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Male,36,Married,Degree,British,Asian,"15,600 to 20,800",South East,No,NA,NA,
+Male,47,Single,No Qualification,English,White,"5,200 to 10,400",South East,Yes,25,25,Both/Mainly Hand-Rolled
+Male,77,Widowed,Other/Sub Degree,Scottish,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,66,Divorced,No Qualification,English,White,"Under 2,600",South East,No,NA,NA,
+Male,50,Divorced,Other/Sub Degree,English,White,"5,200 to 10,400",South East,Yes,15,15,Hand-Rolled
+Female,55,Divorced,No Qualification,English,White,"5,200 to 10,400",South East,No,NA,NA,
+Female,36,Married,A Levels,English,White,"Under 2,600",South West,Yes,10,0,Packets
+Male,79,Married,No Qualification,Irish,White,Unknown,South West,No,NA,NA,
+Female,67,Married,No Qualification,English,White,"2,600 to 5,200",South West,No,NA,NA,
+Female,42,Single,A Levels,British,White,Refused,South West,No,NA,NA,
+Female,76,Married,No Qualification,British,White,"Under 2,600",South West,No,NA,NA,
+Female,44,Married,Other/Sub Degree,British,White,"15,600 to 20,800",South West,No,NA,NA,
+Female,75,Married,No Qualification,English,White,"2,600 to 5,200",South West,No,NA,NA,
+Female,24,Married,Other/Sub Degree,British,White,"10,400 to 15,600",South West,No,NA,NA,
+Male,78,Married,Other/Sub Degree,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Female,38,Married,ONC/BTEC,British,White,"5,200 to 10,400",South West,No,NA,NA,
+Male,22,Single,Other/Sub Degree,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Female,62,Married,Other/Sub Degree,English,White,"2,600 to 5,200",South West,No,NA,NA,
+Female,40,Divorced,No Qualification,British,White,"5,200 to 10,400",South West,Yes,10,5,Packets
+Male,35,Married,Degree,British,White,"20,800 to 28,600",South West,No,NA,NA,
+Female,45,Married,ONC/BTEC,British,White,"5,200 to 10,400",South West,No,NA,NA,
+Female,66,Married,No Qualification,British,White,"2,600 to 5,200",South West,No,NA,NA,
+Female,53,Divorced,Higher/Sub Degree,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Female,43,Divorced,GCSE/O Level,English,White,"10,400 to 15,600",South West,Yes,5,0,Packets
+Female,72,Widowed,No Qualification,British,White,"2,600 to 5,200",South West,Yes,3,3,Packets
+Female,72,Widowed,No Qualification,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Female,67,Married,Higher/Sub Degree,English,White,"10,400 to 15,600",South West,No,NA,NA,
+Female,37,Divorced,GCSE/O Level,British,White,"5,200 to 10,400",South West,No,NA,NA,
+Male,38,Married,ONC/BTEC,English,White,"10,400 to 15,600",South West,No,NA,NA,
+Female,39,Married,GCSE/O Level,English,White,"10,400 to 15,600",South West,Yes,10,6,Both/Mainly Packets
+Male,64,Divorced,No Qualification,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Male,72,Married,No Qualification,English,White,"2,600 to 5,200",South West,No,NA,NA,
+Male,54,Married,GCSE/O Level,English,White,"10,400 to 15,600",South West,Yes,20,20,Packets
+Female,59,Widowed,No Qualification,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Female,50,Married,ONC/BTEC,English,White,"10,400 to 15,600",South West,No,NA,NA,
+Male,33,Married,GCSE/O Level,English,White,"Above 36,400",South West,No,NA,NA,
+Female,45,Married,Higher/Sub Degree,English,White,"20,800 to 28,600",South West,No,NA,NA,
+Female,73,Widowed,No Qualification,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Male,68,Married,Degree,British,White,"15,600 to 20,800",South West,No,NA,NA,
+Female,33,Married,GCSE/O Level,British,White,"10,400 to 15,600",South West,No,NA,NA,
+Female,21,Single,ONC/BTEC,British,White,"2,600 to 5,200",South West,No,NA,NA,
+Female,32,Married,Degree,English,White,"20,800 to 28,600",South West,No,NA,NA,
+Male,37,Married,Other/Sub Degree,British,White,"15,600 to 20,800",South West,No,NA,NA,
+Female,48,Single,Degree,English,White,Refused,South West,Yes,10,10,Hand-Rolled
+Male,25,Single,No Qualification,British,White,"15,600 to 20,800",South West,Yes,40,20,Packets
+Male,61,Married,No Qualification,English,White,"5,200 to 10,400",South West,Yes,30,10,Hand-Rolled
+Female,86,Widowed,No Qualification,English,White,"2,600 to 5,200",South West,No,NA,NA,
+Female,45,Married,No Qualification,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Female,60,Divorced,GCSE/O Level,English,White,"10,400 to 15,600",South West,No,NA,NA,
+Female,40,Single,Degree,British,White,"15,600 to 20,800",South West,No,NA,NA,
+Male,55,Married,No Qualification,British,White,Refused,South West,No,NA,NA,
+Male,53,Separated,GCSE/O Level,Welsh,White,"10,400 to 15,600",South West,No,NA,NA,
+Male,41,Married,GCSE/O Level,English,White,"2,600 to 5,200",South West,No,NA,NA,
+Female,17,Single,GCSE/O Level,English,White,"Under 2,600",South West,Yes,20,10,Both/Mainly Packets
+Female,42,Divorced,Higher/Sub Degree,English,White,"15,600 to 20,800",South West,No,NA,NA,
+Male,44,Married,GCSE/O Level,English,White,"20,800 to 28,600",South West,No,NA,NA,
+Female,43,Married,A Levels,English,White,"10,400 to 15,600",South West,No,NA,NA,
+Female,39,Married,Other/Sub Degree,Other,White,"2,600 to 5,200",South West,Yes,20,20,Packets
+Male,67,Married,No Qualification,English,White,"10,400 to 15,600",South West,No,NA,NA,
+Female,73,Married,No Qualification,British,White,"Under 2,600",South West,No,NA,NA,
+Female,16,Single,GCSE/O Level,English,White,"2,600 to 5,200",South West,No,NA,NA,
+Female,73,Widowed,No Qualification,British,White,"10,400 to 15,600",South West,No,NA,NA,
+Male,52,Married,Degree,Scottish,White,"Above 36,400",South West,No,NA,NA,
+Male,72,Single,No Qualification,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Male,79,Married,No Qualification,British,White,"10,400 to 15,600",South West,No,NA,NA,
+Female,90,Widowed,No Qualification,English,White,"2,600 to 5,200",South West,No,NA,NA,
+Male,27,Single,Higher/Sub Degree,English,White,"20,800 to 28,600",South West,Yes,30,10,Packets
+Male,32,Divorced,Degree,English,White,"Above 36,400",South West,No,NA,NA,
+Female,38,Divorced,GCSE/O Level,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Female,21,Single,Degree,British,White,"Under 2,600",South West,No,NA,NA,
+Male,40,Married,A Levels,British,White,"Above 36,400",South West,No,NA,NA,
+Male,28,Married,Degree,British,White,"Above 36,400",South West,No,NA,NA,
+Male,47,Married,A Levels,English,White,"Above 36,400",South West,Yes,40,40,Packets
+Female,45,Married,Degree,British,White,"5,200 to 10,400",South West,No,NA,NA,
+Female,95,Widowed,No Qualification,British,White,"5,200 to 10,400",South West,No,NA,NA,
+Male,18,Single,A Levels,English,White,"2,600 to 5,200",South West,No,NA,NA,
+Female,89,Widowed,GCSE/O Level,English,White,Unknown,South West,No,NA,NA,
+Female,82,Widowed,No Qualification,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Male,65,Married,A Levels,English,White,"28,600 to 36,400",South West,No,NA,NA,
+Female,87,Widowed,GCSE/O Level,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Male,30,Single,Higher/Sub Degree,English,White,"20,800 to 28,600",South West,Yes,4,1,Packets
+Female,77,Widowed,Degree,English,White,"28,600 to 36,400",South West,No,NA,NA,
+Female,55,Divorced,Degree,British,White,"Above 36,400",South West,No,NA,NA,
+Female,33,Married,Degree,British,Asian,"5,200 to 10,400",South West,No,NA,NA,
+Female,56,Married,No Qualification,British,Black,"5,200 to 10,400",South West,No,NA,NA,
+Female,68,Divorced,No Qualification,English,White,"2,600 to 5,200",South West,Yes,15,10,Packets
+Female,73,Married,No Qualification,British,White,"2,600 to 5,200",South West,No,NA,NA,
+Female,66,Single,GCSE/O Level,English,White,"10,400 to 15,600",South West,No,NA,NA,
+Female,73,Married,Other/Sub Degree,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Male,42,Married,Higher/Sub Degree,English,White,"20,800 to 28,600",South West,Yes,12,0,Packets
+Male,41,Single,No Qualification,Welsh,White,Refused,South West,No,NA,NA,
+Female,35,Married,GCSE/CSE,British,White,"10,400 to 15,600",South West,No,NA,NA,
+Female,53,Married,No Qualification,English,White,"2,600 to 5,200",South West,No,NA,NA,
+Female,74,Divorced,No Qualification,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Male,46,Married,No Qualification,English,White,"10,400 to 15,600",South West,Yes,25,25,Hand-Rolled
+Female,22,Single,GCSE/CSE,English,White,"2,600 to 5,200",South West,No,NA,NA,
+Male,27,Married,A Levels,English,White,"15,600 to 20,800",South West,No,NA,NA,
+Female,71,Married,GCSE/O Level,British,White,"5,200 to 10,400",South West,No,NA,NA,
+Male,78,Widowed,Other/Sub Degree,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Female,38,Married,GCSE/O Level,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Female,31,Married,A Levels,British,White,"10,400 to 15,600",South West,No,NA,NA,
+Female,54,Married,Degree,English,White,"2,600 to 5,200",South West,No,NA,NA,
+Female,31,Single,GCSE/CSE,English,White,"10,400 to 15,600",South West,No,NA,NA,
+Male,53,Married,ONC/BTEC,English,Mixed,"Above 36,400",South West,No,NA,NA,
+Female,36,Single,GCSE/O Level,English,White,"2,600 to 5,200",South West,Yes,20,20,Both/Mainly Packets
+Male,41,Married,Other/Sub Degree,English,White,"15,600 to 20,800",South West,No,NA,NA,
+Male,78,Widowed,No Qualification,British,White,"5,200 to 10,400",South West,Yes,15,12,Packets
+Female,54,Divorced,GCSE/O Level,British,White,"2,600 to 5,200",South West,Yes,10,10,Packets
+Female,72,Divorced,No Qualification,British,White,"2,600 to 5,200",South West,No,NA,NA,
+Male,28,Married,Other/Sub Degree,English,White,"20,800 to 28,600",South West,Yes,20,20,Hand-Rolled
+Female,41,Separated,GCSE/O Level,British,White,"5,200 to 10,400",South West,Yes,20,15,Both/Mainly Packets
+Female,78,Married,No Qualification,English,White,"Under 2,600",South West,No,NA,NA,
+Male,71,Widowed,No Qualification,Welsh,White,"5,200 to 10,400",South West,No,NA,NA,
+Female,57,Married,Other/Sub Degree,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Male,31,Married,GCSE/O Level,British,White,"15,600 to 20,800",South West,Yes,1,5,Packets
+Female,64,Widowed,No Qualification,Irish,White,"5,200 to 10,400",South West,No,NA,NA,
+Male,65,Married,No Qualification,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Male,61,Married,No Qualification,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Male,33,Married,GCSE/CSE,English,White,"20,800 to 28,600",South West,No,NA,NA,
+Female,60,Married,ONC/BTEC,English,White,Refused,South West,Yes,20,20,Packets
+Male,40,Married,Higher/Sub Degree,British,White,"15,600 to 20,800",South West,No,NA,NA,
+Female,68,Married,Other/Sub Degree,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Female,36,Married,No Qualification,English,White,"15,600 to 20,800",South West,No,NA,NA,
+Female,35,Married,GCSE/O Level,English,White,"Under 2,600",South West,No,NA,NA,
+Male,22,Single,GCSE/CSE,English,White,"20,800 to 28,600",South West,Yes,20,5,Packets
+Female,43,Married,GCSE/CSE,English,White,"2,600 to 5,200",South West,No,NA,NA,
+Male,84,Widowed,No Qualification,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Female,24,Single,No Qualification,British,White,"5,200 to 10,400",South West,No,NA,NA,
+Male,68,Married,No Qualification,English,White,"5,200 to 10,400",South West,Yes,25,12,Hand-Rolled
+Male,35,Single,Other/Sub Degree,British,White,"Under 2,600",South West,Yes,10,10,Packets
+Female,51,Divorced,Other/Sub Degree,English,White,Unknown,South West,Yes,25,25,Packets
+Male,45,Married,ONC/BTEC,British,White,"28,600 to 36,400",South West,No,NA,NA,
+Female,45,Single,No Qualification,English,White,Refused,South West,Yes,5,5,Packets
+Male,71,Married,No Qualification,English,White,"10,400 to 15,600",South West,No,NA,NA,
+Female,47,Married,No Qualification,British,White,"5,200 to 10,400",South West,Yes,20,15,Packets
+Female,39,Married,Higher/Sub Degree,British,White,"10,400 to 15,600",South West,No,NA,NA,
+Male,62,Married,Higher/Sub Degree,English,White,"2,600 to 5,200",South West,No,NA,NA,
+Female,37,Single,Degree,British,White,"15,600 to 20,800",South West,No,NA,NA,
+Female,71,Married,No Qualification,English,White,Refused,South West,No,NA,NA,
+Male,49,Divorced,Degree,English,White,"28,600 to 36,400",South West,No,NA,NA,
+Female,22,Single,GCSE/CSE,British,White,"2,600 to 5,200",South West,Yes,30,20,Both/Mainly Packets
+Male,61,Married,No Qualification,English,White,"Under 2,600",South West,No,NA,NA,
+Male,34,Single,GCSE/O Level,British,White,"20,800 to 28,600",South West,Yes,10,5,Packets
+Female,40,Separated,Degree,British,White,"Above 36,400",South West,No,NA,NA,
+Female,27,Separated,No Qualification,English,White,"2,600 to 5,200",South West,Yes,20,20,Both/Mainly Packets
+Male,28,Single,ONC/BTEC,English,White,"10,400 to 15,600",South West,Yes,12,12,Packets
+Female,28,Single,A Levels,British,White,"10,400 to 15,600",South West,No,NA,NA,
+Male,36,Married,GCSE/CSE,English,White,"20,800 to 28,600",South West,Yes,20,30,Both/Mainly Packets
+Female,34,Single,GCSE/O Level,English,White,"5,200 to 10,400",South West,Yes,20,20,Hand-Rolled
+Male,19,Single,A Levels,English,White,"10,400 to 15,600",South West,No,NA,NA,
+Female,31,Divorced,GCSE/O Level,English,White,"15,600 to 20,800",South West,Yes,20,20,Packets
+Male,49,Divorced,No Qualification,English,White,Refused,South West,Yes,20,20,Hand-Rolled
+Male,42,Divorced,A Levels,Irish,White,"2,600 to 5,200",South West,Yes,50,50,Hand-Rolled
+Female,38,Married,No Qualification,English,White,"Under 2,600",South West,No,NA,NA,
+Male,16,Single,No Qualification,English,White,"Under 2,600",South West,Yes,6,6,Both/Mainly Packets
+Male,73,Married,No Qualification,British,White,"5,200 to 10,400",South West,No,NA,NA,
+Male,36,Married,GCSE/O Level,English,Asian,"15,600 to 20,800",South West,No,NA,NA,
+Female,81,Married,No Qualification,Welsh,White,"Under 2,600",South West,No,NA,NA,
+Female,97,Widowed,No Qualification,English,White,"10,400 to 15,600",South West,No,NA,NA,
+Male,38,Married,No Qualification,English,White,"10,400 to 15,600",South West,No,NA,NA,
+Female,46,Married,Other/Sub Degree,British,White,"5,200 to 10,400",South West,Yes,12,7,Packets
+Male,79,Married,No Qualification,English,White,"5,200 to 10,400",South West,No,NA,NA,
+Female,76,Widowed,No Qualification,English,White,"2,600 to 5,200",South West,Yes,4,4,Packets
+Female,54,Widowed,No Qualification,Irish,White,"2,600 to 5,200",Wales,No,NA,NA,
+Male,59,Married,Degree,English,White,"Above 36,400",Wales,No,NA,NA,
+Male,52,Separated,Degree,British,White,"Above 36,400",Wales,No,NA,NA,
+Male,58,Divorced,No Qualification,Welsh,White,"5,200 to 10,400",Wales,Yes,20,20,Both/Mainly Packets
+Male,69,Divorced,Degree,Welsh,White,"15,600 to 20,800",Wales,No,NA,NA,
+Male,67,Widowed,Degree,Welsh,White,"5,200 to 10,400",Wales,No,NA,NA,
+Female,76,Married,Other/Sub Degree,Welsh,White,Refused,Wales,No,NA,NA,
+Male,33,Married,No Qualification,British,Asian,"5,200 to 10,400",Wales,No,NA,NA,
+Male,61,Separated,No Qualification,Welsh,White,Refused,Wales,Yes,30,30,Hand-Rolled
+Female,82,Widowed,No Qualification,Welsh,White,Refused,Wales,No,NA,NA,
+Male,62,Married,No Qualification,Welsh,White,"5,200 to 10,400",Wales,No,NA,NA,
+Male,66,Divorced,No Qualification,Welsh,White,Refused,Wales,No,NA,NA,
+Female,69,Widowed,No Qualification,Welsh,White,"Under 2,600",Wales,No,NA,NA,
+Female,25,Married,No Qualification,Other,Asian,Refused,Wales,No,NA,NA,
+Male,29,Single,Degree,Welsh,White,"20,800 to 28,600",Wales,No,NA,NA,
+Male,28,Married,Degree,British,White,"10,400 to 15,600",Wales,No,NA,NA,
+Female,52,Single,Degree,Other,White,"28,600 to 36,400",Wales,No,NA,NA,
+Female,81,Widowed,No Qualification,Welsh,White,Refused,Wales,No,NA,NA,
+Female,44,Married,GCSE/O Level,Welsh,White,"10,400 to 15,600",Wales,Yes,20,20,Packets
+Female,62,Married,GCSE/O Level,Welsh,White,Refused,Wales,No,NA,NA,
+Male,45,Married,No Qualification,Welsh,White,"2,600 to 5,200",Wales,No,NA,NA,
+Female,71,Widowed,No Qualification,Welsh,White,"5,200 to 10,400",Wales,No,NA,NA,
+Female,72,Married,No Qualification,Welsh,White,"2,600 to 5,200",Wales,No,NA,NA,
+Female,69,Widowed,No Qualification,English,White,Unknown,Wales,Yes,15,15,Packets
+Female,72,Widowed,No Qualification,Welsh,White,"2,600 to 5,200",Wales,Yes,10,10,Packets
+Male,61,Married,No Qualification,Welsh,White,"5,200 to 10,400",Wales,No,NA,NA,
+Female,29,Married,A Levels,British,White,"2,600 to 5,200",Wales,Yes,5,2,Packets
+Female,37,Single,Higher/Sub Degree,British,White,"5,200 to 10,400",Wales,Yes,30,30,Packets
+Male,29,Single,GCSE/O Level,Welsh,White,"15,600 to 20,800",Wales,Yes,20,20,Packets
+Male,57,Married,No Qualification,English,White,"10,400 to 15,600",Wales,No,NA,NA,
+Male,60,Married,GCSE/O Level,Welsh,White,"5,200 to 10,400",Wales,No,NA,NA,
+Male,38,Married,Higher/Sub Degree,Welsh,White,"28,600 to 36,400",Wales,No,NA,NA,
+Male,74,Married,No Qualification,Welsh,White,"5,200 to 10,400",Wales,No,NA,NA,
+Male,38,Married,Higher/Sub Degree,Welsh,White,"10,400 to 15,600",Wales,No,NA,NA,
+Female,51,Divorced,GCSE/O Level,Welsh,White,Refused,Wales,No,NA,NA,
+Male,68,Married,No Qualification,Welsh,White,"2,600 to 5,200",Wales,Yes,15,15,Hand-Rolled
+Male,67,Married,Higher/Sub Degree,Welsh,White,"10,400 to 15,600",Wales,No,NA,NA,
+Male,32,Single,GCSE/O Level,Welsh,White,"10,400 to 15,600",Wales,No,NA,NA,
+Female,25,Married,ONC/BTEC,British,Asian,"5,200 to 10,400",Wales,No,NA,NA,
+Male,53,Married,No Qualification,Welsh,White,"15,600 to 20,800",Wales,No,NA,NA,
+Female,52,Divorced,No Qualification,Welsh,Unknown,"5,200 to 10,400",Wales,Yes,5,5,Packets
+Female,21,Single,No Qualification,Welsh,White,"2,600 to 5,200",Wales,No,NA,NA,
+Female,71,Divorced,No Qualification,Welsh,White,"5,200 to 10,400",Wales,No,NA,NA,
+Female,30,Married,GCSE/O Level,British,White,"Under 2,600",Wales,No,NA,NA,
+Male,23,Single,GCSE/O Level,Welsh,White,"15,600 to 20,800",Wales,No,NA,NA,
+Female,28,Single,Higher/Sub Degree,Welsh,White,"10,400 to 15,600",Wales,Yes,0,1,Packets
+Female,37,Married,GCSE/O Level,Welsh,White,"5,200 to 10,400",Wales,No,NA,NA,
+Female,84,Widowed,No Qualification,Welsh,White,"2,600 to 5,200",Wales,No,NA,NA,
+Female,61,Married,No Qualification,English,White,"2,600 to 5,200",Wales,No,NA,NA,
+Female,18,Single,GCSE/O Level,Welsh,White,"2,600 to 5,200",Wales,No,NA,NA,
+Female,55,Married,GCSE/O Level,English,White,"5,200 to 10,400",Wales,No,NA,NA,
+Male,52,Single,Higher/Sub Degree,British,White,"20,800 to 28,600",Wales,No,NA,NA,
+Female,46,Married,No Qualification,Welsh,White,"2,600 to 5,200",Wales,Yes,25,25,Packets
+Female,46,Married,Other/Sub Degree,British,White,"10,400 to 15,600",Wales,No,NA,NA,
+Male,23,Single,No Qualification,Welsh,White,"2,600 to 5,200",Wales,No,NA,NA,
+Male,58,Married,Degree,British,White,"20,800 to 28,600",Wales,No,NA,NA,
+Male,16,Single,GCSE/O Level,Welsh,White,"Under 2,600",Wales,No,NA,NA,
+Male,71,Married,No Qualification,Welsh,White,"15,600 to 20,800",Wales,No,NA,NA,
+Female,47,Married,No Qualification,British,White,"2,600 to 5,200",Wales,Yes,10,10,Packets
+Male,34,Married,Degree,Welsh,White,"20,800 to 28,600",Wales,No,NA,NA,
+Female,55,Single,No Qualification,British,White,"Above 36,400",Wales,No,NA,NA,
+Female,78,Widowed,Other/Sub Degree,British,White,"20,800 to 28,600",Wales,No,NA,NA,
+Male,35,Single,No Qualification,Welsh,White,"2,600 to 5,200",Wales,Yes,40,40,Hand-Rolled
+Male,68,Married,No Qualification,English,White,"20,800 to 28,600",Wales,No,NA,NA,
+Male,76,Single,No Qualification,British,White,"5,200 to 10,400",Wales,No,NA,NA,
+Male,28,Single,GCSE/CSE,Welsh,White,"10,400 to 15,600",Wales,No,NA,NA,
+Female,36,Divorced,GCSE/CSE,British,White,"5,200 to 10,400",Wales,Yes,20,20,Both/Mainly Packets
+Female,57,Divorced,ONC/BTEC,English,White,"5,200 to 10,400",Wales,No,NA,NA,
+Female,29,Single,Higher/Sub Degree,Welsh,White,"10,400 to 15,600",Wales,Yes,20,10,Both/Mainly Packets
+Female,27,Single,GCSE/O Level,Welsh,White,"5,200 to 10,400",Wales,Yes,5,5,Packets
+Female,64,Widowed,No Qualification,English,White,"2,600 to 5,200",Wales,No,NA,NA,
+Female,89,Single,No Qualification,Welsh,White,Refused,Wales,No,NA,NA,
+Female,26,Single,GCSE/CSE,Welsh,White,"2,600 to 5,200",Wales,Yes,15,15,Packets
+Male,27,Single,Higher/Sub Degree,Welsh,White,"20,800 to 28,600",Wales,No,NA,NA,
+Male,66,Single,Higher/Sub Degree,English,White,"10,400 to 15,600",Wales,No,NA,NA,
+Female,84,Widowed,No Qualification,British,White,"5,200 to 10,400",Wales,No,NA,NA,
+Male,41,Single,Higher/Sub Degree,British,White,"20,800 to 28,600",Wales,Yes,20,12,Packets
+Male,27,Single,Degree,British,White,"15,600 to 20,800",Wales,No,NA,NA,
+Female,40,Divorced,GCSE/O Level,English,White,"10,400 to 15,600",Wales,No,NA,NA,
+Female,79,Widowed,No Qualification,British,White,"10,400 to 15,600",Wales,No,NA,NA,
+Male,49,Married,No Qualification,English,White,"20,800 to 28,600",Wales,Yes,20,20,Packets
+Female,79,Widowed,No Qualification,British,White,Unknown,Wales,No,NA,NA,
+Female,54,Married,No Qualification,Welsh,White,"Under 2,600",Wales,No,NA,NA,
+Male,25,Single,GCSE/O Level,Scottish,White,"5,200 to 10,400",Scotland,Yes,10,10,Packets
+Female,45,Single,Degree,Scottish,White,"28,600 to 36,400",Scotland,Yes,5,5,Packets
+Female,24,Single,Degree,Scottish,White,"5,200 to 10,400",Scotland,Yes,5,5,Packets
+Female,54,Divorced,No Qualification,Scottish,White,"10,400 to 15,600",Scotland,Yes,20,10,Packets
+Female,78,Widowed,No Qualification,Scottish,White,"15,600 to 20,800",Scotland,No,NA,NA,
+Male,50,Married,No Qualification,Scottish,White,"10,400 to 15,600",Scotland,Yes,25,25,Hand-Rolled
+Female,42,Married,Degree,Scottish,White,"20,800 to 28,600",Scotland,No,NA,NA,
+Female,32,Single,A Levels,Scottish,White,"10,400 to 15,600",Scotland,Yes,10,10,Packets
+Male,75,Single,No Qualification,Scottish,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Female,25,Single,GCSE/O Level,Scottish,White,"Under 2,600",Scotland,Yes,15,15,Packets
+Male,50,Separated,Higher/Sub Degree,Scottish,White,"20,800 to 28,600",Scotland,No,NA,NA,
+Male,24,Single,Higher/Sub Degree,Scottish,White,"28,600 to 36,400",Scotland,Yes,15,15,Packets
+Male,35,Single,Higher/Sub Degree,British,White,"28,600 to 36,400",Scotland,No,NA,NA,
+Female,52,Married,No Qualification,Scottish,White,"10,400 to 15,600",Scotland,No,NA,NA,
+Female,42,Married,Degree,British,White,"10,400 to 15,600",Scotland,No,NA,NA,
+Male,44,Separated,GCSE/O Level,Scottish,White,"15,600 to 20,800",Scotland,No,NA,NA,
+Male,67,Widowed,No Qualification,Scottish,White,"5,200 to 10,400",Scotland,Yes,20,12,Hand-Rolled
+Female,69,Widowed,No Qualification,Scottish,White,"2,600 to 5,200",Scotland,No,NA,NA,
+Female,91,Single,No Qualification,Scottish,White,"2,600 to 5,200",Scotland,No,NA,NA,
+Male,61,Divorced,No Qualification,Scottish,White,"2,600 to 5,200",Scotland,No,NA,NA,
+Female,50,Single,Degree,British,White,"20,800 to 28,600",Scotland,No,NA,NA,
+Male,37,Single,Higher/Sub Degree,Scottish,White,"20,800 to 28,600",Scotland,No,NA,NA,
+Female,35,Single,Higher/Sub Degree,Scottish,White,"15,600 to 20,800",Scotland,Yes,15,15,Packets
+Male,24,Single,Higher/Sub Degree,British,White,"10,400 to 15,600",Scotland,Yes,20,15,Packets
+Female,39,Single,No Qualification,Scottish,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Female,79,Divorced,No Qualification,Scottish,White,"2,600 to 5,200",Scotland,No,NA,NA,
+Male,40,Married,Degree,Scottish,White,"Above 36,400",Scotland,No,NA,NA,
+Male,60,Married,Degree,British,White,"Above 36,400",Scotland,No,NA,NA,
+Male,42,Married,No Qualification,Scottish,White,"20,800 to 28,600",Scotland,No,NA,NA,
+Male,64,Widowed,Other/Sub Degree,Scottish,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Female,55,Married,GCSE/O Level,Scottish,White,"15,600 to 20,800",Scotland,Yes,2,10,Packets
+Male,54,Married,Other/Sub Degree,Scottish,White,"10,400 to 15,600",Scotland,No,NA,NA,
+Female,61,Married,Higher/Sub Degree,British,White,"10,400 to 15,600",Scotland,No,NA,NA,
+Female,62,Divorced,Higher/Sub Degree,Scottish,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Female,59,Divorced,Degree,Scottish,White,Unknown,Scotland,No,NA,NA,
+Female,79,Widowed,GCSE/CSE,Scottish,White,Refused,Scotland,No,NA,NA,
+Female,37,Married,Degree,British,White,"10,400 to 15,600",Scotland,No,NA,NA,
+Female,55,Married,Other/Sub Degree,Scottish,White,"2,600 to 5,200",Scotland,Yes,12,8,Packets
+Female,88,Widowed,Higher/Sub Degree,Scottish,White,"28,600 to 36,400",Scotland,No,NA,NA,
+Female,39,Divorced,Degree,British,White,"15,600 to 20,800",Scotland,No,NA,NA,
+Male,34,Single,Degree,British,White,"Above 36,400",Scotland,No,NA,NA,
+Male,42,Married,Degree,Scottish,White,"28,600 to 36,400",Scotland,No,NA,NA,
+Female,45,Married,Degree,British,White,"2,600 to 5,200",Scotland,No,NA,NA,
+Male,59,Married,ONC/BTEC,Scottish,White,"Above 36,400",Scotland,No,NA,NA,
+Male,58,Married,GCSE/O Level,British,White,"10,400 to 15,600",Scotland,Yes,30,30,Packets
+Male,74,Widowed,Higher/Sub Degree,British,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Male,45,Married,GCSE/O Level,Scottish,White,"20,800 to 28,600",Scotland,No,NA,NA,
+Male,64,Married,No Qualification,Scottish,White,"10,400 to 15,600",Scotland,No,NA,NA,
+Male,53,Single,Higher/Sub Degree,Scottish,White,"15,600 to 20,800",Scotland,No,NA,NA,
+Male,40,Married,GCSE/O Level,Scottish,White,"15,600 to 20,800",Scotland,No,NA,NA,
+Male,30,Married,ONC/BTEC,Scottish,White,"15,600 to 20,800",Scotland,Yes,10,10,Hand-Rolled
+Male,70,Married,No Qualification,Scottish,White,"10,400 to 15,600",Scotland,No,NA,NA,
+Female,28,Separated,ONC/BTEC,Scottish,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Female,78,Widowed,No Qualification,Scottish,White,"2,600 to 5,200",Scotland,No,NA,NA,
+Male,41,Married,A Levels,Scottish,White,"20,800 to 28,600",Scotland,Yes,24,24,Packets
+Female,69,Divorced,No Qualification,British,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Male,54,Married,GCSE/O Level,Scottish,White,"20,800 to 28,600",Scotland,No,NA,NA,
+Male,59,Married,ONC/BTEC,Scottish,White,"15,600 to 20,800",Scotland,Yes,20,20,Hand-Rolled
+Female,23,Single,GCSE/O Level,Scottish,White,"5,200 to 10,400",Scotland,Yes,15,15,Packets
+Male,40,Married,No Qualification,Scottish,White,"15,600 to 20,800",Scotland,Yes,30,15,Packets
+Male,17,Single,GCSE/O Level,Scottish,White,"5,200 to 10,400",Scotland,Yes,15,6,Packets
+Male,54,Single,No Qualification,British,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Female,49,Divorced,No Qualification,Scottish,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Male,55,Married,Higher/Sub Degree,Scottish,White,"5,200 to 10,400",Scotland,Yes,45,45,Hand-Rolled
+Male,51,Widowed,ONC/BTEC,Scottish,White,"5,200 to 10,400",Scotland,Yes,20,20,Packets
+Female,73,Married,No Qualification,Scottish,White,"Under 2,600",Scotland,No,NA,NA,
+Female,41,Married,No Qualification,Scottish,White,"2,600 to 5,200",Scotland,No,NA,NA,
+Female,70,Married,GCSE/O Level,British,White,"20,800 to 28,600",Scotland,No,NA,NA,
+Female,44,Separated,No Qualification,Scottish,White,"10,400 to 15,600",Scotland,Yes,15,10,Packets
+Male,51,Divorced,No Qualification,Scottish,White,"Under 2,600",Scotland,No,NA,NA,
+Male,68,Married,Degree,Irish,White,"28,600 to 36,400",Scotland,Yes,1,0,Packets
+Female,75,Separated,No Qualification,Scottish,White,"2,600 to 5,200",Scotland,No,NA,NA,
+Male,60,Married,No Qualification,Scottish,White,"5,200 to 10,400",Scotland,Yes,20,15,Packets
+Male,56,Married,No Qualification,Scottish,White,"2,600 to 5,200",Scotland,No,NA,NA,
+Male,64,Widowed,No Qualification,Scottish,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Female,27,Single,Degree,Scottish,White,"10,400 to 15,600",Scotland,No,NA,NA,
+Female,73,Widowed,No Qualification,Scottish,White,"5,200 to 10,400",Scotland,Yes,20,12,Packets
+Male,34,Single,GCSE/O Level,Scottish,White,"15,600 to 20,800",Scotland,Yes,10,2,Packets
+Male,47,Married,GCSE/O Level,British,White,"10,400 to 15,600",Scotland,Yes,15,10,Hand-Rolled
+Male,32,Single,A Levels,Scottish,White,"10,400 to 15,600",Scotland,No,NA,NA,
+Male,63,Married,No Qualification,British,White,"15,600 to 20,800",Scotland,No,NA,NA,
+Female,23,Single,Degree,Scottish,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Female,63,Married,No Qualification,Scottish,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Female,46,Divorced,A Levels,Scottish,White,"15,600 to 20,800",Scotland,No,NA,NA,
+Male,48,Single,A Levels,Scottish,White,"10,400 to 15,600",Scotland,No,NA,NA,
+Male,68,Married,No Qualification,Scottish,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Male,52,Separated,No Qualification,Scottish,White,"15,600 to 20,800",Scotland,Yes,20,20,Packets
+Female,29,Separated,No Qualification,Scottish,White,"15,600 to 20,800",Scotland,Yes,10,6,Packets
+Female,16,Single,No Qualification,Scottish,White,Refused,Scotland,No,NA,NA,
+Male,41,Divorced,A Levels,Scottish,White,"15,600 to 20,800",Scotland,No,NA,NA,
+Female,48,Widowed,No Qualification,Scottish,White,"5,200 to 10,400",Scotland,Yes,20,20,Packets
+Male,24,Single,A Levels,Scottish,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Male,72,Widowed,No Qualification,Scottish,White,"5,200 to 10,400",Scotland,Yes,40,40,Hand-Rolled
+Male,45,Married,GCSE/O Level,British,White,"15,600 to 20,800",Scotland,No,NA,NA,
+Female,28,Married,Degree,British,White,"28,600 to 36,400",Scotland,No,NA,NA,
+Male,20,Single,A Levels,Scottish,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Female,69,Widowed,No Qualification,Scottish,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Female,70,Married,No Qualification,Scottish,White,"Under 2,600",Scotland,No,NA,NA,
+Male,50,Married,GCSE/CSE,Scottish,White,"15,600 to 20,800",Scotland,Yes,25,20,Both/Mainly Packets
+Male,63,Married,A Levels,Scottish,White,"5,200 to 10,400",Scotland,Yes,20,20,Packets
+Male,44,Married,GCSE/O Level,British,White,"15,600 to 20,800",Scotland,No,NA,NA,
+Female,83,Widowed,No Qualification,Scottish,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Female,17,Single,GCSE/CSE,Scottish,White,"5,200 to 10,400",Scotland,Yes,20,15,Packets
+Female,61,Married,Other/Sub Degree,Scottish,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Female,47,Married,GCSE/O Level,Scottish,White,"5,200 to 10,400",Scotland,Yes,15,20,Packets
+Male,57,Married,Degree,Scottish,White,"28,600 to 36,400",Scotland,No,NA,NA,
+Female,44,Married,GCSE/O Level,Scottish,White,"5,200 to 10,400",Scotland,Yes,15,10,Packets
+Male,52,Single,GCSE/CSE,Irish,White,"15,600 to 20,800",Scotland,Yes,25,20,Both/Mainly Packets
+Male,82,Married,No Qualification,Scottish,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Male,63,Married,A Levels,Scottish,White,"28,600 to 36,400",Scotland,No,NA,NA,
+Female,72,Separated,No Qualification,Scottish,White,"2,600 to 5,200",Scotland,No,NA,NA,
+Male,39,Married,Higher/Sub Degree,Scottish,White,"Above 36,400",Scotland,No,NA,NA,
+Male,16,Single,No Qualification,Scottish,White,Refused,Scotland,No,NA,NA,
+Female,35,Divorced,Degree,Scottish,White,"15,600 to 20,800",Scotland,No,NA,NA,
+Female,39,Married,Degree,Scottish,White,"10,400 to 15,600",Scotland,No,NA,NA,
+Male,56,Separated,No Qualification,Scottish,White,Refused,Scotland,Yes,10,10,Hand-Rolled
+Female,31,Single,Other/Sub Degree,Scottish,White,"5,200 to 10,400",Scotland,Yes,60,30,Packets
+Male,61,Married,No Qualification,Scottish,White,"Under 2,600",Scotland,No,NA,NA,
+Male,23,Separated,GCSE/O Level,Scottish,White,"Under 2,600",Scotland,Yes,5,0,Packets
+Male,34,Single,No Qualification,Scottish,White,"10,400 to 15,600",Scotland,Yes,35,18,Both/Mainly Hand-Rolled
+Male,24,Single,Degree,Scottish,White,"15,600 to 20,800",Scotland,No,NA,NA,
+Male,82,Single,Other/Sub Degree,Scottish,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Male,27,Married,A Levels,Scottish,White,"15,600 to 20,800",Scotland,No,NA,NA,
+Female,62,Divorced,GCSE/CSE,Scottish,White,"2,600 to 5,200",Scotland,Yes,18,18,Packets
+Male,39,Married,Higher/Sub Degree,British,White,"20,800 to 28,600",Scotland,No,NA,NA,
+Male,44,Separated,No Qualification,Scottish,White,"2,600 to 5,200",Scotland,No,NA,NA,
+Female,43,Single,No Qualification,British,White,"10,400 to 15,600",Scotland,Yes,25,20,Packets
+Male,31,Single,GCSE/O Level,Scottish,White,"2,600 to 5,200",Scotland,Yes,20,15,Both/Mainly Packets
+Male,77,Divorced,Other/Sub Degree,English,White,"5,200 to 10,400",Scotland,Yes,20,10,Packets
+Female,20,Single,GCSE/O Level,English,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Female,81,Widowed,Other/Sub Degree,Scottish,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Female,31,Single,GCSE/O Level,Scottish,White,"15,600 to 20,800",Scotland,Yes,20,10,Packets
+Female,78,Married,Other/Sub Degree,Scottish,White,"2,600 to 5,200",Scotland,No,NA,NA,
+Male,35,Married,A Levels,Scottish,White,"10,400 to 15,600",Scotland,No,NA,NA,
+Female,67,Widowed,No Qualification,Scottish,White,"Under 2,600",Scotland,No,NA,NA,
+Male,65,Divorced,Other/Sub Degree,Scottish,White,"10,400 to 15,600",Scotland,No,NA,NA,
+Male,61,Married,Higher/Sub Degree,Scottish,White,"10,400 to 15,600",Scotland,No,NA,NA,
+Male,24,Single,No Qualification,Scottish,White,"Under 2,600",Scotland,Yes,15,15,Hand-Rolled
+Male,53,Single,No Qualification,Scottish,White,"20,800 to 28,600",Scotland,No,NA,NA,
+Female,63,Married,No Qualification,British,White,Refused,Scotland,No,NA,NA,
+Male,35,Married,No Qualification,Scottish,White,"10,400 to 15,600",Scotland,Yes,3,12,Packets
+Male,78,Widowed,No Qualification,Scottish,White,Refused,Scotland,No,NA,NA,
+Female,31,Single,Other/Sub Degree,Scottish,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Male,22,Single,No Qualification,Scottish,White,"2,600 to 5,200",Scotland,No,NA,NA,
+Female,49,Divorced,Other/Sub Degree,English,White,"2,600 to 5,200",Scotland,Yes,20,20,Hand-Rolled
+Male,45,Married,Other/Sub Degree,Scottish,White,"5,200 to 10,400",Scotland,No,NA,NA,
+Female,51,Married,No Qualification,English,White,"2,600 to 5,200",Scotland,Yes,20,20,Packets
+Male,31,Married,Degree,Scottish,White,"10,400 to 15,600",Scotland,No,NA,NA,
