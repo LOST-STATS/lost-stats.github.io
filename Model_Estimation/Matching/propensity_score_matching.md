@@ -7,6 +7,8 @@ nav_order: 1
 mathjax: true ## Switch to false if this page has no equations or other math rendering.
 ---
 
+# Propensity Score Matching
+
 Propensity Score Matching (PSM) is a non-parametric method of estimating a treatment effect in situations where randomization is not possible. This method comes from [Rosenbaum & Rubin, 1983](https://www.jstor.org/stable/2335942?seq=1) and works by estimating a propensity score which is the predicted probability that someone received treatment based on the explanatory variables of interest. As long as all confounders are included in the propensity score estimation, this reduces bias in observational studies by controlling for variation in treatment that is driven by confounding, essentially attempting to replicate a randomized control trial.
 
 ## Inverse Probability Weighting 
