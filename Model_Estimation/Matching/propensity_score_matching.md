@@ -44,8 +44,8 @@ Once the workflow is finished, the treatment effect can be estimated using the t
 
 ## Keep in Mind
 
-- Propensity Score Matching is based on selection on observable characteristics. This assume that the potential outcome is independent of the treatment D conditional on the covariates, or $Y_i(1),Y_i(0)\bot|X_i$. This is known as the Conditional Independence Assumption.
-- Propensity Score Matching also requires us to make the Common Support or Overlap Assumption: $0<Pr(D_i = 1 | Xi = x)<1$. This assumption says that the probability that the treatment is equal to 1 for each level of x is between zero and one, or in other words there are both treated and untreated units for each level of x. 
+- Propensity Score Matching is based on selection on observable characteristics. This assume that the potential outcome is independent of the treatment D conditional on the covariates, or $$Y_i(1),Y_i(0)\bot|X_i$$. This is known as the Conditional Independence Assumption.
+- Propensity Score Matching also requires us to make the Common Support or Overlap Assumption: $$0<Pr(D_i = 1 | Xi = x)<1$$. This assumption says that the probability that the treatment is equal to 1 for each level of x is between zero and one, or in other words there are both treated and untreated units for each level of x. 
 - Treatment effect estimation will produce incorrcect standard errors unless they are specifically tailored for matching results, since they will not account for noise in the matching process. Use software designed for treatment effect estimates with matching. Or, for inverse probability weighting, you can bootstrap the entire procedure (from matching to estimation) and produce standard errors that way.
 
 # Implementations
