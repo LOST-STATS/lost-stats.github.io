@@ -2742,52 +2742,52 @@
     "relUrl": "/Model_Estimation/GLS/probit_model.html"
   },"457": {
     "doc": "Propensity Score Matching",
+    "title": "Propensity Score Matching",
+    "content": "Propensity Score Matching (PSM) is a non-parametric method of estimating a treatment effect in situations where randomization is not possible. This method comes from Rosenbaum &amp; Rubin, 1983 and works by estimating a propensity score which is the predicted probability that someone received treatment based on the explanatory variables of interest. As long as all confounders are included in the propensity score estimation, this reduces bias in observational studies by controlling for variation in treatment that is driven by confounding, essentially attempting to replicate a randomized control trial. ",
+    "url": "/Model_Estimation/Matching/propensity_score_matching.html",
+    "relUrl": "/Model_Estimation/Matching/propensity_score_matching.html"
+  },"458": {
+    "doc": "Propensity Score Matching",
     "title": "Inverse Probability Weighting",
     "content": "The recommendation of the current literature, by King and Nielsen 2019, is that propensity scores should be used with inverse probability weighting (IPW) rather than matching. With this in mind, there will be examples of how to implement IPWs first followed by the process for implementing a matching method. ",
     "url": "/Model_Estimation/Matching/propensity_score_matching.html#inverse-probability-weighting",
     "relUrl": "/Model_Estimation/Matching/propensity_score_matching.html#inverse-probability-weighting"
-  },"458": {
+  },"459": {
     "doc": "Propensity Score Matching",
     "title": "Workflow for Inverse Probability Weighting",
     "content": ". | Run a logistic regression where the outcome variable is a binary indicator for whether or not someone received the treatment, and gather the predicted value of the propensity score. The explanatory variables in this case are the covariates that we might reasonably believe influence treatment | Filter out observations in our data that are not inside the range of our propensity scores, or that have extremely high or low values. | Create the inverse probability weights | Run a regression using the IPWs | . ",
     "url": "/Model_Estimation/Matching/propensity_score_matching.html#workflow-for-inverse-probability-weighting",
     "relUrl": "/Model_Estimation/Matching/propensity_score_matching.html#workflow-for-inverse-probability-weighting"
-  },"459": {
+  },"460": {
     "doc": "Propensity Score Matching",
     "title": "Workflow for Matching",
     "content": ". | The same as step one from the IPW section. | Match those that received treatment with those that did not based on propensity score. There are a number of different ways to perform this matching including, but not limited to : | . | Nearest neighbor matching | Exact matching | Stratification matching | . In this example we will focus on nearest neighor matching. ",
     "url": "/Model_Estimation/Matching/propensity_score_matching.html#workflow-for-matching",
     "relUrl": "/Model_Estimation/Matching/propensity_score_matching.html#workflow-for-matching"
-  },"460": {
+  },"461": {
     "doc": "Propensity Score Matching",
     "title": "Checking Balance",
     "content": "Unlike methods like Entropy Balancing and Coarsened Exact Matching, propensity score approaches do not ensure that the covariates are balanced between the treated and control groups. It is a good idea to check whether decent balance has been achieved, and if it hasn’t, go back and modify the model, perhaps adding more matching variables or allowing polynomial terms in the logistic regression, until there is acceptable balance. | Check the balance of the matched sample. That is, see whether the averages (and perhaps variances and other summary statistics) of the covariates are similar in the matched/weighted treated and control groups. | In the case of inverse probability weighting, also check whether the post-weighting propensity score distributions are similar in the treated and control groups. | . Once the workflow is finished, the treatment effect can be estimated using the treated and matched sample with matching, or using the weighted sample with inverse probability weighting. ",
     "url": "/Model_Estimation/Matching/propensity_score_matching.html#checking-balance",
     "relUrl": "/Model_Estimation/Matching/propensity_score_matching.html#checking-balance"
-  },"461": {
+  },"462": {
     "doc": "Propensity Score Matching",
     "title": "Keep in Mind",
     "content": ". | Propensity Score Matching is based on selection on observable characteristics. This assume that the potential outcome is independent of the treatment D conditional on the covariates, or $Y_i(1),Y_i(0)\\bot | X_i$. This is known as the Conditional Independence Assumption. | . | | Propensity Score Matching also requires us to make the Common Support or Overlap Assumption: $0&lt;Pr(D_i = 1 | Xi = x)&lt;1$. This assumption says that the probability that the treatment is equal to 1 for each level of x is between zero and one, or in other words there are both treated and untreated units for each level of x. | . | Treatment effect estimation will produce incorrcect standard errors unless they are specifically tailored for matching results, since they will not account for noise in the matching process. Use software designed for treatment effect estimates with matching. Or, for inverse probability weighting, you can bootstrap the entire procedure (from matching to estimation) and produce standard errors that way. | . ",
     "url": "/Model_Estimation/Matching/propensity_score_matching.html#keep-in-mind",
     "relUrl": "/Model_Estimation/Matching/propensity_score_matching.html#keep-in-mind"
-  },"462": {
+  },"463": {
     "doc": "Propensity Score Matching",
     "title": "Implementations",
     "content": " ",
     "url": "/Model_Estimation/Matching/propensity_score_matching.html#implementations",
     "relUrl": "/Model_Estimation/Matching/propensity_score_matching.html#implementations"
-  },"463": {
+  },"464": {
     "doc": "Propensity Score Matching",
     "title": "R",
     "content": "The matching implementation will use the MatchIt package. A great place to find more information about the MatchIt package is on the package’s github site or CRAN Page. The inverse probability implementation uses the causalweight package. Here is a handy link to get more information about the causalweight package which is an alternative way of creating inverse probability weights, courtesy of Hugo Bodory and Martin Huber. Inverse Probability Weights in R . Data comes from OpenIntro.org . # First follow basic workflow without causalweights package library(pacman) p_load(tidyverse, causalweight) #Load data on smoking in the United Kingdom. smoking = read_csv(\"https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Model_Estimation/Matching/Data/smoking.csv\") #Turn smoking and married into numeric variables smoking = smoking %&gt;% mutate(smoke = 1*(smoke == \"Yes\"), married = 1*(marital_status == \"Married\")) # Pull out the variables # Outcome Y = smoking %&gt;% pull(smoke) # Treatment D &lt;- smoking %&gt;% pull(smoke) # Matching variables X &lt;- model.matrix(~-1+gender+age+marital_status+ethnicity+region, data = smoking) # Note this estimats the propensity score for us, trims propensity # scores based on extreme values, # and then produces appropriate bootstrapped standard errors IPW &lt;- treatweight(Y, D, X, trim = .001, logit = TRUE) # Estimate and SE IPW$effect IPW$se . Matching in R . ##load the packages and data we need. library(pacman) p_load(tidyverse, MatchIt) smoking = read_csv(\"https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Model_Estimation/Matching/Data/smoking.csv\") smoking = smoking %&gt;% mutate(smoke = 1*(smoke == \"Yes\")) ##Step One: Run the logistic regression. ps_model = glm(smoke ~ gender+age+marital_status+ethnicity+region, data=smoking) ##Step Two: Match on propensity score. #Does not apply in this situation, but need to make sure there are no missing values in the covariates we are choosing. #In order to match use the matchit command, passing the function a formula, the data to use and the method, in this case, nearest neighor estimation. Match = matchit(smoke ~ gender+age+marital_status+ethnicity+region, method = \"nearest\", data =smoking) ##Step Three: Check for Balance. summary(match) ##Create a data frame from matches using the match.data function. match_data = match.data(match) #Check the dimensions. dim(match_data) ##Step Four: Conduct Analysis using the new sample. ##Turn marital status into a factor variable so that we can use it in our regression match_data = match_data %&gt;% mutate(marital_status = as.factor(marital_status)) ##We can now get the treatment effect of smoking on gross income with and without controls # Note these standard errors will be incorrect, see Caliendo and Kopeinig (2008) for fixes # https://onlinelibrary.wiley.com/doi/full/10.1111/j.1467-6419.2007.00527.x lm_nocontrols = lm(marital_status ~ smoke, data= match_data) #With controls, standard errors also wrong here lm_controls =lm(marital_status ~ smoke+age+gender+ethnicity+marital_status, data=match_data) . ",
     "url": "/Model_Estimation/Matching/propensity_score_matching.html#r",
     "relUrl": "/Model_Estimation/Matching/propensity_score_matching.html#r"
-  },"464": {
-    "doc": "Propensity Score Matching",
-    "title": "Propensity Score Matching",
-    "content": "Propensity Score Matching (PSM) is a non-parametric method of estimating a treatment effect in situations where randomization is not possible. This method comes from Rosenbaum &amp; Rubin, 1983 and works by estimating a propensity score which is the predicted probability that someone received treatment based on the explanatory variables of interest. As long as all confounders are included in the propensity score estimation, this reduces bias in observational studies by controlling for variation in treatment that is driven by confounding, essentially attempting to replicate a randomized control trial. ",
-    "url": "/Model_Estimation/Matching/propensity_score_matching.html",
-    "relUrl": "/Model_Estimation/Matching/propensity_score_matching.html"
   },"465": {
     "doc": "Quantile Regression",
     "title": "Quantile Regression",
