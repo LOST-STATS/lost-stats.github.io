@@ -222,26 +222,15 @@
           <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
       </h2>
 <ul>
-  <li>
-    <div class="table-wrapper"><table>
-      <tbody>
-        <tr>
-          <td>Propensity Score Matching is based on selection on observable characteristics. This assume that the potential outcome is independent of the treatment D conditional on the covariates, or $$Y_i(1),Y_i(0)\bot</td>
-          <td>X_i$$. This is known as the Conditional Independence Assumption.</td>
-        </tr>
-      </tbody>
-    </table></div>
-  </li>
-  <li>
-    <div class="table-wrapper"><table>
-      <tbody>
-        <tr>
-          <td>Propensity Score Matching also requires us to make the Common Support or Overlap Assumption: $$0&lt;Pr(D_i = 1</td>
-          <td>Xi = x)&lt;1$$. This assumption says that the probability that the treatment is equal to 1 for each level of x is between zero and one, or in other words there are both treated and untreated units for each level of x.</td>
-        </tr>
-      </tbody>
-    </table></div>
-  </li>
+  <li>Propensity Score Matching is based on selection on observable characteristics. This assume that the potential outcome is independent of the treatment D conditional on the covariates, or the Conditional Independence Assumption:</li>
+</ul>
+\[Y_i(1),Y_i(0)\bot|X_i\]
+<ul>
+  <li>Propensity Score Matching also requires us to make the Common Support or Overlap Assumption:</li>
+</ul>
+\[0&lt;Pr(D_i = 1 | Xi = x)&lt;1\]
+<p>The overlap assumption says that the probability that the treatment is equal to 1 for each level of x is between zero and one, or in other words there are both treated and untreated units for each level of x.</p>
+<ul>
   <li>Treatment effect estimation will produce incorrcect standard errors unless they are specifically tailored for matching results, since they will not account for noise in the matching process. Use software designed for treatment effect estimates with matching. Or, for inverse probability weighting, you can bootstrap the entire procedure (from matching to estimation) and produce standard errors that way.</li>
 </ul>
       <h1 id="implementations">
