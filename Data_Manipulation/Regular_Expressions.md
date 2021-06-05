@@ -15,6 +15,10 @@ Regular expressions (AKA "Regex") can be thought of as a pattern of characters t
 - When using regular expressions everything is essentially a character, and we are writing patterns to match a specific sequence of characters.
 - Some special characters in R cannot be directly coded in a string (i.e `'`), so we have to "escape" the single quote in the pattern, by preceding it with `\`
 
+## Also Consider
+
+- [RegExplain](https://www.garrickadenbuie.com/project/regexplain/) is an RStudio addin for regular expressions. Regular expressions can be tricky at times, and RegExplain can help make it easier. RegExplain will allow you to build your regular expressions interactively.
+
 # Implementations
 
 ## R
@@ -24,6 +28,10 @@ There are two ways to perform this technique in R.
 First, we can write the regular expression using base R functions. Additional [Resources](https://github.com/STAT545-UBC/STAT545-UBC-original-website/blob/master/block022_regular-expression.md) on Regex, string functions, and syntax. We can use the grep() function to identify filenames, for example. If we set the argument ``` value = TRUE ```, ``` grep() ``` returns the matches, while ``` value = FALSE ``` returns their indices. ``` grepl() ``` is a similar function but returns a logical vector. Including ``` ignore.case = TRUE ``` ignores case sensitivity.  
 
 ```r
+#load packages
+
+library(tidyverse)
+
 files <- list.files()
 head(files)
 
