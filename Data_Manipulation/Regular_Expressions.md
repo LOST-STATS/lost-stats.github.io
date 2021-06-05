@@ -23,12 +23,47 @@ There are two ways to perform this technique in R.
 
 First, we can write the regular expression using base R functions:
 
-```identifier for language type, see this page: https://github.com/jmm/gfm-lang-ids/wiki/GitHub-Flavored-Markdown-%28GFM%29-language-IDs
-Commented code demonstrating the technique
+```r
+
+
+
 ```
 
 Second, We can write the regular expression using the stringr package, which is supposed to be easier to use and remember :
 
-```identifier for language type, see this page: https://github.com/jmm/gfm-lang-ids/wiki/GitHub-Flavored-Markdown-%28GFM%29-language-IDs
-Commented code demonstrating the technique
+```r
+#load packages
+
+library(tidyverse)
+library(stringr)
+
+#create a string
+
+phone_numbers <- c(
+  "(541) 471 3918",
+  "(603)281-0308",
+  "Home: 425-707-7220",
+  "(814)-462-8074",
+  "9704443106",
+  "I don't have a phone."
+  )
+  
+#write regex
+
+pattern <- '.*(\\d{3}).*(\\d{3}).*(\\d{4})'
+
+#use stringer::str_match()
+
+str_match(phone_numbers, pattern)
+
+```
+
+```r
+favorites <- c(
+  "My favorite is 44 or 42",
+  "I like 13 and 17",
+  "Umm, 23 and 21"
+)
+  str_match_all(favorites, "\\d+")
+
 ```
