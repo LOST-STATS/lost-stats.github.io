@@ -21,18 +21,20 @@ Regular expressions (AKA "Regex") can be thought of as a pattern of characters t
 
 There are two ways to perform this technique in R.
 
-First, we can write the regular expression using base R functions. Additional resources on Regex, string functions, and syntax [Regex](https://github.com/STAT545-UBC/STAT545-UBC-original-website/blob/master/block022_regular-expression.md). We can use the grep() function to identify filenames, for example. If we set the argument ``` value = TRUE ```, ``` grep() ``` returns the matches, while ``` value = FALSE ``` returns their indices. ``` grepl() ``` is a similar function but returns a logical vector 
+First, we can write the regular expression using base R functions. Additional [Resources](https://github.com/STAT545-UBC/STAT545-UBC-original-website/blob/master/block022_regular-expression.md) on Regex, string functions, and syntax. We can use the grep() function to identify filenames, for example. If we set the argument ``` value = TRUE ```, ``` grep() ``` returns the matches, while ``` value = FALSE ``` returns their indices. ``` grepl() ``` is a similar function but returns a logical vector. Including ``` ignore.case = TRUE ``` ignores case sensitivity.  
 
 ```r
-
 files <- list.files()
 head(files)
 
 grep("Star", files, value = TRUE)
 
+grep("Star", files, value = TRUE, ignore.case = TRUE)
+
+grepl("Star", files)
 ```
 
-Second, We can write the regular expression using the stringr package, which is said to be easier to use and remember. We can write a regular expression and use the stringr::str_match() function to extract all the phone numbers from the string. Some useful functions from the [stringr](https://github.com/hadley/stringr) package. Additional resources on Regex, string functions, and syntax [Regex](https://github.com/STAT545-UBC/STAT545-UBC-original-website/blob/master/block022_regular-expression.md).
+Second, We can write the regular expression using the stringr package, which is said to be easier to use and remember. We can write a regular expression and use the stringr::str_match() function to extract all the phone numbers from the string. Some useful functions from the [stringr](https://github.com/hadley/stringr) package. Additional [Resources](https://github.com/STAT545-UBC/STAT545-UBC-original-website/blob/master/block022_regular-expression.md) on Regex, string functions, and syntax.
 
 ```r
 #load packages
@@ -64,7 +66,6 @@ str_match(phone_numbers, pattern)
 Similarly, we can search for all the numbers in a string using the stringr::str_match_all() function. 
 
 ```r
-
 favorites <- c(
   "My favorite is 44 or 42",
   "I like 13 and 17",
