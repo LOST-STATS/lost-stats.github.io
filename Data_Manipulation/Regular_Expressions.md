@@ -8,14 +8,7 @@ mathjax: false ## Switch to false if this page has no equations or other math re
 
 # Introduction
 
-
-Remember that you can use inline math, e.g. $$x + y$$. In general, you should render variables in math mode ($$X$$, $$Y$$, etc.)
-
-You can also render math in display mode:
-
-$$
-\int_a^b f(x)dx
-$$
+Regular expressions (AKA "Regex") can be thought of as a pattern of characters that describes a specific set of strings with a common structure. String functions can take a character variable and a regular expression, and show you how they match. Regex is useful for extracting information from text such as documents, spreadsheets, log files, and code.  They can be used for string matching / replacing, and are supported across several programming languages such as Python, R, Stata, SQL, and more.
 
 ## Keep in Mind
 
