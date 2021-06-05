@@ -14,6 +14,7 @@ Regular expressions (AKA "Regex") can be thought of as a pattern of characters t
 
 - When using regular expressions everything is essentially a character, and we are writing patterns to match a specific sequence of characters.
 - Some special characters in R cannot be directly coded in a string (i.e `'`), so we have to "escape" the single quote in the pattern, by preceding it with `\`
+- Most patterns use normal ASCII, which includes letters, digits, punctuation and other symbols like %#$@!, but unicode characters can be used to match any type of international text.
 
 ## Also Consider
 
