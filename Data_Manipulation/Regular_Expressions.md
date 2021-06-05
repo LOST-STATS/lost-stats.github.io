@@ -3,12 +3,11 @@ title: Regular Expressions
 parent: Data Manipulation
 has_children: false
 nav_order: 1
-mathjax: true ## Switch to false if this page has no equations or other math rendering.
+mathjax: false ## Switch to false if this page has no equations or other math rendering.
 ---
 
-# Name of Page
+# Introduction
 
-INTRODUCTION SECTION
 
 Remember that you can use inline math, e.g. $$x + y$$. In general, you should render variables in math mode ($$X$$, $$Y$$, etc.)
 
