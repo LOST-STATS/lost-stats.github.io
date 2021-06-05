@@ -17,13 +17,6 @@ Regular expressions (AKA "Regex") can be thought of as a pattern of characters t
 
 # Implementations
 
-## NAME OF LANGUAGE/SOFTWARE 1
-
-```identifier for language type, see this page: https://github.com/jmm/gfm-lang-ids/wiki/GitHub-Flavored-Markdown-%28GFM%29-language-IDs
-Commented code demonstrating the technique
-```
-
-
 ## R
 
 There are two ways to perform this technique in R.
