@@ -33,14 +33,16 @@ First, we can write a regular expression using the base R functions. Additional 
 
 library(tidyverse)
 
-files <- list.files()
-head(files)
+#create a string 
 
-grep("Star", files, value = TRUE)
+(string <- c("abcd", "cdab", "cabd", "c abd")) 
 
-grep("Star", files, value = TRUE, ignore.case = TRUE)
+head(string)
 
-grepl("Star", files)
+grep("^ab", string2, value = TRUE)
+
+grep("\\bab", string2, value = TRUE)
+
 ```
 
 Second, We can write the regular expression using the stringr package, which is said to be easier to use and remember. We can write a regular expression and use the stringr::str_match() function to extract all the phone numbers from the string. Some useful functions from the [stringr](https://github.com/hadley/stringr) package. Additional [Resources](https://github.com/STAT545-UBC/STAT545-UBC-original-website/blob/master/block022_regular-expression.md) on Regex, string functions, and syntax.
@@ -53,34 +55,15 @@ library(stringr)
 
 #create a string
 
-phone_numbers <- c(
-  "(541) 471 3918",
-  "(603)281-0308",
-  "Home: 425-707-7220",
-  "(814)-462-8074",
-  "9704443106",
-  "I don't have a phone."
-  )
+(string <- c("abcd", "cdab", "cabd", "c abd")) 
+
+head(string)
   
 #write regex
 
-pattern <- '.*(\\d{3}).*(\\d{3}).*(\\d{4})'
+str_match(string2, "^ab.*")
 
-#use stringr::str_match()
-
-str_match(phone_numbers, pattern)
+str_match(string2, ".*ab\\b")
 
 ```
 
-Similarly, we can search for all the numbers in a string using the stringr::str_match_all() function. 
-
-```r
-favorites <- c(
-  "My favorite is 44 or 42",
-  "I like 13 and 17",
-  "Umm, 23 and 21"
-)
-
-str_match_all(favorites, "\\d+")
-
-```
