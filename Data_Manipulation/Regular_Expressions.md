@@ -76,13 +76,16 @@ grep("^ab", string, value = TRUE)
 
 ```
 
-```grepl()``` will tell us if there is a match to the pattern. 
+```grepl()``` will tell us if there is a match to the pattern. Functions like ```sub() and gsub()``` replace the matches with new text. There's plenty of subexpressions so I will show a few.
 
 ```r
 string <- c("what", "why", "you", "blazers", "fire", "hello") # create string
 
 # here we get TRUE/FALSE depending on if the text has any of the vowels in the range "[aeiou]"    
 grepl("[aeiou]", string)
+
+#we can use sub() and gsub() to replace text
+sub("[aeiou]", "!", string)
 ```
 
 Second, We can write the regular expression using the stringr package, which is said to be easier to use and remember. We can write a regular expression and use the stringr::str_match() function to extract all the phone numbers from the string. Some useful functions from the [stringr](https://github.com/hadley/stringr) package. Additional [Resources](https://github.com/STAT545-UBC/STAT545-UBC-original-website/blob/master/block022_regular-expression.md) on Regex, string functions, and syntax.
@@ -107,10 +110,13 @@ str_match(string, "^ab.*")
 
 ```
 
-We can use the ```str_detect()``` function to tell us if there's a match to the pattern similar to the ```grepl()``` function
+There's several different subexpressions we can use like the ```str_detect()``` function to tell us if there's a match to the pattern similar to the ```grepl()``` function, or ```str_replace()``` which replaces the matches with new text. I’ll show a few different subexpressions.
 
 ```r
 string <- c("what", "why", "you", "blazers", "fire", "hello") # create string
 
-str_detect(string, "[aeiou]")
+str_detect(string, "[aeiou]") #tells us T/F if the word contains any of the vowels in the given range.
+
+str_replace(x, "[aeiou]", "!") #we can replace any vowels in the specified range with a ```!``` in their respective words
 ```
+
