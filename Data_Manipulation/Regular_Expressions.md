@@ -8,17 +8,45 @@ mathjax: false ## Switch to false if this page has no equations or other math re
 
 # Introduction
 
-Regular expressions (AKA "Regex") can be thought of as a pattern of characters that describes a specific set of strings with a common structure. String functions can take a character variable and a regular expression, and show you how they match. Regex is useful for extracting information from text such as documents, spreadsheets, log files, and code. Regex utilizes metacharacters that have specific meaning: `$ * + . ? [ ] ^ { } | ( ) \` to find what we are looking for within the string. They can be used for string matching / replacing, and are supported across several programming languages such as Python, R, Stata, SQL, and more.
+Regular expressions (AKA "Regex") can be thought of as a pattern of characters that describes a specific set of strings with a common structure. String functions can take a character variable and a regular expression, and show you how they match. Regex is useful for extracting information from text such as documents, spreadsheets, log files, and code. Regex utilizes metacharacters that have specific meaning: `$ * + . ? [ ] ^ { } | ( ) \` to find what we are looking for within the string. They can be used for string matching / replacing, and are supported across several programming languages such as Python, R, Stata, SQL, and more. The metacharacters can be broken up into a few different groups based on their meaning. 
+
+- Specify the amount of repetitions of the pattern
+  - `*`: matches at least 0 times.   
+  - `+`: matches at least 1 times.     
+  - `?`: matches at most 1 times.    
+  - `{n}`: matches exactly n times.    
+  - `{n,}`: matches at least n times.    
+  - `{n,m}`: matches between n and m times.
+
+- Specify where the match will be located in the string or word 
+  - `^`: matches the start of the string.   
+  - `$`: matches the end of the string.   
+  - `\b`: matches the empty string at either edge of a _word_. Don't confuse it with `^ $` which marks the edge of a _string_.
+  - `\B`: matches the empty string provided it is not at an edge of a word.
+
+- Operators 
+  - `.`: matches any single character.
+  - `[...]`: a character list, matches any one of the characters inside the square brackets. 
+  - `[^...]`: an inverted character list. Matches any characters __except__ those inside the square brackets.  
+  - `\`: suppress the special meaning of metacharacters in regular expression. Because `\` itself needs to be escaped in R, we must escape this metacharacter with a double backslash like `\\$`.   
+  - `|`: an "or" operator. Matches patterns on either side of the `|`.  
+  - `(...)`: grouping in regular expressions. 
+  
+- Specify entire classes of characters like numbers or letters
+
+  - Two Types: One uses  `[:` and `:]` around a predefined name, and the other uses `\` and a special character
+  
+  - `[:digit:]` or `\d`: digits, equivalent to `[0-9]`.  
+  - `\D`: non-digits, equivalent to `[^0-9]`.  
+  - `[:lower:]`: lower-case letters, equivalent to `[a-z]`.  
+  - `[:upper:]`: upper-case letters, equivalent to `[A-Z]`.
+  - `[:punct:]`: punctuation characters.
+  - `[:alnum:]`: alphanumeric characters.
 
 ## Keep in Mind
 
 - When using regular expressions everything is essentially a character, and we are writing patterns to match a specific sequence of characters.
-- Some special characters in R cannot be directly coded in a string (i.e `'`), so we have to "escape" the single quote in the pattern, by preceding it with `\` .
 - Most patterns use normal ASCII, which includes letters, digits, punctuation and other symbols like %#$@!, but unicode characters can be used to match any type of international text.
-
-## Also Consider
-
-- [RegExplain](https://www.garrickadenbuie.com/project/regexplain/) is an RStudio addin for regular expressions. Regular expressions can be tricky at times, and RegExplain can help make it easier. RegExplain will allow you to build your regular expressions interactively.
 
 # Implementations
 
@@ -26,7 +54,7 @@ Regular expressions (AKA "Regex") can be thought of as a pattern of characters t
 
 In R, we can write our Regular expressions using the base R functions or with the stringr package functions.
 
-First, we can write a regular expression using the base R functions. Additional [Resources](https://github.com/STAT545-UBC/STAT545-UBC-original-website/blob/master/block022_regular-expression.md) on Regex, string functions, and syntax. We can use the grep() function to identify filenames, for example. If we set the argument ``` value = TRUE ```, ``` grep() ``` returns the matches, while ``` value = FALSE ``` returns their indices. ``` grepl() ``` is a similar function but returns a logical vector. Including ``` ignore.case = TRUE ``` ignores case sensitivity. 
+First, we can write a regular expression using the base R functions. Additional [Resources](https://github.com/STAT545-UBC/STAT545-UBC-original-website/blob/master/block022_regular-expression.md) on Regex, string functions, and syntax. We can use the grep() function to identify filenames, for example. If we set the argument ``` value = TRUE ```, ``` grep() ``` returns the matches, while ``` value = FALSE ``` returns their indices. ``` grepl() ``` is a similar function but returns a logical vector. Including ``` ignore.case = TRUE ``` ignores case sensitivity. Some special characters in R cannot be directly coded in a string (i.e `'`), so we have to "escape" the single quote in the pattern, by preceding it with `\` .
 
 For example, if we want to search for all words that started with the characters "ab" we would use the character ``` ^ ``` to specify we want words that start with "ab".   
 
