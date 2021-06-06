@@ -52,7 +52,7 @@ Regular expressions (AKA "Regex") can be thought of as a pattern of characters t
 
 ## R
 
-In R, we can write our Regular expressions using the base R functions or with the stringr package functions.
+In R, we can write our Regular expressions using the base R functions or with the stringr package functions. [RegExplain](https://www.garrickadenbuie.com/project/regexplain/) is an RStudio addin for regular expressions. Regular expressions can be tricky at times, and RegExplain can help make it easier. RegExplain will allow you to build your regular expressions interactively.
 
 First, we can write a regular expression using the base R functions. Additional [Resources](https://github.com/STAT545-UBC/STAT545-UBC-original-website/blob/master/block022_regular-expression.md) on Regex, string functions, and syntax. We can use the grep() function to identify filenames, for example. If we set the argument ``` value = TRUE ```, ``` grep() ``` returns the matches, while ``` value = FALSE ``` returns their indices. ``` grepl() ``` is a similar function but returns a logical vector. Including ``` ignore.case = TRUE ``` ignores case sensitivity. Some special characters in R cannot be directly coded in a string (i.e `'`), so we have to "escape" the single quote in the pattern, by preceding it with `\` .
 
@@ -74,6 +74,15 @@ head(string)
 grep("^ab", string, value = TRUE)
 
 
+```
+
+```grepl()``` will tell us if there is a match to the pattern. 
+
+```r
+string <- c("what", "why", "you", "blazers", "fire", "hello") # create string
+
+# here we get TRUE/FALSE depending on if the text has any of the vowels in the range "[aeiou]"    
+grepl("[aeiou]", string)
 ```
 
 Second, We can write the regular expression using the stringr package, which is said to be easier to use and remember. We can write a regular expression and use the stringr::str_match() function to extract all the phone numbers from the string. Some useful functions from the [stringr](https://github.com/hadley/stringr) package. Additional [Resources](https://github.com/STAT545-UBC/STAT545-UBC-original-website/blob/master/block022_regular-expression.md) on Regex, string functions, and syntax.
@@ -98,3 +107,10 @@ str_match(string, "^ab.*")
 
 ```
 
+We can use the ```str_detect()``` function to tell us if there's a match to the pattern similar to the ```grepl()``` function
+
+```r
+string <- c("what", "why", "you", "blazers", "fire", "hello") # create string
+
+str_detect(string, "[aeiou]")
+```
