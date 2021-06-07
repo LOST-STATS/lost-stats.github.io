@@ -53,11 +53,11 @@ which leads to $$\Delta^{d} y_{t}$$ being an $$ARMA(p,q)$$ process.
 
 ## Also Consider
 
-  - AR Models ([LOST: AR models]({{ "/Time\_Series/AR-models.html" | relative_url }}))
-  - MA Models ([LOST: MA models]({{ "/Time\_Series/MA-Model.html" | relative_url }}))
-  - ARMA Models ([LOST: ARMA models]({{"/Time\_Series/ARMA-models.html" | relative_url }}))
+  - AR Models ([LOST: AR models]({{ "/Time_Series/AR-models.html" | relative_url }}))
+  - MA Models ([LOST: MA models]({{ "/Time_Series/MA_Model.html" | relative_url }}))
+  - ARMA Models ([LOST: ARMA models]({{"/Time_Series/ARMA-models.html" | relative_url }}))
   - Seasonal ARIMA models, if you suspect the time series data you are trying to fit with is subject to seasonality
-  - If you are working with [State-Space models]({{"/Time\_Series/State\_Space\_Models.html" | relative_url }}), you may be interested in trend-cycle decomposition with ARIMA. This involves breaking down the ARIMA into a "trend" component, which encapsulates permanent effects (stochastic and deterministic), and a "cyclical" effect, which encapsulates transitory, non-permanent variation in the model. One extension of this is the Unobserved Components ARIMA, or UC-ARIMA
+  - If you are working with [State-Space models]({{"/Time_Series/State_Space_Models.html" | relative_url }}), you may be interested in trend-cycle decomposition with ARIMA. This involves breaking down the ARIMA into a "trend" component, which encapsulates permanent effects (stochastic and deterministic), and a "cyclical" effect, which encapsulates transitory, non-permanent variation in the model. One extension of this is the Unobserved Components ARIMA, or UC-ARIMA
 
 # Implementations
 
