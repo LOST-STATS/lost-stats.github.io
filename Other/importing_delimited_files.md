@@ -14,10 +14,13 @@ Often, data is stored in [delimited files](https://en.wikipedia.org/wiki/Delimit
 
 - Sometimes delimiting characters also appear in strings in the data - this can cause your program to read the data improperly since it assumes that a new column is starting every time it sees that character. Good data stewards won't let this happen, but when it does happen it can be a real headache. Be on the lookout for that if your data seems to be reading in improperly. 
 - When starting out, it can be confusing to know that you are working with a CSV file because you can open CSVs in Excel and they look like normal spreadsheets. Because many software packages have different procedures for importing CSVs and Excel workbooks, the ability to open CSVs in Excel (and the fact that they often appear in your GUI with an Excel icon next to them because that is the default program used to open them) often leads users to want to use the import commands appropriate for Excel. Don't be caught up by this pitfall; the failsafe way to look at the extension connected with your file name. CSV files will have a .csv extension, while Excel files end in .xls or .xlsx
-- Other common delimiters include tabs (TSV) and pipes: |. 
+- Other common delimiters include tabs (TSV) and pipes: \|. 
+
+## Also Consider
+
 - Before doing this you will probably find it useful to [Set a Working Directory]({{ "/Other/set_a_working_directory.html" | relative_url }})
-
-
+- [Import a foreign data file]({{ "/Other/import_a_foreign_data_file.html" | relative_url }})
+- [Import a fixed-width data file]({{ "/Other/import_a_fixed_width_data_file.html" | relative_url }})
 
 # Implementations
 
