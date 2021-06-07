@@ -27,7 +27,7 @@ Then, the entropy balancing algorithm searches for a set of matching weights $w_
 
 - [Coarsened Exact Matching]({{ "/Model_Estimation/Matching/coarsened_exact_matching.html" | relative_url }})
 - [Propensity Score Matching]({{ "/Model_Estimation/Matching/propensity_score_matching.html" | relative_url }})
-- [Nearest-Neighbor Matching]({{ "/Model_Estimation/Matching/propensity_score_matching.html" | relative_url }})
+- [Nearest-Neighbor Distance Matching]({{ "/Model_Estimation/Matching/nearest_neighbor_matching.html" | relative_url }})
 
 # Implementations
 
