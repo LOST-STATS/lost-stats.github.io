@@ -1621,7 +1621,7 @@
   },"270": {
     "doc": "Entropy Balancing",
     "title": "Also Consider",
-    "content": ". | Coarsened Exact Matching | Propensity Score Matching | Nearest-Neighbor Matching | . ",
+    "content": ". | Coarsened Exact Matching | Propensity Score Matching | Nearest-Neighbor Distance Matching | . ",
     "url": "/Model_Estimation/Matching/entropy_balancing.html#also-consider",
     "relUrl": "/Model_Estimation/Matching/entropy_balancing.html#also-consider"
   },"271": {
