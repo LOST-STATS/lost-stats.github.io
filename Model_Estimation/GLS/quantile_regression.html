@@ -193,7 +193,7 @@
   <li>This method allows for the dependent variable to have any distributional form, however it cannot be a dummy variable and must be continuous.</li>
   <li>This method is robust to outliers, so there is no need to remove outlier observations.</li>
   <li>Either the intercept term or at least one predictor is required to run an analysis.</li>
-  <li><a href="https://en.wikipedia.org/wiki/Lasso_(statistics)">LASSO</a> regression cannot be used for feature selection in this framework due to it requiring OLS assumptions to be satisfied.</li>
+  <li><a href="/Machine_Learning/penalized_regression.html">LASSO</a> regression cannot be used for feature selection in this framework due to it requiring OLS assumptions to be satisfied.</li>
   <li>This method does not restrict the use of polynomial or interaction terms. A unique functional form can be specified.</li>
 </ul>
       <h2 id="also-consider">
@@ -201,7 +201,7 @@
       </h2>
 <ul>
   <li>While Quantile Regression can be useful in applications where OLS assumptions are not met, it can actually be used to detect heteroskedasticity. This makes is a useful tool to ensure this assumption is met for OLS.</li>
-  <li>Several different standard error calculations can be used with this method, however <a href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)">bootstrapped standard errors</a> are generally the best for complex modeling situations. <a href="https://en.wikipedia.org/wiki/Clustered_standard_errors">Clustered standard errors</a> are also possible by estimating a quantile regression with pooled OLS clustered errors.</li>
+  <li>Several different standard error calculations can be used with this method, however <a href="/Model_Estimation/Statistical_Inference/Nonstandard_Errors/bootstrap_se.html">bootstrapped standard errors</a> are generally the best for complex modeling situations. <a href="/Model_Estimation/Statistical_Inference/Nonstandard_Errors/clustered_se.html">Clustered standard errors</a> are also possible by estimating a quantile regression with pooled OLS clustered errors.</li>
 </ul>
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
