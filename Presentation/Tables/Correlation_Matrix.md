@@ -4,12 +4,11 @@ parent: Tables
 grand_parent: Presentation ## Optional for indexing
 has_children: false
 nav_order: 1
-mathjax: true ## Switch to false if this page has no equations or other math rendering.
 ---
 
 # Correlation Matrixes 
 
-A correlation matrix is a table used to present the results of correlation tests between multiple variables at a time. A correlation test is a statistical method used to define the correlation between two (and sometimes more) variables. The correlation coefficients from these tests are what a correlation matrix is composed of.
+A correlation matrix is a table used to present the results of correlation tests between multiple variables at a time. A correlation test is a statistical method used to define the correlation between two (and sometimes more) variables. The correlation coefficients from these tests are what a correlation matrix is composed of. They are often used as a method to summarize large amounts of data with the intention of identifying patterns of highly correlated variables. They can be a key component to checking the viability of other analyses.
 
 ## Keep in Mind
 
