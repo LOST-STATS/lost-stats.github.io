@@ -1,56 +1,49 @@
 ---
-title: Title of page
-parent: Category
+title: Serial Correlation
+parent: Time Series
 has_children: false
 nav_order: 1
 mathjax: true ## Switch to false if this page has no equations or other math rendering.
 ---
 
-# Name of Page
+# Serial Correlation/Autocorrelation  
 
-INTRODUCTION SECTION
-
-Remember that you can use inline math, e.g. $$x + y$$. In general, you should render variables in math mode ($$X$$, $$Y$$, etc.)
-
-You can also render math in display mode:
-
-$$
-\int_a^b f(x)dx
-$$
+Serial correlation, also known as autocorrelation, is the relationship between a variable and lagged versions of itself. Error terms from different time periods of a time series variable being correlated is what we call "serial correlation". Time series data that exhibits autocorrelation is easier to predict and forecast than data that does not.
 
 ## Keep in Mind
 
-- LIST OF IMPORTANT THINGS TO REMEMBER ABOUT USING THE TECHNIQUE
+- Remember that the data must be in time series format in order to be run through the autocorrelation functions, otherwise you will yield an error. 
 
 ## Also Consider
 
-- LIST OF OTHER TECHNIQUES THAT WILL COMMONLY BE USED ALONGSIDE THIS PAGE'S TECHNIQUE
-- (E.G. LINEAR REGRESSION LINKS TO ROBUST STANDARD ERRORS),
-- OR INSTEAD OF THIS TECHNIQUE
-- (E.G. PIE CHART LINKS TO A BAR PLOT AS AN ALTERNATIVE)
-- WITH EXPLANATION
-- INCLUDE LINKS TO OTHER LOST PAGES WITH THE FORMAT [Description]({{ "/Category/page.html" | relative_url }}). Categories include Data_Manipulation, Geo-Spatial, Machine_Learning, Model_Estimation, Presentation, Summary_Statistics, Time_Series, and Other, with subcategories at some points. Check the URL of the page you want to link to on [the published site](https://lost-stats.github.io/).
+[Creating Time Series Data]({{https://lost-stats.github.io/Time_Series/creating_time_series_dataset.html}})
 
 # Implementations
 
-## NAME OF LANGUAGE/SOFTWARE 1
+## R
 
-```identifier for language type, see this page: https://github.com/jmm/gfm-lang-ids/wiki/GitHub-Flavored-Markdown-%28GFM%29-language-IDs
-Commented code demonstrating the technique
+```{r}
+#load in data, pick a variable, and make sure it is in time series format
+
+gov <- read_csv("Government Revenue and Expenditures.csv")
+
+ts_def<- ts(gov$def, start=c(1959), end=c(2019), frequency = 1)
 ```
 
-## NAME OF LANGUAGE/SOFTWARE 2 WHICH HAS MULTIPLE APPROACHES
+```{r}
+#now run the time series data through the autocorrelation function
 
-There are two ways to perform this technique in language/software 2.
+#"acf()" works just fine for this next step
 
-First, explanation of what is different about the first way:
+acf_def <- acf(ts_def, plot=TRUE, main="Defense Expenditures and Investment, Autocorrelation")
 
-```identifier for language type, see this page: https://github.com/jmm/gfm-lang-ids/wiki/GitHub-Flavored-Markdown-%28GFM%29-language-IDs
-Commented code demonstrating the technique
+#to plot the estimated values given in the plot, set "plot=FALSE"
+
+acf_def <- acf(ts_def, plot=FALSE, main="Defense Expenditures and Investment, Autocorrelation")
 ```
 
-Second, explanation of what is different about the second way:
-
-```identifier for language type, see this page: https://github.com/jmm/gfm-lang-ids/wiki/GitHub-Flavored-Markdown-%28GFM%29-language-IDs
-Commented code demonstrating the technique
 ```
+
+# References 
+(Further reading on serial correlation)[https://www3.nd.edu/~rwilliam/stats2/l26.pdf]
+
