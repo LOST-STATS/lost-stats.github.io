@@ -21,7 +21,11 @@ Serial correlation, also known as autocorrelation, is the relationship between a
 # Implementations
 
 ## R
-
+```{r}
+#load necessary packages
+library(pacman)
+p_load(tidyverse, tseries)
+```
 ```{r}
 #load in data, pick a variable, and make sure it is in time series format
 
