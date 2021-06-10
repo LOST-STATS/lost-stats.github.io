@@ -9,7 +9,7 @@ mathjax: no
 
 ## Introduction
 
-Graph themes help enhance an already informative line, scatter, bar, or boxplots. With the implementation of beautiful data visualization, graphs become aesthetically pleasing; with improper implementation of data visualization, graphs become muddled and confusing
+Graph themes help enhance an already informative line, scatter, bar, or boxplot. With the implementation of useful themes, graphs become aesthetically pleasing; with improper implementation of themes, graphs become muddled and confusing
 
 ## Keep in Mind
 
