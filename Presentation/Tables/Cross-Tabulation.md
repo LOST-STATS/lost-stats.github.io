@@ -9,13 +9,13 @@ mathjax: false ## Switch to false if this page has no equations or other math re
 
 # Cross Tabulations
 
-While more complex models are incredibly important, it is just as useful to quickly understand and present a basic picture of your data. This is where cross-tabulations come in handy, they simplify the data by creating subgroups which can be interpreted at a smaller and more granular scale.
+A cross-tabulation is a table that shows the relationship between two or more variables. While more complex models are incredibly important, it is just as useful to quickly understand and present a basic picture of your data. This is where cross-tabulations come in handy, they simplify the data by creating subgroups which can be interpreted at a smaller and more granular scale.
 
-A cross-tabulation is one of the most rudimentary forms of analysis there is. When presenting data for initial qualitative and quantitative analysis it is important to show how distribution of responses and distribution of groups work in the dataset. This can allow you to immediately see where deeper analysis can be used and the patterns within the data. They are specifically useful in both market research and population surveys.
+A cross-tabulation is one of the more rudimentary forms of analysis there is. When presenting data for initial qualitative and quantitative analysis it is important to show how distribution of responses and distribution of groups work in the dataset. This can allow you to immediately see where deeper analysis can be used and the patterns within the data. They are specifically useful in both market research and population surveys.
 
 ## Keep in Mind
 
-- For percentages tabyl will default to a large number of significant figures. It is important to remember format it to the desired number of decimals.
+- For percentages, tabyl will default to a large number of significant figures. It is important to remember format it to the desired number of decimals.
 
 
 ## Also Consider
@@ -28,7 +28,7 @@ A cross-tabulation is one of the most rudimentary forms of analysis there is. Wh
 
 ## R
 
-There are many, many packages for creating cross tabulations in R. Here we will focus on one: tabyl, which is part of the janitor package, and is dplyr's version of the table() function. This command can be used in conjunction with the kableExtra package to quickly create pretty cross-tabulations which are report ready. 
+There are  many packages for creating cross tabulations in R. Here we will focus on one: tabyl, which is part of the janitor package, and is dplyr's version of the table() function. This command can be used to quickly create pretty cross-tabulations which are report ready. 
 
 
 
