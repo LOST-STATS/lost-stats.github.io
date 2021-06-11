@@ -81,7 +81,7 @@ This theme removes all gridlines, borders, and axes, leading to a very confusing
 
 These are very basic themes to use, but can clean up a graph in a pinch. However, by downloading the **ggthemes** package, graphs can be taken up a notch. 
 
-While most of the ***ggthemes** options are great, some really stand out. Three themes (*theme_economist*, *theme_fivethirtyeight*, and *theme_wsj*) all mimic the graph style of major media/news outlets. If you really want to sell your graph and look like mainstream media, here are some examples:
+While most of the **ggthemes** options are great, some really stand out. Three themes (*theme_economist*, *theme_fivethirtyeight*, and *theme_wsj*) all mimic the graph style of major media/news outlets. If you really want to sell your graph and look like mainstream media, here are some examples:
 
 ```r
 
@@ -131,7 +131,7 @@ If none of these existing themes are your cup of tea, maybe try to create your o
 
 Please take note that customizing themes in this way will not do everything. It will not allow you to change the placement of axis titles, line shapes, or other geometric properties. But it does allow you to make your graphs more aesthetically pleasing by changing font size or color, adding shapes around legends, and filling the backgrounds of graphs with colors and gridlines.
 
-For ways to customize your own *theme* in **ggplot2**, check out the R Graphics Cookbook by Winston Chang. Chang offers an excellent section on modifying graph themes in [Chapter 9.4](https://r-graphics.org/recipe-appearance-theme-modify); at the bottom of the page is a helpful table that outlines each argument that can be used by *theme*, a description of what each does, and the *element_xx* to specify when using an argument. 
+For ways to customize your own theme in **ggplot2**, check out the R Graphics Cookbook by Winston Chang. Chang offers an excellent section on modifying graph themes in [Chapter 9.4](https://r-graphics.org/recipe-appearance-theme-modify); at the bottom of the page is a helpful table that outlines each argument that can be used by *theme*, a description of what each does, and the *element_xx* to specify when using an argument. 
 
 For a simple example of creating a theme, run the following code:
 
