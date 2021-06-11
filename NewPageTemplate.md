@@ -14,6 +14,8 @@ Serial correlation, also known as autocorrelation, is the relationship between a
 
 - Remember that the data must be in time series format in order to be run through the autocorrelation functions, otherwise you will yield an error. 
 
+- The data we use comes from the Federal Reserve's Economic Database, using the series on [U.S. national defense expenditures and gross investment]({{https://fred.stlouisfed.org/series/FDEFX}}). 
+
 ## Also Consider
 
 [Creating Time Series Data]({{https://lost-stats.github.io/Time_Series/creating_time_series_dataset.html}})
