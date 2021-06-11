@@ -34,7 +34,7 @@ In Python we can use the `.crosstab()` method in **pandas**.
 import pandas as pd
 
 # Get Lakers data
-lakers = pd.read_csv('lakers.csv')
+lakers = pd.read_csv('https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Presentation/Tables/Data/lakers.csv')
 
 # Filter for only a couple Lakers players for space
 lakersd = lakers.loc[lakers['team'] == "LAL"]
