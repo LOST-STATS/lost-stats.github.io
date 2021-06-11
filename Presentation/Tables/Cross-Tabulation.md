@@ -11,12 +11,12 @@ mathjax: false ## Switch to false if this page has no equations or other math re
 
 A cross-tabulation is a table that shows the relationship between two or more variables. While more complex models are incredibly important, it is just as useful to quickly understand and present a basic picture of your data. This is where cross-tabulations come in handy, they simplify the data by creating subgroups which can be interpreted at a smaller and more granular scale.
 
-A cross-tabulation is rudimentary form of analysis there is, and a great starting point for working with relationships between discrete variables. When presenting data for initial qualitative and quantitative analysis it is important to show how distribution of responses and distribution of groups works in the dataset. This can allow you to immediately see where deeper analysis can be used and the patterns within the data. They are specifically useful in both market research and population surveys.
+A cross-tabulation is rudimentary form of analysis, and a great starting point for working with relationships between discrete variables. When presenting data for initial qualitative and quantitative analysis it is important to show how distribution of responses and distribution of groups works in the dataset. This can allow you to immediately see where deeper analysis can be used and the patterns within the data. They are specifically useful in both market research and population surveys.
 
 ## Keep in Mind
 
 - Cross-tabulations are generally not appropriate if either of the variables you're looking at is continuous. You may want to consider a [scatterplot]({{ "/Presentation/Figures/Scatterplots.html" | relative_url }}) in this case, or a number of other options.
-- S
+- By default, cross-tabulations count (tabulate) the number of observations in each cell. But it is usually straightforward to have it provide the percentage in each cell instead. Which one you want depends on what question you're trying to answer. 
 
 
 ## Also Consider
@@ -174,6 +174,7 @@ lakers_shot %>%
 # Total 100.0% (1480) 100.0% (1521) 100.0% (3001) 
 ```
 
+A chi square test of independence can use the `chisq.test()` function, which can accept `table()` output, or just your two variables directly. 
 
 ## Stata
 
@@ -234,5 +235,3 @@ bysort game_type: tab player etype
 
 
 `tab` has a number of options that allow for different kinds of analysis. `row` calculates the percentage of the row that each cell constitutes. `col` does the same for columns, and `cell` works for the overall table. Tests of independence between the two variables can be performed with the `chi2` option (among some other available tests; see the help file).
-
-
