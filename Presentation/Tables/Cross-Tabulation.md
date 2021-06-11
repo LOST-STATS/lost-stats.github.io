@@ -34,7 +34,7 @@ In Python we can use the `.crosstab()` method in **pandas**.
 import pandas as pd
 
 # Get Lakers data
-lakers = pd.read_csv('https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Presentation/Tables/Data/lakers.csv')
+lakers = pd.read_csv('https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Tables/Data/lakers.csv')
 
 # Filter for only a couple Lakers players for space
 lakersd = lakers.loc[lakers['team'] == "LAL"]
@@ -181,7 +181,7 @@ In Stata we can use the base `tabulate` command, which can be shortened to `tab`
 
 ```stata?example=statatab
 * Load data
-import delimited "https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Presentation/Tables/Data/lakers.csv"
+import delimited "https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Tables/Data/lakers.csv"
 
 * Filter for only a couple Lakers players for space
 keep if team == "LAL" & inlist(player, "Jordan Farmar","Pau Gasol","Kobe Bryant")
