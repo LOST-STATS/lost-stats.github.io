@@ -29,9 +29,9 @@ p_load(tidyverse, tseries)
 ```{r}
 #load in data, pick a variable, and make sure it is in time series format
 
-gov <- read_csv("Government Revenue and Expenditures.csv")
+def <- read_csv("FDEFX.csv")
 
-ts_def<- ts(gov$def, start=c(1959), end=c(2019), frequency = 1)
+ts_def<- ts(gov$def, start=c(1959), end=c(2020), frequency = 1)
 ```
 
 ```{r}
