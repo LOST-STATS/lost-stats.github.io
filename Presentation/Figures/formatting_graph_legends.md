@@ -59,6 +59,15 @@ fig2 +
   )
 ```
 
+You can also use this function with pre-set locations like `"bottom"`, `"left"` `"right"` and `"top"` where ggplot centers the legend on the side you choose.
+
+```r?example=legends
+fig2 +
+  theme(
+    legend.position = "bottom"
+  )
+```
+
 There are other cool things you can do to the legend to better customize the visual experience by adding more to the ***theme*** modifier such as:
 * Changing the margin size with `legend.box.margin`
 * The color of the box around the legend with `legend.box.background`
