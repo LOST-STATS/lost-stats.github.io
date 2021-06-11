@@ -205,7 +205,7 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
 
 <span class="c1"># Get Lakers data
-</span><span class="n">lakers</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Presentation/Tables/Data/lakers.csv'</span><span class="p">)</span>
+</span><span class="n">lakers</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Tables/Data/lakers.csv'</span><span class="p">)</span>
 
 <span class="c1"># Filter for only a couple Lakers players for space
 </span><span class="n">lakersd</span> <span class="o">=</span> <span class="n">lakers</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">lakers</span><span class="p">[</span><span class="s">'team'</span><span class="p">]</span> <span class="o">==</span> <span class="s">"LAL"</span><span class="p">]</span>
@@ -329,7 +329,7 @@
       </h2>
 <p>In Stata we can use the base <code class="language-plaintext highlighter-rouge">tabulate</code> command, which can be shortened to <code class="language-plaintext highlighter-rouge">tab</code>.</p>
 <div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load data
-</span><span class="err">import</span> <span class="err">delimited</span> <span class="s2">"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Presentation/Tables/Data/lakers.csv"</span><span class="err">
+</span><span class="err">import</span> <span class="err">delimited</span> <span class="s2">"https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Tables/Data/lakers.csv"</span><span class="err">
 </span><span class="c1">
 * Filter for only a couple Lakers players for space
 </span><span class="err">keep</span> <span class="err">if</span> <span class="err">team</span> <span class="o">==</span> <span class="s2">"LAL"</span> <span class="o">&amp;</span> <span class="err">inlist(player,</span> <span class="s2">"Jordan Farmar"</span><span class="err">,</span><span class="s2">"Pau Gasol"</span><span class="err">,</span><span class="s2">"Kobe Bryant"</span><span class="err">)
