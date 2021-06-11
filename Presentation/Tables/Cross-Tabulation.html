@@ -181,13 +181,13 @@
           <a href="#cross-tabulations" aria-labelledby="cross-tabulations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Cross Tabulations
       </h1>
 <p>A cross-tabulation is a table that shows the relationship between two or more variables. While more complex models are incredibly important, it is just as useful to quickly understand and present a basic picture of your data. This is where cross-tabulations come in handy, they simplify the data by creating subgroups which can be interpreted at a smaller and more granular scale.</p>
-<p>A cross-tabulation is rudimentary form of analysis there is, and a great starting point for working with relationships between discrete variables. When presenting data for initial qualitative and quantitative analysis it is important to show how distribution of responses and distribution of groups works in the dataset. This can allow you to immediately see where deeper analysis can be used and the patterns within the data. They are specifically useful in both market research and population surveys.</p>
+<p>A cross-tabulation is rudimentary form of analysis, and a great starting point for working with relationships between discrete variables. When presenting data for initial qualitative and quantitative analysis it is important to show how distribution of responses and distribution of groups works in the dataset. This can allow you to immediately see where deeper analysis can be used and the patterns within the data. They are specifically useful in both market research and population surveys.</p>
       <h2 id="keep-in-mind">
           <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
       </h2>
 <ul>
   <li>Cross-tabulations are generally not appropriate if either of the variables you’re looking at is continuous. You may want to consider a <a href="/Presentation/Figures/Scatterplots.html">scatterplot</a> in this case, or a number of other options.</li>
-  <li>S</li>
+  <li>By default, cross-tabulations count (tabulate) the number of observations in each cell. But it is usually straightforward to have it provide the percentage in each cell instead. Which one you want depends on what question you’re trying to answer.</li>
 </ul>
       <h2 id="also-consider">
           <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
@@ -324,6 +324,7 @@
 </span><span class="c1"># Pau Gasol  38.5%  (570)  27.8%  (423)  33.1%  (993)</span><span class="w">
 </span><span class="c1"># Total 100.0% (1480) 100.0% (1521) 100.0% (3001) </span><span class="w">
 </span></code></pre></div></div>
+<p>A chi square test of independence can use the <code class="language-plaintext highlighter-rouge">chisq.test()</code> function, which can accept <code class="language-plaintext highlighter-rouge">table()</code> output, or just your two variables directly.</p>
       <h2 id="stata">
           <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
       </h2>
