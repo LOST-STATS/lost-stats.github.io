@@ -356,9 +356,8 @@ ax_list[0].set_title('Coefficient value');
 In R the **rollRegres** (one s, not two) package can compute rolling regressions while being able to specify the linear regression, window size, whether you want a rolling or expanding window, the minimum number of observations required in a window, and other options.
 
 ```r?example=roll_regress
-#Load in the packages
-library(pacman)
-p_load(rollRegres,tidyr,dplyr)
+#Load in the package
+library(rollRegres)
 ```
 
 The data will be manually created where x can be interpreted as any independent variable over a fixed time period, and y is an outcome variable.
@@ -373,7 +372,7 @@ y <- drop(X %*% c(1, -1, 1)) + rnorm(n)
 df_1 <- data.frame(y, X[, -1])
 
 #Run the rolling regression (Rolling window)
-roll_rolling <- roll_regres(y ~ X1, df_1, width = 25L,do_downdates = TRUE)
+roll_rolling <- roll_regres(y ~ X1, df_1, width = 25L, do_downdates = TRUE)
 
 #Check the first 10 coefficients
 roll_rolling$coefs %>% tail(25)
