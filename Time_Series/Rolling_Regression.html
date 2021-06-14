@@ -525,9 +525,8 @@ in real time:</p>
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
 <p>In R the <strong>rollRegres</strong> (one s, not two) package can compute rolling regressions while being able to specify the linear regression, window size, whether you want a rolling or expanding window, the minimum number of observations required in a window, and other options.</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Load in the packages</span><span class="w">
-</span><span class="n">library</span><span class="p">(</span><span class="n">pacman</span><span class="p">)</span><span class="w">
-</span><span class="n">p_load</span><span class="p">(</span><span class="n">rollRegres</span><span class="p">,</span><span class="n">tidyr</span><span class="p">,</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Load in the package</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">rollRegres</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 <p>The data will be manually created where x can be interpreted as any independent variable over a fixed time period, and y is an outcome variable.</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Simulate data</span><span class="w">
@@ -539,7 +538,7 @@ in real time:</p>
 </span><span class="n">df_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">])</span><span class="w">
 
 </span><span class="c1">#Run the rolling regression (Rolling window)</span><span class="w">
-</span><span class="n">roll_rolling</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">roll_regres</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">X1</span><span class="p">,</span><span class="w"> </span><span class="n">df_1</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">25L</span><span class="p">,</span><span class="n">do_downdates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">roll_rolling</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">roll_regres</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">X1</span><span class="p">,</span><span class="w"> </span><span class="n">df_1</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">25L</span><span class="p">,</span><span class="w"> </span><span class="n">do_downdates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
 
 </span><span class="c1">#Check the first 10 coefficients</span><span class="w">
 </span><span class="n">roll_rolling</span><span class="o">$</span><span class="n">coefs</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">tail</span><span class="p">(</span><span class="m">25</span><span class="p">)</span><span class="w">
