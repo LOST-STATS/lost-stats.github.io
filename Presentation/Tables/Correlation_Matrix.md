@@ -23,9 +23,6 @@ As with most kinds of statistical analysis it is important to choose how to deal
 ## R 
 
 ```r
-# If necessary
-install.packages('corrr')
-library(corrr)
 data(mtcars)
 
 #computing the correlation test using the pearson method
