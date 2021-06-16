@@ -76,8 +76,6 @@ If you create one of these pages, please remove it from this list.
 
 ### Tables
 
-* Correlation Matrix
-
 ## Time Series
 
 * Serial Correlation
