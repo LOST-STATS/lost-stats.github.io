@@ -10,13 +10,13 @@
   <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>LOST</title>
+<title>Correlation Matrix | LOST</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="LOST" />
+<meta property="og:title" content="Correlation Matrix" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"headline":"LOST","@type":"WebPage","url":"/Data/","@context":"https://schema.org"}</script>
+{"headline":"Correlation Matrix","@type":"WebPage","url":"/Presentation/Tables/Correlation_Matrix.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 </head>
 <body>
@@ -116,7 +116,7 @@
                         <a href="/Model_Estimation/Statistical_Inference/linear_hypothesis_tests.html" class="nav-list-link">Linear Hypothesis Tests</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/Statistical_Inference/Nonstandard_Errors/nonstandard_errors.html" class="nav-list-link">Nonstandard Errors</a>
-                      </li></ul></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Presentation.html" class="nav-list-link">Presentation</a><ul class="nav-list "><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Figures/Figures.html" class="nav-list-link">Figures</a><ul class="nav-list"><li class="nav-list-item ">
+                      </li></ul></li></ul></li><li class="nav-list-item active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Presentation.html" class="nav-list-link">Presentation</a><ul class="nav-list "><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Figures/Figures.html" class="nav-list-link">Figures</a><ul class="nav-list"><li class="nav-list-item ">
                         <a href="/Presentation/Figures/Scatterplots.html" class="nav-list-link">Scatterplots</a>
                       </li><li class="nav-list-item ">
                         <a href="/Presentation/Figures/Styling_Scatterplots.html" class="nav-list-link">Styling Scatterplots</a>
@@ -146,10 +146,10 @@
                         <a href="/Presentation/Figures/summary_graphs.html" class="nav-list-link">Graphing a By-Group or Over-Time Summary Statistic</a>
                       </li><li class="nav-list-item ">
                         <a href="/Presentation/Figures/formatting_graph_legends.html" class="nav-list-link">Formatting Graph Legends</a>
-                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Tables/Tables.html" class="nav-list-link">Tables</a><ul class="nav-list"><li class="nav-list-item ">
+                      </li></ul></li><li class="nav-list-item  active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Tables/Tables.html" class="nav-list-link">Tables</a><ul class="nav-list"><li class="nav-list-item ">
                         <a href="/Presentation/Tables/Balance_Tables.html" class="nav-list-link">Balance Tables</a>
-                      </li><li class="nav-list-item ">
-                        <a href="/Presentation/Tables/Correlation_Matrix.html" class="nav-list-link">Correlation Matrix</a>
+                      </li><li class="nav-list-item  active">
+                        <a href="/Presentation/Tables/Correlation_Matrix.html" class="nav-list-link active">Correlation Matrix</a>
                       </li><li class="nav-list-item ">
                         <a href="/Presentation/Tables/Cross-Tabulation.html" class="nav-list-link">Cross-Tabulation</a>
                       </li><li class="nav-list-item ">
@@ -173,13 +173,116 @@
         </div>
     </div>
     <div id="main-content-wrap" class="main-content-wrap">
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list">
+                <li class="breadcrumb-nav-list-item"><a href="/Presentation/Presentation.html">Presentation</a></li>
+                <li class="breadcrumb-nav-list-item"><a href="/Presentation/Tables/Tables.html">Tables</a></li>
+              <li class="breadcrumb-nav-list-item"><span>Correlation Matrix</span></li>
+            </ol>
+          </nav>
       <div id="main-content" class="main-content" role="main">
-          <p>Folder for adding user contributed data.</p>
+          <h1 id="correlation-matrixes">
+          <a href="#correlation-matrixes" aria-labelledby="correlation-matrixes" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Correlation Matrixes
+      </h1>
+<p>A correlation matrix is a table used to present the results of correlation tests between multiple variables at a time. A correlation test is a statistical method used to define the correlation between two (and sometimes more) variables. The correlation coefficients from these tests are what a correlation matrix is composed of. They are often used as a method to summarize large amounts of data with the intention of identifying patterns of highly correlated variables. They can be a key component to checking the viability of other analyses.</p>
+      <h2 id="keep-in-mind">
+          <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
+      </h2>
+<ul>
+  <li>When creating a correlation matrix it is important to consider the which type of method for correlation analysis will best meet your needs. While the most common is the Pearson Correlation Coefficient, the Spearman and the Kendall methods are also viable possibilities. The Pearson measures the linear dependence between two variables while Spearman and the Kendall methods use a rank-based, non-parametric correlation test.</li>
+  <li>Correlation only measures a <em>linear</em> relationship between two variables. Correlation will not pick up on non-linearity, and sometimes the correlation may be zero even when the two variables are clearly related.</li>
+  <li>
+    <ul>
+      <li>As with most kinds of statistical analysis it is important to choose how to deal with missing values in your dataset when creating a correlation matrix. The most common method is to only include complete observations in the correlation test. This is a form of pairwise missing values. Pairwise missing values has an underlying assumption that all missing values are random, which is not necessarily the case. Multiple imputation is in some cases a often a better choice for dealing with missing values. It is just not as straightforward to do.</li>
+    </ul>
+  </li>
+  <li>Thinking more about missing values, there are two approaches to dropping missing values (if that’s what you’re doing). One approach, the <strong>complete observations</strong> approach, is to drop an observation from <em>all</em> calculations for the entire matrix if it contains any missing values. So in a correlation matrix for the variables $A$, $B$, and $C$, and row 1 of the data was missing its $C$ value, it would also be dropped from the calculation of $Corr(A,B)$. This first approach is preferred if you want to understand the correlation structure of an analysis that will drop observations in a similar way, like a covariance matrix or a linear regression. The second approach, the <strong>pairwise complete observations</strong> approach, is to only drop observations from correlation calculations involving missing data, so row 1 with a missing $C$ value would be dropped from $Corr(B,C)$ and $Corr(A,C)$, but not from $Corr(A,B)$. This sceond approach is preferred if you want to understand the overall relationships between the variables.</li>
+</ul>
+      <h2 id="also-consider">
+          <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
+      </h2>
+<ul>
+  <li>Correlations measure linear relationships, and so are effectively rescaled versions of results from <a href="/Model_Estimation/OLS/simple_linear_regression.html">Ordinary Least Squares</a> regression</li>
+  <li>Correlation matrices can be visualized as <a href="/Presentation/Figures/heatmap_colored_correlation_matrix.html">Heatmap Correlation Matrices</a></li>
+</ul>
+      <h1 id="implementation">
+          <a href="#implementation" aria-labelledby="implementation" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementation
+      </h1>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"https://vincentarelbundock.github.io/Rdatasets/csv/datasets/mtcars.csv"</span><span class="p">)</span>
+
+<span class="c1"># Get the correlation matrix
+</span><span class="n">d</span><span class="p">.</span><span class="n">corr</span><span class="p">()</span>
+
+<span class="c1"># Default is Pearson but we can do Kendall or Spearman with method
+</span><span class="n">d</span><span class="p">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span> <span class="o">=</span> <span class="s">'spearman'</span><span class="p">)</span>
+
+<span class="c1"># This approach uses pairwise-complete correlations by default, but we can
+# drop non-complete rows first to do a complete-cases correlation matrix
+</span><span class="n">d</span><span class="p">.</span><span class="n">dropna</span><span class="p">().</span><span class="n">corr</span><span class="p">()</span>
+
+<span class="c1"># If we want significance we'll have to do it one at a time
+# (although we could build a loop to get it for all pairs of columns)
+# We could get a p-value by just running OLS, or we can use Pearson directly
+</span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="n">pvalue</span> <span class="o">=</span> <span class="n">stats</span><span class="p">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s">'mpg'</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="s">'disp'</span><span class="p">])[</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+      <h2 id="r">
+          <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
+      </h2>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># computing the correlation test using the pearson method</span><span class="w">
+</span><span class="c1"># changing the method to "spearman" or "kendall" will change the type of correlation test used</span><span class="w">
+</span><span class="c1"># "complete.obs" is a casewise deletion method for datasets with missing values</span><span class="w">
+
+</span><span class="n">cor_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cor</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"pearson"</span><span class="p">,</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"complete.obs"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Creating the correlation matrix for the previous correlation test</span><span class="w">
+</span><span class="nf">round</span><span class="p">(</span><span class="n">cor_test</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># To do a pairwise-complete approach, where observations with missing data in some variables</span><span class="w">
+</span><span class="c1"># are still included in correlations for others, do use = "pairwise.complete.obs"</span><span class="w">
+</span><span class="c1"># (no difference in this case since there's no missing data)</span><span class="w">
+</span><span class="n">cor</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"pearson"</span><span class="p">,</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"pairwise.complete.obs"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p>The <em>cor()</em> function only creates correlation matrices with correlation coefficients. If you want to also include the p-values you will need to use the <em>rcorr()</em> function from the <em>Hmisc package.</em> This will only work for correlation tests using the Pearson or Spearman Methods.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">Hmisc</span><span class="p">)</span><span class="w">
+</span><span class="n">data</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">#computing the correlation matrix using the pearson method (which is the default for rcorr())</span><span class="w">
+</span><span class="n">cor_test2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rcorr</span><span class="p">(</span><span class="n">as.matrix</span><span class="p">(</span><span class="n">mtcars</span><span class="p">))</span><span class="w">
+
+</span><span class="n">cor_test2</span><span class="w">
+</span></code></pre></div></div>
+      <h2 id="stata">
+          <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
+      </h2>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">sysuse</span> <span class="err">auto.dta,</span> <span class="err">clear
+</span><span class="c1">
+* For a basic correlation matrix using Pearson, use cor
+* This uses a complete cases method
+</span><span class="err">cor</span> <span class="o">*</span><span class="err">
+</span><span class="c1">
+* To do a pairwise-complete method, use pwcorr
+</span><span class="err">pwcorr</span> <span class="o">*</span><span class="err">
+</span><span class="c1">
+* You can also perform significance tests on the 
+* individual correlations using the sig option
+</span><span class="err">pwcorr</span> <span class="o">*</span><span class="err">,</span> <span class="err">sig
+</span><span class="c1">* p-values are below each correlation
+</span></code></pre></div></div>
           <hr>
           <footer>
               <div class="d-flex mt-2">
                   <p class="text-small text-grey-dk-000 mb-0">
-                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Data/README.md" id="edit-this-page">Edit this page on GitHub.</a>
+                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Presentation/Tables/Correlation_Matrix.md" id="edit-this-page">Edit this page on GitHub.</a>
                   </p>
               </div>
           </footer>
