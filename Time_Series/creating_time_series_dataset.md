@@ -1,11 +1,11 @@
 ---
-title: Creating Time Series Dataset
+title: Creating a Time Series Dataset
 parent: Time Series
 has_children: false
 nav_order: 1
 ---
 
-# Introduction
+# Creating a Time Series Dataset
 
 Time-series estimators are, by definition, a function of the temporal ordering of the observations in the estimation sample. So a number of programmed time-series econometric routines can only be used if the software is instructed ahead of time that it is working with a time-series dataset.
 
