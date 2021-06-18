@@ -6,7 +6,7 @@ nav_order: 1
 mathjax: true ## Switch to false if this page has no equations or other math rendering.
 ---
 
-# Serial Correlation/Autocorrelation  
+# Autocorrelation Function
 
 Serial correlation, also known as autocorrelation, is the relationship between a variable and lagged versions of itself. Error terms from different time periods of a time series variable being correlated is what we call "serial correlation". Time series data that exhibits autocorrelation is easier to predict and forecast than data that does not.
 
