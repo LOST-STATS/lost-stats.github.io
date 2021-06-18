@@ -78,7 +78,6 @@ If you create one of these pages, please remove it from this list.
 
 ## Time Series
 
-* Serial Correlation
 * Stationarity and Weak Dependence
 * Granger Causality
 * Moving Average Model
