@@ -186,8 +186,8 @@
             </ol>
           </nav>
       <div id="main-content" class="main-content" role="main">
-          <h1 id="serial-correlationautocorrelation">
-          <a href="#serial-correlationautocorrelation" aria-labelledby="serial-correlationautocorrelation" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Serial Correlation/Autocorrelation
+          <h1 id="autocorrelation-function">
+          <a href="#autocorrelation-function" aria-labelledby="autocorrelation-function" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Autocorrelation Function
       </h1>
 <p>Serial correlation, also known as autocorrelation, is the relationship between a variable and lagged versions of itself. Error terms from different time periods of a time series variable being correlated is what we call “serial correlation”. Time series data that exhibits autocorrelation is easier to predict and forecast than data that does not.</p>
 <p>The process for detecting the presence of serial correlation is fairly straightforward. In effect, you simply check whether a variable is correlated with lagged versions of itself. There are details in that process, but that’s the main idea. The “autocorrelation” function checks the correlation between a variable and different lags of itself, typically presented as a graph. It is common to then look at the correlations (or a plot of them) and see which lag lengths have nonzero correlations. There is also the “partial autocorrelation” function, which in the context of a single varaible looks at the correlation between \(Y_t\) and \(Y_{t-j}\) while controlling for each of the intermediate lags \(Y_{t-1}, ..., Y_{t-j+1}\).</p>
