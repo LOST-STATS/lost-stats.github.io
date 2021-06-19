@@ -189,17 +189,13 @@
       <div id="main-content" class="main-content" role="main">
           <p>A mixed logit model (sometimes referred to as a random parameters logit model) estimates distributional parameters that allow for individual-level heterogeneity in tastes that are not compatible with a traditional logit framework.  Mixed logit models can also provide for additional flexibility as it pertains to correlated random parameters and can be used with panel data.</p>
 <p>For more information about mixed logit models, see <a href="https://en.wikipedia.org/wiki/Mixed_logit">Wikipedia: Mixed Logit.</a></p>
-<p><br /></p>
       <h2 id="keep-in-mind">
           <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
       </h2>
 <ul>
-  <li>
-    <p>The mixed logit model estimates a distribution.  Parameters are then generated from that distribution via a simulation with a specified number of draws.</p>
-  </li>
-  <li>
-    <p>The estimates from a mixed logit model cannot simply be interpreted as marginal effects, as they are maximum likelihood estimations.  Further, the variation at the individual level means estimated effects are relative to the individual.</p>
-  </li>
+  <li>The mixed logit model estimates a distribution.  Parameters are then generated from that distribution via a simulation with a specified number of draws.</li>
+  <li>The estimates from a mixed logit model cannot simply be interpreted as marginal effects, as they are maximum likelihood estimations.  Further, the variation at the individual level means estimated effects are relative to the individual.</li>
+  <li>The estimation of mixed logit models is very difficult and there are quite a few details and different approaches. So you can’t really assume that one package will produce the same results as another. Read the documentation of the command you’re using so you at least know what paper produced the estimation method!</li>
 </ul>
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
@@ -211,7 +207,8 @@
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Install mlogit which also includes the Electricity dataset for the example.</span><span class="w">
 </span><span class="c1"># The package dfidx will be used to transform our data</span><span class="w">
 </span><span class="c1"># install.packages("mlogit", "dfidx")</span><span class="w">
-</span><span class="n">library</span><span class="p">(</span><span class="s2">"mlogit"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dfidx"</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">mlogit</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dfidx</span><span class="p">)</span><span class="w">
 
 </span><span class="c1"># Load the Electricity dataset</span><span class="w">
 </span><span class="n">data</span><span class="p">(</span><span class="s2">"Electricity"</span><span class="p">,</span><span class="w"> </span><span class="n">package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"mlogit"</span><span class="p">)</span><span class="w">
@@ -241,7 +238,6 @@
        </span><span class="n">panel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
 
 </span><span class="c1"># Results</span><span class="w">
-
 </span><span class="n">summary</span><span class="p">(</span><span class="n">my_mixed_logit</span><span class="p">)</span><span class="w">
 
 </span><span class="c1"># Note that this output will include the simulated coefficient estimates, </span><span class="w">
@@ -259,12 +255,92 @@
 
 </span><span class="n">cl_by_pf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rpar</span><span class="p">(</span><span class="n">my_mixed_logit</span><span class="p">,</span><span class="w"> </span><span class="s2">"cl"</span><span class="p">,</span><span class="w"> </span><span class="n">norm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"pf"</span><span class="p">)</span><span class="w">
 </span><span class="n">summary</span><span class="p">(</span><span class="n">cl_by_pf</span><span class="p">)</span><span class="w">
-
-
-
 </span></code></pre></div></div>
 <p>For further examples, visit the CRAN vignette <a href="https://cran.r-project.org/web/packages/mlogit/vignettes/c5.mxl.html">here.</a></p>
 <p>For a very detailed example using the Electricity dataset, see <a href="https://cran.r-project.org/web/packages/mlogit/vignettes/e3mxlogit.html">here.</a></p>
+      <h2 id="stata">
+          <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
+      </h2>
+<p>As of Stata 17, there is the base-Stata <code class="language-plaintext highlighter-rouge">xtmlogit</code> command which is probably preferable to <code class="language-plaintext highlighter-rouge">mixlogit</code>. However, many people do not have Stata 17, so this example uses <code class="language-plaintext highlighter-rouge">mixlogit</code>, which requires installation from <code class="language-plaintext highlighter-rouge">ssc install mixlogit</code>. For more information on <code class="language-plaintext highlighter-rouge">xtmlogit</code>, see <a href="https://www.stata.com/new-in-stata/panel-data-multinomial-logit/">this page</a>.</p>
+<p><code class="language-plaintext highlighter-rouge">mixlogit</code> requires data of the form (although not necessarily with the variable names):</p>
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>choice</th>
+      <th>X</th>
+      <th>group</th>
+      <th>id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>10</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>12</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>11</td>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>14</td>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>9</td>
+      <td>3</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>11</td>
+      <td>3</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table></div>
+<p>where <code class="language-plaintext highlighter-rouge">choice</code> is the dependent variable and is binary, indicating which of the options was chosen. <code class="language-plaintext highlighter-rouge">X</code> is (one of) the predictors, <code class="language-plaintext highlighter-rouge">group</code> is an identifying variable for the different choice occasions, and <code class="language-plaintext highlighter-rouge">id</code> is a vector of individual-decision-maker identifiers, if this is panel data where the same decision-making makes multiple decisions.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* If necessary:
+* ssc install mixlogit
+</span><span class="err">
+import</span> <span class="err">delimited</span> <span class="s2">"https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Model_Estimation/Multilevel_Models/Data/Electricity.csv"</span><span class="err">,</span> <span class="err">clear
+</span><span class="c1">
+* Reshape data into "long" format like we need for mixlogit
+</span><span class="err">g</span> <span class="err">decision_id</span> <span class="o">=</span> <span class="err">_n
+reshape</span> <span class="err">long</span> <span class="err">pf</span> <span class="err">cl</span> <span class="err">loc</span> <span class="err">wk</span> <span class="err">tod</span> <span class="err">seas,</span> <span class="err">i(choice</span> <span class="err">id</span> <span class="err">decision_id)</span> <span class="err">j(option)
+</span><span class="c1">
+* Remember, the dependent variable should be binary, indicating that this option
+* was chosen
+</span><span class="err">g</span> <span class="err">chosen</span> <span class="o">=</span> <span class="err">choice</span> <span class="o">==</span> <span class="err">option
+</span><span class="c1">
+* Let's fix the parameters on all the predictors
+* except for pf, which we'll allow to vary
+* (this is for speed in the example)
+</span><span class="err">mixlogit</span> <span class="err">chose</span> <span class="err">cl</span> <span class="err">loc</span> <span class="err">wk</span> <span class="err">tod</span> <span class="err">seas,</span> <span class="c1">///</span><span class="err">
+</span>	<span class="err">group(decision_id)</span> <span class="c1">/// each individual choice is identified by decision_id</span><span class="err">
+</span>	<span class="err">id(id)</span> <span class="c1">/// each person is identified by id</span><span class="err">
+</span>	<span class="err">rand(pf)
+</span><span class="c1">
+* Options to consider:
+* corr allows multiple parameter distributions to be correlated
+* ln() allows some of the parameter distributions to be log-normal
+
+* We can get individual parameter estimates with mixlbeta, which will
+* save the estimates to file
+</span><span class="err">mixlbeta</span> <span class="err">pf,</span> <span class="err">saving(pf_coefs.dta)
+</span></code></pre></div></div>
           <hr>
           <footer>
               <div class="d-flex mt-2">
