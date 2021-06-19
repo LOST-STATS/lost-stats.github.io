@@ -1651,7 +1651,7 @@
   },"275": {
     "doc": "Desired Nonexistent Pages",
     "title": "Model Estimation",
-    "content": "OLS . GLS . | Nonlinear Instrumental Variables Estimation | Nonparametric regression | Tobit | Ordered Probit | Ordered Logit | Conditional Logit | Endogenous Switching Model | Nonparametric Sample Selection Models | Treatment Effect Model | . Multilevel Models . | Hierarchical Bayes Conditional Logit | Multilevel Regression with Poststratification | Nonlinear Mixed Effects Models | . Matching . | Nearest-Neighbor Distance Matching | Coarsened Exact Matching | . Research Design . | Differences in Differences with treatment rollout (use updated methods!) | Event Study Estimation | . Statistical Inference . | Average Marginal Effects | Marginal Effects at the Mean | Nonlinear hypothesis tests | . Nonstandard Errors . | Cluster Bootstrap Standard Errors | Jackknife Standard Errors | Non-Standard Bootstrap Standard Errors (bootstrap standard errors that aren’t built in to the command and must be done “by hand”, i.e. for matching) | . ",
+    "content": "OLS . GLS . | Nonlinear Instrumental Variables Estimation | Fixed effects in Generalized Linear Models | Nonparametric regression | Tobit | Ordered Probit | Ordered Logit | Conditional Logit | Endogenous Switching Model | Nonparametric Sample Selection Models | Treatment Effect Model | . Multilevel Models . | Hierarchical Bayes Conditional Logit | Multilevel Regression with Poststratification | Nonlinear Mixed Effects Models | . Matching . | Nearest-Neighbor Distance Matching | Coarsened Exact Matching | . Research Design . | Differences in Differences with treatment rollout (use updated methods!) | Event Study Estimation | . Statistical Inference . | Average Marginal Effects | Marginal Effects at the Mean | Nonlinear hypothesis tests | . Nonstandard Errors . | Cluster Bootstrap Standard Errors | Jackknife Standard Errors | Non-Standard Bootstrap Standard Errors (bootstrap standard errors that aren’t built in to the command and must be done “by hand”, i.e. for matching) | . ",
     "url": "/Desired_Nonexistent_Pages/desired_nonexistent_pages.html#model-estimation",
     "relUrl": "/Desired_Nonexistent_Pages/desired_nonexistent_pages.html#model-estimation"
   },"276": {
@@ -1693,7 +1693,7 @@
   },"282": {
     "doc": "Desired Nonexistent Pages",
     "title": "Currently R Only",
-    "content": ". | Geospatial: Merging Shape Files | Model Estimation: Mixed Logit Model | Model Estimation: 2x2 Difference-in-Differences | Model Estimation: Stepwise Regression | Model Estimation: Propensity Score Matching | Presentation: Styling Line Graphs | Presentation: Graph Themes | Time Series: ARIMA | Time Series: Granger Causality | Time Series: MA Models | Time Series: Linear Gaussian State Space Models | Other: Simple Web Scraping - this one is also R-centric in the intro, please change that when you add another language! | . ",
+    "content": ". | Geospatial: Merging Shape Files | Model Estimation: Stepwise Regression | Model Estimation: Propensity Score Matching | Presentation: Styling Line Graphs | Presentation: Graph Themes | Time Series: ARIMA | Time Series: Granger Causality | Time Series: MA Models | Time Series: Linear Gaussian State Space Models | Other: Simple Web Scraping - this one is also R-centric in the intro, please change that when you add another language! | . ",
     "url": "/Desired_Nonexistent_Pages/desired_nonexistent_pages.html#currently-r-only",
     "relUrl": "/Desired_Nonexistent_Pages/desired_nonexistent_pages.html#currently-r-only"
   },"283": {
