@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/just-the-docs-default.css">
+    <script type="text/javascript" src="/assets/js/vendor/lunr.min.js"></script>
+  <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Formatting Graph Axes | LOST</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Formatting Graph Axes" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="LOST" />
+<script type="application/ld+json">
+{"headline":"Formatting Graph Axes","@type":"WebPage","url":"/Presentation/Figures/formatting_graph_axes.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML">
+  </script>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="svg-link" viewBox="0 0 24 24">
+      <title>Link</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+    </symbol>
+    <symbol id="svg-search" viewBox="0 0 24 24">
+      <title>Search</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </symbol>
+    <symbol id="svg-menu" viewBox="0 0 24 24">
+      <title>Menu</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+        <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </symbol>
+    <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+      <title>Expand</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </symbol>
+    <symbol id="svg-doc" viewBox="0 0 24 24">
+      <title>Document</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+      </svg>
+    </symbol>
+  </svg>
+  <div class="side-bar">
+    <div class="site-header">
+      <a href="/" class="site-title lh-tight">
+  LOST
+</a>
+      <a href="#" id="menu-button" class="site-button">
+        <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+      </a>
+    </div>
+    <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
+      <ul class="nav-list"><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/data_manipulation.html" class="nav-list-link">Data Manipulation</a><ul class="nav-list "><li class="nav-list-item "><a href="/Data_Manipulation/Regular_Expressions.html" class="nav-list-link">Regular Expressions</a></li><li class="nav-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="nav-list-link">Collapse a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="nav-list-link">Combining Datasets</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="nav-list-link">Vertical Combination</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="nav-list-link">Horizontal Combination (Deterministic)</a>
+                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/creating_a_variable_with_group_calculations.html" class="nav-list-link">Creating a Variable with Group Calculations</a></li><li class="nav-list-item "><a href="/Data_Manipulation/creating_categorical_variables.html" class="nav-list-link">Creating Categorical Variables</a></li><li class="nav-list-item "><a href="/Data_Manipulation/Creating_Dummy_Variables/creating_dummy_variables.html" class="nav-list-link">Creating Dummy Variables</a></li><li class="nav-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="nav-list-link">Determine the Observation Level of a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Reshaping/reshape.html" class="nav-list-link">Reshaping Data</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="nav-list-link">Reshape Panel Data from Wide to Long</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="nav-list-link">Reshape Panel Data from Long to Wide</a>
+                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/rowwise_calculations.html" class="nav-list-link">Rowwise Calculations</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Geo-Spatial/Geo-spatial.html" class="nav-list-link">Geo-Spatial</a><ul class="nav-list "><li class="nav-list-item "><a href="/Geo-Spatial/choropleths.html" class="nav-list-link">Choropleths</a></li><li class="nav-list-item "><a href="/Geo-Spatial/geocoding.html" class="nav-list-link">Geocoding</a></li><li class="nav-list-item "><a href="/Geo-Spatial/merging_shape_files.html" class="nav-list-link">Merging Shape Files</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_joins.html" class="nav-list-link">Spatial Joins</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_lag_model.html" class="nav-list-link">Spatial Lag Model</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Machine_Learning/Machine_Learning.html" class="nav-list-link">Machine Learning</a><ul class="nav-list "><li class="nav-list-item "><a href="/Machine_Learning/Nearest_Neighbor.html" class="nav-list-link">K-Nearest Neighbor Matching</a></li><li class="nav-list-item "><a href="/Machine_Learning/artificial_neural_network.html" class="nav-list-link">Artificial Neural Network</a></li><li class="nav-list-item "><a href="/Machine_Learning/boosted_regression_trees.html" class="nav-list-link">Boosted Regression Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/causal_forest.html" class="nav-list-link">Causal Forest</a></li><li class="nav-list-item "><a href="/Machine_Learning/decision_trees.html" class="nav-list-link">Decision Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/penalized_regression.html" class="nav-list-link">Penalized Regression</a></li><li class="nav-list-item "><a href="/Machine_Learning/random_forest.html" class="nav-list-link">Random Forest</a></li><li class="nav-list-item "><a href="/Machine_Learning/support_vector_machine.html" class="nav-list-link">Support Vector Machine</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Model_Estimation.html" class="nav-list-link">Model Estimation</a><ul class="nav-list "><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/OLS/OLS.html" class="nav-list-link">Ordinary Least Squares</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/OLS/simple_linear_regression.html" class="nav-list-link">Simple Linear Regression</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/OLS/stepwise_regression.html" class="nav-list-link">Stepwise Regression</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/OLS/interaction_terms_and_polynomials.html" class="nav-list-link">Interaction Terms and Polynomials</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/OLS/fixed_effects_in_linear_regression.html" class="nav-list-link">Fixed Effects in Linear Regression</a>
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Matching/matching.html" class="nav-list-link">Matching</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Matching/entropy_balancing.html" class="nav-list-link">Entropy Balancing</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Matching/propensity_score_matching.html" class="nav-list-link">Propensity Score Matching</a>
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/GLS/GLS.html" class="nav-list-link">Generalised Least Squares</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/GLS/gmm.html" class="nav-list-link">Generalized Method of Moments</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/GLS/heckman_correction_model.html" class="nav-list-link">Heckman Correction Model</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/GLS/logit_model.html" class="nav-list-link">Logit Model</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/GLS/mcfaddens_choice_model.html" class="nav-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/GLS/probit_model.html" class="nav-list-link">Probit Model</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/GLS/quantile_regression.html" class="nav-list-link">Quantile Regression</a>
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Multilevel_Models/Multilevel_Models.html" class="nav-list-link">Multilevel Models</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Multilevel_Models/linear_mixed_effects_regression.html" class="nav-list-link">Linear Mixed-Effects Regression</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Multilevel_Models/mixed_logit.html" class="nav-list-link">Mixed Logit Model</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Multilevel_Models/random_mixed_effects_estimation.html" class="nav-list-link">Random/Mixed Effects in Linear Regression</a>
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Research_Design/Research_Design.html" class="nav-list-link">Research Design</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Research_Design/density_discontinuity_test.html" class="nav-list-link">Density Discontinuity Tests for Regression Discontinuity</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Research_Design/event_study.html" class="nav-list-link">Difference in Differences Event Study</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Research_Design/instrumental_variables.html" class="nav-list-link">Instrumental Variables</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Research_Design/regression_discontinuity_design.html" class="nav-list-link">Regression Discontinuity Design</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Research_Design/synthetic_control_method.html" class="nav-list-link">Synthetic Control</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html" class="nav-list-link">2x2 Difference in Difference</a>
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Statistical_Inference/Statistical_Inference.html" class="nav-list-link">Statistical Inference</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Statistical_Inference/linear_hypothesis_tests.html" class="nav-list-link">Linear Hypothesis Tests</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Model_Estimation/Statistical_Inference/Nonstandard_Errors/nonstandard_errors.html" class="nav-list-link">Nonstandard Errors</a>
+                      </li></ul></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Presentation.html" class="nav-list-link">Presentation</a><ul class="nav-list "><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Figures/Figures.html" class="nav-list-link">Figures</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/Scatterplots.html" class="nav-list-link">Scatterplots</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/Styling_Scatterplots.html" class="nav-list-link">Styling Scatterplots</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/bar_graphs.html" class="nav-list-link">Bar Graphs</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/density_plots.html" class="nav-list-link">Density Plots</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/faceted_graphs.html" class="nav-list-link">Faceted Graphs</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/graph_themes.html" class="nav-list-link">Graph Themes</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/heatmap_colored_correlation_matrix.html" class="nav-list-link">Heatmap Colored Correlation Matrix</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/histograms.html" class="nav-list-link">Histograms</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/line_graph_with_labels_at_the_beginning_or_end.html" class="nav-list-link">Line Graph with Labels at the Beginning or End of Lines</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/line_graphs.html" class="nav-list-link">Line Graphs</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/marginal_effects_plots_for_interactions_with_continuous_variables.html" class="nav-list-link">Marginal Effects Plots for Interactions with Continuous Variables</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/scatterplot_by_group_on_shared_axes.html" class="nav-list-link">Scatterplot by Group on Shared Axes</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/styling_line_graphs.html" class="nav-list-link">Styling Line Graphs</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/summary_graphs.html" class="nav-list-link">Graphing a By-Group or Over-Time Summary Statistic</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Figures/formatting_graph_legends.html" class="nav-list-link">Formatting Graph Legends</a>
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Tables/Tables.html" class="nav-list-link">Tables</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Presentation/Tables/Balance_Tables.html" class="nav-list-link">Balance Tables</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Tables/Correlation_Matrix.html" class="nav-list-link">Correlation Matrix</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Tables/Cross-Tabulation.html" class="nav-list-link">Cross-Tabulation</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Tables/Regression_Tables.html" class="nav-list-link">Regression Tables</a>
+                      </li><li class="nav-list-item ">
+                        <a href="/Presentation/Tables/Summary_Statistics_Tables.html" class="nav-list-link">Summary Statistics Tables</a>
+                      </li></ul></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Time_Series/Time_Series.html" class="nav-list-link">Time Series</a><ul class="nav-list "><li class="nav-list-item "><a href="/Time_Series/AR-models.html" class="nav-list-link">AR Models</a></li><li class="nav-list-item "><a href="/Time_Series/ARCH_Model.html" class="nav-list-link">ARCH Model</a></li><li class="nav-list-item "><a href="/Time_Series/ARIMA-models.html" class="nav-list-link">ARIMA Models</a></li><li class="nav-list-item "><a href="/Time_Series/ARMA-models.html" class="nav-list-link">ARMA Models</a></li><li class="nav-list-item "><a href="/Time_Series/Autocorrelation_Function.html" class="nav-list-link">Autocorrelation Function</a></li><li class="nav-list-item "><a href="/Time_Series/GARCH_Model.html" class="nav-list-link">GARCH Model</a></li><li class="nav-list-item "><a href="/Time_Series/Granger_Causality.html" class="nav-list-link">Granger Causality</a></li><li class="nav-list-item "><a href="/Time_Series/MA_Model.html" class="nav-list-link">MA Models</a></li><li class="nav-list-item "><a href="/Time_Series/Rolling_Regression.html" class="nav-list-link">Rolling Regression</a></li><li class="nav-list-item "><a href="/Time_Series/State_Space_Models.html" class="nav-list-link">State Space Models</a></li><li class="nav-list-item "><a href="/Time_Series/creating_time_series_dataset.html" class="nav-list-link">Creating a Time Series Dataset</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Other/Other.html" class="nav-list-link">Other</a><ul class="nav-list "><li class="nav-list-item "><a href="/Other/create_a_conda_package.html" class="nav-list-link">Create a Conda Package (Python)</a></li><li class="nav-list-item "><a href="/Other/get_a_list_of_files.html" class="nav-list-link">Get a List of Files</a></li><li class="nav-list-item "><a href="/Other/import_a_foreign_data_file.html" class="nav-list-link">Import a Foreign Data File</a></li><li class="nav-list-item "><a href="/Other/importing_delimited_files.html" class="nav-list-link">Import a Delimited Data File (CSV, TSV)</a></li><li class="nav-list-item "><a href="/Other/set_a_working_directory.html" class="nav-list-link">Set a Working Directory</a></li><li class="nav-list-item "><a href="/Other/simple_web_scrape.html" class="nav-list-link">Simple Web Scraping</a></li><li class="nav-list-item "><a href="/Other/task_scheduling_with_github_actions.html" class="nav-list-link">Task Scheduling with Github Actions</a></li></ul></li><li class="nav-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="nav-list-link">Desired Nonexistent Pages</a></li><li class="nav-list-item"><a href="/Contributing/Contributing.html" class="nav-list-link">Contributing</a></li><li class="nav-list-item"><a href="/" class="nav-list-link">Home</a></li></ul>
+    </nav>
+    <footer class="site-footer">
+      This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+    </footer>
+  </div>
+  <div class="main" id="top">
+    <div id="main-header" class="main-header">
+        <div class="search">
+          <div class="search-input-wrap">
+            <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search LOST" aria-label="Search LOST" autocomplete="off">
+            <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+          </div>
+          <div id="search-results" class="search-results"></div>
+        </div>
+    </div>
+    <div id="main-content-wrap" class="main-content-wrap">
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list">
+                <li class="breadcrumb-nav-list-item"><a href="">Category</a></li>
+              <li class="breadcrumb-nav-list-item"><span>Formatting Graph Axes</span></li>
+            </ol>
+          </nav>
+      <div id="main-content" class="main-content" role="main">
+          <h1 id="formatting-graph-axes">
+          <a href="#formatting-graph-axes" aria-labelledby="formatting-graph-axes" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Formatting Graph Axes
+      </h1>
+<p>Graph axes have the power to manipulate the story of the data, and that is why formatting graph axis is an important skill in big data. When plotting relationship among variables of interest, one of the useful ways to create visual impact and clarity is by way of formatting the x and y axis.</p>
+<p>Different axis features that can be manipulated include:</p>
+<ul>
+  <li>Axis titles (always set them to be readable! Rarely do you want whatever the variable name is in your statistics package)</li>
+  <li>Axis scale (linear scale, logarithmic scale, reversed scale, etc.)</li>
+  <li>Axis marks and labels (do you get a tick at 1, 2, 3, 4, and 5, or just 1, 3, and 5? Are the numeric values percentages? Numbers? In thousands or millions?)</li>
+  <li>Axis limits (the range of x and y to show)</li>
+</ul>
+      <h2 id="keep-in-mind">
+          <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
+      </h2>
+<ul>
+  <li>Visual appeal of your newly formatted graph. Who is the audience? What do you want them to notice? For example, for most common audiences you would want to avoid labeling your axes with scientific notation, as most people don’t understand it.</li>
+  <li>Caution: Use an appropriate scale when formatting your x and $y$ axis: You can manipulate data to say what you want it to, but using a more transparent approach is better practice.</li>
+  <li>Changing the limits of the graph axes might make changes seem more or less dramatic. This comes up often in the debate of whether the y-axis on a line graph should always start from 0. If, for example, test scores dropped from 100 to 95, that change looks enormous if the y-axis goes from 94 to 100, with a change the size of the whole graph but looks pretty modest if the y-axis goes from 0 to 100 with a change the size of 5% of the graph.</li>
+</ul>
+      <h2 id="also-consider">
+          <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
+      </h2>
+<ul>
+  <li>It is important to know the basic plotting techniques such as <a href="/Presentation/Figures/line_graph_with_labels_at_the_beginning_or_end.html&quot;">Line Graphs</a> and <a href="&quot;/Presentation/Figures/scatterplot_by_group_on_shared_axes.html&quot;">Scatterplots</a></li>
+</ul>
+      <h1 id="implementations">
+          <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
+      </h1>
+      <h2 id="r">
+          <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
+      </h2>
+<p>Let’s walk through an example in R to learn how to manipulate intervals on graph axes. The dataset used in this article example will be the <code class="language-plaintext highlighter-rouge">diamonds</code> dataset since it comes with the package <strong>ggplot2</strong>: you can follow along with this brief tutorial at home. This data reports prices of over 50,000 round cut diamonds.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p>Let’s begin with a graph plotting price and clarity of a diamond, and seeing what it gives us as a default axis. We plot histogram in <strong>ggplot2</strong> by using the <code class="language-plaintext highlighter-rouge">ggplot()</code> function with the <code class="language-plaintext highlighter-rouge">diamonds</code> dataset, and adding <code class="language-plaintext highlighter-rouge">geom_density()</code> to plot a histogram. Aesthetic mappings describe how variables in the data are mapped to visual properties(aesthetics) of geoms.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">diamonds</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">binwidth</span><span class="o">=</span><span class="m">500</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">price</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+<p><img src="/Presentation/Figures/Images/graph_axes/diamonds.png" alt="A histogram with default axes" /></p>
+<p>Now let’s manipulate the four main elements of the axis: titles, scale, marks and ticks, value labels, and limits.</p>
+<p>Axis titles can be changed using the <code class="language-plaintext highlighter-rouge">labs()</code> command. This works not only for the x and y axes, but also any other aesthetic that has a legend. (You can also set the title, subtitle, and caption in <code class="language-plaintext highlighter-rouge">labs()</code> - those aren’t axes but a lot of people don’t know you can use <code class="language-plaintext highlighter-rouge">labs()</code> for this! Who needs <code class="language-plaintext highlighter-rouge">ggtitle</code>?). We’ll switch to <code class="language-plaintext highlighter-rouge">geom_density()</code> here so we can add, and then label, a <code class="language-plaintext highlighter-rouge">color</code> aesthetic.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">diamonds</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_density</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">price</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cut</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Price'</span><span class="p">,</span><span class="w">
+       </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Density'</span><span class="p">,</span><span class="w">
+       </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Diamond Cut'</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p><img src="Images/graph_axes/diamonds_axistitle.png" alt="A density graph with titled axes" /></p>
+<p>The scale and limits of the axes can be set using one of the <code class="language-plaintext highlighter-rouge">scale_</code> functions. <code class="language-plaintext highlighter-rouge">scale_x_log10()</code>, for example, will use a logarithmic scale for the x-axis. There are a lot of different <code class="language-plaintext highlighter-rouge">scale_</code> functions for different combinations of axis (including axes like color and shape, not just x and y) and scale type. You can use the <code class="language-plaintext highlighter-rouge">limits</code> argument inside of a <code class="language-plaintext highlighter-rouge">scale_</code> function to determine the limits of the axis. The limits can be outside the range of the data, “zooming out” on the graph, or inside the range of the data, cutting some of the data out of the graph. Note that using <code class="language-plaintext highlighter-rouge">limits</code> inside <code class="language-plaintext highlighter-rouge">scale_</code> will <em>remove all data outside the limits</em>. If you want to retain that data but just zoom the window in, instead look at the <code class="language-plaintext highlighter-rouge">xlim</code> and <code class="language-plaintext highlighter-rouge">ylim</code> arguments of <code class="language-plaintext highlighter-rouge">coord_cartesian()</code>. Note you can also use the <code class="language-plaintext highlighter-rouge">position</code> argument of <code class="language-plaintext highlighter-rouge">scale_x_</code> and <code class="language-plaintext highlighter-rouge">scale_y_</code> functions to move the axes themselves, perhaps putting the x-axis line at the <code class="language-plaintext highlighter-rouge">"top"</code> for example.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">diamonds</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_density</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">price</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cut</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Price (Log Scale)'</span><span class="p">,</span><span class="w">
+       </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Density'</span><span class="p">,</span><span class="w">
+       </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Diamond Cut'</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">scale_x_log10</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">5000</span><span class="p">))</span><span class="w"> </span><span class="c1"># I use 1 instead of 0 here because log(0) is undefined</span><span class="w">
+</span></code></pre></div></div>
+<p><img src="Images/graph_axes/diamonds_axislimit.png" alt="A density graph with a rescaled and a limited range" /></p>
+<p>Note how (1) the x-axis is now on a logarithmic scale, (2) the density numbers are different - density has been recalculated after dropping data outside the range, we haven’t just “zoomed in”, and (3) the graph begins and ends at our specified limits.</p>
+<p>The <code class="language-plaintext highlighter-rouge">scale_</code> functions can also be used to label the values on the axes and specify how many tick marks there are. The <code class="language-plaintext highlighter-rouge">breaks</code> option lets you specify how many (or which) values get markers on the axis. The <code class="language-plaintext highlighter-rouge">labels</code> option lets you give it a function (or vector of values) that it uses to turn value labels in the data to printed labels on the graph. The <strong>scales</strong> package has a lot of good functions for use here in formatting numbers for print, like <code class="language-plaintext highlighter-rouge">number()</code>, <code class="language-plaintext highlighter-rouge">dollar()</code>, and <code class="language-plaintext highlighter-rouge">percent()</code>. These arguments canbe very useful in avoiding scientific notation, which <strong>ggplot2</strong> tends to default to in a lot of cases. <code class="language-plaintext highlighter-rouge">labels</code> is also handy for labeling discrete values. In this example <code class="language-plaintext highlighter-rouge">scale_color_discrete</code> is being used to relabel the categories in the legend, but this would also work if the <code class="language-plaintext highlighter-rouge">cut</code> variable were on the x-axis with <code class="language-plaintext highlighter-rouge">scale_x_discrete</code>.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">diamonds</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_density</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">price</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cut</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Price (Log Scale)'</span><span class="p">,</span><span class="w">
+       </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Density'</span><span class="p">,</span><span class="w">
+       </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Diamond Cut'</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">scale_x_log10</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">5000</span><span class="p">),</span><span class="w"> </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">1000</span><span class="p">,</span><span class="w"> </span><span class="m">3000</span><span class="p">),</span><span class="w">
+                </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scales</span><span class="o">::</span><span class="n">dollar</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_color_discrete</span><span class="p">(</span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'Fair'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Worst'</span><span class="p">,</span><span class="w">
+                                  </span><span class="s1">'Good'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Okay'</span><span class="p">,</span><span class="w">
+                                  </span><span class="s1">'Very Good'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Nice'</span><span class="p">,</span><span class="w">
+                                  </span><span class="s1">'Premium'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Better'</span><span class="p">,</span><span class="w">
+                                  </span><span class="s1">'Ideal'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Oh Dang'</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+<p><img src="Images/graph_axes/diamonds_axislabels.png" alt="A density graph with ticks and labels redone" /></p>
+<p>Note that if you don’t like the <strong>scales</strong> function defaults, you can use an unnamed function. For example, <code class="language-plaintext highlighter-rouge">labels = function(x) scales::dollar(x, accuracy = 1)</code> (or <code class="language-plaintext highlighter-rouge">labels = \(x) scales::dollar(x, accuracy = 1)</code> in R 4.1) would get rid of those cents after the decimal place.</p>
+<p>Finally, we can manipulate the <em>look</em> of the axes and ticks using the <code class="language-plaintext highlighter-rouge">theme()</code> function. The <code class="language-plaintext highlighter-rouge">axis.ticks</code> (or <code class="language-plaintext highlighter-rouge">axis.ticks.x</code> and <code class="language-plaintext highlighter-rouge">axis.ticks.y</code> to just change one of them) option takes an <code class="language-plaintext highlighter-rouge">element_line()</code> argument, in which you can set options like size, color, and so on. You can also change the <code class="language-plaintext highlighter-rouge">axis.line</code> (or <code class="language-plaintext highlighter-rouge">axis.line.x</code> and <code class="language-plaintext highlighter-rouge">axis.line.y</code>) options to change the look of the actual axis lines. There are also <code class="language-plaintext highlighter-rouge">axis.text</code> and <code class="language-plaintext highlighter-rouge">axis.title</code> options for changing how the text looks with <code class="language-plaintext highlighter-rouge">element_text()</code>.</p>
+<p>Now, let’s manipulate the size of the ticks on the x axis. Let’s make them really wide for effect, and also really long. Let’s choose “12 point unit” long length ticks for dramatic effect.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">diamonds</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">ggplot</span><span class="p">()</span><span class="o">+</span><span class="w"> </span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">binwidth</span><span class="o">=</span><span class="m">500</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">price</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.ticks.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_line</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.ticks.length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">(</span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="s2">"pt"</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+<p><img src="/Presentation/Figures/Images/graph_axes/long_ticks.png" alt="A histogram with long and wide axis ticks" /></p>
+          <hr>
+          <footer>
+              <div class="d-flex mt-2">
+                  <p class="text-small text-grey-dk-000 mb-0">
+                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Presentation/Figures/formatting_graph_axes.md" id="edit-this-page">Edit this page on GitHub.</a>
+                  </p>
+              </div>
+          </footer>
+      </div>
+    </div>
+      <div class="search-overlay"></div>
+  </div>
+</body>
+</html>

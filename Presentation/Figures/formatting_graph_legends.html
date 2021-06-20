@@ -235,6 +235,12 @@ For more information on graphs see other articles such as: bar graphs, scatter p
     </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">.95</span><span class="p">,</span><span class="w"> </span><span class="m">.95</span><span class="p">)</span><span class="w">
   </span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
+<p>You can also use this function with pre-set locations like <code class="language-plaintext highlighter-rouge">"bottom"</code>, <code class="language-plaintext highlighter-rouge">"left"</code> <code class="language-plaintext highlighter-rouge">"right"</code> and <code class="language-plaintext highlighter-rouge">"top"</code> where ggplot centers the legend on the side you choose.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig2</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="w">
+    </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bottom"</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
 <p>There are other cool things you can do to the legend to better customize the visual experience by adding more to the <strong><em>theme</em></strong> modifier such as:</p>
 <ul>
   <li>Changing the margin size with <code class="language-plaintext highlighter-rouge">legend.box.margin</code></li>
