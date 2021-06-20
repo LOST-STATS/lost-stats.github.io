@@ -2,6 +2,7 @@
 title: Formatting Graph Legends
 parent: Figures
 grand_parent: Presentation ## Optional for indexing
+nav_order: 1
 mathjax: true
 ---
 
