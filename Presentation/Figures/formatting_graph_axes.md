@@ -1,6 +1,7 @@
 ---
 title: Formatting Graph Axes
-parent: Category
+parent: Figures
+grand_parent: Presentation
 has_children: false
 nav_order: 1
 mathjax: true 
