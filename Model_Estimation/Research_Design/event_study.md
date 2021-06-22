@@ -10,11 +10,9 @@ mathjax: true
 
 # Difference-in-Differences Event Study / Dynamic Difference-in-Differences
 
-A Difference-in-Difference (DID) event study, or a Dynamic DID model, is a useful tool in evaluating treatment effects of the pre- and post- treatment periods in your respective study. However, since treatment can be staggered - where the treatment group are treated at different time periods - it might be challenging to create a clean event study.
+A Difference-in-Difference (DID) event study, or a Dynamic DID model, is a useful tool in evaluating treatment effects of the pre- and post- treatment periods in your respective study. However, since treatment can be staggered --- where the treatment group are treated at different time periods --- it might be challenging to create a clean event study. We will try to address these issues explicitly in the implementation examples that follow.
 
-In the following code, we will learn how to create a DID event study when treatment is staggered. If there is only one treatment period, the same methodology as described below can be applied.
-
-**Importantly**, while this page uses data from a staggered-treatment design, [Sun and Abraham (2020)](https://www.sciencedirect.com/science/article/pii/S030440762030378X) showed that basic event-study estimation can be biased in this setup. The code below should be used only in cases where treatment occurs at a single time period. Where possible, the code will also show how to apply the Sun and Abraham estimator that fixes this problem.
+**Important:** The dataset used for the implementation examples on this page derives from a staggered treatment ("rollout") design. Various studies have shone a light on the potential biases that can result from applying a standard, twoway fixed-effect (TWFE) regression estimator on such a staggered setup, including [Sun and Abraham (2020)](https://www.sciencedirect.com/science/article/pii/S030440762030378X), [Callaway and Sant'Anna (2020)](https://www.sciencedirect.com/science/article/pii/S0304407621001445#b18), and [Goodman-Bacon (2021)](https://www.sciencedirect.com/science/article/pii/S0304407621001445). Where possible, we will highlight these issues and provide code examples that addresses the potential baises. Note that in cases where the rollout is _not_ staggered (i.e. there is only one treatment period), the same approaches can be applied without loss.
 
 The regression that DID event studies are based aroud is:
 
@@ -55,7 +53,7 @@ Mechanically, an event study is a graphical illustration of the point estimates 
 
 All implementations use the same data, which comes from [Stevenson and Wolfers (2006)](http://users.nber.org/~jwolfers/papers/bargaining_in_the_shadow_of_the_law.pdf) by way of [Clarke & Schythe (2020)](http://ftp.iza.org/dp13524.pdf), who use it as an example to demonstrate Goodman-Bacon effects. This data is a balanced panel from 1964 through 1996 of the United States no-fault divorce reforms and female suicide rates. You can directly download the data [here](http://www.damianclarke.net/stata/bacon_example.dta).
 
-Column `_nfd` in the data  specifies the year in which the law went into effect for the respective state. We use this column to identify the lead and lags with respect to year of treatment. `pcinc`, `asmrh`, and `cases` are controls.
+Column `_nfd` in the data  specifies the year in which the law went into effect for the respective state. We use this column to identify the lead and lags with respect to year of treatment. `pcinc`, `asmrh`, and `cases` are controls. Again, it is important to emphasise that treatment (i.e. when the law went into effect for each state) is staggered over time.
 
 Note that there are some states in which `_nfd` is empty. These states never received treatment, and thus exist as a control.
 
@@ -68,7 +66,7 @@ import pandas as pd
 import linearmodels as lm
 
 # Read in data
-df = pd.read_stata("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Event_Study_DiD/bacon_example.dta")
+df = pd.read_csv("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Event_Study_DiD/bacon_example.csv")
 
 # create the lag/lead for treated states
 # fill in control obs with 0
@@ -317,9 +315,7 @@ Which produces:
 
 Any further decoration or theming at that point is up to you.
 
-Of course, as earlier mentioned, this analysis is subject to the critique by Sun and Abraham (2020). We can also use **fixest** to estimate the Sun and Abraham estimator to calculate effects separately by time-when-treated, and then aggregate to the time-to-treatment level properly, avoiding the way these estimates can "contaminate" each other in the regular model.
-
-We can estimate the Sun and Abraham method using the **eventstudyinteract** package by Sun herself. Install by installing the **github** package with `net install github, from("https://haghish.github.io/github/")` and then installing **eventstudyinteract** with `github install lsun20/eventstudyinteract`.
+Of course, as earlier mentioned, this analysis is subject to the critique by Sun and Abraham (2020). We can estimate the Sun and Abraham method using the **eventstudyinteract** command in Stata. Install by installing the **github** package with `net install github, from("https://haghish.github.io/github/")` and then installing **eventstudyinteract** with `github install lsun20/eventstudyinteract`.
 
 See `help eventstudyinteract` for more information.
 
