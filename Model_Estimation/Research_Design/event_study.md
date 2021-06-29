@@ -171,11 +171,11 @@ Of course, as earlier mentioned, this analysis is subject to the critique by Sun
 
 ## R
 
-A variety of R packages can be used to conduct event-study DiD analysis. Here we will use **fixest**, which is both extremely fast and provides several convenience features (including ES graphics and implementation of the Sun-Abraham method). Note that we are using version 0.9.0 of **fixest**, which must be installed as the development version at the time of writing.
+A variety of R packages can be used to conduct event-study DiD analysis. Here we will use **fixest**, which is both extremely fast and provides several convenience features (including ES graphics and implementation of the Sun-Abraham method). Note that we are using version 0.9.0 of **fixest**.
 
 ```r?example=event_study
 library(data.table) ## For some minor data wrangling
-library(fixest)     ## NB: Requires version 0.9.0. Install with `remotes::install_github('lrberge/fixest')`
+library(fixest)     ## NB: Requires version >=0.9.0
 
 # Load and prepare data
 dat = fread("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Event_Study_DiD/bacon_example.csv") 
@@ -236,7 +236,7 @@ Again, we can use `iplot()` to depict the resulting event study in graphical for
 iplot(list(mod_twfe, mod_sa), sep = 0.5, ref.line = -1,
       xlab = 'Time to treatment',
       main = 'Event study: Staggered treatment')
-legend("bottomleft", col = c(1, 2), pch = c(20, 15), 
+legend("bottomleft", col = c(1, 2), pch = c(20, 17), 
        legend = c("TWFE", "Sun & Abraham (2020)"))
 ```
 ![SA DiD Event Study Graph in R](../Images/Event_Study/r-es_sunab.png)
