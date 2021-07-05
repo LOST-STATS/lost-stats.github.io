@@ -8,6 +8,8 @@ mathjax: true ## Switch to false if this page has no equations or other math ren
 
 # Name of Page (don't put INTRODUCTION here; put the name of the page)
 
+If this is your first time writing a new LOST page, please consider giving the [Contributing](https://lost-stats.github.io/Contributing/Contributing.html) page a look.
+
 INTRODUCTION SECTION
 
 Remember that you can use inline math, e.g. $$x + y$$. In general, you should render variables in math mode ($$X$$, $$Y$$, etc.)
