@@ -173,7 +173,7 @@ Please be sure to add alt text to images for sight-impaired users. Image filenam
 
 **Data**
 
-*Ideally*, the same data set will be uploaded to LOST directly in a format accessible by many languages (like CSV) in the `Data/name-of-your-page/` subfolder of whatever directory you're wokring in, and then that data can be used for implementation in all languages on the page. This is not required, but is encouraged.
+*Ideally*, the same data set will be uploaded to LOST directly in a format accessible by many languages (like CSV) in the `Data/name-of-your-page/` subfolder of whatever directory you're working in, and then that data can be used for implementation in all languages on the page. This is not required, but is encouraged.
 
 # FREQUENTLY ASKED QUESTIONS
 
