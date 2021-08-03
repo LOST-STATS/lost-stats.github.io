@@ -31,8 +31,6 @@ If you create one of these pages, please remove it from this list.
 * Fixed effects in Generalized Linear Models
 * Nonparametric regression
 * Tobit
-* Ordered Probit
-* Ordered Logit
 * Conditional Logit
 * Endogenous Switching Model
 * Nonparametric Sample Selection Models
