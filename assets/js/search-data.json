@@ -199,7 +199,7 @@
   },"33": {
     "doc": "Autocorrelation Function",
     "title": "Python",
-    "content": "import pandas as pd import statsmodels.api as sm d = pd.read_csv('FDEFX.csv') # Plot the ACF sm.graphics.tsa.plot_acf(d['FDEFX']) # Plot the PACF sm.graphics.tsa.plot_pacf(d['FDEFX']) # The PACF shows that, while defense expenditures are correlated with defense expenditures # many periods ago (as shown in the ACF), all of that is explained by a one-period lag. # The rest of the effect is *through* that one-period lag. ",
+    "content": "import pandas as pd import statsmodels.api as sm d = pd.read_csv('https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/FDEFX.csv') # Plot the ACF sm.graphics.tsa.plot_acf(d['FDEFX']) # Plot the PACF sm.graphics.tsa.plot_pacf(d['FDEFX']) # The PACF shows that, while defense expenditures are correlated with defense expenditures # many periods ago (as shown in the ACF), all of that is explained by a one-period lag. # The rest of the effect is *through* that one-period lag. ",
     "url": "/Time_Series/Autocorrelation_Function.html#python",
     "relUrl": "/Time_Series/Autocorrelation_Function.html#python"
   },"34": {
