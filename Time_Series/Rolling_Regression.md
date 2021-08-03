@@ -49,19 +49,23 @@ have these installed, open up your terminal (aka command line) and use
 the command `pip install packagename` where ‘packagename’ is the package
 you want to install.
 
-    from statsmodels.regression.rolling import RollingOLS
-    import statsmodels.api as sm
-    from sklearn.datasets import make_regression
-    import matplotlib.pyplot as plt
-    import pandas as pd
+```python?example=roll_regress
+from statsmodels.regression.rolling import RollingOLS
+import statsmodels.api as sm
+from sklearn.datasets import make_regression
+import matplotlib.pyplot as plt
+import pandas as pd
+```
 
 Next we’ll create some random numbers to do our regression on
 
-    X, y = make_regression(n_samples=200, n_features=2, random_state=0, noise=4.0,
-                           bias=0)
-    df = pd.DataFrame(X).rename(columns={0: 'feature0', 1: 'feature1'})
-    df['target'] = y
-    df.head()
+```python?example=roll_regress
+X, y = make_regression(n_samples=200, n_features=2, random_state=0, noise=4.0,
+                       bias=0)
+df = pd.DataFrame(X).rename(columns={0: 'feature0', 1: 'feature1'})
+df['target'] = y
+df.head()
+```
 
 <table border="1" class="dataframe">
 <thead>
@@ -155,13 +159,17 @@ target
 
 Now let’s fit the model using a formula and a `window` of 25 steps.
 
-    roll_reg = RollingOLS.from_formula('target ~ feature0 + feature1 -1', window=25, data=df)
-    model = roll_reg.fit()
+```python?example=roll_regress
+roll_reg = RollingOLS.from_formula('target ~ feature0 + feature1 -1', window=25, data=df)
+model = roll_reg.fit()
+```
 
 Note that -1 just suppresses the intercept. We can see the parameters
 using `model.params`. Here are the params for time steps 20 to 30:
 
-    model.params[20:30]
+```python?example=roll_regress
+model.params[20:30]
+```
 
 <table border="1" class="dataframe">
 <thead>
@@ -294,10 +302,12 @@ Note that there aren’t parameters for entries between 0 and 23 because
 our window is 25 steps wide. We can easily look at how any of the
 coefficients are changing over time. Here’s an example for ‘feature0’.
 
-    fig = model.plot_recursive_coefficient(variables=['feature0'])
-    plt.xlabel('Time step')
-    plt.ylabel('Coefficient value')
-    plt.show()
+```python?example=roll_regress
+fig = model.plot_recursive_coefficient(variables=['feature0'])
+plt.xlabel('Time step')
+plt.ylabel('Coefficient value')
+plt.show()
+```
 
 ![Rolling\_estimation\_python](Images/py_rolling_estimation.png)
 
@@ -308,10 +318,12 @@ is effectively a recursive least squares model. We can perform this kind
 of estimation using the `RecursiveLS` function from **statsmodels**.
 Let’s fit this to the whole dataset:
 
-    reg_rls = sm.RecursiveLS.from_formula(
-        'target ~ feature0 + feature1 -1', df)
-    model_rls = reg_rls.fit()
-    print(model_rls.summary())
+```python?example=roll_regress
+reg_rls = sm.RecursiveLS.from_formula(
+    'target ~ feature0 + feature1 -1', df)
+model_rls = reg_rls.fit()
+print(model_rls.summary())
+```
 
                                Statespace Model Results                           
     ==============================================================================
@@ -340,7 +352,7 @@ Let’s fit this to the whole dataset:
 But now we can look back at how the values of the coefficients changed
 in real time:
 
-```python?example=rolling
+```python?example=roll_regress
 fig = model_rls.plot_recursive_coefficient(range(reg_rls.k_exog), legend_loc='upper right')
 ax_list = fig.axes
 for ax in ax_list:
