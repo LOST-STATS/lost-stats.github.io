@@ -236,18 +236,18 @@ determines the number of observations used in each OLS regression.</p>
 have these installed, open up your terminal (aka command line) and use
 the command <code class="language-plaintext highlighter-rouge">pip install packagename</code> where ‘packagename’ is the package
 you want to install.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from statsmodels.regression.rolling import RollingOLS
-import statsmodels.api as sm
-from sklearn.datasets import make_regression
-import matplotlib.pyplot as plt
-import pandas as pd
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">statsmodels.regression.rolling</span> <span class="kn">import</span> <span class="n">RollingOLS</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="n">sm</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_regression</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
 </code></pre></div></div>
 <p>Next we’ll create some random numbers to do our regression on</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>X, y = make_regression(n_samples=200, n_features=2, random_state=0, noise=4.0,
-                       bias=0)
-df = pd.DataFrame(X).rename(columns={0: 'feature0', 1: 'feature1'})
-df['target'] = y
-df.head()
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_regression</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span>
+                       <span class="n">bias</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">).</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s">'feature0'</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s">'feature1'</span><span class="p">})</span>
+<span class="n">df</span><span class="p">[</span><span class="s">'target'</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+<span class="n">df</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div></div>
 <div class="table-wrapper"><table border="1" class="dataframe">
 <thead>
@@ -339,12 +339,12 @@ target
 </tbody>
 </table></div>
 <p>Now let’s fit the model using a formula and a <code class="language-plaintext highlighter-rouge">window</code> of 25 steps.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>roll_reg = RollingOLS.from_formula('target ~ feature0 + feature1 -1', window=25, data=df)
-model = roll_reg.fit()
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">roll_reg</span> <span class="o">=</span> <span class="n">RollingOLS</span><span class="p">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s">'target ~ feature0 + feature1 -1'</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">roll_reg</span><span class="p">.</span><span class="n">fit</span><span class="p">()</span>
 </code></pre></div></div>
 <p>Note that -1 just suppresses the intercept. We can see the parameters
 using <code class="language-plaintext highlighter-rouge">model.params</code>. Here are the params for time steps 20 to 30:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>model.params[20:30]
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span><span class="p">.</span><span class="n">params</span><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">30</span><span class="p">]</span>
 </code></pre></div></div>
 <div class="table-wrapper"><table border="1" class="dataframe">
 <thead>
@@ -475,10 +475,10 @@ NaN
 <p>Note that there aren’t parameters for entries between 0 and 23 because
 our window is 25 steps wide. We can easily look at how any of the
 coefficients are changing over time. Here’s an example for ‘feature0’.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fig = model.plot_recursive_coefficient(variables=['feature0'])
-plt.xlabel('Time step')
-plt.ylabel('Coefficient value')
-plt.show()
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">plot_recursive_coefficient</span><span class="p">(</span><span class="n">variables</span><span class="o">=</span><span class="p">[</span><span class="s">'feature0'</span><span class="p">])</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time step'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Coefficient value'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 <p><img src="/Time_Series/Images/py_rolling_estimation.png" alt="Rolling_estimation_python" /></p>
       <h3 id="recursive-ordinary-least-squares-aka-expanding-window-rolling-regression">
@@ -488,12 +488,12 @@ plt.show()
 is effectively a recursive least squares model. We can perform this kind
 of estimation using the <code class="language-plaintext highlighter-rouge">RecursiveLS</code> function from <strong>statsmodels</strong>.
 Let’s fit this to the whole dataset:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>reg_rls = sm.RecursiveLS.from_formula(
-    'target ~ feature0 + feature1 -1', df)
-model_rls = reg_rls.fit()
-print(model_rls.summary())
-
-                           Statespace Model Results                           
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">reg_rls</span> <span class="o">=</span> <span class="n">sm</span><span class="p">.</span><span class="n">RecursiveLS</span><span class="p">.</span><span class="n">from_formula</span><span class="p">(</span>
+    <span class="s">'target ~ feature0 + feature1 -1'</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+<span class="n">model_rls</span> <span class="o">=</span> <span class="n">reg_rls</span><span class="p">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">model_rls</span><span class="p">.</span><span class="n">summary</span><span class="p">())</span>
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                           Statespace Model Results                           
 ==============================================================================
 Dep. Variable:                 target   No. Observations:                  200
 Model:                    RecursiveLS   Log Likelihood                -570.923
