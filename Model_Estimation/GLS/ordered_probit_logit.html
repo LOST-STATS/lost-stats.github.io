@@ -10,14 +10,20 @@
   <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Vertical Combination | LOST</title>
+<title>Ordered Probit/Logit | LOST</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Vertical Combination" />
+<meta property="og:title" content="Ordered Probit/Logit" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"headline":"Vertical Combination","@type":"WebPage","url":"/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html","@context":"https://schema.org"}</script>
+{"headline":"Ordered Probit/Logit","@type":"WebPage","url":"/Model_Estimation/GLS/ordered_probit_logit.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML">
+  </script>
 </head>
 <body>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -62,15 +68,15 @@
       </a>
     </div>
     <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
-      <ul class="nav-list"><li class="nav-list-item active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/data_manipulation.html" class="nav-list-link">Data Manipulation</a><ul class="nav-list "><li class="nav-list-item "><a href="/Data_Manipulation/Regular_Expressions.html" class="nav-list-link">Regular Expressions</a></li><li class="nav-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="nav-list-link">Collapse a Data Set</a></li><li class="nav-list-item  active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="nav-list-link">Combining Datasets</a><ul class="nav-list"><li class="nav-list-item  active">
-                        <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="nav-list-link active">Vertical Combination</a>
+      <ul class="nav-list"><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/data_manipulation.html" class="nav-list-link">Data Manipulation</a><ul class="nav-list "><li class="nav-list-item "><a href="/Data_Manipulation/Regular_Expressions.html" class="nav-list-link">Regular Expressions</a></li><li class="nav-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="nav-list-link">Collapse a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="nav-list-link">Combining Datasets</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="nav-list-link">Vertical Combination</a>
                       </li><li class="nav-list-item ">
                         <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="nav-list-link">Horizontal Combination (Deterministic)</a>
                       </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/creating_a_variable_with_group_calculations.html" class="nav-list-link">Creating a Variable with Group Calculations</a></li><li class="nav-list-item "><a href="/Data_Manipulation/creating_categorical_variables.html" class="nav-list-link">Creating Categorical Variables</a></li><li class="nav-list-item "><a href="/Data_Manipulation/Creating_Dummy_Variables/creating_dummy_variables.html" class="nav-list-link">Creating Dummy Variables</a></li><li class="nav-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="nav-list-link">Determine the Observation Level of a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Reshaping/reshape.html" class="nav-list-link">Reshaping Data</a><ul class="nav-list"><li class="nav-list-item ">
                         <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="nav-list-link">Reshape Panel Data from Wide to Long</a>
                       </li><li class="nav-list-item ">
                         <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="nav-list-link">Reshape Panel Data from Long to Wide</a>
-                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/rowwise_calculations.html" class="nav-list-link">Rowwise Calculations</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Geo-Spatial/Geo-spatial.html" class="nav-list-link">Geo-Spatial</a><ul class="nav-list "><li class="nav-list-item "><a href="/Geo-Spatial/choropleths.html" class="nav-list-link">Choropleths</a></li><li class="nav-list-item "><a href="/Geo-Spatial/geocoding.html" class="nav-list-link">Geocoding</a></li><li class="nav-list-item "><a href="/Geo-Spatial/merging_shape_files.html" class="nav-list-link">Merging Shape Files</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_joins.html" class="nav-list-link">Spatial Joins</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_lag_model.html" class="nav-list-link">Spatial Lag Model</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Machine_Learning/Machine_Learning.html" class="nav-list-link">Machine Learning</a><ul class="nav-list "><li class="nav-list-item "><a href="/Machine_Learning/Nearest_Neighbor.html" class="nav-list-link">K-Nearest Neighbor Matching</a></li><li class="nav-list-item "><a href="/Machine_Learning/artificial_neural_network.html" class="nav-list-link">Artificial Neural Network</a></li><li class="nav-list-item "><a href="/Machine_Learning/boosted_regression_trees.html" class="nav-list-link">Boosted Regression Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/causal_forest.html" class="nav-list-link">Causal Forest</a></li><li class="nav-list-item "><a href="/Machine_Learning/decision_trees.html" class="nav-list-link">Decision Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/penalized_regression.html" class="nav-list-link">Penalized Regression</a></li><li class="nav-list-item "><a href="/Machine_Learning/random_forest.html" class="nav-list-link">Random Forest</a></li><li class="nav-list-item "><a href="/Machine_Learning/support_vector_machine.html" class="nav-list-link">Support Vector Machine</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Model_Estimation.html" class="nav-list-link">Model Estimation</a><ul class="nav-list "><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/OLS/OLS.html" class="nav-list-link">Ordinary Least Squares</a><ul class="nav-list"><li class="nav-list-item ">
+                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/rowwise_calculations.html" class="nav-list-link">Rowwise Calculations</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Geo-Spatial/Geo-spatial.html" class="nav-list-link">Geo-Spatial</a><ul class="nav-list "><li class="nav-list-item "><a href="/Geo-Spatial/choropleths.html" class="nav-list-link">Choropleths</a></li><li class="nav-list-item "><a href="/Geo-Spatial/geocoding.html" class="nav-list-link">Geocoding</a></li><li class="nav-list-item "><a href="/Geo-Spatial/merging_shape_files.html" class="nav-list-link">Merging Shape Files</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_joins.html" class="nav-list-link">Spatial Joins</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_lag_model.html" class="nav-list-link">Spatial Lag Model</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Machine_Learning/Machine_Learning.html" class="nav-list-link">Machine Learning</a><ul class="nav-list "><li class="nav-list-item "><a href="/Machine_Learning/Nearest_Neighbor.html" class="nav-list-link">K-Nearest Neighbor Matching</a></li><li class="nav-list-item "><a href="/Machine_Learning/artificial_neural_network.html" class="nav-list-link">Artificial Neural Network</a></li><li class="nav-list-item "><a href="/Machine_Learning/boosted_regression_trees.html" class="nav-list-link">Boosted Regression Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/causal_forest.html" class="nav-list-link">Causal Forest</a></li><li class="nav-list-item "><a href="/Machine_Learning/decision_trees.html" class="nav-list-link">Decision Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/penalized_regression.html" class="nav-list-link">Penalized Regression</a></li><li class="nav-list-item "><a href="/Machine_Learning/random_forest.html" class="nav-list-link">Random Forest</a></li><li class="nav-list-item "><a href="/Machine_Learning/support_vector_machine.html" class="nav-list-link">Support Vector Machine</a></li></ul></li><li class="nav-list-item active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Model_Estimation.html" class="nav-list-link">Model Estimation</a><ul class="nav-list "><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/OLS/OLS.html" class="nav-list-link">Ordinary Least Squares</a><ul class="nav-list"><li class="nav-list-item ">
                         <a href="/Model_Estimation/OLS/simple_linear_regression.html" class="nav-list-link">Simple Linear Regression</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/OLS/stepwise_regression.html" class="nav-list-link">Stepwise Regression</a>
@@ -82,7 +88,7 @@
                         <a href="/Model_Estimation/Matching/entropy_balancing.html" class="nav-list-link">Entropy Balancing</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/Matching/propensity_score_matching.html" class="nav-list-link">Propensity Score Matching</a>
-                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/GLS/GLS.html" class="nav-list-link">Generalised Least Squares</a><ul class="nav-list"><li class="nav-list-item ">
+                      </li></ul></li><li class="nav-list-item  active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/GLS/GLS.html" class="nav-list-link">Generalised Least Squares</a><ul class="nav-list"><li class="nav-list-item ">
                         <a href="/Model_Estimation/GLS/gmm.html" class="nav-list-link">Generalized Method of Moments</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/GLS/heckman_correction_model.html" class="nav-list-link">Heckman Correction Model</a>
@@ -90,8 +96,8 @@
                         <a href="/Model_Estimation/GLS/logit_model.html" class="nav-list-link">Logit Model</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/GLS/mcfaddens_choice_model.html" class="nav-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a>
-                      </li><li class="nav-list-item ">
-                        <a href="/Model_Estimation/GLS/ordered_probit_logit.html" class="nav-list-link">Ordered Probit/Logit</a>
+                      </li><li class="nav-list-item  active">
+                        <a href="/Model_Estimation/GLS/ordered_probit_logit.html" class="nav-list-link active">Ordered Probit/Logit</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/GLS/probit_model.html" class="nav-list-link">Probit Model</a>
                       </li><li class="nav-list-item ">
@@ -179,86 +185,119 @@
     <div id="main-content-wrap" class="main-content-wrap">
           <nav aria-label="Breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb-nav-list">
-                <li class="breadcrumb-nav-list-item"><a href="/Data_Manipulation/data_manipulation.html">Data Manipulation</a></li>
-                <li class="breadcrumb-nav-list-item"><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html">Combining Datasets</a></li>
-              <li class="breadcrumb-nav-list-item"><span>Vertical Combination</span></li>
+                <li class="breadcrumb-nav-list-item"><a href="/Model_Estimation/Model_Estimation.html">Model Estimation</a></li>
+                <li class="breadcrumb-nav-list-item"><a href="/Model_Estimation/GLS/GLS.html">Generalised Least Squares</a></li>
+              <li class="breadcrumb-nav-list-item"><span>Ordered Probit/Logit</span></li>
             </ol>
           </nav>
       <div id="main-content" class="main-content" role="main">
-          <h1 id="combining-datasets-vertical-combination">
-          <a href="#combining-datasets-vertical-combination" aria-labelledby="combining-datasets-vertical-combination" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Combining Datasets: Vertical Combination
+          <h1 id="ordered-probit--ordered-logit">
+          <a href="#ordered-probit--ordered-logit" aria-labelledby="ordered-probit--ordered-logit" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Ordered Probit / Ordered Logit
       </h1>
-<p>When combining two datasets that collect the same information about different people, they get combined vertically because they have variables in common but different observations. The result of this combination will more rows than the original dataset because it contains all of the people that are present in each of the original datasets. Here we combine the files based on the name or position of the columns in the dataset. It is a “vertical” combination in the sense that one set of observations gets added to the bottom of the other set of observations.</p>
-      <h1 id="keep-in-mind">
+<p>Ordered probit and ordered logit are regression methods intended for use when the dependent variable is <em>ordinal</em>. That is, there is a natural ordering to the different (discrete) values, but no cardinal value. So we might know \(A &gt; B\) but not <em>by how much</em> \(A\) is greater than \(B\).</p>
+<p>Examples of ordinal data include responses on a Likert scale (“Very satisfied” is more satisfied than “Satisfied”, and “Satisfied” is more satisfied than “Not Satisfied”, but the difference between “Very satisfied” and “Satisfied” may not be the same as the difference between “Satisfied” and “Not Satisfied” but we may not know by how much) or education levels (a Master’s degree is more education than a Bachelor’s degree, but how much more?).</p>
+<p>When the dependent variable is ordinal, typical linear regression may not work well because it relies on absolute differences in value.</p>
+<p>Ordered probit and ordered logit take a latent-variable approach to this problem. They assume that the discrete dependent variable simply represents a continuous latent variable. In the Likert scale example this might be “satisfied-ness”. In ordered probit this latent variable is normally distributed, and in ordered logit it is distributed according to a logistic distribution.</p>
+<p>Then, the actual values just carve up the regions of that latent variable. So if satisfied-ness is distributed \(S\sim N(0,1)\), then perhaps “very satisfied” is \(S &gt; .892\), “satisfied” is $.321 &lt; S \leq .892$$, and so on. The .321 and .892 are “cutoff values” separating the categories. These cutoff values are estimated by ordered probit and ordered logit.</p>
+<p>These models assume that predictors affect the latent variable the same no matter which level you’re at. There isn’t a predictor that, for example, makes you more likely to be “satified” and less likely to be either “very satisfied” <em>or</em> “not satisfied” (or a predictor that has a slight positive effect going from “not satisfied” to “satisfied” but a huge effect going from “satisfied” to “very sastisfied”). You can imagine taking your ordinal variable and collapsing it into a binary one: comparing, say, “very not satisfied” and “not satisfied” as one group vs. “satisfied” and “very satisfied” as the other in a typical probit or logit. Ordered logit/probit assumes that this will give the same results as if you’d split somewhere else, comparing “very not satisfied”, “not satisfied”, and “satisfied” vs. “very satisfied”. This is the “parallel lines” or “parallel regression” assumption, or for ordered logit “proportional odds”.</p>
+      <h2 id="keep-in-mind">
           <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
-      </h1>
+      </h2>
 <ul>
-  <li>Vertical combinations require datasets to have variables in common to be of much use. That said, it may not be necessary for the two datasets to have exactly the same variables. Be aware of how your statistical package handles observations for a variable that is in one dataset but not another (e.g. are such observations set to missing?).</li>
-  <li>It may be the case that the datasets you are combining have the same variables but those variables are stored differently (numeric vs. string storage types). Be aware of how the variables are stored across datasets and how your statistical package handles attempts to combine the same variable with different storage types (e.g. Stata throws an error and will now allow the combination, unless the “, force” option is specified.)</li>
+  <li>Coefficients on predictors are scaled in terms of the <em>latent variable</em> and in general are difficult to interpret. You can calculate marginal effects from ordered probit/logit results, which report how changes in a predictor are related to people moving from one category to another. For example, if the marginal effect of \(X\) is +.03 for “very not satisfied”, +.02 for “not satisfied”, .+.02 for “satisfied”, and -.07 for “very satisfied”, that means that a one-unit increase in \(X\) results in a drop in the proportion of the sample predicted to be “very satisfied” and that drop is reallocated across the other three levels, everyone shifting down a bit and some ending up in a new category.</li>
+  <li>To identify the model, one of the cutoff parameters (the lowest one, separating the lowest category and the second-lowest) is usually fixed at 0. The cutoff values are in general only meaningful <em>relative to each other</em> for this reason and don’t mean anything on their own.</li>
+  <li>It is a good idea to test the parallel lines assumption. This is commonly done using a <a href="https://www.jstor.org/stable/2532457">Brant (1990)</a> test, which basically checks the different above/below splits possible with the dependent variable and sees how much the coefficients differ (hoping they don’t differ a lot!). If the test fails, you may want to use a <em>generalized</em> ordered logit, which has less explanatory power but does not rely on the parallel trends assumption. Code for both these steps is below. Doing the test rather than just starting with generalized ordered logit is a good idea because you do lose power and interpretability with generalized ordered logit; see <a href="https://www3.nd.edu/~rwilliam/gologit2/UnderStandingGologit2016.pdf">Williams 2016</a>.</li>
+</ul>
+      <h2 id="also-consider">
+          <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
+      </h2>
+<ul>
+  <li>If the dependent variable is not ordered, consider a <a href="/Model_Estimation/GLS/mcfaddens_choice_model.html">multinomial model</a> instead.</li>
 </ul>
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
-      <h2 id="python">
-          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
-      </h2>
-<p><code class="language-plaintext highlighter-rouge">pandas</code> is by far the most widely-used library for data manipulation in python. The <code class="language-plaintext highlighter-rouge">concat</code> function concatenates datasets vertically and combines datasets even if they don’t contain the exact same set of variables. It’s also possible to concatenate dataframes horizontally by passing the function the keyword argument <code class="language-plaintext highlighter-rouge">axis=1</code>.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
-
-<span class="c1"># Load California Population data from the internet
-</span><span class="n">df_ca</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_stata</span><span class="p">(</span><span class="s">'http://www.stata-press.com/data/r14/capop.dta'</span><span class="p">)</span>
-<span class="n">df_il</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_stata</span><span class="p">(</span><span class="s">'http://www.stata-press.com/data/r14/ilpop.dta'</span><span class="p">)</span>
-
-<span class="c1"># Concatenate a list of the dataframes (works on any number of dataframes)
-</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_ca</span><span class="p">,</span> <span class="n">df_il</span><span class="p">])</span>
-
-</code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
-<p>There are several ways to vertically combine data sets in R, including <code class="language-plaintext highlighter-rouge">rbind</code>. We will use the <strong>dplyr</strong> package function <code class="language-plaintext highlighter-rouge">bind_rows</code>, which allows the two data sets to combine even if they don’t contain the exact same set of variables.</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install dplyr</span><span class="w">
-</span><span class="c1"># install.packages('dplyr')</span><span class="w">
-</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+<p>The necessary tools to work with ordered probit and logit are unfortunately scattered across several packages in R. <strong>MASS</strong> contains the ordered probit/logit estimator, <strong>brant</strong> has the Brant test, and if that fails you’re off to <strong>VGAM</strong> for generalized ordered logit.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># For the ordered probit/logit model</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span><span class="w">
+</span><span class="c1"># For the brant test</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">brant</span><span class="p">)</span><span class="w">
+</span><span class="c1"># For the generalized ordered logit</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">VGAM</span><span class="p">)</span><span class="w">
+</span><span class="c1"># For marginal effects</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">erer</span><span class="p">)</span><span class="w">
 
-</span><span class="c1"># Load in mtcars data</span><span class="w">
-</span><span class="n">data</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w">
+</span><span class="c1"># Data on marital happiness and affairs</span><span class="w">
+</span><span class="c1"># Documentation: https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/Fair.html</span><span class="w">
+</span><span class="n">mar</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s1">'https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/Fair.csv'</span><span class="p">)</span><span class="w">
 
-</span><span class="c1"># Split it in two, so we can combine them back together</span><span class="w">
-</span><span class="n">mtcars1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mtcars</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,]</span><span class="w">
-</span><span class="n">mtcars2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mtcars</span><span class="p">[</span><span class="m">11</span><span class="o">:</span><span class="m">32</span><span class="p">,]</span><span class="w">
+</span><span class="c1"># See how various factors predict marital happiness</span><span class="w">
+</span><span class="n">m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">polr</span><span class="p">(</span><span class="n">factor</span><span class="p">(</span><span class="n">rate</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">child</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">religious</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">education</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nbaffairs</span><span class="p">,</span><span class="w">
+          </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mar</span><span class="p">,</span><span class="w"> 
+          </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'logistic'</span><span class="w"> </span><span class="c1"># change to 'probit' for ordered probit</span><span class="w">
+          </span><span class="p">)</span><span class="w">
 
-</span><span class="c1"># Use bind_rows to vertically combine the data sets</span><span class="w">
-</span><span class="n">mtcarswhole</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bind_rows</span><span class="p">(</span><span class="n">mtcars1</span><span class="p">,</span><span class="w"> </span><span class="n">mtcars2</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Brant test of proportional odds</span><span class="w">
+</span><span class="n">brant</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="w">
+</span><span class="c1"># The "Omnibus" probability is .03, if we have alpha = .05 then we reject proportional odds</span><span class="w">
+</span><span class="c1"># Specifically the test tells us that education is the problem. Dang.</span><span class="w">
+
+</span><span class="c1"># We can use vglm for the generalized ordered logit</span><span class="w">
+</span><span class="n">gologit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">vglm</span><span class="p">(</span><span class="n">factor</span><span class="p">(</span><span class="n">rate</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">child</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">religious</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">education</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nbaffairs</span><span class="p">,</span><span class="w">
+                </span><span class="n">cumulative</span><span class="p">(</span><span class="n">link</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'logitlink'</span><span class="p">,</span><span class="w"> </span><span class="n">parallel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">),</span><span class="w"> </span><span class="c1"># parallel = FALSE tells it not to assume parallel lines</span><span class="w">
+                </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mar</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">gologit</span><span class="p">)</span><span class="w">                
+</span><span class="c1"># Notice how each predictor now has many coefficients - one for each level</span><span class="w">
+</span><span class="c1"># and we have other problems denoted in its warnings!</span><span class="w">
+
+</span><span class="c1"># If we want marginal effects for our original ordered logit...</span><span class="w">
+</span><span class="n">ocME</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
       <h2 id="stata">
           <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
       </h2>
-<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load California Population data
-</span><span class="err">webuse</span> <span class="err">http:</span><span class="c1">//www.stata-press.com/data/r14/capop.dta // Import data from the web </span><span class="err">
+<p>Ordered logit / probit requires a few packages to be installed, including <strong>gologit2</strong> for the generalized ordered logit, and for the Brant test <strong>spost13</strong>, which is not on ssc.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* For the brant test we must install spost13 
+* which is not on ssc, so do "findit spost13" and install "spost13_ado"
+* for generalized ordered logit, do "ssc install gologit2"
 
-append</span> <span class="err">using</span> <span class="err">http:</span><span class="c1">//www.stata-press.com/data/r14/ilpop.dta // Merge on Illinois population data from the web </span><span class="err">
-</span></code></pre></div></div>
-<p>You can also append multiple datasets at once, by simply listing both datasets separated by a space:</p>
-<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load California Population data
-* Import data from the web 
-</span><span class="err">webuse</span> <span class="err">http:</span><span class="c1">//www.stata-press.com/data/r14/capop.dta </span><span class="err">
+* Data on marital happiness and affairs
+* Documentation: https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/Fair.html
+</span><span class="err">import</span> <span class="err">delimited</span> <span class="s2">"https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/Fair.csv"</span><span class="err">,</span> <span class="err">clear
 </span><span class="c1">
-* Merge on Illinois and Texas population data from the web 
-</span><span class="err">append</span> <span class="err">using</span> <span class="err">http:</span><span class="c1">//www.stata-press.com/data/r14/ilpop.dta http://www.stata-press.com/data/r14/txpop.dta </span><span class="err">
-</span></code></pre></div></div>
-<p>Note that, if there are columns in one but not the other of the datasets, Stata will still append the two datasets, but observations from the dataset that did not contain those columns will have their values for that variable set to missing.</p>
-<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load Even Number Data 
-</span><span class="err">webuse</span> <span class="err">odd.dta,</span> <span class="err">clear</span> <span class="err">
+* strings can't be factors
+</span><span class="err">encode</span> <span class="err">child,</span> <span class="err">g(child_n)
+</span><span class="c1">
+* Run ologit or oprobit
+</span><span class="err">ologit</span> <span class="err">rate</span> <span class="err">age</span> <span class="err">i.child_n</span> <span class="err">religious</span> <span class="err">education</span> <span class="err">nbaffairs
+</span><span class="c1">
+* Use the brant test
+</span><span class="err">brant
+</span><span class="c1">* The "All" probability is .03, if we have alpha = .05 then we reject proportional odds
+* Specifically the test tells us that education is the problem. Dang.
 
-append</span> <span class="err">using</span> <span class="err">http:</span><span class="c1">//www.stata-press.com/data/r14/even.dta </span><span class="err">
+* Running generalized ordered logit instead
+</span><span class="err">gologit2</span> <span class="err">rate</span> <span class="err">age</span> <span class="err">i.child_n</span> <span class="err">religious</span> <span class="err">education</span> <span class="err">nbaffairs
+</span><span class="c1">* Notice how each predictor now has many coefficients - one for each level
+* and we have a negative predicted probability denoted in the warnings!
 
+* We can get marginal effects for either model using margins
+</span><span class="err">ologit</span> <span class="err">rate</span> <span class="err">age</span> <span class="err">i.child_n</span> <span class="err">religious</span> <span class="err">education</span> <span class="err">nbaffairs
+margins,</span> <span class="err">dydx(</span><span class="o">*</span><span class="err">)
+
+gologit2</span> <span class="err">rate</span> <span class="err">age</span> <span class="err">i.child_n</span> <span class="err">religious</span> <span class="err">education</span> <span class="err">nbaffairs
+margins,</span> <span class="err">dydx(</span><span class="o">*</span><span class="err">)
 </span></code></pre></div></div>
           <hr>
           <footer>
               <div class="d-flex mt-2">
                   <p class="text-small text-grey-dk-000 mb-0">
-                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.md" id="edit-this-page">Edit this page on GitHub.</a>
+                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Model_Estimation/GLS/ordered_probit_logit.md" id="edit-this-page">Edit this page on GitHub.</a>
                   </p>
               </div>
           </footer>
