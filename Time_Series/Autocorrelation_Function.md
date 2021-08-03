@@ -31,7 +31,7 @@ The data we use comes from the Federal Reserve's Economic Database, using the se
 import pandas as pd
 import statsmodels.api as sm
 
-d = pd.read_csv('FDEFX.csv')
+d = pd.read_csv('https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/FDEFX.csv')
 
 # Plot the ACF
 sm.graphics.tsa.plot_acf(d['FDEFX'])
