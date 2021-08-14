@@ -25,6 +25,9 @@ If you create one of these pages, please remove it from this list.
 
 ### OLS
 
+* ANOVA
+* MANOVA
+
 ### GLS
 
 * Nonlinear Instrumental Variables Estimation
@@ -54,8 +57,6 @@ If you create one of these pages, please remove it from this list.
 
 ### Statistical Inference
 
-* Average Marginal Effects
-* Marginal Effects at the Mean
 * Nonlinear hypothesis tests
 
 #### Nonstandard Errors
@@ -73,7 +74,13 @@ If you create one of these pages, please remove it from this list.
 
 ### Figures
 
+* Sankey Diagrams
+* Animated Graphs
+* Color Palettes
+
 ### Tables
+
+* Building Your Own Custom Table
 
 ## Time Series
 
