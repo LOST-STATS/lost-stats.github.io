@@ -17,7 +17,7 @@ Commonly, we would prefer to state our results in terms of changes in the actual
 
 Marginal effects can be calculated for all sorts of nonlinear models. This page will discuss only logit and probit, but the same concepts (and, often, code, especially for other generalized linear models) work for other nonlinear models.
 
-The marginal effect can be calculated by taking the derivative of the outcome variable with respect to the predictor of interest. This is how effects can be interpreted in general. Even in a linear model like $$Y = \beta_0 + \beta_1X + \varepsilon$$, we can see that $$\partial{Y}/\partial{X} = \beta_1$, i.e. a one-unit change in $$X$$ is associated with a $$\beta_1$$-unit change in $$Y$$.
+The marginal effect can be calculated by taking the derivative of the outcome variable with respect to the predictor of interest. This is how effects can be interpreted in general. Even in a linear model like $$Y = \beta_0 + \beta_1X + \varepsilon$$, we can see that $$\partial{Y}/\partial{X} = \beta_1$$, i.e. a one-unit change in $$X$$ is associated with a $$\beta_1$$-unit change in $$Y$$.
 
 For both probit and logit models in the form $$E(Y=1) = F(\beta_0 + \beta_1X)$$, where $$F()$$ is the link function, the marginal effect can be calculated as
 
