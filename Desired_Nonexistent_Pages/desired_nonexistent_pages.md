@@ -110,7 +110,6 @@ This is a list of pages that exist but only have an example in one language, and
 
 ## Currently Python Only
 
-* Machine Learning: [K-Nearest Neighbor Matching]({{ "/Machine_Learning/Nearest_Neighbor.html" | relative_url }})
 * Machine Learning: [Artificial Neural Network]({{ "/Machine_Learning/artificial_neural_network.html" | relative_url }})
 
 ## Currently R Only
