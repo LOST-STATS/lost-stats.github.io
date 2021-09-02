@@ -56,7 +56,7 @@ $$d_{WE}(i,j) = \biggl(\sum_{k=1}^{p}w_k(x^i_k - x^j_k)^2\biggr)^\frac{1}{2} $$
 
 For KNN, it is not required to import packages other than **numpy**. You can basically do KNN with one package because it is mostly about computing distance and normalization. You would need TensorFlow and Keras as you try more advanced algorithms such as convolutional neural network. 
 
-```c
+```python
 import argparse
 import numpy as np
 from collections import Counter
@@ -159,73 +159,64 @@ if __name__ == "__main__":
 ```
 
 ##  R 
-The simplest way to perform KNN in R is with the package **class**. It has a KNN function that is rather user friendly and does not require you to do distance computing as it runs everything with euclidean distance. For more advanced types nearest neighbors testing it would be best to use the _matchit function_ from the [**matchit** package.](https://kosukeimai.github.io/MatchIt/reference/matchit.html) To verify results this example also used the _confusionMatrix function_ from the package **caret**.  
-    Due to how this package is designed the easiest room for error would be during normalization by normalizing variables such as character or other ones that do not require normalization. Another good source of error is not including drop = TRUE for your target, or y, vector which will prevent the model from running. Finally, the way this example verifies results it is vital to convert the target into a factor as the data has to be in similar kind in order for R to give you an output.
 
-```
+The simplest way to perform KNN in R is with the package **class**. It has a KNN function that is rather user friendly and does not require you to do distance computing as it runs everything with Euclidean distance. For more advanced types of nearest neighbors matching it would be best to use the `matchit` function from the [**matchit** package.](https://kosukeimai.github.io/MatchIt/reference/matchit.html) To verify results this example also used the `confusionMatrix` function from the package **caret**.  
+    
+   Due to how this package is designed the most room for error is during normalization, by normalizing variables that do not require or cannot accept it, like character variables. Another good source of error is not including drop = TRUE for your target, or y, vector which will prevent the model from running. Finally, given the way this example verifies results it is vital to convert the target into a factor as the data has to be in similar kind in order for R to give you an output.
 
+This walkthrough uses data from the UCI Machine Learning Repository under _Breast Cancer Wisconsin (Diagnostic) Data Set_ ([Rdocumentation for KNN](https://www.rdocumentation.org/packages/class/versions/7.3-19/topics/knn)). Also, [statology's "how to create a confusion matrix"](https://www.statology.org/confusion-matrix-in-r/).
+
+```r
 library(tidyverse)
 library(readr)
 
-#For KNN
+# For KNN
 library(class)
 library(caret)
 
-
-#Import the Dataset
-df <- read_csv("wdbc.csv")
+# Import the Dataset
+df <- read_csv("https://github.com/LOST-STATS/lost-stats.github.io/files/7088929/wdbc.csv")
 view(df)
 
-#the first column is an identifier so remove that, anything that does not aid in classifying can be removed
+# the first column is an identifier so remove that, anything that does not aid in classifying can be removed
 df <- df[-1]
 
-
-#See the count of the target, either B, benign, or M, malignant
+# See the count of the target, either B, benign, or M, malignant
 table(df[1])
 
-#Normalize the Dataset
+# Normalize the Dataset
 
-normal<- function(x) { return ((x - min(x)) / (max(x) - min(x))) }
+normal <- function(x) { return ((x - min(x)) / (max(x) - min(x))) }
 
-#Apply to what needs to be normalized, in this case not the target
+# Apply to what needs to be normalized, in this case not the target
 df_norm <- as.data.frame(lapply(df[2:31], normal))
 
-#Verify that normalization has occurred
+# Verify that normalization has occurred
 summary(df_norm[1])
 summary(df_norm[3])
 summary(df_norm[11])
 summary(df_norm[23])
 
-
-#Split the dataframe into test and train datasets - note there are two dataframes
-#First test and train from the features, here is an example of about a 70/30 split for testing and training
-
+# Split the dataframe into test and train datasets - note there are two dataframes
+# First test and train from the features, here is an example of about a 70/30 split for testing and training
 x_train <- df_norm[1:397,]
-
 x_test <- df_norm[398:568,]
 
-
-#Now test and train for the target - here is import that you do ", 1" to indicate only one column
-#It will not work unless you use drop = TRUE
+# Now test and train for the target - here it is important that you do ", 1" to indicate only one column
+# It will not work unless you use drop = TRUE
 y_train <- df[1:397, 1, drop = TRUE]
-
 y_test <- df[398:568, 1, drop = TRUE]
 
-
-#The purpose of installing those packages were to use these next functions, first KNN
-#Like the python example states, best practice for K unless assigned is the square root of the number of observations
+# The purpose of installing those packages were to use these next functions, first KNN
+# Like the Python example states, the best practice for a choice of K unless assigned is the square root of the number of observations
 pred <- knn(train = x_train, test = x_test, cl = y_train, k = 23)
 
-#Confusion Matrix from Caret
+# Confusion Matrix from Caret
 
-#KNN converts to a factor with two levels so we need to make sure the test dataset is similar
+# KNN converts to a factor with two levels so we need to make sure the test dataset is similar
 y_test <- y_test %>% factor(levels = c("B", "M"))
 
-#See how well the model did
+# See how well the model did
 confusionMatrix(y_test, pred)
-
 ```
 
-### References for R walkthrough
-The dataset used is from the UCI Machine Learning Repository under _Breast Cancer Wisconsin (Diagnostic) Data Set_. [Rdocumentation for KNN](https://www.rdocumentation.org/packages/class/versions/7.3-19/topics/knn) was used in order to work on this example. Also, [statology's "how to create a confusion matrix"](https://www.statology.org/confusion-matrix-in-r/)
-[wdbc.csv](https://github.com/LOST-STATS/lost-stats.github.io/files/7088929/wdbc.csv)
