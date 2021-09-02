@@ -275,106 +275,164 @@
           <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
       </h2>
 <p>For KNN, it is not required to import packages other than <strong>numpy</strong>. You can basically do KNN with one package because it is mostly about computing distance and normalization. You would need TensorFlow and Keras as you try more advanced algorithms such as convolutional neural network.</p>
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">import</span> <span class="n">argparse</span>
-<span class="n">import</span> <span class="n">numpy</span> <span class="n">as</span> <span class="n">np</span>
-<span class="n">from</span> <span class="n">collections</span> <span class="n">import</span> <span class="n">Counter</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
 
-<span class="cp"># Process arguments for k-NN classification
-</span><span class="n">def</span> <span class="n">handle_args</span><span class="p">()</span><span class="o">:</span>
+<span class="c1"># Process arguments for k-NN classification
+</span><span class="k">def</span> <span class="nf">handle_args</span><span class="p">():</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span>
-                 <span class="err">'</span><span class="n">Make</span> <span class="n">predictions</span> <span class="n">using</span> <span class="n">the</span> <span class="n">k</span><span class="o">-</span><span class="n">NN</span> <span class="n">algorithms</span><span class="p">.</span><span class="err">'</span><span class="p">)</span>
+                 <span class="s">'Make predictions using the k-NN algorithms.'</span><span class="p">)</span>
 
-    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="err">'</span><span class="o">-</span><span class="n">k</span><span class="err">'</span><span class="p">,</span> <span class="n">type</span><span class="o">=</span><span class="kt">int</span><span class="p">,</span> <span class="k">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="err">'</span><span class="n">Number</span> <span class="n">of</span> <span class="n">nearest</span> <span class="n">neighbors</span> <span class="n">to</span> <span class="n">consider</span><span class="err">'</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="err">'</span><span class="o">--</span><span class="n">varnorm</span><span class="err">'</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="err">'</span><span class="n">store_true</span><span class="err">'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="err">'</span><span class="n">Normalize</span> <span class="n">features</span> <span class="n">to</span> <span class="n">zero</span> <span class="n">mean</span> <span class="n">and</span> <span class="n">unit</span> <span class="n">variance</span><span class="err">'</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="err">'</span><span class="o">--</span><span class="n">rangenorm</span><span class="err">'</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="err">'</span><span class="n">store_true</span><span class="err">'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="err">'</span><span class="n">Normalize</span> <span class="n">features</span> <span class="n">to</span> <span class="n">the</span> <span class="n">range</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="err">'</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="err">'</span><span class="o">--</span><span class="n">exnorm</span><span class="err">'</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="err">'</span><span class="n">store_true</span><span class="err">'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="err">'</span><span class="n">Normalize</span> <span class="n">examples</span> <span class="n">to</span> <span class="n">unit</span> <span class="n">length</span><span class="err">'</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="err">'</span><span class="n">train</span><span class="err">'</span><span class="p">,</span>  <span class="n">help</span><span class="o">=</span><span class="err">'</span><span class="n">Training</span> <span class="n">data</span> <span class="n">file</span><span class="err">'</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="err">'</span><span class="n">test</span><span class="err">'</span><span class="p">,</span>   <span class="n">help</span><span class="o">=</span><span class="err">'</span><span class="n">Test</span> <span class="n">data</span> <span class="n">file</span><span class="err">'</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'-k'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'Number of nearest neighbors to consider'</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--varnorm'</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">'store_true'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'Normalize features to zero mean and unit variance'</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--rangenorm'</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">'store_true'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'Normalize features to the range [-1,+1]'</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--exnorm'</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">'store_true'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'Normalize examples to unit length'</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'train'</span><span class="p">,</span>  <span class="n">help</span><span class="o">=</span><span class="s">'Training data file'</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'test'</span><span class="p">,</span>   <span class="n">help</span><span class="o">=</span><span class="s">'Test data file'</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
 
 
-<span class="cp"># Load data from a file
-</span><span class="n">def</span> <span class="n">read_data</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">:</span>
-  <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="sc">','</span><span class="p">,</span> <span class="n">skip_header</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-  <span class="n">x</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="mi">0</span><span class="o">:-</span><span class="mi">1</span><span class="p">]</span>
-  <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1"># Load data from a file
+</span><span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+  <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">','</span><span class="p">,</span> <span class="n">skip_header</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
   <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 
 
-<span class="cp"># Distance between instances x1 and x2
-</span><span class="n">def</span> <span class="n">dist</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span><span class="o">:</span>
+<span class="c1"># Distance between instances x1 and x2
+</span><span class="k">def</span> <span class="nf">dist</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">):</span>
     <span class="n">euclidean_distance</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">euclidean_distance</span>
 
 
-<span class="cp"># Predict label for instance x, using k nearest neighbors in training data
-</span><span class="n">def</span> <span class="n">classify</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span><span class="o">:</span>
-    <span class="n">dists</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">train_x</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">dists</span><span class="p">,</span> <span class="mi">0</span><span class="p">)[</span><span class="o">:</span><span class="n">k</span><span class="p">]</span>
-    <span class="n">k_labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">train_y</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span> <span class="n">in</span> <span class="n">idx</span><span class="p">]</span>
-    <span class="n">prediction</span> <span class="o">=</span> <span class="n">list</span><span class="p">()</span>
-    <span class="n">prediction</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">k_labels</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">k_labels</span><span class="p">.</span><span class="n">count</span><span class="p">))</span>
+<span class="c1"># Predict label for instance x, using k nearest neighbors in training data
+</span><span class="k">def</span> <span class="nf">classify</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="n">dists</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">train_x</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">dists</span><span class="p">,</span> <span class="mi">0</span><span class="p">)[:</span><span class="n">k</span><span class="p">]</span>
+    <span class="n">k_labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">train_y</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">idx</span><span class="p">]</span>
+    <span class="n">prediction</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="n">prediction</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">k_labels</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">k_labels</span><span class="p">.</span><span class="n">count</span><span class="p">))</span>
     <span class="n">prediction</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">prediction</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">prediction</span>
 
 
-<span class="cp"># Process the data to normalize features and/or examples.
+<span class="c1"># Process the data to normalize features and/or examples.
 # NOTE: You need to normalize both train and test data the same way.
-</span><span class="n">def</span> <span class="n">normalize_data</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">test_x</span><span class="p">,</span> <span class="n">rangenorm</span><span class="p">,</span> <span class="n">varnorm</span><span class="p">,</span> <span class="n">exnorm</span><span class="p">)</span><span class="o">:</span>
-  <span class="k">if</span> <span class="n">rangenorm</span><span class="o">:</span>
-    <span class="n">train_x</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">train_x</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">min</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">ptp</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
-    <span class="n">test_x</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">test_x</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">min</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">ptp</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
+</span><span class="k">def</span> <span class="nf">normalize_data</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">test_x</span><span class="p">,</span> <span class="n">rangenorm</span><span class="p">,</span> <span class="n">varnorm</span><span class="p">,</span> <span class="n">exnorm</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">rangenorm</span><span class="p">:</span>
+    <span class="n">train_x</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">train_x</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="nb">min</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">ptp</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">test_x</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">test_x</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="nb">min</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">ptp</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
 
-    <span class="n">pass</span>
+    <span class="k">pass</span>
 
-  <span class="k">if</span> <span class="n">varnorm</span><span class="o">:</span>
+  <span class="k">if</span> <span class="n">varnorm</span><span class="p">:</span>
     <span class="n">train_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">train_x</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">std</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
     <span class="n">test_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">test_x</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">std</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 
-    <span class="n">pass</span>
+    <span class="k">pass</span>
 
-  <span class="k">if</span> <span class="n">exnorm</span><span class="o">:</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="n">train_x</span><span class="o">:</span>
+  <span class="k">if</span> <span class="n">exnorm</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">train_x</span><span class="p">:</span>
       <span class="n">train_x</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">norm</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">k</span> <span class="n">in</span> <span class="n">test_x</span><span class="o">:</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">test_x</span><span class="p">:</span>
       <span class="n">test_x</span> <span class="o">=</span> <span class="n">k</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">norm</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
 
-    <span class="n">pass</span>
+    <span class="k">pass</span>
 
   <span class="k">return</span> <span class="n">train_x</span><span class="p">,</span> <span class="n">test_x</span>
 
 
-<span class="cp"># Run classifier and compute accuracy
-</span><span class="n">def</span> <span class="n">runTest</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span> <span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span><span class="o">:</span>
+<span class="c1"># Run classifier and compute accuracy
+</span><span class="k">def</span> <span class="nf">runTest</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span> <span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
   <span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="n">in</span> <span class="n">zip</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span><span class="p">)</span><span class="o">:</span>
-    <span class="k">if</span> <span class="n">classify</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="n">y</span><span class="o">:</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">classify</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="n">y</span><span class="p">:</span>
       <span class="n">correct</span> <span class="o">+=</span> <span class="mi">1</span>
-  <span class="n">acc</span> <span class="o">=</span> <span class="kt">float</span><span class="p">(</span><span class="n">correct</span><span class="p">)</span><span class="o">/</span><span class="n">len</span><span class="p">(</span><span class="n">test_x</span><span class="p">)</span>
+  <span class="n">acc</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">correct</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">test_x</span><span class="p">)</span>
   <span class="k">return</span> <span class="n">acc</span>
 
 
-<span class="cp"># Load train and test data.  Learn model.  Report accuracy.
-</span><span class="n">def</span> <span class="n">main</span><span class="p">()</span><span class="o">:</span>
+<span class="c1"># Load train and test data.  Learn model.  Report accuracy.
+</span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
 
   <span class="n">args</span> <span class="o">=</span> <span class="n">handle_args</span><span class="p">()</span>
 
-  <span class="cp"># Read in lists of examples.  Each example is a list of attribute values,
-</span>  <span class="cp"># where the last element in the list is the class value.
+  <span class="c1"># Read in lists of examples.  Each example is a list of attribute values,
+</span>  <span class="c1"># where the last element in the list is the class value.
 </span>  <span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span> <span class="o">=</span> <span class="n">read_data</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">train</span><span class="p">)</span>
   <span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span><span class="p">)</span>   <span class="o">=</span> <span class="n">read_data</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">test</span><span class="p">)</span>
 
-  <span class="cp"># Normalize the training data
+  <span class="c1"># Normalize the training data
 </span>  <span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">test_x</span><span class="p">)</span> <span class="o">=</span> <span class="n">normalize_data</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">test_x</span><span class="p">,</span> 
                           <span class="n">args</span><span class="p">.</span><span class="n">rangenorm</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">varnorm</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">exnorm</span><span class="p">)</span>
     
   <span class="n">acc</span> <span class="o">=</span> <span class="n">runTest</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span><span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span><span class="n">args</span><span class="p">.</span><span class="n">k</span><span class="p">)</span>
-  <span class="n">print</span><span class="p">(</span><span class="s">"Accuracy: "</span><span class="p">,</span><span class="n">acc</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">"Accuracy: "</span><span class="p">,</span><span class="n">acc</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="o">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
   <span class="n">main</span><span class="p">()</span>
 </code></pre></div></div>
+      <h2 id="r">
+          <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
+      </h2>
+<p>The simplest way to perform KNN in R is with the package <strong>class</strong>. It has a KNN function that is rather user friendly and does not require you to do distance computing as it runs everything with Euclidean distance. For more advanced types of nearest neighbors matching it would be best to use the <code class="language-plaintext highlighter-rouge">matchit</code> function from the <a href="https://kosukeimai.github.io/MatchIt/reference/matchit.html"><strong>matchit</strong> package.</a> To verify results this example also used the <code class="language-plaintext highlighter-rouge">confusionMatrix</code> function from the package <strong>caret</strong>.</p>
+<p>Due to how this package is designed the most room for error is during normalization, by normalizing variables that do not require or cannot accept it, like character variables. Another good source of error is not including drop = TRUE for your target, or y, vector which will prevent the model from running. Finally, given the way this example verifies results it is vital to convert the target into a factor as the data has to be in similar kind in order for R to give you an output.</p>
+<p>This walkthrough uses data from the UCI Machine Learning Repository under <em>Breast Cancer Wisconsin (Diagnostic) Data Set</em> (<a href="https://www.rdocumentation.org/packages/class/versions/7.3-19/topics/knn">Rdocumentation for KNN</a>). Also, <a href="https://www.statology.org/confusion-matrix-in-r/">statology’s “how to create a confusion matrix”</a>.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">readr</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># For KNN</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">class</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">caret</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Import the Dataset</span><span class="w">
+</span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"https://github.com/LOST-STATS/lost-stats.github.io/files/7088929/wdbc.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">view</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># the first column is an identifier so remove that, anything that does not aid in classifying can be removed</span><span class="w">
+</span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df</span><span class="p">[</span><span class="m">-1</span><span class="p">]</span><span class="w">
+
+</span><span class="c1"># See the count of the target, either B, benign, or M, malignant</span><span class="w">
+</span><span class="n">table</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="m">1</span><span class="p">])</span><span class="w">
+
+</span><span class="c1"># Normalize the Dataset</span><span class="w">
+
+</span><span class="n">normal</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">return</span><span class="w"> </span><span class="p">((</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span><span class="w"> </span><span class="p">}</span><span class="w">
+
+</span><span class="c1"># Apply to what needs to be normalized, in this case not the target</span><span class="w">
+</span><span class="n">df_norm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">lapply</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="m">2</span><span class="o">:</span><span class="m">31</span><span class="p">],</span><span class="w"> </span><span class="n">normal</span><span class="p">))</span><span class="w">
+
+</span><span class="c1"># Verify that normalization has occurred</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">df_norm</span><span class="p">[</span><span class="m">1</span><span class="p">])</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">df_norm</span><span class="p">[</span><span class="m">3</span><span class="p">])</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">df_norm</span><span class="p">[</span><span class="m">11</span><span class="p">])</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">df_norm</span><span class="p">[</span><span class="m">23</span><span class="p">])</span><span class="w">
+
+</span><span class="c1"># Split the dataframe into test and train datasets - note there are two dataframes</span><span class="w">
+</span><span class="c1"># First test and train from the features, here is an example of about a 70/30 split for testing and training</span><span class="w">
+</span><span class="n">x_train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df_norm</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">397</span><span class="p">,]</span><span class="w">
+</span><span class="n">x_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df_norm</span><span class="p">[</span><span class="m">398</span><span class="o">:</span><span class="m">568</span><span class="p">,]</span><span class="w">
+
+</span><span class="c1"># Now test and train for the target - here it is important that you do ", 1" to indicate only one column</span><span class="w">
+</span><span class="c1"># It will not work unless you use drop = TRUE</span><span class="w">
+</span><span class="n">y_train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">397</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">drop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">]</span><span class="w">
+</span><span class="n">y_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df</span><span class="p">[</span><span class="m">398</span><span class="o">:</span><span class="m">568</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">drop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">]</span><span class="w">
+
+</span><span class="c1"># The purpose of installing those packages were to use these next functions, first KNN</span><span class="w">
+</span><span class="c1"># Like the Python example states, the best practice for a choice of K unless assigned is the square root of the number of observations</span><span class="w">
+</span><span class="n">pred</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">knn</span><span class="p">(</span><span class="n">train</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x_train</span><span class="p">,</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x_test</span><span class="p">,</span><span class="w"> </span><span class="n">cl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y_train</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">23</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Confusion Matrix from Caret</span><span class="w">
+
+</span><span class="c1"># KNN converts to a factor with two levels so we need to make sure the test dataset is similar</span><span class="w">
+</span><span class="n">y_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">y_test</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"B"</span><span class="p">,</span><span class="w"> </span><span class="s2">"M"</span><span class="p">))</span><span class="w">
+
+</span><span class="c1"># See how well the model did</span><span class="w">
+</span><span class="n">confusionMatrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">pred</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
           <hr>
           <footer>
               <div class="d-flex mt-2">
