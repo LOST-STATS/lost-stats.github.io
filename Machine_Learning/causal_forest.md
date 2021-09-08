@@ -158,6 +158,7 @@ keep `r(varlist)'
 rcall: df.hold <- st.data()
 restore
 * Now go back to just the training data
+keep if split == 1
 
 * Run causal_forest, storing the effect predictions for the training data in the "effects" variable
 * the SEs of those effects in effectSE
