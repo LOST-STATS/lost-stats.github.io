@@ -503,7 +503,8 @@ keep</span> <span class="p">`</span><span class="si">r(varlist)</span><span clas
 </span><span class="err">rcall:</span> <span class="err">df.hold</span> <span class="o">&lt;-</span> <span class="err">st.data()
 restore
 </span><span class="c1">* Now go back to just the training data
-
+</span><span class="err">keep</span> <span class="err">if</span> <span class="err">split</span> <span class="o">==</span> <span class="err">1
+</span><span class="c1">
 * Run causal_forest, storing the effect predictions for the training data in the "effects" variable
 * the SEs of those effects in effectSE
 * And the effects and SEs for the holdout data in matrices called effects_hold and effectSE_hold
