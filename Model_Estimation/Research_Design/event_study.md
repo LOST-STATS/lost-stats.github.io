@@ -17,7 +17,7 @@ A Difference-in-Difference (DID) event study, or a Dynamic DID model, is a usefu
 The regression that DID event studies are based aroud is:
 
 $$
-Y_{gt} = \alpha + \Sigma_{k=T_0}^{-2}\beta_k\times treat_{gk}+\Sigma_{k=0}^{T_1}\beta_k\times treat_{gk}+ X_{st}\Gamma+\phi_s+\gamma_t+\epsilon_{st}
+Y_{gt} = \alpha + \Sigma_{k=T_0}^{-2}\beta_k\times treat_{gk}+\Sigma_{k=0}^{T_1}\beta_k\times treat_{gk}+ X_{st}\Gamma+\phi_s+\gamma_t+\epsilon_{gt}
 $$
 
 Where:
