@@ -214,18 +214,47 @@ ggplot(data=diamonds, aes(x = price, fill = cut)) +
 
 ## Stata
 
-For this demonstration, we will use the plottig scheme, a community-contributed color scheme for plots that greatly improves over Stata's default plot color schemes. For more on using schemes in Stata, see [here](https://blog.stata.com/2018/10/02/scheming-your-way-to-your-favorite-graph-style/).
+For this demonstration, we will use the `plotplainblind` scheme, a community-contributed color and grpah scheme for plots that greatly improves over Stata's default plot color schemes especially for colorblind viewers. For more on using schemes in Stata, see [here](https://blog.stata.com/2018/10/02/scheming-your-way-to-your-favorite-graph-style/).
 
 ```stata
-clear all
-set more off
+* Install the blindschemes set of graph schemes, including plottig
+ssc install blindschemes
+* Shows the set of available schemes
+graph query, schemes
 
-ssc install blindschemes // Install the blindschemes set of color schemes, which includes plottig
-graph query, schemes // Show the available schemes you have installed, to confirm plottig was installed
-
-*Pull in Stata's NHANES dataset
-use http://www.stata-press.com/data/r16/nhanes2.dta, clear
-
-*Plot the kernel density
-kdensity height, scheme(plottig)
+* Load diamonds data
+import delimited "https://vincentarelbundock.github.io/Rdatasets/csv/ggplot2/diamonds.csv", clear
 ```
+
+We can build a basic density plot using the `kdensity` subcommand of `twoway`:
+
+```stata
+* Plot the kernel density with plotplain theming
+twoway kdensity price, scheme(plotplainblind)
+```
+
+![Stata Basic Density Plot]({{ "/Presentation/Figures/Images/density_plot/stata_kdensity_basic.png" | relative_url }})
+
+To overlay densities for multiple variables or multiple groups, it is possible to use the standard `twoway` graph stacking syntax:
+
+```stata
+* Plot the density of two separate columns
+twoway (kdensity depth) (kdensity table), scheme(plotplainblind)
+* Plot the same variable separately by group, overlaid on a single set of axes
+twoway (kdensity price if cut == "Fair", lcolor(blue)) (kdensity price if cut == "Good", lcolor(red)), scheme(plotplainblind) legend(lab(1 "Cut: Fair") lab(2 "Cut: Good"))
+```
+
+However, the syntax for doing separate densities by group can get onerous very quickly with more than a handful of groups, noting that you'll have to specify each group with an `if` by hand, be careful about the color/presentation of each line, and do the legend yourself.
+
+Much easier for by-group kernel densities is the **mkdensity** package, which still uses `kdensity` under the hood, but just handles some of this busywork for you. On the other hand it doesn't accept a `scheme()` option. But you can still use it via `set scheme`.
+
+The downside of this approach, rather than doing it by hand, is that it relies on 
+
+```stata
+set scheme plotplainblind
+
+* if necessary, install with ssc install mkdensity
+mkdensity price, over(cut)
+```
+
+![Stata By-group Density Plot]({{ "/Presentation/Figures/Images/density_plot/stata_kdensity_group.png" | relative_url }})
