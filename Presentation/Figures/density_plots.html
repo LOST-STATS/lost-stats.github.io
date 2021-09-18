@@ -371,19 +371,35 @@ Furthermore, you can also combine both histogram and density plots together.</p>
       <h2 id="stata">
           <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
       </h2>
-<p>For this demonstration, we will use the plottig scheme, a community-contributed color scheme for plots that greatly improves over Stata’s default plot color schemes. For more on using schemes in Stata, see <a href="https://blog.stata.com/2018/10/02/scheming-your-way-to-your-favorite-graph-style/">here</a>.</p>
-<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">clear</span> <span class="err">all
-set</span> <span class="err">more</span> <span class="err">off
-
-ssc</span> <span class="err">install</span> <span class="err">blindschemes</span> <span class="c1">// Install the blindschemes set of color schemes, which includes plottig</span><span class="err">
-graph</span> <span class="err">query,</span> <span class="err">schemes</span> <span class="c1">// Show the available schemes you have installed, to confirm plottig was installed</span><span class="err">
+<p>For this demonstration, we will use the <code class="language-plaintext highlighter-rouge">plotplainblind</code> scheme, a community-contributed color and grpah scheme for plots that greatly improves over Stata’s default plot color schemes especially for colorblind viewers. For more on using schemes in Stata, see <a href="https://blog.stata.com/2018/10/02/scheming-your-way-to-your-favorite-graph-style/">here</a>.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Install the blindschemes set of graph schemes, including plottig
+</span><span class="err">ssc</span> <span class="err">install</span> <span class="err">blindschemes
+</span><span class="c1">* Shows the set of available schemes
+</span><span class="err">graph</span> <span class="err">query,</span> <span class="err">schemes
 </span><span class="c1">
-*Pull in Stata's NHANES dataset
-</span><span class="err">use</span> <span class="err">http:</span><span class="c1">//www.stata-press.com/data/r16/nhanes2.dta, clear</span><span class="err">
-</span><span class="c1">
-*Plot the kernel density
-</span><span class="err">kdensity</span> <span class="err">height,</span> <span class="err">scheme(plottig)
+* Load diamonds data
+</span><span class="err">import</span> <span class="err">delimited</span> <span class="s2">"https://vincentarelbundock.github.io/Rdatasets/csv/ggplot2/diamonds.csv"</span><span class="err">,</span> <span class="err">clear
 </span></code></pre></div></div>
+<p>We can build a basic density plot using the <code class="language-plaintext highlighter-rouge">kdensity</code> subcommand of <code class="language-plaintext highlighter-rouge">twoway</code>:</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Plot the kernel density with plotplain theming
+</span><span class="err">twoway</span> <span class="err">kdensity</span> <span class="err">price,</span> <span class="err">scheme(plotplainblind)
+</span></code></pre></div></div>
+<p><img src="/Presentation/Figures/Images/density_plot/stata_kdensity_basic.png" alt="Stata Basic Density Plot" /></p>
+<p>To overlay densities for multiple variables or multiple groups, it is possible to use the standard <code class="language-plaintext highlighter-rouge">twoway</code> graph stacking syntax:</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Plot the density of two separate columns
+</span><span class="err">twoway</span> <span class="err">(kdensity</span> <span class="err">depth)</span> <span class="err">(kdensity</span> <span class="err">table),</span> <span class="err">scheme(plotplainblind)
+</span><span class="c1">* Plot the same variable separately by group, overlaid on a single set of axes
+</span><span class="err">twoway</span> <span class="err">(kdensity</span> <span class="err">price</span> <span class="err">if</span> <span class="err">cut</span> <span class="o">==</span> <span class="s2">"Fair"</span><span class="err">,</span> <span class="err">lcolor(blue))</span> <span class="err">(kdensity</span> <span class="err">price</span> <span class="err">if</span> <span class="err">cut</span> <span class="o">==</span> <span class="s2">"Good"</span><span class="err">,</span> <span class="err">lcolor(red)),</span> <span class="err">scheme(plotplainblind)</span> <span class="err">legend(lab(1</span> <span class="s2">"Cut: Fair"</span><span class="err">)</span> <span class="err">lab(2</span> <span class="s2">"Cut: Good"</span><span class="err">))
+</span></code></pre></div></div>
+<p>However, the syntax for doing separate densities by group can get onerous very quickly with more than a handful of groups, noting that you’ll have to specify each group with an <code class="language-plaintext highlighter-rouge">if</code> by hand, be careful about the color/presentation of each line, and do the legend yourself.</p>
+<p>Much easier for by-group kernel densities is the <strong>mkdensity</strong> package, which still uses <code class="language-plaintext highlighter-rouge">kdensity</code> under the hood, but just handles some of this busywork for you. On the other hand it doesn’t accept a <code class="language-plaintext highlighter-rouge">scheme()</code> option. But you can still use it via <code class="language-plaintext highlighter-rouge">set scheme</code>.</p>
+<p>The downside of this approach, rather than doing it by hand, is that it relies on</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">set</span> <span class="err">scheme</span> <span class="err">plotplainblind
+</span><span class="c1">
+* if necessary, install with ssc install mkdensity
+</span><span class="err">mkdensity</span> <span class="err">price,</span> <span class="err">over(cut)
+</span></code></pre></div></div>
+<p><img src="/Presentation/Figures/Images/density_plot/stata_kdensity_group.png" alt="Stata By-group Density Plot" /></p>
           <hr>
           <footer>
               <div class="d-flex mt-2">
