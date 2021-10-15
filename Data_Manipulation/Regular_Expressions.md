@@ -113,6 +113,8 @@ print(changed_series)
 # Name: strings, dtype: object
 ```
 
+You can also see [this guide](https://www.pcwdld.com/python-regex-cheat-sheet#wbounce-modal) for a fuller description of all the tools available.
+
 ## R
 
 In R, we can write our Regular expressions using the base R functions or with the **stringr** package functions. [RegExplain](https://www.garrickadenbuie.com/project/regexplain/) is an RStudio addin for regular expressions. Regular expressions can be tricky at times, and RegExplain can help make it easier. RegExplain will allow you to build your regular expressions interactively.
