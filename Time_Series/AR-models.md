@@ -21,6 +21,42 @@ For additional information, see [Wikipedia: Autoregressive model](https://en.wik
 
 Following the [instructions]({{ "/Time_Series/creating_time_series_dataset.html" | relative_url }}) for creating and formatting Time Series Data, we will use quaterly GDP data downloaded from [FRED](https://fred.stlouisfed.org/series/GDPC1) as an example.
 
+## Julia
+
+AR(p) models in Julia can be estimated using the StateSpaceModels.jl package, which also allows for the estimation of a variety of time series models that have linear state-space representations. 
+
+Begin by importing and loading necessary packages into your work environment. 
+
+```julia
+# Load necessary packages
+using StateSpaceModels, CSV, Dates, DataFrames, LinearAlgebra
+```
+
+You can then download the `GDPC1.csv` dataset using the CSV.jl package, and store it as a `DataFrame` object. 
+
+```julia 
+# Import (download) data 
+data = CSV.read(download("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv"), DataFrame)
+```
+
+The data can then be assigned a general ARIMA(p,d,q) representation, where if `d` and `q` are set to zero, the model specification becomes an AR(p). The `d`=`q`= 0 constraint can be applied by inputting `order = (p,0,0)`, where `p`>0. 
+
+```julia 
+# Specify GDPC1 series as an AR(2) model
+model = SARIMA(data.GDPC1, order = (2,0,0))
+```
+
+Lastly, the above-specified model can be estimated using the `fit!` function, and the estimation results printed using the `results` function. The sole input for both of these functions is the `model` object that contains the chosen data series and its assigned ARIMA structure. 
+
+```julia
+# Fit (estimate) the model
+fit!(model)
+
+# Print estimates
+results(model)
+```
+
+
 ## Python
 
 In Python, the [**statsmodels**](https://www.statsmodels.org/stable/index.html) package provides a range of tools to fit models using maximum likelihood estimation. In the example below, we will use the `AutoReg` function. This can fit models of the form:
@@ -145,44 +181,4 @@ tsset date_index
 *The 'L.' operator indicates the lagged value of a variable in STATA, 'L2.' its second lag, and so on.
 reg gdpc1 L.gdpc1 L2.gdpc1
 *variables are not demeaned automatically by STATA. Also consider taking logs and first differencing for statistically meaningful results.
-```
-
-## Julia
-
-AR(p) models in Julia can be estimated using the StateSpaceModels.jl package, which also allows for the estimation of a variety of time series models that have linear state-space representations. 
-
-Begin by importing and loading necessary packages into your work environment. 
-
-```julia
-# Add necessary packages 
-import Pkg
-Pkg.add("StateSpaceModels")
-Pkg.add("CSV")
-
-# Load necessary packages
-using StateSpaceModels, CSV, Dates, DataFrames, LinearAlgebra
-```
-
-You can then download the `GDPC1.csv` dataset using the CSV.jl package, and store it as a `DataFrame` object. 
-
-```julia 
-# Import (download) data 
-data = CSV.read(download("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv"), DataFrame)
-```
-
-The data can then be assigned a general ARIMA(p,d,q) representation, where if `d` and `q` are set to zero, the model specification becomes an AR(p). The `d`=`q`= 0 constraint can be applied by inputting `order = (p,0,0)`, where `p`>0. 
-
-```julia 
-# Specify GDPC1 series as an AR(2) model
-model = SARIMA(data.GDPC1, order = (2,0,0))
-```
-
-Lastly, the above-specified model can be estimated using the `fit!` function, and the estimation results printed using the `results` function. The sole input for both of these functions is the `model` object that contains the chosen data series and its assigned ARIMA structure. 
-
-```julia
-# Fit (estimate) the model
-fit!(model)
-
-# Print estimates
-results(model)
 ```
