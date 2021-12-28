@@ -208,6 +208,29 @@
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
 <p>Following the <a href="/Time_Series/creating_time_series_dataset.html">instructions</a> for creating and formatting Time Series Data, we will use quaterly GDP data downloaded from <a href="https://fred.stlouisfed.org/series/GDPC1">FRED</a> as an example.</p>
+      <h2 id="julia">
+          <a href="#julia" aria-labelledby="julia" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Julia
+      </h2>
+<p>AR(p) models in Julia can be estimated using the StateSpaceModels.jl package, which also allows for the estimation of a variety of time series models that have linear state-space representations.</p>
+<p>Begin by importing and loading necessary packages into your work environment.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Load necessary packages</span>
+<span class="k">using</span> <span class="n">StateSpaceModels</span><span class="x">,</span> <span class="n">CSV</span><span class="x">,</span> <span class="n">Dates</span><span class="x">,</span> <span class="n">DataFrames</span><span class="x">,</span> <span class="n">LinearAlgebra</span>
+</code></pre></div></div>
+<p>You can then download the <code class="language-plaintext highlighter-rouge">GDPC1.csv</code> dataset using the CSV.jl package, and store it as a <code class="language-plaintext highlighter-rouge">DataFrame</code> object.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Import (download) data </span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">CSV</span><span class="o">.</span><span class="n">read</span><span class="x">(</span><span class="n">download</span><span class="x">(</span><span class="s">"https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv"</span><span class="x">),</span> <span class="n">DataFrame</span><span class="x">)</span>
+</code></pre></div></div>
+<p>The data can then be assigned a general ARIMA(p,d,q) representation, where if <code class="language-plaintext highlighter-rouge">d</code> and <code class="language-plaintext highlighter-rouge">q</code> are set to zero, the model specification becomes an AR(p). The <code class="language-plaintext highlighter-rouge">d</code>=<code class="language-plaintext highlighter-rouge">q</code>= 0 constraint can be applied by inputting <code class="language-plaintext highlighter-rouge">order = (p,0,0)</code>, where <code class="language-plaintext highlighter-rouge">p</code>&gt;0.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Specify GDPC1 series as an AR(2) model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">SARIMA</span><span class="x">(</span><span class="n">data</span><span class="o">.</span><span class="n">GDPC1</span><span class="x">,</span> <span class="n">order</span> <span class="o">=</span> <span class="x">(</span><span class="mi">2</span><span class="x">,</span><span class="mi">0</span><span class="x">,</span><span class="mi">0</span><span class="x">))</span>
+</code></pre></div></div>
+<p>Lastly, the above-specified model can be estimated using the <code class="language-plaintext highlighter-rouge">fit!</code> function, and the estimation results printed using the <code class="language-plaintext highlighter-rouge">results</code> function. The sole input for both of these functions is the <code class="language-plaintext highlighter-rouge">model</code> object that contains the chosen data series and its assigned ARIMA structure.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Fit (estimate) the model</span>
+<span class="n">fit!</span><span class="x">(</span><span class="n">model</span><span class="x">)</span>
+
+<span class="c"># Print estimates</span>
+<span class="n">results</span><span class="x">(</span><span class="n">model</span><span class="x">)</span>
+</code></pre></div></div>
       <h2 id="python">
           <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
       </h2>
