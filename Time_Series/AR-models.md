@@ -146,3 +146,27 @@ tsset date_index
 reg gdpc1 L.gdpc1 L2.gdpc1
 *variables are not demeaned automatically by STATA. Also consider taking logs and first differencing for statistically meaningful results.
 ```
+
+## Julia
+
+```julia
+# Add necessary packages 
+import Pkg
+Pkg.add("StateSpaceModels")
+Pkg.add("CSV")
+
+# Load necessary packages
+using StateSpaceModels, CSV, Dates, DataFrames, LinearAlgebra
+
+# Import (download) data 
+data = CSV.read(download("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv"), DataFrame)
+
+# Specify GDPC1 series as an AR(2) model
+model = SARIMA(data.GDPC1, order = (2,0,0))
+
+# Fit (estimate) the model
+fit!(model)
+
+# Print estimates
+results(model)
+```
