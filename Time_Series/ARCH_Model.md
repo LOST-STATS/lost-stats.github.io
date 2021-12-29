@@ -42,6 +42,22 @@ For additional information, see [Wikipedia: Autoregressive conditional heteroske
 
 # Implementations
 
+## Julia 
+
+```julia
+# Load necessary packages 
+using ARCHModels, LinearAlgebra,
+
+# Simulate an ARCH(1) process
+a0 = 1.0
+a1 = 0.5
+am3 = simulate(ARCH{1}([a0, a1]), 1000)
+
+# Fit ARCH(1) model to simulated data
+fit(ARCH{1}, am3.data)
+
+```
+
 ## Python
 
 ```py
