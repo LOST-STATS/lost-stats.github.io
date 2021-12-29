@@ -253,6 +253,10 @@ process would take the form:</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Set parameters </span>
 <span class="n">theta1</span><span class="x">,</span> <span class="n">theta2</span><span class="x">,</span> <span class="n">theta3</span> <span class="o">=</span> <span class="x">(</span><span class="mf">0.5</span><span class="x">,</span> <span class="mf">0.3</span><span class="x">,</span> <span class="mf">0.2</span><span class="x">)</span>
 
+<span class="c"># Draw a sample of an iid N(0,1) disturbance/noise process</span>
+<span class="c"># Set number of observations to 1000</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">randn</span><span class="x">(</span><span class="mi">1000</span><span class="x">)</span>
+
 <span class="c"># Simulate MA(3) process</span>
  <span class="n">Y</span> <span class="o">=</span> <span class="n">u</span> <span class="o">+</span> <span class="n">theta1</span> <span class="o">.*</span> <span class="n">lag</span><span class="x">(</span><span class="n">u</span><span class="x">,</span> <span class="mi">1</span><span class="x">,</span> <span class="n">default</span> <span class="o">=</span> <span class="mf">0.0</span><span class="x">)</span> <span class="o">+</span> <span class="n">theta2</span> <span class="o">.*</span> <span class="n">lag</span><span class="x">(</span><span class="n">u</span><span class="x">,</span> <span class="mi">2</span><span class="x">,</span> <span class="n">default</span> <span class="o">=</span> <span class="mf">0.0</span><span class="x">)</span> <span class="o">+</span> <span class="n">theta3</span> <span class="o">.*</span> <span class="n">lag</span><span class="x">(</span><span class="n">u</span><span class="x">,</span> <span class="mi">3</span><span class="x">,</span> <span class="n">default</span> <span class="o">=</span> <span class="mf">0.0</span><span class="x">)</span>
  
