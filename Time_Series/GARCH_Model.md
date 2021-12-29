@@ -10,9 +10,10 @@ mathjax: true ## Switch to false if this page has no equations or other math ren
 
 Generalized AutoRegressive Conditional Heteroskedasticity (GARCH) is a statistical model used in analyzing time-series data where the variance error is believed to be serially autocorrelated. GARCH models assume that the variance of the error term follows an autoregressive moving average process.
 
-GARCH (p, q) model (where p is the order of the GARCH terms $\sigma^{2}$ and q is the order of the ARCH terms $\epsilon^{2}$) is a model which $\epsilon_{t}$, the error terms, can be split into a stochastic piece $z_{t}$ and a time-dependent standard deviation $\sigma_{t}$ characterizing the typical size of the terms so that $\epsilon_{t}=\sigma_{t}z_{t}$.
-The random variable $z_{t}$ is a strong white noise process while $\sigma_{t}^{2}$ is an ARMA process, i.e.,
-$$\sigma_{t}^{2} = \alpha_{0} + \sum_{i=1}^{q}\alpha_{i}\epsilon_{t-i}^{2} + \sum_{i=1}^{p}\beta_{i}\sigma_{t-i}^{2}$$.
+GARCH (p, q) model (where p is the order of the GARCH terms $$\sigma^{2}$$ and q is the order of the ARCH terms $$\epsilon^{2}$$) is a model which $$\epsilon_{t}$$, the error terms, can be split into a stochastic piece $$z_{t}$$ and a time-dependent standard deviation $$\sigma_{t}$$ characterizing the typical size of the terms so that $$\epsilon_{t}=\sigma_{t}z_{t}$$.
+The random variable $$z_{t}$$ is a strong white noise process while $$\sigma_{t}^{2}$$ is an ARMA process, i.e.,
+
+$$\sigma_{t}^{2} = \alpha_{0} + \sum_{i=1}^{q}\alpha_{i}\epsilon_{t-i}^{2} + \sum_{i=1}^{p}\beta_{i}\sigma_{t-i}^{2} \, .$$
 
 
 # Keep in Mind
