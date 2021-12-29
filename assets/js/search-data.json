@@ -73,7 +73,7 @@
   },"12": {
     "doc": "ARCH Model",
     "title": "Julia",
-    "content": "# Load necessary packages using ARCHModels, LinearAlgebra, # Simulate an ARCH(1) process a0 = 1.0 a1 = 0.5 am3 = simulate(ARCH{1}([a0, a1]), 1000) # Fit ARCH(1) model to simulated data fit(ARCH{1}, am3.data) . ",
+    "content": "The ARCHModels.jl package offers a variety of ARCH-model simulation, estimation, and forecasting tools. We start by loading the package. # Load necessary packages using ARCHModels . Next, we use the simulate function to specify an ARCH{1} model with coefficient parameters a0 and a1, and then simulate a realization of the specified data-generating process with 1000 observations. # Simulate an ARCH(1) process a0 = 1.0 a1 = 0.5 arch1sim = simulate(ARCH{1}([a0, a1]), 1000) . Lastly, we use the fit function to fit an ARCH{1} model to the generated series contained in the data attribute of the UnivariateARCHModel object we named arch1sim in the above code chunk. # Fit ARCH(1) model to simulated data fit(ARCH{1}, arch1sim.data) . ",
     "url": "/Time_Series/ARCH_Model.html#julia",
     "relUrl": "/Time_Series/ARCH_Model.html#julia"
   },"13": {

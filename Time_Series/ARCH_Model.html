@@ -236,17 +236,20 @@ where q is the length of ARCH lags.</p>
       <h2 id="julia">
           <a href="#julia" aria-labelledby="julia" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Julia
       </h2>
+<p>The ARCHModels.jl package offers a variety of ARCH-model simulation, estimation, and forecasting tools.</p>
+<p>We start by loading the package.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Load necessary packages </span>
-<span class="k">using</span> <span class="n">ARCHModels</span><span class="x">,</span> <span class="n">LinearAlgebra</span><span class="x">,</span>
-
-<span class="c"># Simulate an ARCH(1) process</span>
+<span class="k">using</span> <span class="n">ARCHModels</span>
+</code></pre></div></div>
+<p>Next, we use the <code class="language-plaintext highlighter-rouge">simulate</code> function to specify an <code class="language-plaintext highlighter-rouge">ARCH{1}</code> model with coefficient parameters <code class="language-plaintext highlighter-rouge">a0</code> and <code class="language-plaintext highlighter-rouge">a1</code>, and then simulate a realization of the specified data-generating process with 1000 observations.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Simulate an ARCH(1) process</span>
 <span class="n">a0</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">a1</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="n">am3</span> <span class="o">=</span> <span class="n">simulate</span><span class="x">(</span><span class="n">ARCH</span><span class="x">{</span><span class="mi">1</span><span class="x">}([</span><span class="n">a0</span><span class="x">,</span> <span class="n">a1</span><span class="x">]),</span> <span class="mi">1000</span><span class="x">)</span>
-
-<span class="c"># Fit ARCH(1) model to simulated data</span>
-<span class="n">fit</span><span class="x">(</span><span class="n">ARCH</span><span class="x">{</span><span class="mi">1</span><span class="x">},</span> <span class="n">am3</span><span class="o">.</span><span class="n">data</span><span class="x">)</span>
-
+<span class="n">arch1sim</span> <span class="o">=</span> <span class="n">simulate</span><span class="x">(</span><span class="n">ARCH</span><span class="x">{</span><span class="mi">1</span><span class="x">}([</span><span class="n">a0</span><span class="x">,</span> <span class="n">a1</span><span class="x">]),</span> <span class="mi">1000</span><span class="x">)</span>
+</code></pre></div></div>
+<p>Lastly, we use the <code class="language-plaintext highlighter-rouge">fit</code> function to fit an <code class="language-plaintext highlighter-rouge">ARCH{1}</code> model to the generated series contained in the <code class="language-plaintext highlighter-rouge">data</code> attribute of the <code class="language-plaintext highlighter-rouge">UnivariateARCHModel</code> object we named <code class="language-plaintext highlighter-rouge">arch1sim</code> in the above code chunk.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Fit ARCH(1) model to simulated data</span>
+<span class="n">fit</span><span class="x">(</span><span class="n">ARCH</span><span class="x">{</span><span class="mi">1</span><span class="x">},</span> <span class="n">arch1sim</span><span class="o">.</span><span class="n">data</span><span class="x">)</span>
 </code></pre></div></div>
       <h2 id="python">
           <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
