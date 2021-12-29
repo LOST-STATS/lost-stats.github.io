@@ -71,6 +71,41 @@ Additional helpful information can be found at [Wikipedia: Moving Average Models
 
 # Implementations
 
+## Julia
+
+MA(q) models in Julia can be estimated using the StateSpaceModels.jl package, which also allows for the estimation of a variety of time series models that have linear state-space representations. 
+
+Begin by importing and loading necessary packages into your work environment. 
+
+```julia
+# Load necessary packages
+using StateSpaceModels, CSV, Dates, DataFrames, LinearAlgebra
+```
+
+You can then download the `GDPC1.csv` dataset using the CSV.jl package, and store it as a `DataFrame` object. 
+
+```julia 
+# Import (download) data 
+data = CSV.read(download("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv"), DataFrame)
+```
+
+The data can then be assigned a general ARIMA(p,d,q) representation, where if `p` and `d` are set to zero, the model specification becomes MA(q). The `p`=`d`= 0 constraint can be applied by inputting `order = (0,0,q)`, where `q`>0. 
+
+```julia 
+# Specify GDPC1 series as an MA(2) model
+model = SARIMA(data.GDPC1, order = (0,0,2))
+```
+
+Lastly, the above-specified model can be estimated using the `fit!` function, and the estimation results printed using the `results` function. The sole input for both of these functions is the `model` object that contains the chosen data series and its assigned ARIMA structure. 
+
+```julia
+# Fit (estimate) the model
+fit!(model)
+
+# Print estimates
+results(model)
+```
+
 ## R
 
 ```r
