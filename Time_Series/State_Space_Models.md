@@ -10,10 +10,10 @@ nav_order: 1
 
 The state space model can be used to represent a variety of dynamic processes, including standard ARMA processes. 
 It has two main components: (1) a hidden/latent $$x_t$$ process referred to as the state process, and (2) an observed process $$y_t$$ that is independent conditional on $$x_t$$.
-Let us consider the most basic state space model -- the linear Gaussian model -- in which $$x_t$$ follows a linear autoregressive process and $$y_t$$ is a linear mapping of $x_t$ with added noise.
+Let us consider the most basic state space model -- the linear Gaussian model -- in which $$x_t$$ follows a linear autoregressive process and $$y_t$$ is a linear mapping of $$x_t$$ with added noise.
 The linear Gaussian state space model is characterized by the following state equation:
 
-$$ x_{t+1} + F \, x_{t} + u_{t+1} \, ,$$
+$$ x_{t+1} = F \, x_{t} + u_{t+1} \, ,$$
 
 where $$x_t$$ and $$u_t$$ are both $$p \times 1$$ vectors, such that $$u_t \sim i.i.d. N(0,Q)$$. 
 It is assumed that the initial state vector $$x_0$$ is drawn from a normal distribution. 
@@ -21,7 +21,7 @@ The observation equation is expressed as
 
 $$y_t = A_t \, x_t + v_t \, ,$$ 
 
-where $$y_t$$ is a $q \times 1$ observed vector, $$A_t$$ is a $$q \times p$$ observation matrix, and $$v_t \sim i.i.d. N(0,R)$$ is a $$q \times 1$$ noise vector.
+where $$y_t$$ is a $$q \times 1$$ observed vector, $$A_t$$ is a $$q \times p$$ observation matrix, and $$v_t \sim i.i.d. N(0,R)$$ is a $$q \times 1$$ noise vector.
 
 For additional information about the state-space repsentation, refer to [Wikipedia: State-Space Representation](https://en.wikipedia.org/wiki/State-space_representation#:~:text=In%20control%20engineering%2C%20a%20state,differential%20equations%20or%20difference%20equations.&text=The%20%22state%20space%22%20is%20the,axes%20are%20the%20state%20variables.).
 
