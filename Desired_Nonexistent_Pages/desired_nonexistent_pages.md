@@ -85,11 +85,8 @@ If you create one of these pages, please remove it from this list.
 ## Time Series
 
 * Stationarity and Weak Dependence
-* Granger Causality
-* Moving Average Model
 * Kalman Filtering/Smoothing 
 * ARIMAX Model
-* GARCH Model
 * TARCH Model
 * Recursive Regressions
 * State Dependent Regression
