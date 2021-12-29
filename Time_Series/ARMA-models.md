@@ -35,6 +35,42 @@ For additional information, see [Wikipedia: Autoregressive Moving-Average model]
 
 First, follow the [instructions]({{ "/Time_Series/creating_time_series_dataset.html" | relative_url }}) for creating and formatting time-series data using your software of choice. We will again use quarterly US GDP data downloaded from [FRED](https://fred.stlouisfed.org/series/GDPC1) as an example. This time, though, we will try to estimate the quarterly log change in GDP with an $$ARMA(3,1)$$ process. Note that an $$ARMA(3,1)$$ model is almost certainly not the best way to estimate this time series, and is used here solely as an example.
 
+## Julia
+
+ARMA(p,q) models in Julia can be estimated using the StateSpaceModels.jl package, which also allows for the estimation of a variety of time series models that have linear state-space representations. 
+
+Begin by importing and loading necessary packages into your work environment. 
+
+```julia
+# Load necessary packages
+using StateSpaceModels, CSV, Dates, DataFrames, LinearAlgebra
+```
+
+You can then download the `GDPC1.csv` dataset using the CSV.jl package, and store it as a `DataFrame` object. 
+
+```julia 
+# Import (download) data 
+data = CSV.read(download("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv"), DataFrame)
+```
+
+The data can then be assigned a general ARIMA(p,d,q) representation, where if `d` is set to zero, the model specification becomes an ARMA(p,q). The `d`= 0 constraint can be applied by inputting `order = (p,0,q)`, where `p`>0 and `q`>0. 
+
+```julia 
+# Specify GDPC1 series as an ARMA(3,1) model
+model = SARIMA(data.GDPC1, order = (3,0,1))
+```
+
+Lastly, the above-specified model can be estimated using the `fit!` function, and the estimation results printed using the `results` function. The sole input for both of these functions is the `model` object that contains the chosen data series and its assigned ARIMA structure. 
+
+```julia
+# Fit (estimate) the model
+fit!(model)
+
+# Print estimates
+results(model)
+```
+
+
 ## Python
 
 The [**statsmodels**](https://www.statsmodels.org/stable/index.html) library offers a way to fit ARIMA(p, d, q) models, with its `ARIMA` function. To get an ARMA model, just set $$d$$ to zero.
