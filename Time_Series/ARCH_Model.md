@@ -44,18 +44,29 @@ For additional information, see [Wikipedia: Autoregressive conditional heteroske
 
 ## Julia 
 
+The ARCHModels.jl package offers a variety of ARCH-model simulation, estimation, and forecasting tools.
+
+We start by loading the package.
+
 ```julia
 # Load necessary packages 
-using ARCHModels, LinearAlgebra,
+using ARCHModels
+```
 
+Next, we use the `simulate` function to specify an `ARCH{1}` model with coefficient parameters `a0` and `a1`, and then simulate a realization of the specified data-generating process with 1000 observations.
+
+```julia
 # Simulate an ARCH(1) process
 a0 = 1.0
 a1 = 0.5
-am3 = simulate(ARCH{1}([a0, a1]), 1000)
+arch1sim = simulate(ARCH{1}([a0, a1]), 1000)
+```
 
+Lastly, we use the `fit` function to fit an `ARCH{1}` model to the generated series contained in the `data` attribute of the `UnivariateARCHModel` object we named `arch1sim` in the above code chunk.
+
+```julia
 # Fit ARCH(1) model to simulated data
-fit(ARCH{1}, am3.data)
-
+fit(ARCH{1}, arch1sim.data)
 ```
 
 ## Python
