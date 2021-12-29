@@ -88,6 +88,10 @@ We may simulate an MA(3) model, where the MA coefficients are set to $$\theta_1 
 # Set parameters 
 theta1, theta2, theta3 = (0.5, 0.3, 0.2)
 
+# Draw a sample of an iid N(0,1) disturbance/noise process
+# Set number of observations to 1000
+u = randn(1000)
+
 # Simulate MA(3) process
  Y = u + theta1 .* lag(u, 1, default = 0.0) + theta2 .* lag(u, 2, default = 0.0) + theta3 .* lag(u, 3, default = 0.0)
  
