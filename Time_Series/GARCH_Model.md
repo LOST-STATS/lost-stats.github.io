@@ -32,16 +32,29 @@ $$\sigma_{t}^{2} = \alpha_{0} + \sum_{i=1}^{q}\alpha_{i}\epsilon_{t-i}^{2} + \su
 
 ## Julia
 
+The ARCHModels.jl package offers a variety of ARCH-model simulation, estimation, and forecasting tools.
+
+We start by loading the package.
+
 ```julia
 # Load necessary packages 
 using ARCHModels
+```
 
-# Simulate a GARCH(1) process
+Next, we use the `simulate` function to specify a `GARCH{1,1}` model with coefficient parameters `a0`, `b1`, and `a1`, and then simulate a realization of the specified data-generating process with 1000 observations.
+Here the `a0` parameter corresponds to the intercept term, `b1` corresponds to the $$p=1$$ lag coefficient in GARCH($$p,q$$), and `a1` corresponds to the $$q=1$$ lag coefficient. 
+
+```julia
+# Simulate a GARCH(1,1) process
 a0 = 0.2
 a1 = 0.5
 b1 = 0.3
 garch11sim = simulate(GARCH{1,1}([a0, b1, a1]), 1000)
+```
 
+Lastly, we use the `fit` function to fit an `GARCH{1,1}` model to the generated series contained in the `data` attribute of the `UnivariateARCHModel` object we named `garch11sim` in the above code chunk.
+
+```julia
 # Fit GARCH(1,1) model to simulated data
 fit(GARCH{1,1}, garch11sim.data)
 ```
