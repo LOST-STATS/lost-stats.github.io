@@ -233,6 +233,21 @@ where q is the length of ARCH lags.</p>
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
+      <h2 id="julia">
+          <a href="#julia" aria-labelledby="julia" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Julia
+      </h2>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Load necessary packages </span>
+<span class="k">using</span> <span class="n">ARCHModels</span><span class="x">,</span> <span class="n">LinearAlgebra</span><span class="x">,</span>
+
+<span class="c"># Simulate an ARCH(1) process</span>
+<span class="n">a0</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">a1</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">am3</span> <span class="o">=</span> <span class="n">simulate</span><span class="x">(</span><span class="n">ARCH</span><span class="x">{</span><span class="mi">1</span><span class="x">}([</span><span class="n">a0</span><span class="x">,</span> <span class="n">a1</span><span class="x">]),</span> <span class="mi">1000</span><span class="x">)</span>
+
+<span class="c"># Fit ARCH(1) model to simulated data</span>
+<span class="n">fit</span><span class="x">(</span><span class="n">ARCH</span><span class="x">{</span><span class="mi">1</span><span class="x">},</span> <span class="n">am3</span><span class="o">.</span><span class="n">data</span><span class="x">)</span>
+
+</code></pre></div></div>
       <h2 id="python">
           <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
       </h2>
