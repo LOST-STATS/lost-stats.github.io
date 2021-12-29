@@ -30,6 +30,22 @@ $$\sigma_{t}^{2} = \alpha_{0} + \sum_{i=1}^{q}\alpha_{i}\epsilon_{t-i}^{2} + \su
 
 # Implementations
 
+## Julia
+
+```julia
+# Load necessary packages 
+using ARCHModels
+
+# Simulate a GARCH(1) process
+a0 = 0.2
+a1 = 0.5
+b1 = 0.3
+garch11sim = simulate(GARCH{1,1}([a0, b1, a1]), 1000)
+
+# Fit GARCH(1,1) model to simulated data
+fit(GARCH{1,1}, garch11sim.data)
+```
+
 ## Python
 
 ```py
