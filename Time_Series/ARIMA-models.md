@@ -61,6 +61,42 @@ which leads to $$\Delta^{d} y_{t}$$ being an $$ARMA(p,q)$$ process.
 
 # Implementations
 
+## Julia
+
+ARIMA(p,d,q) models in Julia can be estimated using the StateSpaceModels.jl package, which also allows for the estimation of a variety of time series models that have linear state-space representations. 
+
+Begin by importing and loading necessary packages into your work environment. 
+
+```julia
+# Load necessary packages
+using StateSpaceModels, CSV, Dates, DataFrames, LinearAlgebra
+```
+
+You can then download the `GDPC1.csv` dataset using the CSV.jl package, and store it as a `DataFrame` object. 
+
+```julia 
+# Import (download) data 
+data = CSV.read(download("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv"), DataFrame)
+```
+
+The data can then be assigned a general ARIMA(p,d,q) representation.
+
+```julia 
+# Specify GDPC1 series as an ARIMA(2,2,2) model
+model = SARIMA(data.GDPC1, order = (2,2,2))
+```
+
+Lastly, the above-specified model can be estimated using the `fit!` function, and the estimation results printed using the `results` function. The sole input for both of these functions is the `model` object that contains the chosen data series and its assigned ARIMA structure. 
+
+```julia
+# Fit (estimate) the model
+fit!(model)
+
+# Print estimates
+results(model)
+```
+
+
 ## R
 
 The `stats` package, which comes standard-loaded on an RStudio workspace, includes the function `arima`, which allows one to estimate an arima model, if they know $$p,d,$$ and $$q$$ already.
