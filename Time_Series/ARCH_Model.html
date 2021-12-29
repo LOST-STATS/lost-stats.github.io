@@ -196,22 +196,22 @@
           <a href="#autoregressive-conditional-heteroscedasticity-arch-model" aria-labelledby="autoregressive-conditional-heteroscedasticity-arch-model" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Autoregressive Conditional Heteroscedasticity (ARCH) model
       </h1>
 <p>The autoregressive conditional heteroscedasticity (ARCH) model is a statistical model for time series data that models the variance of the current error as a function of the actual sizes of the previous time periods’ errors. The ARCH model is appropriate when the error variance in a time series follows an autoregressive (AR) model.</p>
-<p>An ARCH(q) process can be written as \(y_{t} = a_{0} + \sum_{i=1}^{q}y_{t-q}+\epislon_{t}\) where \(\epsilon_{t}\) denote the error terms. These \(\epsilon_{t}\) are split into a stochastic piece \(z_{t}\) and a time-dependent standard deviation \(\sigma_{t}\) characterizing the typical size of the terms so that \(\epsilon_{t}=\sigma_{t}z_{t}\).
+<p>An ARCH(q) process can be written as \(y_{t} = a_{0} + \sum_{i=1}^{q}y_{t-q}+\epsilon_{t}\) where \(\epsilon_{t}\) denote the error terms. These \(\epsilon_{t}\) are split into a stochastic piece \(z_{t}\) and a time-dependent standard deviation \(\sigma_{t}\) characterizing the typical size of the terms so that \(\epsilon_{t}=\sigma_{t}z_{t}\).
 The random variable \(z_{t}\) is a strong white noise process. The series \(\sigma_{t}^{2}\) is modeled by</p>
 \[\sigma_{t}^{2} = \alpha_{0} + \alpha_{1}\epsilon_{t-1}^{2} + \dots + \alpha_{q}\epsilon_{t-1}^{2} = \alpha_{0} + \sum_{i=1}^{q}\alpha_{i}\epsilon_{t-i}^{2} \, ,\]
-<p>where \(\alpha_{0} &gt; 0\) and \(\alpha_{i} \ geq 0\), \(i &gt; 0\).</p>
+<p>where \(\alpha_{0} &gt; 0\) and \(\alpha_{i} \geq 0\), \(i &gt; 0\).</p>
 <p>An ARCH(q) model can be estimated using ordinary least squares. This procedure is as follows:</p>
 <ol>
   <li>
     <p>Estimate the best fitting autoregressive model AR(q) \(y_{t}=a_{0}+a_{1}y_{t-1}+\dots +a_{q}y_{t-q}+\epsilon_{t} =a_{0}+\sum_{i=1}^{q}a_{i}y_{t-i}+\epsilon_{t}\).</p>
   </li>
   <li>
-    <p>Obtain the squares of the error $\hat{\epsilon}^{2}$ and regress them on a constant and q lagged values:
+    <p>Obtain the squares of the error \(\hat{\epsilon}^{2}\) and regress them on a constant and q lagged values:
 \(\hat{\epsilon}^{2}=\hat {\alpha}_{0}+\sum_{i=1}^{q}\hat{\alpha}_{i}\hat{\epsilon}_{t-i}^{2}\)
 where q is the length of ARCH lags.</p>
   </li>
   <li>
-    <p>Null Hypothesis: \(\alpha_{i}=0\) for all \(i=1,\dots ,q\). Alternative hypothesis : At least one of the estimated \(\alpha_{i}\) coefficients must be significant. Under the null hypothesis of no ARCH errors, the test statistic \(T'R²\) follows \(\chi^{2}\) distribution with q degrees of freedom, where \(T'\) is the number of equations in the model which fits the residuals vs the lags (i.e. \(T'=T-q\)). If \(T'R²\) is greater than the Chi-square table value, we reject the null hypothesis and conclude there is an ARCH effect, otherwise we do not reject the null hypothesis.</p>
+    <p>Null Hypothesis: \(\alpha_{i}=0\) for all \(i=1,\dots ,q\). Alternative hypothesis: At least one of the estimated \(\alpha_{i}\) coefficients must be significant. Under the null hypothesis of no ARCH errors, the test statistic \(T'R²\) follows \(\chi^{2}\) distribution with q degrees of freedom, where \(T'\) is the number of equations in the model which fits the residuals vs the lags (i.e. \(T'=T-q\)). If \(T'R²\) is greater than the Chi-square table value, we reject the null hypothesis and conclude there is an ARCH effect, otherwise we do not reject the null hypothesis.</p>
   </li>
 </ol>
 <p>For additional information, see <a href="https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity#ARCH(q)_model_specification">Wikipedia: Autoregressive conditional heteroskedasticity</a>.</p>
