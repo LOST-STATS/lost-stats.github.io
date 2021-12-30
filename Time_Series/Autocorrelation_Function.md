@@ -25,6 +25,22 @@ The process for detecting the presence of serial correlation is fairly straightf
 
 The data we use comes from the Federal Reserve's Economic Database, using the series on [U.S. national defense expenditures and gross investment](https://fred.stlouisfed.org/series/FDEFX). 
 
+## Julia
+
+```julia
+# Load necessary packages
+using StatsBase, CSV, DataFrames
+
+# Import (download) data 
+data = CSV.read(download("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/FDEFX.csv"), DataFrame)
+
+# Estimate autocorrelation function (lags 1-12)
+acfx = autocor(data.FDEFX, 1:12)
+
+# Estimate partial autocorrelation function (lags 1-12)
+pacfx = pacf(data.FDEFX, 1:12)
+```
+
 ## Python
 
 ```python
