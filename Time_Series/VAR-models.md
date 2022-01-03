@@ -85,9 +85,12 @@ which is equivalent to separately estimating each of the $$K$$ equations in the 
 It can also be shown that if $$y_t$$ is stable with standard white noise disturbances, we can ues the $$t$$-ratios provided by common regression programs in setting up confidence intervals and tests for individual coefficients. 
 These $$t$$-statistics can be obtained by dividing the elements of $$\widehat{B}$$ by square roots of the corresponding diagonal elements of $$(Z Z')^{-1} \kron \widehat{\Sigma}_u$$.
 
-## Keep in mind 
+# Keep in Mind 
 
+- VARs are often used for impulse response analysis, which is plagued with a multitude of identification limitations that you can read about in Lütkepohl's (2005) and Kilian and Lütkepohl's (2017) textbooks. VARs are reduced-form models -- it is necessary to impose structural restrictions to identify the relevant innovations nad impulse responses.
+ 
 # Implementations 
+
 
 ## Julia
 
