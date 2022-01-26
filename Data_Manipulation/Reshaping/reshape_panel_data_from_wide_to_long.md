@@ -48,7 +48,7 @@ Reshaping is the method of converting wide-format data to long and [vice versa](
 
 ## Python
 
-The most user friendly ways to use Python to reshape data from wide to long formats come from the [**pandas**](https://pandas.pydata.org/) data analysis package. There's a more easy to use `wide_to_long` function and `melt` for more complex cases. In this example, we will download the billboard dataset, which has multiple columns for different weeks when a record was in the charts (with the values in each column giving the chart position for that week).
+The most user friendly ways to use Python to reshape data from wide to long formats come from the [**pandas**](https://pandas.pydata.org/) data analysis package. Its `wide_to_long` function is relatively easy to use, the alternative `melt` function can handle more complex cases. In this example, we will download the billboard dataset, which has multiple columns for different weeks when a record was in the charts (with the values in each column giving the chart position for that week).
 
 All of the columns that we would like to convert to long format begin with the prefix 'wk'. The `wide_to_long` function accepts this prefix (as the `stubnames=` keyword parameter) and uses it to work out which columns to transform into a single column.
 
