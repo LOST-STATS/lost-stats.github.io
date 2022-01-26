@@ -36,6 +36,23 @@ We often might want to create a new variable that performs a calculation *within
 
 # Implementations
 
+## Julia 
+
+The **DataFrames.jl** package makes data aggregation and manipulaion relatively straigthforward. 
+
+```julia
+# Load required packages
+using CSV             # Import .csv files 
+using DataFrames      # Working with data frames 
+using Statistics      # Required to calculate a mean 
+
+# Import .csv file from GitHub and store as a DataFrame 
+storms = CSV.read(download("https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv"), DataFrame)
+
+# Use 'groupby' to aggregate data by groups (namely: name, year, month and day columns) and use 'transform' to add a new column called 'mean_wind' containing the mean of the existing 'wind' column
+storms_group = transform(groupby(storms, [:name, :year, :month, :day]), :wind=> mean => :mean_wind)
+```
+
 ## Python
 
 **pandas** doesn't have a straightforward and flexible built-in method for doing this, with aggregation methods heavily preferring to work as described on [Collapse a Data Set]({{ "/Data_Manipulation/collapse_a_data_set.html" | relative_url }}). However, we can just follow those methods and then `merge` the result back in.
