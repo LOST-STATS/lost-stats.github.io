@@ -286,8 +286,11 @@
 <span class="c"># Import .csv file from GitHub and store as a DataFrame </span>
 <span class="n">storms</span> <span class="o">=</span> <span class="n">CSV</span><span class="o">.</span><span class="n">read</span><span class="x">(</span><span class="n">download</span><span class="x">(</span><span class="s">"https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv"</span><span class="x">),</span> <span class="n">DataFrame</span><span class="x">)</span>
 
-<span class="c"># Use 'groupby' to aggregate data by groups (namely: name, year, month and day columns) and use 'transform' to add a new column called 'mean_wind' containing the mean of the existing 'wind' column</span>
-<span class="n">storms_group</span> <span class="o">=</span> <span class="n">transform</span><span class="x">(</span><span class="n">groupby</span><span class="x">(</span><span class="n">storms</span><span class="x">,</span> <span class="x">[</span><span class="o">:</span><span class="n">name</span><span class="x">,</span> <span class="o">:</span><span class="n">year</span><span class="x">,</span> <span class="o">:</span><span class="n">month</span><span class="x">,</span> <span class="o">:</span><span class="n">day</span><span class="x">]),</span> <span class="o">:</span><span class="n">wind</span><span class="o">=&gt;</span> <span class="n">mean</span> <span class="o">=&gt;</span> <span class="o">:</span><span class="n">mean_wind</span><span class="x">)</span>
+<span class="c"># Use 'groupby' to aggregate data by groups (namely: name, year, month and day</span>
+<span class="c"># columns) and use 'transform!' to add a new column called 'mean_wind'</span>
+<span class="c"># containing the mean of the existing 'wind' column. (The `!` means that this</span>
+<span class="c"># change will be made in-place.)</span>
+<span class="n">transform!</span><span class="x">(</span><span class="n">groupby</span><span class="x">(</span><span class="n">storms</span><span class="x">,</span> <span class="x">[</span><span class="o">:</span><span class="n">name</span><span class="x">,</span> <span class="o">:</span><span class="n">year</span><span class="x">,</span> <span class="o">:</span><span class="n">month</span><span class="x">,</span> <span class="o">:</span><span class="n">day</span><span class="x">]),</span> <span class="o">:</span><span class="n">wind</span><span class="o">=&gt;</span> <span class="n">mean</span> <span class="o">=&gt;</span> <span class="o">:</span><span class="n">mean_wind</span><span class="x">)</span>
 </code></pre></div></div>
       <h2 id="python">
           <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
@@ -314,18 +317,26 @@
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
-<p>The <strong>dplyr</strong> package makes this process easy.</p>
+<p>In R, we can use either the <strong>dplyr</strong> or <strong>data.table</strong> package to do this.</p>
+<p>Here’s how to do it with <strong>dplyr</strong>…</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
 
-</span><span class="n">data</span><span class="p">(</span><span class="s2">"storms"</span><span class="p">)</span><span class="w">
+</span><span class="n">data</span><span class="p">(</span><span class="s2">"storms"</span><span class="p">)</span><span class="w"> </span><span class="c1"># The dataset is bundled with dplyr, so we'll just open directly</span><span class="w">
 
-</span><span class="c1"># Use group_by to designate the groups</span><span class="w">
-</span><span class="n">storms</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">storms</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="c1"># Use 'group_by' to designate the groups and 'mutate' to create new column(s).</span><span class="w">
+</span><span class="c1"># Note that dplyr doesn't modify in-place, so we need to reassign the result.</span><span class="w">
+</span><span class="n">storms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">storms</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="n">group_by</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
-  </span><span class="c1"># To add a new column, rather than collapse,</span><span class="w">
-  </span><span class="c1"># just use mutate instead of summarize</span><span class="w">
-  </span><span class="c1"># note that "mean" could be anything here</span><span class="w">
   </span><span class="n">mutate</span><span class="p">(</span><span class="n">mean_wind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">wind</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+<p>…and here’s how to do it with <strong>data.table</strong>.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">data.table</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># storms = fread("https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv")</span><span class="w">
+</span><span class="n">setDT</span><span class="p">(</span><span class="n">storms</span><span class="p">)</span><span class="w"> </span><span class="c1"># Set the already-loaded storms DF as a data.table</span><span class="w">
+
+</span><span class="c1"># Use ':=' for in-place modification</span><span class="w">
+</span><span class="n">storms</span><span class="p">[,</span><span class="w"> </span><span class="n">mean_wind</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">wind</span><span class="p">),</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="p">)]</span><span class="w">
 </span></code></pre></div></div>
       <h2 id="stata">
           <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
