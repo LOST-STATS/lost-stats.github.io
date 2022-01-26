@@ -274,6 +274,21 @@
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
+      <h2 id="julia">
+          <a href="#julia" aria-labelledby="julia" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Julia
+      </h2>
+<p>The <strong>DataFrames.jl</strong> package makes data aggregation and manipulaion relatively straigthforward.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Load required packages</span>
+<span class="k">using</span> <span class="n">CSV</span>             <span class="c"># Import .csv files </span>
+<span class="k">using</span> <span class="n">DataFrames</span>      <span class="c"># Working with data frames </span>
+<span class="k">using</span> <span class="n">Statistics</span>      <span class="c"># Required to calculate a mean </span>
+
+<span class="c"># Import .csv file from GitHub and store as a DataFrame </span>
+<span class="n">storms</span> <span class="o">=</span> <span class="n">CSV</span><span class="o">.</span><span class="n">read</span><span class="x">(</span><span class="n">download</span><span class="x">(</span><span class="s">"https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv"</span><span class="x">),</span> <span class="n">DataFrame</span><span class="x">)</span>
+
+<span class="c"># Use 'groupby' to aggregate data by groups (namely: name, year, month and day columns) and use 'transform' to add a new column called 'mean_wind' containing the mean of the existing 'wind' column</span>
+<span class="n">storms_group</span> <span class="o">=</span> <span class="n">transform</span><span class="x">(</span><span class="n">groupby</span><span class="x">(</span><span class="n">storms</span><span class="x">,</span> <span class="x">[</span><span class="o">:</span><span class="n">name</span><span class="x">,</span> <span class="o">:</span><span class="n">year</span><span class="x">,</span> <span class="o">:</span><span class="n">month</span><span class="x">,</span> <span class="o">:</span><span class="n">day</span><span class="x">]),</span> <span class="o">:</span><span class="n">wind</span><span class="o">=&gt;</span> <span class="n">mean</span> <span class="o">=&gt;</span> <span class="o">:</span><span class="n">mean_wind</span><span class="x">)</span>
+</code></pre></div></div>
       <h2 id="python">
           <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
       </h2>
