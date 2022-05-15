@@ -256,36 +256,37 @@
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
-<p>In this example, we will place the line’s label using the <strong>ggplot2</strong> function <code class="language-plaintext highlighter-rouge">annotate()</code>, which will require us to figure out the annotation’s coordinates ourselves. However, if you prefer, you can use the point-and-click annotation tool <a href="https://github.com/MattCowgill/ggannotate">ggannotate</a>.</p><pre><code class="language-{r}">library(tidyverse)
+<p>In this example, we will place the line’s label using the <strong>ggplot2</strong> function <code class="language-plaintext highlighter-rouge">annotate()</code>, which will require us to figure out the annotation’s coordinates ourselves. However, if you prefer, you can use the point-and-click annotation tool <a href="https://github.com/MattCowgill/ggannotate">ggannotate</a>.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span><span class="w">
 
-df = read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/DAAG/Manitoba.lakes.csv") %&gt;%
-  rename(Location = ...1)
+</span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"https://vincentarelbundock.github.io/Rdatasets/csv/DAAG/Manitoba.lakes.csv"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">rename</span><span class="p">(</span><span class="n">Location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">...1</span><span class="p">)</span><span class="w">
 
-# Get the reference value we want to mark
-mean_area = df %&gt;% pull(area) %&gt;% mean()
+</span><span class="c1"># Get the reference value we want to mark</span><span class="w">
+</span><span class="n">mean_area</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">pull</span><span class="p">(</span><span class="n">area</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mean</span><span class="p">()</span><span class="w">
 
-# Make the bar plot, and order the bars by height, why not
-p &lt;- ggplot(df, aes(x = reorder(Location, -area), y = area)) + 
-  geom_col() + 
-  labs(x = 'Location', y = 'Area') +
-  # add a horizontal line using geom_hline, specifying its y intercept
-  geom_hline(yintercept = mean_area)
+</span><span class="c1"># Make the bar plot, and order the bars by height, why not</span><span class="w">
+</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reorder</span><span class="p">(</span><span class="n">Location</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">area</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">area</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_col</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Location'</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Area'</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="c1"># add a horizontal line using geom_hline, specifying its y intercept</span><span class="w">
+  </span><span class="n">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean_area</span><span class="p">)</span><span class="w">
 
-# Look at our result so far and figure out the appropriate x/y location 
-# for our annotation. 
-p
+</span><span class="c1"># Look at our result so far and figure out the appropriate x/y location </span><span class="w">
+</span><span class="c1"># for our annotation. </span><span class="w">
+</span><span class="n">p</span><span class="w">
 
-# We can figure out visually that it should be a bit above 5000, where
-# the line is. But how about x? We want it over the 9th bar, so we start with 9
-# and can adjust from there by changing x or the horizontal justification (hjust)
-p &lt;- p + annotate(geom = 'text', label = 'Mean Area', x = 9, y = 5500) + 
-  # Now we can add a vertical reference line with geom_vline
-  # If we want it between bars 3 and 4, that puts the line at x = 3.5
-  geom_vline(xintercept = 3.5)
+</span><span class="c1"># We can figure out visually that it should be a bit above 5000, where</span><span class="w">
+</span><span class="c1"># the line is. But how about x? We want it over the 9th bar, so we start with 9</span><span class="w">
+</span><span class="c1"># and can adjust from there by changing x or the horizontal justification (hjust)</span><span class="w">
+</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">annotate</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'text'</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Mean Area'</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">9</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5500</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="c1"># Now we can add a vertical reference line with geom_vline</span><span class="w">
+  </span><span class="c1"># If we want it between bars 3 and 4, that puts the line at x = 3.5</span><span class="w">
+  </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3.5</span><span class="p">)</span><span class="w">
 
-p
-</code></pre>
-<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Adding_and_Labeling_a_Reference_Line/r_barplot_reference_lines.png" alt="R Bar Graph of Canadian Areas, with Labeled Reference Lines" /></p>
+</span><span class="n">p</span><span class="w">
+</span></code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Adding_and_Labeling_a_Reference_Line/R_barplot_reference_lines.png" alt="R Bar Graph of Canadian Areas, with Labeled Reference Lines" /></p>
       <h2 id="stata">
           <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
       </h2>
