@@ -10,14 +10,20 @@
   <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Combining Datasets | LOST</title>
+<title>Adding and Labeling a Reference Line | LOST</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Combining Datasets" />
+<meta property="og:title" content="Adding and Labeling a Reference Line" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"@type":"WebPage","headline":"Combining Datasets","url":"/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html","@context":"https://schema.org"}</script>
+{"@type":"WebPage","headline":"Adding and Labeling a Reference Line","url":"/Presentation/Figures/Adding_and_Labeling_a_Reference_Line.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML">
+  </script>
 </head>
 <body>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -62,7 +68,7 @@
       </a>
     </div>
     <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
-      <ul class="nav-list"><li class="nav-list-item active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/data_manipulation.html" class="nav-list-link">Data Manipulation</a><ul class="nav-list "><li class="nav-list-item "><a href="/Data_Manipulation/Regular_Expressions.html" class="nav-list-link">Regular Expressions</a></li><li class="nav-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="nav-list-link">Collapse a Data Set</a></li><li class="nav-list-item  active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="nav-list-link active">Combining Datasets</a><ul class="nav-list"><li class="nav-list-item ">
+      <ul class="nav-list"><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/data_manipulation.html" class="nav-list-link">Data Manipulation</a><ul class="nav-list "><li class="nav-list-item "><a href="/Data_Manipulation/Regular_Expressions.html" class="nav-list-link">Regular Expressions</a></li><li class="nav-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="nav-list-link">Collapse a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="nav-list-link">Combining Datasets</a><ul class="nav-list"><li class="nav-list-item ">
                         <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="nav-list-link">Vertical Combination</a>
                       </li><li class="nav-list-item ">
                         <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="nav-list-link">Horizontal Combination (Deterministic)</a>
@@ -120,8 +126,8 @@
                         <a href="/Model_Estimation/Statistical_Inference/linear_hypothesis_tests.html" class="nav-list-link">Linear Hypothesis Tests</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/Statistical_Inference/Nonstandard_Errors/nonstandard_errors.html" class="nav-list-link">Nonstandard Errors</a>
-                      </li></ul></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Presentation.html" class="nav-list-link">Presentation</a><ul class="nav-list "><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Figures/Figures.html" class="nav-list-link">Figures</a><ul class="nav-list"><li class="nav-list-item ">
-                        <a href="/Presentation/Figures/Adding_and_Labeling_a_Reference_Line.html" class="nav-list-link">Adding and Labeling a Reference Line</a>
+                      </li></ul></li></ul></li><li class="nav-list-item active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Presentation.html" class="nav-list-link">Presentation</a><ul class="nav-list "><li class="nav-list-item  active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Figures/Figures.html" class="nav-list-link">Figures</a><ul class="nav-list"><li class="nav-list-item  active">
+                        <a href="/Presentation/Figures/Adding_and_Labeling_a_Reference_Line.html" class="nav-list-link active">Adding and Labeling a Reference Line</a>
                       </li><li class="nav-list-item ">
                         <a href="/Presentation/Figures/Scatterplots.html" class="nav-list-link">Scatterplots</a>
                       </li><li class="nav-list-item ">
@@ -183,113 +189,176 @@
     <div id="main-content-wrap" class="main-content-wrap">
           <nav aria-label="Breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb-nav-list">
-                <li class="breadcrumb-nav-list-item"><a href="/Data_Manipulation/data_manipulation.html">Data Manipulation</a></li>
-              <li class="breadcrumb-nav-list-item"><span>Combining Datasets</span></li>
+                <li class="breadcrumb-nav-list-item"><a href="/Presentation/Presentation.html">Presentation</a></li>
+                <li class="breadcrumb-nav-list-item"><a href="/Presentation/Figures/Figures.html">Figures</a></li>
+              <li class="breadcrumb-nav-list-item"><span>Adding and Labeling a Reference Line</span></li>
             </ol>
           </nav>
       <div id="main-content" class="main-content" role="main">
-          <h1 id="combining-datasets-overview">
-          <a href="#combining-datasets-overview" aria-labelledby="combining-datasets-overview" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Combining Datasets Overview
+          <h1 id="adding-and-labeling-a-reference-line">
+          <a href="#adding-and-labeling-a-reference-line" aria-labelledby="adding-and-labeling-a-reference-line" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Adding and Labeling a Reference Line
       </h1>
-<p>There are two main ways to combine data: <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html">vertically</a> and <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html">horizontally</a>. That is, you can want to combine observations (adding new variables) or combine variables (adding new observations). This is perhaps easiest to show visually:</p>
-<p><strong>Individual Name Info</strong></p>
-<div class="table-wrapper"><table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>ID</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>John Smith</td>
-      <td>A63240</td>
-    </tr>
-    <tr>
-      <td>Desiree Thomas</td>
-      <td>B78242</td>
-    </tr>
-  </tbody>
-</table></div>
-<p><strong>Individual Age Info</strong></p>
-<div class="table-wrapper"><table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Age</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>B78242</td>
-      <td>22</td>
-    </tr>
-    <tr>
-      <td>A63240</td>
-      <td>27</td>
-    </tr>
-  </tbody>
-</table></div>
-<p>In the case above, we would like to combine two datasets, the Individual Name Info and the Individual Date Info, that have different information about the same people, who are identified by the ID variable. The result from the merge would be to have a new dataset with more columns than the original datasets because it contains all of the information for each individual from both of the original datasets. Here we have to combine the files according to the ID variable, placing the information from observations with the same ID on the same row in the combined dataset.</p>
-<p>Alternatively, the below example has two datasets that collect the same information about different people. We would like to combine these datasets vertically, with the result containing more rows than the original dataset, because it contains all of the people that are present in each of the original datasets. Here we combine the files based on the name or position of the columns in the dataset.</p>
-<div class="table-wrapper"><table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>ID</th>
-      <th>Age</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>John Smith</td>
-      <td>A63240</td>
-      <td>22</td>
-    </tr>
-    <tr>
-      <td>Desiree Thomas</td>
-      <td>B78242</td>
-      <td>27</td>
-    </tr>
-  </tbody>
-</table></div>
-<div class="table-wrapper"><table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>ID</th>
-      <th>Age</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Teresa Suarez</td>
-      <td>Y34208</td>
-      <td>19</td>
-    </tr>
-    <tr>
-      <td>Donald Akliberti</td>
-      <td>B72197</td>
-      <td>34</td>
-    </tr>
-  </tbody>
-</table></div>
-<p>These ways of combining data are referred to by different names across different programming languages, but will largely be referred to by one common set of terms (used by Stata and Python’s Pandas): merge for horizontal combination and append for for vertical combination.</p>
-          <hr>
-          <h2 class="text-delta">Table of contents</h2>
-          <ul>
-              <li>
-                <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html">Vertical Combination</a>
-              </li>
-              <li>
-                <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html">Horizontal Combination (Deterministic)</a>
-              </li>
-          </ul>
+<p>With a lot of graph types, you may want to add a reference line so that the data can be compared to it. For example, perhaps you have a graph that shows growth over time, and want to have a reference line for “no growth” so you can easily see how far things have come. Or perhaps an event happens at a particular time and you want to mark when the event is. Or maybe you just want it to be easy to compare different categories to a mean.</p>
+      <h2 id="keep-in-mind">
+          <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
+      </h2>
+<ul>
+  <li>Make sure that it’s clear what your reference line is. A reader might not guess that it represents a mean, or a particular event, or something else. In some cases, the line extending to a particular value on the x- or y-axis does the job. Other times you might want a direct label.</li>
+</ul>
+      <h2 id="also-consider">
+          <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
+      </h2>
+<ul>
+  <li>This page will show how to place a line but not how to style it. You may want your line to be dashed, or bold, or a different color. In most cases the stylistic controls for your reference line will be the exact same as those for a regular <a href="/Presentation/Figures/line_graphs.html">line graph</a>. See <a href="/Presentation/Figures/styling_line_graphs.html">styling line graphs</a></li>
+</ul>
+      <h1 id="implementations">
+          <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
+      </h1>
+<p>These implementations will add a line indicating the mean area to the bar graphs found in <a href="/Presentation/Figures/bar_graphs.html">line graph</a>. They will also show how to place a vertical line, this time at a particular value between the bars, showing how reference lines can be placed on discrete axes as well.</p>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Load packages
+</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"https://vincentarelbundock.github.io/Rdatasets/csv/DAAG/Manitoba.lakes.csv"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Calculate the value where we want the reference line to be, the mean
+# Note we could pick any other value here that we wanted
+</span><span class="n">mean_area</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'area'</span><span class="p">])</span>
+
+<span class="c1"># This uses pandas' built-in bar plot function, but this uses
+# matplotlib under the hood; any other matplotlib bar graph works the same
+</span><span class="n">plt</span><span class="p">.</span><span class="n">style</span><span class="p">.</span><span class="n">use</span><span class="p">(</span><span class="s">'seaborn'</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">bar</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s">'area'</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">'Area'</span><span class="p">,</span> <span class="n">rot</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Area of lakes in Manitoba'</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s">'left'</span><span class="p">)</span>
+
+<span class="c1"># Place the line
+</span><span class="n">plt</span><span class="p">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">mean_area</span><span class="p">)</span>
+
+<span class="c1"># Look at our result and figure out the appropriate x/y location
+# We can figure out visually that it should be a bit above 5000, where
+# the line is. But how about x? We can set x by trial and error, or 
+# note that there are 9 bars and get the x-coordinate of the last one
+# using ax.patches.get_x(), and adjust from there
+</span><span class="n">plt</span><span class="p">.</span><span class="n">annotate</span><span class="p">(</span><span class="s">'Mean Area'</span><span class="p">,</span> <span class="n">xy</span> <span class="o">=</span> <span class="p">(</span><span class="n">ax</span><span class="p">.</span><span class="n">patches</span><span class="p">[</span><span class="mi">8</span><span class="p">].</span><span class="n">get_x</span><span class="p">()</span> <span class="o">-</span> <span class="p">.</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5500</span><span class="p">))</span>
+
+<span class="c1"># Similarly if we want to position a vertical line, we can  use plt.axvline.
+# How to position it on a discrete non-numeric x axis?
+# place it after the third bar using get_x to find the third bar
+# and get_width to move over to the right side of the bar, then a bit more to adjust
+</span><span class="n">plt</span><span class="p">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">ax</span><span class="p">.</span><span class="n">patches</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">ax</span><span class="p">.</span><span class="n">patches</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">get_width</span><span class="p">()</span> <span class="o">+</span> <span class="p">.</span><span class="mi">25</span><span class="p">)</span>
+</code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Adding_and_Labeling_a_Reference_Line/python_labeled_reference_lines.png" alt="Python Bar Graph of Canadian Areas, with Labeled Reference Lines" /></p>
+      <h2 id="r">
+          <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
+      </h2>
+<p>In this example, we will place the line’s label using the <strong>ggplot2</strong> function <code class="language-plaintext highlighter-rouge">annotate()</code>, which will require us to figure out the annotation’s coordinates ourselves. However, if you prefer, you can use the point-and-click annotation tool <a href="https://github.com/MattCowgill/ggannotate">ggannotate</a>.</p><pre><code class="language-{r}">library(tidyverse)
+
+df = read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/DAAG/Manitoba.lakes.csv") %&gt;%
+  rename(Location = ...1)
+
+# Get the reference value we want to mark
+mean_area = df %&gt;% pull(area) %&gt;% mean()
+
+# Make the bar plot, and order the bars by height, why not
+p &lt;- ggplot(df, aes(x = reorder(Location, -area), y = area)) + 
+  geom_col() + 
+  labs(x = 'Location', y = 'Area') +
+  # add a horizontal line using geom_hline, specifying its y intercept
+  geom_hline(yintercept = mean_area)
+
+# Look at our result so far and figure out the appropriate x/y location 
+# for our annotation. 
+p
+
+# We can figure out visually that it should be a bit above 5000, where
+# the line is. But how about x? We want it over the 9th bar, so we start with 9
+# and can adjust from there by changing x or the horizontal justification (hjust)
+p &lt;- p + annotate(geom = 'text', label = 'Mean Area', x = 9, y = 5500) + 
+  # Now we can add a vertical reference line with geom_vline
+  # If we want it between bars 3 and 4, that puts the line at x = 3.5
+  geom_vline(xintercept = 3.5)
+
+p
+</code></pre>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Adding_and_Labeling_a_Reference_Line/r_barplot_reference_lines.png" alt="R Bar Graph of Canadian Areas, with Labeled Reference Lines" /></p>
+      <h2 id="stata">
+          <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
+      </h2>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">import</span> <span class="err">delimited</span> <span class="s2">"https://vincentarelbundock.github.io/Rdatasets/csv/DAAG/Manitoba.lakes.csv"</span><span class="err">,</span> <span class="err">clear
+
+rename</span> <span class="err">v1</span> <span class="err">Location
+</span><span class="c1">
+* Get the reference value we want to mark
+</span><span class="err">summ</span> <span class="err">area
+local</span> <span class="err">mean_area</span> <span class="o">=</span> <span class="err">r(mean)
+</span><span class="c1">
+* Make the bar plot, and order the bars by height, why not
+* And add a horizontal reference line with yline
+</span><span class="err">graph</span> <span class="err">bar</span> <span class="err">area,</span> <span class="err">over(Location,</span> <span class="err">sort(1))</span> <span class="err">yti(Area)</span> <span class="c1">///</span><span class="err">
+</span>	<span class="err">yline(</span><span class="p">`</span><span class="si">mean_area</span><span class="p">'</span><span class="err">)
+</span><span class="c1">	
+* From here, you need to use the Graph Editor
+* Right-click the graph, do "Start Graph Editor", and add the annotation
+* And you can also add a line object to place a vertical reference line
+
+* If we want to do things ourselves, we need to switch to twoway
+* (which we should do here anyway for a method that works with non-bar graphs)
+* Unfortunately, twoway bar doesn't like categorical x axes so we need to do some work there
+
+* Put the bars in order and create a labeled numeric variable
+* that's in the order we want the bars
+</span><span class="err">gsort</span> <span class="o">-</span><span class="err">area
+g</span> <span class="err">Location_n</span> <span class="o">=</span> <span class="err">_n
+</span><span class="c1">* Make sure labutil is installed with ssc install labutil
+</span><span class="err">labmask</span> <span class="err">Location_n,</span> <span class="err">values(Location)
+</span><span class="c1">
+* Get the reference value we want to mark
+</span><span class="err">summ</span> <span class="err">area
+local</span> <span class="err">mean_area</span> <span class="o">=</span> <span class="err">r(mean)
+</span><span class="c1">
+* NOW A DILEMMA:
+* we can easily add vertical and horizontal lines in twoway with yline and xline (or tline for time series graphs)
+* BUT these go BEHIND the graph, not in the foreground
+* that's okay for our vertical line between bars 3 and 4 (at 3.5) so let's do that
+* but for our horizontal line we'll need to draw it ourselves with function
+* which is annoying since we'll have to specify its range by hand
+
+* Start with our basic graph that mimics the graph bar we started with
+</span><span class="err">twoway</span> <span class="err">(bar</span> <span class="err">area</span> <span class="err">Location_n,</span> <span class="err">xti(</span><span class="s2">"Location"</span><span class="err">)</span> <span class="err">yti(</span><span class="s2">"Area"</span><span class="err">)</span> <span class="err">xlab(1</span><span class="o">/</span><span class="err">9,</span> <span class="err">valuelabel)</span> <span class="err">legend(off)</span> <span class="c1">///</span><span class="err">
+</span>	<span class="err">xline(3.5))</span> <span class="c1">/// Our vertical line goes between bars 3 and 4, i.e. at 3.5</span><span class="err">
+</span>	<span class="err">(function</span> <span class="err">y</span> <span class="o">=</span> <span class="p">`</span><span class="si">mean_area</span><span class="p">'</span><span class="err">,</span> <span class="err">range(.5</span> <span class="err">9.5)</span> <span class="c1">/// Now our horizontal line at the mean</span><span class="err">
+</span>	<span class="err">)
+</span><span class="c1">
+* Now we can look at our result and see where we think the annotation
+* should go. For our x-axis value we have 9 bars so should aim somewhere around 9
+</span><span class="err">twoway</span> <span class="err">(bar</span> <span class="err">area</span> <span class="err">Location_n,</span> <span class="err">xti(</span><span class="s2">"Location"</span><span class="err">)</span> <span class="err">yti(</span><span class="s2">"Area"</span><span class="err">)</span> <span class="err">xlab(1</span><span class="o">/</span><span class="err">9,</span> <span class="err">valuelabel)</span> <span class="err">legend(off)</span> <span class="c1">///</span><span class="err">
+</span>	<span class="err">xline(3.5)</span> <span class="err">text(5500</span> <span class="err">9</span> <span class="s2">"Mean Area"</span><span class="err">))</span> <span class="c1">/// Our vertical line goes between bars 3 and 4, i.e. at 3.5</span><span class="err">
+</span>	<span class="err">(function</span> <span class="err">y</span> <span class="o">=</span> <span class="p">`</span><span class="si">mean_area</span><span class="p">'</span><span class="err">,</span> <span class="err">range(.5</span> <span class="err">9.5))
+
+</span></code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Adding_and_Labeling_a_Reference_Line/stata_labeled_reference_lines.png" alt="Stata Bar Graph of Canadian Areas, with Labeled Reference Lines" /></p>
+      <h2 id="tableau">
+          <a href="#tableau" aria-labelledby="tableau" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Tableau
+      </h2>
+<p>To add a reference line in Tableau is easy when it’s a continuous variable. Start by making your graph.</p>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Adding_and_Labeling_a_Reference_Line/tableau_reflines_1.png" alt="Tableau Bar graph of Canadian areas" /></p>
+<p>Then, go to the analytics pane and drag a reference line to your graph.</p>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Adding_and_Labeling_a_Reference_Line/tableau_reflines_2.png" alt="Tableau adding a reference line" /></p>
+<p>Select the calculation (or value) you want</p>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Adding_and_Labeling_a_Reference_Line/tableau_reflines_3.png" alt="Tableau adjusting the reference line" /></p>
+<p>And the result will be automatically labeled.</p>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Adding_and_Labeling_a_Reference_Line/tableau_reflines_4.png" alt="Tableau bar graph with labeled reference line" /></p>
+<p>For a reference line on a discrete variable, the process is much more involved. See <a href="https://kb.tableau.com/articles/issue/add-reference-line-to-discrete-field">this guide</a>.</p>
           <hr>
           <footer>
               <div class="d-flex mt-2">
                   <p class="text-small text-grey-dk-000 mb-0">
-                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Data_Manipulation/Combining_Datasets/combining_datasets_overview.md" id="edit-this-page">Edit this page on GitHub.</a>
+                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Presentation/Figures/Adding_and_Labeling_a_Reference_Line.md" id="edit-this-page">Edit this page on GitHub.</a>
                   </p>
               </div>
           </footer>
