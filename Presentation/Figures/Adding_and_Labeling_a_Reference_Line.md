@@ -67,7 +67,7 @@ plt.axvline(ax.patches[2].get_x() + ax.patches[2].get_width() + .25)
 
 In this example, we will place the line's label using the **ggplot2** function `annotate()`, which will require us to figure out the annotation's coordinates ourselves. However, if you prefer, you can use the point-and-click annotation tool [ggannotate](https://github.com/MattCowgill/ggannotate).
 
-```{r}
+```r
 library(tidyverse)
 
 df = read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/DAAG/Manitoba.lakes.csv") %>%
@@ -98,7 +98,7 @@ p <- p + annotate(geom = 'text', label = 'Mean Area', x = 9, y = 5500) +
 p
 ```
 
-![R Bar Graph of Canadian Areas, with Labeled Reference Lines](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Adding_and_Labeling_a_Reference_Line/r_barplot_reference_lines.png)
+![R Bar Graph of Canadian Areas, with Labeled Reference Lines](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Adding_and_Labeling_a_Reference_Line/R_barplot_reference_lines.png)
 
 ## Stata
 
