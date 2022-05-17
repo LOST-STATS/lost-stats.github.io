@@ -76,7 +76,6 @@ If you create one of these pages, please remove it from this list.
 
 * Sankey Diagrams
 * Animated Graphs
-* Color Palettes
 
 ### Tables
 
