@@ -10,7 +10,7 @@ mathjax: true ## Switch to false if this page has no equations or other math ren
 # Building Custom Tables
 
 
-Sometimes you need to create a table that doesn't fit neatly into any of the other categories of table shown the [Tables]({{ "/Presentation/Tables.html" | relative_url }}) page.
+Sometimes you need to create a table that doesn't fit neatly into any of the other categories of table shown the [Tables]({{ "/Presentation/Tables/Tables.html" | relative_url }}) page.
 
 
 ## Keep in Mind
@@ -19,7 +19,7 @@ Sometimes you need to create a table that doesn't fit neatly into any of the oth
 
 ## Also Consider
 
-- Check the [Tables]({{ "/Presentation/Tables.html" | relative_url }}) page to see if any of those approaches will work for your application.
+- Check the [Tables]({{ "/Presentation/Tables/Tables.html" | relative_url }}) page to see if any of those approaches will work for your application.
 
 
 # Implementations
@@ -149,7 +149,7 @@ This produces:
   </tfoot>
   
 </table>
-</div>
 
-Citation for gt:
+
+Citation for gt:  
 Iannone R, Cheng J, Schloerke B (2022). gt: Easily Create Presentation-Ready Display Tables. https://gt.rstudio.com/, https://github.com/rstudio/gt.
