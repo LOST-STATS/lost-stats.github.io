@@ -78,10 +78,6 @@ If you create one of these pages, please remove it from this list.
 * Animated Graphs
 * Color Palettes
 
-### Tables
-
-* Building Your Own Custom Table
-
 ## Time Series
 
 * Stationarity and Weak Dependence
