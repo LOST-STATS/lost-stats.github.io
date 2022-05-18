@@ -48,7 +48,7 @@ library(ggplot2)
 ggplot(data = penguins, aes(x=bill_length_mm, y=bill_depth_mm, color=species)) + geom_point()
 ```
 
-![](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/r_palettes_1.png)
+![Graph of bill depth vs. length with default color for species](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/r_palettes_1.png)
 
 `ggplot2` provides default color options for quick graph making. However, we can change the colors for the species by using the `scale_color_brewer()` function from the `ggplot2` package
 
@@ -59,7 +59,7 @@ ggplot(data = penguins, aes(x=bill_length_mm, y=bill_depth_mm, color=species)) +
   scale_color_brewer(palette = "RdYlGn")
   ```
 
-![](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/r_palettes_2.png)
+![Graph of bill depth vs. length with new color palette for species](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/r_palettes_2.png)
 
 By using the `scale_color_brewer()` function (which again comes loaded with ggplot), we are able to change the color palette used to color the data points. This is particularly helpful when we need to color many different groups, as we can specify a palette with lots of colors available to assign to each group. There are many different palette options we can specify, check out the [ggplot2](https://ggplot2.tidyverse.org/reference/scale_brewer.html#ref-usage) website for more available options.
 
@@ -71,7 +71,7 @@ In addition to changing the color of data points, we can use color palettes to c
 ggplot(data = penguins, aes(x=species)) + geom_bar(aes(fill = species)) 
 ```
 
-![](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/r_palettes_3.png)
+![Graph of number of penguins from each species using default fill colors](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/r_palettes_3.png)
 
 Again, `ggplot2` uses default colors to fill in the bars. However, we can change these colors using a color palette package. Let's try the `ggsci` package this time, which comes with many different fill options inspired by those used in science journals and popular tv shows. For the example below, we'll use the `scale_fill_simpsons()` function to change the bar colors to a set inspired by the long-running comedy show.
 
@@ -86,7 +86,7 @@ ggplot(data = penguins, aes(x=species)) + geom_bar(aes(fill = species)) +
   scale_fill_simpsons()
  ```
 
-![](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/r_palettes_4.png)
+![Graph of number of penguins from each species using specified color palette for bar fill](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/r_palettes_4.png)
 
 Now the bars are a different set of colors from the default set! If you want to learn more about all the options available from the `ggsci` package, visit its [cran page.](https://cran.r-project.org/web/packages/ggsci/vignettes/ggsci.html)
 
@@ -100,7 +100,7 @@ The previous examples use a discrete variable to color the data by. We can also 
 ggplot(data = penguins, aes(x=bill_length_mm, y=bill_depth_mm, color=body_mass_g)) + geom_point()
 ```
 
-![](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/r_palettes_5.png)
+![Graph of bill depth vs. length using default color gradient for body mass](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/r_palettes_5.png)
 
 Now, instead of having a set number of colors modeling our data, we see a gradient scale in the legend on the left-hand side of the chart. `ggplot2` defaults to a blue color gradient, with lighter shades of blue representing heavier penguins. It is a bit difficult to discern the different shades, however, making this graph hard to read. We can edit this using the `viridis` package, which offers a greater variation of shades in its color gradient.
 
@@ -115,7 +115,7 @@ ggplot(data = penguins, aes(x=bill_length_mm, y=bill_depth_mm, color=body_mass_g
   scale_color_viridis() 
  ```
 
-![](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/r_palettes_6.png)
+![Graph of bill depth vs. length using specified color palette for updated gradient for body mass](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/r_palettes_6.png)
 
 Now we have a better idea about how penguin body mass relates to bill length and depth. The `scale_color_viridis()` function is well known for having a wide range of color shades as well as being visible to color blind people.
 
