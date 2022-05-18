@@ -77,7 +77,6 @@ Ex_table = Ex_table %>%
 This produces:
 
 
-</style>
 <table class="gt_table">
   <thead class="gt_header">
     <tr>
