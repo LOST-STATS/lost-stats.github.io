@@ -50,7 +50,7 @@ Ex_table = gt(input_df, rownames_to_stub = TRUE)
 # add title, subtitle, and source note
 Ex_table = Ex_table %>%
   tab_header(
-    title = "Title,
+    title = md("**Title in Bold Text**"),
     subtitle = "subtitle"
   ) %>%
   tab_source_note("Data from mtcars")
