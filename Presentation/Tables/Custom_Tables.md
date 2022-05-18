@@ -15,7 +15,7 @@ Sometimes you need to create a table that doesn't fit neatly into any of the oth
 
 ## Keep in Mind
 
-- Graphs are sometimes a more effective way to convay information.
+- Graphs are sometimes a more effective way to convey information.
 
 ## Also Consider
 
@@ -26,7 +26,7 @@ Sometimes you need to create a table that doesn't fit neatly into any of the oth
 
 ## R
 
-There are multiple ways to create custom tables, here I am focusing on RStudio's **[gt](https://gt.rstudio.com/)** because it is easy to use. It has many more options than I am demonstrating here so be sure to look at their documentation.
+There are lots of ways to create custom tables, I am using RStudio's **[gt](https://gt.rstudio.com/)** because it is easy to use and gives me a lot of control over the table elements. It has many more options than I am demonstrating  so be sure to look at their documentation.
 
 ```r
 # Install gt if necessary
@@ -36,22 +36,21 @@ library(gt)
 # I'm also loading magrittr so I can use the %>% pipe
 library(magrittr)
 
-# first create a tibble or data.frame object that contains all the information you want in your rows and columns.
-
-# for this example I'll use a generic dataset
+# you data will need to be in a data.frame or tibble object
+# for this example I'll use the generic dataset mtcars
 # which I'm truncating to make the final table easier to see
 input_df = head(mtcars, 6)
 input_df = input_df[, 1:5]
 
 
-# create the table using the data.fram rownames in the table
+# create the table including the data.frame rownames
 Ex_table = gt(input_df, rownames_to_stub = TRUE)
 
 
 # add title, subtitle, and source note
 Ex_table = Ex_table %>%
   tab_header(
-    title = md("**Title in Bold Text**"),
+    title = "Title,
     subtitle = "subtitle"
   ) %>%
   tab_source_note("Data from mtcars")
@@ -151,3 +150,6 @@ This produces:
   
 </table>
 </div>
+
+Citation for gt:
+Iannone R, Cheng J, Schloerke B (2022). gt: Easily Create Presentation-Ready Display Tables. https://gt.rstudio.com/, https://github.com/rstudio/gt.
