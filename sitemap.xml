@@ -115,6 +115,9 @@
 <loc>/Presentation/Figures/bar_graphs.html</loc>
 </url>
 <url>
+<loc>/Presentation/Figures/binscatter.html</loc>
+</url>
+<url>
 <loc>/Machine_Learning/boosted_regression_trees.html</loc>
 </url>
 <url>
@@ -352,11 +355,15 @@
 <loc>/Data/</loc>
 </url>
 <url>
+<loc>/Presentation/Figures/binscatter.html</loc>
+<lastmod>2022-05-30T04:28:59+00:00</lastmod>
+</url>
+<url>
 <loc>/Time_Series/ARIMA-models.html</loc>
-<lastmod>2022-05-19T18:42:48+00:00</lastmod>
+<lastmod>2022-05-30T04:28:59+00:00</lastmod>
 </url>
 <url>
 <loc>/Time_Series/Granger_Causality.html</loc>
-<lastmod>2022-05-19T18:42:48+00:00</lastmod>
+<lastmod>2022-05-30T04:28:59+00:00</lastmod>
 </url>
 </urlset>
