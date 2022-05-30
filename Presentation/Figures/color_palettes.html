@@ -292,6 +292,96 @@
 <p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/r_palettes_6.png" alt="Graph of bill depth vs. length using specified color palette for updated gradient for body mass" /></p>
 <p>Now we have a better idea about how penguin body mass relates to bill length and depth. The <code class="language-plaintext highlighter-rouge">scale_color_viridis()</code> function is well known for having a wide range of color shades as well as being visible to color blind people.</p>
 <p>These simple examples are certainly not the end-all be-all, but they should hopefully demonstrate that there are lots of customization options available for your graphs. Ultimately, it comes down to personal preference and what type of data you are modeling. Make sure to keep in mind too how you should call attention to specific parts of your charts to best convey the information within the data. With that being said, the options are seemingly endless when it comes to color palettes in R, so play around with your favorite color palette packages to find the best option for you!</p>
+      <h1 id="stata">
+          <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
+      </h1>
+<p>Stata has more limited native options to use colors and color palettes to graphs. However, thanks to Ben Jann package <strong>colrspace</strong> and <strong>palettes</strong>, it is relatively easy to extract and translate color palettes to be used in Stata. In addition, it is also possible to combine this packages with <strong>grstyle</strong> (also by Ben Jann), to modify the colors of the scheme in memory, to easily change the colors of most of your graphs.</p>
+<p>To facilitate further the use of colors in your graphs, I put together a wrapper that will combine the use of Ben Jann’s packages, to easily combine palettes and schemes, for most of your color needs.</p>
+      <h1 id="setup">
+          <a href="#setup" aria-labelledby="setup" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Setup
+      </h1>
+<p>First, we need to install a few packages from ssc.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* To modify schemes
+</span><span class="err">ssc</span> <span class="err">install</span> <span class="err">grstyle
+</span><span class="c1">* To add color palettes and palettes translators in Stata
+</span><span class="err">net</span> <span class="err">install</span> <span class="err">palettes</span> <span class="err">,</span> <span class="err">replace</span> <span class="err">from(</span><span class="s2">"https://raw.githubusercontent.com/benjann/palettes/master/"</span><span class="err">)
+net</span> <span class="err">install</span> <span class="err">colrspace,</span> <span class="err">replace</span> <span class="err">from(</span><span class="s2">"https://raw.githubusercontent.com/benjann/colrspace/master/"</span><span class="err">)
+</span><span class="c1">* A wrapper for the commands above, plus adding other predefined palettes
+</span><span class="err">ssc</span> <span class="err">install</span> <span class="err">color_style
+</span></code></pre></div></div>
+<p>Second, lets load some data that we can use to demonstrate color palette options. For these examples, I will use iris.dta dataset. This has similar characteristics as the penguins dataset used in the R example above. The examples that follow will try to replicate the figures described in R. I will also use the scheme <code class="language-plaintext highlighter-rouge">white</code>, which is clear than the Stata default scheme.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">webuse</span> <span class="err">iris,</span> <span class="err">clear
+</span></code></pre></div></div>
+      <h3 id="discrete-data-1">
+          <a href="#discrete-data-1" aria-labelledby="discrete-data-1" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Discrete Data
+      </h3>
+<p>The first two examples will deal color palettes for discrete data, emphasizing on the use of color_style. We start by creating a simple scatter of sepal length and with by iris type, using default color options in Stata.
+Note that there is a new comand (mscatter in ssc) that can create scatterplots by groups more directly. However, I will stay with the simpler scatter for this example.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">two</span> <span class="err">(scatter</span> <span class="err">seplen</span> <span class="err">sepwid</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">1)</span> <span class="c1">///</span><span class="err">
+</span>    <span class="err">(scatter</span> <span class="err">seplen</span> <span class="err">sepwid</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">2)</span> <span class="c1">///</span><span class="err">
+</span>    <span class="err">(scatter</span> <span class="err">seplen</span> <span class="err">sepwid</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">3),</span> <span class="c1">///</span><span class="err">
+</span>    <span class="err">legend(order(1</span> <span class="s2">"Sectosa"</span> <span class="err">2</span> <span class="s2">"Versicolor"</span> <span class="err">3</span> <span class="s2">"Virginica"</span><span class="err">))
+</span></code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/stata_palettes_1.png" alt="Sepal Length vs Sepal Width" /></p>
+<p>This, however, generates dots with colors that are hard to differentiate. We could, instead use “tableau” colors:</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">color_style</span> <span class="err">tableau
+two</span> <span class="err">(scatter</span> <span class="err">seplen</span> <span class="err">sepwid</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">1)</span> <span class="c1">///</span><span class="err">
+</span>    <span class="err">(scatter</span> <span class="err">seplen</span> <span class="err">sepwid</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">2)</span> <span class="c1">///</span><span class="err">
+</span>    <span class="err">(scatter</span> <span class="err">seplen</span> <span class="err">sepwid</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">3),</span> <span class="c1">///</span><span class="err">
+</span>    <span class="err">legend(order(1</span> <span class="s2">"Sectosa"</span> <span class="err">2</span> <span class="s2">"Versicolor"</span> <span class="err">3</span> <span class="s2">"Virginica"</span><span class="err">))
+</span></code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/stata_palettes_2.png" alt="Sepal Length vs Sepal Width" /></p>
+<p>Alternatively, we could use a more colorful palette option, such as <strong>RdYlGn</strong>. However, because this palette is made for continous data, you would do better if instead use color_style option <code class="language-plaintext highlighter-rouge">n(#)</code>.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">color_style</span> <span class="err">RdYlGn,</span> <span class="err">n(3)
+two</span> <span class="err">(scatter</span> <span class="err">seplen</span> <span class="err">sepwid</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">1)</span> <span class="c1">///</span><span class="err">
+</span>    <span class="err">(scatter</span> <span class="err">seplen</span> <span class="err">sepwid</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">2)</span> <span class="c1">///</span><span class="err">
+</span>    <span class="err">(scatter</span> <span class="err">seplen</span> <span class="err">sepwid</span> <span class="err">if</span> <span class="err">iris</span><span class="o">==</span><span class="err">3),</span> <span class="c1">///</span><span class="err">
+</span>    <span class="err">legend(order(1</span> <span class="s2">"Sectosa"</span> <span class="err">2</span> <span class="s2">"Versicolor"</span> <span class="err">3</span> <span class="s2">"Virginica"</span><span class="err">))
+</span></code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/stata_palettes_3.png" alt="Sepal Length vs Sepal Width" /></p>
+<p>By using <code class="language-plaintext highlighter-rouge">color_style</code> function, we can change the colors used for the data points. However, using this method has the hard constrain of defining up to 15 different colors. Check the helpfile of <code class="language-plaintext highlighter-rouge">colorpalette</code> to see all predefined colorpalette options, and type <code class="language-plaintext highlighter-rouge">color_style, list</code> for additional palettes that come with this command.</p>
+<p>In addition to changing the color of data points, we can use color palettes to change the fill color of a graph object, which is particularly useful when creating bar charts, line graphs, boxPlots, or filling in confidence intervals. Let’s create a new example where we plot the means of sepal and petal length and width.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">color_style</span> <span class="err">s2
+graph</span> <span class="err">bar</span> <span class="err">(mean)</span> <span class="err">seplen</span> <span class="err">sepwid</span> <span class="err">petlen</span> <span class="err">petwid,</span> <span class="err">title(</span><span class="s2">"S2color-Stata Default"</span><span class="err">)</span> <span class="err">name(m1)
+color_style</span> <span class="err">RdYlGn</span> <span class="err">
+graph</span> <span class="err">bar</span> <span class="err">(mean)</span> <span class="err">seplen</span> <span class="err">sepwid</span> <span class="err">petlen</span> <span class="err">petwid,</span> <span class="err">title(</span><span class="s2">"RdYlGn-up to 15"</span><span class="err">)</span> <span class="err">name(m2)
+color_style</span> <span class="err">RdYlGn,</span> <span class="err">n(4)
+graph</span> <span class="err">bar</span> <span class="err">(mean)</span> <span class="err">seplen</span> <span class="err">sepwid</span> <span class="err">petlen</span> <span class="err">petwid,</span> <span class="err">title(</span><span class="s2">"RdYlGn-for 4 groups"</span><span class="err">)</span> <span class="err">name(m3)
+color_style</span> <span class="err">google
+graph</span> <span class="err">bar</span> <span class="err">(mean)</span> <span class="err">seplen</span> <span class="err">sepwid</span> <span class="err">petlen</span> <span class="err">petwid,</span> <span class="err">title(</span><span class="s2">"Google-Palette"</span><span class="err">)</span> <span class="err">name(m4)
+graph</span> <span class="err">combine</span> <span class="err">m1</span> <span class="err">m2</span> <span class="err">m3</span> <span class="err">m4,</span> <span class="err">nocopies
+</span></code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/stata_palettes_4.png" alt="Sepal Petal Means" /></p>
+<p>There could be, however, that a particular palette is not yet available in <code class="language-plaintext highlighter-rouge">color_style</code>, or <code class="language-plaintext highlighter-rouge">colorpalette</code>. If you have the HEX colors, you can still use them!. Here I use “Simpsons” and “Tron” hex colors for the bar graphs.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">** Like Simpsons (ggsci)
+</span><span class="err">color_style</span> <span class="err">#FED439</span> <span class="err">#709AE1</span> <span class="err">#8A9197</span> <span class="err">#D2AF81
+graph</span> <span class="err">bar</span> <span class="err">(mean)</span> <span class="err">seplen</span> <span class="err">sepwid</span> <span class="err">petlen</span> <span class="err">petwid,</span> <span class="err">title(</span><span class="s2">"S2color-Stata Default"</span><span class="err">)</span> <span class="err">name(m5)
+</span><span class="c1">** Like Tron (ggsci)
+</span><span class="err">color_style</span> <span class="err">#FF410D</span> <span class="err">#6EE2FF</span> <span class="err">#F7C530</span> <span class="err">#95CC5E
+graph</span> <span class="err">bar</span> <span class="err">(mean)</span> <span class="err">seplen</span> <span class="err">sepwid</span> <span class="err">petlen</span> <span class="err">petwid,</span> <span class="err">title(</span><span class="s2">"RdYlGn-up to 15"</span><span class="err">)</span> <span class="err">name(m6)
+graph</span> <span class="err">combine</span> <span class="err">m5</span> <span class="err">m6,</span> <span class="err">nocopies
+</span></code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/stata_palettes_5.png" alt="Sepal Petal Means2" /></p>
+      <h3 id="continuous-data-1">
+          <a href="#continuous-data-1" aria-labelledby="continuous-data-1" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Continuous Data
+      </h3>
+<p>The previous examples use a discrete variable to color the data by. While colorpalette allows you to set colors for continuous data as well, using interpolation of colors when appropriate, schemes can only manage up to 15 different groups. There are other user written commands, however that work with colorpalette on the background, and may allow you to do this kind of graphs</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">** Like Scatter but for multiple groups.
+</span><span class="err">ssc</span> <span class="err">install</span> <span class="err">mscatter
+mscatter</span> <span class="err">seplen</span> <span class="err">sepwid,</span> <span class="err">over(petlen)</span> <span class="err">colorpalette(viridis)</span> <span class="err">alegend</span> <span class="err">msize(2)</span> <span class="err">title(viridis)</span> <span class="err">name(m7,</span> <span class="err">replace)</span> <span class="err">legend(col(2))
+mscatter</span> <span class="err">seplen</span> <span class="err">sepwid,</span> <span class="err">over(petlen)</span> <span class="err">colorpalette(egypt)</span> <span class="err">alegend</span> <span class="err">msize(2)</span> <span class="err">title(egypt)</span> <span class="err">name(m8,</span> <span class="err">replace)</span>  <span class="err">legend(col(2))
+mscatter</span> <span class="err">seplen</span> <span class="err">sepwid,</span> <span class="err">over(petlen)</span> <span class="err">colorpalette(magma)</span> <span class="err">alegend</span> <span class="err">msize(2)</span> <span class="err">title(magma)</span> <span class="err">name(m9,</span> <span class="err">replace)</span>  <span class="err">legend(col(2))
+mscatter</span> <span class="err">seplen</span> <span class="err">sepwid,</span> <span class="err">over(petlen)</span> <span class="err">colorpalette(google)</span> <span class="err">alegend</span> <span class="err">msize(2)</span> <span class="err">title(google)</span> <span class="err">name(m10,</span> <span class="err">replace)</span>   <span class="err">legend(col(2))
+graph</span> <span class="err">combine</span> <span class="err">m7</span> <span class="err">m8</span> <span class="err">m9</span> <span class="err">m10,</span> <span class="err">nocopies</span> <span class="err">altshrink
+</span></code></pre></div></div>
+<p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/stata_palettes_6.png" alt="Scatter-MultiGoup" /></p>
+<p>While this approach provides an option for multiple levels of colors, some work is needed to have better formatted labels.</p>
+<p>These simple examples should  demonstrate that there are lots of customization options available for your graphs. Ultimately, it comes down to personal preference and what type of data you are modeling. Make sure to keep in mind too how you should call attention to specific parts of your charts to best convey the information within the data.</p>
+      <h3 id="what-is-happening-in-the-background">
+          <a href="#what-is-happening-in-the-background" aria-labelledby="what-is-happening-in-the-background" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> What is happening in the background
+      </h3>
+<p>To understand what is happening in the background. <code class="language-plaintext highlighter-rouge">color_style</code> calls on <code class="language-plaintext highlighter-rouge">colorpalette</code> to identify colors for a particular palette. <code class="language-plaintext highlighter-rouge">colorpalette</code> comes loaded with many predefined palettes, which are constantly being updated. Once the colors are obtained, <code class="language-plaintext highlighter-rouge">color_style</code> calls on <code class="language-plaintext highlighter-rouge">grstyle</code> to modify all color attributes in the current scheme. <code class="language-plaintext highlighter-rouge">color_style</code> also comes with a good selection of palettes, that one may want to explore.</p>
+<p>By default, <code class="language-plaintext highlighter-rouge">color_style</code> uses all colors in a particular palette, recycling them if more colors are needed. However, one can request use fewer colors (say 3), for better color contrast. This may depend on the type of palette one is using. Using this method only allows you to change colors for up to 15 groups. Other programs exist, however, when one wants to use more than 15 groups of colors.</p>
           <hr>
           <footer>
               <div class="d-flex mt-2">
