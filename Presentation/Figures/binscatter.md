@@ -33,7 +33,9 @@ Binned scatterplots are a variation on scatterplots that can be useful when ther
 
 ## R
 
-For the examples below I will be using this created data:
+It is fairly straightforward to create a basic binned scatterplot in R by hand. There is also the **binsreg** package for more advanced methods that includes things like automatic bandwidth selection and nonparametric fitting of the binned data; see [here](https://towardsdatascience.com/goodbye-scatterplot-welcome-binned-scatterplot-a928f67413e4) for another example.
+
+For the example below I will be using this created data:
 ```r
 x = rnorm(mean=50, sd=50, n=10000)
 y =  x + rnorm(mean=0, sd=100, n=10000)
@@ -49,8 +51,6 @@ ggplot(df, aes(x=x, y=y)) +
 ![Our Data Plotted](Images/binscatter/data.png)
 
 After plotting, we can see that there may be a trend, but the graph is over cluttered and not easy to interpret right away. This is when binned scatterplots are most useful.
-
-There are multiple ways to code observations into bins, but we will do it simply creating a new 'bin' column in dplyr for this example. However, you can look [here](https://towardsdatascience.com/goodbye-scatterplot-welcome-binned-scatterplot-a928f67413e4) for an example using the binsreg package.
 
 ```r
 library(dplyr)
@@ -68,3 +68,50 @@ ggplot(new_df, aes(x=xmean, y=ymean)) +
 ![Binned Data Plotted](Images/binscatter/binscatter.png)
 
 After binning and summarizing the data, we can identify the trend much easier! (but lose a sense of the very high variance)
+
+Now let's use **binsreg**, which can be installed with `install.packages('binsreg')`. It will automatically select bins based on quantiles, allows you to apply control variables before plotting the residuals, and offers easy methods for fitting splines on top of the binned data with the `line` option:
+
+```r
+binsreg(df$y, df$x, line = c(3,3))
+```
+
+## Stata
+
+Stata has the excellent user-provided package **binscatter** specifically for creating binned scatterplots, with plenty of options described in the help files.
+
+```stata
+* ssc install binscatter
+
+* Create some data
+clear
+set obs 1000
+g x = rnormal()
+g y = x + rnormal()
+
+* Default binscatter will plot means of y across 20 quantile-based bins of x
+* And also adds a best-fit line
+* Let's make 40 bins of x, why not
+binscatter y x, n(40)
+```
+
+![Stata Binscatter Plot](Images/binscatter/stata_binscatter.png)
+
+## Python
+
+The **seaborn** package's `regplot` method offers an easy way to make a basic binned scatterplot, with a fitted line and confidence intervals for each mean.
+
+```python
+import numpy as np
+import seaborn as sns
+
+# Create random data
+x = np.random.normal(size = 1000)
+y = x + np.random.normal(size = 1000)
+
+# the x_bins argument in sns.regplot lets us set bins
+sns.regplot(x = x, y = y, x_bins = 40)
+```
+
+![Python Binscatter Plot](Images/binscatter/python_binscatter.png)
+
+There is also a more fully-featured package **binscatterplot** that is inspired by the Stata package **binscatter** described in the Stata section here. See an example [here](https://github.com/esantorella/binscatter).
