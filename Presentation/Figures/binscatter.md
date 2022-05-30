@@ -75,6 +75,8 @@ Now let's use **binsreg**, which can be installed with `install.packages('binsre
 binsreg(df$y, df$x, line = c(3,3))
 ```
 
+![R Binscatter Plot using binsreg](Images/binscatter/r_binsreg.png)
+
 ## Stata
 
 Stata has the excellent user-provided package **binscatter** specifically for creating binned scatterplots, with plenty of options described in the help files.
