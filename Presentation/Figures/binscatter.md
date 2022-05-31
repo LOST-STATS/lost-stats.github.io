@@ -18,8 +18,8 @@ Binned scatterplots are a variation on scatterplots that can be useful when ther
 ## Keep in Mind
 
 - Bins are determined based on the conditioning variable (usually the x variable). Bin width can be determined in multiple ways. For example, you can set bin width with the goal of getting the same amount of observations into each bin. In this scenario, bins will likely all differ in width unless your data observations are equally spaced. You could also set bin width so that every bin is of equal width (and has unequal amount of observations falling into each bin).
-- Once observations are placed into bins using the conditioning variable, an outcome variable (usually the y variable) is produced by aggregating all observations in the bin and using a summary statistic to obtain one single point. Possible summary statistics that can be used include mean, median, max/min, or count.
-- The number of bins you will separate your data into is the most important decision you will likely make. There is no one way to determine this (the binsreg package in R has a default optimal number of bins that it calculates), but you will face the bias-variance trade off when selecting this parameter.
+- Once observations are placed into bins using the conditioning variable, an outcome variable (usually the y variable) is produced by aggregating all observations in the bin and using a summary statistic to obtain one single point. Possible summary statistics that can be used include mean, median or other quantiles, max/min, or count.
+- The number of bins you will separate your data into is the most important decision you will likely make. There is no one way to determine this, but you will face the bias-variance trade off when selecting this parameter. The binsreg package in R, Stata, and Python has a default optimal number of bins that it calculates to make this trade off.
 
 
 ## Also Consider
@@ -30,6 +30,8 @@ Binned scatterplots are a variation on scatterplots that can be useful when ther
 
 
 # Implementations
+
+The **binsreg** package is available for R, Stata, and Python. See https://nppackages.github.io/binsreg/.
 
 ## R
 
@@ -79,10 +81,10 @@ binsreg(df$y, df$x, line = c(3,3))
 
 ## Stata
 
-Stata has the excellent user-provided package **binscatter** specifically for creating binned scatterplots, with plenty of options described in the help files.
+To install **binsreg** in Stata Stata has the excellent user-provided package **binscatter** specifically for creating binned scatterplots, with plenty of options described in the help files.
 
 ```stata
-* ssc install binscatter
+* net install binsreg, from(https://raw.githubusercontent.com/nppackages/binsreg/master/stata) replace
 
 * Create some data
 clear
@@ -90,30 +92,29 @@ set obs 1000
 g x = rnormal()
 g y = x + rnormal()
 
-* Default binscatter will plot means of y across 20 quantile-based bins of x
-* And also adds a best-fit line
+* Default binsreg will plot means of y with quantile-based bins of x, the number of bins is by default chosen optimally
 * Let's make 40 bins of x, why not
-binscatter y x, n(40)
+* And also add a best-fit line
+binsreg y x, nbins(40) polyreg(1)
 ```
 
 ![Stata Binscatter Plot](Images/binscatter/stata_binscatter.png)
 
 ## Python
 
-The **seaborn** package's `regplot` method offers an easy way to make a basic binned scatterplot, with a fitted line and confidence intervals for each mean.
+The **binsreg** package in Python can be installed with pip. The syntax is similar to the other platforms. We can make the same plot as the Stata example above.
 
 ```python
 import numpy as np
 import seaborn as sns
+pip install binsreg
 
 # Create random data
 x = np.random.normal(size = 1000)
 y = x + np.random.normal(size = 1000)
 
-# the x_bins argument in sns.regplot lets us set bins
-sns.regplot(x = x, y = y, x_bins = 40)
+est = binsreg(y, x, data=data, nbins=40, polyreg=1)
+est.bins_plot
 ```
 
 ![Python Binscatter Plot](Images/binscatter/python_binscatter.png)
-
-There is also a more fully-featured package **binscatterplot** that is inspired by the Stata package **binscatter** described in the Stata section here. See an example [here](https://github.com/esantorella/binscatter).
