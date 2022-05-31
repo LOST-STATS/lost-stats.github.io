@@ -210,8 +210,8 @@
       </h2>
 <ul>
   <li>Bins are determined based on the conditioning variable (usually the x variable). Bin width can be determined in multiple ways. For example, you can set bin width with the goal of getting the same amount of observations into each bin. In this scenario, bins will likely all differ in width unless your data observations are equally spaced. You could also set bin width so that every bin is of equal width (and has unequal amount of observations falling into each bin).</li>
-  <li>Once observations are placed into bins using the conditioning variable, an outcome variable (usually the y variable) is produced by aggregating all observations in the bin and using a summary statistic to obtain one single point. Possible summary statistics that can be used include mean, median, max/min, or count.</li>
-  <li>The number of bins you will separate your data into is the most important decision you will likely make. There is no one way to determine this (the binsreg package in R has a default optimal number of bins that it calculates), but you will face the bias-variance trade off when selecting this parameter.</li>
+  <li>Once observations are placed into bins using the conditioning variable, an outcome variable (usually the y variable) is produced by aggregating all observations in the bin and using a summary statistic to obtain one single point. Possible summary statistics that can be used include mean, median or other quantiles, max/min, or count.</li>
+  <li>The number of bins you will separate your data into is the most important decision you will likely make. There is no one way to determine this, but you will face the bias-variance trade off when selecting this parameter. The binsreg package in R, Stata, and Python has a default optimal number of bins that it calculates to make this trade off.</li>
 </ul>
       <h2 id="also-consider">
           <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
@@ -224,6 +224,7 @@
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
+<p>The <strong>binsreg</strong> package is available for R, Stata, and Python. See https://nppackages.github.io/binsreg/.</p>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
@@ -259,8 +260,8 @@
       <h2 id="stata">
           <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
       </h2>
-<p>Stata has the excellent user-provided package <strong>binscatter</strong> specifically for creating binned scatterplots, with plenty of options described in the help files.</p>
-<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* ssc install binscatter
+<p>To install <strong>binsreg</strong> in Stata Stata has the excellent user-provided package <strong>binscatter</strong> specifically for creating binned scatterplots, with plenty of options described in the help files.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* net install binsreg, from(https://raw.githubusercontent.com/nppackages/binsreg/master/stata) replace
 
 * Create some data
 </span><span class="err">clear
@@ -268,28 +269,28 @@ set</span> <span class="err">obs</span> <span class="err">1000
 g</span> <span class="err">x</span> <span class="o">=</span> <span class="err">rnormal()
 g</span> <span class="err">y</span> <span class="o">=</span> <span class="err">x</span> <span class="o">+</span> <span class="err">rnormal()
 </span><span class="c1">
-* Default binscatter will plot means of y across 20 quantile-based bins of x
-* And also adds a best-fit line
+* Default binsreg will plot means of y with quantile-based bins of x, the number of bins is by default chosen optimally
 * Let's make 40 bins of x, why not
-</span><span class="err">binscatter</span> <span class="err">y</span> <span class="err">x,</span> <span class="err">n(40)
+* And also add a best-fit line
+</span><span class="err">binsreg</span> <span class="err">y</span> <span class="err">x,</span> <span class="err">nbins(40)</span> <span class="err">polyreg(1)
 </span></code></pre></div></div>
 <p><img src="/Presentation/Figures/Images/binscatter/stata_binscatter.png" alt="Stata Binscatter Plot" /></p>
       <h2 id="python">
           <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
       </h2>
-<p>The <strong>seaborn</strong> package’s <code class="language-plaintext highlighter-rouge">regplot</code> method offers an easy way to make a basic binned scatterplot, with a fitted line and confidence intervals for each mean.</p>
+<p>The <strong>binsreg</strong> package in Python can be installed with pip. The syntax is similar to the other platforms. We can make the same plot as the Stata example above.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">binsreg</span>
 
 <span class="c1"># Create random data
 </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
 
-<span class="c1"># the x_bins argument in sns.regplot lets us set bins
-</span><span class="n">sns</span><span class="p">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">x_bins</span> <span class="o">=</span> <span class="mi">40</span><span class="p">)</span>
+<span class="n">est</span> <span class="o">=</span> <span class="n">binsreg</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">nbins</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">polyreg</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">est</span><span class="p">.</span><span class="n">bins_plot</span>
 </code></pre></div></div>
 <p><img src="/Presentation/Figures/Images/binscatter/python_binscatter.png" alt="Python Binscatter Plot" /></p>
-<p>There is also a more fully-featured package <strong>binscatterplot</strong> that is inspired by the Stata package <strong>binscatter</strong> described in the Stata section here. See an example <a href="https://github.com/esantorella/binscatter">here</a>.</p>
           <hr>
           <footer>
               <div class="d-flex mt-2">
