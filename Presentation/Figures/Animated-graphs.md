@@ -38,14 +38,33 @@ here we used gganimate, and ggplot2 to do animated bar graphs. and gifski to sav
 In R, one of the best tools for creating graphs is the function ggplot(), found in the ggplot2 package.
 
 For this R demonstration, we will introduce how to use ggplot2 package to create Animated graphs. First, we load all the packages we need.
-```{r}
+
+```r
 # Load in necessary packages
 library(ggplot2)
 library(gganimate)
 library(gifski)
 library(dplyr)
+```
 
+```
+## 
+## Attaching package: 'dplyr'
+```
 
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
 # Load in desired data (gapminder)
 library(gapminder)
 ```
@@ -53,7 +72,8 @@ library(gapminder)
 ## Animated bar charts
 
 ### example for animated bar charts shows comparisinf over time for two countries.
-```{r, fig.align = 'center'}
+
+```r
 graph_data1 <- gapminder  %>% filter(continent=="Oceania")
 
 # first use ggplot for the graph 
@@ -67,13 +87,18 @@ ggplot(graph_data1, aes(x=country, y=gdpPercap, fill=country)) +
   ease_aes('sine-in-out') + # to control easing of aesthetics 
   labs(title = 'Gdp per Capita in year: {closest_state}', # title with the timestamp period
   subtitle = 'Oceania countries (1992 - 2007)') 
+```
 
+<img src="Animated-graphs_files/figure-html/unnamed-chunk-2-1.gif" style="display: block; margin: auto;" />
+
+```r
 anim_save("graph1.gif") # to save the graph as gif
 ```
 
 ### example for animated bars for 25 countries over time.
 
-```{r}
+
+```r
 graph_data <- gapminder %>% filter(continent=="Americas")
 
 # Plot bar graphs by country, we have 25 countries in the Americas, that hard to interpretation using one graph.
@@ -98,20 +123,23 @@ graph_2 <- ggplot(graph_data, aes(x=country, y=gdpPercap, fill=country)) +
         plot.margin = margin(2, 2, 4, 4, "cm"))+ 
   labs(title = 'Gdp per Capita for year: {closest_state}', # title with the timestamp period
   subtitle = 'Americas countries (1992 - 2007)') 
-
 ```
 
 ### Save it as gif file formate using animated function
 
-```{r}
+
+```r
 # The animated sitting, create an image per frame, in this example, we used year so it creates an image for each year
 animate(graph_2, 100, fps = 20, end_pause=30,  width = 1400, height = 1000, 
         renderer = gifski_renderer("gganim1.gif"))
 ```
 
+![](Animated-graphs_files/figure-html/unnamed-chunk-4-1.gif)<!-- -->
+
 ## Animatrd Line Chart 
 
-```{r, fig.align = 'center'}
+
+```r
 # Plot North America, here we try line graph by only graph North America countries 
 graph_data3 <- graph_data %>% filter(country %in% c("United States", "Canada", "Mexico"))
 
@@ -125,7 +153,10 @@ graph_3 <- ggplot(data = graph_data3) +
   ease_aes('linear') # The values change linearly during tweening
   
 graph_3
+```
 
+<img src="Animated-graphs_files/figure-html/unnamed-chunk-5-1.gif" style="display: block; margin: auto;" />
+
+```r
 anim_save("graph_3.gif") # to save the graph as gif
-
 ```
