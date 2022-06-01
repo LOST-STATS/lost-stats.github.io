@@ -50,7 +50,7 @@ library(gapminder)
 ## Animated bar charts
 
 ### example for animated bar charts shows comparisinf over time for two countries.
-```{r, fig.width=8,fig.height=6, fig.align = 'center'}
+```{r, fig.align = 'center'}
 graph_data1 <- gapminder  %>% filter(continent=="Oceania")
 
 # first use ggplot for the graph 
@@ -108,7 +108,7 @@ animate(graph_2, 100, fps = 20, end_pause=30,  width = 1400, height = 1000,
 
 ## Animatrd Line Chart 
 
-```{r, fig.width=8,fig.height=6, fig.align = 'center'}
+```{r, fig.align = 'center'}
 # Plot North America, here we try line graph by only graph North America countries 
 graph_data3 <- graph_data %>% filter(country %in% c("United States", "Canada", "Mexico"))
 
