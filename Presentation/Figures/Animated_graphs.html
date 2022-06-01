@@ -251,7 +251,7 @@
   </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'GDP per Capita in Year {closest_state}'</span><span class="p">,</span><span class="w"> </span><span class="c1"># title with the timestamp period</span><span class="w">
   </span><span class="n">subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Oceania Countries (1992 - 2007)'</span><span class="p">)</span><span class="w"> 
 </span></code></pre></div></div>
-<p><img src="Images/Animated_Graphs/r_gdp_over_time.png" alt="Bar graph of GDP per capita, animated over time" /></p>
+<p><img src="Images/Animated_Graphs/r_gdp_over_time.gif" alt="Bar graph of GDP per capita, animated over time" /></p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">anim_save</span><span class="p">(</span><span class="s2">"graph1.gif"</span><span class="p">)</span><span class="w"> </span><span class="c1"># to save the graph as gif</span><span class="w">
 </span></code></pre></div></div>
 <p>Animation can be a good way to show changes over many groups at once.</p>
@@ -286,7 +286,7 @@
 </span><span class="n">animate</span><span class="p">(</span><span class="n">graph_2</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">fps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">end_pause</span><span class="o">=</span><span class="m">30</span><span class="p">,</span><span class="w">  </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1400</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="p">,</span><span class="w"> 
         </span><span class="n">renderer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gifski_renderer</span><span class="p">(</span><span class="s2">"gganim1.gif"</span><span class="p">))</span><span class="w">
 </span></code></pre></div></div>
-<p><img src="Images/Animated_Graphs/r_gdp_over_time_americas.png" alt="Bar graph of GDP per capita, animated over time" /></p>
+<p><img src="Images/Animated_Graphs/r_gdp_over_time_americas.gif" alt="Bar graph of GDP per capita, animated over time" /></p>
 <p>There are many other <code class="language-plaintext highlighter-rouge">transition_</code> functions. One useful option for line plots is <code class="language-plaintext highlighter-rouge">transition_reveal()</code>, which reveals only a part of the graph at a time until the entire graph is visible.</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Plot North America, here we try line graph by only graph North America countries </span><span class="w">
 </span><span class="n">graph_data3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">graph_data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">country</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"United States"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Canada"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Mexico"</span><span class="p">))</span><span class="w">
@@ -302,7 +302,7 @@
   
 </span><span class="n">graph_3</span><span class="w">
 </span></code></pre></div></div>
-<p><img src="Images/Animated_Graphs/r_lifeexp_reveal.png" alt="Bar graph of life expectancy in three countries, animated over time" /></p>
+<p><img src="Images/Animated_Graphs/r_lifeexp_reveal.gif" alt="Bar graph of life expectancy in three countries, animated over time" /></p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">anim_save</span><span class="p">(</span><span class="s2">"graph_3.gif"</span><span class="p">)</span><span class="w"> </span><span class="c1"># to save the graph as gif</span><span class="w">
 </span></code></pre></div></div>
           <hr>
