@@ -75,7 +75,6 @@ If you create one of these pages, please remove it from this list.
 ### Figures
 
 * Sankey Diagrams
-* Animated Graphs
 
 ## Time Series
 
@@ -111,6 +110,7 @@ This is a list of pages that exist but only have an example in one language, and
 * Model Estimation: [Propensity Score Matching]({{ "Model_Estimation/Matching/propensity_score_matching.html" | relative_url }})
 * Presentation: [Styling Line Graphs]({{ "/Presentation/Figures/styling_line_graphs.html" | relative_url }})
 * Presentation: [Graph Themes]({{ "/Presentation/Figures/graph_themes.html" | relative_url }})
+* Presentation: [Animated Graphs]({{ "/Presentation/Figures/Animated_graphs.html" | relative_url }})
 * Time Series: [ARIMA]({{ "/Time_Series/ARIMA-models.html" | relative_url }})
 * Time Series: [Granger Causality]({{ "/Time_Series/Granger_Causality.html" | relative_url }})
 * Time Series: [MA Models]({{ "/Time_Series/MA_Model.html" | relative_url }})
