@@ -5,20 +5,18 @@ grand_parent: Presentation
 has_children: no
 nav_order: 1
 mathjax: no
-output:
-  html_document:
-    keep_md: true
+has_children: no
 ---
 
 # Animated graphs
 
-This page provides a brief explanation on how to make animated graphs. Animated graphs help present information that changes over a time period (such as years) or space (such as by state). 
+This page provides a brief explanation on how to make animated graphs. Animated graphs help present information that changes over a time period (such as years) or space (such as by state). They are one straightforward way of presenting three-dimensional data in a two-dimensional space.
 
 ## Keep in Mind
 
-- Animated graphs can be in any shape line, plot,  bar, etc.
-- To show changes in your data, it is easier to graph fewer groups; however, data manipulation and creative use of color palates allow people to work around this barrier and expand the number of groups they want to show. 
-- Each animation duration and number of frames depends on the given inputs.
+- Animated graphs can be in any shape: line, plot, bar, etc.
+- Because the graph will be moving, it is often a good idea to start with a relatively simple graph. Otherwise the viewer can get overwhelmed.
+- Carefully think about the duration of your animation and the number of frames to determine the speed and fluidity at which it moves.
 - The height and width dimensions are important for presenting the animated details
 
 
@@ -34,13 +32,11 @@ Notes on implementations:
 
 ## R
 
-There are many great packages to do animated graphs such as gganimate and plotly.
-Here we used gganimate and ggplot2 to do animated bar graphs, and gifski to save the results.
+There are many great packages to do animated graphs such as **gganimate** and **plotly**.
 
-In R, one of the best tools for creating graphs is the function ggplot(), found in the ggplot2 package.
+Here we use **gganimate** and **ggplot2** to do animated bar graphs, and **gifski** to save the results.
 
-For this R demonstration, we will introduce how to use ggplot2 package to create Animated graphs. First, we load all the packages we need.
-
+**gganimate** has the benefit of being able to animate any graph made in **ggplot2**. This means that all the other graphs in the [Figures]({{ "/Presentation/Figures/Figures.html" | relative_url }}) section, which use **ggplot2** for the R implementations, can be animated using **gganimate**.
 
 ```r
 # Load in necessary packages
@@ -48,33 +44,12 @@ library(ggplot2)
 library(gganimate)
 library(gifski)
 library(dplyr)
-```
 
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 # Load in desired data (gapminder)
 library(gapminder)
 ```
 
-## Animated bar charts
-
-### example for animated bar charts shows comparisinf over time for two countries.
+**gganimate** works by taking standard **ggplot2** input and adding a `transition_` function which specifies what should change from frame to frame, and how. `transition_states()` is fairly easy to work with, as it simply takes an ordered variable and transitions from value to value of that variable. Here we use `year`, and so it will remake the graph for each year, and transition between them. `ease_aes()` specifies how to smoothly transition between states.
 
 ```r
 graph_data1 <- gapminder  %>% filter(continent=="Oceania")
@@ -85,21 +60,20 @@ ggplot(graph_data1, aes(x=country, y=gdpPercap, fill=country)) +
   theme_bw() + # then set the gganimate,
   transition_states( # to specify the transition, here we specify 
     year,
-    transition_length = 2,
-    state_length = 1) +
+    transition_length = 2, # How long to spend on each transition
+    state_length = 1) + # How long to spend in each state (these are relative values, not numbers of frames)
   ease_aes('sine-in-out') + # to control easing of aesthetics 
   labs(title = 'GDP per Capita in Year {closest_state}', # title with the timestamp period
   subtitle = 'Oceania Countries (1992 - 2007)') 
 ```
 
-<img src="Animated-graphs_files/figure-html/unnamed-chunk-2-1.gif" style="display: block; margin: auto;" />
+![Bar graph of GDP per capita, animated over time](Images/Animated_Graphs/r_gdp_over_time.png)
 
 ```r
 anim_save("graph1.gif") # to save the graph as gif
 ```
 
-### example for animated bars for 25 countries over time.
-
+Animation can be a good way to show changes over many groups at once.
 
 ```r
 graph_data <- gapminder %>% filter(continent=="Americas")
@@ -129,8 +103,7 @@ graph_2 <- ggplot(graph_data, aes(x=country, y=gdpPercap, fill=country)) +
   subtitle = 'Countries in North and South America (1992 - 2007)') 
 ```
 
-### Save it as gif file formate using animated function
-
+Here, we've saved the graph as an object, so that we can use the `animate()` function to render it and save it as a GIF. This allows us to adjust animation settings like the number of frames or the frames per second.
 
 ```r
 # The animated sitting, create an image per frame, in this example, we used year so it creates an image for each year
@@ -138,10 +111,9 @@ animate(graph_2, 100, fps = 20, end_pause=30,  width = 1400, height = 1000,
         renderer = gifski_renderer("gganim1.gif"))
 ```
 
-![](Animated-graphs_files/figure-html/unnamed-chunk-4-1.gif)<!-- -->
+![Bar graph of GDP per capita, animated over time](Images/Animated_Graphs/r_gdp_over_time_americas.png)
 
-## Animatrd Line Chart 
-
+There are many other `transition_` functions. One useful option for line plots is `transition_reveal()`, which reveals only a part of the graph at a time until the entire graph is visible.
 
 ```r
 # Plot North America, here we try line graph by only graph North America countries 
@@ -153,13 +125,13 @@ graph_3 <- ggplot(data = graph_data3) +
   theme_bw() +
   theme(legend.position = "right") +
   labs(title = 'Life Expectancy in North America (1992 - 2007)')+
-    transition_reveal(year) + #Reveal data along a given dimension 
+    transition_reveal(year) + # Reveal data along a given dimension 
   ease_aes('linear') # The values change linearly during tweening
   
 graph_3
 ```
 
-<img src="Animated-graphs_files/figure-html/unnamed-chunk-5-1.gif" style="display: block; margin: auto;" />
+![Bar graph of life expectancy in three countries, animated over time](Images/Animated_Graphs/r_lifeexp_reveal.png)
 
 ```r
 anim_save("graph_3.gif") # to save the graph as gif
