@@ -67,7 +67,7 @@ ggplot(graph_data1, aes(x=country, y=gdpPercap, fill=country)) +
   subtitle = 'Oceania Countries (1992 - 2007)') 
 ```
 
-![Bar graph of GDP per capita, animated over time](Images/Animated_Graphs/r_gdp_over_time.png)
+![Bar graph of GDP per capita, animated over time](Images/Animated_Graphs/r_gdp_over_time.gif)
 
 ```r
 anim_save("graph1.gif") # to save the graph as gif
@@ -111,7 +111,7 @@ animate(graph_2, 100, fps = 20, end_pause=30,  width = 1400, height = 1000,
         renderer = gifski_renderer("gganim1.gif"))
 ```
 
-![Bar graph of GDP per capita, animated over time](Images/Animated_Graphs/r_gdp_over_time_americas.png)
+![Bar graph of GDP per capita, animated over time](Images/Animated_Graphs/r_gdp_over_time_americas.gif)
 
 There are many other `transition_` functions. One useful option for line plots is `transition_reveal()`, which reveals only a part of the graph at a time until the entire graph is visible.
 
@@ -131,7 +131,7 @@ graph_3 <- ggplot(data = graph_data3) +
 graph_3
 ```
 
-![Bar graph of life expectancy in three countries, animated over time](Images/Animated_Graphs/r_lifeexp_reveal.png)
+![Bar graph of life expectancy in three countries, animated over time](Images/Animated_Graphs/r_lifeexp_reveal.gif)
 
 ```r
 anim_save("graph_3.gif") # to save the graph as gif
