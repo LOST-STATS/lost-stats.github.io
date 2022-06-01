@@ -1,5 +1,5 @@
 ---
-title: "Animated graphs"
+title: "Animated Graphs"
 parent: Figures
 grand_parent: Presentation
 has_children: no
