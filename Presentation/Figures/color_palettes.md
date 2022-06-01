@@ -120,3 +120,123 @@ ggplot(data = penguins, aes(x=bill_length_mm, y=bill_depth_mm, color=body_mass_g
 Now we have a better idea about how penguin body mass relates to bill length and depth. The `scale_color_viridis()` function is well known for having a wide range of color shades as well as being visible to color blind people.
 
 These simple examples are certainly not the end-all be-all, but they should hopefully demonstrate that there are lots of customization options available for your graphs. Ultimately, it comes down to personal preference and what type of data you are modeling. Make sure to keep in mind too how you should call attention to specific parts of your charts to best convey the information within the data. With that being said, the options are seemingly endless when it comes to color palettes in R, so play around with your favorite color palette packages to find the best option for you!
+
+# Stata
+
+Stata has more limited native options to use colors and color palettes to graphs. However, thanks to Ben Jann package **colrspace** and **palettes**, it is relatively easy to extract and translate color palettes to be used in Stata. In addition, it is also possible to combine this packages with **grstyle** (also by Ben Jann), to modify the colors of the scheme in memory, to easily change the colors of most of your graphs.
+
+To facilitate further the use of colors in your graphs, I put together a wrapper that will combine the use of Ben Jann's packages, to easily combine palettes and schemes, for most of your color needs. 
+
+# Setup
+
+First, we need to install a few packages from ssc. 
+
+```stata
+* To modify schemes
+ssc install grstyle
+* To add color palettes and palettes translators in Stata
+net install palettes , replace from("https://raw.githubusercontent.com/benjann/palettes/master/")
+net install colrspace, replace from("https://raw.githubusercontent.com/benjann/colrspace/master/")
+* A wrapper for the commands above, plus adding other predefined palettes
+ssc install color_style
+```
+
+Second, lets load some data that we can use to demonstrate color palette options. For these examples, I will use iris.dta dataset. This has similar characteristics as the penguins dataset used in the R example above. The examples that follow will try to replicate the figures described in R. I will also use the scheme `white`, which is clear than the Stata default scheme.
+
+```stata
+webuse iris, clear
+```
+
+### Discrete Data
+
+The first two examples will deal color palettes for discrete data, emphasizing on the use of color_style. We start by creating a simple scatter of sepal length and with by iris type, using default color options in Stata.
+Note that there is a new comand (mscatter in ssc) that can create scatterplots by groups more directly. However, I will stay with the simpler scatter for this example.
+
+```stata
+two (scatter seplen sepwid if iris==1) ///
+    (scatter seplen sepwid if iris==2) ///
+    (scatter seplen sepwid if iris==3), ///
+    legend(order(1 "Sectosa" 2 "Versicolor" 3 "Virginica"))
+```
+
+![Sepal Length vs Sepal Width](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/stata_palettes_1.png)
+
+This, however, generates dots with colors that are hard to differentiate. We could, instead use "tableau" colors:
+
+```stata
+color_style tableau
+two (scatter seplen sepwid if iris==1) ///
+    (scatter seplen sepwid if iris==2) ///
+    (scatter seplen sepwid if iris==3), ///
+    legend(order(1 "Sectosa" 2 "Versicolor" 3 "Virginica"))
+```
+![Sepal Length vs Sepal Width](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/stata_palettes_2.png)
+
+Alternatively, we could use a more colorful palette option, such as **RdYlGn**. However, because this palette is made for continous data, you would do better if instead use color_style option `n(#)`.
+
+```stata
+color_style RdYlGn, n(3)
+two (scatter seplen sepwid if iris==1) ///
+    (scatter seplen sepwid if iris==2) ///
+    (scatter seplen sepwid if iris==3), ///
+    legend(order(1 "Sectosa" 2 "Versicolor" 3 "Virginica"))
+```
+![Sepal Length vs Sepal Width](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/stata_palettes_3.png)
+
+By using `color_style` function, we can change the colors used for the data points. However, using this method has the hard constrain of defining up to 15 different colors. Check the helpfile of `colorpalette` to see all predefined colorpalette options, and type `color_style, list` for additional palettes that come with this command.
+
+In addition to changing the color of data points, we can use color palettes to change the fill color of a graph object, which is particularly useful when creating bar charts, line graphs, boxPlots, or filling in confidence intervals. Let's create a new example where we plot the means of sepal and petal length and width.
+
+```stata
+color_style s2
+graph bar (mean) seplen sepwid petlen petwid, title("S2color-Stata Default") name(m1)
+color_style RdYlGn 
+graph bar (mean) seplen sepwid petlen petwid, title("RdYlGn-up to 15") name(m2)
+color_style RdYlGn, n(4)
+graph bar (mean) seplen sepwid petlen petwid, title("RdYlGn-for 4 groups") name(m3)
+color_style google
+graph bar (mean) seplen sepwid petlen petwid, title("Google-Palette") name(m4)
+graph combine m1 m2 m3 m4, nocopies
+```
+
+![Sepal Petal Means](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/stata_palettes_4.png)
+
+There could be, however, that a particular palette is not yet available in `color_style`, or `colorpalette`. If you have the HEX colors, you can still use them!. Here I use "Simpsons" and "Tron" hex colors for the bar graphs.
+
+```stata
+** Like Simpsons (ggsci)
+color_style #FED439 #709AE1 #8A9197 #D2AF81
+graph bar (mean) seplen sepwid petlen petwid, title("S2color-Stata Default") name(m5)
+** Like Tron (ggsci)
+color_style #FF410D #6EE2FF #F7C530 #95CC5E
+graph bar (mean) seplen sepwid petlen petwid, title("RdYlGn-up to 15") name(m6)
+graph combine m5 m6, nocopies
+```
+
+![Sepal Petal Means2](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/stata_palettes_5.png)
+
+
+### Continuous Data
+
+The previous examples use a discrete variable to color the data by. While colorpalette allows you to set colors for continuous data as well, using interpolation of colors when appropriate, schemes can only manage up to 15 different groups. There are other user written commands, however that work with colorpalette on the background, and may allow you to do this kind of graphs
+
+```stata
+** Like Scatter but for multiple groups.
+ssc install mscatter
+mscatter seplen sepwid, over(petlen) colorpalette(viridis) alegend msize(2) title(viridis) name(m7, replace) legend(col(2))
+mscatter seplen sepwid, over(petlen) colorpalette(egypt) alegend msize(2) title(egypt) name(m8, replace)  legend(col(2))
+mscatter seplen sepwid, over(petlen) colorpalette(magma) alegend msize(2) title(magma) name(m9, replace)  legend(col(2))
+mscatter seplen sepwid, over(petlen) colorpalette(google) alegend msize(2) title(google) name(m10, replace)   legend(col(2))
+graph combine m7 m8 m9 m10, nocopies altshrink
+```
+![Scatter-MultiGoup](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/stata_palettes_6.png)
+
+While this approach provides an option for multiple levels of colors, some work is needed to have better formatted labels. 
+
+These simple examples should  demonstrate that there are lots of customization options available for your graphs. Ultimately, it comes down to personal preference and what type of data you are modeling. Make sure to keep in mind too how you should call attention to specific parts of your charts to best convey the information within the data. 
+
+### What is happening in the background
+
+To understand what is happening in the background. `color_style` calls on `colorpalette` to identify colors for a particular palette. `colorpalette` comes loaded with many predefined palettes, which are constantly being updated. Once the colors are obtained, `color_style` calls on `grstyle` to modify all color attributes in the current scheme. `color_style` also comes with a good selection of palettes, that one may want to explore.
+
+By default, `color_style` uses all colors in a particular palette, recycling them if more colors are needed. However, one can request use fewer colors (say 3), for better color contrast. This may depend on the type of palette one is using. Using this method only allows you to change colors for up to 15 groups. Other programs exist, however, when one wants to use more than 15 groups of colors.
