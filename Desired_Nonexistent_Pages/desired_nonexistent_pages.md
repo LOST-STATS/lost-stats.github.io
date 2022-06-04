@@ -33,7 +33,6 @@ If you create one of these pages, please remove it from this list.
 * Nonlinear Instrumental Variables Estimation
 * Fixed effects in Generalized Linear Models
 * Nonparametric regression
-* Tobit
 * Conditional Logit
 * Endogenous Switching Model
 * Nonparametric Sample Selection Models
