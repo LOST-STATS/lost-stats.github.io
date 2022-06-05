@@ -12,29 +12,28 @@ Sankey diagrams are visual displays that represent a data flow across sequential
 
 ## Keep in Mind
 
-- Variables should generally be categorical.
 - A Sankey diagram is comprised of stacked categorical variables, with each variable on its own vertical axis.
 - Categorical flow points are generally referred to as "nodes." 
 - Horizontal lines or bands show the density of variables at each node and the subsequent distribution onto the next variable.
 
 ## Also Consider
 
-- This page focuses on the packages **highcharter** and **ggalluvial** but there are many excellent packages for making Sankey diagrams, including **networkD3**, **alluvial**, **ggforce**, **ggsankey**, and **PantaRhei**.
-- **highcharter** and **ggalluvial** are easy to get up and running quickly while some other packages may require more preliminary data wrangling.
-- Sankey diagrams are sometimes known as alluvial diagrams.
+- Variables should generally be categorical, as continuous values will typically not work in this setting.
+- Too few or too many categories can make a Sankey diagram less effective. Segmenting or grouping variables may be useful.
+- Sankey diagrams are sometimes known as alluvial diagrams, though the latter is often used to describe changes over time.
 
 # Implementations
 
-Let's begin by looking at the **highcharter** package. It is an R wrapper for the Highcharts Javascript library and is a massively powerful tool. We begin by loading **pacman** and **dplyr** for data wrangling.
+There are many excellent packages in R for making Sankey diagrams (**networkD3**, **alluvial**, and **ggforce** among them), but let's begin by looking at the **highcharter** package. It is an R wrapper for the Highcharts Javascript library and a powerful tool. It's also easy to get up and running quickly, while some other packages may require more preliminary data wrangling. We begin by loading **pacman** and **dplyr**.
 
-```{r}
+```r
 library(pacman)
 p_load(dplyr)
 ```
 
 Next, we bring in the **highcharter** package and import a csv file that includes data from the 2020-2021 NBA season, including team, division, winning percentage, playoff seeding, and appearance in the conference semifinals. We change the winning percentage "win_perc" variable to a character so that it functions appropriately in this setting and take a look at the first few rows.
 
-```{r}
+```r
 p_load(highcharter)
 nba = read.csv("~/Desktop/NBA.csv")
 nba$win_perc <- as.character(nba$win_perc)
@@ -43,7 +42,7 @@ head(nba)
 
 Now we simply use "data_to_sankey" within the hchart function to create our Sankey diagram. We see that the data flows in the same order as our data frame, from individual team to conference, and then from winning percentage and playoff position to whether the team made the conference semifinals. I have chosen the theme ggplot2 but there are many nice options.
 
-```{r fig.align='center'}
+```r
 hchart(data_to_sankey(nba), "sankey", name = "Number of teams") %>%
   hc_title(text= "NBA 2020-2021 Season") %>%
   hc_subtitle(text= "Team --- Conference --- Winning Percentage --- Playoff Position --- Advancement to Conference Semifinals") %>%
@@ -57,7 +56,7 @@ Dynamically hovering the cursor over each node or branch gives us a count of how
 
 Next, we look at the **ggalluvial** package, which is an extension for the **ggplot2** package. This, too, is simple to get started. In fact, the bulk of the code here is manipulating the familiar mtcars data set such that hp, wt, mpg, and qsec are made categorical from their original numeric values. This fact underscores one way the Sankey diagram is useful. Namely, that values can be essentially binned in order to see trends in data flow. We load the package and mtcars, do our data wrangling, and check out the first few rows.
 
-```{r}
+```r
 p_load(ggplot2, ggalluvial)
 data(mtcars)
 mtc = mtcars %>%
@@ -88,7 +87,7 @@ head(mtc)
 
 Next, we use the familiar ggplot and include the line "geom_alluvium" to induce an alluvial diagram. We can interpret that weight and number of cylinders are highly correlated but that horsepower and the quarter-mile time are less so.
 
-```{r fig.align='center'}
+```r
 ggplot(data = mtc,
        aes(axis1 = wt, axis2 = cyl, axis3 = hp, axis4 = qsec)) +
   scale_x_discrete(limits = c("Weight (1,000 lbs)", "Cylinders", "Horsepower", "1/4 mile time (seconds"), expand = c(.05, .05)) +
