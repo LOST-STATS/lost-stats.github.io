@@ -239,7 +239,7 @@
 </span></code></pre></div></div>
 <p>Next, we bring in the <strong>highcharter</strong> package and import a csv file that includes data from the 2020-2021 NBA season, including team, division, winning percentage, playoff seeding, and appearance in the conference semifinals. We change the winning percentage “win_perc” variable to a character so that it functions appropriately in this setting and take a look at the first few rows.</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">p_load</span><span class="p">(</span><span class="n">highcharter</span><span class="p">)</span><span class="w">
-</span><span class="n">nba</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"~/Desktop/NBA.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">nba</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Data/Sankey_Diagrams/NBA.csv"</span><span class="p">)</span><span class="w">
 </span><span class="n">nba</span><span class="o">$</span><span class="n">win_perc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">nba</span><span class="o">$</span><span class="n">win_perc</span><span class="p">)</span><span class="w">
 </span><span class="n">head</span><span class="p">(</span><span class="n">nba</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
