@@ -7,7 +7,7 @@ nav_order: 1
 mathjax: true ## Switch to false if this page has no equations or other math rendering.
 ---
 
-# Sankey Diagrams Using R
+# Sankey Diagrams
 
 Sankey diagrams are visual displays that represent a data flow across sequential points of change, sorting, or decision. They can be used to track decision-making, behavioral patterns, resource flow, or as a method to display time series data, among other uses.
 
