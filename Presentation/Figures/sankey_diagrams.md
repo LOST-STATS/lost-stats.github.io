@@ -38,7 +38,7 @@ Next, we bring in the **highcharter** package and import a csv file that include
 
 ```r
 p_load(highcharter)
-nba = read.csv("~/Desktop/NBA.csv")
+nba = read.csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Figures/Data/Sankey_Diagrams/NBA.csv")
 nba$win_perc <- as.character(nba$win_perc)
 head(nba)
 ```
