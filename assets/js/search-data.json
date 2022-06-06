@@ -4133,48 +4133,78 @@
     "url": "/Other/task_scheduling_with_github_actions.html",
     "relUrl": "/Other/task_scheduling_with_github_actions.html"
   },"689": {
+    "doc": "Tobit Regression",
+    "title": "Tobit Regression",
+    "content": "If you have ever encountered data that is censored in some way, then the Tobit method is worth a detailed look. Perhaps the measurement tools only detect at a minimum threashold or up until some maximum threshold, or there’s a physical limitation or natural constraint that cuts off the range of outcomes. If the dependent variable has a limited range in any way, then an OLS regression will capture the relationship between variables with a cluster of zeros or maximums distorting the relationship. James Tobin’s big idea was essentially to modify the likelihood function to represent the unequal sampling probability of observations depending if a latent dependent variable is smaller than or larger than that range. The Tobit model is also called a Censored Regression Model for this reason, as it allows flexility to account of either left or right side censorship. There is flexibility in the mathematics depending on how the censoring occurs. To learn more to match the mathematics/functional form to your practical application, wikipedia has a great page here along with links to outside practical applications. Para Español, dale click en el siguiente enlance aqui. Estas notas tienen las lecciones importantes de esta pagina en Ingles. ",
+    "url": "/Model_Estimation/GLS/tobit.html",
+    "relUrl": "/Model_Estimation/GLS/tobit.html"
+  },"690": {
+    "doc": "Tobit Regression",
+    "title": "Keep in Mind",
+    "content": ". | Tobit is used with Censored Data, which IS NOT the same as Truncated Data (see next section) | Tobit can produce a kinked relationship after a zero cluster | Tobit can find the correct relationship underneath a maximum cluster | For non-parametric tobit, you will need a CLAD operator (see link in next section) | . ",
+    "url": "/Model_Estimation/GLS/tobit.html#keep-in-mind",
+    "relUrl": "/Model_Estimation/GLS/tobit.html#keep-in-mind"
+  },"691": {
+    "doc": "Tobit Regression",
+    "title": "Also Consider",
+    "content": ". | If you are new to the concept of limited dependent variables or OLS Regression, click these links. | Deciphering whether data is censored or truncated is important. If all observations are observed in “X” but the true value of “Y” isn’t known outside some range, then it is Censored. At the Chernobyl disaster the radioactive isotope meter only read up until a maximum threshold, all areas (“X”) are observed but the true value of the radioactive level (“Y”) is right censored at a maximum. When there is not a full set of “X” observed, then data is truncated, or in other words, a censored Y value does not get it’s input x observed thus the set {Y,X} is not complete. For more info try these UH slides from Bauer School of Business (they also have relatively easily digestable theory). | The Tobit model type I (the main one people are talking about without specification) is really a morphed maximum likelihood estimation of a probit, more background from those links. | If you find yourself needing non-parametric form, you will need to use a CLAD operator as well as new variance estimation techniques, I recommend Bruce Hansen’s from University of Wisconsin, notes here. | . ",
+    "url": "/Model_Estimation/GLS/tobit.html#also-consider",
+    "relUrl": "/Model_Estimation/GLS/tobit.html#also-consider"
+  },"692": {
+    "doc": "Tobit Regression",
+    "title": "Implementations",
+    "content": " ",
+    "url": "/Model_Estimation/GLS/tobit.html#implementations",
+    "relUrl": "/Model_Estimation/GLS/tobit.html#implementations"
+  },"693": {
+    "doc": "Tobit Regression",
+    "title": "R",
+    "content": "We can load the AER package to run a tobit model. #For newbies, pacman allows you to not have to store every package locally #install_package(pacman) # or if you want to install AER locally.. #install_package(AER) library(pacman) p_load(AER) . Then we can run the actual tobit model. # Function syntax is tobit(formula, left = 0, right = Inf, dist = \"gaussian\", subset = NULL, data = list()) # from https://search.r-project.org/CRAN/refmans/AER/html/tobit.html # This example from CRAN will use the AER package which has many regression techniques. data(\"Affairs\") # from Table 22.4 in Greene (2003) fm.tobit &lt;- tobit(affairs ~ age + yearsmarried + religiousness + occupation + rating, data = Affairs) fm.tobit2 &lt;- tobit(affairs ~ age + yearsmarried + religiousness + occupation + rating, right = 4, data = Affairs) summary(fm.tobit) summary(fm.tobit2) . For another example check out M Clark’s Models by Example Page. ",
+    "url": "/Model_Estimation/GLS/tobit.html#r",
+    "relUrl": "/Model_Estimation/GLS/tobit.html#r"
+  },"694": {
     "doc": "2x2 Difference in Difference",
     "title": "2X2 Difference-in-Differences",
     "content": "Causal inference with cross-sectional data is fundamentally tricky. | People, firms, etc. are different from one another in lots of ways. | Can only get a clean comparison when you have a (quasi-)experimental setup, such as an experiment or an regression discontinuity. | . Difference-in-difference makes use of a treatment that was applied to one group at a given time but not another group. It compares how each of those groups changed over time (comparing them to themselves to eliminate between-group differences) and then compares the treatment group difference to the control group difference (both of which contain the same time gaps, eliminating differences over time). ",
     "url": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#2x2-difference-in-differences",
     "relUrl": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#2x2-difference-in-differences"
-  },"690": {
+  },"695": {
     "doc": "2x2 Difference in Difference",
     "title": "KEEP IN MIND",
     "content": ". | For Difference-in-differences to work, parallel trends must hold. That is, nothing else should be changing the gap between treated and control states at the same time as the treatment. While it is not a formal test of parallel trends, researchers often look at whether the gap between treated and control states is constant in pre-treatment years. | Suppose in \\(t = 0\\) (“Pre-period”), and \\(t = 1\\) (“Post-period”). We want to estimate \\(\\tau = Post - Pre\\), or \\(Y(post)-Y(pre)= Y(t=1)-Y(t=0)=\\tau\\). | . ",
     "url": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#keep-in-mind",
     "relUrl": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#keep-in-mind"
-  },"691": {
+  },"696": {
     "doc": "2x2 Difference in Difference",
     "title": "ALSO CONSIDER",
     "content": ". | This page discusses “2x2” difference-in-difference design, meaning there are two groups, and treatment occurs at a single point in time. Many difference-in-difference applications instead use many groups, and treatments that are implemented at different times (a “rollout” design). Traditionally these models have been estimated using fixed effects for group and time period, i.e. “two-way” fixed effects. However, this approach with difference-in-difference can heavily bias results if treatment effects differ across groups, and alternate estimators are preferred. See Goodman-Bacon 2018 and Callaway and Sant’anna 2019. | . ",
     "url": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#also-consider",
     "relUrl": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#also-consider"
-  },"692": {
+  },"697": {
     "doc": "2x2 Difference in Difference",
     "title": "IMPLEMENTATIONS",
     "content": " ",
     "url": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#implementations",
     "relUrl": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#implementations"
-  },"693": {
+  },"698": {
     "doc": "2x2 Difference in Difference",
     "title": "Python",
     "content": "# Step 1: Load libraries and import data import pandas as pd import statsmodels.api as sm # for certain versions of jupyter: # %matplotlib inline url = ( \"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS\" \".github.io/master/Model_Estimation/Data/\" \"Two_by_Two_Difference_in_Difference/did_crime.xlsx\" ) df = pd.read_excel(url) # Step 2: indicator variables # whether treatment has occured at all df['after'] = df['year'] &gt;= 2014 # whether it has occurred to this entity df['treatafter'] = df['after'] * df['treat'] # Step 3: # use pandas basic built in plot functionality to get a visual # perspective of our parallel trends assumption ax = df.pivot(index='year', columns='treat', values='murder').plot( figsize=(20, 10), marker='.', markersize=20, title='Murder and Time', xlabel='Year', ylabel='Murder Rate', # to make sure each year is displayed on axis xticks=df['year'].drop_duplicates().sort_values().astype('int') ) # the function returns a matplotlib.pyplot.Axes object # we can use this axis to add additional decoration to our plot ax.axvline(x=2014, color='gray', linestyle='--') # treatment year ax.legend(loc='upper left', title='treat', prop={'size': 20}) # move and label legend # Step 4: # statsmodels has two separate APIs # the original API is more complete both in terms of functionality and documentation X = sm.add_constant(df[['treat', 'treatafter', 'after']].astype('float')) y = df['murder'] sm_fit = sm.OLS(y, X).fit() # the formula API is more familiar for R users # it can be accessed through an alternate constructor bound to each model class smff_fit = sm.OLS.from_formula('murder ~ 1 + treat + treatafter + after', data=df).fit() # it can also be accessed through a separate namespace import statsmodels.formula.api as smf smf_fit = smf.ols('murder ~ 1 + treat + treatafter + after', data=df).fit() # if using jupyter, rich output is displayed without the print function # we should see three identical outputs print(sm_fit.summary()) print(smff_fit.summary()) print(smf_fit.summary()) . ",
     "url": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#python",
     "relUrl": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#python"
-  },"694": {
+  },"699": {
     "doc": "2x2 Difference in Difference",
     "title": "R",
     "content": "In this case, we need to discover whether legalized marijuana could change the murder rate. Some states legalized marijuana in 2014. So we measure the how the murder rate changes from before 2014 to after between legalized states and states without legalization. Step 1: . | First of all, we need to load Data and Package, we call this data set “DiD”. | . library(tidyverse) library(broom) library(readxl) library(httr) # Download the Excel file from a URL tf &lt;- tempfile(fileext = \".xlsx\") GET( \"https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github.io/master/Model_Estimation/Data/Two_by_Two_Difference_in_Difference/did_crime.xlsx\", write_disk(tf) ) DiD &lt;- read_excel(tf) . Step 2: . Notice that the data has already been collapsed to the treated-year level. That is, there is one observation of the murder rate for each year for the treated states (all averaged together), and one observation of the murder rate for each year for the untreated states (all averaged together). We create the indicator variable called after to indicate whether it is in the treated period of being after the year of 2014 (1), or the before period of between 2000-2013 (0). The variable treat indicates that the state legalizes marijuana in 2014. Notice that treat = 1 in these states even before 2014. If the year is after 2014 and the state decided to legalize marijuana, the indicator variable “treatafter” is “1” . DiD &lt;- DiD %&gt;% mutate(after = year &gt;= 2014) %&gt;% mutate(treatafter = after*treat) . Step 3: . Then we need to plot the graph to visualize the impact of legalize marijuana on murder rate by using ggplot. mt &lt;- ggplot(DiD,aes(x=year, y=murder, color = treat)) + geom_point(size=3)+geom_line() + geom_vline(xintercept=2014,lty=4) + labs(title=\"Murder and Time\", x=\"Year\", y=\"Murder Rate\") mt . It looks like, before the legalization occurred, murder rates in treated and untreated states were very similar, lending plausibility to the parallel trends assumption. Step 4: . We need to measure the impact of impact of legalize marijuana. If we include treat, after, and treatafter in a regression, the coefficient on treatafter can be interpreted as “how much bigger was the before-after difference for the treated group?” which is the DiD estimate. reg&lt;-lm(murder ~ treat+treatafter+after, data = DiD) summary(reg) . After legalization, the murder rate dropped by 0.3% more in treated than untreated states, suggesting that legalization reduced the murder rate. ",
     "url": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#r",
     "relUrl": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html#r"
-  },"695": {
+  },"700": {
     "doc": "2x2 Difference in Difference",
     "title": "2x2 Difference in Difference",
     "content": " ",
     "url": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html",
     "relUrl": "/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html"
-  },"696": {
+  },"701": {
     "doc": "Home",
     "title": "Home",
     "content": "# Home Welcome to the **Library of Statistical Techniques** (LOST)! LOST is a publicly-editable website with the goal of making it easy to execute statistical techniques in statistical software. Each page of the website contains a statistical technique &mdash; which may be an estimation method, a data manipulation or cleaning method, a method for presenting or visualizing results, or any of the other kinds of things that statistical software typically does. For each of those techniques, the LOST page will contain code for performing that method in a variety of packages and languages. It may also contain information (or links) with thorough descriptions of the method, but the focus here is on implementation. How can you do it in your language of choice? If there are multiple ways, how are those ways different? Is the way you used to do it outdated, or does it do something unexpected? What's the `R` equivalent of that command you know about in `Stata` or `SAS`, or vice versa? In short, LOST is a Rosetta Stone for statistical software. If you are interested in contributing to LOST, please see the [Contributing](https://lost-stats.github.io/Contributing/Contributing.html) page. LOST was originated in 2019 by Nick Huntington-Klein and is maintained by volunteer contributors. The project's GitHub page is [here](https://github.com/LOST-STATS/lost-stats.github.io). ",

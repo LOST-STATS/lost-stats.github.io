@@ -349,6 +349,9 @@
 <loc>/Other/task_scheduling_with_github_actions.html</loc>
 </url>
 <url>
+<loc>/Model_Estimation/GLS/tobit.html</loc>
+</url>
+<url>
 <loc>/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html</loc>
 </url>
 <url>
@@ -359,10 +362,10 @@
 </url>
 <url>
 <loc>/Time_Series/ARIMA-models.html</loc>
-<lastmod>2022-06-01T18:46:58+00:00</lastmod>
+<lastmod>2022-06-06T10:13:50+00:00</lastmod>
 </url>
 <url>
 <loc>/Time_Series/Granger_Causality.html</loc>
-<lastmod>2022-06-01T18:46:58+00:00</lastmod>
+<lastmod>2022-06-06T10:13:50+00:00</lastmod>
 </url>
 </urlset>
