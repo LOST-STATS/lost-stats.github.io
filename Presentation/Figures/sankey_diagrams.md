@@ -53,7 +53,7 @@ hchart(data_to_sankey(nba), "sankey", name = "Number of teams") %>%
   hc_plotOptions(series = list(dataLabels = list( style = list(fontSize = "10px"))))
 ```
 
-![Sankey diagram of NBA season](Images/sankey_diagrams/sankey_nba.png)
+![Sankey diagram of NBA season](Images/Sankey_Diagrams/sankey_nba.png)
 
 Dynamically hovering the cursor over each node or branch gives us a count of how many teams went to each of the next nodes. For instance, we see that 3 teams from the West had a winning percentage of 0.4. Also, between the last two nodes we see that one top 4 seed did not advance to the conference semifinals and one 5 to 8 seed did.
 
@@ -102,6 +102,6 @@ ggplot(data = mtc,
           "Stratified by weight, cylinders, horsepower, & 1/4 mile time (n = 32 car models)")
 ```
 
-![Sankey diagram from mtcars data set](Images/sankey_diagrams/sankey_mtcars.png)
+![Sankey diagram from mtcars data set](Images/Sankey_Diagrams/sankey_mtcars.png)
 
 We see four variables (wt, cyl, hp, and qsec) in columns, with the proportion of each category represented by the height of the node. In this package, it is easier to see the distribution of each variable because columns are all the same height and frequency of categorical values is proportional. The y axis is a measure of the number of observations in our sample. Additionally, our fifth variable, mpg, is color coded in bands across the diagram, allowing us to highlight a particular aspect of this data set. These are relatively basic examples, but in a few lines of code demonstrate the usefulness of a Sankey diagram to track the flow and distribution of variables in a data set.
