@@ -64,7 +64,7 @@ ggplot(graph_data1, aes(x=country, y=gdpPercap, fill=country)) +
     state_length = 1) + # How long to spend in each state (these are relative values, not numbers of frames)
   ease_aes('sine-in-out') + # to control easing of aesthetics 
   labs(title = 'GDP per Capita in Year {closest_state}', # title with the timestamp period
-  subtitle = 'Oceania Countries (1992 - 2007)') 
+  subtitle = 'Oceania Countries (1952 - 2007)') 
 ```
 
 ![Bar graph of GDP per capita, animated over time](Images/Animated_Graphs/r_gdp_over_time.gif)
@@ -100,7 +100,7 @@ graph_2 <- ggplot(graph_data, aes(x=country, y=gdpPercap, fill=country)) +
         plot.subtitle=element_text(size=24, hjust=0.5, face="italic", color="grey"),
         plot.margin = margin(2, 2, 4, 4, "cm"))+ 
   labs(title = 'GDP per Capita for Year {closest_state}', # title with the timestamp period
-  subtitle = 'Countries in North and South America (1992 - 2007)') 
+  subtitle = 'Countries in North and South America (1952 - 2007)') 
 ```
 
 Here, we've saved the graph as an object, so that we can use the `animate()` function to render it and save it as a GIF. This allows us to adjust animation settings like the number of frames or the frames per second.
@@ -124,7 +124,7 @@ graph_3 <- ggplot(data = graph_data3) +
   geom_line(mapping = aes(x=year, y=lifeExp, color=country)) +
   theme_bw() +
   theme(legend.position = "right") +
-  labs(title = 'Life Expectancy in North America (1992 - 2007)')+
+  labs(title = 'Life Expectancy in North America (1952 - 2007)')+
     transition_reveal(year) + # Reveal data along a given dimension 
   ease_aes('linear') # The values change linearly during tweening
   
