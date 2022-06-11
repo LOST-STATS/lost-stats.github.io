@@ -10,14 +10,20 @@
   <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Balance Tables | LOST</title>
+<title>ANOVA | LOST</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Balance Tables" />
+<meta property="og:title" content="ANOVA" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"@type":"WebPage","headline":"Balance Tables","url":"/Presentation/Tables/Balance_Tables.html","@context":"https://schema.org"}</script>
+{"@type":"WebPage","headline":"ANOVA","url":"/Model_Estimation/OLS/ANOVA.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML">
+  </script>
 </head>
 <body>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -70,8 +76,8 @@
                         <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="nav-list-link">Reshape Panel Data from Wide to Long</a>
                       </li><li class="nav-list-item ">
                         <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="nav-list-link">Reshape Panel Data from Long to Wide</a>
-                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/rowwise_calculations.html" class="nav-list-link">Rowwise Calculations</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Geo-Spatial/Geo-spatial.html" class="nav-list-link">Geo-Spatial</a><ul class="nav-list "><li class="nav-list-item "><a href="/Geo-Spatial/choropleths.html" class="nav-list-link">Choropleths</a></li><li class="nav-list-item "><a href="/Geo-Spatial/geocoding.html" class="nav-list-link">Geocoding</a></li><li class="nav-list-item "><a href="/Geo-Spatial/handling_raster_data.html" class="nav-list-link">Handling Raster Data</a></li><li class="nav-list-item "><a href="/Geo-Spatial/merging_shape_files.html" class="nav-list-link">Merging Shape Files</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_joins.html" class="nav-list-link">Spatial Joins</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_lag_model.html" class="nav-list-link">Spatial Lag Model</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Machine_Learning/Machine_Learning.html" class="nav-list-link">Machine Learning</a><ul class="nav-list "><li class="nav-list-item "><a href="/Machine_Learning/Nearest_Neighbor.html" class="nav-list-link">K-Nearest Neighbor Matching</a></li><li class="nav-list-item "><a href="/Machine_Learning/artificial_neural_network.html" class="nav-list-link">Artificial Neural Network</a></li><li class="nav-list-item "><a href="/Machine_Learning/boosted_regression_trees.html" class="nav-list-link">Boosted Regression Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/causal_forest.html" class="nav-list-link">Causal Forest</a></li><li class="nav-list-item "><a href="/Machine_Learning/decision_trees.html" class="nav-list-link">Decision Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/penalized_regression.html" class="nav-list-link">Penalized Regression</a></li><li class="nav-list-item "><a href="/Machine_Learning/random_forest.html" class="nav-list-link">Random Forest</a></li><li class="nav-list-item "><a href="/Machine_Learning/support_vector_machine.html" class="nav-list-link">Support Vector Machine</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Model_Estimation.html" class="nav-list-link">Model Estimation</a><ul class="nav-list "><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/OLS/OLS.html" class="nav-list-link">Ordinary Least Squares</a><ul class="nav-list"><li class="nav-list-item ">
-                        <a href="/Model_Estimation/OLS/ANOVA.html" class="nav-list-link">ANOVA</a>
+                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/rowwise_calculations.html" class="nav-list-link">Rowwise Calculations</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Geo-Spatial/Geo-spatial.html" class="nav-list-link">Geo-Spatial</a><ul class="nav-list "><li class="nav-list-item "><a href="/Geo-Spatial/choropleths.html" class="nav-list-link">Choropleths</a></li><li class="nav-list-item "><a href="/Geo-Spatial/geocoding.html" class="nav-list-link">Geocoding</a></li><li class="nav-list-item "><a href="/Geo-Spatial/handling_raster_data.html" class="nav-list-link">Handling Raster Data</a></li><li class="nav-list-item "><a href="/Geo-Spatial/merging_shape_files.html" class="nav-list-link">Merging Shape Files</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_joins.html" class="nav-list-link">Spatial Joins</a></li><li class="nav-list-item "><a href="/Geo-Spatial/spatial_lag_model.html" class="nav-list-link">Spatial Lag Model</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Machine_Learning/Machine_Learning.html" class="nav-list-link">Machine Learning</a><ul class="nav-list "><li class="nav-list-item "><a href="/Machine_Learning/Nearest_Neighbor.html" class="nav-list-link">K-Nearest Neighbor Matching</a></li><li class="nav-list-item "><a href="/Machine_Learning/artificial_neural_network.html" class="nav-list-link">Artificial Neural Network</a></li><li class="nav-list-item "><a href="/Machine_Learning/boosted_regression_trees.html" class="nav-list-link">Boosted Regression Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/causal_forest.html" class="nav-list-link">Causal Forest</a></li><li class="nav-list-item "><a href="/Machine_Learning/decision_trees.html" class="nav-list-link">Decision Trees</a></li><li class="nav-list-item "><a href="/Machine_Learning/penalized_regression.html" class="nav-list-link">Penalized Regression</a></li><li class="nav-list-item "><a href="/Machine_Learning/random_forest.html" class="nav-list-link">Random Forest</a></li><li class="nav-list-item "><a href="/Machine_Learning/support_vector_machine.html" class="nav-list-link">Support Vector Machine</a></li></ul></li><li class="nav-list-item active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/Model_Estimation.html" class="nav-list-link">Model Estimation</a><ul class="nav-list "><li class="nav-list-item  active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Model_Estimation/OLS/OLS.html" class="nav-list-link">Ordinary Least Squares</a><ul class="nav-list"><li class="nav-list-item  active">
+                        <a href="/Model_Estimation/OLS/ANOVA.html" class="nav-list-link active">ANOVA</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/OLS/simple_linear_regression.html" class="nav-list-link">Simple Linear Regression</a>
                       </li><li class="nav-list-item ">
@@ -124,7 +130,7 @@
                         <a href="/Model_Estimation/Statistical_Inference/linear_hypothesis_tests.html" class="nav-list-link">Linear Hypothesis Tests</a>
                       </li><li class="nav-list-item ">
                         <a href="/Model_Estimation/Statistical_Inference/Nonstandard_Errors/nonstandard_errors.html" class="nav-list-link">Nonstandard Errors</a>
-                      </li></ul></li></ul></li><li class="nav-list-item active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Presentation.html" class="nav-list-link">Presentation</a><ul class="nav-list "><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Figures/Figures.html" class="nav-list-link">Figures</a><ul class="nav-list"><li class="nav-list-item ">
+                      </li></ul></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Presentation.html" class="nav-list-link">Presentation</a><ul class="nav-list "><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Figures/Figures.html" class="nav-list-link">Figures</a><ul class="nav-list"><li class="nav-list-item ">
                         <a href="/Presentation/Figures/Adding_and_Labeling_a_Reference_Line.html" class="nav-list-link">Adding and Labeling a Reference Line</a>
                       </li><li class="nav-list-item ">
                         <a href="/Presentation/Figures/Animated_graphs.html" class="nav-list-link">Animated Graphs</a>
@@ -166,8 +172,8 @@
                         <a href="/Presentation/Figures/styling_line_graphs.html" class="nav-list-link">Styling Line Graphs</a>
                       </li><li class="nav-list-item ">
                         <a href="/Presentation/Figures/summary_graphs.html" class="nav-list-link">Graphing a By-Group or Over-Time Summary Statistic</a>
-                      </li></ul></li><li class="nav-list-item  active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Tables/Tables.html" class="nav-list-link">Tables</a><ul class="nav-list"><li class="nav-list-item  active">
-                        <a href="/Presentation/Tables/Balance_Tables.html" class="nav-list-link active">Balance Tables</a>
+                      </li></ul></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Presentation/Tables/Tables.html" class="nav-list-link">Tables</a><ul class="nav-list"><li class="nav-list-item ">
+                        <a href="/Presentation/Tables/Balance_Tables.html" class="nav-list-link">Balance Tables</a>
                       </li><li class="nav-list-item ">
                         <a href="/Presentation/Tables/Correlation_Matrix.html" class="nav-list-link">Correlation Matrix</a>
                       </li><li class="nav-list-item ">
@@ -197,68 +203,173 @@
     <div id="main-content-wrap" class="main-content-wrap">
           <nav aria-label="Breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb-nav-list">
-                <li class="breadcrumb-nav-list-item"><a href="/Presentation/Presentation.html">Presentation</a></li>
-                <li class="breadcrumb-nav-list-item"><a href="/Presentation/Tables/Tables.html">Tables</a></li>
-              <li class="breadcrumb-nav-list-item"><span>Balance Tables</span></li>
+                <li class="breadcrumb-nav-list-item"><a href="/Model_Estimation/Model_Estimation.html">Model Estimation</a></li>
+                <li class="breadcrumb-nav-list-item"><a href="/Model_Estimation/OLS/OLS.html">Ordinary Least Squares</a></li>
+              <li class="breadcrumb-nav-list-item"><span>ANOVA</span></li>
             </ol>
           </nav>
       <div id="main-content" class="main-content" role="main">
-          <h1 id="balance-tables">
-          <a href="#balance-tables" aria-labelledby="balance-tables" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Balance Tables
+          <h1 id="anova">
+          <a href="#anova" aria-labelledby="anova" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> ANOVA
       </h1>
-<p>Balance Tables are a method by which you can statistically compare differences in characteristics between a treatment and control group. Common in experimental work and when using matching estimators, balance tables show if the treatment and control group are ‘balanced’ and can be seen as similarly ‘identical’ for comparison of a causal effect.</p>
+<p>ANOVA, meaning <em>Analysis of Variance</em>, is a statistical test that tells us about the differences between the means of two or more independent groups. ANOVA tests are most often used when looking at interaction effects between categorical independent variables and continuous dependent variables.</p>
+<p>The null and alternative hypothesis of an ANOVA test are:</p>
+<p>$H_0$:  $\mu_1$ = $\mu_2$ … = $\mu+n$</p>
+<p>$H_1$:  $\mu_1$ $\neq$ $\mu_2$ … $\neq$ $\mu+n$</p>
+<p>The null hypothesis ($H_0$) states that the means of the different levels are all equal, while the alternative hypothesis ($H_1$) states that at least one mean is different than that of the other variables.</p>
+      <h3 id="common-variations-of-anova">
+          <a href="#common-variations-of-anova" aria-labelledby="common-variations-of-anova" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Common Variations of ANOVA
+      </h3>
+<ul>
+  <li><strong>One-way ANOVA</strong>
+    <ul>
+      <li>Used to determine relationship between a single variable and the response variable</li>
+      <li><em>Example:</em> Looking at student scores on  standardized test for all students in a school grouped by grade</li>
+    </ul>
+  </li>
+  <li><strong>Two-way ANOVA</strong>
+    <ul>
+      <li>Used when examining two categorical independent variables and their relationship with the dependent variable</li>
+      <li>Categorized as a type of factorial ANOVA</li>
+    </ul>
+  </li>
+  <li><strong>Factorial (N-way) ANOVA</strong>
+    <ul>
+      <li>Test two or more categorical independent variables and their relationships to the dependent variable</li>
+      <li>Terms <em>N-way</em> and <em>Factorial</em> are often used synonymous to describe testing that involves multiple independent variables and a single dependent variable</li>
+      <li><em>Example:</em> Measuring growth rate of plants based on the manipulation of watering frequency and exposure to sunlight</li>
+    </ul>
+  </li>
+</ul>
+<p>For more information, see <a href="https://en.wikipedia.org/wiki/Analysis_of_variance#Assumptions">Wikipedia: Analysis of Variance</a> and <a href="https://www.statology.org/one-way-vs-two-way-anova/">Statology: One-Way vs. Two-Way ANOVA</a></p>
       <h2 id="keep-in-mind">
           <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
       </h2>
+      <h3 id="assumptions">
+          <a href="#assumptions" aria-labelledby="assumptions" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Assumptions
+      </h3>
+<p>There are strict assumptions made about data and variables with ANOVA testing methods:</p>
+<ol>
+  <li><strong><em>Normal distribution</em></strong>
+    <ul>
+      <li>Observations that are taken have been randomly selected from the population are independent from each other</li>
+      <li>More likely to be a potential concern with data sets and sample sizes</li>
+    </ul>
+  </li>
+  <li><strong><em>Independence of variables</em></strong>
+    <ul>
+      <li>Observations that are taken have been randomly selected from the population are are independent of each other</li>
+    </ul>
+  </li>
+  <li><strong><em>Homoscedasticity</em></strong>
+    <ul>
+      <li>Variation around mean is similar for variables being tested</li>
+      <li>Uses F-statistic to test homogeneity of variance in means</li>
+    </ul>
+  </li>
+  <li><strong>Equal Sample Sizes</strong>
+    <ul>
+      <li>If multiple groups are being tested, the number of observations included in the sample must be equal for each group</li>
+    </ul>
+  </li>
+</ol>
+<p>For more information and examples, see <a href="https://yieldingresults.org/wp-content/uploads/2015/03/Checking_ANOVA_assumptions.html">BeST: Checking Assumptions of One-Way ANOVA</a></p>
+      <h3 id="advantages">
+          <a href="#advantages" aria-labelledby="advantages" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Advantages
+      </h3>
 <ul>
-  <li>When a characteristic is statistically different between control and treatment, your study is unbalanced in respect to that attribute.</li>
-  <li>When a characteristic is unbalanced in your study, you may want to consider controlling for that attribute as a variable in your model specification.</li>
-  <li>Balance tables can only report numeric differences and are not suitable for string value comparisions</li>
+  <li>Can be superior to other tests (such as z-test) since ANOVA allows us to make comparisons of multiple variables</li>
+  <li>Reduces Type I error rate
+    <ul>
+      <li>Very important to consider depending on the context</li>
+    </ul>
+  </li>
+  <li>Provides robust statistical inference if assumptions of data are met</li>
 </ul>
+      <h3 id="disadvantages">
+          <a href="#disadvantages" aria-labelledby="disadvantages" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Disadvantages
+      </h3>
+<ul>
+  <li>Adding additional variables will increase test complexity and difficulty interpreting results</li>
+  <li>ANOVA test results only provide limited insight into potential interactions, <a href="https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book%3A_An_Introduction_to_Psychological_Statistics_(Foster_et_al.)/11%3A_Analysis_of_Variance/11.08%3A_Post_Hoc_Tests#:~:text=A%20post%20hoc%20test%20is,will%20give%20us%20similar%20answers.">post hoc tests</a> are often required to gain more robust insight into statistically significant ANOVA results</li>
+  <li>If the test tells us to reject the null hypothesis of equal means, it may not be clear which variable is having the explanatory effect if comparing multiple groups</li>
+  <li>Must check assumptions prior to using ANOVA to test data
+    <ul>
+      <li>Data might not have all characteristics meeting the strict assumptions of ANOVA</li>
+    </ul>
+  </li>
+</ul>
+      <h2 id="also-consider">
+          <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
+      </h2>
+<p>Different variations of ANOVA testing that can be used to better suit the context of the analysis. A few examples include:</p>
+<ul>
+  <li><strong>ANCOVA</strong>
+    <ul>
+      <li>Stands for <a href="https://www.lehigh.edu/~wh02/ancova.html">Analysis of Covariance</a></li>
+      <li>Used to test interaction effects between independent categorical variables in addition to relationship with continuous dependent variable</li>
+      <li><em>Example:</em> Looking at relationship between hours spent studying and grade level (the independent variables) and standardizes test score (dependent variable), where it is suspected that there may be an interaction between independent variables; time spent studying would be a <em>covariate</em></li>
+    </ul>
+  </li>
+  <li><strong>MANOVA</strong>
+    <ul>
+      <li>Stands for <a href="https://www.statisticssolutions.com/free-resources/directory-of-statistical-analyses/manova/">Multivariate Analysis of Variance</a></li>
+      <li>Looks at effects of multiple independent categorical variables and multiple continuous dependent variables and potential interacting effects</li>
+      <li>Can be further classified into one-way and two-way tests</li>
+      <li><em>Example:</em> Testing the relationship between level of education (the independent variable) with standardized test scores and annual income (the dependent variables)</li>
+    </ul>
+  </li>
+  <li><strong>Within-Subjects ANOVA</strong>
+    <ul>
+      <li>Also referred to as <em>Repeated Measures ANOVA</em></li>
+      <li>Can be used to examine differences between two or more time periods</li>
+      <li>Frequently used when looking at test results for pre-treatment and post-treatment variable interaction</li>
+      <li><em>Example:</em> Looking at dependent variable of median income based on independent variable of level of education, measured in multiple different time periods over several years; the <em>Panel Study of Income Dynamics (PSID)</em>, more on that found <a href="https://psidonline.isr.umich.edu/">here</a></li>
+    </ul>
+  </li>
+</ul>
+<p>For more examples, see <a href="https://www.statisticssolutions.com/the-various-forms-of-anova/">Statistic Solutions: The Various Forms of ANOVA</a></p>
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Import Dependency</span><span class="w">
-</span><span class="n">library</span><span class="p">(</span><span class="s2">"cobalt"</span><span class="p">)</span><span class="w">
+<p>We will be using the <code class="language-plaintext highlighter-rouge">mtcars</code> data set included in the base program</p>
+<p>Prior to running test, check underlying assumptions for the data</p><pre><code class="language-{r}"># Selecting variables of interest
+cars = mtcars[, c("mpg", # Dependent/response variable
+                  "wt")] # Independent variable
 
-</span><span class="c1"># Load Data</span><span class="w">
-</span><span class="n">data</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w">
 
-</span><span class="c1"># Create Balance Table</span><span class="w">
-</span><span class="n">bal.tab</span><span class="p">(</span><span class="n">am</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">mpg</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">hp</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mtcars</span><span class="p">)</span><span class="w">
-</span></code></pre></div></div>
-<p>Another approach provides an omnibus summary of overall balance on many covariates and also allows for stratification like that arising from block-randomized experiments (for example those designed using the <code class="language-plaintext highlighter-rouge">blockTools</code> package) or matched designs (for example using the <code class="language-plaintext highlighter-rouge">optmatch</code> package).</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">RItools</span><span class="p">)</span><span class="w">
-</span><span class="n">options</span><span class="p">(</span><span class="n">show.signif.stars</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="n">digits</span><span class="o">=</span><span class="m">3</span><span class="p">)</span><span class="w">
-</span><span class="n">xb_res</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">xBalance</span><span class="p">(</span><span class="n">am</span><span class="o">~</span><span class="n">mpg</span><span class="o">+</span><span class="n">hp</span><span class="o">+</span><span class="n">cyl</span><span class="o">+</span><span class="n">wt</span><span class="p">,</span><span class="n">strata</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">nostrat</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span><span class="n">vsstrat</span><span class="o">=~</span><span class="n">vs</span><span class="p">),</span><span class="n">data</span><span class="o">=</span><span class="n">mtcars</span><span class="p">,</span><span class="n">report</span><span class="o">=</span><span class="s2">"all"</span><span class="p">)</span><span class="w">
-</span><span class="n">xb_res</span><span class="o">$</span><span class="n">overall</span><span class="w">
-</span><span class="n">xb_res</span><span class="o">$</span><span class="n">results</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span><span class="m">6</span><span class="o">:</span><span class="m">7</span><span class="p">),]</span><span class="w">
-</span></code></pre></div></div>
-      <h2 id="stata">
-          <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
-      </h2>
-<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Import Dependency: 'ssc install table1' 
-* Load Data
-</span><span class="err">sysuse</span> <span class="err">auto,</span> <span class="err">clear
-</span><span class="c1">
-* Create Balance Table
-* You need to declare the kind of variable for each, as well as the variable by which you define treatment and control. 
-* Adding test gives the statistical difference between the two groups. The ending saves your output as an .xls file
-</span><span class="err">
-table1,</span> <span class="err">by(foreign)</span> <span class="err">vars(price</span> <span class="err">conts</span> <span class="err">\</span> <span class="err">mpg</span> <span class="err">conts</span> <span class="err">\</span> <span class="err">weight</span> <span class="err">contn</span> <span class="err">\</span> <span class="err">length</span> <span class="err">conts)</span> <span class="err">test</span> <span class="err">saving(bal_tab.xls,</span> <span class="err">replace)
-</span></code></pre></div></div>
-      <h4 id="also-consider">
-          <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
-      </h4>
-<p>The World Bank’s very useful <a href="https://blogs.worldbank.org/impactevaluations/ie-analytics-introducing-ietoolkit">ietoolkit</a> for Stata has a very flexible command for creating balance tables, iebaltab. You can learn more about how to use it on their <a href="https://dimewiki.worldbank.org/wiki/Iebaltab">Wiki page on the command</a>.</p>
+# 1. Creating histograms to check for uniform distribution
+hist(cars$mpg)
+hist(cars$wt)
+
+# 2. Using Chi Square test to check for variable independence
+chisq.test(cars$mpg, cars$wt)
+
+# 3. Creating model to check for variation around mean
+mod = lm(formula = mpg~wt, data = cars)
+plot(mod)
+</code></pre>
+<p>If we can verify these assumptions, then we can be confident that the information obtained from the ANOVA test will be an accurate measurement of the true relationship between the variables.</p><pre><code class="language-{r}"># ANOVA test and summary
+anova(mod)
+</code></pre>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Analysis of Variance Table
+
+Response: mpg
+          Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+wt         1 847.73  847.73  91.375 1.294e-10 ***
+Residuals 30 278.32    9.28                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+</code></pre></div></div>
+<p>In this example, we can see that <code class="language-plaintext highlighter-rouge">wt</code> is significant on all levels. Therefore, we can reject our null hypothesis that both means being tested are equal and accept our alternative hypothesis.</p>
           <hr>
           <footer>
               <div class="d-flex mt-2">
                   <p class="text-small text-grey-dk-000 mb-0">
-                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Presentation/Tables/Balance_Tables.md" id="edit-this-page">Edit this page on GitHub.</a>
+                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Model_Estimation/OLS/ANOVA.md" id="edit-this-page">Edit this page on GitHub.</a>
                   </p>
               </div>
           </footer>
