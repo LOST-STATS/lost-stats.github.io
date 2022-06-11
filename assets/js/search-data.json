@@ -1963,7 +1963,7 @@
   },"327": {
     "doc": "Desired Nonexistent Pages",
     "title": "Presentation",
-    "content": "Figures . | Sankey Diagrams | . ",
+    "content": "Figures . ",
     "url": "/Desired_Nonexistent_Pages/desired_nonexistent_pages.html#presentation",
     "relUrl": "/Desired_Nonexistent_Pages/desired_nonexistent_pages.html#presentation"
   },"328": {
@@ -1993,7 +1993,7 @@
   },"332": {
     "doc": "Desired Nonexistent Pages",
     "title": "Currently R Only",
-    "content": ". | Geospatial: Merging Shape Files | Model Estimation: Stepwise Regression | Model Estimation: Propensity Score Matching | Presentation: Styling Line Graphs | Presentation: Graph Themes | Presentation: Animated Graphs | Time Series: ARIMA | Time Series: Granger Causality | Time Series: MA Models | Time Series: Linear Gaussian State Space Models | . ",
+    "content": ". | Geospatial: Merging Shape Files | Model Estimation: Stepwise Regression | Model Estimation: Propensity Score Matching | Presentation: Styling Line Graphs | Presentation: Graph Themes | Presentation: Animated Graphs | Presentation: Sankey Diagrams | Time Series: ARIMA | Time Series: Granger Causality | Time Series: MA Models | Time Series: Linear Gaussian State Space Models | . ",
     "url": "/Desired_Nonexistent_Pages/desired_nonexistent_pages.html#currently-r-only",
     "relUrl": "/Desired_Nonexistent_Pages/desired_nonexistent_pages.html#currently-r-only"
   },"333": {
