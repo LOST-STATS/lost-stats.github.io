@@ -214,6 +214,9 @@
 <loc>/Presentation/Figures/graph_themes.html</loc>
 </url>
 <url>
+<loc>/Geo-Spatial/handling_raster_data.html</loc>
+</url>
+<url>
 <loc>/Model_Estimation/Statistical_Inference/Nonstandard_Errors/hc_se.html</loc>
 </url>
 <url>
@@ -365,10 +368,10 @@
 </url>
 <url>
 <loc>/Time_Series/ARIMA-models.html</loc>
-<lastmod>2022-06-11T21:47:00+00:00</lastmod>
+<lastmod>2022-06-11T23:43:22+00:00</lastmod>
 </url>
 <url>
 <loc>/Time_Series/Granger_Causality.html</loc>
-<lastmod>2022-06-11T21:47:00+00:00</lastmod>
+<lastmod>2022-06-11T23:43:22+00:00</lastmod>
 </url>
 </urlset>
