@@ -75,36 +75,40 @@ m1.get_margeff(at = 'mean').summary()
 
 ## R
 
-We will be getting marginal effects using the `margins()` function from the **margins** package (which is based on the excellent `margins` command in Stata).
+For R,we will be using  the **marginaleffects** package 
+([link](https://vincentarelbundock.github.io/marginaleffects/index.html)).
 
 ```r
 # Load packages and data
-library(margins); library(causaldata)
+library(marginaleffects)
+library(causaldata)
 data(restaurant_inspections)
 
-# Use the glm() function with
-# the family = binomial(link = 'logit') option
-m1 <- glm(Weekend ~ Year, data = restaurant_inspections,
-          family = binomial(link = 'logit'))
+# Run a (silly) logit model
+mod1 = glm(Weekend ~ Year, 
+           data = restaurant_inspections,
+           family = binomial) # Default link function for binomial family is "logit"
 
-# Get the average marginal effect of year
-summary(margins(m1, variables = 'Year'))
+# Use `marginaleffects()` to get the average marginal effects (AMEs) for all our 
+# predictors
+mfx1 = marginaleffects(mod1, variables = 'Year')
 
-# Get the marginal effect for a representative observation of choice
-summary(margins(m1, variables = 'Year',
-                at = list(Year = 2005)))
+# Use `summary()` to pretty-print these AMEs
+summary(mfx1)
 
-# Get the marginal effect at the mean
-# make a named vector of the means of all the predictors
-# Use model.matrix to do this automatically, and also to ensure
-# the same sample is used as in the glm
-atmeans <- colMeans(model.matrix(Weekend ~ Year, data = restaurant_inspections))
-# Don't include the intercept
-atmeans <- atmeans[2:length(atmeans)]
+# We can also specify/limit to particular predictors, although that's redundant 
+# in this case ('Year' is the only predictor in our model)
+summary(mfx1, variables = 'Year') 
 
-# and do marginal effect at the means (for year... 2010.337? Marginal effect at the means is weird)
-summary(margins(m1, variables = 'Year',
-                at = as.list(atmeans)))
+# We can use the `newdata = datagrid()` constructor argument to pick a 
+# representative observation
+marginaleffects(mod1, 
+                variables = 'Year',
+                newdata = datagrid(Year = 2005))
+
+# An alternative to AME is the marginal effect at the mean (MEM).
+# We can use the `newdata = "mean"` convenience argument to retrieve MEMs.
+marginaleffects(mod1, newdata = "mean")
 ```
 
 ## Stata
