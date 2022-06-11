@@ -25,7 +25,6 @@ If you create one of these pages, please remove it from this list.
 
 ### OLS
 
-* ANOVA
 * MANOVA
 
 ### GLS
@@ -103,6 +102,8 @@ This is a list of pages that exist but only have an example in one language, and
 ## Currently R Only
 
 * Geospatial: [Merging Shape Files]({{ "/Geo-Spatial/merging_shape_files.html" | relative_url }})
+* Model Estimation: [ANOVA]({{ "/Model_Estimation/OLS/ANOVA.html" | relative_url }})
+* Model Estimation: [Tobit Regression]({{ "/Model_Estimation/GLS/tobit.html" | relative_url }})
 * Model Estimation: [Stepwise Regression]({{ "/Model_Estimation/OLS/stepwise_regression.html" | relative_url }})
 * Model Estimation: [Propensity Score Matching]({{ "Model_Estimation/Matching/propensity_score_matching.html" | relative_url }})
 * Presentation: [Styling Line Graphs]({{ "/Presentation/Figures/styling_line_graphs.html" | relative_url }})
