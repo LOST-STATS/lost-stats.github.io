@@ -14,9 +14,9 @@ ANOVA, meaning *Analysis of Variance*, is a statistical test that tells us about
 
 The null and alternative hypothesis of an ANOVA test are:  
 
-   $H_0$:  $\mu_1$ = $\mu_2$ ... = $\mu+n$  
+   $H_0$:  $\mu_1 = \mu_2 = \ldots = \mu_n$  
 
-   $H_1$:  $\mu_1$ $\neq$ $\mu_2$ ... $\neq$ $\mu+n$
+   $H_1$:  $\exists i, j : \mu_i \neq \mu_j$
 
 The null hypothesis ($H_0$) states that the means of the different levels are all equal, while the alternative hypothesis ($H_1$) states that at least one mean is different than that of the other variables.
 
