@@ -1,6 +1,7 @@
 ---
 title: Marginal effects plots for interactions with categorical variables
 parent: Figures
+grand_parent: Presentation
 has_children: false
 nav_order: 1
 mathjax: true ## Switch to false if this page has no equations or other math rendering.
