@@ -75,8 +75,8 @@ m1.get_margeff(at = 'mean').summary()
 
 ## R
 
-For R,we will be using  the **marginaleffects** package 
-([link](https://vincentarelbundock.github.io/marginaleffects/index.html)).
+The **marginaleffects** package 
+([link](https://vincentarelbundock.github.io/marginaleffects/index.html)) covers a wide variety of marginal effects methods in R.
 
 ```r
 # Load packages and data
@@ -91,20 +91,14 @@ mod1 = glm(Weekend ~ Year,
 
 # Use `marginaleffects()` to get the average marginal effects (AMEs) for all our 
 # predictors
-mfx1 = marginaleffects(mod1, variables = 'Year')
+mfx1 = marginaleffects(mod1)
 
 # Use `summary()` to pretty-print these AMEs
 summary(mfx1)
 
-# We can also specify/limit to particular predictors, although that's redundant 
-# in this case ('Year' is the only predictor in our model)
-summary(mfx1, variables = 'Year') 
-
-# We can use the `newdata = datagrid()` constructor argument to pick a 
-# representative observation
-marginaleffects(mod1, 
-                variables = 'Year',
-                newdata = datagrid(Year = 2005))
+# Use the `newdata = datagrid()` constructor argument to pick a representative 
+# observation
+marginaleffects(mod1, newdata = datagrid(Year = 2005))
 
 # An alternative to AME is the marginal effect at the mean (MEM).
 # We can use the `newdata = "mean"` convenience argument to retrieve MEMs.
