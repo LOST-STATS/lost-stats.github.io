@@ -272,8 +272,8 @@
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
-<p>For R,we will be using  the <strong>marginaleffects</strong> package 
-(<a href="https://vincentarelbundock.github.io/marginaleffects/index.html">link</a>).</p>
+<p>The <strong>marginaleffects</strong> package 
+(<a href="https://vincentarelbundock.github.io/marginaleffects/index.html">link</a>) covers a wide variety of marginal effects methods in R.</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Load packages and data</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">marginaleffects</span><span class="p">)</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">causaldata</span><span class="p">)</span><span class="w">
@@ -286,20 +286,14 @@
 
 </span><span class="c1"># Use `marginaleffects()` to get the average marginal effects (AMEs) for all our </span><span class="w">
 </span><span class="c1"># predictors</span><span class="w">
-</span><span class="n">mfx1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">marginaleffects</span><span class="p">(</span><span class="n">mod1</span><span class="p">,</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Year'</span><span class="p">)</span><span class="w">
+</span><span class="n">mfx1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">marginaleffects</span><span class="p">(</span><span class="n">mod1</span><span class="p">)</span><span class="w">
 
 </span><span class="c1"># Use `summary()` to pretty-print these AMEs</span><span class="w">
 </span><span class="n">summary</span><span class="p">(</span><span class="n">mfx1</span><span class="p">)</span><span class="w">
 
-</span><span class="c1"># We can also specify/limit to particular predictors, although that's redundant </span><span class="w">
-</span><span class="c1"># in this case ('Year' is the only predictor in our model)</span><span class="w">
-</span><span class="n">summary</span><span class="p">(</span><span class="n">mfx1</span><span class="p">,</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Year'</span><span class="p">)</span><span class="w"> 
-
-</span><span class="c1"># We can use the `newdata = datagrid()` constructor argument to pick a </span><span class="w">
-</span><span class="c1"># representative observation</span><span class="w">
-</span><span class="n">marginaleffects</span><span class="p">(</span><span class="n">mod1</span><span class="p">,</span><span class="w"> 
-                </span><span class="n">variables</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Year'</span><span class="p">,</span><span class="w">
-                </span><span class="n">newdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">datagrid</span><span class="p">(</span><span class="n">Year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2005</span><span class="p">))</span><span class="w">
+</span><span class="c1"># Use the `newdata = datagrid()` constructor argument to pick a representative </span><span class="w">
+</span><span class="c1"># observation</span><span class="w">
+</span><span class="n">marginaleffects</span><span class="p">(</span><span class="n">mod1</span><span class="p">,</span><span class="w"> </span><span class="n">newdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">datagrid</span><span class="p">(</span><span class="n">Year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2005</span><span class="p">))</span><span class="w">
 
 </span><span class="c1"># An alternative to AME is the marginal effect at the mean (MEM).</span><span class="w">
 </span><span class="c1"># We can use the `newdata = "mean"` convenience argument to retrieve MEMs.</span><span class="w">
