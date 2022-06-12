@@ -336,25 +336,27 @@
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
 <p>We will be using the <code class="language-plaintext highlighter-rouge">mtcars</code> data set included in the base program</p>
-<p>Prior to running test, check underlying assumptions for the data</p><pre><code class="language-{r}"># Selecting variables of interest
-cars = mtcars[, c("mpg", # Dependent/response variable
-                  "wt")] # Independent variable
+<p>Prior to running test, check underlying assumptions for the data</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Selecting variables of interest</span><span class="w">
+</span><span class="n">cars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mtcars</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"mpg"</span><span class="p">,</span><span class="w"> </span><span class="c1"># Dependent/response variable</span><span class="w">
+                  </span><span class="s2">"wt"</span><span class="p">)]</span><span class="w"> </span><span class="c1"># Independent variable</span><span class="w">
 
 
-# 1. Creating histograms to check for uniform distribution
-hist(cars$mpg)
-hist(cars$wt)
+</span><span class="c1"># 1. Creating histograms to check for uniform distribution</span><span class="w">
+</span><span class="n">hist</span><span class="p">(</span><span class="n">cars</span><span class="o">$</span><span class="n">mpg</span><span class="p">)</span><span class="w">
+</span><span class="n">hist</span><span class="p">(</span><span class="n">cars</span><span class="o">$</span><span class="n">wt</span><span class="p">)</span><span class="w">
 
-# 2. Using Chi Square test to check for variable independence
-chisq.test(cars$mpg, cars$wt)
+</span><span class="c1"># 2. Using Chi Square test to check for variable independence</span><span class="w">
+</span><span class="n">chisq.test</span><span class="p">(</span><span class="n">cars</span><span class="o">$</span><span class="n">mpg</span><span class="p">,</span><span class="w"> </span><span class="n">cars</span><span class="o">$</span><span class="n">wt</span><span class="p">)</span><span class="w">
 
-# 3. Creating model to check for variation around mean
-mod = lm(formula = mpg~wt, data = cars)
-plot(mod)
-</code></pre>
-<p>If we can verify these assumptions, then we can be confident that the information obtained from the ANOVA test will be an accurate measurement of the true relationship between the variables.</p><pre><code class="language-{r}"># ANOVA test and summary
-anova(mod)
-</code></pre>
+</span><span class="c1"># 3. Creating model to check for variation around mean</span><span class="w">
+</span><span class="n">mod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lm</span><span class="p">(</span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mpg</span><span class="o">~</span><span class="n">wt</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cars</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">mod</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p>If we can verify these assumptions, then we can be confident that the information obtained from the ANOVA test will be an accurate measurement of the true relationship between the variables.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># ANOVA test and summary</span><span class="w">
+</span><span class="n">anova</span><span class="p">(</span><span class="n">mod</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Analysis of Variance Table
 
 Response: mpg
