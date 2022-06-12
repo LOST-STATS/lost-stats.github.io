@@ -98,7 +98,7 @@ We will be using the `mtcars` data set included in the base program
 
 Prior to running test, check underlying assumptions for the data
 
-```{r}
+```r
 # Selecting variables of interest
 cars = mtcars[, c("mpg", # Dependent/response variable
                   "wt")] # Independent variable
@@ -118,7 +118,7 @@ plot(mod)
 
 If we can verify these assumptions, then we can be confident that the information obtained from the ANOVA test will be an accurate measurement of the true relationship between the variables.
 
-```{r}
+```r
 # ANOVA test and summary
 anova(mod)
 ```
