@@ -240,26 +240,26 @@
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
-<p>We can load the <strong>AER</strong> package to run a tobit model.</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#For newbies, pacman allows you to not have to store every package locally</span><span class="w">
-</span><span class="c1">#install_package(pacman) </span><span class="w">
-</span><span class="c1"># or if you want to install AER locally..</span><span class="w">
-</span><span class="c1">#install_package(AER) </span><span class="w">
-</span><span class="n">library</span><span class="p">(</span><span class="n">pacman</span><span class="p">)</span><span class="w">
-</span><span class="n">p_load</span><span class="p">(</span><span class="n">AER</span><span class="p">)</span><span class="w">
-</span></code></pre></div></div>
-<p>Then we can run the actual tobit model.</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Function syntax is tobit(formula, left = 0, right = Inf, dist = "gaussian", subset = NULL, data = list())</span><span class="w">
-</span><span class="c1"># from https://search.r-project.org/CRAN/refmans/AER/html/tobit.html</span><span class="w">
-</span><span class="c1"># This example from CRAN will use the AER package which has many regression techniques.</span><span class="w">
-</span><span class="n">data</span><span class="p">(</span><span class="s2">"Affairs"</span><span class="p">)</span><span class="w">
-</span><span class="c1"># from Table 22.4 in Greene (2003)</span><span class="w">
-</span><span class="n">fm.tobit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tobit</span><span class="p">(</span><span class="n">affairs</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">yearsmarried</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">religiousness</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">occupation</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rating</span><span class="p">,</span><span class="w">
-  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Affairs</span><span class="p">)</span><span class="w">
-</span><span class="n">fm.tobit2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tobit</span><span class="p">(</span><span class="n">affairs</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">yearsmarried</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">religiousness</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">occupation</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rating</span><span class="p">,</span><span class="w">
-  </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Affairs</span><span class="p">)</span><span class="w">
-</span><span class="n">summary</span><span class="p">(</span><span class="n">fm.tobit</span><span class="p">)</span><span class="w">
-</span><span class="n">summary</span><span class="p">(</span><span class="n">fm.tobit2</span><span class="p">)</span><span class="w">
+<p>We can use the <strong>AER</strong> package (<a href="https://cran.r-project.org/web/packages/AER/index.html">link</a>) to run a tobit model in R.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># install.packages("AER") # Install first if you don't have it yet</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">AER</span><span class="p">)</span><span class="w">
+
+</span><span class="n">data</span><span class="p">(</span><span class="s2">"Affairs"</span><span class="p">)</span><span class="w"> </span><span class="c1"># Use the "Affairs" dataset provided with AER</span><span class="w">
+
+</span><span class="c1"># Aside: this example replicates Table 22.4 in Greene (2003)</span><span class="w">
+
+</span><span class="n">tob_mod1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tobit</span><span class="p">(</span><span class="n">affairs</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">yearsmarried</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">religiousness</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">occupation</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rating</span><span class="p">,</span><span class="w">
+                 </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Affairs</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">tob_mod1</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># The default left- and right-hand side limts for the censored dependent variable</span><span class="w">
+</span><span class="c1"># are 0 and Inf, respectively. You might want to change these after inspecting your </span><span class="w">
+</span><span class="c1"># data.</span><span class="w">
+</span><span class="n">hist</span><span class="p">(</span><span class="n">Affairs</span><span class="o">$</span><span class="n">affairs</span><span class="w">
+</span><span class="n">tob_mod2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tobit</span><span class="p">(</span><span class="n">affairs</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">yearsmarried</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">religiousness</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">occupation</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rating</span><span class="p">,</span><span class="w">
+                 </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Affairs</span><span class="p">,</span><span class="w">
+                 </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w">        </span><span class="c1"># RHS censored now at 4</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">tob_mod2</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 <p>For another example check out M Clark’s <a href="https://m-clark.github.io/models-by-example/tobit.html">Models by Example Page</a>.</p>
           <hr>
