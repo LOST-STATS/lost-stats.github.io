@@ -1231,7 +1231,7 @@
   },"205": {
     "doc": "Binned Scatterplots",
     "title": "Implementations",
-    "content": "The binsreg package is available for R, Stata, and Python. See https://nppackages.github.io/binsreg/. ",
+    "content": "The binsreg package is available for R, Stata, and Python. See the package homepage. ",
     "url": "/Presentation/Figures/binscatter.html#implementations",
     "relUrl": "/Presentation/Figures/binscatter.html#implementations"
   },"206": {
