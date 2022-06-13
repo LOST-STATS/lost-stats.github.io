@@ -302,14 +302,14 @@
 <p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/r_palettes_6.png" alt="Graph of bill depth vs. length using specified color palette for updated gradient for body mass" /></p>
 <p>Now we have a better idea about how penguin body mass relates to bill length and depth. The <code class="language-plaintext highlighter-rouge">scale_color_viridis()</code> function is well known for having a wide range of color shades as well as being visible to color blind people.</p>
 <p>These simple examples are certainly not the end-all be-all, but they should hopefully demonstrate that there are lots of customization options available for your graphs. Ultimately, it comes down to personal preference and what type of data you are modeling. Make sure to keep in mind too how you should call attention to specific parts of your charts to best convey the information within the data. With that being said, the options are seemingly endless when it comes to color palettes in R, so play around with your favorite color palette packages to find the best option for you!</p>
-      <h1 id="stata">
+      <h2 id="stata">
           <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
-      </h1>
+      </h2>
 <p>Stata has more limited native options to use colors and color palettes to graphs. However, thanks to Ben Jann package <strong>colrspace</strong> and <strong>palettes</strong>, it is relatively easy to extract and translate color palettes to be used in Stata. In addition, it is also possible to combine this packages with <strong>grstyle</strong> (also by Ben Jann), to modify the colors of the scheme in memory, to easily change the colors of most of your graphs.</p>
 <p>To facilitate further the use of colors in your graphs, I put together a wrapper that will combine the use of Ben Jann’s packages, to easily combine palettes and schemes, for most of your color needs.</p>
-      <h1 id="setup">
+      <h3 id="setup">
           <a href="#setup" aria-labelledby="setup" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Setup
-      </h1>
+      </h3>
 <p>First, we need to install a few packages from ssc.</p>
 <div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* To modify schemes
 </span><span class="err">ssc</span> <span class="err">install</span> <span class="err">grstyle
