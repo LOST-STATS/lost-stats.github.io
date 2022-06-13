@@ -14,11 +14,11 @@ ANOVA, meaning *Analysis of Variance*, is a statistical test that tells us about
 
 The null and alternative hypothesis of an ANOVA test are:  
 
-   $H_0$:  $\mu_1 = \mu_2 = \ldots = \mu_n$  
+   $$H_0:  \mu_1 = \mu_2 = \ldots = \mu_n$$  
 
-   $H_1$:  $\exists i, j : \mu_i \neq \mu_j$
+   $$H_1:  \exists i, j : \mu_i \neq \mu_j$$
 
-The null hypothesis ($H_0$) states that the means of the different levels are all equal, while the alternative hypothesis ($H_1$) states that at least one mean is different than that of the other variables.
+The null hypothesis ($H_0$) states that the means of the different levels are all equal, while the alternative hypothesis ($$H_1$$) states that at least one mean is different than that of the other variables.
 
 ### Common Variations of ANOVA
 
@@ -121,17 +121,15 @@ If we can verify these assumptions, then we can be confident that the informatio
 ```r
 # ANOVA test and summary
 anova(mod)
-```
 
-```
-Analysis of Variance Table
-
-Response: mpg
-          Df Sum Sq Mean Sq F value    Pr(>F)    
-wt         1 847.73  847.73  91.375 1.294e-10 ***
-Residuals 30 278.32    9.28                      
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+#> Analysis of Variance Table
+#> 
+#> Response: mpg
+#>           Df Sum Sq Mean Sq F value    Pr(>F)    
+#> wt         1 847.73  847.73  91.375 1.294e-10 ***
+#> Residuals 30 278.32    9.28                      
+#> ---
+#> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
 
 In this example, we can see that `wt` is significant on all levels. Therefore, we can reject our null hypothesis that both means being tested are equal and accept our alternative hypothesis.
