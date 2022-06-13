@@ -126,7 +126,7 @@ These simple examples are certainly not the end-all be-all, but they should hope
 Some other fun, pre-defined color palette packages in R include:
 
 - **colorspace** ([link](https://colorspace.r-forge.r-project.org/index.html))
-- **wesandersen** ([link](https://github.com/karthik/wesanderson))
+- **wesanderson** ([link](https://github.com/karthik/wesanderson))
 
 ## Stata
 
