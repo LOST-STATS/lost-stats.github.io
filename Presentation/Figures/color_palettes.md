@@ -121,13 +121,13 @@ Now we have a better idea about how penguin body mass relates to bill length and
 
 These simple examples are certainly not the end-all be-all, but they should hopefully demonstrate that there are lots of customization options available for your graphs. Ultimately, it comes down to personal preference and what type of data you are modeling. Make sure to keep in mind too how you should call attention to specific parts of your charts to best convey the information within the data. With that being said, the options are seemingly endless when it comes to color palettes in R, so play around with your favorite color palette packages to find the best option for you!
 
-# Stata
+## Stata
 
 Stata has more limited native options to use colors and color palettes to graphs. However, thanks to Ben Jann package **colrspace** and **palettes**, it is relatively easy to extract and translate color palettes to be used in Stata. In addition, it is also possible to combine this packages with **grstyle** (also by Ben Jann), to modify the colors of the scheme in memory, to easily change the colors of most of your graphs.
 
 To facilitate further the use of colors in your graphs, I put together a wrapper that will combine the use of Ben Jann's packages, to easily combine palettes and schemes, for most of your color needs. 
 
-# Setup
+### Setup
 
 First, we need to install a few packages from ssc. 
 
