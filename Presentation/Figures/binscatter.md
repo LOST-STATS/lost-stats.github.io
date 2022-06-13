@@ -31,7 +31,7 @@ Binned scatterplots are a variation on scatterplots that can be useful when ther
 
 # Implementations
 
-The **binsreg** package is available for R, Stata, and Python. See https://nppackages.github.io/binsreg/.
+The **binsreg** package is available for R, Stata, and Python. See the package [homepage](https://nppackages.github.io/binsreg).
 
 ## R
 
