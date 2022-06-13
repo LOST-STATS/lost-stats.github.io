@@ -32,31 +32,28 @@ If you have ever encountered data that is censored in some way, then the Tobit m
 
 ## R
 
-We can load the **AER** package to run a tobit model.
+We can use the **AER** package ([link](https://cran.r-project.org/web/packages/AER/index.html)) to run a tobit model in R.
 
 ```r
-#For newbies, pacman allows you to not have to store every package locally
-#install_package(pacman) 
-# or if you want to install AER locally..
-#install_package(AER) 
-library(pacman)
-p_load(AER)
-```
+# install.packages("AER") # Install first if you don't have it yet
+library(AER)
 
-Then we can run the actual tobit model.
+data("Affairs") # Use the "Affairs" dataset provided with AER
 
-```r
-# Function syntax is tobit(formula, left = 0, right = Inf, dist = "gaussian", subset = NULL, data = list())
-# from https://search.r-project.org/CRAN/refmans/AER/html/tobit.html
-# This example from CRAN will use the AER package which has many regression techniques.
-data("Affairs")
-# from Table 22.4 in Greene (2003)
-fm.tobit <- tobit(affairs ~ age + yearsmarried + religiousness + occupation + rating,
-  data = Affairs)
-fm.tobit2 <- tobit(affairs ~ age + yearsmarried + religiousness + occupation + rating,
-  right = 4, data = Affairs)
-summary(fm.tobit)
-summary(fm.tobit2)
+# Aside: this example replicates Table 22.4 in Greene (2003)
+
+tob_mod1 = tobit(affairs ~ age + yearsmarried + religiousness + occupation + rating,
+                 data = Affairs)
+summary(tob_mod1)
+
+# The default left- and right-hand side limts for the censored dependent variable
+# are 0 and Inf, respectively. You might want to change these after inspecting your 
+# data.
+hist(Affairs$affairs
+tob_mod2 = tobit(affairs ~ age + yearsmarried + religiousness + occupation + rating,
+                 data = Affairs,
+                 right = 4)        # RHS censored now at 4
+summary(tob_mod2)
 ```
 
 For another example check out M Clark's [Models by Example Page](https://m-clark.github.io/models-by-example/tobit.html).
