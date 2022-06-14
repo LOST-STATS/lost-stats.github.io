@@ -215,7 +215,7 @@
       </h1>
 <p>Economic theory usually suggests other variables that could help to forecast the variable of interest over than itself. When we add other variables and their lags the result is what is known as <strong>The Autoregressive Lag (ADL) Model</strong>. For example, if we want to predict future changes in inflation, the theory (Phillips Curve) suggests that lagged values of the unemployment rate might be a good predictor.</p>
 <p>In particular, the method for indicating when one variable possibly causes a response in another is called the <strong>Granger Causality Test</strong>. But be careful and do not get confused with the name. The test does not strictly mean that we have estimated the causal effect of one variable on another. It means that the signal of the first one is a useful predictor of the second.</p>
-<p>A variable $X$ is said to Granger cause another variable $Y$ if $Y$ can be better predicted from the past of $X$ and $Y$ together than the past of $Y$ alone, other relevant information being used in the prediction (Pierce, 1977).</p>
+<p>A variable \(X\) is said to Granger cause another variable \(Y\) if \(Y\) can be better predicted from the past of \(X\) and \(Y\) together than the past of \(Y\) alone, other relevant information being used in the prediction (Pierce, 1977).</p>
       <h1 id="keep-in-mind">
           <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
       </h1>
@@ -225,41 +225,36 @@
   </li>
   <li>
     <p>Estimate the model with lags enough to ensure white noise residuals.</p>
+    <ul>
+      <li>When you are choosing the number of lags one variable might affect the other, there is a trade-off between bias and power. To see more click <a href="https://stats.stackexchange.com/questions/107954/lag-order-for-granger-causality-test">here</a>.</li>
+    </ul>
   </li>
-</ol>
-<ul>
-  <li>When you are choosing the number of lags one variable might affect the other, there is a trade-off between bias and power. To see more click <a href="https://stats.stackexchange.com/questions/107954/lag-order-for-granger-causality-test">here</a>.</li>
-</ul>
-<ol>
-  <li>Re-estimate both models, including the lags of the other variable.</li>
-</ol>
+  <li>
+    <p>Re-estimate both models, including the lags of the other variable.</p>
 \[Y_t = \alpha + \sum_{j=1}^{p} \beta_j Y_{t-j} + \sum_{j=1}^r \theta_j X_{t-j}+ \epsilon_t\]
 \[X_t = \alpha^{\ast} + \sum_{j=1}^{p} \beta_j^{\ast} Y_{t-j} + \sum_{j=1}^r \theta_j^{\ast} X_{t-j}+ \epsilon_t^{\ast}\]
-<ul>
-  <li>
-    <p>$X_t$ helps to predict $Y_t$ if $\theta_j \neq 0$ for some j</p>
+    <ul>
+      <li>
+        <p>\(X_t\) helps to predict \(Y_t\) if \(\theta_j \neq 0\) for some \(j\).</p>
+      </li>
+      <li>
+        <p>\(Y_t\) helps to predict \(X_t\) if \(\theta_j^{\ast} \neq 0\) for some \(j\).</p>
+      </li>
+    </ul>
   </li>
   <li>
-    <p>$Y_t$ helps to predict $X_t$ if $\theta_j^{\ast} \neq 0$ for some j</p>
-  </li>
-</ul>
-<ol>
-  <li>Use an F test to determine significance of the new variables. Consider the following ADL model:</li>
-</ol>
+    <p>Use an F test to determine significance of the new variables. Consider the following ADL model:</p>
 \[H_0: \theta_j^{\ast} =0  \quad \text{for all} \quad j = 1,\dots, r \quad \text{by means of F-test}.\]
-<ul>
-  <li>Interpretation: $X$ <strong>Granger causes</strong> $Y$ if it helps to predict $Y$, whereas $Y$ does not help to predict $X$</li>
-</ul>
+    <ul>
+      <li>Interpretation: \(X\) <strong>Granger causes</strong> \(Y\) if it helps to predict \(Y\), whereas \(Y\) does not help to predict \(X\).</li>
+    </ul>
+  </li>
+</ol>
       <h1 id="also-consider">
           <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also consider
       </h1>
 <ul>
-  <li>
-    <p>You might also be interested in a Nonparametric Test for Granger Causality. Especially useful to examine a large number of lags, and flexible to find Granger causality in specific regions on the distribution. See more <a href="https://amstat.tandfonline.com/doi/full/10.1080/07350015.2015.1026774#.XukfwbySmUk">here</a></p>
-  </li>
-  <li>
-    <p>More about ADL model using R. You can visit this <a href="https://www.econometrics-with-r.org/14-5-apatadlm.html">online book</a> (Currently in <em>Open Review</em>)</p>
-  </li>
+  <li>You might also be interested in a Nonparametric Test for Granger Causality. Especially useful to examine a large number of lags, and flexible to find Granger causality in specific regions on the distribution. See more <a href="https://amstat.tandfonline.com/doi/full/10.1080/07350015.2015.1026774#.XukfwbySmUk">here</a></li>
 </ul>
       <h1 id="implementation">
           <a href="#implementation" aria-labelledby="implementation" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementation
@@ -267,49 +262,53 @@
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
+<p>More information about ADL modeling with R is available in <a href="https://www.econometrics-with-r.org/14-5-apatadlm.html">Chapter 14</a> of Hanck <em>et al.</em> (freely available online).</p>
       <h3 id="simulation-adl-model">
           <a href="#simulation-adl-model" aria-labelledby="simulation-adl-model" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Simulation ADL model
       </h3>
-      <h5 id="note-feel-free-to-skip-this-section-if-you-just-interested-in-how-to-apply-the-test">
-          <a href="#note-feel-free-to-skip-this-section-if-you-just-interested-in-how-to-apply-the-test" aria-labelledby="note-feel-free-to-skip-this-section-if-you-just-interested-in-how-to-apply-the-test" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> NOTE: Feel free to skip this section if you just interested in how to apply the test.
+      <h5 id="note-feel-free-to-skip-this-section-if-you-are-just-interested-in-how-to-apply-the-test">
+          <a href="#note-feel-free-to-skip-this-section-if-you-are-just-interested-in-how-to-apply-the-test" aria-labelledby="note-feel-free-to-skip-this-section-if-you-are-just-interested-in-how-to-apply-the-test" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> NOTE: Feel free to skip this section if you are just interested in how to apply the test.
       </h5>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># set seed</span><span class="w">
 </span><span class="n">set.seed</span><span class="p">(</span><span class="m">1234</span><span class="p">)</span><span class="w">
 
 </span><span class="c1"># Simulate error</span><span class="w">
-</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">200</span><span class="w"> </span><span class="c1"># Sample size</span><span class="w">
-</span><span class="n">rho</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.5</span><span class="w"> </span><span class="c1"># Correlation between Y errors</span><span class="w">
-</span><span class="n">coe</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1.2</span><span class="w"> </span><span class="c1"># Coefficient of X in model Y</span><span class="w">
-</span><span class="n">alpha</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.5</span><span class="w"> </span><span class="c1"># Intercept of the model Y</span><span class="w">
+</span><span class="n">n</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="m">200</span><span class="w"> </span><span class="c1"># Sample size</span><span class="w">
+</span><span class="n">rho</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="w"> </span><span class="c1"># Correlation between Y errors</span><span class="w">
+</span><span class="n">coe</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="m">1.2</span><span class="w"> </span><span class="c1"># Coefficient of X in model Y</span><span class="w">
+</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="w"> </span><span class="c1"># Intercept of the model Y</span><span class="w">
 
 </span><span class="c1"># Function to create the error of Y</span><span class="w">
-</span><span class="n">ARsim2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">serieslength</span><span class="p">,</span><span class="w"> </span><span class="n">distribution</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="k">if</span><span class="p">(</span><span class="n">distribution</span><span class="o">==</span><span class="s2">"runif"</span><span class="p">){</span><span class="n">a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">runif</span><span class="p">(</span><span class="n">serieslength</span><span class="p">,</span><span class="n">min</span><span class="o">=</span><span class="m">0</span><span class="p">,</span><span class="n">max</span><span class="o">=</span><span class="m">1</span><span class="p">)}</span><span class="w">
-  </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="n">a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="n">serieslength</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">)}</span><span class="w">
-  </span><span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">first</span><span class="w">
-  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span><span class="m">+1</span><span class="p">)</span><span class="o">:</span><span class="n">serieslength</span><span class="p">){</span><span class="w">
-    </span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rho</span><span class="o">*</span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="m">-1</span><span class="p">]</span><span class="o">+</span><span class="p">(</span><span class="nf">sqrt</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="p">(</span><span class="n">rho</span><span class="o">^</span><span class="m">2</span><span class="p">)))</span><span class="o">*</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w">
+</span><span class="n">ARsim2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">serieslength</span><span class="p">,</span><span class="w"> </span><span class="n">distribution</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">distribution</span><span class="o">==</span><span class="s2">"runif"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">runif</span><span class="p">(</span><span class="n">serieslength</span><span class="p">,</span><span class="n">min</span><span class="o">=</span><span class="m">0</span><span class="p">,</span><span class="n">max</span><span class="o">=</span><span class="m">1</span><span class="p">)</span><span class="w">
+  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="n">serieslength</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">)</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first</span><span class="w">
+  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span><span class="m">+1</span><span class="p">)</span><span class="o">:</span><span class="n">serieslength</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rho</span><span class="o">*</span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="m">-1</span><span class="p">]</span><span class="o">+</span><span class="p">(</span><span class="nf">sqrt</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="p">(</span><span class="n">rho</span><span class="o">^</span><span class="m">2</span><span class="p">)))</span><span class="o">*</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
   </span><span class="nf">return</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span><span class="c1"># Error for Y model</span><span class="w">
-</span><span class="n">error</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ARsim2</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="s2">"rnorm"</span><span class="p">)</span><span class="w">
+</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ARsim2</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="s2">"rnorm"</span><span class="p">)</span><span class="w">
 
 </span><span class="c1"># times series X (simulation)</span><span class="w">
-</span><span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">arima.sim</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">ar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.2</span><span class="p">)),</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w">
+</span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arima.sim</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">ar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.2</span><span class="p">)),</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w">
 
 </span><span class="c1"># times series Y (simulation)</span><span class="w">
-</span><span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NULL</span><span class="w">
+</span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="w">
 </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">2</span><span class="o">:</span><span class="m">200</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">coe</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">error</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w">
+  </span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">coe</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">error</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
       <h3 id="data">
           <a href="#data" aria-labelledby="data" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Data
       </h3>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">cbind</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">200</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">as.ts</span><span class="p">(</span><span class="n">Y</span><span class="p">)))</span><span class="w">
-</span><span class="n">colnames</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"time"</span><span class="p">,</span><span class="w"> </span><span class="s2">"X"</span><span class="p">,</span><span class="s2">"Y"</span><span class="p">)</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">cbind</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">200</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">as.ts</span><span class="p">(</span><span class="n">Y</span><span class="p">)))</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"time"</span><span class="p">,</span><span class="w"> </span><span class="s2">"X"</span><span class="p">,</span><span class="s2">"Y"</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
       <h3 id="graph">
           <a href="#graph" aria-labelledby="graph" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Graph
@@ -321,10 +320,9 @@
 </span><span class="n">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
 
-</span><span class="n">graphdata</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="m">2</span><span class="o">:</span><span class="m">200</span><span class="p">,]</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
-  </span><span class="n">pivot_longer</span><span class="p">(</span><span class="w">
-    </span><span class="n">cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="n">time</span><span class="p">),</span><span class="w"> </span><span class="n">names_to</span><span class="o">=</span><span class="s2">"variable"</span><span class="p">,</span><span class="w"> </span><span class="n">values_to</span><span class="o">=</span><span class="s2">"value"</span><span class="w">
-  </span><span class="p">)</span><span class="w">
+</span><span class="n">graphdata</span><span class="w"> </span><span class="o">=</span><span class="w"> 
+  </span><span class="n">data</span><span class="p">[</span><span class="m">2</span><span class="o">:</span><span class="m">200</span><span class="p">,]</span><span class="w"> </span><span class="o">|&gt;</span><span class="w">
+  </span><span class="n">pivot_longer</span><span class="p">(</span><span class="n">cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="n">time</span><span class="p">),</span><span class="w"> </span><span class="n">names_to</span><span class="o">=</span><span class="s2">"variable"</span><span class="p">,</span><span class="w"> </span><span class="n">values_to</span><span class="o">=</span><span class="s2">"value"</span><span class="p">)</span><span class="w">
 
 </span><span class="n">ggplot</span><span class="p">(</span><span class="n">graphdata</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="o">=</span><span class="n">variable</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
   </span><span class="n">geom_line</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">variable</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
@@ -334,9 +332,10 @@
   </span><span class="n">theme</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">15</span><span class="p">))</span><span class="w">
 </span></code></pre></div></div>
 <p><img src="/Time_Series/Images/Granger_Causality/img.png" alt="Auto-distributed lag graph" /></p>
+<p>It seems that:</p>
 <ul>
-  <li>It seems that both series are stationary (later is check with the ADF test) and,</li>
-  <li>Disturbances in variable X are visible after periods in Y (as expected).</li>
+  <li>Both series are stationary (later is check with the ADF test), and</li>
+  <li>Disturbances in variable \(X\) are visible after periods in \(Y\) (as expected).</li>
 </ul>
       <h3 id="check-stationarity">
           <a href="#check-stationarity" aria-labelledby="check-stationarity" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Check Stationarity
@@ -350,7 +349,7 @@
 </span><span class="n">adf.test</span><span class="p">(</span><span class="n">na.omit</span><span class="p">(</span><span class="n">Y</span><span class="p">),</span><span class="w"> </span><span class="n">k</span><span class="o">=</span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="c1">#na.omit() to delete the first 2 periods of lag</span><span class="w">
 </span></code></pre></div></div>
 <ul>
-  <li>With a p-value of 0.01 and 0.01 for series X, and Y, we assure that both are stationary.</li>
+  <li>With a p-value of 0.01 and 0.01 for series \(X\), and \(Y\), we assure that both are stationary.</li>
   <li>No transformation needed for the series.</li>
 </ul>
       <h3 id="granger-test">
@@ -359,8 +358,8 @@
       <h4 id="note-grangertest-only-performs-tests-for-granger-causality-in-bivariate-series">
           <a href="#note-grangertest-only-performs-tests-for-granger-causality-in-bivariate-series" aria-labelledby="note-grangertest-only-performs-tests-for-granger-causality-in-bivariate-series" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Note: <code class="language-plaintext highlighter-rouge">grangertest()</code> only performs tests for Granger causality in bivariate series.
       </h4>
-      <h4 id="step-1-ysim-x">
-          <a href="#step-1-ysim-x" aria-labelledby="step-1-ysim-x" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Step 1. $(Y\sim X)$
+      <h4 id="step-1-y-sim-x">
+          <a href="#step-1-y-sim-x" aria-labelledby="step-1-y-sim-x" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Step 1. \((Y \sim X)\)
       </h4>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If neccesary</span><span class="w">
 </span><span class="c1"># install.packages("lmtest")</span><span class="w">
@@ -378,7 +377,7 @@
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 </code></pre></div></div>
       <h4 id="step-2-x-sim-y">
-          <a href="#step-2-x-sim-y" aria-labelledby="step-2-x-sim-y" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Step 2. $(X \sim Y)$
+          <a href="#step-2-x-sim-y" aria-labelledby="step-2-x-sim-y" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Step 2. \((X \sim Y)\)
       </h4>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">grangertest</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
@@ -392,25 +391,21 @@
 </code></pre></div></div>
 <ul>
   <li>
-    <p>We see that the effect of lags of number of X is highly significant, and conclude that X predicts the future of Y.</p>
+    <p>We see that the effect of lags of number of \(X\) is highly significant, and conclude that \(X\) predicts the future of \(Y\).</p>
   </li>
   <li>
-    <p>The null hypothesis is not rejected for the converse relationship. Thus, we conclude that $X$ is Granger causal for $Y$</p>
+    <p>The null hypothesis is not rejected for the converse relationship. Thus, we conclude that \(X\) Granger causes \(Y\).</p>
   </li>
 </ul>
       <h3 id="impulse-response-functions">
           <a href="#impulse-response-functions" aria-labelledby="impulse-response-functions" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Impulse Response Functions
       </h3>
-<p>After establishing that X predicts the future of Y, it is often useful to show exactly how how a shock in X in the present will impact Y in the future. Impulse response functions are a great way to visualize the magnitude and duration of this impact on Y.
-<br />
-<br /></p>
+<p>After establishing that \(X\) predicts the future of \(Y\), it is often useful to show exactly how how a shock in \(X\) in the present will impact \(Y\) in the future. Impulse response functions are a great way to visualize the magnitude and duration of this impact on \(Y\).</p>
       <h4 id="vector-autoregression">
           <a href="#vector-autoregression" aria-labelledby="vector-autoregression" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Vector Autoregression
       </h4>
-<p>In order to visualize the impulse response function, we first need to transform the X and Y variables through <em>Vector Autoregression</em> (VAR) modeling. In brief, VAR models are a multivariate generalization of scalar autoregressive (AR) models (for more information, see the <em>AR Models</em> page). Through a multivariate auto regression, we can use the autoregressive elements of each variable to visualize the granger causality we tested for earlier.
-<br />
-<br />
-VAR modeling can be done through the <code class="language-plaintext highlighter-rouge">vars</code> package in R</p>
+<p>In order to visualize the impulse response function, we first need to transform the \(X\) and \(Y\) variables through <em>Vector Autoregression</em> (VAR) modeling. In brief, VAR models are a multivariate generalization of scalar autoregressive (AR) models (for more information, see the <em>AR Models</em> page). Through a multivariate auto regression, we can use the autoregressive elements of each variable to visualize the granger causality we tested for earlier.</p>
+<p>VAR modeling can be done through the <strong>vars</strong> package in R.</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary</span><span class="w">
 </span><span class="c1"># install.packages("vars")</span><span class="w">
 
@@ -424,28 +419,21 @@ VAR modeling can be done through the <code class="language-plaintext highlighter
 
 </span><span class="c1"># Save the model as a vector autoregression (VAR)</span><span class="w">
 </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VAR</span><span class="p">(</span><span class="n">data_ts</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"const"</span><span class="p">)</span><span class="w">
-
 </span></code></pre></div></div>
-<p><br /></p>
       <h4 id="plotting-the-irf">
           <a href="#plotting-the-irf" aria-labelledby="plotting-the-irf" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Plotting the IRF
       </h4>
-<p>Now that we have created our VAR model, we can plot how a shock to X will impact Y. To do this we will use the <code class="language-plaintext highlighter-rouge">irf()</code> function from the <code class="language-plaintext highlighter-rouge">vars</code> package and the base R plot function.</p>
+<p>Now that we have created our VAR model, we can plot how a shock to \(X\) will impact \(Y\). To do this we will use the <code class="language-plaintext highlighter-rouge">vars::irf()</code> function and the base R <code class="language-plaintext highlighter-rouge">plot()</code> function.</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create the impulse response function</span><span class="w">
 </span><span class="n">model_IRF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">irf</span><span class="p">(</span><span class="n">model</span><span class="p">)</span><span class="w">
 
 </span><span class="c1"># Plot </span><span class="w">
 </span><span class="n">plot</span><span class="p">(</span><span class="n">model_IRF</span><span class="p">)</span><span class="w">
-
 </span></code></pre></div></div>
 <p><img src="/Time_Series/Images/Granger_Causality/IRF_X.png" alt="" /></p>
-<p>This plot shows the response in Y to a shock in X. As we would expect from the granger tests we ran earlier, a shock to X has a statistically significant effect on Y. A positive shock to X results in a positive shock of similar magnitude in Y in the following period.</p>
-<p><br /></p>
-<p><img src="/Time_Series/Images/Granger_Causality/IFR_Y.png" alt="" />
-<br />
-This plot shows the response in X of a shock to Y. A shock in Y elicits a very small, not statistically significant effect in X. This is a visual confirmation that Y does not granger cause X.
-<br />
-<br /></p>
+<p>This plot shows the response in \(Y\) to a shock in \(X\). As we would expect from the granger tests we ran earlier, a shock to \(X\) has a statistically significant effect on \(Y\). A positive shock to \(X\) results in a positive shock of similar magnitude in \(Y\) in the following period.</p>
+<p><img src="/Time_Series/Images/Granger_Causality/IFR_Y.png" alt="" /></p>
+<p>This plot shows the response in \(X\) of a shock to \(Y\). A shock in \(Y\) elicits a very small, not statistically significant effect in \(X\). This is a visual confirmation that \(Y\) does not Granger cause \(X\).</p>
       <h4 id="references">
           <a href="#references" aria-labelledby="references" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> References
       </h4>
