@@ -18,7 +18,7 @@ The null and alternative hypothesis of an ANOVA test are:
 
    $$H_1:  \exists i, j : \mu_i \neq \mu_j$$
 
-The null hypothesis ($H_0$) states that the means of the different levels are all equal, while the alternative hypothesis ($$H_1$$) states that at least one mean is different than that of the other variables.
+The null hypothesis ($$H_0$$) states that the means of the different levels are all equal, while the alternative hypothesis ($$H_1$$) states that at least one mean is different than that of the other variables.
 
 ### Common Variations of ANOVA
 
