@@ -21,6 +21,40 @@ For example, perhaps you have one data file per month, and want to compile them 
 
 Note that, because these code examples necessarily refer to files on disk, they might not run properly if copied and pasted. But they can be used as templates.
 
+## Julia
+
+The `readdir()` function returns the list of all files and subdirectories in the working directory as a one-dimensional array of strings.
+
+```julia 
+readdir()
+```
+
+It is also possible to return the list of all files and subdirectories in any given directory using the `dir` argument, which may be used to specify both absolute and relative paths. 
+
+```julia
+path_abs = "C:/this/is/an/absolute/path"
+readdir(dir = path_abs)
+
+path_rel = "this/is/a/relative/path"
+readdir(dir = path_rel)
+```
+
+The returned object contains relative paths by default, but it is possible to return absolute paths by setting the `join` argument equal to `true`.
+
+```julia
+readdir(join = true)
+```
+
+Lastly, we may filter file and subdirectory names using the `filter()` and `contains()` functions.
+Suppose we would like to obtain all file and subdirectory names in the working directory that contain the string "lost".
+
+```julia 
+y = readdir()
+filter(contains("lost"), y)
+```
+
+Note: The `readdir()` function returns hidden subdirectories along with regular ones.
+
 ## Python
 The `glob` module finds all pathnames matching a specified pattern and stores them in a list.
 

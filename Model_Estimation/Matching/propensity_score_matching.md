@@ -82,7 +82,7 @@ smoking = smoking %>% mutate(smoke = 1*(smoke == "Yes"),
 
 # Pull out the variables
 # Outcome
-Y = smoking %>% pull(smoke)
+Y = smoking %>% pull(married)
 # Treatment
 D <- smoking %>% pull(smoke)
 # Matching variables

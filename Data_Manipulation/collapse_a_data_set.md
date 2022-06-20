@@ -43,18 +43,19 @@ For our implementation examples, we'll use the "storms" dataset that comes bundl
 
 ## Julia
 
-Julia adopts a highly modular approach to package functionality. The main data wrangling operations are all provided by the [**DataFrames.jl**](https://dataframes.juliadata.org/stable/) package. But for this example, we'll also need to load the [**Statistics.jl**](https://github.com/JuliaLang/Statistics.jl) library (that comes bundled with the base Julia installation) for the `mean` and `first` aggregating functions. We'll also be using the **CSV.jl** (and **HTTP.jl**) packages, but that's just to import the dataset from the web.
+Julia adopts a highly modular approach to package functionality. The main data wrangling operations are all provided by the [**DataFrames.jl**](https://dataframes.juliadata.org/stable/) package. But for this example, we'll also need to load the [**Statistics.jl**](https://github.com/JuliaLang/Statistics.jl) library (that comes bundled with the base Julia installation) for the `mean` and `first` aggregating functions. We'll also be using the **CSV.jl** package, but that's just to import the dataset from the web.
 
 ```julia
-#] add DataFrames, CSV, HTTP
-using DataFrames, Statistics, CSV, HTTP
+#] add DataFrames, CSV
+using DataFrames, Statistics, CSV
 
 # Read in the file from the web and convert to a DataFrame
 url = "https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv"
-storms = DataFrame(CSV.File(HTTP.get(url).body))
+storms = CSV.read(download(url), DataFrame)
 
-combine(groupby(storms, [:name, :year, :month, :day]),
-        [:wind, :pressure] .=> mean, [:category] .=> first)
+storms_collapsed = 
+   combine(groupby(storms, [:name, :year, :month, :day]),
+           [:wind, :pressure] .=> mean, [:category] .=> first)
 ```
 
 ## Python
@@ -104,9 +105,10 @@ library(data.table)
 # Set the already-loaded storms dataset as a data.table
 setDT(storms)
 
-storms[,
-       .(wind=mean(wind), pressure=mean(pressure), category=first(category)),
-       by = .(name, year, month, day)]
+storms_collpased = storms[,
+                          .(wind = mean(wind), pressure = mean(pressure), 
+                            category = first(category)),
+                          by = .(name, year, month, day)]
 ```
 Third: [**collapse**](https://sebkrantz.github.io/collapse/):
 
@@ -114,9 +116,9 @@ Third: [**collapse**](https://sebkrantz.github.io/collapse/):
 # install.packages('collapse')
 library(collapse)
 
-collap(storms,
-       by = ~name+year+month+day,
-       custom = list(fmean=c('wind', 'pressure'), ffirst='category'))
+storms_collapsed = collap(storms, by = ~name + year + month + day,
+                          custom = list(fmean=c('wind', 'pressure'), 
+                                        ffirst='category'))
 ```
 
 ## Stata

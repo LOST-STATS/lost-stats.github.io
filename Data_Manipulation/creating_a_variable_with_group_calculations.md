@@ -36,6 +36,26 @@ We often might want to create a new variable that performs a calculation *within
 
 # Implementations
 
+## Julia 
+
+The **DataFrames.jl** package makes data aggregation and manipulaion relatively straigthforward. 
+
+```julia
+# Load required packages
+using CSV             # Import .csv files 
+using DataFrames      # Working with data frames 
+using Statistics      # Required to calculate a mean 
+
+# Import .csv file from GitHub and store as a DataFrame 
+storms = CSV.read(download("https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv"), DataFrame)
+
+# Use 'groupby' to aggregate data by groups (namely: name, year, month and day
+# columns) and use 'transform!' to add a new column called 'mean_wind'
+# containing the mean of the existing 'wind' column. (The `!` means that this
+# change will be made in-place.)
+transform!(groupby(storms, [:name, :year, :month, :day]), :wind=> mean => :mean_wind)
+```
+
 ## Python
 
 **pandas** doesn't have a straightforward and flexible built-in method for doing this, with aggregation methods heavily preferring to work as described on [Collapse a Data Set]({{ "/Data_Manipulation/collapse_a_data_set.html" | relative_url }}). However, we can just follow those methods and then `merge` the result back in.
@@ -62,21 +82,34 @@ storms = pd.merge(storms,meanwind,
 
 ## R
 
-The **dplyr** package makes this process easy.
+In R, we can use either the **dplyr** or **data.table** package to do this.
+
+Here's how to do it with **dplyr**...
 
 ```r
 library(dplyr)
 
-data("storms")
+data("storms") # The dataset is bundled with dplyr, so we'll just open directly
 
-# Use group_by to designate the groups
-storms <- storms %>%
+# Use 'group_by' to designate the groups and 'mutate' to create new column(s).
+# Note that dplyr doesn't modify in-place, so we need to reassign the result.
+storms = storms %>%
   group_by(name, year, month, day) %>%
-  # To add a new column, rather than collapse,
-  # just use mutate instead of summarize
-  # note that "mean" could be anything here
   mutate(mean_wind = mean(wind))
 ```
+
+...and here's how to do it with **data.table**.
+
+```r
+library(data.table)
+
+# storms = fread("https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv")
+setDT(storms) # Set the already-loaded storms DF as a data.table
+
+# Use ':=' for in-place modification
+storms[, mean_wind := mean(wind), by = .(name, year, month, day)]
+```
+
 
 ## Stata
 

@@ -31,6 +31,20 @@ So, you want to use relative paths in your code. This means you need to know how
 
 # Implementations
 
+## Julia
+
+In Julia, you can use the `cd()` function to change the working directory.
+
+```julia 
+cd("C:/My/New/Working/Directory/")
+```
+
+You may use the `pwd()` function to check the current working directory.
+
+```julia
+pwd()
+```
+
 ## Python
 
 In Python, the `os.chdir()` function will let you change working directories.

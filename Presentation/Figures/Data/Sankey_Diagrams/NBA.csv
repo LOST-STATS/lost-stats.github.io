@@ -1,0 +1,31 @@
+﻿team,division,win_perc,playoff_strata,conf_semis
+Atlanta Hawks,East,0.5,5 to 8 seed,Yes
+Boston Celtics,East,0.5,5 to 8 seed,No
+Brooklyn Nets,East,0.6,1 to 4 seed,Yes
+Charlotte Hornets,East,0.4,Did Not Make Playoffs,No
+Chicago Bulls,East,0.4,Did Not Make Playoffs,No
+Cleveland Cavaliers,East,0.3,Did Not Make Playoffs,No
+Dallas Mavericks,West,0.5,5 to 8 seed,No
+Denver Nuggets,West,0.6,1 to 4 seed,Yes
+Detroit Pistons,East,0.2,Did Not Make Playoffs,No
+Golden State Warriors,West,0.5,Did Not Make Playoffs,No
+Houston Rockets,West,0.2,Did Not Make Playoffs,No
+Indiana Pacers,East,0.4,Did Not Make Playoffs,No
+Los Angeles Clippers,West,0.6,1 to 4 seed,Yes
+Los Angeles Lakers,West,0.5,5 to 8 seed,No
+Memphis Grizzlies,West,0.5,Did Not Make Playoffs,No
+Miami Heat,East,0.5,5 to 8 seed,No
+Milwaukee Bucks,East,0.6,1 to 4 seed,Yes
+Minnesota Timberwolves,West,0.3,Did Not Make Playoffs,No
+New Orleans Pelicans,West,0.4,Did Not Make Playoffs,No
+New York Knicks,East,0.5,1 to 4 seed,No
+Oklahoma City Thunder,West,0.3,Did Not Make Playoffs,No
+Orlando Magic,East,0.2,Did Not Make Playoffs,No
+Philadelphia 76ers,East,0.6,1 to 4 seed,Yes
+Phoenix Suns,West,0.7,1 to 4 seed,Yes
+Portland Trail Blazers,West,0.5,5 to 8 seed,No
+Sacramento Kings,West,0.4,Did Not Make Playoffs,No
+San Antonio Spurs,West,0.4,Did Not Make Playoffs,No
+Toronto Raptors,East,0.3,Did Not Make Playoffs,No
+Utah Jazz,West,0.7,1 to 4 seed,Yes
+Washington Wizards,East,0.4,5 to 8 seed,No
