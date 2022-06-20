@@ -226,6 +226,28 @@
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
 <p>Note that, because these code examples necessarily refer to files on disk, they might not run properly if copied and pasted. But they can be used as templates.</p>
+      <h2 id="julia">
+          <a href="#julia" aria-labelledby="julia" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Julia
+      </h2>
+<p>The <code class="language-plaintext highlighter-rouge">readdir()</code> function returns the list of all files and subdirectories in the working directory as a one-dimensional array of strings.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">readdir</span><span class="x">()</span>
+</code></pre></div></div>
+<p>It is also possible to return the list of all files and subdirectories in any given directory using the <code class="language-plaintext highlighter-rouge">dir</code> argument, which may be used to specify both absolute and relative paths.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">path_abs</span> <span class="o">=</span> <span class="s">"C:/this/is/an/absolute/path"</span>
+<span class="n">readdir</span><span class="x">(</span><span class="n">dir</span> <span class="o">=</span> <span class="n">path_abs</span><span class="x">)</span>
+
+<span class="n">path_rel</span> <span class="o">=</span> <span class="s">"this/is/a/relative/path"</span>
+<span class="n">readdir</span><span class="x">(</span><span class="n">dir</span> <span class="o">=</span> <span class="n">path_rel</span><span class="x">)</span>
+</code></pre></div></div>
+<p>The returned object contains relative paths by default, but it is possible to return absolute paths by setting the <code class="language-plaintext highlighter-rouge">join</code> argument equal to <code class="language-plaintext highlighter-rouge">true</code>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">readdir</span><span class="x">(</span><span class="n">join</span> <span class="o">=</span> <span class="nb">true</span><span class="x">)</span>
+</code></pre></div></div>
+<p>Lastly, we may filter file and subdirectory names using the <code class="language-plaintext highlighter-rouge">filter()</code> and <code class="language-plaintext highlighter-rouge">contains()</code> functions.
+Suppose we would like to obtain all file and subdirectory names in the working directory that contain the string “lost”.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">y</span> <span class="o">=</span> <span class="n">readdir</span><span class="x">()</span>
+<span class="n">filter</span><span class="x">(</span><span class="n">contains</span><span class="x">(</span><span class="s">"lost"</span><span class="x">),</span> <span class="n">y</span><span class="x">)</span>
+</code></pre></div></div>
+<p>Note: The <code class="language-plaintext highlighter-rouge">readdir()</code> function returns hidden subdirectories along with regular ones.</p>
       <h2 id="python">
           <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
       </h2>
