@@ -83,3 +83,17 @@ cd "C:/My/New/Working/Directory/"
 You can also change the working directory in the File $$\rightarrow$$ Change Working Directory menu, which will pull up your standard operating system folder-picker.
 
 Additionally, if you open Stata by clicking on a `.do` file saved on your computer, the working directory will automatically be set to whatever folder that `.do` file is saved in.
+
+## Julia
+
+In Julia, you can use the `cd()` function to change the working directory.
+
+```julia 
+cd("C:/My/New/Working/Directory/")
+```
+
+You may use the `pwd()` function to check the current working directory.
+
+```julia
+pwd()
+```
