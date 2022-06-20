@@ -3816,28 +3816,28 @@
     "relUrl": "/Other/set_a_working_directory.html#implementations"
   },"636": {
     "doc": "Set a Working Directory",
+    "title": "Julia",
+    "content": "In Julia, you can use the cd() function to change the working directory. cd(\"C:/My/New/Working/Directory/\") . You may use the pwd() function to check the current working directory. pwd() . ",
+    "url": "/Other/set_a_working_directory.html#julia",
+    "relUrl": "/Other/set_a_working_directory.html#julia"
+  },"637": {
+    "doc": "Set a Working Directory",
     "title": "Python",
     "content": "In Python, the os.chdir() function will let you change working directories. import os os.chdir('C:/My/New/Working/Directory/') # Or if you want to change the directory to your \"Home\" directory, you can use os.path.expanduser(\"~\") os.chdir(os.path.expanduser(\"~\")) . In the Spyder IDE, the working directory is listed by default in the top-right, and you can edit it directly. ",
     "url": "/Other/set_a_working_directory.html#python",
     "relUrl": "/Other/set_a_working_directory.html#python"
-  },"637": {
+  },"638": {
     "doc": "Set a Working Directory",
     "title": "R",
     "content": "In R, the setwd() function can change the working directory. setwd('C:/My/New/Working/Directory/') . If you are working in an R project, there is also the here package. library(here) here() . here() will start in whatever your current working directory and look upwards into parent folders until it finds something that indicates that it’s found a folder containing a project: an .Rproj (R Project) file, a .git or .svn folder, or any of the files .here, .projectile, remake.yml, or DESCRIPTION, and will set the working directory to that folder. This won’t work if you haven’t set up a proper project folder structure. If you are using RStudio, there are several other ways to set the working directory. In the Session menu, you can choose to set the working directory to the Source File location (whatever folder the active code tab file is saved in), to the File Pane location (whatever folder the Files pane, in the bottom-right by default, has navigated to), or you can choose it using your standard operating system folder-picker. You can also navigate to the folder you want in the Files pane (which is in the bottom-right by default) and select More \\(\\rightarrow\\) Set as Working Directory. ",
     "url": "/Other/set_a_working_directory.html#r",
     "relUrl": "/Other/set_a_working_directory.html#r"
-  },"638": {
+  },"639": {
     "doc": "Set a Working Directory",
     "title": "Stata",
     "content": "In Stata, you can use the cd command to change working directories. cd \"C:/My/New/Working/Directory/\" . You can also change the working directory in the File \\(\\rightarrow\\) Change Working Directory menu, which will pull up your standard operating system folder-picker. Additionally, if you open Stata by clicking on a .do file saved on your computer, the working directory will automatically be set to whatever folder that .do file is saved in. ",
     "url": "/Other/set_a_working_directory.html#stata",
     "relUrl": "/Other/set_a_working_directory.html#stata"
-  },"639": {
-    "doc": "Set a Working Directory",
-    "title": "Julia",
-    "content": "In Julia, you can use the cd() function to change the working directory. cd(\"C:/My/New/Working/Directory/\") . You may use the pwd() function to check the current working directory. pwd() . ",
-    "url": "/Other/set_a_working_directory.html#julia",
-    "relUrl": "/Other/set_a_working_directory.html#julia"
   },"640": {
     "doc": "Simple Linear Regression",
     "title": "Simple Linear Regression",
