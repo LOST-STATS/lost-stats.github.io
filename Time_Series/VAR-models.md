@@ -32,7 +32,7 @@ and
 $$ U_t \ident \begin{bmatrix} u_t \\ 0 \\ vdots \\ 0 \end{bmatrix} \, .$$
 
 By the above ubiquitous formulation, any given VAR($$p$$) is stable if $$\text{det}(I_{Kp} - \boldsymbol{A}z) \neq 0 $$ for $$\abs{z} \leq 1$$. 
-In other words, if all eigenvalues of $$\boldsymbol{A}$$ liw within the complex unit circle, we may express the VAR(1) model as 
+In other words, if all eigenvalues of $$\boldsymbol{A}$$ live within the complex unit circle, we may express the VAR(1) model as 
 
 $$ Y_t = \boldsymbol{\mu} + \sum_{i=0}^\infty \boldsymbol{A}^i U_{t-i} \, , $$
 
@@ -87,11 +87,58 @@ These $$t$$-statistics can be obtained by dividing the elements of $$\widehat{B}
 
 # Keep in Mind 
 
-- VARs are often used for impulse response analysis, which is plagued with a multitude of identification limitations that you can read about in Lütkepohl's (2005) and Kilian and Lütkepohl's (2017) textbooks. VARs are reduced-form models -- it is necessary to impose structural restrictions to identify the relevant innovations nad impulse responses.
+- VARs are often used for impulse response analysis, which is plagued with a multitude of identification limitations that you can read about in Lütkepohl's (2005) and Kilian and Lütkepohl's (2017) textbooks. VARs are reduced-form models -- it is necessary to impose structural restrictions to identify the relevant innovations and impulse responses.
  
 # Implementations 
 
-
-## Julia
-
 ## R
+
+Begin by loading relevant packages.
+`dplyr` provides us with data manipulation capabilities, `lubridate` allows us to generate and work with date data, and `vars` contains VAR-related tools.
+```r
+if (!require("pacman")) install.packages("pacman")
+library(pacman)
+p_load(dplyr, lubridate, vars)
+```
+
+Then we create an arbitrary dataset containing two different time series.
+The actual relationship between these time series is irrelevant for this demonstration -- the focus is on estimating VARs.
+```r
+gdp   <- read.csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv")
+fdefx <- read.csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/FDEFX.csv")
+data  <- inner_join(gdp, fdefx) %>% # Join the two data sources into a single data frame
+          mutate(DATE = as.Date(DATE), 
+                 GDPC1 = log(GDPC1), # log GDPC1
+                 FDEFX = log(FDEFX)) # log FDEFX
+```
+
+We may use the `vars::VARselect` function to obtain optimal lag orders under a variety of information criteria.
+Notice that we are excluding the date vector when inputting the data into `VARselect`.
+```r
+lagorders <- VARselect(data[,c("GDPC1","FDEFX")])$selection
+lagorders
+```
+
+Now we estimate the VAR by defaulting to the Akaike Information Criterium (AIC) optimal lag order.
+We include an intercept in the model by passing the `type = "const"` argument inside of `VAR`. 
+```r
+lagorder <- lagorders[1]
+estim <- VAR(data[,c("GDPC1","FDEFX")], p = lagorder, type = "const")
+```
+
+Print the estimated VAR roots -- we must make sure that the VAR is stable (all roots lie within the unit circle).
+```r
+summary(estim)$roots
+```
+
+Regardless of stability issues, we are able to generate the non-cumulative impulse response function of FDEFX responding to an orthogonal shock to GDPC1. 
+```r
+irf <- irf(estim, impulse = "FDEFX", response = "GDPC1")
+plot(irf)
+```
+
+Lastly, we may also generate forecast error variance decompositions.
+```r
+fevd <- fevd(estim)
+plot(fevd)
+```
