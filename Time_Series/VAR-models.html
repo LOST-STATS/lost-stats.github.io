@@ -10,13 +10,13 @@
   <script type="text/javascript" src="/assets/js/just-the-docs.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Determine the Observation Level of a Data Set | LOST</title>
+<title>VAR Models | LOST</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Determine the Observation Level of a Data Set" />
+<meta property="og:title" content="VAR Models" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"@type":"WebPage","headline":"Determine the Observation Level of a Data Set","url":"/Data_Manipulation/determine_the_observation_level_of_a_data_set.html","@context":"https://schema.org"}</script>
+{"@type":"WebPage","headline":"VAR Models","url":"/Time_Series/VAR-models.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
@@ -68,11 +68,11 @@
       </a>
     </div>
     <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
-      <ul class="nav-list"><li class="nav-list-item active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/data_manipulation.html" class="nav-list-link">Data Manipulation</a><ul class="nav-list "><li class="nav-list-item "><a href="/Data_Manipulation/Regular_Expressions.html" class="nav-list-link">Regular Expressions</a></li><li class="nav-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="nav-list-link">Collapse a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="nav-list-link">Combining Datasets</a><ul class="nav-list"><li class="nav-list-item ">
+      <ul class="nav-list"><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/data_manipulation.html" class="nav-list-link">Data Manipulation</a><ul class="nav-list "><li class="nav-list-item "><a href="/Data_Manipulation/Regular_Expressions.html" class="nav-list-link">Regular Expressions</a></li><li class="nav-list-item "><a href="/Data_Manipulation/collapse_a_data_set.html" class="nav-list-link">Collapse a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="nav-list-link">Combining Datasets</a><ul class="nav-list"><li class="nav-list-item ">
                         <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="nav-list-link">Vertical Combination</a>
                       </li><li class="nav-list-item ">
                         <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="nav-list-link">Horizontal Combination (Deterministic)</a>
-                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/creating_a_variable_with_group_calculations.html" class="nav-list-link">Creating a Variable with Group Calculations</a></li><li class="nav-list-item "><a href="/Data_Manipulation/creating_categorical_variables.html" class="nav-list-link">Creating Categorical Variables</a></li><li class="nav-list-item "><a href="/Data_Manipulation/Creating_Dummy_Variables/creating_dummy_variables.html" class="nav-list-link">Creating Dummy Variables</a></li><li class="nav-list-item  active"><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="nav-list-link active">Determine the Observation Level of a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Reshaping/reshape.html" class="nav-list-link">Reshaping Data</a><ul class="nav-list"><li class="nav-list-item ">
+                      </li></ul></li><li class="nav-list-item "><a href="/Data_Manipulation/creating_a_variable_with_group_calculations.html" class="nav-list-link">Creating a Variable with Group Calculations</a></li><li class="nav-list-item "><a href="/Data_Manipulation/creating_categorical_variables.html" class="nav-list-link">Creating Categorical Variables</a></li><li class="nav-list-item "><a href="/Data_Manipulation/Creating_Dummy_Variables/creating_dummy_variables.html" class="nav-list-link">Creating Dummy Variables</a></li><li class="nav-list-item "><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="nav-list-link">Determine the Observation Level of a Data Set</a></li><li class="nav-list-item "><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Data_Manipulation/Reshaping/reshape.html" class="nav-list-link">Reshaping Data</a><ul class="nav-list"><li class="nav-list-item ">
                         <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="nav-list-link">Reshape Panel Data from Wide to Long</a>
                       </li><li class="nav-list-item ">
                         <a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="nav-list-link">Reshape Panel Data from Long to Wide</a>
@@ -186,7 +186,7 @@
                         <a href="/Presentation/Tables/Regression_Tables.html" class="nav-list-link">Regression Tables</a>
                       </li><li class="nav-list-item ">
                         <a href="/Presentation/Tables/Summary_Statistics_Tables.html" class="nav-list-link">Summary Statistics Tables</a>
-                      </li></ul></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Time_Series/Time_Series.html" class="nav-list-link">Time Series</a><ul class="nav-list "><li class="nav-list-item "><a href="/Time_Series/AR-models.html" class="nav-list-link">AR Models</a></li><li class="nav-list-item "><a href="/Time_Series/ARCH_Model.html" class="nav-list-link">ARCH Model</a></li><li class="nav-list-item "><a href="/Time_Series/ARIMA-models.html" class="nav-list-link">ARIMA Models</a></li><li class="nav-list-item "><a href="/Time_Series/ARMA-models.html" class="nav-list-link">ARMA Models</a></li><li class="nav-list-item "><a href="/Time_Series/Autocorrelation_Function.html" class="nav-list-link">Autocorrelation Function</a></li><li class="nav-list-item "><a href="/Time_Series/GARCH_Model.html" class="nav-list-link">GARCH Model</a></li><li class="nav-list-item "><a href="/Time_Series/Granger_Causality.html" class="nav-list-link">Granger Causality</a></li><li class="nav-list-item "><a href="/Time_Series/MA_Model.html" class="nav-list-link">MA Models</a></li><li class="nav-list-item "><a href="/Time_Series/Rolling_Regression.html" class="nav-list-link">Rolling Regression</a></li><li class="nav-list-item "><a href="/Time_Series/State_Space_Models.html" class="nav-list-link">State Space Models</a></li><li class="nav-list-item "><a href="/Time_Series/VAR-models.html" class="nav-list-link">VAR Models</a></li><li class="nav-list-item "><a href="/Time_Series/creating_time_series_dataset.html" class="nav-list-link">Creating a Time Series Dataset</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Other/Other.html" class="nav-list-link">Other</a><ul class="nav-list "><li class="nav-list-item "><a href="/Other/create_a_conda_package.html" class="nav-list-link">Create a Conda Package (Python)</a></li><li class="nav-list-item "><a href="/Other/get_a_list_of_files.html" class="nav-list-link">Get a List of Files</a></li><li class="nav-list-item "><a href="/Other/import_a_foreign_data_file.html" class="nav-list-link">Import a Foreign Data File</a></li><li class="nav-list-item "><a href="/Other/importing_delimited_files.html" class="nav-list-link">Import a Delimited Data File (CSV, TSV)</a></li><li class="nav-list-item "><a href="/Other/set_a_working_directory.html" class="nav-list-link">Set a Working Directory</a></li><li class="nav-list-item "><a href="/Other/simple_web_scrape.html" class="nav-list-link">Simple Web Scraping</a></li><li class="nav-list-item "><a href="/Other/task_scheduling_with_github_actions.html" class="nav-list-link">Task Scheduling with Github Actions</a></li></ul></li><li class="nav-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="nav-list-link">Desired Nonexistent Pages</a></li><li class="nav-list-item"><a href="/Contributing/Contributing.html" class="nav-list-link">Contributing</a></li><li class="nav-list-item"><a href="/" class="nav-list-link">Home</a></li></ul>
+                      </li></ul></li></ul></li><li class="nav-list-item active"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Time_Series/Time_Series.html" class="nav-list-link">Time Series</a><ul class="nav-list "><li class="nav-list-item "><a href="/Time_Series/AR-models.html" class="nav-list-link">AR Models</a></li><li class="nav-list-item "><a href="/Time_Series/ARCH_Model.html" class="nav-list-link">ARCH Model</a></li><li class="nav-list-item "><a href="/Time_Series/ARIMA-models.html" class="nav-list-link">ARIMA Models</a></li><li class="nav-list-item "><a href="/Time_Series/ARMA-models.html" class="nav-list-link">ARMA Models</a></li><li class="nav-list-item "><a href="/Time_Series/Autocorrelation_Function.html" class="nav-list-link">Autocorrelation Function</a></li><li class="nav-list-item "><a href="/Time_Series/GARCH_Model.html" class="nav-list-link">GARCH Model</a></li><li class="nav-list-item "><a href="/Time_Series/Granger_Causality.html" class="nav-list-link">Granger Causality</a></li><li class="nav-list-item "><a href="/Time_Series/MA_Model.html" class="nav-list-link">MA Models</a></li><li class="nav-list-item "><a href="/Time_Series/Rolling_Regression.html" class="nav-list-link">Rolling Regression</a></li><li class="nav-list-item "><a href="/Time_Series/State_Space_Models.html" class="nav-list-link">State Space Models</a></li><li class="nav-list-item  active"><a href="/Time_Series/VAR-models.html" class="nav-list-link active">VAR Models</a></li><li class="nav-list-item "><a href="/Time_Series/creating_time_series_dataset.html" class="nav-list-link">Creating a Time Series Dataset</a></li></ul></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="/Other/Other.html" class="nav-list-link">Other</a><ul class="nav-list "><li class="nav-list-item "><a href="/Other/create_a_conda_package.html" class="nav-list-link">Create a Conda Package (Python)</a></li><li class="nav-list-item "><a href="/Other/get_a_list_of_files.html" class="nav-list-link">Get a List of Files</a></li><li class="nav-list-item "><a href="/Other/import_a_foreign_data_file.html" class="nav-list-link">Import a Foreign Data File</a></li><li class="nav-list-item "><a href="/Other/importing_delimited_files.html" class="nav-list-link">Import a Delimited Data File (CSV, TSV)</a></li><li class="nav-list-item "><a href="/Other/set_a_working_directory.html" class="nav-list-link">Set a Working Directory</a></li><li class="nav-list-item "><a href="/Other/simple_web_scrape.html" class="nav-list-link">Simple Web Scraping</a></li><li class="nav-list-item "><a href="/Other/task_scheduling_with_github_actions.html" class="nav-list-link">Task Scheduling with Github Actions</a></li></ul></li><li class="nav-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="nav-list-link">Desired Nonexistent Pages</a></li><li class="nav-list-item"><a href="/Contributing/Contributing.html" class="nav-list-link">Contributing</a></li><li class="nav-list-item"><a href="/" class="nav-list-link">Home</a></li></ul>
     </nav>
     <footer class="site-footer">
       This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
@@ -205,158 +205,109 @@
     <div id="main-content-wrap" class="main-content-wrap">
           <nav aria-label="Breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb-nav-list">
-                <li class="breadcrumb-nav-list-item"><a href="/Data_Manipulation/data_manipulation.html">Data Manipulation</a></li>
-              <li class="breadcrumb-nav-list-item"><span>Determine the Observation Level of a Data Set</span></li>
+                <li class="breadcrumb-nav-list-item"><a href="/Time_Series/Time_Series.html">Time Series</a></li>
+              <li class="breadcrumb-nav-list-item"><span>VAR Models</span></li>
             </ol>
           </nav>
       <div id="main-content" class="main-content" role="main">
-          <h1 id="determine-the-observation-level-of-a-data-set">
-          <a href="#determine-the-observation-level-of-a-data-set" aria-labelledby="determine-the-observation-level-of-a-data-set" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Determine the Observation Level of a Data Set
+          <h1 id="vector-autoregression-var-models">
+          <a href="#vector-autoregression-var-models" aria-labelledby="vector-autoregression-var-models" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Vector Autoregression (VAR) Models
       </h1>
-<p>The <em>observation level</em> of a data set is the set of case-identifying variables which, in combination, uniquely identify every row of the data set. For example, in the data set</p>
-<div class="table-wrapper"><table>
-  <thead>
-    <tr>
-      <th>I</th>
-      <th>J</th>
-      <th>X</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>1</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>2</td>
-      <td>3.5</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>1</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>2</td>
-      <td>4.5</td>
-    </tr>
-  </tbody>
-</table></div>
-<p>the variables \(I\) and \(J\) uniquely identify rows. The first row has \(I = 1\) and \(J = 1\), and there is no other row with that combination. We could also say that \(X\) uniquely identifies rows, but in this example \(X\) is not a case-identifying variable, it’s actual data.</p>
-<p>When working with data that has case-identifier variables, like panel data, it’s generally a good idea to know what set of them makes up the observation level of a data set. Otherwise you might perform <a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html">merges</a> or case-level calculations incorrectly.</p>
-      <h2 id="keep-in-mind">
+<p>A vector autoregression (VAR) of order \(p\), often abbreviated as VAR(\(p\)), is the following data-generating process (DGP):</p>
+\[y_t = \upsilon + A_1 y_{t-1} + \ldots + A_p y_{t-p} + u_t \, ,\]
+<p>for \(t = 0, 1, 2, \ldots\), where \(y_t = (y_{1t}, \ldots, y_{Kt})'\) is a (\(K \times 1\)) random vector of observed data, the \(A_i\) are fixed (\(K \times K\)) coefficient matrices, \(\upsilon = (\upsilon_1 , \ldots , \upsilon_K)'\) is a fixed (\(K \times 1\)) vector of intercept terms, and \(u_t = (u_{1t} , \ldots , u_{Kt})'\) is a \(K\)-dimensional innovation process with \(E(u_t) = 0\), \(E(u_t u_t') = \Sigma_u\), and \(E(u_t u_s') = 0\) for \(s \neq t\). 
+Simply put, a VAR(\(p\)) is a model of the DGP underlying some random data vector \(y_t\) for all \(t\) as a function of \(1, \ldots , p\) of its own lags, along with identically and independently distributed (iid) innovations.</p>
+<p>Any given VAR(\(p\)) process has an equivalent VAR(1) representation:</p>
+\[Y_t = \boldsymbol{\upsilon} + \boldsymbol{A} Y_{t-1} + U_t \, ,\]
+<p>where</p>
+\[Y_t \ident \begin{bmatrix} y_t \\ y_{t-1} \\ \vdots \\ y_{t-p+1} \end{bmatrix} \, ,\]
+\[\boldsymbol{\upsilon} \ident \begin{bmatrix} \upsilon \\ 0 \\ \vdots \\ 0 \end{bmatrix}  \, ,\]
+\[A \ident \begin{bmatrix}  A_1 &amp; A_2 &amp; \ldots &amp; A_{p-1} &amp; A_p \\ I_K &amp; 0 &amp; \ldots &amp; 0 &amp; 0 \\ 0 &amp; I_K &amp; &amp; 0 &amp; 0 \\ \vdots &amp; &amp; \ddots &amp; \vdots &amp; \vdots \\ 0 &amp; 0 &amp; \ldots &amp; I_K &amp; 0 \end{bmatrix} \, ,\]
+<p>and</p>
+\[U_t \ident \begin{bmatrix} u_t \\ 0 \\ vdots \\ 0 \end{bmatrix} \, .\]
+<p>By the above ubiquitous formulation, any given VAR(\(p\)) is stable if \(\text{det}(I_{Kp} - \boldsymbol{A}z) \neq 0\) for \(\abs{z} \leq 1\). 
+In other words, if all eigenvalues of \(\boldsymbol{A}\) live within the complex unit circle, we may express the VAR(1) model as</p>
+\[Y_t = \boldsymbol{\mu} + \sum_{i=0}^\infty \boldsymbol{A}^i U_{t-i} \, ,\]
+<p>where \(\boldsymbol{\mu} \ident E(Y_t) = (I_{Kp} - \boldsymbol{A})^{-1} \boldsymbol{\upsilon}\), \(\Gamma_Y(h) = \sum_{i=0}^\infty \boldsymbol{A}^{h+i} \Sigma_U (\boldsymbol{A}^i)'\), and \(\frac{\partial Y_t}{U_{t-i}} = \boldsymbol{A}^i \rightarrow 0\) as $i \rightarrow \infty$.
+Intuitively, this means that the impulse response of \(Y_t\) to innovations converges to zero over time.
+Furthermore, a stable VAR(\(p\)) process is stationary – its first and second moments are time invariant.</p>
+<p>VAR(\(p\)) models may be estimated using a variety of statistical methods, with one of the most popular approaches being multivariate least squares estimation.
+Suppose we observe a sample time series \(y_1, \ldots, y_T\), along with \(p\) presample values for each variable (effectively a combined sample size of \(T+p\)).
+Define</p>
+\[Y \ident (y_1, \ldots, y_T) \, ,\]
+\[B \ident (\upsilon, A_1, \ldots, A_p) \, ,\]
+\[Z_t \ident \begin{bmatrix} 1 \\ y_t \\ \vdots \\ y_{t-p+1} \end{bmatrix} \, ,\]
+\[Z \ident (Z_0 , \ldots, Z_{T-1}) \, ,\]
+\[U \ident (u_1, \ldots, u_T) \, ,\]
+\[\boldsymbol{y} = \vec(Y) \,\]
+\[\boldsymbol{\beta} = \vec(B) \,\]
+\[\boldsymbol{b} = \vec(B') \, ,\]
+\[\boldsymbol{u} = \vec(U) \, .\]
+<p>Using the above notvation, we may express any given VAR(\(p\)) model as</p>
+\[Y = BZ + U \, ,\]
+<p>or equivalently as</p>
+\[\vec(Y) = \vec(B Z) + \vec(U) = (Z' \kron I_K) \vec(B) + \vec(U) \, ,\]
+<p>or</p>
+\[\boldsymbol{y} = (Z' \kron I_K) \boldsymbol{\beta} + \boldsymbol{u} \, ,\]
+<p>with the covariance matrix of \(\boldsymbol{u}\) being \(\Sigma_{\boldsymbol{u}} = I_t \kron \Sigma_u\).</p>
+<p>It can be shown that the least-squares (LS) estimator for the given model is</p>
+\[\widehat{\boldsymbol{b}} = \vec(\widehat{B}') = (I_K \kron (Z Z')^{-1} Z) \vec(Y') \, ,\]
+<p>which is equivalent to separately estimating each of the \(K\) equations in the standard formulation of a VAR(\(p\)) model using OLS.</p>
+<p>It can also be shown that if \(y_t\) is stable with standard white noise disturbances, we can ues the \(t\)-ratios provided by common regression programs in setting up confidence intervals and tests for individual coefficients. 
+These \(t\)-statistics can be obtained by dividing the elements of \(\widehat{B}\) by square roots of the corresponding diagonal elements of \((Z Z')^{-1} \kron \widehat{\Sigma}_u\).</p>
+      <h1 id="keep-in-mind">
           <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
-      </h2>
+      </h1>
 <ul>
-  <li>As in the above example, it’s easy to uniquely identify rows using continuous data. But the goal is to figure out which <em>case-identifying</em> variables, like an individual’s ID code, or a country code, or a time code, uniquely identify rows. Make sure you only try these variables.</li>
-  <li>Even if you think you know what the observation level is, it’s good to check. Lots of data is poorly behaved!</li>
-</ul>
-      <h2 id="also-consider">
-          <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
-      </h2>
-<ul>
-  <li>You can <a href="/Data_Manipulation/collapse_a_data_set.html">collapse a data set</a> to switch from one observation level to another, coarser one.</li>
+  <li>VARs are often used for impulse response analysis, which is plagued with a multitude of identification limitations that you can read about in Lütkepohl’s (2005) and Kilian and Lütkepohl’s (2017) textbooks. VARs are reduced-form models – it is necessary to impose structural restrictions to identify the relevant innovations and impulse responses.</li>
 </ul>
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
-      <h2 id="python">
-          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
-      </h2>
-<p>To check for duplicate rows when using <a href="https://pandas.pydata.org/"><strong>pandas</strong></a> dataframes, you can call <code class="language-plaintext highlighter-rouge">duplicated</code> or, to omit the duplicates, <code class="language-plaintext highlighter-rouge">drop_duplicates</code>.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Use conda or pip to install pandas if you don't already have it installed
-</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
-
-<span class="n">storms</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv'</span><span class="p">)</span>
-
-<span class="c1"># Find the duplicates by name, year, month, day, and hour
-</span><span class="n">level_variables</span> <span class="o">=</span> <span class="p">[</span><span class="s">'name'</span><span class="p">,</span> <span class="s">'year'</span><span class="p">,</span> <span class="s">'month'</span><span class="p">,</span> <span class="s">'day'</span><span class="p">,</span> <span class="s">'hour'</span><span class="p">]</span>
-<span class="n">storms</span><span class="p">[</span><span class="n">storms</span><span class="p">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">level_variables</span><span class="p">)]</span>
-
-<span class="c1"># Drop these duplicates, but retain the first occurrence of each
-</span><span class="n">storms</span> <span class="o">=</span> <span class="n">storms</span><span class="p">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">level_variables</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="s">'first'</span><span class="p">)</span>
-
-</code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary, install dplyr</span><span class="w">
-</span><span class="c1"># install.packages('dplyr')</span><span class="w">
-</span><span class="c1"># We do not need dplyr to detect the observation level</span><span class="w">
-</span><span class="c1"># But we will use it to get data, and for our alternate approach</span><span class="w">
-</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
-
-</span><span class="c1"># Get data on storms from dplyr</span><span class="w">
-</span><span class="n">data</span><span class="p">(</span><span class="s2">"storms"</span><span class="p">)</span><span class="w">
-
-</span><span class="c1"># Each storm should be identified by</span><span class="w">
-</span><span class="c1"># name, year, month, day, and hour</span><span class="w">
-</span><span class="c1"># anyDuplicated will return 0 if there are no duplicate combinations of these</span><span class="w">
-</span><span class="c1"># so if we get 0, the variables in c() are our observation level.</span><span class="w">
-</span><span class="n">anyDuplicated</span><span class="p">(</span><span class="n">storms</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="s1">'name'</span><span class="p">,</span><span class="s1">'year'</span><span class="p">,</span><span class="s1">'month'</span><span class="p">,</span><span class="s1">'day'</span><span class="p">,</span><span class="s1">'hour'</span><span class="p">)])</span><span class="w">
-
-</span><span class="c1"># We get 2292, telling us that row 2292 is a duplicate (and possibly others!)</span><span class="w">
-</span><span class="c1"># We can pick just the rows that are duplicates of other rows for inspection</span><span class="w">
-</span><span class="c1"># (note this won't get the first time that duplicate shows up, just the subsequent times)</span><span class="w">
-</span><span class="n">duplicated_rows</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">storms</span><span class="p">[</span><span class="n">duplicated</span><span class="p">(</span><span class="n">storms</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="s1">'name'</span><span class="p">,</span><span class="s1">'year'</span><span class="p">,</span><span class="s1">'month'</span><span class="p">,</span><span class="s1">'day'</span><span class="p">,</span><span class="s1">'hour'</span><span class="p">)]),]</span><span class="w">
-
-
-</span><span class="c1"># Alternately, we can use dplyr</span><span class="w">
-</span><span class="n">storms</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
-  </span><span class="n">group_by</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="p">,</span><span class="w"> </span><span class="n">hour</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
-  </span><span class="c1"># Add a variable with the number of times that particular combination shows up</span><span class="w">
-  </span><span class="n">mutate</span><span class="p">(</span><span class="n">number_duplicates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">())</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
-  </span><span class="c1"># Then take that variable out</span><span class="w">
-  </span><span class="n">pull</span><span class="p">(</span><span class="n">number_duplicates</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
-  </span><span class="c1"># And get the maximum of it</span><span class="w">
-  </span><span class="nf">max</span><span class="p">()</span><span class="w">
-</span><span class="c1"># If the result is 1, then we have found the observation level. If not, we have duplicates.</span><span class="w">
-
-</span><span class="c1"># We can pick out the rows that are duplicated for inspection</span><span class="w">
-</span><span class="c1"># by filtering on n(). This approach will give you every time the duplicate appears.</span><span class="w">
-</span><span class="n">duplicated_rows</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">storms</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
-  </span><span class="n">group_by</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="p">,</span><span class="w"> </span><span class="n">hour</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
-  </span><span class="c1"># Add a variable with the number of times that particular combination shows up</span><span class="w">
-  </span><span class="n">filter</span><span class="p">(</span><span class="n">n</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+<p>Begin by loading relevant packages.
+<code class="language-plaintext highlighter-rouge">dplyr</code> provides us with data manipulation capabilities, <code class="language-plaintext highlighter-rouge">lubridate</code> allows us to generate and work with date data, and <code class="language-plaintext highlighter-rouge">vars</code> contains VAR-related tools.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">require</span><span class="p">(</span><span class="s2">"pacman"</span><span class="p">))</span><span class="w"> </span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"pacman"</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">pacman</span><span class="p">)</span><span class="w">
+</span><span class="n">p_load</span><span class="p">(</span><span class="n">dplyr</span><span class="p">,</span><span class="w"> </span><span class="n">lubridate</span><span class="p">,</span><span class="w"> </span><span class="n">vars</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
-      <h2 id="stata">
-          <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
-      </h2>
-<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Load surface.dta, which contains temperature recordings in different locations
-</span><span class="err">sysuse</span> <span class="err">surface.dta,</span> <span class="err">clear
-</span><span class="c1">
-* duplicates report followed by a variable list will show how many times
-* each combination shows up.
-* I think there is one observation level for each location, so I'll check that
-</span><span class="err">duplicates</span> <span class="err">report</span> <span class="err">latitude</span> <span class="err">longitude
-</span><span class="c1">* If I am correct, then the only number in the "Copies" column will be 1.
-* But it looks like I was not correct.
-
-* duplicates tag will create a binary variable with 1 for all duplicates
-* so I can examine the problem more closely
-* (duplicates examples is another option)
-</span><span class="err">duplicates</span> <span class="err">tag</span> <span class="err">latitude</span> <span class="err">longitude,</span> <span class="err">g(duplicated_data)
-</span><span class="c1">
-* If I want to know not just whether there are duplicates but how many
-* of each there are for when I look more closely, I can instead do
-</span><span class="err">by</span> <span class="err">latitude</span> <span class="err">longitude,</span> <span class="err">sort:</span> <span class="err">g</span> <span class="err">number_of_duplicates_in_this_group</span> <span class="o">=</span> <span class="err">_N
+<p>Then we create an arbitrary dataset containing two different time series.
+The actual relationship between these time series is irrelevant for this demonstration – the focus is on estimating VARs.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gdp</span><span class="w">   </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/GDPC1.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">fdefx</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Time_Series/Data/FDEFX.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">data</span><span class="w">  </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">inner_join</span><span class="p">(</span><span class="n">gdp</span><span class="p">,</span><span class="w"> </span><span class="n">fdefx</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># Join the two data sources into a single data frame</span><span class="w">
+          </span><span class="n">mutate</span><span class="p">(</span><span class="n">DATE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.Date</span><span class="p">(</span><span class="n">DATE</span><span class="p">),</span><span class="w"> 
+                 </span><span class="n">GDPC1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">GDPC1</span><span class="p">),</span><span class="w"> </span><span class="c1"># log GDPC1</span><span class="w">
+                 </span><span class="n">FDEFX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">FDEFX</span><span class="p">))</span><span class="w"> </span><span class="c1"># log FDEFX</span><span class="w">
 </span></code></pre></div></div>
-<p>For especially large datasets the <a href="https://gtools.readthedocs.io/en/latest/index.html"><strong>Gtools</strong></a> version of the various duplicates commands, <a href="https://gtools.readthedocs.io/en/latest/usage/gduplicates/index.html">gduplicates</a>, is a great option</p>
-<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">* Install gtools if necessary
-* ssc install gtools
-* Recreate the two duplicates tasks from above
-</span><span class="err">gduplicates</span> <span class="err">report</span> <span class="err">latitude</span> <span class="err">longitude
-gduplicates</span> <span class="err">tag</span> <span class="err">latitude</span> <span class="err">longitude,</span> <span class="err">g(g_duplicated_data)
+<p>We may use the <code class="language-plaintext highlighter-rouge">vars::VARselect</code> function to obtain optimal lag orders under a variety of information criteria.
+Notice that we are excluding the date vector when inputting the data into <code class="language-plaintext highlighter-rouge">VARselect</code>.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lagorders</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">VARselect</span><span class="p">(</span><span class="n">data</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="s2">"GDPC1"</span><span class="p">,</span><span class="s2">"FDEFX"</span><span class="p">)])</span><span class="o">$</span><span class="n">selection</span><span class="w">
+</span><span class="n">lagorders</span><span class="w">
+</span></code></pre></div></div>
+<p>Now we estimate the VAR by defaulting to the Akaike Information Criterium (AIC) optimal lag order.
+We include an intercept in the model by passing the <code class="language-plaintext highlighter-rouge">type = "const"</code> argument inside of <code class="language-plaintext highlighter-rouge">VAR</code>.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lagorder</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lagorders</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w">
+</span><span class="n">estim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">VAR</span><span class="p">(</span><span class="n">data</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="s2">"GDPC1"</span><span class="p">,</span><span class="s2">"FDEFX"</span><span class="p">)],</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lagorder</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"const"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p>Print the estimated VAR roots – we must make sure that the VAR is stable (all roots lie within the unit circle).</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">summary</span><span class="p">(</span><span class="n">estim</span><span class="p">)</span><span class="o">$</span><span class="n">roots</span><span class="w">
+</span></code></pre></div></div>
+<p>Regardless of stability issues, we are able to generate the non-cumulative impulse response function of FDEFX responding to an orthogonal shock to GDPC1.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">irf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">irf</span><span class="p">(</span><span class="n">estim</span><span class="p">,</span><span class="w"> </span><span class="n">impulse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"FDEFX"</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"GDPC1"</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">irf</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p>Lastly, we may also generate forecast error variance decompositions.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fevd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fevd</span><span class="p">(</span><span class="n">estim</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">fevd</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
           <hr>
           <footer>
               <div class="d-flex mt-2">
                   <p class="text-small text-grey-dk-000 mb-0">
-                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Data_Manipulation/determine_the_observation_level_of_a_data_set.md" id="edit-this-page">Edit this page on GitHub.</a>
+                    <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Time_Series/VAR-models.md" id="edit-this-page">Edit this page on GitHub.</a>
                   </p>
               </div>
           </footer>
