@@ -12,7 +12,7 @@ A vector autoregression (VAR) of order $$p$$, often abbreviated as VAR($$p$$), i
 
 $$y_t = \upsilon + A_1 y_{t-1} + \ldots + A_p y_{t-p} + u_t \, ,$$
 
-for t = 0, 1, 2, \ldots, where $$y_t = (y_{1t}, \ldots, y_{Kt})'$$ is a ($$K \times 1$$) random vector of observed data, the $$A_i$$ are fixed ($$K \times K$$) coefficient matrices, $$\upsilon = (\upsilon_1 , \ldots , \upsilon_K)'$$ is a fixed ($$K \times 1$$) vector of intercept terms, and $$u_t = (u_{1t} , \ldots , u_{Kt})'$$ is a $$K$$-dimensional innovation process with $$E(u_t) = 0$$, $$E(u_t u_t') = \Sigma_u$$, and $$E(u_t u_s') = 0$$ for $$s \neq t$$. 
+for $$t = 0, 1, 2, \ldots$$, where $$y_t = (y_{1t}, \ldots, y_{Kt})'$$ is a ($$K \times 1$$) random vector of observed data, the $$A_i$$ are fixed ($$K \times K$$) coefficient matrices, $$\upsilon = (\upsilon_1 , \ldots , \upsilon_K)'$$ is a fixed ($$K \times 1$$) vector of intercept terms, and $$u_t = (u_{1t} , \ldots , u_{Kt})'$$ is a $$K$$-dimensional innovation process with $$E(u_t) = 0$$, $$E(u_t u_t') = \Sigma_u$$, and $$E(u_t u_s') = 0$$ for $$s \neq t$$. 
 Simply put, a VAR($$p$$) is a model of the DGP underlying some random data vector $$y_t$$ for all $$t$$ as a function of $$1, \ldots , p$$ of its own lags, along with identically and independently distributed (iid) innovations.
 
 Any given VAR($$p$$) process has an equivalent VAR(1) representation:
