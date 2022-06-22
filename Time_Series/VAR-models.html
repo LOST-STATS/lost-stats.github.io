@@ -220,41 +220,41 @@ Simply put, a VAR(\(p\)) is a model of the DGP underlying some random data vecto
 <p>Any given VAR(\(p\)) process has an equivalent VAR(1) representation:</p>
 \[Y_t = \boldsymbol{\upsilon} + \boldsymbol{A} Y_{t-1} + U_t \, ,\]
 <p>where</p>
-\[Y_t \ident \begin{bmatrix} y_t \\ y_{t-1} \\ \vdots \\ y_{t-p+1} \end{bmatrix} \, ,\]
-\[\boldsymbol{\upsilon} \ident \begin{bmatrix} \upsilon \\ 0 \\ \vdots \\ 0 \end{bmatrix}  \, ,\]
-\[A \ident \begin{bmatrix}  A_1 &amp; A_2 &amp; \ldots &amp; A_{p-1} &amp; A_p \\ I_K &amp; 0 &amp; \ldots &amp; 0 &amp; 0 \\ 0 &amp; I_K &amp; &amp; 0 &amp; 0 \\ \vdots &amp; &amp; \ddots &amp; \vdots &amp; \vdots \\ 0 &amp; 0 &amp; \ldots &amp; I_K &amp; 0 \end{bmatrix} \, ,\]
+\[Y_t = \begin{bmatrix} y_t \\ y_{t-1} \\ \vdots \\ y_{t-p+1} \end{bmatrix} \, ,\]
+\[\boldsymbol{\upsilon} = \begin{bmatrix} \upsilon \\ 0 \\ \vdots \\ 0 \end{bmatrix}  \, ,\]
+\[A = \begin{bmatrix}  A_1 &amp; A_2 &amp; \ldots &amp; A_{p-1} &amp; A_p \\ I_K &amp; 0 &amp; \ldots &amp; 0 &amp; 0 \\ 0 &amp; I_K &amp; &amp; 0 &amp; 0 \\ \vdots &amp; &amp; \ddots &amp; \vdots &amp; \vdots \\ 0 &amp; 0 &amp; \ldots &amp; I_K &amp; 0 \end{bmatrix} \, ,\]
 <p>and</p>
-\[U_t \ident \begin{bmatrix} u_t \\ 0 \\ vdots \\ 0 \end{bmatrix} \, .\]
-<p>By the above ubiquitous formulation, any given VAR(\(p\)) is stable if \(\text{det}(I_{Kp} - \boldsymbol{A}z) \neq 0\) for \(\abs{z} \leq 1\). 
+\[U_t = \begin{bmatrix} u_t \\ 0 \\ \vdots \\ 0 \end{bmatrix} \, .\]
+<p>By the above ubiquitous formulation, any given VAR(\(p\)) is stable if \(\text{det}(I_{Kp} - \boldsymbol{A}z) \neq 0\) for \(|z| \leq 1\). 
 In other words, if all eigenvalues of \(\boldsymbol{A}\) live within the complex unit circle, we may express the VAR(1) model as</p>
 \[Y_t = \boldsymbol{\mu} + \sum_{i=0}^\infty \boldsymbol{A}^i U_{t-i} \, ,\]
-<p>where \(\boldsymbol{\mu} \ident E(Y_t) = (I_{Kp} - \boldsymbol{A})^{-1} \boldsymbol{\upsilon}\), \(\Gamma_Y(h) = \sum_{i=0}^\infty \boldsymbol{A}^{h+i} \Sigma_U (\boldsymbol{A}^i)'\), and \(\frac{\partial Y_t}{U_{t-i}} = \boldsymbol{A}^i \rightarrow 0\) as $i \rightarrow \infty$.
+<p>where \(\boldsymbol{\mu} = E(Y_t) = (I_{Kp} - \boldsymbol{A})^{-1} \boldsymbol{\upsilon}\), \(\Gamma_Y(h) = \sum_{i=0}^\infty \boldsymbol{A}^{h+i} \Sigma_U (\boldsymbol{A}^i)'\), and \(\frac{\partial Y_t}{U_{t-i}} = \boldsymbol{A}^i \rightarrow 0\) as \(i \rightarrow \infty\).
 Intuitively, this means that the impulse response of \(Y_t\) to innovations converges to zero over time.
 Furthermore, a stable VAR(\(p\)) process is stationary – its first and second moments are time invariant.</p>
 <p>VAR(\(p\)) models may be estimated using a variety of statistical methods, with one of the most popular approaches being multivariate least squares estimation.
 Suppose we observe a sample time series \(y_1, \ldots, y_T\), along with \(p\) presample values for each variable (effectively a combined sample size of \(T+p\)).
 Define</p>
-\[Y \ident (y_1, \ldots, y_T) \, ,\]
-\[B \ident (\upsilon, A_1, \ldots, A_p) \, ,\]
-\[Z_t \ident \begin{bmatrix} 1 \\ y_t \\ \vdots \\ y_{t-p+1} \end{bmatrix} \, ,\]
-\[Z \ident (Z_0 , \ldots, Z_{T-1}) \, ,\]
-\[U \ident (u_1, \ldots, u_T) \, ,\]
-\[\boldsymbol{y} = \vec(Y) \,\]
-\[\boldsymbol{\beta} = \vec(B) \,\]
-\[\boldsymbol{b} = \vec(B') \, ,\]
-\[\boldsymbol{u} = \vec(U) \, .\]
+\[Y = (y_1, \ldots, y_T) \, ,\]
+\[B = (\upsilon, A_1, \ldots, A_p) \, ,\]
+\[Z_t = \begin{bmatrix} 1 \\ y_t \\ \vdots \\ y_{t-p+1} \end{bmatrix} \, ,\]
+\[Z = (Z_0 , \ldots, Z_{T-1}) \, ,\]
+\[U = (u_1, \ldots, u_T) \, ,\]
+\[\boldsymbol{y} = \text{vec}(Y) \,\]
+\[\boldsymbol{\beta} = \text{vec}(B) \,\]
+\[\boldsymbol{b} = \text{vec}(B') \, ,\]
+\[\boldsymbol{u} = \text{vec}(U) \, .\]
 <p>Using the above notvation, we may express any given VAR(\(p\)) model as</p>
 \[Y = BZ + U \, ,\]
 <p>or equivalently as</p>
-\[\vec(Y) = \vec(B Z) + \vec(U) = (Z' \kron I_K) \vec(B) + \vec(U) \, ,\]
+\[\text{vec}(Y) = \text{vec}(B Z) + \text{vec}(U) = (Z' \otimes I_K) \text{vec}(B) + \text{vec}(U) \, ,\]
 <p>or</p>
-\[\boldsymbol{y} = (Z' \kron I_K) \boldsymbol{\beta} + \boldsymbol{u} \, ,\]
-<p>with the covariance matrix of \(\boldsymbol{u}\) being \(\Sigma_{\boldsymbol{u}} = I_t \kron \Sigma_u\).</p>
+\[\boldsymbol{y} = (Z' \otimes I_K) \boldsymbol{\beta} + \boldsymbol{u} \, ,\]
+<p>with the covariance matrix of \(\boldsymbol{u}\) being \(\Sigma_{\boldsymbol{u}} = I_t \otimes \Sigma_u\).</p>
 <p>It can be shown that the least-squares (LS) estimator for the given model is</p>
-\[\widehat{\boldsymbol{b}} = \vec(\widehat{B}') = (I_K \kron (Z Z')^{-1} Z) \vec(Y') \, ,\]
+\[\widehat{\boldsymbol{b}} = \text{vec}(\widehat{B}') = (I_K \otimes (Z Z')^{-1} Z) \text{vec}(Y') \, ,\]
 <p>which is equivalent to separately estimating each of the \(K\) equations in the standard formulation of a VAR(\(p\)) model using OLS.</p>
 <p>It can also be shown that if \(y_t\) is stable with standard white noise disturbances, we can ues the \(t\)-ratios provided by common regression programs in setting up confidence intervals and tests for individual coefficients. 
-These \(t\)-statistics can be obtained by dividing the elements of \(\widehat{B}\) by square roots of the corresponding diagonal elements of \((Z Z')^{-1} \kron \widehat{\Sigma}_u\).</p>
+These \(t\)-statistics can be obtained by dividing the elements of \(\widehat{B}\) by square roots of the corresponding diagonal elements of \((Z Z')^{-1} \otimes \widehat{\Sigma}_u\).</p>
       <h1 id="keep-in-mind">
           <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
       </h1>
