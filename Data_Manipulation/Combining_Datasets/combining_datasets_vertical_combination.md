@@ -16,6 +16,25 @@ When combining two datasets that collect the same information about different pe
 
 # Implementations
 
+## Julia
+
+The primary library used for datasets in Julia is `DataFrames`, which is the equivalent of python's `pandas`. The simplest way to combine two dataframes is via the `cat` function, where we specify the axis. However, most of the time people use the `vcat` version, which combines rows by default.
+
+```julia
+using DataFrames, RDatasets
+
+# Load the mtcars dataset to match the R example
+cars = dataset("dataset", "mtcars")
+
+# split into two. Indices are 1-based.
+mtcars1 = cars[1:10, :]
+mtcars2 = cars[11:32, :]
+
+# combine them back together the simplest way. Works with any number
+mtcarswhole = vcat(mtcars1, mtcars2)
+
+``` 
+
 ## Python
 
 `pandas` is by far the most widely-used library for data manipulation in python. The `concat` function concatenates datasets vertically and combines datasets even if they don't contain the exact same set of variables. It's also possible to concatenate dataframes horizontally by passing the function the keyword argument `axis=1`.
