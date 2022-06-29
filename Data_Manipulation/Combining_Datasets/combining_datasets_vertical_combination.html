@@ -219,6 +219,23 @@
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
+      <h2 id="julia">
+          <a href="#julia" aria-labelledby="julia" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Julia
+      </h2>
+<p>The primary library used for datasets in Julia is <code class="language-plaintext highlighter-rouge">DataFrames</code>, which is the equivalent of python’s <code class="language-plaintext highlighter-rouge">pandas</code>. The simplest way to combine two dataframes is via the <code class="language-plaintext highlighter-rouge">cat</code> function, where we specify the axis. However, most of the time people use the <code class="language-plaintext highlighter-rouge">vcat</code> version, which combines rows by default.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="n">DataFrames</span><span class="x">,</span> <span class="n">RDatasets</span>
+
+<span class="c"># Load the mtcars dataset to match the R example</span>
+<span class="n">cars</span> <span class="o">=</span> <span class="n">dataset</span><span class="x">(</span><span class="s">"dataset"</span><span class="x">,</span> <span class="s">"mtcars"</span><span class="x">)</span>
+
+<span class="c"># split into two. Indices are 1-based.</span>
+<span class="n">mtcars1</span> <span class="o">=</span> <span class="n">cars</span><span class="x">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="x">,</span> <span class="o">:</span><span class="x">]</span>
+<span class="n">mtcars2</span> <span class="o">=</span> <span class="n">cars</span><span class="x">[</span><span class="mi">11</span><span class="o">:</span><span class="mi">32</span><span class="x">,</span> <span class="o">:</span><span class="x">]</span>
+
+<span class="c"># combine them back together the simplest way. Works with any number</span>
+<span class="n">mtcarswhole</span> <span class="o">=</span> <span class="n">vcat</span><span class="x">(</span><span class="n">mtcars1</span><span class="x">,</span> <span class="n">mtcars2</span><span class="x">)</span>
+
+</code></pre></div></div>
       <h2 id="python">
           <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
       </h2>

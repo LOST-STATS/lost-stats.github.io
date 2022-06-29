@@ -226,6 +226,25 @@
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
+      <h2 id="julia">
+          <a href="#julia" aria-labelledby="julia" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Julia
+      </h2>
+<p>Julia provides a variety of join functions to combine two dataframes, including <code class="language-plaintext highlighter-rouge">innerjoin</code>, <code class="language-plaintext highlighter-rouge">leftjoin</code>, <code class="language-plaintext highlighter-rouge">rightjoin</code>, <code class="language-plaintext highlighter-rouge">outerjoin</code>, <code class="language-plaintext highlighter-rouge">semijoin</code>, <code class="language-plaintext highlighter-rouge">antijoin</code>, and <code class="language-plaintext highlighter-rouge">crossjoin</code>. We will consider the most common use cases, involving the leftjoin and the antijoin.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="n">DataFrames</span>
+<span class="n">gdp2018</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="x">(</span><span class="n">country</span><span class="o">=</span><span class="x">[</span><span class="s">"UK"</span><span class="x">,</span> <span class="s">"USA"</span><span class="x">,</span> <span class="s">"France"</span><span class="x">],</span> 
+                    <span class="n">currency</span><span class="o">=</span><span class="x">[</span><span class="s">"GBP"</span><span class="x">,</span> <span class="s">"USD"</span><span class="x">,</span> <span class="s">"EUR"</span><span class="x">],</span>
+                    <span class="n">gdp_trillions</span><span class="o">=</span><span class="x">[</span><span class="mf">2.1</span><span class="x">,</span> <span class="mf">20.58</span><span class="x">,</span> <span class="mf">2.78</span><span class="x">])</span>
+
+<span class="n">dollarvalue2018</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="x">(</span><span class="n">currency</span><span class="o">=</span><span class="x">[</span><span class="s">"EUR"</span><span class="x">,</span> <span class="s">"GBP"</span><span class="x">,</span> <span class="s">"YEN"</span><span class="x">,</span> <span class="s">"USD"</span><span class="x">],</span>
+                            <span class="n">in_dollars</span><span class="o">=</span><span class="x">[</span><span class="mf">1.104</span><span class="x">,</span> <span class="mf">1.256</span><span class="x">,</span> <span class="mf">0.00926</span><span class="x">,</span> <span class="mf">1.0</span><span class="x">])</span>
+
+<span class="n">gdpandexchange</span> <span class="o">=</span> <span class="n">leftjoin</span><span class="x">(</span><span class="n">gdp2018</span><span class="x">,</span> <span class="n">dollarvalue2018</span><span class="x">,</span> <span class="n">on</span> <span class="o">=</span> <span class="o">:</span><span class="n">currency</span><span class="x">)</span>
+
+<span class="c"># The antijoin is often useful as a way to obtain which rows in one dataframe are not in a another. </span>
+<span class="c"># In this case, for which currencies do we have dollar value, but not country and GDP?</span>
+
+<span class="n">missingcountries</span> <span class="o">=</span> <span class="n">antijoin</span><span class="x">(</span><span class="n">dollarvalue2018</span><span class="x">,</span> <span class="n">gdp2018</span><span class="x">,</span> <span class="n">on</span> <span class="o">=</span> <span class="o">:</span><span class="n">currency</span><span class="x">)</span>
+</code></pre></div></div>
       <h2 id="python">
           <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
       </h2>
