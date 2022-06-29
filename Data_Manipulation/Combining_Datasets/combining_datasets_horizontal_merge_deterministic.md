@@ -22,6 +22,27 @@ Because we expect such identifiers to be unique to an individual (unlike many na
 
 # Implementations
 
+## Julia
+
+Julia provides a variety of join functions to combine two dataframes, including `innerjoin`, `leftjoin`, `rightjoin`, `outerjoin`, `semijoin`, `antijoin`, and `crossjoin`. We will consider the most common use cases, involving the leftjoin and the antijoin.
+
+```julia
+using DataFrames
+gdp2018 = DataFrame(country=["UK", "USA", "France"], 
+                    currency=["GBP", "USD", "EUR"],
+                    gdp_trillions=[2.1, 20.58, 2.78])
+
+dollarvalue2018 = DataFrame(currency=["EUR", "GBP", "YEN", "USD"],
+                            in_dollars=[1.104, 1.256, 0.00926, 1.0])
+
+gdpandexchange = leftjoin(gdp2018, dollarvalue2018, on = :currency)
+
+# The antijoin is often useful as a way to obtain which rows in one dataframe are not in a another. 
+# In this case, for which currencies do we have dollar value, but not country and GDP?
+
+missingcountries = antijoin(dollarvalue2018, gdp2018, on = :currency)
+```
+
 ## Python
 
 There are three main ways to join datasets horizontally in python using the `merge` function in **pandas**: one-to-one joins (e.g. two DataFrames joined on unique indexes), many-to-one joins (e.g. joining a unique index to one or more columns in a different DataFrame), and many-to-many joins (joining columns on columns). The column(s) to use as keys for the merge are specified with the `on=` keyword argument. The merges are different depending on if the merge is `inner` (use only those keys in both DataFrames), `outer` (use the cartesian product of all keys), `left` (use only keys in the left DataFrame), or `right` (use only keys in the right DataFrame). Outer joins will include entries for all possible combinations of columns. Further details can be found in the [**pandas** documentation](https://pandas.pydata.org/pandas-docs/stable/user_guide/merging.html#brief-primer-on-merge-methods-relational-algebra).
