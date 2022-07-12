@@ -20,7 +20,7 @@ A marginal effects plot for a categorical interaction displays the effect of $X$
 ## Also Consider
 
 - Consider performing a [power analysis of interaction terms]({{ "/Other/power_analysis_for_interactions.html" | relative_url }}) before running your analysis to see whether you have the statistical power for your interactions
-- [Marginal effects plots for interactions with continuous variables]({{ "/Figures/marginal_effects_plots_for_interactions_with_continuous_variables.html" | relative_url }})
+- [Marginal effects plots for interactions with continuous variables]({{ "/Presentation/Figures/marginal_effects_plots_for_interactions_with_continuous_variables.html" | relative_url }})
 
 # Implementations
 
