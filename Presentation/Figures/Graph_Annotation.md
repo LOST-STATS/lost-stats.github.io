@@ -79,7 +79,7 @@ p <- p + annotate(geom = 'segment', x = 24, xend = 20, y = 230, yend = 200, arro
 
 This results in:
 
-![R annotated scatterplot](Images/Graph_Annotation/r_annotated_graph.png)		 
+![R annotated scatterplot](Images/Graph_Annotation/R_annotated_graph.png)		 
 
 An alternate appraoch is to use `ggannotate()` from the **ggannotate** package. This package isn't on CRAN, so instead of `install.packages('ggannotate'), first install the **remotes** package and then run `remotes::install_github('MattCowgill/ggannotate')`.
 
