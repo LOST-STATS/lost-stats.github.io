@@ -213,8 +213,8 @@
             </ol>
           </nav>
       <div id="main-content" class="main-content" role="main">
-          <h1 id="joint-significance-tests">
-          <a href="#joint-significance-tests" aria-labelledby="joint-significance-tests" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Joint Significance Tests
+          <h1 id="nonlinear-significance-tests">
+          <a href="#nonlinear-significance-tests" aria-labelledby="nonlinear-significance-tests" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Nonlinear Significance Tests
       </h1>
 <p>Most regression output, or output from other methods that produce multiple coefficients, will include the results of frequentist hypothesis tests comparing each coefficient to 0. However, in many cases, you may be interested in a hypothesis test of a null restriction that involves a nonlinear combination of the coefficients, or producing an estimate and sampling distriubtion for that nonlinear combination. For example, in the model</p>
 \[Y = \beta_0 + \beta_1X + \beta_2Z + \varepsilon\]
@@ -224,7 +224,7 @@
           <a href="#keep-in-mind" aria-labelledby="keep-in-mind" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
       </h2>
 <ul>
-  <li>Depending on your goal, you may be able to avoid doing a test of nonlinear combinations of coefficients by converting the combination into a linear one. For example, if you do not want to estimate $\beta_1/\beta_2$ itself, but instead are only interested in testing the null hypothesis $\beta_1/\beta_2 = 1$, this null hypothesis can be manipulated to instead be $\beta_1 = \beta_2$ or $\beta_1 - \beta_2 = 0$, either of which can be evaluated as a hypothesis test on a linear combination of coefficients.</li>
+  <li>Depending on your goal, you may be able to avoid doing a test of nonlinear combinations of coefficients by converting the combination into a linear one. For example, if you do not want to estimate \(\beta_1/\beta_2\) itself, but instead are only interested in testing the null hypothesis \(\beta_1/\beta_2 = 1\), this null hypothesis can be manipulated to instead be \(\beta_1 = \beta_2\) or \(\beta_1 - \beta_2 = 0\), either of which can be evaluated as a hypothesis test on a linear combination of coefficients.</li>
 </ul>
       <h2 id="also-consider">
           <a href="#also-consider" aria-labelledby="also-consider" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider

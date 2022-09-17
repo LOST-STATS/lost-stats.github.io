@@ -3336,14 +3336,14 @@
     "relUrl": "/Model_Estimation/GLS/nested_logit.html"
   },"556": {
     "doc": "Nonlinear Hypothesis Tests",
-    "title": "Joint Significance Tests",
+    "title": "Nonlinear Significance Tests",
     "content": "Most regression output, or output from other methods that produce multiple coefficients, will include the results of frequentist hypothesis tests comparing each coefficient to 0. However, in many cases, you may be interested in a hypothesis test of a null restriction that involves a nonlinear combination of the coefficients, or producing an estimate and sampling distriubtion for that nonlinear combination. For example, in the model . \\[Y = \\beta_0 + \\beta_1X + \\beta_2Z + \\varepsilon\\] You may be interested in the ratio of the two effects, $\\beta_1/\\beta_2$, and would want an estimate of that combination, along with a standard error, and a hypothesis test comparing that estimate to 0 or some other value. Estimates and tests of nonlinear combinations of coefficients are different than for linear combinations, because they imply restrictions on estimation that cannot be expressed in the form of a matrix of linear restrictions. The most common approach to producing a sampling distribution for a nonlinear combination of coefficients is the delta method and that is what all the commands on this page use. ",
-    "url": "/Model_Estimation/Statistical_Inference/nonlinear_hypothesis_tests.html#joint-significance-tests",
-    "relUrl": "/Model_Estimation/Statistical_Inference/nonlinear_hypothesis_tests.html#joint-significance-tests"
+    "url": "/Model_Estimation/Statistical_Inference/nonlinear_hypothesis_tests.html#nonlinear-significance-tests",
+    "relUrl": "/Model_Estimation/Statistical_Inference/nonlinear_hypothesis_tests.html#nonlinear-significance-tests"
   },"557": {
     "doc": "Nonlinear Hypothesis Tests",
     "title": "Keep in Mind",
-    "content": ". | Depending on your goal, you may be able to avoid doing a test of nonlinear combinations of coefficients by converting the combination into a linear one. For example, if you do not want to estimate $\\beta_1/\\beta_2$ itself, but instead are only interested in testing the null hypothesis $\\beta_1/\\beta_2 = 1$, this null hypothesis can be manipulated to instead be $\\beta_1 = \\beta_2$ or $\\beta_1 - \\beta_2 = 0$, either of which can be evaluated as a hypothesis test on a linear combination of coefficients. | . ",
+    "content": ". | Depending on your goal, you may be able to avoid doing a test of nonlinear combinations of coefficients by converting the combination into a linear one. For example, if you do not want to estimate \\(\\beta_1/\\beta_2\\) itself, but instead are only interested in testing the null hypothesis \\(\\beta_1/\\beta_2 = 1\\), this null hypothesis can be manipulated to instead be \\(\\beta_1 = \\beta_2\\) or \\(\\beta_1 - \\beta_2 = 0\\), either of which can be evaluated as a hypothesis test on a linear combination of coefficients. | . ",
     "url": "/Model_Estimation/Statistical_Inference/nonlinear_hypothesis_tests.html#keep-in-mind",
     "relUrl": "/Model_Estimation/Statistical_Inference/nonlinear_hypothesis_tests.html#keep-in-mind"
   },"558": {
