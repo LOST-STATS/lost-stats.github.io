@@ -7,7 +7,7 @@ nav_order: 1
 mathjax: true ## Switch to false if this page has no equations or other math rendering.
 ---
 
-# Joint Significance Tests
+# Nonlinear Significance Tests
 
 Most regression output, or output from other methods that produce multiple coefficients, will include the results of frequentist hypothesis tests comparing each coefficient to 0. However, in many cases, you may be interested in a hypothesis test of a null restriction that involves a nonlinear combination of the coefficients, or producing an estimate and sampling distriubtion for that nonlinear combination. For example, in the model
 
@@ -19,7 +19,7 @@ Estimates and tests of nonlinear combinations of coefficients are different than
 
 ## Keep in Mind
 
-- Depending on your goal, you may be able to avoid doing a test of nonlinear combinations of coefficients by converting the combination into a linear one. For example, if you do not want to estimate $\beta_1/\beta_2$ itself, but instead are only interested in testing the null hypothesis $\beta_1/\beta_2 = 1$, this null hypothesis can be manipulated to instead be $\beta_1 = \beta_2$ or $\beta_1 - \beta_2 = 0$, either of which can be evaluated as a hypothesis test on a linear combination of coefficients.
+- Depending on your goal, you may be able to avoid doing a test of nonlinear combinations of coefficients by converting the combination into a linear one. For example, if you do not want to estimate $$\beta_1/\beta_2$$ itself, but instead are only interested in testing the null hypothesis $$\beta_1/\beta_2 = 1$$, this null hypothesis can be manipulated to instead be $$\beta_1 = \beta_2$$ or $$\beta_1 - \beta_2 = 0$$, either of which can be evaluated as a hypothesis test on a linear combination of coefficients.
 
 ## Also Consider
 
