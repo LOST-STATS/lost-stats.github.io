@@ -16,7 +16,7 @@ A cross-tabulation is rudimentary form of analysis, and a great starting point f
 ## Keep in Mind
 
 - Cross-tabulations are generally not appropriate if either of the variables you're looking at is continuous. You may want to consider a [scatterplot]({{ "/Presentation/Figures/Scatterplots.html" | relative_url }}) in this case, or a number of other options.
-- By default, cross-tabulations count (tabulate) the number of observations in each cell. But it is usually straightforward to have it provide the percentage in each cell instead. Which one you want depends on what question you're trying to answer. 
+- By default, cross-tabulations count (tabulate) the number of observations in each cell. But it is usually straightforward to have it provide the percentage in each cell instead. Which one you want depends on what question you're trying to answer.
 
 
 ## Also Consider
@@ -25,6 +25,86 @@ A cross-tabulation is rudimentary form of analysis, and a great starting point f
 
 
 # Implementations
+
+## Julia
+
+Julia ecosystem has a specialized library for building cross-tables named **FreqTables.jl**.
+As any other registered library it can be installed from a REPL session with
+`import Pkg; Pkg.add("FreqTables")` command. We'll also need **CSV** and **DataFrames**
+libraries for data loading and preparation.
+
+```julia
+using CSV, DataFrames, FreqTables
+
+# Load data from a local CSV file into a Data Frame
+data_file = joinpath("Data", "lakers.csv")
+lakers = CSV.read(data_file, DataFrame)
+
+# Filter for only a couple Lakers players for space
+lakersd = lakers[lakers.team .== "LAL", :]
+# Ignore missing names while filtering for the given names
+lakersd = lakersd[coalesce.(in.(lakersd.player, Ref(["Jordan Farmar", "Pau Gasol", "Kobe Bryant"])), false), :]
+
+# Create a crosstab for each basketball action for each player
+ftbl = freqtable(lakersd, :player, :etype)
+
+# 3×6 Named Matrix{Int64}
+#  player ╲ etype │       "foul"  "free throw"     "rebound"        "shot"    "turnover"   "violation"
+# ────────────────┼───────────────────────────────────────────────────────────────────────────────────
+# "Jordan Farmar" │           99            75           110           389            87             4
+# "Kobe Bryant"   │          180           529           410          1619           200             7
+# "Pau Gasol"     │          159           423           752           993           148             6
+```
+
+You can even create tables analyzing three (or more) variables. Here is the same table as above for home and away games.
+
+```julia
+freqtable(lakersd, :player, :etype, :game_type)
+
+# 3×6×2 Named Array{Int64, 3}
+
+# [:, :, game_type="away"] =
+#  player ╲ etype │       "foul"  "free throw"     "rebound"        "shot"    "turnover"   "violation"
+# ────────────────┼───────────────────────────────────────────────────────────────────────────────────
+# "Jordan Farmar" │           51            21            48           189            45             2
+# "Kobe Bryant"   │           93           315           213           882            93             3
+# "Pau Gasol"     │           78           221           389           513            78             5
+
+# [:, :, game_type="home"] =
+#  player ╲ etype │       "foul"  "free throw"     "rebound"        "shot"    "turnover"   "violation"
+# ────────────────┼───────────────────────────────────────────────────────────────────────────────────
+# "Jordan Farmar" │           48            54            62           200            42             2
+# "Kobe Bryant"   │           87           214           197           737           107             4
+# "Pau Gasol"     │           81           202           363           480            70             1
+```
+
+In order to obtain proportions instead of count use `prop` function with an optional
+`margins` argument. If `margins` is `nothing` (the default), proportions over the whole table
+are computed. If `margins` is an `Integer`, or an iterable of `Integer`s, proportions
+sum to 1 over dimensions specified by margins. In particular for a two-dimensional array,
+when `margins` is 1 row proportions are calculated, and when `margins` is 2 column
+proportions are calculated.
+
+```julia
+prop(ftbl)
+
+# 3×6 Named Matrix{Float64}
+#  player ╲ etype │       "foul"  "free throw"     "rebound"        "shot"    "turnover"   "violation"
+# ────────────────┼───────────────────────────────────────────────────────────────────────────────────
+# "Jordan Farmar" │    0.0159935     0.0121163     0.0177706     0.0628433     0.0140549   0.000646204
+# "Kobe Bryant"   │    0.0290792     0.0854604     0.0662359      0.261551     0.0323102    0.00113086
+# "Pau Gasol"     │    0.0256866      0.068336      0.121486       0.16042     0.0239095   0.000969305
+
+prop(ftbl, margins = 2)
+
+# 3×6 Named Matrix{Float64}
+#  player ╲ etype │       "foul"  "free throw"     "rebound"        "shot"    "turnover"   "violation"
+# ────────────────┼───────────────────────────────────────────────────────────────────────────────────
+# "Jordan Farmar" │     0.226027     0.0730282      0.086478      0.129623           0.2      0.235294
+# "Kobe Bryant"   │     0.410959      0.515093      0.322327      0.539487       0.45977      0.411765
+# "Pau Gasol"     │     0.363014      0.411879      0.591195       0.33089       0.34023      0.352941
+```
+
 
 ## Python
 
@@ -38,13 +118,13 @@ lakers = pd.read_csv('https://github.com/LOST-STATS/lost-stats.github.io/raw/sou
 
 # Filter for only a couple Lakers players for space
 lakersd = lakers.loc[lakers['team'] == "LAL"]
-lakersd = lakersd.loc[lakers['player'].isin(['Jordan Farmar','Pau Gasol','Kobe Bryant'])]
+lakersd = lakersd.loc[lakers['player'].isin(['Jordan Farmar', 'Pau Gasol', 'Kobe Bryant'])]
 
 # Create a crosstab for each basketball action for each player
-pd.crosstab(lakersd['player'],lakersd['etype'])
+pd.crosstab(lakersd['player'], lakersd['etype'])
 
 # etype          foul  free throw  rebound  shot  turnover  violation
-# player                                                             
+# player
 # Jordan Farmar    99          75      110   389        87          4
 # Kobe Bryant     180         529      410  1619       200          7
 # Pau Gasol       159         423      752   993       148          6
@@ -56,10 +136,10 @@ You can even create tables analyzing three variables. Here is the same table as 
 ```python?example=pytab
 # add game_type to the crosstab
 # Use brackets[] to distinguish which two-way crosstab is "inside" a broader one.
-pd.crosstab([lakersd['player'],lakersd['etype']],lakersd['game_type'])
+pd.crosstab([lakersd['player'], lakersd['etype']], lakersd['game_type'])
 
 # game_type                 away  home
-# player        etype                 
+# player        etype
 # Jordan Farmar foul          51    48
 #               free throw    21    54
 #               rebound       48    62
@@ -83,10 +163,10 @@ pd.crosstab([lakersd['player'],lakersd['etype']],lakersd['game_type'])
 You can use the `normalize` argument to get percentages instead of counts. `normalize = 'index'` gets proportions relative to the row totals, `normalize = 'column'` goes relative to the column, and `normalize = 'all'` does relative to the whole table.
 
 ```python?example=pytab
-pd.crosstab(lakersd['player'],lakersd['etype'], normalize = 'all')
+pd.crosstab(lakersd['player'], lakersd['etype'], normalize = 'all')
 
 # etype              foul  free throw   rebound      shot  turnover  violation
-# player                                                                      
+# player
 # Jordan Farmar  0.015994    0.012116  0.017771  0.062843  0.014055   0.000646
 # Kobe Bryant    0.029079    0.085460  0.066236  0.261551  0.032310   0.001131
 # Pau Gasol      0.025687    0.068336  0.121486  0.160420  0.023910   0.000969
@@ -96,7 +176,7 @@ Tests of independence between the two variables can be obtained by passing `.cro
 
 ## R
 
-There are  many functions for creating cross tabulations in R, including the base-R `table()` function. Here we will focus on one: `tabyl`, which is part of the **janitor** package, and is the **tidyverse** version of the table() function. This command can be used to quickly create pretty cross-tabulations which are report ready. 
+There are  many functions for creating cross tabulations in R, including the base-R `table()` function. Here we will focus on one: `tabyl`, which is part of the **janitor** package, and is the **tidyverse** version of the table() function. This command can be used to quickly create pretty cross-tabulations which are report ready.
 
 ```r?example=rtab
 #Load in the packages
@@ -104,7 +184,7 @@ library(pacman)
 p_load(tidyverse,janitor,kableExtra, lubridate)
 ```
 
-First we can see how `tabyl` can create a quick summary table. To create the input just put the desired x and y variables into the tabyl() command. 
+First we can see how `tabyl` can create a quick summary table. To create the input just put the desired x and y variables into the tabyl() command.
 
 ```r?example=rtab
 # Get lakers data
@@ -135,14 +215,14 @@ You can even create tables analyzing three variables. Here is the same table as 
 
 # add game_type to the crosstab
 lakersd %>%
-  tabyl(player,etype, game_type)
+  tabyl(player, etype, game_type)
 
 # $away
 # player foul free throw rebound shot turnover violation
 # Jordan Farmar   51         21      48  189       45         2
 # Kobe Bryant   93        315     213  882       93         3
 # Pau Gasol   78        221     389  513       78         5
-# 
+#
 # $home
 # player foul free throw rebound shot turnover violation
 # Jordan Farmar   48         54      62  200       42         2
@@ -159,22 +239,22 @@ lakers_shot %>%
   # Create tabyl
   tabyl(player,result) %>%
   # Add a totals row
-  adorn_totals(where = c("row","col")) %>% 
-  # Add percentages of total shots taken by players  
+  adorn_totals(where = c("row","col")) %>%
+  # Add percentages of total shots taken by players
   adorn_percentages(denominator = "col") %>%
-  # Format to 1 decimal place  
+  # Format to 1 decimal place
   adorn_pct_formatting(digits = 1)%>%
-  # Include amount of observations  
+  # Include amount of observations
   adorn_ns()
 
 # player          made        missed         Total
 # Jordan Farmar  10.3%  (153)  15.5%  (236)  13.0%  (389)
 # Kobe Bryant  51.1%  (757)  56.7%  (862)  53.9% (1619)
 # Pau Gasol  38.5%  (570)  27.8%  (423)  33.1%  (993)
-# Total 100.0% (1480) 100.0% (1521) 100.0% (3001) 
+# Total 100.0% (1480) 100.0% (1521) 100.0% (3001)
 ```
 
-A chi square test of independence can use the `chisq.test()` function, which can accept `table()` output, or just your two variables directly. 
+A chi square test of independence can use the `chisq.test()` function, which can accept `table()` output, or just your two variables directly.
 
 ## Stata
 
@@ -194,11 +274,11 @@ tab player etype
 *                      |                               etype
 *               player |      foul  free th..    rebound       shot   turnover  violation |     Total
 *----------------------+------------------------------------------------------------------+----------
-*        Jordan Farmar |        99         75        110        389         87          4 |       764 
-*          Kobe Bryant |       180        529        410      1,619        200          7 |     2,945 
-*            Pau Gasol |       159        423        752        993        148          6 |     2,481 
+*        Jordan Farmar |        99         75        110        389         87          4 |       764
+*          Kobe Bryant |       180        529        410      1,619        200          7 |     2,945
+*            Pau Gasol |       159        423        752        993        148          6 |     2,481
 *----------------------+------------------------------------------------------------------+----------
-*                Total |       438      1,027      1,272      3,001        435         17 |     6,190 
+*                Total |       438      1,027      1,272      3,001        435         17 |     6,190
 
 ```
 
@@ -214,11 +294,11 @@ bysort game_type: tab player etype
 *                      |                               etype
 *               player |      foul  free th..    rebound       shot   turnover  violation |     Total
 *----------------------+------------------------------------------------------------------+----------
-*        Jordan Farmar |        51         21         48        189         45          2 |       356 
-*          Kobe Bryant |        93        315        213        882         93          3 |     1,599 
-*            Pau Gasol |        78        221        389        513         78          5 |     1,284 
+*        Jordan Farmar |        51         21         48        189         45          2 |       356
+*          Kobe Bryant |        93        315        213        882         93          3 |     1,599
+*            Pau Gasol |        78        221        389        513         78          5 |     1,284
 *----------------------+------------------------------------------------------------------+----------
-*                Total |       222        557        650      1,584        216         10 |     3,239 
+*                Total |       222        557        650      1,584        216         10 |     3,239
 *
 *----------------------------------------------------------------------------------------------------------------
 *-> game_type = home
@@ -226,11 +306,11 @@ bysort game_type: tab player etype
 *                      |                               etype
 *               player |      foul  free th..    rebound       shot   turnover  violation |     Total
 *----------------------+------------------------------------------------------------------+----------
-*        Jordan Farmar |        48         54         62        200         42          2 |       408 
-*          Kobe Bryant |        87        214        197        737        107          4 |     1,346 
-*            Pau Gasol |        81        202        363        480         70          1 |     1,197 
+*        Jordan Farmar |        48         54         62        200         42          2 |       408
+*          Kobe Bryant |        87        214        197        737        107          4 |     1,346
+*            Pau Gasol |        81        202        363        480         70          1 |     1,197
 *----------------------+------------------------------------------------------------------+----------
-*                Total |       216        470        622      1,417        219          7 |     2,951 
+*                Total |       216        470        622      1,417        219          7 |     2,951
 ```
 
 
