@@ -36,9 +36,8 @@ libraries for data loading and preparation.
 ```julia
 using CSV, DataFrames, FreqTables
 
-# Load data from a local CSV file into a Data Frame
-data_file = joinpath("Data", "lakers.csv")
-lakers = CSV.read(data_file, DataFrame)
+# Get the data and convert from a CSV into a Data Frame
+lakers = CSV.read(download("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Presentation/Tables/Data/lakers.csv"), DataFrame)
 
 # Filter for only a couple Lakers players for space
 lakersd = lakers[lakers.team .== "LAL", :]
