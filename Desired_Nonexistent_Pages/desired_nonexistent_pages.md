@@ -63,7 +63,7 @@ If you create one of these pages, please remove it from this list.
 * Jackknife Standard Errors
 * Non-Standard Bootstrap Standard Errors (bootstrap standard errors that aren't built in to the command and must be done "by hand", i.e. for matching)
 
-## Machine Learning 
+## Machine Learning
 
 * A-B Testing
 * Artificial Neural Networks
@@ -75,7 +75,7 @@ If you create one of these pages, please remove it from this list.
 ## Time Series
 
 * Stationarity and Weak Dependence
-* Kalman Filtering/Smoothing 
+* Kalman Filtering/Smoothing
 * ARIMAX Model
 * TARCH Model
 * Recursive Regressions
@@ -97,7 +97,6 @@ This is a list of pages that exist but only have an example in one language, and
 
 ## Currently Python Only
 
-* Machine Learning: [Artificial Neural Network]({{ "/Machine_Learning/artificial_neural_network.html" | relative_url }})
 
 ## Currently R Only
 
