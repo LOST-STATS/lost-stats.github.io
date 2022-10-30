@@ -231,6 +231,72 @@
       <h1 id="implementations">
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
+      <h2 id="julia">
+          <a href="#julia" aria-labelledby="julia" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Julia
+      </h2>
+<p>Julia community puts a lot of effort into development of Neural Networks ecosystem.
+These efforts are largely fueled and greatly helped by two major features of Julia.
+First, pure Julia code (with a little help from the developer) gets translated into
+efficient and optimized machine code in many cases rivaling C/C++. This largely
+alleviates “two languages problem”. Second, Julia features advanced metaprogramming
+facilities making possible sophisticated source code transformations, Automatic Differentiation
+in particular.</p>
+<p>The main production-quality Machine Learning framework is <a href="https://fluxml.ai/">Flux</a>
+and <a href="https://lux.csail.mit.edu/dev/">Lux</a> presents an alternative better suited for
+and motivated by Scientific Machine Learning tasks. In the following example we’ll
+stick with the former.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="n">Flux</span><span class="x">,</span> <span class="n">MLUtils</span>
+
+<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">n_features</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">hidden_layer_size</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="c"># our underlying equation will be</span>
+<span class="c"># y = x1 + 10*x2 - 7*x3 + 2*x4 + 3*x5 - 14*x6 + x7 + 3*x8 - x9 + 11*x10 - 40</span>
+<span class="c"># the coefficients are arbitrary, they don't represent anything</span>
+<span class="c"># we'll collect them in a single (column) vector</span>
+<span class="n">coeffs</span> <span class="o">=</span> <span class="x">[</span><span class="mi">1</span><span class="x">,</span> <span class="mi">10</span><span class="x">,</span> <span class="o">-</span><span class="mi">7</span><span class="x">,</span> <span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">,</span> <span class="o">-</span><span class="mi">14</span><span class="x">,</span> <span class="mi">1</span><span class="x">,</span> <span class="mi">3</span><span class="x">,</span> <span class="o">-</span><span class="mi">1</span><span class="x">,</span> <span class="mi">11</span><span class="x">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="mi">40</span>
+
+<span class="c"># a n_samples*n_features matrix of "observations"</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">randn</span><span class="x">(</span><span class="kt">Float32</span><span class="x">,</span> <span class="n">n_samples</span><span class="x">,</span> <span class="n">n_features</span><span class="x">)</span>
+<span class="c"># calculating "responses" corresponding to "observations" X</span>
+<span class="c"># according to the above equation (using matrix-vector product)</span>
+<span class="c"># adding a little random noise</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="o">*</span><span class="n">coeffs</span> <span class="o">.+</span> <span class="n">b</span> <span class="o">.+</span> <span class="mf">0.02f0</span> <span class="o">.*</span> <span class="n">randn</span><span class="x">(</span><span class="kt">Float32</span><span class="x">,</span> <span class="n">n_samples</span><span class="x">)</span>
+
+<span class="c"># We leave out 15 % of the data for testing</span>
+<span class="n">train_data</span><span class="x">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">splitobs</span><span class="x">((</span><span class="n">X</span><span class="err">'</span><span class="x">,</span> <span class="n">y</span><span class="x">);</span> <span class="n">at</span><span class="o">=</span><span class="mf">0.85</span><span class="x">)</span>
+
+<span class="c"># our model consists of two fully connected layers, first one using `relu` activation</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Chain</span><span class="x">(</span><span class="n">Dense</span><span class="x">(</span><span class="n">n_features</span> <span class="o">=&gt;</span> <span class="n">hidden_layer_size</span><span class="x">,</span> <span class="n">relu</span><span class="x">),</span> <span class="n">Dense</span><span class="x">(</span><span class="n">hidden_layer_size</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="x">))</span>
+
+<span class="c"># we're collecting all of the model's parameters (weights and biases of all the layers)</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="n">params</span><span class="x">(</span><span class="n">model</span><span class="x">)</span>
+
+<span class="c"># using Mean Sqared Error as a measure of the loss</span>
+<span class="c"># we can use our Neural Network as if it was just a function, applying it</span>
+<span class="c"># to a single observation or the whole set of observations at once</span>
+<span class="n">loss</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="n">Losses</span><span class="o">.</span><span class="n">mse</span><span class="x">(</span><span class="n">model</span><span class="x">(</span><span class="n">x</span><span class="x">),</span> <span class="n">y</span><span class="x">)</span>
+
+<span class="c"># currently our model is an extremely poor fit to both train and test data</span>
+<span class="n">loss</span><span class="x">(</span><span class="n">train_data</span><span class="x">[</span><span class="mi">1</span><span class="x">],</span> <span class="n">train_data</span><span class="x">[</span><span class="mi">2</span><span class="x">]</span><span class="err">'</span><span class="x">)</span>
+<span class="c"># 2123.2031f0</span>
+<span class="n">loss</span><span class="x">(</span><span class="n">test_data</span><span class="x">[</span><span class="mi">1</span><span class="x">],</span> <span class="n">test_data</span><span class="x">[</span><span class="mi">2</span><span class="x">]</span><span class="err">'</span><span class="x">)</span>
+<span class="c"># 1939.8761f0</span>
+
+<span class="c"># we'll use ADAM optimization strategy with default parameters</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">Adam</span><span class="x">()</span>
+
+<span class="c"># now let's train our model wrt. our data!</span>
+<span class="n">Flux</span><span class="o">.</span><span class="n">train!</span><span class="x">(</span><span class="n">loss</span><span class="x">,</span> <span class="n">parameters</span><span class="x">,</span> <span class="n">eachobs</span><span class="x">(</span><span class="n">train_data</span><span class="x">),</span> <span class="n">opt</span><span class="x">)</span>
+
+<span class="c"># the fitness of the model improved a lot on both train and test data!</span>
+<span class="n">loss</span><span class="x">(</span><span class="n">train_data</span><span class="x">[</span><span class="mi">1</span><span class="x">],</span> <span class="n">train_data</span><span class="x">[</span><span class="mi">2</span><span class="x">]</span><span class="err">'</span><span class="x">)</span>
+<span class="c"># 96.052666f0</span>
+<span class="n">loss</span><span class="x">(</span><span class="n">test_data</span><span class="x">[</span><span class="mi">1</span><span class="x">],</span> <span class="n">test_data</span><span class="x">[</span><span class="mi">2</span><span class="x">]</span><span class="err">'</span><span class="x">)</span>
+<span class="c"># 100.78666f0</span>
+</code></pre></div></div>
       <h2 id="python">
           <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
       </h2>
