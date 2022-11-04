@@ -95,6 +95,65 @@ loss(test_data[1], test_data[2]')
 # 100.78666f0
 ```
 
+Another prominent feature of the Julia ecosystem, especially with relation to
+Neural Networks, is highly-developed support for NVidia GPUs (AMD and Intel GPUs
+support is under development as well). **CUDA.jl** library provides Julia bindings
+and high-level functions as well as underlying CUDA and CuNN C++ libraries,
+thus simple `import Pkg; Pkg.add("CUDA")` makes you ready to offload your computations
+to a graphics card.
+
+For the most part **Flux** is oblivious to the location of data &mdash; RAM or GPU
+&mdash; therefore after copying all our data to a GPU we can feed it to exactly
+the same functions for training, loss and so on. For copying we'll employ `Flux.gpu`
+function which does nothing if there's no CUDA installed. This way our code can be
+GPU-oblivious too: it will use GPU if one is present, otherwise it will work
+just as fine on a CPU (albeit slower).
+
+```julia
+import CUDA
+# we don't actually need to directly call functions from the CUDA library
+# but we want to be sure it got loaded.
+# also we can call `CUDA.functional()` to check if a GPU is present and accessible.
+
+# copying the data to a GPU with the `Flux.gpu` function
+gpu_train_data = (gpu(collect(train_data[1])), gpu(collect(train_data[2])))
+gpu_test_data = (gpu(collect(test_data[1])), gpu(collect(test_data[2])))
+
+# building a new untrained model and moving it to a GPU
+gpu_model = gpu(Chain(Dense(n_features => hidden_layer_size, relu), Dense(hidden_layer_size => 1)))
+gpu_ps = Flux.params(gpu_model)
+
+# the same loss function but now using `gpu_model`
+gpu_loss(x, y) = Flux.Losses.mse(gpu_model(x), y)
+
+# the loss of an untrained model is again very high
+# but now all the calculations happen on a GPU
+gpu_loss(gpu_train_data[1], gpu_train_data[2]')
+# 2134.6206f0
+gpu_loss(gpu_test_data[1], gpu_test_data[2]')
+# 2145.352f0
+
+# here we use `Flux.DataLoader` to feed our training data into the `Flux.train!` function
+# 50 (batchsize) instances at a time. Using batches is preferable on a GPU to improve
+# the throughput and a GPU can handle many more than 50 at once in our case.
+gpu_train_loader = Flux.DataLoader((gpu_train_data[1], gpu_train_data[2]'), batchsize = 50)
+
+# on the flip side considering a batch at a time reduces gradient information available
+# for training compared to instance-by-instance approach thus hampering learning rate
+# we compensate by running the same training loop over the same data several times (epochs)
+# there's no reason for the number of epochs to be the same as a batch size, I just like
+# the number 50 :)
+for i=1:50
+  Flux.train!(gpu_loss, gpu_ps, gpu_train_loader, opt)
+end
+
+# now the loss is significantly better :)
+gpu_loss(gpu_train_data[1], gpu_train_data[2]')
+# 38.33216f0
+gpu_loss(gpu_test_data[1], gpu_test_data[2]')
+# 31.173874f0
+```
+
 
 ## Python
 
