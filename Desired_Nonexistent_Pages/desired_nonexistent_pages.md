@@ -90,6 +90,8 @@ If you create one of these pages, please remove it from this list.
 * Import a Fixed-Width Data File
 * Export Data to a Foreign Format
 * Power Analysis of Interaction Terms
+* How to create an ado package
+* How to create an R package
 
 # List of One-Language Pages
 
@@ -111,3 +113,5 @@ This is a list of pages that exist but only have an example in one language, and
 * Presentation: [Sankey Diagrams]({{ "/Presentation/Figures/sankey_diagrams.html" | relative_url }})
 * Time Series: [Granger Causality]({{ "/Time_Series/Granger_Causality.html" | relative_url }})
 * Time Series: [Linear Gaussian State Space Models]({{ "/Time_Series/State_Space_Models.html" | relative_url }})
+
+## Currently Stata Only
