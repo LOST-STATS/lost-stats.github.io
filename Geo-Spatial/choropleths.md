@@ -125,3 +125,40 @@ ggplot() +
        fill = "GDP per capita") +
   theme_void()
 ```
+
+## Stata 
+
+The [**spmap**](http://repec.org/bocode/s/spmap) package allows for the visual representation of spatial information
+
+```
+// If you have not already, download the spmap package from SSC
+ssc install spmap, replace
+// Additionally, you need to convert shapefiles into stata formatted datasets
+ssc install shp2dta, replace
+
+// For consistency with the other examples, we will use the Natural Earth dataset. You will need to download it into your current working directory
+	// You can download "Admin 0 – Countries" from https://www.naturalearthdata.com/downloads/110m-cultural-vectors/
+	// The file should be called "ne_110m_admin_0_countries.zip"
+
+// Unzip the shapefiles once downloaded
+unzipfile ne_110m_admin_0_countries.zip, replace
+
+// Import Natural Earth Dataset
+spshape2dta ne_110m_admin_0_countries, replace saving(world)
+
+// Import Shapefile created 
+use world_shp, clear
+
+// Merge for each unique country and there information
+merge 1:1 _ID using world.dta
+
+// Remove Antartica and if Population is 0
+drop if NAME == "Antarctica"
+keep if POP_EST > 0
+
+// Create GDP per Captia 
+gen gdp_per_capita = 1.0e6*(GDP_MD / POP_EST)
+
+// Choropleth of GDP per Captia by Country (world_shp is the reference basemap)
+spmap gdp_per_capita using world_shp, id(_ID) fcolor(Greens)
+```
