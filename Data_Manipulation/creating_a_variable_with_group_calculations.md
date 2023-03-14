@@ -58,7 +58,7 @@ transform!(groupby(storms, [:name, :year, :month, :day]), :wind=> mean => :mean_
 
 ## Python
 
-**pandas** doesn't have a straightforward and flexible built-in method for doing this, with aggregation methods heavily preferring to work as described on [Collapse a Data Set]({{ "/Data_Manipulation/collapse_a_data_set.html" | relative_url }}). However, we can just follow those methods and then `merge` the result back in.
+**pandas** accomplishes this by using the groupby-transform approach. We can either call numpy's mean function or use a lambda and apply the .mean() method to each group
 
 ```python
 import pandas as pd
@@ -67,17 +67,13 @@ import pandas as pd
 storms = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv')
 
 # Use groupby and agg to perform a group calculation
-# Here it's a mean, but it could be anything
-meanwind = (storms.groupby(['name', 'year', 'month', 'day'])
-            .agg({'wind': 'mean'})
-            # Rename so that when we merge it in it has a 
-            # different name
-           .rename({'wind': 'mean_wind'}))
-            # make sure it's a data frame so we can join it  
-    
-# Use merge to bring the result back into the data
-storms = pd.merge(storms,meanwind,
-                    on = ['name', 'year', 'month', 'day'])
+# Here it's a mean, but it could be any function
+storms['mean_wind'] = storms.groupby(['name','year','month','day'])['wind'].transform(lambda x: x.mean())
+
+# this tends to be a bit faster because it uses an existing function instead of a lambda
+import numpy as np
+storms['mean_wind'] = storms.groupby(['name','year','month','day'])['wind'].transform(np.mean)
+
 ```
 
 ## R
