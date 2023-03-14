@@ -30,6 +30,12 @@ Because there are so many potential foreign formats, these implementations will 
 ## R
 
 ```r?skip=true&skipReason=files_dont_exist
+# Generally, you may use the rio package to import any tabular data type to be read in fluently without requiring a specification of the file type. 
+library(rio)
+data <- import('filename.xlsx')
+data <- import('filename.dta')
+data <- import('filename.sav')
+
 library(readxl)
 data <- read_excel('filename.xlsx')
 
