@@ -233,7 +233,13 @@
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">readxl</span><span class="p">)</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Generally, you may use the rio package to import any tabular data type to be read in fluently without requiring a specification of the file type. </span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">rio</span><span class="p">)</span><span class="w">
+</span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">import</span><span class="p">(</span><span class="s1">'filename.xlsx'</span><span class="p">)</span><span class="w">
+</span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">import</span><span class="p">(</span><span class="s1">'filename.dta'</span><span class="p">)</span><span class="w">
+</span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">import</span><span class="p">(</span><span class="s1">'filename.sav'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="n">readxl</span><span class="p">)</span><span class="w">
 </span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_excel</span><span class="p">(</span><span class="s1">'filename.xlsx'</span><span class="p">)</span><span class="w">
 
 </span><span class="c1"># Read Stata, SAS, and SPSS files with the haven package</span><span class="w">

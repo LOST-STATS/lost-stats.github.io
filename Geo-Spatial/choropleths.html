@@ -331,6 +331,41 @@
        </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"GDP per capita"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
   </span><span class="n">theme_void</span><span class="p">()</span><span class="w">
 </span></code></pre></div></div>
+      <h2 id="stata">
+          <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
+      </h2>
+<p>The <a href="http://repec.org/bocode/s/spmap"><strong>spmap</strong></a> package allows for the visual representation of spatial information</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// If you have not already, download the spmap package from SSC
+ssc install spmap, replace
+// Additionally, you need to convert shapefiles into stata formatted datasets
+ssc install shp2dta, replace
+
+// For consistency with the other examples, we will use the Natural Earth dataset. You will need to download it into your current working directory
+	// You can download "Admin 0 – Countries" from https://www.naturalearthdata.com/downloads/110m-cultural-vectors/
+	// The file should be called "ne_110m_admin_0_countries.zip"
+
+// Unzip the shapefiles once downloaded
+unzipfile ne_110m_admin_0_countries.zip, replace
+
+// Import Natural Earth Dataset
+spshape2dta ne_110m_admin_0_countries, replace saving(world)
+
+// Import Shapefile created 
+use world_shp, clear
+
+// Merge for each unique country and there information
+merge 1:1 _ID using world.dta
+
+// Remove Antartica and if Population is 0
+drop if NAME == "Antarctica"
+keep if POP_EST &gt; 0
+
+// Create GDP per Captia 
+gen gdp_per_capita = 1.0e6*(GDP_MD / POP_EST)
+
+// Choropleth of GDP per Captia by Country (world_shp is the reference basemap)
+spmap gdp_per_capita using world_shp, id(_ID) fcolor(Greens)
+</code></pre></div></div>
           <hr>
           <footer>
               <div class="d-flex mt-2">
