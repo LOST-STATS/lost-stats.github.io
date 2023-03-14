@@ -315,24 +315,20 @@
       <h2 id="python">
           <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
       </h2>
-<p><strong>pandas</strong> doesn’t have a straightforward and flexible built-in method for doing this, with aggregation methods heavily preferring to work as described on <a href="/Data_Manipulation/collapse_a_data_set.html">Collapse a Data Set</a>. However, we can just follow those methods and then <code class="language-plaintext highlighter-rouge">merge</code> the result back in.</p>
+<p><strong>pandas</strong> accomplishes this by using the groupby-transform approach. We can either call numpy’s mean function or use a lambda and apply the .mean() method to each group</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
 
 <span class="c1"># Pull in data on storms
 </span><span class="n">storms</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv'</span><span class="p">)</span>
 
 <span class="c1"># Use groupby and agg to perform a group calculation
-# Here it's a mean, but it could be anything
-</span><span class="n">meanwind</span> <span class="o">=</span> <span class="p">(</span><span class="n">storms</span><span class="p">.</span><span class="n">groupby</span><span class="p">([</span><span class="s">'name'</span><span class="p">,</span> <span class="s">'year'</span><span class="p">,</span> <span class="s">'month'</span><span class="p">,</span> <span class="s">'day'</span><span class="p">])</span>
-            <span class="p">.</span><span class="n">agg</span><span class="p">({</span><span class="s">'wind'</span><span class="p">:</span> <span class="s">'mean'</span><span class="p">})</span>
-            <span class="c1"># Rename so that when we merge it in it has a 
-</span>            <span class="c1"># different name
-</span>           <span class="p">.</span><span class="n">rename</span><span class="p">({</span><span class="s">'wind'</span><span class="p">:</span> <span class="s">'mean_wind'</span><span class="p">}))</span>
-            <span class="c1"># make sure it's a data frame so we can join it  
-</span>    
-<span class="c1"># Use merge to bring the result back into the data
-</span><span class="n">storms</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">merge</span><span class="p">(</span><span class="n">storms</span><span class="p">,</span><span class="n">meanwind</span><span class="p">,</span>
-                    <span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s">'name'</span><span class="p">,</span> <span class="s">'year'</span><span class="p">,</span> <span class="s">'month'</span><span class="p">,</span> <span class="s">'day'</span><span class="p">])</span>
+# Here it's a mean, but it could be any function
+</span><span class="n">storms</span><span class="p">[</span><span class="s">'mean_wind'</span><span class="p">]</span> <span class="o">=</span> <span class="n">storms</span><span class="p">.</span><span class="n">groupby</span><span class="p">([</span><span class="s">'name'</span><span class="p">,</span><span class="s">'year'</span><span class="p">,</span><span class="s">'month'</span><span class="p">,</span><span class="s">'day'</span><span class="p">])[</span><span class="s">'wind'</span><span class="p">].</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">.</span><span class="n">mean</span><span class="p">())</span>
+
+<span class="c1"># this tends to be a bit faster because it uses an existing function instead of a lambda
+</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">storms</span><span class="p">[</span><span class="s">'mean_wind'</span><span class="p">]</span> <span class="o">=</span> <span class="n">storms</span><span class="p">.</span><span class="n">groupby</span><span class="p">([</span><span class="s">'name'</span><span class="p">,</span><span class="s">'year'</span><span class="p">,</span><span class="s">'month'</span><span class="p">,</span><span class="s">'day'</span><span class="p">])[</span><span class="s">'wind'</span><span class="p">].</span><span class="n">transform</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">)</span>
+
 </code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
