@@ -13,7 +13,7 @@ Most regression output, or output from other methods that produce multiple coeff
 
 $$ Y = \beta_0 + \beta_1X + \beta_2Z + \varepsilon $$
 
-You may be interested in the ratio of the two effects, $\beta_1/\beta_2$, and would want an estimate of that combination, along with a standard error, and a hypothesis test comparing that estimate to 0 or some other value.
+You may be interested in the ratio of the two effects, $$\beta_1/\beta_2$$, and would want an estimate of that combination, along with a standard error, and a hypothesis test comparing that estimate to 0 or some other value.
 
 Estimates and tests of nonlinear combinations of coefficients are different than for linear combinations, because they imply restrictions on estimation that cannot be expressed in the form of a matrix of linear restrictions. The most common approach to producing a sampling distribution for a nonlinear combination of coefficients is the [delta method](https://en.wikipedia.org/wiki/Delta_method) and that is what all the commands on this page use.
 

@@ -17,7 +17,7 @@ $$
 y_{ij} = \beta_{0j} + \beta_{1j}X_{1ij} + \beta_{2}X_{2ij} + e_{ij}
 $$
 
-The intercept $$\beta_{0j}$$ has a $j$ subscript and is allowed to vary over the sample at the $$j$$ level, where $$j$$ may indicate individual or group, depending on context. The slope on $$X_{1ij}$$, $$\beta_{1j}$$, is similarly allowed to vary over the sample. These are random effects. $$\beta_{2}$$ is not allowed to vary over the sample and so is fixed.
+The intercept $$\beta_{0j}$$ has a $$j$$ subscript and is allowed to vary over the sample at the $$j$$ level, where $$j$$ may indicate individual or group, depending on context. The slope on $$X_{1ij}$$, $$\beta_{1j}$$, is similarly allowed to vary over the sample. These are random effects. $$\beta_{2}$$ is not allowed to vary over the sample and so is fixed.
 
 The random parameters have their own "level-two" equations, which may or may not include level-two covariates. 
 

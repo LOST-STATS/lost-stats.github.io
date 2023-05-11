@@ -11,7 +11,7 @@ mathjax: true ## Switch to false if this page has no equations or other math ren
 
 In [linear regression]({{ "/Model_Estimation/OLS/simple_linear_regression.html" | relative_url }}), the effect of a predictor can be interpreted directly in terms of the outcome variable. For example, in the model $$Y = \beta_0 + \beta_1X + \varepsilon$$, a one-unit increase in $$X$$ is associated with a $$\beta$$-unit change in $$Y$$.
 
-However, in nonlinear regression, this is no longer the case. For example, if $$Y$$ is binary and $$E(Y=1) = F(\beta_0 + \beta_1X)$$ is estimated using a [logit regression]({{ "/Model_Estimation/GLS/logit_model.html" | relative_url }}) as a generalized linear model, then a one-unit increase in $$X$$ is associated with a $$\beta$$-unit change in the *index function* which then passes through the logit link function to produce a change in $E(Y=1)$. Confusing!
+However, in nonlinear regression, this is no longer the case. For example, if $$Y$$ is binary and $$E(Y=1) = F(\beta_0 + \beta_1X)$$ is estimated using a [logit regression]({{ "/Model_Estimation/GLS/logit_model.html" | relative_url }}) as a generalized linear model, then a one-unit increase in $$X$$ is associated with a $$\beta$$-unit change in the *index function* which then passes through the logit link function to produce a change in $$E(Y=1)$$. Confusing!
 
 Commonly, we would prefer to state our results in terms of changes in the actual dependent variable, which can be more intuitive. Marginal effects are one way of doing this. The *marginal effect* of $$X$$ on $$Y$$ in that logit regression is the relationship between a one-unit change in $$X$$ and the probability that $$Y=1$$. 
 
