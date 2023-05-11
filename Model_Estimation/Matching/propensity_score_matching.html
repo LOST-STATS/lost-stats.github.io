@@ -242,7 +242,7 @@
   <li>Exact matching</li>
   <li>Stratification matching</li>
 </ul>
-<p>In this example we will focus on nearest neighor matching.</p>
+<p>In this example we will focus on nearest neighbor matching.</p>
       <h2 id="checking-balance">
           <a href="#checking-balance" aria-labelledby="checking-balance" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Checking Balance
       </h2>
@@ -262,7 +262,7 @@
 <ul>
   <li>Propensity Score Matching also requires us to make the Common Support or Overlap Assumption:</li>
 </ul>
-\[0&lt;Pr(D_i = 1 | Xi = x)&lt;1\]
+\[0&lt;Pr(D_i = 1 | X_i = x)&lt;1\]
 <p>The overlap assumption says that the probability that the treatment is equal to 1 for each level of x is between zero and one, or in other words there are both treated and untreated units for each level of x.</p>
 <ul>
   <li>Treatment effect estimation will produce incorrcect standard errors unless they are specifically tailored for matching results, since they will not account for noise in the matching process. Use software designed for treatment effect estimates with matching. Or, for inverse probability weighting, you can bootstrap the entire procedure (from matching to estimation) and produce standard errors that way.</li>

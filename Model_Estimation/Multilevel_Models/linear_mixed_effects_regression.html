@@ -219,7 +219,7 @@
 <p>Mixed-effects regression goes by many names, including hierarchical linear model, random coefficient model, and random parameter models. In a mixed-effects regression, some of the parameters are “random effects” which are allowed to vary over the sample. Others are “fixed effects”, which are not. Note that this use of the term “fixed effects” is not the same as in <a href="/Model_Estimation/OLS/fixed_effects_in_linear_regression.html">fixed effects regression</a>.</p>
 <p>For example, consider the model</p>
 \[y_{ij} = \beta_{0j} + \beta_{1j}X_{1ij} + \beta_{2}X_{2ij} + e_{ij}\]
-<p>The intercept \(\beta_{0j}\) has a $j$ subscript and is allowed to vary over the sample at the \(j\) level, where \(j\) may indicate individual or group, depending on context. The slope on \(X_{1ij}\), \(\beta_{1j}\), is similarly allowed to vary over the sample. These are random effects. \(\beta_{2}\) is not allowed to vary over the sample and so is fixed.</p>
+<p>The intercept \(\beta_{0j}\) has a \(j\) subscript and is allowed to vary over the sample at the \(j\) level, where \(j\) may indicate individual or group, depending on context. The slope on \(X_{1ij}\), \(\beta_{1j}\), is similarly allowed to vary over the sample. These are random effects. \(\beta_{2}\) is not allowed to vary over the sample and so is fixed.</p>
 <p>The random parameters have their own “level-two” equations, which may or may not include level-two covariates.</p>
 \[\beta_{0j} = \gamma_{00} + \gamma_{01}W_j + u_{0j}\]
 \[\beta_{1j} = \gamma_{10} + u_{1j}\]
