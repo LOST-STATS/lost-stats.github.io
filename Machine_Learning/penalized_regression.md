@@ -82,7 +82,7 @@ Now we run lasso with cross-validation.
 reg_lasso = LassoCV(cv=10).fit(scale_X, scale_y)
 ```
 
-Let's display the results so we can see for which value of $$\alpha$$ the lowest mean squared error occurred. Note that sklearn uses the convention that $\alpha$ (rather than $$\lambda$$) is the shrinkage parameter.
+Let's display the results so we can see for which value of $$\alpha$$ the lowest mean squared error occurred. Note that sklearn uses the convention that $$\alpha$$ (rather than $$\lambda$$) is the shrinkage parameter.
 
 
 ```python?example=penreg

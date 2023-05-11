@@ -128,7 +128,7 @@ Say that you want to estimate the model:
 
 $$ y = a_0 + a_1 * x + a_2 * 1/x + e $$ 
 
-and you want to estimate the marginal effects with respect to $x$. You can do this as follows:
+and you want to estimate the marginal effects with respect to $$x$$. You can do this as follows:
 
 ```stata
 * requires package f_able

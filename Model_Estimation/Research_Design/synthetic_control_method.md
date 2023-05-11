@@ -55,7 +55,7 @@ As a last bit of intuition, below is a graph depicting the upshot of the method.
 
 ## R
 
-To implement the synthetic control method in R, we will be using the package [Synth](https://cran.r-project.org/web/packages/Synth/Synth.pdf). While not used here, the **SynthTools** package also has a number of functions for making it easier to work with the **Synth** package. As stated above, the key part of the synthetic control method is to estimate the weight matrix $$W*$$ in order to form accurate estimates of the treatment unit. The Synth package provides you with the tools to find the weight matrix. From there, you can construct the synthetic control by interacting the $$W*$$ and the $Y$ values from the donor pool.
+To implement the synthetic control method in R, we will be using the package [Synth](https://cran.r-project.org/web/packages/Synth/Synth.pdf). While not used here, the **SynthTools** package also has a number of functions for making it easier to work with the **Synth** package. As stated above, the key part of the synthetic control method is to estimate the weight matrix $$W*$$ in order to form accurate estimates of the treatment unit. The Synth package provides you with the tools to find the weight matrix. From there, you can construct the synthetic control by interacting the $$W*$$ and the $$Y$$ values from the donor pool.
 
 ```r
 # First we will load Synth and dplyr.

@@ -31,7 +31,7 @@ The recommendation of the current literature, by [King and Nielsen 2019](https:/
 * Exact matching
 * Stratification matching
 
-In this example we will focus on nearest neighor matching.
+In this example we will focus on nearest neighbor matching.
 
 ## Checking Balance
 
@@ -50,7 +50,7 @@ $$Y_i(1),Y_i(0)\bot|X_i$$
 
 - Propensity Score Matching also requires us to make the Common Support or Overlap Assumption: 
 
-$$0<Pr(D_i = 1 | Xi = x)<1$$
+$$0<Pr(D_i = 1 | X_i = x)<1$$
 
 The overlap assumption says that the probability that the treatment is equal to 1 for each level of x is between zero and one, or in other words there are both treated and untreated units for each level of x. 
 
