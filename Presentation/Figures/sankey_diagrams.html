@@ -299,6 +299,22 @@
 </span></code></pre></div></div>
 <p><img src="/Presentation/Figures/Images/Sankey_Diagrams/sankey_mtcars.png" alt="Sankey diagram from mtcars data set" /></p>
 <p>We see four variables (wt, cyl, hp, and qsec) in columns, with the proportion of each category represented by the height of the node. In this package, it is easier to see the distribution of each variable because columns are all the same height and frequency of categorical values is proportional. The y axis is a measure of the number of observations in our sample. Additionally, our fifth variable, mpg, is color coded in bands across the diagram, allowing us to highlight a particular aspect of this data set. These are relatively basic examples, but in a few lines of code demonstrate the usefulness of a Sankey diagram to track the flow and distribution of variables in a data set.</p>
+      <h2 id="stata">
+          <a href="#stata" aria-labelledby="stata" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stata
+      </h2>
+<p>They <strong>sankey</strong> package can be used to easily conduct sankey plots in Stata. For further vignettes to master the subcommands, please reference Asjad Naqvi’s <a href="https://github.com/asjadnaqvi/stata-sankey">Github repository</a> on the matter.</p>
+<p>First, install the package through SSC and be sure to replace in case of updates to the package. A dependency is the <strong>palettes</strong> package as well.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">ssc</span> <span class="err">install</span> <span class="err">sankey,</span> <span class="err">replace
+ssc</span> <span class="err">install</span> <span class="err">palettes,</span> <span class="err">replace
+ssc</span> <span class="err">install</span> <span class="err">colrspace,</span> <span class="err">replace
+</span></code></pre></div></div>
+<p>While you can use the subcommands to elaborate on the process, the basic commands for the sankey plot is shown below. For this vingette, we will use the Sankey example dataset from Asjad Naqvi.</p>
+<div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span> <span class="err">Import</span> <span class="err">Data</span> <span class="err">
+import</span> <span class="err">excel</span> <span class="err">using</span> <span class="s2">"https://github.com/asjadnaqvi/stata-sankey/blob/main/data/sankey_example2.xlsx?raw=true"</span><span class="err">,</span> <span class="err">clear</span> <span class="err">first
+#</span> <span class="err">Basic</span> <span class="err">Sankey</span> <span class="err">plot</span> <span class="err">
+sankey</span> <span class="err">value,</span> <span class="err">from(source)</span> <span class="err">to(destination)</span> <span class="err">by(layer)
+</span></code></pre></div></div>
+<p><img src="/Presentation/Figures/Images/Sankey_Diagrams/sankey_stata.png" alt="Sankey diagram from Asjad Naqvi's example dataset" /></p>
           <hr>
           <footer>
               <div class="d-flex mt-2">
