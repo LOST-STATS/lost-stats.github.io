@@ -105,3 +105,27 @@ ggplot(data = mtc,
 ![Sankey diagram from mtcars data set](Images/Sankey_Diagrams/sankey_mtcars.png)
 
 We see four variables (wt, cyl, hp, and qsec) in columns, with the proportion of each category represented by the height of the node. In this package, it is easier to see the distribution of each variable because columns are all the same height and frequency of categorical values is proportional. The y axis is a measure of the number of observations in our sample. Additionally, our fifth variable, mpg, is color coded in bands across the diagram, allowing us to highlight a particular aspect of this data set. These are relatively basic examples, but in a few lines of code demonstrate the usefulness of a Sankey diagram to track the flow and distribution of variables in a data set.
+
+
+## Stata
+
+They **sankey** package can be used to easily conduct sankey plots in Stata. For further vignettes to master the subcommands, please reference Asjad Naqvi's [Github repository](https://github.com/asjadnaqvi/stata-sankey) on the matter. 
+
+First, install the package through SSC and be sure to replace in case of updates to the package. A dependency is the **palettes** package as well.  
+
+```stata
+ssc install sankey, replace
+ssc install palettes, replace
+ssc install colrspace, replace
+```
+
+While you can use the subcommands to elaborate on the process, the basic commands for the sankey plot is shown below. For this vingette, we will use the Sankey example dataset from Asjad Naqvi.
+
+```stata
+# Import Data 
+import excel using "https://github.com/asjadnaqvi/stata-sankey/blob/main/data/sankey_example2.xlsx?raw=true", clear first
+# Basic Sankey plot 
+sankey value, from(source) to(destination) by(layer)
+```
+
+![Sankey diagram from Asjad Naqvi's example dataset](Images/Sankey_Diagrams/sankey_stata.png)
