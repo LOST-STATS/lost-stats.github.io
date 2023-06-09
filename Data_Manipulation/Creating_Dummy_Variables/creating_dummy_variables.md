@@ -31,6 +31,38 @@ df = pd.DataFrame({'colors': ['red', 'green', 'blue', 'red', 'blue'],
 # Replace the colors column with a dummy column for each color
 df = pd.get_dummies(df, columns=['colors'])
 ```
+## Julia 
+
+Here's an implementation example in Julia for creating dummy variables using the OneHotEncoder function from the MLBase package:
+
+```using MLBase
+
+# Create an array of categorical data
+colors = ["red", "green", "blue", "red", "blue"]
+
+# Encode the categorical data into dummy variables
+encoded_colors = MLBase.OneHotEncoder()(colors)
+```
+In this example, we start by importing the MLBase package, which provides the OneHotEncoder function for creating dummy variables.
+
+Next, we define an array colors that represents the categorical variable we want to encode. In this case, it contains different colors.
+
+To create the dummy variables, we use the OneHotEncoder() function and apply it to the colors array. The function automatically encodes the categorical data into a matrix of dummy variables.
+
+After executing this code, the encoded_colors variable will contain a matrix where each row represents an observation, and each column represents a category from the original colors array. The values in the matrix are either 0 or 1, indicating whether a particular category is present for each observation.
+
+For example, if we print the encoded_colors matrix, it might look like this:
+```
+3×3 Matrix{Float64}:
+ 1.0  0.0  0.0
+ 0.0  1.0  0.0
+ 0.0  0.0  1.0
+ 1.0  0.0  0.0
+ 0.0  0.0  1.0
+```
+In this case, the first column represents the category "red", the second column represents "green", and the third column represents "blue". The value of 1 in each row indicates the presence of that category for that particular observation, while the value of 0 indicates the absence of that category.
+
+This encoding allows you to use the resulting matrix of dummy variables in machine learning models or other data analysis tasks where numerical data is required.
 
 ## R
 
