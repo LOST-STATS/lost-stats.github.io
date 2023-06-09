@@ -231,22 +231,56 @@
 <span class="c1"># Replace the colors column with a dummy column for each color
 </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">'colors'</span><span class="p">])</span>
 </code></pre></div></div>
-      <h2 id="r">
-          <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
+      <h2 id="julia">
+          <a href="#julia" aria-labelledby="julia" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Julia
       </h2>
-<p>Turning a categorical variable into a set of dummies</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span><span class="w">
+<p>Here’s an implementation example in Julia for creating dummy variables using the OneHotEncoder function from the MLBase package:</p>
+<p>```using MLBase</p>
+      <h1 id="create-an-array-of-categorical-data">
+          <a href="#create-an-array-of-categorical-data" aria-labelledby="create-an-array-of-categorical-data" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Create an array of categorical data
+      </h1>
+<p>colors = [“red”, “green”, “blue”, “red”, “blue”]</p>
+      <h1 id="encode-the-categorical-data-into-dummy-variables">
+          <a href="#encode-the-categorical-data-into-dummy-variables" aria-labelledby="encode-the-categorical-data-into-dummy-variables" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Encode the categorical data into dummy variables
+      </h1>
+<p>encoded_colors = MLBase.OneHotEncoder()(colors)</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In this example, we start by importing the MLBase package, which provides the OneHotEncoder function for creating dummy variables.
 
-</span><span class="c1"># To retain the column of dummies for the first</span><span class="w">
-</span><span class="c1"># categorical value we remove the intercept</span><span class="w">
-</span><span class="n">model.matrix</span><span class="p">(</span><span class="o">~</span><span class="m">-1</span><span class="o">+</span><span class="n">Species</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">iris</span><span class="p">)</span><span class="w">
+Next, we define an array colors that represents the categorical variable we want to encode. In this case, it contains different colors.
 
-</span><span class="c1"># Then we can add the dummies to the original data</span><span class="w">
-</span><span class="n">iris</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cbind</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">model.matrix</span><span class="p">(</span><span class="o">~</span><span class="m">-1</span><span class="o">+</span><span class="n">Species</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">iris</span><span class="p">))</span><span class="w">
+To create the dummy variables, we use the OneHotEncoder() function and apply it to the colors array. The function automatically encodes the categorical data into a matrix of dummy variables.
 
-</span><span class="c1"># Of course, in a regression we can skip this process</span><span class="w">
-</span><span class="n">summary</span><span class="p">(</span><span class="n">lm</span><span class="p">(</span><span class="n">Sepal.Length</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Petal.Length</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Species</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iris</span><span class="p">))</span><span class="w">
-</span></code></pre></div></div>
+After executing this code, the encoded_colors variable will contain a matrix where each row represents an observation, and each column represents a category from the original colors array. The values in the matrix are either 0 or 1, indicating whether a particular category is present for each observation.
+
+For example, if we print the encoded_colors matrix, it might look like this:
+</code></pre></div></div>
+<p>3×3 Matrix{Float64}:
+ 1.0  0.0  0.0
+ 0.0  1.0  0.0
+ 0.0  0.0  1.0
+ 1.0  0.0  0.0
+ 0.0  0.0  1.0</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In this case, the first column represents the category "red", the second column represents "green", and the third column represents "blue". The value of 1 in each row indicates the presence of that category for that particular observation, while the value of 0 indicates the absence of that category.
+
+This encoding allows you to use the resulting matrix of dummy variables in machine learning models or other data analysis tasks where numerical data is required.
+
+## R
+
+Turning a categorical variable into a set of dummies
+
+```r
+data(iris)
+
+# To retain the column of dummies for the first
+# categorical value we remove the intercept
+model.matrix(~-1+Species, data=iris)
+
+# Then we can add the dummies to the original data
+iris &lt;- cbind(iris, model.matrix(~-1+Species, data=iris))
+
+# Of course, in a regression we can skip this process
+summary(lm(Sepal.Length ~ Petal.Length + Species, data = iris))
+</code></pre></div></div>
 <p>If you are only creating one dummy at a time rather than a set from a factor variable, creating a dummy variable doesn’t have to be any different than creating any other variable. Below are several ways to create a new variable in R.</p>
       <h3 id="dplyrmutate">
           <a href="#dplyrmutate" aria-labelledby="dplyrmutate" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> dplyr::mutate
