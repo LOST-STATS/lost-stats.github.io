@@ -282,7 +282,7 @@
 # This allows for the interaction between `treat` and `time_to_treat` to occur for each state.
 # Otherwise, there may be some missingss and the estimations will be off.
 </span><span class="n">df</span><span class="p">[</span><span class="s">'time_to_treat'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">df</span><span class="p">[</span><span class="s">'_nfd'</span><span class="p">].</span><span class="n">sub</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'year'</span><span class="p">])</span>
+    <span class="n">df</span><span class="p">[</span><span class="s">'year'</span><span class="p">].</span><span class="n">sub</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'_nfd'</span><span class="p">])</span>
         <span class="c1"># missing values for _nfd implies no treatment
 </span>        <span class="p">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="c1"># so we don't have decimals in our factor names
