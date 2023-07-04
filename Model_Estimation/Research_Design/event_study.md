@@ -73,7 +73,7 @@ df = pd.read_csv("https://raw.githubusercontent.com/LOST-STATS/LOST-STATS.github
 # This allows for the interaction between `treat` and `time_to_treat` to occur for each state.
 # Otherwise, there may be some missingss and the estimations will be off.
 df['time_to_treat'] = (
-    df['_nfd'].sub(df['year'])
+    df['year'].sub(df['_nfd'])
         # missing values for _nfd implies no treatment
         .fillna(0)
         # so we don't have decimals in our factor names
