@@ -17,7 +17,7 @@ For more information about OLS, see [Wikipedia: Ordinary Least Squares](https://
 
 - OLS assumes that you have specified a true linear relationship.
 - OLS results are not guaranteed to have a causal interpretation. Just because OLS estimates a positive relationship between $$X_1$$ and $$Y$$ does not necessarily mean that an increase in $$X_1$$ will cause $$Y$$ to increase.
-- OLS does *not* require that your variables follow a normal distribution. 
+- OLS does *not* require that your variables follow a normal distribution.
 
 ## Also Consider
 
@@ -38,6 +38,31 @@ open https://github.com/LOST-STATS/lost-stats.github.io/blob/master/Data/auto.gd
 # Run OLS using the auto data, with mpg as the outcome variable
 # and headroom, trunk, and weight as predictors
 ols mpg const headroom trunk weight
+```
+
+## Julia
+
+```julia
+# Uncomment the next line to install all the necessary packages
+# import Pkg; Pkg.add(["CSV", "DataFrames", "GLM", "StatsModels"])
+
+# We tap into JuliaStats ecosystem to solve our data and regression problems :)
+# In particular, DataFrames package provides dataset handling functions,
+# StatsModels gives us the `@formula` macro to specify our model in a concise and readable form,
+# while GLM implements (Generalized) Linear Models fitting and analysis.
+# And all these packages work together seamlessly.
+using StatsModels, GLM, DataFrames, CSV
+
+# Here we download the data set, parse the file with CSV and load into a DataFrame
+mtcars = CSV.read(download("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Data/mtcars.csv"), DataFrame)
+
+# The following line closely follows the R and Python syntax, thanks to GLM and StatModels packages
+# Here we specify a linear model and fit it to our data set in one go
+ols = lm(@formula(mpg ~ cyl + hp + wt), mtcars)
+
+# This will print out the summary of the fitted model including
+# coefficients' estimates, standard errors, confidence intervals and p-values
+print(ols)
 ```
 
 ## Matlab
@@ -93,13 +118,13 @@ summary(olsmodel)
 
 ```sas
 /* Load Data */
-proc import datafile="C:mtcars.dbf" 
+proc import datafile="C:mtcars.dbf"
    out=fromr dbms=dbf;
 run;
 /* OLS regression */
 proc reg;
    model mpg = cyl hp wt;
-run; 
+run;
 ```
 
 ## Stata
