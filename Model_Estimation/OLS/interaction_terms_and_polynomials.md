@@ -15,7 +15,7 @@ $$
 Y = \beta_0+\beta_1X_1+\beta_2X_2
 $$
 
-However, if the independent variables have a nonlinear effect on the outcome, the model will be incorrectly specified. This is fine as long as that nonlinearity is modeled by including those nonlinear terms in the index. 
+However, if the independent variables have a nonlinear effect on the outcome, the model will be incorrectly specified. This is fine as long as that nonlinearity is modeled by including those nonlinear terms in the index.
 
 The two most common ways this occurs is by including interactions or polynomial terms. With an interaction, the effect of one variable varies according to the value of another:
 
@@ -43,6 +43,38 @@ $$
 - One common way to display the effects of a model with interactions is to graph them. See [marginal effects plots for interactions with continuous variables]({{ "/Presentation/Figures/marginal_effects_plots_for_interactions_with_continuous_variables.html" | relative_url }}) and [Marginal effects plots for interactions with continuous variables]({{ "/Presentation/Figures/marginal_effects_plots_for_interactions_with_categorical_variables.html" | relative_url }})
 
 # Implementations
+
+## Julia
+
+Thanks to [**StatsModels.jl**](https://juliastats.org/StatsModels.jl/stable/) and [**GLM**](https://juliastats.org/GLM.jl/stable/) packages from the JuliaStats project we can match R and Python code very closely.
+
+```julia
+using StatsModels, GLM, DataFrames, CSV
+
+# Load the R mtcars dataset from a URL
+mtcars = CSV.read(download("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Data/mtcars.csv"), DataFrame)
+
+# Here we specify a model with linear, quadratic and cubic `hp` terms.
+# We can use any Julia functions and operators, including user-defined ones,
+# in a `@formula` expression.
+# We also specify `dropcollinear=false` otherwise `lm` function will drop
+# the intercept during fitting, as soon as the model's terms are not linearly
+# independent. That's a dubious thing to have in a presumably linear model,
+# but here we show only how to write down a particular model, and not what model
+# is the right one for the given data. :)
+model1 = lm(@formula(mpg ~ hp + hp^2 + hp^3 + cyl), mtcars, dropcollinear=false)
+print(model1)
+
+# Include an interaction term and the variables by themselves using `*`
+# The interaction term is represented by hp:cyl
+model2 = lm(@formula(mpg ~ hp * cyl), mtcars)
+print(model2)
+
+# Include only the interaction term and not the variables themselves with `&`
+# Hard to interpret! Occasionally useful though.
+model3 = lm(@formula(mpg ~ hp&cyl), mtcars)
+print(model3)
+```
 
 ## Python
 
@@ -126,7 +158,7 @@ reg mpg c.weight##c.weight##c.weight foreign
 It is also possible to use other type of functions and obtain correct marginal effects. For example:
 Say that you want to estimate the model:
 
-$$ y = a_0 + a_1 * x + a_2 * 1/x + e $$ 
+$$ y = a_0 + a_1 * x + a_2 * 1/x + e $$
 
 and you want to estimate the marginal effects with respect to $$x$$. You can do this as follows:
 
