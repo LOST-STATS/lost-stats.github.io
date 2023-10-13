@@ -230,10 +230,52 @@
           <a href="#implementations" aria-labelledby="implementations" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
       </h1>
 <p>Because there are so many potential foreign formats, these implementations will be more about listing the appropriate commands with example syntax than providing full working examples. Make sure that you fill in the proper filename. The filename should include a filepath, or you should <a href="/Other/set_a_working_directory.html">Set a Working Directory</a>.</p>
+      <h2 id="julia">
+          <a href="#julia" aria-labelledby="julia" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Julia
+      </h2>
+<p>Julia ecosystem features many packages for working with various file formats.
+Here we’ll consider</p>
+<ul>
+  <li><a href="https://arrow.apache.org/julia/dev/">Arrow.jl</a></li>
+  <li><a href="https://juliadata.github.io/Avro.jl/stable/">Avro.jl</a></li>
+  <li><a href="https://expandingman.gitlab.io/Parquet2.jl/">Parquet2.jl</a></li>
+  <li><a href="https://felipenoris.github.io/XLSX.jl/stable/">XLSX.jl</a></li>
+</ul>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Uncomment if you want to install packages programmatically</span>
+<span class="c"># using Pkg</span>
+
+<span class="c"># We'll load all the data into DataFrames for uniform processing</span>
+<span class="k">using</span> <span class="n">DataFrames</span>
+
+<span class="c"># Apache Arrow</span>
+<span class="c"># To install the package</span>
+<span class="c"># Pkg.add("Arrow")</span>
+<span class="k">using</span> <span class="n">Arrow</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="x">(</span><span class="n">Arrow</span><span class="o">.</span><span class="n">Table</span><span class="x">(</span><span class="s">"filename.arrow"</span><span class="x">))</span> <span class="c"># load (mmap) data and convert it to a DataFrame for analysis</span>
+
+<span class="c"># Apache Avro</span>
+<span class="c"># To install the package</span>
+<span class="c"># Pkg.add("Avro")</span>
+<span class="k">using</span> <span class="n">Avro</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="x">(</span><span class="n">Avro</span><span class="o">.</span><span class="n">readtable</span><span class="x">(</span><span class="s">"filename.avro"</span><span class="x">))</span> <span class="c"># load data and convert it to a DataFrame for analysis</span>
+
+<span class="c"># Apache Parquet</span>
+<span class="c"># To install the package</span>
+<span class="c"># Pkg.add("Parquet2")</span>
+<span class="k">using</span> <span class="n">Parquet2</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="x">(</span><span class="n">Parquet2</span><span class="o">.</span><span class="n">Dataset</span><span class="x">(</span><span class="s">"filename.parq"</span><span class="x">);</span> <span class="n">copycols</span><span class="o">=</span><span class="nb">false</span><span class="x">)</span> <span class="c"># load data and convert it to a DataFrame for analysis</span>
+
+<span class="c"># Apache Parquet</span>
+<span class="c"># To install the package</span>
+<span class="c"># Pkg.add("XLSX")</span>
+<span class="k">using</span> <span class="n">XLSX</span>
+<span class="c"># load data from the specified sheet in the file and convert it to a DataFrame for analysis</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="x">(</span><span class="n">XLSX</span><span class="o">.</span><span class="n">readtable</span><span class="x">(</span><span class="s">"filename.xlsx"</span><span class="x">,</span> <span class="s">"mysheet"</span><span class="x">))</span>
+</code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Generally, you may use the rio package to import any tabular data type to be read in fluently without requiring a specification of the file type. </span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Generally, you may use the rio package to import any tabular data type to be read in fluently without requiring a specification of the file type.</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">rio</span><span class="p">)</span><span class="w">
 </span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">import</span><span class="p">(</span><span class="s1">'filename.xlsx'</span><span class="p">)</span><span class="w">
 </span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">import</span><span class="p">(</span><span class="s1">'filename.dta'</span><span class="p">)</span><span class="w">
