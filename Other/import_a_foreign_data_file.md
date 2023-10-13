@@ -27,10 +27,53 @@ This page is specifically about importing data files from formats specific to pa
 
 Because there are so many potential foreign formats, these implementations will be more about listing the appropriate commands with example syntax than providing full working examples. Make sure that you fill in the proper filename. The filename should include a filepath, or you should [Set a Working Directory]({{ "/Other/set_a_working_directory.html" | relative_url }}).
 
+## Julia
+
+Julia ecosystem features many packages for working with various file formats.
+Here we'll consider
+
+- [Arrow.jl](https://arrow.apache.org/julia/dev/)
+- [Avro.jl](https://juliadata.github.io/Avro.jl/stable/)
+- [Parquet2.jl](https://expandingman.gitlab.io/Parquet2.jl/)
+- [XLSX.jl](https://felipenoris.github.io/XLSX.jl/stable/)
+
+```julia?skip=true&skipReason=files_dont_exist
+# Uncomment if you want to install packages programmatically
+# using Pkg
+
+# We'll load all the data into DataFrames for uniform processing
+using DataFrames
+
+# Apache Arrow
+# To install the package
+# Pkg.add("Arrow")
+using Arrow
+df = DataFrame(Arrow.Table("filename.arrow")) # load (mmap) data and convert it to a DataFrame for analysis
+
+# Apache Avro
+# To install the package
+# Pkg.add("Avro")
+using Avro
+df = DataFrame(Avro.readtable("filename.avro")) # load data and convert it to a DataFrame for analysis
+
+# Apache Parquet
+# To install the package
+# Pkg.add("Parquet2")
+using Parquet2
+df = DataFrame(Parquet2.Dataset("filename.parq"); copycols=false) # load data and convert it to a DataFrame for analysis
+
+# Apache Parquet
+# To install the package
+# Pkg.add("XLSX")
+using XLSX
+# load data from the specified sheet in the file and convert it to a DataFrame for analysis
+df = DataFrame(XLSX.readtable("filename.xlsx", "mysheet"))
+```
+
 ## R
 
 ```r?skip=true&skipReason=files_dont_exist
-# Generally, you may use the rio package to import any tabular data type to be read in fluently without requiring a specification of the file type. 
+# Generally, you may use the rio package to import any tabular data type to be read in fluently without requiring a specification of the file type.
 library(rio)
 data <- import('filename.xlsx')
 data <- import('filename.dta')
