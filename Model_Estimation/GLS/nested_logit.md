@@ -8,7 +8,7 @@ mathjax: TRUE
 
 A nested logistical regression (nested logit, for short) is a statistical method for finding a best-fit line when the the outcome variable $Y$ is a binary variable, taking values of 0 or 1. Logit regressions, in general, follow a [logistical distribution](https://en.wikipedia.org/wiki/Logistical_distribution) and restrict predicted probabilities between 0 and 1. 
 
-Traditional logit models require that the [Independence of Irrelevant Alternatives(IIA)](https://en.wikipedia.org/wiki/Independence_of_irrelevant_alternatives) property holds for all possible outcomes of some process. Nested logit models differ by allowing 'nests' of outcomes that satisfy IIA within them, but not requiring that all outcomes jointly satisfy IIA.
+Traditional logit models require that the [Independence of Irrelevant Alternatives(IIA)](https://en.wikipedia.org/wiki/Independence_of_irrelevant_alternatives) property holds for all possible outcomes of some process. Nested logit models differ by allowing 'nests' of outcomes that satisfy IIA, but not requiring that all outcomes jointly satisfy IIA.
 
 For an example of violating the IIA property, see [Red Bus/Blue Bus Paradox.](https://en.wikipedia.org/wiki/Independence_of_irrelevant_alternatives#Criticisms_of_the_IIA_assumption)
 
