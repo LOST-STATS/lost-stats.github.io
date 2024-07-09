@@ -109,6 +109,19 @@ smoking = read_csv("https://github.com/LOST-STATS/lost-stats.github.io/raw/sourc
 
 smoking = smoking %>% mutate(smoke = 1*(smoke == "Yes"))
 
+# Mapping the categories to new categorical values 1 to 8 and giving NA to "Refused" and "Unknown"
+smoking$new_income <- NA
+smoking$new_income[smoking$gross_income == "Under 2,600"] <- 1
+smoking$new_income[smoking$gross_income == "2,600 to 5,200"] <- 2
+smoking$new_income[smoking$gross_income == "5,200 to 10,400"] <- 3
+smoking$new_income[smoking$gross_income == "10,400 to 15,600"] <- 4
+smoking$new_income[smoking$gross_income == "15,600 to 20,800"] <- 5
+smoking$new_income[smoking$gross_income == "20,800 to 28,600"] <- 6
+smoking$new_income[smoking$gross_income == "28,600 to 36,400"] <- 7
+smoking$new_income[smoking$gross_income == "Above 36,400"] <- 8
+smoking$new_income[smoking$gross_income == "Refused"] <- NA
+smoking$new_income[smoking$gross_income == "Unknown"] <- NA
+
 ##Step One: Run the logistic regression.
 
 ps_model = glm(smoke ~ gender+age+marital_status+ethnicity+region, data=smoking)
@@ -128,14 +141,15 @@ match_data = match.data(match)
 dim(match_data)
 
 ##Step Four: Conduct Analysis using the new sample.
-##Turn marital status into a factor variable so that we can use it in our regression 
-match_data = match_data %>% mutate(marital_status = as.factor(marital_status))
 
 ##We can now get the treatment effect of smoking on gross income with and without controls
 # Note these standard errors will be incorrect, see Caliendo and Kopeinig (2008) for fixes
 # https://onlinelibrary.wiley.com/doi/full/10.1111/j.1467-6419.2007.00527.x
-lm_nocontrols = lm(marital_status ~ smoke, data= match_data)
+lm_nocontrols = lm(new_income ~ smoke, data= match_data)
 
 #With controls, standard errors also wrong here
-lm_controls =lm(marital_status ~ smoke+age+gender+ethnicity+marital_status, data=match_data)
+##Turn marital status into a factor variable so that we can use it in our regression 
+match_data = match_data %>% mutate(marital_status = as.factor(marital_status))
+
+lm_controls =lm(new_income ~ smoke+age+gender+ethnicity+marital_status, data=match_data)
 ```
