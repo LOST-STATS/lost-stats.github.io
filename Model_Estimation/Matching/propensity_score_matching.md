@@ -131,7 +131,7 @@ dim(match_data)
 ##Turn marital status into a factor variable so that we can use it in our regression 
 match_data = match_data %>% mutate(marital_status = as.factor(marital_status))
 
-##We can now get the treatment effect of smoking on gross income with and without controls
+##We can now get the treatment effect of smoking on marital status with and without controls
 # Note these standard errors will be incorrect, see Caliendo and Kopeinig (2008) for fixes
 # https://onlinelibrary.wiley.com/doi/full/10.1111/j.1467-6419.2007.00527.x
 lm_nocontrols = lm(marital_status ~ smoke, data= match_data)
