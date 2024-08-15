@@ -57,6 +57,41 @@ This results in:
 ![seaborn_scatterplot](Images/Scatterplots/seaborn_scatter.png)
 
 
+Alternatively, you can also use the seaborn.objects library which is more built around the grammar of graphics, by layering objects.
+```python
+import seaborn.objects as so
+from seaborn import load_dataset
+
+# Load the tips dataset
+df = load_dataset("tips")
+
+"""
+Below we'll make a simple scatter plot with a linear trendline fit to the 
+scatter using seaborn.objects
+
+Comments are provided on each line to help call out what each line is doing
+"""
+
+# Initialize the plot instance
+plot = (so.Plot(data=df, x='total_bill', y='tip', color='time') #General aesthetic variables
+        .add(so.Dots(pointsize=5)) # Layer dots (scatter) aesthetic with size 5 for the dots
+        .add(so.Line(), so.PolyFit(order=1)) # Layer a trendline with order 1 (linear)
+        .label(title='Total Bill Due vs Tip Amount (by Time)', # Manually set the labels
+               x='Total Bill Due (in dollars)',
+               y='Tip Amount (in dollars)',
+               color='Time')
+        .theme({"axes.facecolor": "w"}) # Remove spines and make the entire chart area white
+    )
+
+
+plot.plot() #Call the plot
+```
+This results in:
+
+![seaborn_objects_dotplot](Images/Scatterplots/seaborn_objects_scatter.png)
+
+
+
 ## R
 In R, one of the best tools for creating scatterplots is the function `ggplot()`, found in the `ggplot2` package. For this demonstration, we will also be using a dataset already built in to R called `mtcars`.
 
