@@ -261,6 +261,36 @@
 </code></pre></div></div>
 <p>This results in:</p>
 <p><img src="/Presentation/Figures/Images/Scatterplots/seaborn_scatter.png" alt="seaborn_scatterplot" /></p>
+<p>Alternatively, you can also use the seaborn.objects library which is more built around the grammar of graphics, by layering objects.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">seaborn.objects</span> <span class="k">as</span> <span class="n">so</span>
+<span class="kn">from</span> <span class="nn">seaborn</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="c1"># Load the tips dataset
+</span><span class="n">df</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s">"tips"</span><span class="p">)</span>
+
+<span class="s">"""
+Below we'll make a simple scatter plot with a linear trendline fit to the 
+scatter using seaborn.objects
+
+Comments are provided on each line to help call out what each line is doing
+"""</span>
+
+<span class="c1"># Initialize the plot instance
+</span><span class="n">plot</span> <span class="o">=</span> <span class="p">(</span><span class="n">so</span><span class="p">.</span><span class="n">Plot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">'total_bill'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">'tip'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'time'</span><span class="p">)</span> <span class="c1">#General aesthetic variables
+</span>        <span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">so</span><span class="p">.</span><span class="n">Dots</span><span class="p">(</span><span class="n">pointsize</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span> <span class="c1"># Layer dots (scatter) aesthetic with size 5 for the dots
+</span>        <span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">so</span><span class="p">.</span><span class="n">Line</span><span class="p">(),</span> <span class="n">so</span><span class="p">.</span><span class="n">PolyFit</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="c1"># Layer a trendline with order 1 (linear)
+</span>        <span class="p">.</span><span class="n">label</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">'Total Bill Due vs Tip Amount (by Time)'</span><span class="p">,</span> <span class="c1"># Manually set the labels
+</span>               <span class="n">x</span><span class="o">=</span><span class="s">'Total Bill Due (in dollars)'</span><span class="p">,</span>
+               <span class="n">y</span><span class="o">=</span><span class="s">'Tip Amount (in dollars)'</span><span class="p">,</span>
+               <span class="n">color</span><span class="o">=</span><span class="s">'Time'</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">theme</span><span class="p">({</span><span class="s">"axes.facecolor"</span><span class="p">:</span> <span class="s">"w"</span><span class="p">})</span> <span class="c1"># Remove spines and make the entire chart area white
+</span>    <span class="p">)</span>
+
+
+<span class="n">plot</span><span class="p">.</span><span class="n">plot</span><span class="p">()</span> <span class="c1">#Call the plot
+</span></code></pre></div></div>
+<p>This results in:</p>
+<p><img src="/Presentation/Figures/Images/Scatterplots/seaborn_objects_scatter.png" alt="seaborn_objects_dotplot" /></p>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
