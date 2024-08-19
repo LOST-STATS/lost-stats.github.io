@@ -158,6 +158,60 @@ if __name__ == "__main__":
   main()
 ```
 
+A *very* simple way to also get a very basic KNN down in Python is leverage the knowledge of the many smart people that contribute to sci-kit learn library (sklean) as it is a powerhouse of machine learning models, as well as other very useful tools like data splitting, model evaluation, and feature selections.
+
+```python
+#Import Libraries
+from seaborn import load_dataset
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+
+# Load a sample dataset
+iris_df = load_dataset('iris')
+
+
+# Quick and rough sketch comparing the petal feature to species
+sns.scatterplot(data=iris_df, x='petal_length', y='petal_width', hue='species')
+
+
+# Quick and rough sketch comparing the sepals feature to species
+sns.scatterplot(data=iris_df, x='sepal_length', y='sepal_width', hue='species')
+
+
+
+# Let's seperate the data into X and Y (features and target)
+X = iris_df.drop(columns='species')
+Y = iris_df['species']
+
+
+# Split the data into training and testing for model evaluations
+X_train, X_test, y_train, y_test = train_test_split(X, Y, train_size=.70, shuffle=True,
+                                                    random_state=777)
+
+
+# Iterate through different neighbors to find the best accuracy with N neighbors.
+accuracies = {}
+errors = {}
+for i in range(1, 15):
+    clf = KNeighborsClassifier(n_neighbors=i)
+
+    clf.fit(X=X_train, y=y_train)
+    y_pred = clf.predict(X_test)
+    
+    accu_score = accuracy_score(y_true=y_test, y_pred=y_pred)
+    accuracies[i] = accu_score
+
+sns.lineplot(x=accuracies.keys(), y=accuracies.values()).set_title('Accuracies by N-Neighbors')
+
+# Looks like about 8 is the first best accuracy, so we'll go with that.
+print(f"{accuracies[8]:.1%}") #100% accuracy for 8 neighbors.
+
+```
+
+
+
 ##  R 
 
 The simplest way to perform KNN in R is with the package **class**. It has a KNN function that is rather user friendly and does not require you to do distance computing as it runs everything with Euclidean distance. For more advanced types of nearest neighbors matching it would be best to use the `matchit` function from the [**matchit** package.](https://kosukeimai.github.io/MatchIt/reference/matchit.html) To verify results this example also used the `confusionMatrix` function from the package **caret**.  
