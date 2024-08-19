@@ -60,6 +60,64 @@ mtcars['classification'] = mtcars.apply(lambda x: next(key for
 ```
 There's quite a bit to unpack here! `.apply(lambda x: ..., axis=1)` applies a lambda function rowwise to the entire dataframe, with individual columns accessed by, for example, `x['mpg']`. (You can apply functions on an index using `axis=0`.) The `next` keyword returns the next entry in a list that evaluates to true or exists (so in this case it will just return the first entry that exists). Finally, `key for key, value in conds_dict.items() if value(x)` iterates over the pairs in the dictionary and returns only the condition names (the 'keys' in the dictionary) for conditions (the 'values' in the dictionary) that evaluate to true.
 
+Once again, just like R, Python has *many* ways of doing the same thing. Some with more complex, but efficient (runtime) manners, while others being slightly slower but many times easier to understand and follow-along with it's closeness of natural-language syntax. So, for this example, we will use numpy and pandas together, to achieve both an efficient runtime and a relatively simple syntax. 
+
+```python
+from seaborn import load_dataset
+import pandas as pd
+import numpy as np
+
+mtcars = load_dataset('mpg')
+
+# Create our list of index selections
+conditionList = [
+    (mtcars['mpg'] <= 19) & (mtcars['horsepower'] <= 123),
+    (mtcars['mpg'] > 19) & (mtcars['horsepower'] <= 123),
+    (mtcars['mpg'] <= 19) & (mtcars['horsepower'] > 123),
+    (mtcars['mpg'] > 19) & (mtcars['horsepower'] > 123)
+]
+
+# Create the results we will pair with the above index selections
+resultList = [
+    'Efficient and Non-powerful',
+    'Inefficient and Non-powerful',
+    'Efficient and Powerful',
+    'Inefficient and Powerful'
+]
+
+
+df = (
+    mtcars
+    .assign(
+        # Run the numpy select
+        classification = np.select(condlist=conditionList,
+                                   choicelist=resultList,
+                                   default='Not Considered'
+                                )
+    )
+    # Convert from object to categorical
+    .astype({'classification' :'category'})
+)
+
+
+
+"""
+Be a more purposeful programmer/analyst/data scientist:
+
+Using the default parameter in np.select() allows you to 
+fill in the values with that specific text wherever your criteria
+is not considered. For example, if you search this data, you will see
+there are a few rows where horesepower is null. 
+The original criteria we built does not considering null, so 
+it would be populated with "Not Considered" allowing you to find those
+values and correct them, or set checks for them in a pipeline.
+
+"""
+
+```
+
+
+
 ## R
 
 We will create a categorical variable in two ways, first using `case_when()` from the **dplyr** package, and then using the faster `fcase()` from the **data.table** package.

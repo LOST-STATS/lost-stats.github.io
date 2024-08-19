@@ -76,6 +76,34 @@ storms['mean_wind'] = storms.groupby(['name','year','month','day'])['wind'].tran
 
 ```
 
+Though the above may be a great way to do it, it certainly seems complex. There is a much easier way to achieve similar results that is easier on the eyes (and brain!). This is using panda's aggregate() method with tuple assignments. This results in the most easy-to-understand way, by using the aggregate method after grouping since this would allow us to follow a very simple format of `new_column_name = ('old_column', 'agg_funct')`. So, for example:
+
+```python
+import pandas as pd
+
+# Pull in data on storms
+storms = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv')
+
+# Use groupby and group the columns and perform group calculations
+
+# The below calculations aren't particularly indicative of a good analysis,
+# but give a quick look at a few of the calculations you can do
+df = (
+    storms
+    .groupby(by=['name', 'year', 'month', 'day']) #group
+    .aggregate(
+        avg_wind = ('wind', 'mean'), 
+        max_wind = ('wind', 'max'),
+        med_wind = ('wind', 'median'),
+        std_pressure = ('pressure', 'std'),
+        first_year = ('year', 'first')
+    )
+    .reset_index() # Somewhat similar to ungroup. Removes the grouping from the index
+)
+
+```
+
+
 ## R
 
 In R, we can use either the **dplyr** or **data.table** package to do this.
