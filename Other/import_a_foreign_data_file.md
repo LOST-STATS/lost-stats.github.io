@@ -70,6 +70,34 @@ using XLSX
 df = DataFrame(XLSX.readtable("filename.xlsx", "mysheet"))
 ```
 
+## Python
+You'll most often be relying on Pandas to read in data. Though many other forms exist, the reason you'll be pulling in data is usually to work with the data, transform, and manipulate it. Panda lends itself extremely well for this purpose. Sometime you may have to work with much more messy data with APIs where you'll navigate through hierarchies of dictionaries using the .keys() method and selecting levels, but that is handled on a case-by-case basis and impossible to cover here. However, some of the most common will be covered. Those are csv, excel (xlsx), and .RData files.
+
+You, of course, always have the default open() function, but that can get much more complex.
+
+```python
+# Reading .RData files 
+import pyreadr
+
+rds_data = pyreadr.read_r('sales_data.Rdata') #Object is a dictionary
+
+#Sales is the name of the dataframe, if unnamed, you may have to pass "None" as the name (no quotes)
+df_r = rds_data['sales'] 
+df_r.head()
+
+
+# Other common file reads, all use pandas. Most common two shown (csv/xlsx)
+import pandas as pd
+
+csv_file = pd.read_csv('filename.csv')
+xlsx_file = pd.read_excel('filename.xlsx', sheet_name='Sheet1')
+
+#Pandas can also read html, jsons, etc....
+
+```
+
+
+
 ## R
 
 ```r?skip=true&skipReason=files_dont_exist
