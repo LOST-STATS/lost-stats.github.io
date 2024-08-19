@@ -262,6 +262,59 @@
                                         <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
 <p>There’s quite a bit to unpack here! <code class="language-plaintext highlighter-rouge">.apply(lambda x: ..., axis=1)</code> applies a lambda function rowwise to the entire dataframe, with individual columns accessed by, for example, <code class="language-plaintext highlighter-rouge">x['mpg']</code>. (You can apply functions on an index using <code class="language-plaintext highlighter-rouge">axis=0</code>.) The <code class="language-plaintext highlighter-rouge">next</code> keyword returns the next entry in a list that evaluates to true or exists (so in this case it will just return the first entry that exists). Finally, <code class="language-plaintext highlighter-rouge">key for key, value in conds_dict.items() if value(x)</code> iterates over the pairs in the dictionary and returns only the condition names (the ‘keys’ in the dictionary) for conditions (the ‘values’ in the dictionary) that evaluate to true.</p>
+<p>Once again, just like R, Python has <em>many</em> ways of doing the same thing. Some with more complex, but efficient (runtime) manners, while others being slightly slower but many times easier to understand and follow-along with it’s closeness of natural-language syntax. So, for this example, we will use numpy and pandas together, to achieve both an efficient runtime and a relatively simple syntax.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">seaborn</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">mtcars</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s">'mpg'</span><span class="p">)</span>
+
+<span class="c1"># Create our list of index selections
+</span><span class="n">conditionList</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="n">mtcars</span><span class="p">[</span><span class="s">'mpg'</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">19</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">mtcars</span><span class="p">[</span><span class="s">'horsepower'</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">123</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">mtcars</span><span class="p">[</span><span class="s">'mpg'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">19</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">mtcars</span><span class="p">[</span><span class="s">'horsepower'</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">123</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">mtcars</span><span class="p">[</span><span class="s">'mpg'</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">19</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">mtcars</span><span class="p">[</span><span class="s">'horsepower'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">123</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">mtcars</span><span class="p">[</span><span class="s">'mpg'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">19</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">mtcars</span><span class="p">[</span><span class="s">'horsepower'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">123</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="c1"># Create the results we will pair with the above index selections
+</span><span class="n">resultList</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">'Efficient and Non-powerful'</span><span class="p">,</span>
+    <span class="s">'Inefficient and Non-powerful'</span><span class="p">,</span>
+    <span class="s">'Efficient and Powerful'</span><span class="p">,</span>
+    <span class="s">'Inefficient and Powerful'</span>
+<span class="p">]</span>
+
+
+<span class="n">df</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">mtcars</span>
+    <span class="p">.</span><span class="n">assign</span><span class="p">(</span>
+        <span class="c1"># Run the numpy select
+</span>        <span class="n">classification</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">select</span><span class="p">(</span><span class="n">condlist</span><span class="o">=</span><span class="n">conditionList</span><span class="p">,</span>
+                                   <span class="n">choicelist</span><span class="o">=</span><span class="n">resultList</span><span class="p">,</span>
+                                   <span class="n">default</span><span class="o">=</span><span class="s">'Not Considered'</span>
+                                <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="c1"># Convert from object to categorical
+</span>    <span class="p">.</span><span class="n">astype</span><span class="p">({</span><span class="s">'classification'</span> <span class="p">:</span><span class="s">'category'</span><span class="p">})</span>
+<span class="p">)</span>
+
+
+
+<span class="s">"""
+Be a more purposeful programmer/analyst/data scientist:
+
+Using the default parameter in np.select() allows you to 
+fill in the values with that specific text wherever your criteria
+is not considered. For example, if you search this data, you will see
+there are a few rows where horesepower is null. 
+The original criteria we built does not considering null, so 
+it would be populated with "Not Considered" allowing you to find those
+values and correct them, or set checks for them in a pipeline.
+
+"""</span>
+
+</code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>

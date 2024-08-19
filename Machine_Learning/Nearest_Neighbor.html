@@ -395,6 +395,55 @@
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
   <span class="n">main</span><span class="p">()</span>
 </code></pre></div></div>
+<p>A <em>very</em> simple way to also get a very basic KNN down in Python is leverage the knowledge of the many smart people that contribute to sci-kit learn library (sklean) as it is a powerhouse of machine learning models, as well as other very useful tools like data splitting, model evaluation, and feature selections.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Import Libraries
+</span><span class="kn">from</span> <span class="nn">seaborn</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="c1"># Load a sample dataset
+</span><span class="n">iris_df</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s">'iris'</span><span class="p">)</span>
+
+
+<span class="c1"># Quick and rough sketch comparing the petal feature to species
+</span><span class="n">sns</span><span class="p">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">iris_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">'petal_length'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">'petal_width'</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">'species'</span><span class="p">)</span>
+
+
+<span class="c1"># Quick and rough sketch comparing the sepals feature to species
+</span><span class="n">sns</span><span class="p">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">iris_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">'sepal_length'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">'sepal_width'</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">'species'</span><span class="p">)</span>
+
+
+
+<span class="c1"># Let's seperate the data into X and Y (features and target)
+</span><span class="n">X</span> <span class="o">=</span> <span class="n">iris_df</span><span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s">'species'</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">iris_df</span><span class="p">[</span><span class="s">'species'</span><span class="p">]</span>
+
+
+<span class="c1"># Split the data into training and testing for model evaluations
+</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="p">.</span><span class="mi">70</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                                    <span class="n">random_state</span><span class="o">=</span><span class="mi">777</span><span class="p">)</span>
+
+
+<span class="c1"># Iterate through different neighbors to find the best accuracy with N neighbors.
+</span><span class="n">accuracies</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">errors</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">):</span>
+    <span class="n">clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+
+    <span class="n">clf</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    
+    <span class="n">accu_score</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">accuracies</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">accu_score</span>
+
+<span class="n">sns</span><span class="p">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">accuracies</span><span class="p">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">y</span><span class="o">=</span><span class="n">accuracies</span><span class="p">.</span><span class="n">values</span><span class="p">()).</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Accuracies by N-Neighbors'</span><span class="p">)</span>
+
+<span class="c1"># Looks like about 8 is the first best accuracy, so we'll go with that.
+</span><span class="k">print</span><span class="p">(</span><span class="s">f"</span><span class="si">{</span><span class="n">accuracies</span><span class="p">[</span><span class="mi">8</span><span class="p">]:.</span><span class="mi">1</span><span class="o">%</span><span class="si">}</span><span class="s">"</span><span class="p">)</span> <span class="c1">#100% accuracy for 8 neighbors.
+</span>
+</code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>

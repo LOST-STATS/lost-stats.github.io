@@ -272,6 +272,30 @@ Here we’ll consider</p>
 <span class="c"># load data from the specified sheet in the file and convert it to a DataFrame for analysis</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="x">(</span><span class="n">XLSX</span><span class="o">.</span><span class="n">readtable</span><span class="x">(</span><span class="s">"filename.xlsx"</span><span class="x">,</span> <span class="s">"mysheet"</span><span class="x">))</span>
 </code></pre></div></div>
+      <h2 id="python">
+          <a href="#python" aria-labelledby="python" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+      </h2>
+<p>You’ll most often be relying on Pandas to read in data. Though many other forms exist, the reason you’ll be pulling in data is usually to work with the data, transform, and manipulate it. Panda lends itself extremely well for this purpose. Sometime you may have to work with much more messy data with APIs where you’ll navigate through hierarchies of dictionaries using the .keys() method and selecting levels, but that is handled on a case-by-case basis and impossible to cover here. However, some of the most common will be covered. Those are csv, excel (xlsx), and .RData files.</p>
+<p>You, of course, always have the default open() function, but that can get much more complex.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Reading .RData files 
+</span><span class="kn">import</span> <span class="nn">pyreadr</span>
+
+<span class="n">rds_data</span> <span class="o">=</span> <span class="n">pyreadr</span><span class="p">.</span><span class="n">read_r</span><span class="p">(</span><span class="s">'sales_data.Rdata'</span><span class="p">)</span> <span class="c1">#Object is a dictionary
+</span>
+<span class="c1">#Sales is the name of the dataframe, if unnamed, you may have to pass "None" as the name (no quotes)
+</span><span class="n">df_r</span> <span class="o">=</span> <span class="n">rds_data</span><span class="p">[</span><span class="s">'sales'</span><span class="p">]</span> 
+<span class="n">df_r</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+
+
+<span class="c1"># Other common file reads, all use pandas. Most common two shown (csv/xlsx)
+</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="n">csv_file</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'filename.csv'</span><span class="p">)</span>
+<span class="n">xlsx_file</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s">'filename.xlsx'</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s">'Sheet1'</span><span class="p">)</span>
+
+<span class="c1">#Pandas can also read html, jsons, etc....
+</span>
+</code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>

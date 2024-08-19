@@ -330,6 +330,30 @@
 <span class="n">storms</span><span class="p">[</span><span class="s">'mean_wind'</span><span class="p">]</span> <span class="o">=</span> <span class="n">storms</span><span class="p">.</span><span class="n">groupby</span><span class="p">([</span><span class="s">'name'</span><span class="p">,</span><span class="s">'year'</span><span class="p">,</span><span class="s">'month'</span><span class="p">,</span><span class="s">'day'</span><span class="p">])[</span><span class="s">'wind'</span><span class="p">].</span><span class="n">transform</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">)</span>
 
 </code></pre></div></div>
+<p>Though the above may be a great way to do it, it certainly seems complex. There is a much easier way to achieve similar results that is easier on the eyes (and brain!). This is using panda’s aggregate() method with tuple assignments. This results in the most easy-to-understand way, by using the aggregate method after grouping since this would allow us to follow a very simple format of <code class="language-plaintext highlighter-rouge">new_column_name = ('old_column', 'agg_funct')</code>. So, for example:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="c1"># Pull in data on storms
+</span><span class="n">storms</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'https://vincentarelbundock.github.io/Rdatasets/csv/dplyr/storms.csv'</span><span class="p">)</span>
+
+<span class="c1"># Use groupby and group the columns and perform group calculations
+</span>
+<span class="c1"># The below calculations aren't particularly indicative of a good analysis,
+# but give a quick look at a few of the calculations you can do
+</span><span class="n">df</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">storms</span>
+    <span class="p">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s">'name'</span><span class="p">,</span> <span class="s">'year'</span><span class="p">,</span> <span class="s">'month'</span><span class="p">,</span> <span class="s">'day'</span><span class="p">])</span> <span class="c1">#group
+</span>    <span class="p">.</span><span class="n">aggregate</span><span class="p">(</span>
+        <span class="n">avg_wind</span> <span class="o">=</span> <span class="p">(</span><span class="s">'wind'</span><span class="p">,</span> <span class="s">'mean'</span><span class="p">),</span> 
+        <span class="n">max_wind</span> <span class="o">=</span> <span class="p">(</span><span class="s">'wind'</span><span class="p">,</span> <span class="s">'max'</span><span class="p">),</span>
+        <span class="n">med_wind</span> <span class="o">=</span> <span class="p">(</span><span class="s">'wind'</span><span class="p">,</span> <span class="s">'median'</span><span class="p">),</span>
+        <span class="n">std_pressure</span> <span class="o">=</span> <span class="p">(</span><span class="s">'pressure'</span><span class="p">,</span> <span class="s">'std'</span><span class="p">),</span>
+        <span class="n">first_year</span> <span class="o">=</span> <span class="p">(</span><span class="s">'year'</span><span class="p">,</span> <span class="s">'first'</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="p">.</span><span class="n">reset_index</span><span class="p">()</span> <span class="c1"># Somewhat similar to ungroup. Removes the grouping from the index
+</span><span class="p">)</span>
+
+</code></pre></div></div>
       <h2 id="r">
           <a href="#r" aria-labelledby="r" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
       </h2>
