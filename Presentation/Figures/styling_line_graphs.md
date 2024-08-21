@@ -77,7 +77,7 @@ p3 = (
     .add(so.Line(color='darkblue', linewidth=5), x='date', y='uempmed')
     .add(so.Line(color='red', linewidth=2, linestyle='dotted'), x='date', y='psavert')
     .label(title='Unemployment Duration (Blue)\n & Savings Rate (Red)', 
-           x='Year', 
+           x='Date', 
            y='')
     .scale(x=so.Temporal().tick(upto=10)) #Needed for current configuration of seaborn.objects so xaxis prints more than 2 ticks
     .theme(axes_style("whitegrid")) #use a function from parent seaborn library, that will pass a prebuilt selection based on what you pass
