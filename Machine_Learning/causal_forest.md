@@ -32,7 +32,7 @@ The [**econml**](https://econml.azurewebsites.net/spec/spec.html) package from M
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeRegressor
-from econml.ortho_forest import ContinuousTreatmentOrthoForest as CausalForest
+from econml.orf import DMLOrthoForest as CausalForest
 
 df = pd.read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/Crime.csv')
 
