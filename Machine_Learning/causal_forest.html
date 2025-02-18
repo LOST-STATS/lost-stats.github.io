@@ -413,7 +413,7 @@
 </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
-<span class="kn">from</span> <span class="nn">econml.ortho_forest</span> <span class="kn">import</span> <span class="n">ContinuousTreatmentOrthoForest</span> <span class="k">as</span> <span class="n">CausalForest</span>
+<span class="kn">from</span> <span class="nn">econml.orf</span> <span class="kn">import</span> <span class="n">DMLOrthoForest</span> <span class="k">as</span> <span class="n">CausalForest</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/Crime.csv'</span><span class="p">)</span>
 
@@ -437,9 +437,10 @@
 </span><span class="n">estimator</span> <span class="o">=</span> <span class="n">CausalForest</span><span class="p">(</span><span class="n">n_trees</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
                          <span class="n">model_T</span><span class="o">=</span><span class="n">DecisionTreeRegressor</span><span class="p">(),</span>
                          <span class="n">model_Y</span><span class="o">=</span><span class="n">DecisionTreeRegressor</span><span class="p">())</span>
-<span class="n">estimator</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s">'crmrte'</span><span class="p">],</span>
-              <span class="n">train</span><span class="p">[</span><span class="s">'pctymle'</span><span class="p">],</span>
-              <span class="n">train</span><span class="p">[</span><span class="n">regressors</span><span class="p">],</span>
+<span class="n">estimator</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Y</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s">'crmrte'</span><span class="p">],</span>
+              <span class="n">T</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s">'pctymle'</span><span class="p">],</span>
+              <span class="n">W</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="n">regressors</span><span class="p">],</span>
+              <span class="n">X</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="n">regressors</span><span class="p">],</span>
               <span class="n">inference</span><span class="o">=</span><span class="s">'blb'</span><span class="p">)</span>
 <span class="n">effects_train</span> <span class="o">=</span> <span class="n">estimator</span><span class="p">.</span><span class="n">effect</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">regressors</span><span class="p">])</span>
 <span class="n">effects_test</span> <span class="o">=</span> <span class="n">estimator</span><span class="p">.</span><span class="n">effect</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">regressors</span><span class="p">])</span>
