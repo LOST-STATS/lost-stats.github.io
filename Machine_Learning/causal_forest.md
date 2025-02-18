@@ -56,9 +56,10 @@ train, test = train_test_split(df, test_size=0.2)
 estimator = CausalForest(n_trees=100,
                          model_T=DecisionTreeRegressor(),
                          model_Y=DecisionTreeRegressor())
-estimator.fit(train['crmrte'],
-              train['pctymle'],
-              train[regressors],
+estimator.fit(Y=train['crmrte'],
+              T=train['pctymle'],
+              W=train[regressors],
+              X=train[regressors],
               inference='blb')
 effects_train = estimator.effect(train[regressors])
 effects_test = estimator.effect(test[regressors])
