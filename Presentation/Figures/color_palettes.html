@@ -254,7 +254,7 @@
 </span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
 
 </span><span class="c1"># graph bill length vs depth coloring by species</span><span class="w">
-</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">penguins</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">bill_length_mm</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">bill_depth_mm</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="n">species</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">penguins</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">bill_length_mm</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">bill_depth_mm</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="n">species</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
    </span><span class="n">geom_point</span><span class="p">()</span><span class="w">
 </span></code></pre></div></div>
 <p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/r_palettes_1.png" alt="Graph of bill depth vs. length with default color for species" /></p>
@@ -269,8 +269,8 @@
 <p>In addition to changing the color of data points, we can use color palettes to change the fill color of a graph object, which is particularly useful when creating bar charts, line graphs, boxPlots, or filling in confidence intervals. Let’s create a new example where we make a bar chart of the number of penguins from each species in the data set:</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># create bar chart of number of penguins from each species, coloring the fill of the bars by species</span><span class="w">
 
-</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">penguins</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">species</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
-   </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">species</span><span class="p">))</span><span class="w"> 
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">penguins</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">species</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+   </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">species</span><span class="p">))</span><span class="w">
 </span></code></pre></div></div>
 <p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/r_palettes_3.png" alt="Graph of number of penguins from each species using default fill colors" /></p>
 <p>Again, <strong>ggplot2</strong> uses default colors to fill in the bars. However, we can change these colors using a dedicated color palette package. Let’s try the <strong>ggsci</strong> package (<a href="https://nanx.me/ggsci/">link</a>) this time, which comes with many different fill options inspired by those used in science journals and popular tv shows. For the example below, we’ll use the <code class="language-plaintext highlighter-rouge">scale_fill_simpsons()</code> function to change the bar colors to a set inspired by the long-running comedy show.</p>
@@ -280,7 +280,7 @@
 
 </span><span class="c1"># add the scale_fill_simpsons() function to change bar colors</span><span class="w">
 
-</span><span class="n">last_plot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+</span><span class="n">last_plot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
   </span><span class="n">scale_fill_simpsons</span><span class="p">()</span><span class="w">
 </span></code></pre></div></div>
 <p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/r_palettes_4.png" alt="Graph of number of penguins from each species using specified color palette for bar fill" /></p>
@@ -291,7 +291,7 @@
 <p>The previous examples use a discrete variable to color the data by. We can also apply color palettes to continuous variables for a color gradient scale. Let’s return to the first example, but change the variable we are coloring by from “species” to <code class="language-plaintext highlighter-rouge">body_mass_g</code> and see what we get.</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Recreate first example, but switch color to body_mass_g variable</span><span class="w">
 
-</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">penguins</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">bill_length_mm</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">bill_depth_mm</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="n">body_mass_g</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">penguins</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">bill_length_mm</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">bill_depth_mm</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="n">body_mass_g</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
    </span><span class="n">geom_point</span><span class="p">()</span><span class="w">
 </span></code></pre></div></div>
 <p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/r_palettes_5.png" alt="Graph of bill depth vs. length using default color gradient for body mass" /></p>
@@ -299,8 +299,8 @@
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># recall previous plot, but this time using scale_color_viridis_c()</span><span class="w">
 </span><span class="c1"># note that the "_c" suffix indicates "continuous" data</span><span class="w">
 
-</span><span class="n">last_plot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
-  </span><span class="n">scale_color_viridis_c</span><span class="p">()</span><span class="w"> 
+</span><span class="n">last_plot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_color_viridis_c</span><span class="p">()</span><span class="w">
 </span></code></pre></div></div>
 <p><img src="https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/r_palettes_6.png" alt="Graph of bill depth vs. length using specified color palette for updated gradient for body mass" /></p>
 <p>Now we have a better idea about how penguin body mass relates to bill length and depth. The <code class="language-plaintext highlighter-rouge">scale_color_viridis_C()</code> function is well known for having a wide range of color shades as well as being visible to color blind people.</p>
@@ -361,7 +361,7 @@ two</span> <span class="err">(scatter</span> <span class="err">seplen</span> <sp
 <p>In addition to changing the color of data points, we can use color palettes to change the fill color of a graph object, which is particularly useful when creating bar charts, line graphs, boxPlots, or filling in confidence intervals. Let’s create a new example where we plot the means of sepal and petal length and width.</p>
 <div class="language-stata highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">color_style</span> <span class="err">s2
 graph</span> <span class="err">bar</span> <span class="err">(mean)</span> <span class="err">seplen</span> <span class="err">sepwid</span> <span class="err">petlen</span> <span class="err">petwid,</span> <span class="err">title(</span><span class="s2">"S2color-Stata Default"</span><span class="err">)</span> <span class="err">name(m1)
-color_style</span> <span class="err">RdYlGn</span> <span class="err">
+color_style</span> <span class="err">RdYlGn
 graph</span> <span class="err">bar</span> <span class="err">(mean)</span> <span class="err">seplen</span> <span class="err">sepwid</span> <span class="err">petlen</span> <span class="err">petwid,</span> <span class="err">title(</span><span class="s2">"RdYlGn-up to 15"</span><span class="err">)</span> <span class="err">name(m2)
 color_style</span> <span class="err">RdYlGn,</span> <span class="err">n(4)
 graph</span> <span class="err">bar</span> <span class="err">(mean)</span> <span class="err">seplen</span> <span class="err">sepwid</span> <span class="err">petlen</span> <span class="err">petwid,</span> <span class="err">title(</span><span class="s2">"RdYlGn-for 4 groups"</span><span class="err">)</span> <span class="err">name(m3)
