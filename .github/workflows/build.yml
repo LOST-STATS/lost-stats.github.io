@@ -11,31 +11,13 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false
+        uses: actions/checkout@v4
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-
-      - name: Pull cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            vendor/bundle
-            **/node_modules
-          key: bundle-use-ruby-${{ matrix.ruby }}-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            bundle-use-ruby-${{ matrix.ruby }}-
-
-      - name: bundle install
-        run: |
-          gem install bundler:2.1.4
-          bundle config deployment true
-          bundle config path vendor/bundle
-          bundle install --jobs 4
+          bundler-cache: true
 
       - name: Build the page
         run: bundle exec jekyll build
@@ -44,9 +26,8 @@ jobs:
         run: "bundle exec htmlproofer --assume-extension --allow-hash-href ./_site || true"
 
       - name: Push to GH Pages
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+        uses: JamesIves/github-pages-deploy-action@v4
         if: github.ref == 'refs/heads/source' && github.event_name == 'push'
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: master
-          FOLDER: _site
+          folder: _site
+          branch: master
