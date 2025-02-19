@@ -20,7 +20,7 @@ Color palettes are a simple way to customize graphs and improve data visualizati
 ## Also Consider
 
 -   Remember, not all color palette packages can be used in every scenario. Some are better suited for discrete variables while others are better for continuous variables.
--   There are other ways to customize your graphs, such as adding [themes]({{ "/Presentation/Figures/graph_themes.html" \| relative_url}}), which conforms your graph to a pre-determined aesthetic based on the function used.
+-   There are other ways to customize your graphs, such as adding [themes]({{ "/Presentation/Figures/graph_themes.html" | relative_url}}), which conforms your graph to a pre-determined aesthetic based on the function used.
 
 # Implementations
 
@@ -47,7 +47,7 @@ The first two examples will deal with discrete color palettes for modeling discr
 library(ggplot2)
 
 # graph bill length vs depth coloring by species
-ggplot(data = penguins, aes(x=bill_length_mm, y=bill_depth_mm, color=species)) + 
+ggplot(data = penguins, aes(x=bill_length_mm, y=bill_depth_mm, color=species)) +
    geom_point()
 ```
 
@@ -71,8 +71,8 @@ In addition to changing the color of data points, we can use color palettes to c
 ```r
 # create bar chart of number of penguins from each species, coloring the fill of the bars by species
 
-ggplot(data = penguins, aes(x=species)) + 
-   geom_bar(aes(fill = species)) 
+ggplot(data = penguins, aes(x=species)) +
+   geom_bar(aes(fill = species))
 ```
 
 ![Graph of number of penguins from each species using default fill colors](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/r_palettes_3.png)
@@ -86,7 +86,7 @@ library(ggsci)
 
 # add the scale_fill_simpsons() function to change bar colors
 
-last_plot() + 
+last_plot() +
   scale_fill_simpsons()
  ```
 
@@ -101,7 +101,7 @@ The previous examples use a discrete variable to color the data by. We can also 
 ```r
 # Recreate first example, but switch color to body_mass_g variable
 
-ggplot(data = penguins, aes(x=bill_length_mm, y=bill_depth_mm, color=body_mass_g)) + 
+ggplot(data = penguins, aes(x=bill_length_mm, y=bill_depth_mm, color=body_mass_g)) +
    geom_point()
 ```
 
@@ -113,8 +113,8 @@ Now, instead of having a set number of colors modeling our data, we see a gradie
 # recall previous plot, but this time using scale_color_viridis_c()
 # note that the "_c" suffix indicates "continuous" data
 
-last_plot() + 
-  scale_color_viridis_c() 
+last_plot() +
+  scale_color_viridis_c()
  ```
 
 ![Graph of bill depth vs. length using specified color palette for updated gradient for body mass](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/r_palettes_6.png)
@@ -132,11 +132,11 @@ Some other fun, pre-defined color palette packages in R include:
 
 Stata has more limited native options to use colors and color palettes to graphs. However, thanks to Ben Jann package **colrspace** and **palettes**, it is relatively easy to extract and translate color palettes to be used in Stata. In addition, it is also possible to combine this packages with **grstyle** (also by Ben Jann), to modify the colors of the scheme in memory, to easily change the colors of most of your graphs.
 
-To facilitate further the use of colors in your graphs, I put together a wrapper that will combine the use of Ben Jann's packages, to easily combine palettes and schemes, for most of your color needs. 
+To facilitate further the use of colors in your graphs, I put together a wrapper that will combine the use of Ben Jann's packages, to easily combine palettes and schemes, for most of your color needs.
 
 ### Setup
 
-First, we need to install a few packages from ssc. 
+First, we need to install a few packages from ssc.
 
 ```stata
 * To modify schemes
@@ -197,7 +197,7 @@ In addition to changing the color of data points, we can use color palettes to c
 ```stata
 color_style s2
 graph bar (mean) seplen sepwid petlen petwid, title("S2color-Stata Default") name(m1)
-color_style RdYlGn 
+color_style RdYlGn
 graph bar (mean) seplen sepwid petlen petwid, title("RdYlGn-up to 15") name(m2)
 color_style RdYlGn, n(4)
 graph bar (mean) seplen sepwid petlen petwid, title("RdYlGn-for 4 groups") name(m3)
@@ -238,9 +238,9 @@ graph combine m7 m8 m9 m10, nocopies altshrink
 ```
 ![Scatter-MultiGoup](https://github.com/LOST-STATS/LOST-STATS.github.io/raw/master/Presentation/Figures/Images/Color_Palettes/stata_palettes_6.png)
 
-While this approach provides an option for multiple levels of colors, some work is needed to have better formatted labels. 
+While this approach provides an option for multiple levels of colors, some work is needed to have better formatted labels.
 
-These simple examples should  demonstrate that there are lots of customization options available for your graphs. Ultimately, it comes down to personal preference and what type of data you are modeling. Make sure to keep in mind too how you should call attention to specific parts of your charts to best convey the information within the data. 
+These simple examples should  demonstrate that there are lots of customization options available for your graphs. Ultimately, it comes down to personal preference and what type of data you are modeling. Make sure to keep in mind too how you should call attention to specific parts of your charts to best convey the information within the data.
 
 ### What is happening in the background
 
