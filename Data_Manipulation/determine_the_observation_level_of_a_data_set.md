@@ -108,14 +108,15 @@ duplicates report latitude longitude
 * If I am correct, then the only number in the "Copies" column will be 1.
 * But it looks like I was not correct.
 
-* duplicates tag will create a binary variable with 1 for all duplicates
-* so I can examine the problem more closely
-* (duplicates examples is another option)
-duplicates tag latitude longitude, g(duplicated_data)
+* duplicates tag will create a variable which contains the number of "extra" rows--
+* if there are N rows with the same (latitude longitude), the result is (N - 1).
+* I can then examine the problem more closely, e.g. with `browse if n_duplicates != 0`
+* (`duplicates examples` is another option)
+duplicates tag latitude longitude, g(n_duplicates)
 
-* If I want to know not just whether there are duplicates but how many
-* of each there are for when I look more closely, I can instead do
-by latitude longitude, sort: g number_of_duplicates_in_this_group = _N
+* If instead I want to know the total number of rows with that combination,
+* not the number of "extra" rows, I can do:
+by latitude longitude, sort: gen n_rows_in_this_group = _N
 ```
 
 For especially large datasets the [**Gtools**](https://gtools.readthedocs.io/en/latest/index.html) version of the various duplicates commands, [gduplicates](https://gtools.readthedocs.io/en/latest/usage/gduplicates/index.html), is a great option
