@@ -25,7 +25,7 @@ For more information, see [Explicitly Optimizing on Causal Effects via the Causa
 
 ## Python
 
-The [**econml**](https://econml.azurewebsites.net/spec/spec.html) package from Microsoft provides a range of causal machine learning functions, including deep instrumental variables, doubly robust learning, double machine learning, and [causal forests](https://econml.azurewebsites.net/spec/estimation/forest.html#causalforest-aka-forest-double-machine-learning). As in the R example below, we will download some crime data and look at the effect of one variable ('pctymle', the % of young males, assumed to be exogenous) on another ('crmrte', the crime rate).
+The [**econml**](https://econml.azurewebsites.net/spec/spec.html) package from Microsoft provides a range of causal machine learning functions, including deep instrumental variables, doubly robust learning, double machine learning, and [causal forests](https://econml.azurewebsites.net/spec/estimation/forest.html#causalforest-aka-forest-double-machine-learning). As in the example below, we will download some crime data and look at the effect of one variable ('pctymle', the % of young males, assumed to be exogenous) on another ('crmrte', the crime rate).
 
 ```python
 # Use "pip install econml" on the command line to install the package
