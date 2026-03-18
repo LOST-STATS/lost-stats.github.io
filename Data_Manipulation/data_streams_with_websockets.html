@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/assets/css/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet">
   <style id="jtd-nav-activation">
     .site-nav > ul.nav-list:first-child > li > a,
-    .site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(1)) > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(7)) > a,
     .site-nav > ul.nav-list:first-child > li > ul > li > ul > li a {
       background-image: none;
     }
@@ -16,14 +16,14 @@
     .site-nav li.external a {
       background-image: none;
     }
-    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > a {
+    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(7) > a {
       font-weight: 600;
       text-decoration: none;
     }.site-nav > ul.nav-list:first-child > li:nth-child(1) > button svg,
-    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > button svg {
+    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(7) > button svg {
       transform: rotate(-90deg);
     }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list,
-    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list {
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(7) > ul.nav-list {
       display: block;
     }
   </style>
@@ -32,13 +32,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Regular Expressions | LOST</title>
+<title>Real Time Data Streams with WebSockets | LOST</title>
 <meta name="generator" content="Jekyll v4.4.0" />
-<meta property="og:title" content="Regular Expressions" />
+<meta property="og:title" content="Real Time Data Streams with WebSockets" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="LOST" />
 <script type="application/ld+json">
-{"url":"/Data_Manipulation/Regular_Expressions.html","@type":"WebPage","headline":"Regular Expressions","@context":"https://schema.org"}</script>
+{"url":"/Data_Manipulation/data_streams_with_websockets.html","@type":"WebPage","headline":"Real Time Data Streams with WebSockets","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 </head>
 <body>
@@ -161,169 +161,153 @@
       <nav aria-label="Breadcrumb" class="breadcrumb-nav">
   <ol class="breadcrumb-nav-list">
     <li class="breadcrumb-nav-list-item"><a href="/Data_Manipulation/data_manipulation.html">Data Manipulation</a></li>
-    <li class="breadcrumb-nav-list-item"><span>Regular Expressions</span></li>
+    <li class="breadcrumb-nav-list-item"><span>Real Time Data Streams with WebSockets</span></li>
   </ol>
 </nav>
       <div id="main-content" class="main-content">
         <main>
-            <h1 id="introduction">
-    <a href="#introduction" class="anchor-heading" aria-labelledby="introduction"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Introduction
-</h1>
-<p>Regular expressions (AKA “Regex”) can be thought of as a pattern of characters that describes a specific set of strings with a common structure. They can also be thought of as <a href="https://www.youtube.com/watch?v=528Jc3q86F8">state machines</a>. String functions can take a character variable and a regular expression, and show you whether and how they match. Regex is useful for extracting information from text such as documents, spreadsheets, log files, and code. Regex utilizes metacharacters that have specific meaning: <code class="language-plaintext highlighter-rouge">$ * + . ? [ ] ^ { } | ( ) \</code> to find what we are looking for within the string. They can be used for string matching / replacing, and are supported across several programming languages such as Python, R, Stata, SQL, and more, although syntax does sometimes differ slightly between languages. The metacharacters can be broken up into a few different groups based on their meaning.</p>
-<ul>
-  <li>Specify the amount of repetitions of the pattern
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">*</code>: matches at least 0 times.</li>
-      <li><code class="language-plaintext highlighter-rouge">+</code>: matches at least 1 times.</li>
-      <li><code class="language-plaintext highlighter-rouge">?</code>: matches at most 1 times.</li>
-      <li><code class="language-plaintext highlighter-rouge">{n}</code>: matches exactly n times.</li>
-      <li><code class="language-plaintext highlighter-rouge">{n,}</code>: matches at least n times.</li>
-      <li><code class="language-plaintext highlighter-rouge">{n,m}</code>: matches between n and m times.</li>
-    </ul>
-  </li>
-  <li>Specify where the match will be located in the string or word
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">^</code>: matches the start of the string.</li>
-      <li><code class="language-plaintext highlighter-rouge">$</code>: matches the end of the string.</li>
-      <li><code class="language-plaintext highlighter-rouge">\b</code>: matches the empty string at either edge of a <em>word</em>. Don’t confuse it with <code class="language-plaintext highlighter-rouge">^ $</code> which marks the edge of a <em>string</em>.</li>
-      <li><code class="language-plaintext highlighter-rouge">\B</code>: matches the empty string provided it is not at an edge of a word.</li>
-    </ul>
-  </li>
-  <li>Operators
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">.</code>: matches any single character.</li>
-      <li><code class="language-plaintext highlighter-rouge">[...]</code>: a character list, matches any one of the characters inside the square brackets.</li>
-      <li><code class="language-plaintext highlighter-rouge">[^...]</code>: an inverted character list. Matches any characters <strong>except</strong> those inside the square brackets.</li>
-      <li><code class="language-plaintext highlighter-rouge">\</code>: suppress the special meaning of metacharacters in regular expression.</li>
-      <li><code class="language-plaintext highlighter-rouge">|</code>: an “or” operator. Matches patterns on either side of the <code class="language-plaintext highlighter-rouge">|</code>.</li>
-      <li><code class="language-plaintext highlighter-rouge">(...)</code>: grouping in regular expressions.</li>
-    </ul>
-  </li>
-  <li>Specify entire classes of characters like numbers or letters
-    <ul>
-      <li>Two Types: One uses  <code class="language-plaintext highlighter-rouge">[:</code> and <code class="language-plaintext highlighter-rouge">:]</code> around a predefined name, and the other uses <code class="language-plaintext highlighter-rouge">\</code> and a special character</li>
-      <li><code class="language-plaintext highlighter-rouge">[:digit:]</code> or <code class="language-plaintext highlighter-rouge">\d</code>: digits, equivalent to <code class="language-plaintext highlighter-rouge">[0-9]</code>.</li>
-      <li><code class="language-plaintext highlighter-rouge">\D</code>: non-digits, equivalent to <code class="language-plaintext highlighter-rouge">[^0-9]</code>.</li>
-      <li><code class="language-plaintext highlighter-rouge">[:lower:]</code>: lower-case letters, equivalent to <code class="language-plaintext highlighter-rouge">[a-z]</code>.</li>
-      <li><code class="language-plaintext highlighter-rouge">[:upper:]</code>: upper-case letters, equivalent to <code class="language-plaintext highlighter-rouge">[A-Z]</code>.</li>
-      <li><code class="language-plaintext highlighter-rouge">[:punct:]</code>: punctuation characters.</li>
-      <li><code class="language-plaintext highlighter-rouge">[:alnum:]</code>: alphanumeric characters.</li>
-    </ul>
-  </li>
-  <li>Subexpressions can refer back to previously found strings
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">()</code> can be wrapped around a part of the regular expression, and that part will be remembered.</li>
-      <li><code class="language-plaintext highlighter-rouge">\1</code>, later in that regular expression, will refer to the contents of the first <code class="language-plaintext highlighter-rouge">()</code> being matched again (and <code class="language-plaintext highlighter-rouge">\2</code> would get the second, and so on). For example, <code class="language-plaintext highlighter-rouge">(.)\1</code> would match any string with a repeated character. This can also be used in substitution.  For example, regex <code class="language-plaintext highlighter-rouge">.*(pp).*</code> being substituted with <code class="language-plaintext highlighter-rouge">a\1ly</code> would replace <code class="language-plaintext highlighter-rouge">apple</code> with <code class="language-plaintext highlighter-rouge">apply</code>.</li>
-    </ul>
-  </li>
-</ul>
-<h2 id="keep-in-mind">
-    <a href="#keep-in-mind" class="anchor-heading" aria-labelledby="keep-in-mind"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
-</h2>
-<ul>
-  <li>When using regular expressions everything is essentially a character, and we are writing patterns to match a specific sequence of characters.</li>
-  <li>Most patterns use normal ASCII, which includes letters, digits, punctuation and other symbols like %#$@!, but unicode characters can be used to match any type of international text.</li>
-</ul>
-<h1 id="implementations">
-    <a href="#implementations" class="anchor-heading" aria-labelledby="implementations"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
-</h1>
-<h2 id="python">
-    <a href="#python" class="anchor-heading" aria-labelledby="python"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
-</h2>
-<p>In Python, regular expressions are implemented in the <a href="https://docs.python.org/3/library/re.html"><code class="language-plaintext highlighter-rouge">re</code></a> module or, alternatively, through the <code class="language-plaintext highlighter-rouge">.str</code> interface in <code class="language-plaintext highlighter-rouge">pandas</code>. Let’s go through a few examples:</p>
-<p>If we want to search for all words that started with the characters “ab” we would use the character <code class="language-plaintext highlighter-rouge">^</code> to specify we want words that start with “ab”.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">re</span>
-
-<span class="n">strings</span> <span class="o">=</span> <span class="p">[</span><span class="s">"abcd"</span><span class="p">,</span> <span class="s">"cdab"</span><span class="p">,</span> <span class="s">"cabd"</span><span class="p">,</span> <span class="s">"c abd"</span><span class="p">]</span>
-<span class="n">filtered_strings</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">strings</span> <span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">r"^ab"</span><span class="p">,</span> <span class="n">s</span><span class="p">)]</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">filtered_strings</span><span class="p">)</span>
-<span class="c1"># ['abcd']
-</span></code></pre></div></div>
-<p>Some notes about this example:</p>
-<ul>
-  <li>We’ve used the <code class="language-plaintext highlighter-rouge">re.search</code> function. Sometimes people instead use <a href="https://docs.python.org/3/library/re.html#search-vs-match"><code class="language-plaintext highlighter-rouge">re.match</code></a>. <code class="language-plaintext highlighter-rouge">re.match</code> only looks for matches at the <em>beginning</em> of strings, so the functions <code class="language-plaintext highlighter-rouge">re.search(r"^ab", s)</code> and <code class="language-plaintext highlighter-rouge">re.match(r"ab", s)</code> are equivalent.</li>
-  <li>You’ll notice that instead of using plain double quotes around our regular expression we used the pattern <code class="language-plaintext highlighter-rouge">r"^ab"</code>. The <code class="language-plaintext highlighter-rouge">r</code> means “raw string”, and it turns off (almost) all escaping. Thus, <code class="language-plaintext highlighter-rouge">r"\d"</code> and <code class="language-plaintext highlighter-rouge">"\\d"</code> are equivalent. Because of the how common <code class="language-plaintext highlighter-rouge">\</code> is in regular expressions, it’s usually wise to use raw strings for regular expressions to avoid confusing errors.</li>
-</ul>
-<p>Alternatively, we could use also implement the above example with pandas:</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s">"strings"</span><span class="p">:</span> <span class="p">[</span><span class="s">"abcd"</span><span class="p">,</span> <span class="s">"cdab"</span><span class="p">,</span> <span class="s">"cabd"</span><span class="p">,</span> <span class="s">"c abd"</span><span class="p">]})</span>
-<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s">"strings"</span><span class="p">].</span><span class="nb">str</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="s">r"^ab"</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="bp">True</span><span class="p">)]</span>
+            <p>Real Time Data Streams with WebSockets</p>
+<p>Introduction</p>
+<p>In data science and statistics, the speed of data ingestion directly affects the accuracy of models and interpretations. One common way to access data is through APIs (Application Programming Interfaces), which allow communication between two computers, often called the client and server.</p>
+<p>Traditional APIs rely on a request response model where a client repeatedly requests new data from a server. A WebSocket connection works differently. It establishes a persistent, bidirectional channel between the client and server.</p>
+<p>Once a WebSocket connection is opened, the server can continuously push updates without requiring repeated requests. This allows statistical models to receive data the exact moment a new observation occurs.</p>
+<p>A helpful analogy is to think of a traditional API like a faucet that only produces water when the handle is turned, while a WebSocket behaves more like a river where the data continuously flows once you connect.</p>
+<p>This architecture is particularly useful in environments where latency matters, such as financial markets, and sensor such as Internet of Things (IoT).</p>
+<p>To learn more about websockets see the Wiki here.</p>
+<p>Keep in Mind</p>
+<p>When working with WebSockets in data workflows, several considerations are important.</p>
+<p>WebSocket streams can generate extremely high frequency data, which may require filtering or aggregation before analysis, or displaying data.</p>
+<p>Long running connections require stable infrastructure since interruptions will stop the data stream, to learn more about establishing such connection, see below.</p>
+<p>Many WebSocket APIs require a subscription message specifying which symbols or datasets you want to receive.</p>
+<p>Real time data pipelines often require asynchronous programming patterns, which may differ from standard statistical scripting workflows.</p>
+<p>High frequency streams may produce far more data than can realistically be stored or processed without intermediate buffering systems.</p>
+<p>Also Consider</p>
+<p>Before getting started, you may want to ensure you are in the correct working directory:</p>
+<p>See here Set a Working Directory</p>
+<p>Also ensure your environment is correctly configured.</p>
+<p>To learn more about a Python environment see here.</p>
+<p>Implementations</p>
+<p>JavaScript</p>
+<p>JavaScript is commonly used for WebSocket connections due to its event driven architecture and native browser support. Additionally if you are building a front end, it would be convenient in using a similar language for the backend as well.</p>
+<p>const socket = new WebSocket(“wss://econ_data.com”); // replace with your url</p>
+<p>socket.onopen = () =&gt; {
+    socket.send(JSON.stringify({
+        type: “subscribe”, // notice the subscribe message
+        symbol: “TICKER”
+    }));
+};</p>
+<p>socket.onmessage = (event) =&gt; {
+    const data = JSON.parse(event.data);
+    console.log(“Market Update:”, data);
+};</p>
+<p>Python</p>
+<p>Python provides several libraries for working with WebSockets. A commonly used combination is websockets and asyncio, which allow asynchronous data ingestion. To learn more see documentation here; websockets and asyncio.</p>
+<p>import asyncio<br />
+import websockets<br />
+import json</p>
+<p>async def stream_economic_data():</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>uri = "wss://econ_data.com" # put your url here
+  
+async with websockets.connect(uri) as websocket:  
+  
+    await websocket.send(json.dumps({  
+        "type": "subscribe",  
+        "symbol": "TICKER"  
+    }))  
+  
+    while True:  
+        data = await websocket.recv()  
+        message = json.loads(data)  
+  
+        print(message)  
 </code></pre></div></div>
-<p>If we instead want to <em>replace</em> the text that matches a regular expression, we can use the <code class="language-plaintext highlighter-rouge">re.sub</code> or pandas <code class="language-plaintext highlighter-rouge">.str.replace</code>:</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<p>if <strong>name</strong> == “<strong>main</strong>”:<br />
+    asyncio.run(stream_economic_data())</p>
+<p>This script connects to a WebSocket server, subscribes to a data stream, and continuously receives updates.</p>
+<p>If you are working inside a Jupyter Notebook, the event loop is already running. In that case you get rid of the last if statement, and can call the function directly using:</p>
+<p>await stream_economic_data()</p>
+<p>Python (Example with Real Time Calculations)</p>
+<p>The following example demonstrates how a statistical process can be applied to a streaming dataset.</p>
+<p>import asyncio<br />
+import websockets<br />
+import json<br />
+from datetime import datetime<br />
+import statistics</p>
+<p>async def stream_dummy_data():</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>uri = "wss://echo.websocket.events"  # acts as an actor for websocket
+# Note that there are many such test servers we might consider as alternatives
+THRESHOLD = 150.50  
+  
+prices = []  
+  
+async with websockets.connect(uri) as websocket:  
+  
+    payload = {  
+        "type": "subscribe",  
+        "symbol": "DUMMY_INDEX",  
+        "price": 150.00  
+    }  
+  
+    await websocket.send(json.dumps(payload))  
+    
+    # Error handling is a good idea since servers may experience downtime!
+    try:
+      while True:  
 
-<span class="n">strings</span> <span class="o">=</span> <span class="p">[</span><span class="s">"what"</span><span class="p">,</span> <span class="s">"why"</span><span class="p">,</span> <span class="s">"you"</span><span class="p">,</span> <span class="s">"blazers"</span><span class="p">,</span> <span class="s">"fire"</span><span class="p">,</span> <span class="s">"hello"</span><span class="p">]</span>
+          data = await websocket.recv()  
+          message = json.loads(data)  
 
-<span class="c1"># Replace all the vowels in strings containing a vowel with "!"
-</span><span class="n">changed_strings</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">r"[aeiou]"</span><span class="p">,</span> <span class="s">"!"</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">strings</span>
-    <span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">r"[aeiou]"</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
-<span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">changed_strings</span><span class="p">)</span>
-<span class="c1"># ['wh!t', 'y!!', 'bl!z!rs', 'f!r!', 'h!ll!']
-</span>
-<span class="c1"># Do the same thing in pandas
-</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s">"strings"</span><span class="p">:</span> <span class="n">strings</span><span class="p">})</span>
-<span class="n">changed_series</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span>
-    <span class="n">df</span><span class="p">[</span><span class="s">"strings"</span><span class="p">].</span><span class="nb">str</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="s">r"[aeiou]"</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
-    <span class="s">"strings"</span>
-<span class="p">].</span><span class="nb">str</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">r"[aeiou]"</span><span class="p">,</span> <span class="s">"!"</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">changed_series</span><span class="p">)</span>
-<span class="c1"># 0       wh!t
-# 2        y!!
-# 3    bl!z!rs
-# 4       f!r!
-# 5      h!ll!
-# Name: strings, dtype: object
-</span></code></pre></div></div>
-<p>You can also see <a href="https://www.pcwdld.com/python-regex-cheat-sheet#wbounce-modal">this guide</a> for a fuller description of all the tools available.</p>
-<h2 id="r">
-    <a href="#r" class="anchor-heading" aria-labelledby="r"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
-</h2>
-<p>In R, we can write our Regular expressions using the base R functions or with the <strong>stringr</strong> package functions. <a href="https://www.garrickadenbuie.com/project/regexplain/">RegExplain</a> is an RStudio addin for regular expressions. Regular expressions can be tricky at times, and RegExplain can help make it easier. RegExplain will allow you to build your regular expressions interactively.</p>
-<p>First, we can write a regular expression using the base R functions. Additional <a href="https://github.com/STAT545-UBC/STAT545-UBC-original-website/blob/master/block022_regular-expression.md">resources</a> on Regex, string functions, and syntax. We can use the grep() function to identify filenames, for example. If we set the argument <code class="language-plaintext highlighter-rouge">value = TRUE</code>, <code class="language-plaintext highlighter-rouge">grep()</code> returns the matches, while <code class="language-plaintext highlighter-rouge">value = FALSE</code> returns their indices. <code class="language-plaintext highlighter-rouge">grepl()</code> is a similar function but returns a logical vector. Including <code class="language-plaintext highlighter-rouge">ignore.case = TRUE</code> ignores case sensitivity. Some special characters in R cannot be directly coded in a string (i.e <code class="language-plaintext highlighter-rouge">'</code>), so we have to “escape” the single quote in the pattern, by preceding it with <code class="language-plaintext highlighter-rouge">\</code>.</p>
-<p>One important note about working with regular expressions in R is that, because <code class="language-plaintext highlighter-rouge">\</code> itself needs to be escaped, we must escape this metacharacter with a double backslash like <code class="language-plaintext highlighter-rouge">\\$</code>.</p>
-<p>For example, if we want to search for all words that started with the characters “ab” we would use the character <code class="language-plaintext highlighter-rouge">^</code> to specify we want words that start with “ab”.</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#create a string </span><span class="w">
-</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"abcd"</span><span class="p">,</span><span class="w"> </span><span class="s2">"cdab"</span><span class="p">,</span><span class="w"> </span><span class="s2">"cabd"</span><span class="p">,</span><span class="w"> </span><span class="s2">"c abd"</span><span class="p">))</span><span class="w"> 
+          current_price = message["price"] + 0.05  
+          message["price"] = current_price  
+          
+          # For long-running scripts, this will eventually consume all memory
+          # In application you may want to instead take just a rolling mean of the last N observations
+          prices.append(current_price)  
 
-</span><span class="c1"># regex to search for strings that start with ab</span><span class="w">
-</span><span class="n">grep</span><span class="p">(</span><span class="s2">"^ab"</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
-</span></code></pre></div></div>
-<p><code class="language-plaintext highlighter-rouge">grepl()</code> will tell us if there is a match to the pattern. Functions like <code class="language-plaintext highlighter-rouge">sub()</code> and <code class="language-plaintext highlighter-rouge">gsub()</code> replace the matches with new text. There are plenty of subexpressions so I will show a few.</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">string</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"what"</span><span class="p">,</span><span class="w"> </span><span class="s2">"why"</span><span class="p">,</span><span class="w"> </span><span class="s2">"you"</span><span class="p">,</span><span class="w"> </span><span class="s2">"blazers"</span><span class="p">,</span><span class="w"> </span><span class="s2">"fire"</span><span class="p">,</span><span class="w"> </span><span class="s2">"hello"</span><span class="p">)</span><span class="w"> </span><span class="c1"># create string</span><span class="w">
+          current_mean = statistics.mean(prices)  
 
-</span><span class="c1"># here we get TRUE/FALSE depending on if the text has any of the vowels "[aeiou]"    </span><span class="w">
-</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"[aeiou]"</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="p">)</span><span class="w">
+          timestamp = datetime.now().strftime("%H:%M:%S")  
 
-</span><span class="c1">#we can use sub() and gsub() to replace text</span><span class="w">
-</span><span class="n">sub</span><span class="p">(</span><span class="s2">"[aeiou]"</span><span class="p">,</span><span class="w"> </span><span class="s2">"!"</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="p">)</span><span class="w">
-</span></code></pre></div></div>
-<p>Second, We can write the regular expression using the stringr package, which is said to be easier to use and remember. We can write a regular expression and use the stringr::str_match() function to extract all the phone numbers from the string. There are a number of other useful string functions in the <a href="https://github.com/hadley/stringr">stringr</a> package. Additional resources on Regex, string functions, and syntax can be found <a href="https://github.com/STAT545-UBC/STAT545-UBC-original-website/blob/master/block022_regular-expression.md">here</a>.</p>
-<p>Similar to using the base R function, we still want to use <code class="language-plaintext highlighter-rouge">^</code> to specify we want a work that starts with “ab”. Now we have to specify that we want the entire word, not just the “ab” portion by including the <code class="language-plaintext highlighter-rouge">.*</code> syntax, which means “look for any character (<code class="language-plaintext highlighter-rouge">.</code>) any number of times (<code class="language-plaintext highlighter-rouge">*</code>)”, in other words it picks up anything.</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># load package</span><span class="w">
-</span><span class="n">library</span><span class="p">(</span><span class="n">stringr</span><span class="p">)</span><span class="w">
+          if current_mean &gt; THRESHOLD:  
+              print(f"[{timestamp}] ALERT: mean exceeded threshold")  
+          else:  
+              print(f"[{timestamp}] price={current_price} mean={current_mean}")  
 
-</span><span class="c1"># create a string</span><span class="w">
-</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"abcd"</span><span class="p">,</span><span class="w"> </span><span class="s2">"cdab"</span><span class="p">,</span><span class="w"> </span><span class="s2">"cabd"</span><span class="p">,</span><span class="w"> </span><span class="s2">"c abd"</span><span class="p">))</span><span class="w"> 
-
-</span><span class="c1"># regex to search for strings that start with ab</span><span class="w">
-</span><span class="n">str_match</span><span class="p">(</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s2">"^ab.*"</span><span class="p">)</span><span class="w">
-
-</span><span class="c1"># Similar to the grepl function there is str_detect, and similar to the gsub function there is str_replace</span><span class="w">
-</span><span class="n">str_detect</span><span class="p">(</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s2">"[aeiou]"</span><span class="p">)</span><span class="w"> </span><span class="c1"># tells us T/F if the word contains any of the vowels in the given range.</span><span class="w">
-</span><span class="n">str_replace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="s2">"[aeiou]"</span><span class="p">,</span><span class="w"> </span><span class="s2">"!"</span><span class="p">)</span><span class="w"> </span><span class="c1"># we can replace any vowels in the specified range with a ```!``` in their respective words</span><span class="w">
-</span></code></pre></div></div>
+          await asyncio.sleep(1)  
+          await websocket.send(json.dumps(message))  
+  except:
+    pass
+    # Depending on the application, consider waiting here and trying again later
+</code></pre></div></div>
+<p>if <strong>name</strong> == “<strong>main</strong>”:<br />
+    asyncio.run(stream_dummy_data())</p>
+<p>This example simulates a streaming dataset by sending data through an echo server and updating the price value over time. The script calculates the running mean of the data and triggers an alert when the value exceeds a specified threshold. This example shows the possibilities of using a websocket. For example, imagine if we wanted to run additional models or statistics in this script with a possible SMS message alert to the user.</p>
+<p>Deployment and Infrastructure</p>
+<p>Local scripts are useful for experimentation, but real time systems generally require persistent infrastructure so that data streams remain active even when your local machine is offline.</p>
+<p>Cloud Infrastructure (AWS)</p>
+<p>Connecting your real time data pipeline to AWS (Amazon Web Services) is a common approach for achieving production level reliability and scalability. The architecture you choose will depend on whether you are building your own websocket server or simply ingesting an external data stream.</p>
+<p>Building Your Own WebSocket API If you want to distribute real time data to users, AWS provides infrastructure designed to manage persistent connections.</p>
+<p>API Gateway: Handles persistent websocket connections between clients and your server.</p>
+<p>AWS Lambda and DynamoDB: Often used together to manage connection mapping. This allows the system to track active users and determine where to push updates.</p>
+<p>See more here: AWS Docs</p>
+<p>Ingesting and Processing External Data Feeds If you are consuming an existing real time stream, such as financial market data or IoT, the following services are commonly used.</p>
+<p>Amazon Kinesis Data Streams: Designed for ingesting high frequency data streams and processing thousands of records per second.</p>
+<p>Amazon SNS (Simple Notification Service): Can trigger real time alerts via email or SMS when statistical thresholds or model outputs meet certain conditions.</p>
+<p>AWS Lambda and DynamoDB: Often used to process messages, maintain and store data about the incoming stream, and used for connection mapping.</p>
+<p>Persistent Compute (EC2 and Lightsail) Some applications require scripts that run continuously rather than event driven serverless functions.</p>
+<p>Amazon EC2: Provides full control of a virtual server where long running Python or JavaScript WebSocket clients can operate continuously.</p>
+<p>Amazon Lightsail: A simplified and lower cost alternative to EC2 that is useful for hosting lightweight streaming services or data connectors.</p>
+<p>Virtual Private Server (VPS)</p>
+<p>A Virtual Private Server provides an always on Linux environment for running WebSocket clients and data processing scripts.</p>
+<p>While each provider such as DigitalOcean, Linode, or ForestRacks has slightly different setup procedures, the workflow generally follows the same pattern: - Deploy your scripts to the remote server - Configure them to run as background processes - Maintain persistent connections to the data stream</p>
+<p>Advantages - Predictable and relatively low monthly cost - Full root level access to the operating system - Complete control over deployment and system configuration</p>
+<p>Disadvantages - Requires manual setup and maintenance - Security hardening and monitoring are your responsibility - Scaling infrastructure must be configured manually</p>
         </main>
   <hr>
   <footer>
       <div class="d-flex mt-2">
           <p class="text-small text-grey-dk-000 mb-0">
-            <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Data_Manipulation/Regular_Expressions.md" id="edit-this-page">Edit this page on GitHub.</a>
+            <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Data_Manipulation/data_streams_with_websockets.md" id="edit-this-page">Edit this page on GitHub.</a>
           </p>
       </div>
   </footer>
