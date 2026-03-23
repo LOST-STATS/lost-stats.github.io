@@ -14,6 +14,8 @@ If you create one of these pages, please remove it from this list.
 
 ## Data Manipulation
 
+# Missing data
+* Stata: mi, R: mice, Amelia, glimp (add the book by Little and Rubin and discuss the three missing data mechanisms)
 
 ## Geo-Spatial
 
@@ -71,6 +73,7 @@ If you create one of these pages, please remove it from this list.
 ## Presentation
 
 ### Figures
+* Treatment variation window (panelview package for Stata and R)
 
 ## Time Series
 
