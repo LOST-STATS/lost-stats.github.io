@@ -92,6 +92,60 @@ For more examples, see [Statistic Solutions: The Various Forms of ANOVA](https:/
 
 # Implementations
 
+## Python
+We will be using the `mtcars` data set, which can be loaded via the **pydataset** package.
+Prior to running the test, check the underlying assumptions for the data.
+
+```python
+# If necessary:
+# pip install pandas scipy statsmodels pydataset
+
+import pandas as pd
+from scipy import stats
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+from pydataset import data
+
+# Load mtcars and select variables of interest
+cars = data('mtcars')[['mpg',  # Dependent/response variable
+                        'wt']] # Independent variable
+
+# 1. Check for normality using D'Agostino's K-squared test
+#    (analogous to visually inspecting histograms in R)
+stat, p = stats.normaltest(cars['mpg'])
+print(f"Normality test for mpg: stat={stat:.3f}, p={p:.3f}")
+stat, p = stats.normaltest(cars['wt'])
+print(f"Normality test for wt:  stat={stat:.3f}, p={p:.3f}")
+
+# 2. Check for homoscedasticity using Levene's test
+#    Split wt into two groups around the median
+median_wt = cars['wt'].median()
+group1 = cars.loc[cars['wt'] <= median_wt, 'mpg']
+group2 = cars.loc[cars['wt'] >  median_wt, 'mpg']
+stat, p = stats.levene(group1, group2)
+print(f"Levene's test for equal variances: stat={stat:.3f}, p={p:.3f}")
+
+# 3. Fit a linear model to check residual structure
+model = smf.ols('mpg ~ wt', data=cars).fit()
+print(model.summary())
+```
+If we can verify these assumptions, then we can be confident that the
+information obtained from the ANOVA test will be an accurate measurement
+of the true relationship between the variables.
+```python
+
+# ANOVA table
+anova_table = sm.stats.anova_lm(model, typ=1)
+print(anova_table)
+#>           df       sum_sq      mean_sq           F        PR(>F)
+#> wt       1.0   847.725455   847.725455   91.375313  1.293959e-10
+#> Residual 30.0   278.321819     9.277394         NaN           NaN
+```
+
+In this example, we can see that `wt` is significant on all levels.
+Therefore, we can reject our null hypothesis that the group means are equal
+and accept our alternative hypothesis. 
+
 ## R
 
 We will be using the `mtcars` data set included in the base program
