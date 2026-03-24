@@ -299,6 +299,57 @@
 <h1 id="implementations">
     <a href="#implementations" class="anchor-heading" aria-labelledby="implementations"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
 </h1>
+<h2 id="python">
+    <a href="#python" class="anchor-heading" aria-labelledby="python"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Python
+</h2>
+<p>We will be using the <code class="language-plaintext highlighter-rouge">mtcars</code> data set, which can be loaded via the <strong>pydataset</strong> package.
+Prior to running the test, check the underlying assumptions for the data.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># If necessary:
+# pip install pandas scipy statsmodels pydataset
+</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="n">sm</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="n">smf</span>
+<span class="kn">from</span> <span class="nn">pydataset</span> <span class="kn">import</span> <span class="n">data</span>
+
+<span class="c1"># Load mtcars and select variables of interest
+</span><span class="n">cars</span> <span class="o">=</span> <span class="n">data</span><span class="p">(</span><span class="s">'mtcars'</span><span class="p">)[[</span><span class="s">'mpg'</span><span class="p">,</span>  <span class="c1"># Dependent/response variable
+</span>                        <span class="s">'wt'</span><span class="p">]]</span> <span class="c1"># Independent variable
+</span>
+<span class="c1"># 1. Check for normality using D'Agostino's K-squared test
+#    (analogous to visually inspecting histograms in R)
+</span><span class="n">stat</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">stats</span><span class="p">.</span><span class="n">normaltest</span><span class="p">(</span><span class="n">cars</span><span class="p">[</span><span class="s">'mpg'</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s">f"Normality test for mpg: stat=</span><span class="si">{</span><span class="n">stat</span><span class="p">:.</span><span class="mi">3</span><span class="n">f</span><span class="si">}</span><span class="s">, p=</span><span class="si">{</span><span class="n">p</span><span class="p">:.</span><span class="mi">3</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="n">stat</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">stats</span><span class="p">.</span><span class="n">normaltest</span><span class="p">(</span><span class="n">cars</span><span class="p">[</span><span class="s">'wt'</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s">f"Normality test for wt:  stat=</span><span class="si">{</span><span class="n">stat</span><span class="p">:.</span><span class="mi">3</span><span class="n">f</span><span class="si">}</span><span class="s">, p=</span><span class="si">{</span><span class="n">p</span><span class="p">:.</span><span class="mi">3</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+<span class="c1"># 2. Check for homoscedasticity using Levene's test
+#    Split wt into two groups around the median
+</span><span class="n">median_wt</span> <span class="o">=</span> <span class="n">cars</span><span class="p">[</span><span class="s">'wt'</span><span class="p">].</span><span class="n">median</span><span class="p">()</span>
+<span class="n">group1</span> <span class="o">=</span> <span class="n">cars</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">cars</span><span class="p">[</span><span class="s">'wt'</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">median_wt</span><span class="p">,</span> <span class="s">'mpg'</span><span class="p">]</span>
+<span class="n">group2</span> <span class="o">=</span> <span class="n">cars</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">cars</span><span class="p">[</span><span class="s">'wt'</span><span class="p">]</span> <span class="o">&gt;</span>  <span class="n">median_wt</span><span class="p">,</span> <span class="s">'mpg'</span><span class="p">]</span>
+<span class="n">stat</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">stats</span><span class="p">.</span><span class="n">levene</span><span class="p">(</span><span class="n">group1</span><span class="p">,</span> <span class="n">group2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">f"Levene's test for equal variances: stat=</span><span class="si">{</span><span class="n">stat</span><span class="p">:.</span><span class="mi">3</span><span class="n">f</span><span class="si">}</span><span class="s">, p=</span><span class="si">{</span><span class="n">p</span><span class="p">:.</span><span class="mi">3</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+<span class="c1"># 3. Fit a linear model to check residual structure
+</span><span class="n">model</span> <span class="o">=</span> <span class="n">smf</span><span class="p">.</span><span class="n">ols</span><span class="p">(</span><span class="s">'mpg ~ wt'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">cars</span><span class="p">).</span><span class="n">fit</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">summary</span><span class="p">())</span>
+</code></pre></div></div>
+<p>If we can verify these assumptions, then we can be confident that the
+information obtained from the ANOVA test will be an accurate measurement
+of the true relationship between the variables.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1"># ANOVA table
+</span><span class="n">anova_table</span> <span class="o">=</span> <span class="n">sm</span><span class="p">.</span><span class="n">stats</span><span class="p">.</span><span class="n">anova_lm</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">anova_table</span><span class="p">)</span>
+<span class="c1">#&gt;           df       sum_sq      mean_sq           F        PR(&gt;F)
+#&gt; wt       1.0   847.725455   847.725455   91.375313  1.293959e-10
+#&gt; Residual 30.0   278.321819     9.277394         NaN           NaN
+</span></code></pre></div></div>
+<p>In this example, we can see that <code class="language-plaintext highlighter-rouge">wt</code> is significant on all levels.
+Therefore, we can reject our null hypothesis that the group means are equal
+and accept our alternative hypothesis.</p>
 <h2 id="r">
     <a href="#r" class="anchor-heading" aria-labelledby="r"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
 </h2>
