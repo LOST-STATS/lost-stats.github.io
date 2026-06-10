@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <link rel="stylesheet" href="/assets/css/just-the-docs-default.css">
+  <link rel="stylesheet" href="/assets/css/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet">
+  <style id="jtd-nav-activation">
+    .site-nav ul li a {
+      background-image: none;
+    }
+  </style>
+    <script src="/assets/js/vendor/lunr.min.js"></script>
+  <script src="/assets/js/just-the-docs.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Causal Diagrams | LOST</title>
+<meta name="generator" content="Jekyll v4.4.0" />
+<meta property="og:title" content="Causal Diagrams" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="LOST" />
+<script type="application/ld+json">
+{"url":"/Model_Estimation/Causal%20Diagram.html","@type":"WebPage","headline":"Causal Diagrams","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+</head>
+<body>
+  <a class="skip-to-main" href="#main-content">Skip to main content</a>
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <symbol id="svg-link" viewBox="0 0 24 24">
+  <title>Link</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+  </svg>
+</symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+  <title>Menu</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+    <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
+</symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+  <title>Expand</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+    <polyline points="9 18 15 12 9 6"></polyline>
+  </svg>
+</symbol>
+  <!-- Feather. MIT License: https://github.com/feathericons/feather/blob/master/LICENSE -->
+<symbol id="svg-external-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">
+  <title id="svg-external-link-title">(external link)</title>
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line>
+</symbol>
+    <symbol id="svg-doc" viewBox="0 0 24 24">
+  <title>Document</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+  </svg>
+</symbol>
+    <symbol id="svg-search" viewBox="0 0 24 24">
+  <title>Search</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+    <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+</symbol>
+    <!-- Bootstrap Icons. MIT License: https://github.com/twbs/icons/blob/main/LICENSE.md -->
+<symbol id="svg-copy" viewBox="0 0 16 16">
+  <title>Copy</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+  </svg>
+</symbol>
+<symbol id="svg-copied" viewBox="0 0 16 16">
+  <title>Copied</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check-fill" viewBox="0 0 16 16">
+    <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z"/>
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1Zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708Z"/>
+  </svg>
+</symbol>
+</svg>
+    <div class="side-bar">
+  <div class="site-header" role="banner">
+    <a href="/" class="site-title lh-tight">
+  LOST
+</a>
+    <button id="menu-button" class="site-button btn-reset" aria-label="Toggle menu" aria-pressed="false">
+      <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-menu"></use></svg>
+    </button>
+  </div>
+  <nav aria-label="Main" id="site-nav" class="site-nav">
+    <ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Data Manipulation category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/Data_Manipulation/data_manipulation.html" class="nav-list-link">Data Manipulation</a><ul class="nav-list"><li class="nav-list-item"><a href="/Data_Manipulation/Regular_Expressions.html" class="nav-list-link">Regular Expressions</a></li><li class="nav-list-item"><a href="/Data_Manipulation/collapse_a_data_set.html" class="nav-list-link">Collapse a Data Set</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Combining Datasets category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_overview.html" class="nav-list-link">Combining Datasets</a><ul class="nav-list"><li class="nav-list-item"><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_vertical_combination.html" class="nav-list-link">Vertical Combination</a></li><li class="nav-list-item"><a href="/Data_Manipulation/Combining_Datasets/combining_datasets_horizontal_merge_deterministic.html" class="nav-list-link">Horizontal Combination (Deterministic)</a></li></ul></li><li class="nav-list-item"><a href="/Data_Manipulation/creating_a_variable_with_group_calculations.html" class="nav-list-link">Creating a Variable with Group Calculations</a></li><li class="nav-list-item"><a href="/Data_Manipulation/creating_categorical_variables.html" class="nav-list-link">Creating Categorical Variables</a></li><li class="nav-list-item"><a href="/Data_Manipulation/Creating_Dummy_Variables/creating_dummy_variables.html" class="nav-list-link">Creating Dummy Variables</a></li><li class="nav-list-item"><a href="/Data_Manipulation/data_streams_with_websockets.html" class="nav-list-link">Real Time Data Streams with WebSockets</a></li><li class="nav-list-item"><a href="/Data_Manipulation/determine_the_observation_level_of_a_data_set.html" class="nav-list-link">Determine the Observation Level of a Data Set</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Reshaping Data category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/Data_Manipulation/Reshaping/reshape.html" class="nav-list-link">Reshaping Data</a><ul class="nav-list"><li class="nav-list-item"><a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_wide_to_long.html" class="nav-list-link">Reshape Panel Data from Wide to Long</a></li><li class="nav-list-item"><a href="/Data_Manipulation/Reshaping/reshape_panel_data_from_long_to_wide.html" class="nav-list-link">Reshape Panel Data from Long to Wide</a></li></ul></li><li class="nav-list-item"><a href="/Data_Manipulation/rowwise_calculations.html" class="nav-list-link">Rowwise Calculations</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Geo-Spatial category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/Geo-Spatial/Geo-spatial.html" class="nav-list-link">Geo-Spatial</a><ul class="nav-list"><li class="nav-list-item"><a href="/Geo-Spatial/choropleths.html" class="nav-list-link">Choropleths</a></li><li class="nav-list-item"><a href="/Geo-Spatial/geocoding.html" class="nav-list-link">Geocoding</a></li><li class="nav-list-item"><a href="/Geo-Spatial/handling_raster_data.html" class="nav-list-link">Handling Raster Data</a></li><li class="nav-list-item"><a href="/Geo-Spatial/merging_shape_files.html" class="nav-list-link">Merging Shape Files</a></li><li class="nav-list-item"><a href="/Geo-Spatial/spatial_joins.html" class="nav-list-link">Spatial Joins</a></li><li class="nav-list-item"><a href="/Geo-Spatial/spatial_lag_model.html" class="nav-list-link">Spatial Lag Model</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Machine Learning category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/Machine_Learning/Machine_Learning.html" class="nav-list-link">Machine Learning</a><ul class="nav-list"><li class="nav-list-item"><a href="/Machine_Learning/Nearest_Neighbor.html" class="nav-list-link">K-Nearest Neighbor Matching</a></li><li class="nav-list-item"><a href="/Machine_Learning/artificial_neural_network.html" class="nav-list-link">Artificial Neural Network</a></li><li class="nav-list-item"><a href="/Machine_Learning/boosted_regression_trees.html" class="nav-list-link">Boosted Regression Trees</a></li><li class="nav-list-item"><a href="/Machine_Learning/causal_forest.html" class="nav-list-link">Causal Forest</a></li><li class="nav-list-item"><a href="/Machine_Learning/decision_trees.html" class="nav-list-link">Decision Trees</a></li><li class="nav-list-item"><a href="/Machine_Learning/penalized_regression.html" class="nav-list-link">Penalized Regression</a></li><li class="nav-list-item"><a href="/Machine_Learning/random_forest.html" class="nav-list-link">Random Forest</a></li><li class="nav-list-item"><a href="/Machine_Learning/support_vector_machine.html" class="nav-list-link">Support Vector Machine</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Model Estimation category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/Model_Estimation/Model_Estimation.html" class="nav-list-link">Model Estimation</a><ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Ordinary Least Squares category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/Model_Estimation/OLS/OLS.html" class="nav-list-link">Ordinary Least Squares</a><ul class="nav-list"><li class="nav-list-item"><a href="/Model_Estimation/OLS/ANOVA.html" class="nav-list-link">ANOVA</a></li><li class="nav-list-item"><a href="/Model_Estimation/OLS/simple_linear_regression.html" class="nav-list-link">Simple Linear Regression</a></li><li class="nav-list-item"><a href="/Model_Estimation/OLS/stepwise_regression.html" class="nav-list-link">Stepwise Regression</a></li><li class="nav-list-item"><a href="/Model_Estimation/OLS/interaction_terms_and_polynomials.html" class="nav-list-link">Interaction Terms and Polynomials</a></li><li class="nav-list-item"><a href="/Model_Estimation/OLS/fixed_effects_in_linear_regression.html" class="nav-list-link">Fixed Effects in Linear Regression</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Matching category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/Model_Estimation/Matching/matching.html" class="nav-list-link">Matching</a><ul class="nav-list"><li class="nav-list-item"><a href="/Model_Estimation/Matching/entropy_balancing.html" class="nav-list-link">Entropy Balancing</a></li><li class="nav-list-item"><a href="/Model_Estimation/Matching/propensity_score_matching.html" class="nav-list-link">Propensity Score Matching</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Generalised Least Squares category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/Model_Estimation/GLS/GLS.html" class="nav-list-link">Generalised Least Squares</a><ul class="nav-list"><li class="nav-list-item"><a href="/Model_Estimation/GLS/gmm.html" class="nav-list-link">Generalized Method of Moments</a></li><li class="nav-list-item"><a href="/Model_Estimation/GLS/heckman_correction_model.html" class="nav-list-link">Heckman Correction Model</a></li><li class="nav-list-item"><a href="/Model_Estimation/GLS/logit_model.html" class="nav-list-link">Logit Model</a></li><li class="nav-list-item"><a href="/Model_Estimation/GLS/mcfaddens_choice_model.html" class="nav-list-link">McFadden's Choice Model (Alternative-Specific Conditional Logit)</a></li><li class="nav-list-item"><a href="/Model_Estimation/GLS/nested_logit.html" class="nav-list-link">Nested Logit Model</a></li><li class="nav-list-item"><a href="/Model_Estimation/GLS/ordered_probit_logit.html" class="nav-list-link">Ordered Probit/Logit</a></li><li class="nav-list-item"><a href="/Model_Estimation/GLS/probit_model.html" class="nav-list-link">Probit Model</a></li><li class="nav-list-item"><a href="/Model_Estimation/GLS/tobit.html" class="nav-list-link">Tobit Regression</a></li><li class="nav-list-item"><a href="/Model_Estimation/GLS/quantile_regression.html" class="nav-list-link">Quantile Regression</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Multilevel Models category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/Model_Estimation/Multilevel_Models/Multilevel_Models.html" class="nav-list-link">Multilevel Models</a><ul class="nav-list"><li class="nav-list-item"><a href="/Model_Estimation/Multilevel_Models/linear_mixed_effects_regression.html" class="nav-list-link">Linear Mixed-Effects Regression</a></li><li class="nav-list-item"><a href="/Model_Estimation/Multilevel_Models/mixed_logit.html" class="nav-list-link">Mixed Logit Model</a></li><li class="nav-list-item"><a href="/Model_Estimation/Multilevel_Models/random_mixed_effects_estimation.html" class="nav-list-link">Random/Mixed Effects in Linear Regression</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Research Design category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/Model_Estimation/Research_Design/Research_Design.html" class="nav-list-link">Research Design</a><ul class="nav-list"><li class="nav-list-item"><a href="/Model_Estimation/Research_Design/density_discontinuity_test.html" class="nav-list-link">Density Discontinuity Tests for Regression Discontinuity</a></li><li class="nav-list-item"><a href="/Model_Estimation/Research_Design/event_study.html" class="nav-list-link">Difference in Differences Event Study</a></li><li class="nav-list-item"><a href="/Model_Estimation/Research_Design/instrumental_variables.html" class="nav-list-link">Instrumental Variables</a></li><li class="nav-list-item"><a href="/Model_Estimation/Research_Design/regression_discontinuity_design.html" class="nav-list-link">Regression Discontinuity Design</a></li><li class="nav-list-item"><a href="/Model_Estimation/Research_Design/synthetic_control_method.html" class="nav-list-link">Synthetic Control</a></li><li class="nav-list-item"><a href="/Model_Estimation/Research_Design/two_by_two_difference_in_difference.html" class="nav-list-link">2x2 Difference in Difference</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Statistical Inference category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/Model_Estimation/Statistical_Inference/Statistical_Inference.html" class="nav-list-link">Statistical Inference</a><ul class="nav-list"><li class="nav-list-item"><a href="/Model_Estimation/Statistical_Inference/Marginal_Effects_in_Nonlinear_Regression.html" class="nav-list-link">Marginal Effects in Nonlinear Regression</a></li><li class="nav-list-item"><a href="/Model_Estimation/Statistical_Inference/linear_hypothesis_tests.html" class="nav-list-link">Linear Hypothesis Tests</a></li><li class="nav-list-item"><a href="/Model_Estimation/Statistical_Inference/nonlinear_hypothesis_tests.html" class="nav-list-link">Nonlinear Hypothesis Tests</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Nonstandard Errors category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/Model_Estimation/Statistical_Inference/Nonstandard_Errors/nonstandard_errors.html" class="nav-list-link">Nonstandard Errors</a><ul class="nav-list"><li class="nav-list-item"><a href="/Model_Estimation/Statistical_Inference/Nonstandard_Errors/bootstrap_se.html" class="nav-list-link">Bootstrap Standard Errors</a></li><li class="nav-list-item"><a href="/Model_Estimation/Statistical_Inference/Nonstandard_Errors/clustered_se.html" class="nav-list-link">Cluster-Robust Standard Errors</a></li><li class="nav-list-item"><a href="/Model_Estimation/Statistical_Inference/Nonstandard_Errors/hc_se.html" class="nav-list-link">Heteroskedasticity-consistent standard errors</a></li></ul></li></ul></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Presentation category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/Presentation/Presentation.html" class="nav-list-link">Presentation</a><ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Figures category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/Presentation/Figures/Figures.html" class="nav-list-link">Figures</a><ul class="nav-list"><li class="nav-list-item"><a href="/Presentation/Figures/Adding_and_Labeling_a_Reference_Line.html" class="nav-list-link">Adding and Labeling a Reference Line</a></li><li class="nav-list-item"><a href="/Presentation/Figures/Animated_graphs.html" class="nav-list-link">Animated Graphs</a></li><li class="nav-list-item"><a href="/Presentation/Figures/Graph_Annotation.html" class="nav-list-link">Graph Annotations</a></li><li class="nav-list-item"><a href="/Presentation/Figures/Scatterplots.html" class="nav-list-link">Scatterplots</a></li><li class="nav-list-item"><a href="/Presentation/Figures/Styling_Scatterplots.html" class="nav-list-link">Styling Scatterplots</a></li><li class="nav-list-item"><a href="/Presentation/Figures/bar_graphs.html" class="nav-list-link">Bar Graphs</a></li><li class="nav-list-item"><a href="/Presentation/Figures/binscatter.html" class="nav-list-link">Binned Scatterplots</a></li><li class="nav-list-item"><a href="/Presentation/Figures/color_palettes.html" class="nav-list-link">Color Palettes</a></li><li class="nav-list-item"><a href="/Presentation/Figures/density_plots.html" class="nav-list-link">Density Plots</a></li><li class="nav-list-item"><a href="/Presentation/Figures/faceted_graphs.html" class="nav-list-link">Faceted Graphs</a></li><li class="nav-list-item"><a href="/Presentation/Figures/formatting_graph_axes.html" class="nav-list-link">Formatting Graph Axes</a></li><li class="nav-list-item"><a href="/Presentation/Figures/formatting_graph_legends.html" class="nav-list-link">Formatting Graph Legends</a></li><li class="nav-list-item"><a href="/Presentation/Figures/graph_themes.html" class="nav-list-link">Graph Themes</a></li><li class="nav-list-item"><a href="/Presentation/Figures/heatmap_colored_correlation_matrix.html" class="nav-list-link">Heatmap Colored Correlation Matrix</a></li><li class="nav-list-item"><a href="/Presentation/Figures/histograms.html" class="nav-list-link">Histograms</a></li><li class="nav-list-item"><a href="/Presentation/Figures/line_graph_with_labels_at_the_beginning_or_end.html" class="nav-list-link">Line Graph with Labels at the Beginning or End of Lines</a></li><li class="nav-list-item"><a href="/Presentation/Figures/line_graphs.html" class="nav-list-link">Line Graphs</a></li><li class="nav-list-item"><a href="/Presentation/Figures/marginal_effects_plots_for_interactions_with_categorical_variables.html" class="nav-list-link">Marginal effects plots for interactions with categorical variables</a></li><li class="nav-list-item"><a href="/Presentation/Figures/marginal_effects_plots_for_interactions_with_continuous_variables.html" class="nav-list-link">Marginal Effects Plots for Interactions with Continuous Variables</a></li><li class="nav-list-item"><a href="/Presentation/Figures/sankey_diagrams.html" class="nav-list-link">Sankey Diagrams</a></li><li class="nav-list-item"><a href="/Presentation/Figures/scatterplot_by_group_on_shared_axes.html" class="nav-list-link">Scatterplot by Group on Shared Axes</a></li><li class="nav-list-item"><a href="/Presentation/Figures/styling_line_graphs.html" class="nav-list-link">Styling Line Graphs</a></li><li class="nav-list-item"><a href="/Presentation/Figures/summary_graphs.html" class="nav-list-link">Graphing a By-Group or Over-Time Summary Statistic</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Tables category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/Presentation/Tables/Tables.html" class="nav-list-link">Tables</a><ul class="nav-list"><li class="nav-list-item"><a href="/Presentation/Tables/Balance_Tables.html" class="nav-list-link">Balance Tables</a></li><li class="nav-list-item"><a href="/Presentation/Tables/Correlation_Matrix.html" class="nav-list-link">Correlation Matrix</a></li><li class="nav-list-item"><a href="/Presentation/Tables/Cross-Tabulation.html" class="nav-list-link">Cross-Tabulation</a></li><li class="nav-list-item"><a href="/Presentation/Tables/Custom_Tables.html" class="nav-list-link">Building Custom Tables</a></li><li class="nav-list-item"><a href="/Presentation/Tables/Regression_Tables.html" class="nav-list-link">Regression Tables</a></li><li class="nav-list-item"><a href="/Presentation/Tables/Summary_Statistics_Tables.html" class="nav-list-link">Summary Statistics Tables</a></li></ul></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Time Series category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/Time_Series/Time_Series.html" class="nav-list-link">Time Series</a><ul class="nav-list"><li class="nav-list-item"><a href="/Time_Series/AR-models.html" class="nav-list-link">AR Models</a></li><li class="nav-list-item"><a href="/Time_Series/ARCH_Model.html" class="nav-list-link">ARCH Model</a></li><li class="nav-list-item"><a href="/Time_Series/ARIMA-models.html" class="nav-list-link">ARIMA Models</a></li><li class="nav-list-item"><a href="/Time_Series/ARMA-models.html" class="nav-list-link">ARMA Models</a></li><li class="nav-list-item"><a href="/Time_Series/Autocorrelation_Function.html" class="nav-list-link">Autocorrelation Function</a></li><li class="nav-list-item"><a href="/Time_Series/GARCH_Model.html" class="nav-list-link">GARCH Model</a></li><li class="nav-list-item"><a href="/Time_Series/Granger_Causality.html" class="nav-list-link">Granger Causality</a></li><li class="nav-list-item"><a href="/Time_Series/MA_Model.html" class="nav-list-link">MA Models</a></li><li class="nav-list-item"><a href="/Time_Series/Rolling_Regression.html" class="nav-list-link">Rolling Regression</a></li><li class="nav-list-item"><a href="/Time_Series/State_Space_Models.html" class="nav-list-link">State Space Models</a></li><li class="nav-list-item"><a href="/Time_Series/VAR-models.html" class="nav-list-link">VAR Models</a></li><li class="nav-list-item"><a href="/Time_Series/creating_time_series_dataset.html" class="nav-list-link">Creating a Time Series Dataset</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Other category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/Other/Other.html" class="nav-list-link">Other</a><ul class="nav-list"><li class="nav-list-item"><a href="/Other/create_a_conda_package.html" class="nav-list-link">Create a Conda Package (Python)</a></li><li class="nav-list-item"><a href="/Other/get_a_list_of_files.html" class="nav-list-link">Get a List of Files</a></li><li class="nav-list-item"><a href="/Other/import_a_foreign_data_file.html" class="nav-list-link">Import a Foreign Data File</a></li><li class="nav-list-item"><a href="/Other/importing_delimited_files.html" class="nav-list-link">Import a Delimited Data File (CSV, TSV)</a></li><li class="nav-list-item"><a href="/Other/set_a_working_directory.html" class="nav-list-link">Set a Working Directory</a></li><li class="nav-list-item"><a href="/Other/simple_web_scrape.html" class="nav-list-link">Simple Web Scraping</a></li><li class="nav-list-item"><a href="/Other/task_scheduling_with_github_actions.html" class="nav-list-link">Task Scheduling with Github Actions</a></li></ul></li><li class="nav-list-item"><a href="/Desired_Nonexistent_Pages/desired_nonexistent_pages.html" class="nav-list-link">Desired Nonexistent Pages</a></li><li class="nav-list-item"><a href="/Contributing/Contributing.html" class="nav-list-link">Contributing</a></li><li class="nav-list-item"><a href="/" class="nav-list-link">Home</a></li><li class="nav-list-item"><a href="/Data_Manipulation/Missing_Data_Method.html" class="nav-list-link">Multiple Imputation</a></li></ul>
+</nav>
+    <footer class="site-footer">
+      This site uses <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+    </footer>
+</div>
+  <div class="main" id="top">
+    <div id="main-header" class="main-header">
+<div class="search" role="search">
+  <div class="search-input-wrap">
+    <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search LOST" aria-label="Search LOST" autocomplete="off">
+    <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+  </div>
+  <div id="search-results" class="search-results"></div>
+</div>
+</div>
+    <div class="main-content-wrap">
+      <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+  <ol class="breadcrumb-nav-list">
+    <li class="breadcrumb-nav-list-item"><span>Causal Diagrams</span></li>
+  </ol>
+</nav>
+      <div id="main-content" class="main-content">
+        <main>
+            <p>Causal Diagrams are crucial models that can help outline the data-generating process when creating a regression model, as they help identify which variables are confounders. If a variable in the data-generating process affects both the treatment and outcome variables but is not included in the model, the model will no longer capture the treatment variable’s sole impact on the outcome. This creates omitted variable bias and endogeneity as the treatment variable will be correlated with another variable in the error term. To avoid this, adding these confounding variables as controls to the model can help, but identifying what to control for can be difficult without a causal diagram.</p>
+<p>The first step in creating the diagram is to identify the treatment and outcome variables, as well as any other variables related to them that are present in the real world and affect the data’s source. The goal of the model is to draw arrows between variables that cause each other, and to list all paths of arrows and variables that start from the treatment and reach the outcome variable. If a variable is associated with both the treatment and the outcome, it creates a confounding backdoor path that should generally be blocked through adjustment. Once we identify these backdoor path variables, we can efficiently control for them, ensuring that the treatment variable is no longer correlated with the error term and obtaining a relatively unbiased estimate.</p>
+<h2 id="keep-in-mind">
+    <a href="#keep-in-mind" class="anchor-heading" aria-labelledby="keep-in-mind"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keep in Mind
+</h2>
+<ul>
+  <li>This guide covers the most common functions and syntax forms for creating and analyzing causal diagrams in dagitty. For additional graph specifications, advanced graph types, variable attributes, and further examples, users can consult the dagitty help documentation by running <code class="language-plaintext highlighter-rouge">help("dagitty")</code>.</li>
+  <li>All outputs regarding adjustments and paths will be correct based on the information provided by the user. If the user inputs an incorrect data-generating process, the paths and adjustments will be correct for the given diagram, but not for the overall data-generating process.</li>
+</ul>
+<h2 id="also-consider">
+    <a href="#also-consider" class="anchor-heading" aria-labelledby="also-consider"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Also Consider
+</h2>
+<ul>
+  <li><a href="/Model_Estimation/OLS/simple_linear_regression.html">Simple Linear Regression</a> — once confounders are identified via a causal diagram, they should be added as controls in a regression model to isolate the treatment variable’s causal effect on the outcome.</li>
+  <li><a href="/Model_Estimation/OLS/fixed_effects_in_linear_regression.html">Fixed Effects in Linear Regression</a> — another common approach to controlling for unobserved confounding variables in a regression model.</li>
+</ul>
+<h1 id="implementations">
+    <a href="#implementations" class="anchor-heading" aria-labelledby="implementations"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementations
+</h1>
+<h2 id="r">
+    <a href="#r" class="anchor-heading" aria-labelledby="r"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> R
+</h2>
+<p>To create the causal diagram in R, we will use the dagitty package to draw and analyze it to determine what to control for in a regression.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">dagitty</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># dagitty(x, layout = FALSE)</span><span class="w">
+</span></code></pre></div></div>
+<p>The code above highlights the structure of creating a causal diagram with dagitty, where there are two main arguments that the function dagitty (which will create the causal diagram) will take. X takes the user’s input as a string specifying which variables and information should be present in the causal diagram and transforms it into the diagram itself.</p>
+<p>The layout portion of the argument, with false as the default, allows the user to specify whether they want R to organize and space out all variables in the causal diagram so they are readable and well-spaced, if the setting is set to true. When setting the layout to equal false, R will not automatically adjust the positions of all variables, which may cause overlap that will need to be adjusted later to make the diagram readable.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Code Structure of the First Argument (X)</span><span class="w">
+  </span><span class="c1"># "[graph type]{[statements]}"</span><span class="w">
+
+</span><span class="c1">#The user can input the graph type they want, along with the variables to include in the model using the syntax above</span><span class="w">
+
+</span><span class="c1">#Example Code</span><span class="w">
+</span><span class="n">x</span><span class="o">=</span><span class="n">dagitty</span><span class="p">(</span><span class="s2">"dag{ x -&gt; y }"</span><span class="p">,</span><span class="w"> </span><span class="n">layout</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p>The plot above displays a simple diagram with an arrow from x to y, showing that x causes y.</p>
+<p>In the code above, the first argument is enclosed in quotation marks because it is a string. It then contains “dag”, which tells R what type of causal diagram to make. For most general causal diagram creation and analysis, using the dag model will be sufficient, as it allows arrows to connect the given variables with -&gt; or two-way arrows (&lt;-&gt;). This model type is used in most causal inference applications because it clearly represents causal relationships between variables, but please note that it does not allow for feedback loops. Inside the braces, variables can be listed individually or connected with arrows. The arrow operator indicates a causal relationship, where the variable on the left is assumed to cause the variable on the right.</p>
+<p><strong>Advanced model types:</strong></p>
+<p>There are three other model types that can be used if more advanced causal diagrams are needed to create the data-generating process. The first is a MAG model, which includes hidden or unobserved variables and other factors that cannot be directly measured. It can use - – edges to represent selection effects and &lt;-&gt; edges to represent unobserved confounding variables. Next is a PDAG model, which is similar to the DAG model but can be used when the directions of arrows between variables are unknown. It also uses – -between two variables to indicate that the direction of the relationship is not yet known. The most advanced model is the PAG model specification, which introduces even greater uncertainty among variables and uses special edge types to represent that uncertainty. This specification uses @-@, @-&gt;, and @– to define the relationships between variables. PAGs are typically used when the exact causal structure cannot be fully determined from the available information.</p>
+<p>Note: the two-way arrows x &lt;-&gt; y are another way to show unobserved factors that may not be known impacting both x and y (x ← U → y).</p>
+<p><strong>Assigning Variables:</strong></p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">d</span><span class="o">=</span><span class="n">dagitty</span><span class="p">(</span><span class="s2">"dag{
+x [exposure]
+y [outcome]
+x -&gt; y}"</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p>In the code chunk above, once the model type is specified, the user can add the variables they want to include in the model using curly braces. In the example, the variable X has an arrow to variable Y, meaning that X causes Y. It is also possible to list variables in the braces ({ x y z }), however, this just adds the variables to the diagram and does not connect any arrows to them. To have multiple variables with arrows between them, they can also be added within the curly braces with as many variables as the user desires ({x -&gt; y -&gt; z }). The user can also specify what variables are the treatment and outcome by implementing the following code:</p>
+<p>Using the code above, X is specified as the treatment variable, and Y is the outcome variable. Additionally, the plot function is used to plot the causal diagram.</p>
+<p><strong>Implementation:</strong></p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#This code creates a simple causal diagram that maps the DGP of how tutoring impacts college test scores, where socioeconomic status effects both variables.</span><span class="w">
+
+</span><span class="n">g</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dagitty</span><span class="p">(</span><span class="s2">"dag{
+Tutoring [exposure]
+CollegeTestScores [outcome]
+
+Tutoring-&gt; CollegeTestScores
+SocioeconomicStatus -&gt; Tutoring 
+SocioeconomicStatus -&gt; CollegeTestScores 
+IntrinsicMotivation -&gt; CollegeTestScores
+}"</span><span class="p">,</span><span class="w"> </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p>The plot above displays the causal diagram showing IntrinsicMotivation and SocioeconomicStatus both pointing to CollegeTestScores, and SocioeconomicStatus also pointing to Tutoring, which in turn points to CollegeTestScores.</p>
+<p>To create a causal diagram that specifies the exposure and the outcome and includes other variables that affect other variables, the following code structure can be used, and the user can add as many variables with arrows between them as they want. To change the variable names, the user can simply type the variable names. Note: the name of the variable does not need to be wrapped in quotation marks.</p>
+<p>In the causal diagram above, the code has created a diagram showing that socioeconomic status is a confounder for both tutoring and college test scores, meaning it must be controlled for to isolate the causal effect of tutoring on college test scores. Please note that it is not necessary to control for intrinsic motivation, as it only affects the outcome variable. Variables that create open backdoor paths between the treatment and outcome should generally be controlled for.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">paths</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$paths
+[1] "Tutoring -&gt; CollegeTestScores"
+[2] "Tutoring &lt;- SocioeconomicStatus -&gt; CollegeTestScores"
+
+$open
+[1] TRUE TRUE
+</code></pre></div></div>
+<p>The output above lists the paths connecting the exposure and outcome variables. Below the listed paths, dagitty indicates whether each path is open (TRUE) or blocked (FALSE). Open backdoor paths can create omitted variable bias and should generally be blocked by controlling for an appropriate variable.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">adjustmentSets</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ SocioeconomicStatus }
+</code></pre></div></div>
+<p>If the user wants to confirm which variables they must control for to reduce omitted variable bias, they can use the code above, which will output any confounding variables within the model. This is a crucial function within the dagitty package, as visually identifying which variables to control for can be difficult when the data-generating process involves many variables and many arrows in the model. Once the function identifies which variables need to be controlled for, the user is encouraged to add these variables as controls in their regression model to isolate the treatment variable’s causal effect on the outcome.</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">g</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dagitty</span><span class="p">(</span><span class="s2">"dag{
+  x -&gt; y ; x &lt;- z -&gt; y
+  x [exposure]
+  y [outcome]
+  z [unobserved]
+}"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p>The code above is another way to create the causal diagram, where the user can specify the causal relationships between variables on a single line, separated by semicolons. Then, the variables are labeled as an exposure, outcome, or unobserved. Using the code above may be beneficial for users who want to see all causal relationships on a single line and then specify the type of each variable.</p>
+        </main>
+  <hr>
+  <footer>
+      <div class="d-flex mt-2">
+          <p class="text-small text-grey-dk-000 mb-0">
+            <a href="https://github.com/lost-stats/lost-stats.github.io/edit/source/Model_Estimation/Causal Diagram.md" id="edit-this-page">Edit this page on GitHub.</a>
+          </p>
+      </div>
+  </footer>
+      </div>
+    </div>
+<div class="search-overlay"></div>
+  </div>
+</body>
+</html>
