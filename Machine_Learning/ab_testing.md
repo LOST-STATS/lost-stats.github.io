@@ -10,7 +10,9 @@ mathjax: true
 
 A/B testing is a controlled experiment used to compare two variants of a product, webpage, or feature. One version is usually the current experience (A, or "control") and the other is a modified version (B, or "treatment"). The goal is to determine whether the new version produces a meaningful change in a pre-defined outcome, such as conversion rate, click-through rate, or revenue.
 
- A/B tests are widely used in product development and online experimentation because they provide a direct way to measure causal effects from a randomized comparison.
+A/B testing is primarily an experimental design process rather than a single statistical test. The most important parts are choosing the metric, randomizing assignment, calculating the sample size for adequate power, and pre-specifying how and when the experiment will stop. The actual comparison of the two variants can be implemented with different inferential tests depending on the outcome type and software environment.
+
+A/B tests are widely used in product development and online experimentation because they provide a direct way to measure causal effects from a randomized comparison.
 
 ## Assumptions and Considerations
 
@@ -23,6 +25,19 @@ A successful A/B test depends on several assumptions and practical decisions:
 - Clear primary metric: choose the most important metric before the test begins and avoid changing it partway through.
 - Duration and timing: run the experiment long enough to capture typical user behavior, while avoiding seasonality or external events that could bias results.
 - Sample ratio: maintain the intended allocation ratio (for example, 50/50) and watch for traffic or instrumentation issues that shift the ratio.
+- Power and stopping rules: calculate sample size before the test starts, choose a minimum detectable effect, and decide whether the test will use a fixed horizon or a pre-registered sequential stopping rule.
+
+## Design Considerations: power, stopping rules, and test choice
+
+A/B testing is not just the final hypothesis test. It is the combination of experiment setup, metric selection, randomization, and analysis plan. Two important elements are statistical power (making sure the test can detect a practically meaningful effect) and stopping rules (avoiding bias from peeking or stopping early).
+
+The examples in this page show one common analysis path for binary conversion data. In practice, A/B testing can use different software and equivalent inference approaches:
+
+- a two-proportion z-test or an equivalent chi-squared test for binary conversion metrics,
+- a t-test or regression for continuous outcomes,
+- regression adjustments when covariates are needed to improve precision.
+
+Both the Python and R examples below use the same A/B setup: two variants, conversion counts, visitor totals, and the same two-proportion z-test for comparison. The important point is that the underlying experimental design is what makes this A/B test, not the specific language used for the final comparison.
 
 ## Python Implementation Example
 
@@ -38,11 +53,12 @@ $$
 
 where $p_1$ and $p_2$ are the conversion rates for variants A and B, $n_1$ and $n_2$ are the sample sizes, and $p$ is the pooled proportion across both groups. A large absolute value of $Z$ (typically $|Z| > 1.96$ for a 0.05 significance level) suggests the variants differ significantly.
 
-The example below uses the `statsmodels` library, which is a common choice for simple A/B test statistics:
+The example below calculates the two-proportion z-test manually, which makes the computation transparent and matches the R implementation:
 
 ```python
 import pandas as pd
-from statsmodels.stats.proportion import proportions_ztest, proportion_confint
+from scipy import stats
+import numpy as np
 
 # Example results for two variants
 results = pd.DataFrame(
@@ -56,47 +72,55 @@ results = pd.DataFrame(
 results["rate"] = results["conversions"] / results["visitors"]
 print(results)
 
-successes = results["conversions"].values
-trials = results["visitors"].values
+# Extract values
+n1 = 2000
+n2 = 2100
+p1 = 120 / n1
+p2 = 150 / n2
 
-stat, pvalue = proportions_ztest(successes, trials, alternative="two-sided")
-print(f"z-statistic: {stat:.3f}")
-print(f"p-value: {pvalue:.4f}")
+# Calculate pooled proportion
+p_pooled = (120 + 150) / (n1 + n2)
 
-# Confidence interval for the difference in proportions
+# Calculate the two-proportion z-test statistic
+z_stat = (p2 - p1) / np.sqrt(p_pooled * (1 - p_pooled) * (1/n1 + 1/n2))
 
-diff = results.loc[1, "rate"] - results.loc[0, "rate"]
-ci_low, ci_high = proportion_confint(
-    successes[1] - successes[0], trials[1] + trials[0], method="wilson"
-)
+# Calculate p-value (two-sided)
+p_value = 2 * (1 - stats.norm.cdf(abs(z_stat)))
 
-print(f"Observed lift: {diff:.3%}")
-print(f"Approximate confidence interval: {ci_low:.3%}, {ci_high:.3%}")
+# Calculate 95% confidence interval for the difference
+se_diff = np.sqrt(p_pooled * (1 - p_pooled) * (1/n1 + 1/n2))
+ci_lower = (p2 - p1) - 1.96 * se_diff
+ci_upper = (p2 - p1) + 1.96 * se_diff
+
+# Calculate lift
+lift = (p2 - p1) / p1
+
+# Print results
+print(f"Variant A rate: {p1:.4f}")
+print(f"Variant B rate: {p2:.4f}")
+print(f"z-statistic: {z_stat:.3f}")
+print(f"p-value: {p_value:.4f}")
+print(f"Lift: {lift * 100:.2f} %")
+print(f"95% CI for difference: {ci_lower:.4f} to {ci_upper:.4f}")
 ```
 
 A few notes on the example:
 
-- `results` holds the conversion counts for both variants.
-- `proportions_ztest` tests whether the two conversion rates differ.
-- `proportion_confint` can be used to obtain a rough confidence interval for the estimated difference.
+- The pooled proportion `p_pooled` combines both groups to estimate the common proportion under the null hypothesis.
+- The z-statistic is calculated the same way as in the R example.
+- The p-value is calculated from the standard normal distribution using `scipy.stats.norm.cdf()`.
+- The confidence interval uses the standard normal approximation, matching the R implementation.
+- Both Python and R perform the identical two-proportion z-test with the same output.
 
 ## R Implementation Example
 
-### Chi-Squared Test for Proportions
+### Two-Proportion Z-Test
 
-In R, the `prop.test()` function performs a chi-squared test to compare proportions across groups.
+In R, we can perform the same two-proportion z-test to compare conversion rates across groups. The test evaluates whether the difference in success rates between two groups is statistically significant.
 
-Internally, this test is equivalent to the two-proportion z-test used in the Python example for the two-group case, $\chi^2 = z^2$. The test evaluates whether observed success counts differ significantly from what we would expect under the null hypothesis of equal proportions.
+Although R's `prop.test()` function is commonly used in practice and reports an equivalent chi-squared statistic, the example below computes the two-proportion z-test directly so that the calculations match the Python implementation exactly.
 
-The chi-squared test statistic is constructed by comparing observed cell counts in a contingency table to expected counts under independence:
-
-$$
-\chi^2 = \sum \frac{(O - E)^2}{E}
-$$
-
-where $O$ is the observed count and $E$ is the expected count for each cell. A larger $\chi^2$ value indicates a more significant difference between the groups.
-
-The example below demonstrates how to use `prop.test()` to compare conversion rates between variants:
+The example below demonstrates how to calculate and interpret the two-proportion z-test for variants:
 
 ```r
 # Example results for two variants
@@ -110,31 +134,43 @@ variant_b_visitors <- 2100
 successes <- c(variant_a_conversions, variant_b_conversions)
 trials <- c(variant_a_visitors, variant_b_visitors)
 
-# Run two-proportion z-test
-test_result <- prop.test(successes, trials, alternative = "two.sided")
-print(test_result)
-
-# Extract key statistics
-p_value <- test_result$p.value
-conf_int <- test_result$conf.int
-
-# Calculate conversion rates and lift
+# Calculate conversion rates
 rate_a <- variant_a_conversions / variant_a_visitors
 rate_b <- variant_b_conversions / variant_b_visitors
+
+# Calculate pooled proportion
+p_pooled <- sum(successes) / sum(trials)
+
+# Calculate the two-proportion z-test statistic
+z_stat <- (rate_b - rate_a) / sqrt(p_pooled * (1 - p_pooled) * (1/variant_a_visitors + 1/variant_b_visitors))
+
+# Calculate p-value (two-sided)
+p_value <- 2 * (1 - pnorm(abs(z_stat)))
+
+# Calculate 95% confidence interval for the difference
+se_diff <- sqrt(p_pooled * (1 - p_pooled) * (1/variant_a_visitors + 1/variant_b_visitors))
+ci_lower <- (rate_b - rate_a) - 1.96 * se_diff
+ci_upper <- (rate_b - rate_a) + 1.96 * se_diff
+
+# Calculate lift
 lift <- (rate_b - rate_a) / rate_a
 
+# Print results
 print(paste("Variant A rate:", round(rate_a, 4)))
 print(paste("Variant B rate:", round(rate_b, 4)))
-print(paste("Lift:", round(lift * 100, 2), "%"))
+print(paste("z-statistic:", round(z_stat, 3)))
 print(paste("p-value:", round(p_value, 4)))
-print(paste("95% CI for difference:", round(conf_int[1], 4), "to", round(conf_int[2], 4)))
+print(paste("Lift:", round(lift * 100, 2), "%"))
+print(paste("95% CI for difference:", round(ci_lower, 4), "to", round(ci_upper, 4)))
 ```
 
 A few notes on the example:
 
-- `prop.test()` conducts a chi-squared test comparing proportions across two or more groups.
-- The function returns p-values, confidence intervals, and test statistics automatically.
-- `rate_a` and `rate_b` are the conversion rates for each variant, and `lift` shows the percentage change from A to B.
+- The pooled proportion `p_pooled` combines both groups to estimate the common proportion under the null hypothesis.
+- The z-statistic is calculated the same way as in the Python example.
+- The p-value is calculated from the standard normal distribution.
+- The confidence interval uses the same formula as in Python.
+- Both Python and R perform the identical two-proportion z-test.
 
 ## Interpretation of Results
 
