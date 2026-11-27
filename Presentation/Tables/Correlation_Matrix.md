@@ -6,15 +6,15 @@ has_children: false
 nav_order: 1
 ---
 
-# Correlation Matrices 
+# Correlation Matrices
 
 A correlation matrix is a table used to present the results of correlation tests between multiple variables at a time. A correlation test is a statistical method used to define the correlation between two (and sometimes more) variables. The correlation coefficients from these tests are what a correlation matrix is composed of. They are often used as a method to summarize large amounts of data with the intention of identifying patterns of highly correlated variables. They can be a key component to checking the viability of other analyses.
 
 ## Keep in Mind
 
-- When creating a correlation matrix it is important to consider the which type of method for correlation analysis will best meet your needs. While the most common is the Pearson Correlation Coefficient, the Spearman and the Kendall methods are also viable possibilities. The Pearson measures the linear dependence between two variables while Spearman and the Kendall methods use a rank-based, non-parametric correlation test. 
+- When creating a correlation matrix it is important to consider the which type of method for correlation analysis will best meet your needs. While the most common is the Pearson Correlation Coefficient, the Spearman and the Kendall methods are also viable possibilities. The Pearson measures the linear dependence between two variables while Spearman and the Kendall methods use a rank-based, non-parametric correlation test.
 - Correlation only measures a *linear* relationship between two variables. Correlation will not pick up on non-linearity, and sometimes the correlation may be zero even when the two variables are clearly related.
-- As with most kinds of statistical analysis it is important to choose how to deal with missing values in your dataset when creating a correlation matrix. The most common method is to only include complete observations in the correlation test. This is a form of pairwise missing values. Pairwise missing values has an underlying assumption that all missing values are random, which is not necessarily the case. Multiple imputation is in some cases a often a better choice for dealing with missing values. It is just not as straightforward to do. 
+- As with most kinds of statistical analysis it is important to choose how to deal with missing values in your dataset when creating a correlation matrix. The most common method is to only include complete observations in the correlation test. This is a form of pairwise missing values. Pairwise missing values has an underlying assumption that all missing values are random, which is not necessarily the case. Multiple imputation is in some cases a often a better choice for dealing with missing values. It is just not as straightforward to do.
 - Thinking more about missing values, there are two approaches to dropping missing values (if that's what you're doing). One approach, the **complete observations** approach, is to drop an observation from *all* calculations for the entire matrix if it contains any missing values. So in a correlation matrix for the variables $$A$$, $$B$$, and $$C$$, and row 1 of the data was missing its $$C$$ value, it would also be dropped from the calculation of $$Corr(A,B)$$. This first approach is preferred if you want to understand the correlation structure of an analysis that will drop observations in a similar way, like a covariance matrix or a linear regression. The second approach, the **pairwise complete observations** approach, is to only drop observations from correlation calculations involving missing data, so row 1 with a missing $$C$$ value would be dropped from $$Corr(B,C)$$ and $$Corr(A,C)$$, but not from $$Corr(A,B)$$. This sceond approach is preferred if you want to understand the overall relationships between the variables.
 
 ## Also Consider
@@ -24,6 +24,31 @@ A correlation matrix is a table used to present the results of correlation tests
 
 
 # Implementation
+
+## Julia
+
+```julia
+# Uncomment the next line to install all the necessary packages
+# import Pkg; Pkg.add(["CSV", "DataFrames", "StatsBase"])
+
+# For the basic correlations calculation the built-in Statistics module is enough
+# We could also do without DataFrames, but stick with them for simplicity and consistency
+using Statistics, DataFrames, CSV
+
+# Here we download the data set, parse the file with CSV and load into a DataFrame
+mtcars = CSV.read(download("https://github.com/LOST-STATS/lost-stats.github.io/raw/source/Data/mtcars.csv"), DataFrame)
+
+# We drop the "model" column containing strings
+select!(mtcars, Not(:model))
+
+# The built-in `cor` function computes the Pearson correlation and expects a matrix as the input
+cor_matrix = cor(Matrix(mtcars))
+
+# The Spearman and Kendall rank correlation functions are implemented in the StatsBase package
+using StatsBase
+
+cor_spearman = corspearman(Matrix(mtcars))
+```
 
 ## Python
 
@@ -51,7 +76,7 @@ from scipy import stats
 pvalue = stats.pearsonr(d['mpg'],d['disp'])[1]
 ```
 
-## R 
+## R
 
 ```r
 data(mtcars)
@@ -95,7 +120,7 @@ cor *
 * To do a pairwise-complete method, use pwcorr
 pwcorr *
 
-* You can also perform significance tests on the 
+* You can also perform significance tests on the
 * individual correlations using the sig option
 pwcorr *, sig
 * p-values are below each correlation
